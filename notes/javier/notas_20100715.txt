@@ -1,0 +1,25 @@
+
+* Phase Scan
+
+.- "limpiado" de la malla
+el objeto 3d deberia tener el minimo conjunto de puntos necesario para formar la shape.
+analizar algoritmos que vio Adriana para filtrado y minimizacion de puntos.
+
+* Phase: Edicion
+
+.- Toolbar de efectos a proyectar sobre la forma
+proyectar un video 2d sobre la malla 3d.
+lucesita con estela que recorre bordes o el medio o la "sabana"
+autito (augmented reality) que "camina" sobre la malla 3d
+colores?
+
+.- Animacion
+Posibilidad de incorporar en la escena un objeto 3d dado y animaarlo. Caso "snork" o "condorito".
+
+
+* Phase: proyeccion/mapping
+
+.- Calibracion
+luego de 1)capturar obj y 2)hacer el arte del mapping en una notebook, se deberia calibrar el objeto 3d capturado contra la figura/escena real para ajustarlo automaticamente.
+necesitamos la distancia focal (distancia desde un punto de la escena hasta el punto foco de la camara)
+

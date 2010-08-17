@@ -1,0 +1,20 @@
+
+.- 3D reconstruction vs shape recognition
+Llegamos al punto de que evaluamos si el costo de generar un laboratorio para obtener el input como objetis 3d (shapes) versus utilizar mecanismo mas livianos y tolerantes (baja calidad de video, movimiento, etc) para reconocer objetos en 2d.
+
+Esto es porque luego de realizadas las pruebas del sabado pasado (xx de mayo) y habiendo discutido mas en detalle el tema, vimos que es suficiente con formas 2d para resolver el problema pedido (proyectar sobre figuras 3d). nos apoyamos en algunas conclusiones teoricas de tipo geometricas que sacamos que eventualmente deberan tener su comprobacion pracfica.
+
+Estamos evaluando seriamente implementar las 2 tecnicas:
+1) 3D reconstruction: structured light
+2) 2D reconstruction: particle filter, openCV oriented, etc (definitivo a definir)
+
+.- Mapping
+Quisieramos hacer lo mas sencilla y modular posible la etapa primera de adquisicion para que, en caso de no poder obtener/escanear una estructura grande y/o compleja, que este hecho no impida proyectar sobre la misma (es decir, se podria "importar" la geometria en nuestro sitema).
+
+
+Tarea para nosotros
+.- actualizar BLOG con conclusiones de mapping 2D que quedaron pendientes (del tipo "teoricamente, podrriamos reconocoer figuras 2d correspondientes a shapes 3d deformadas, y con ello realizar el mapeo para la proyeccion sobre el").
+.- actualizar BLOG con la pruebita de reconocimiento del plano
+
+
+

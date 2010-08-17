@@ -1,0 +1,23 @@
+.- Nombre del blog
+
+.- Arquitectura/Sincronizacion
+La scan y el proyectado son procesos consecutivos o no?
+Para proyeccion de video puro (como el proyecto de sensores) el proceso era claramente consecutivo (se autoadaptaba al mover la superficie)
+Para lo que es Arte, es deseable que luego de la captura el modelo CAD se trabaje antes de la proyeccion en si.
+
+Que approach seguir
+
+.- Scan: 
+Alcance: Hasta donde nos metemos? Vamos a proyectar sobre cualquier tipo superficie irregular?
+
+Tecnicas: Alcanza con estudiar strucutred light y lo de los sensores? Relevar que mas hay: laser, openCV, PET, etc
+
+
+.- Interface / Estructura intermedia
+Ver si los orignes para los diferentes algoritmos 3d tienen el mismo output (confjunto de puntos).
+
+OBJ? hay que generar la malla a partir del output de puntos del algoritmo 3d.
+
+.- Mapping
+no vimos nada
+

@@ -1,0 +1,33 @@
+B2010_0009: Proyecciones sobre superficies irregulares.
+
+Institución: CECAL - INCO
+
+Responsable: Tomás Laurenzo , contactar
+
+Temas: Computación Gráfica, Interacción Persona Computadora, Visión por Computadora
+
+Descripción:
+
+	Los proyectores (cañones) son utilizados con gran frecuencia como dispositivo de
+salida de las computadoras personales. Las proyecciones muchas veces son, además,
+utilizados con fines expresivos, ya sea acompañando bandas musicales, obras de teatro,
+etc. 
+	Una tendencia relativamente nueva es la proyección sobre superficies distintas de
+la tradicional (plana, perpendicular a la proyección), dando lugar a nuevas modalidades
+de representación de imágenes. 
+	Ejemplos de esto -llamado video mapping- pueden verse en los trabajos de AntiVJ
+(http://www.antivj.com/) entre muchos otros, existiendo incluso festivales dedicados a
+ello (http://www.mappingfestival.com/). 
+	Tradicionalmente el video mapping se realiza en forma manual (modelando las
+superficies tridimensionales y luego aplicando las transformaciones correspondientes a la
+imagen). Sin embargo, algunos investigadores han desarrollado métodos de modelado
+automático. 
+	Como ejemplos de esto último citaremos a • Johnny Lee (Microsoft Research),
+Automatic Projector Calibration with Embedded Light Sensors
+http://www.youtube.com/watch?v=XgrGjJUBF_I http://johnnylee.net/academic/proj4.pdf 
+	• Kyle McDonald Structured Light http://vimeo.com/8392566
+http://code.google.com/p/structured-light/ 
+	El proyecto consiste en un estudio del estado del arte de las técnicas de video
+mapping y de modelado automático de geometrías, para luego implementar un producto que
+permita hacer ambas cosas (adquisición y proyección). 
+	Más información en: http://www.fing.edu.uy/~laurenzo/proyecto2010/ 

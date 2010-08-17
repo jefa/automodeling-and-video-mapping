@@ -1,0 +1,30 @@
+
+apt-get install kernel-package libncurses5-dev wget bzip2 build-essential
+
+Install your kernel-sources:
+cd /usr/src
+apt-get install linux-source
+tar --bzip2 -xvf linux-source-2.6.<your version>.tar.bz2
+ln -s linux-2.6.<your version> linux
+cd linux
+
+wget http://kaswy.free.fr/sites/default/files/download/ps3eye/0.5/ps3eyeMT-2.6.31-10-generic.patch
+
+patch -p1 < ps3eyeMT-2.6.31-10-generic.patch
+
+make oldconfig
+cp /usr/src/linux-headers-2.6.<your version>/Module.symvers /usr/src/linux
+
+make modules_prepare
+make SUBDIRS=drivers/media/video/gspca modules
+
+cp drivers/media/video/gspca/gspca_ov534.ko /lib/modules/$(uname -r)/kernel/drivers/media/video/gspca/
+depmod
+
+modinfo gspca-ov534
+
+modprobe -r gspca-ov534
+modprobe  gspca-ov534 videomode=10 autogain=0 exposure=200 hflip=1
+
+modinfo gspca-ov534
+

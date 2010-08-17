@@ -1,0 +1,30 @@
+
+sudo apt-get install build-essential libgtk2.0-dev libavcodec-dev libavformat-dev libjpeg62-dev libtiff4-dev cmake libswscale-dev libjasper-dev
+
+cd ~
+cd OpenCV-2.0.0
+./configure --prefix=/usr/local --enable-apps --enable-shared --with-ffmpeg --with-gnu-ld --with-x --without-quicktime CXXFLAGS=-fno-strict-aliasing
+
+make
+sudo make install
+
+sudo gedit /etc/ld.so.conf.d/opencv.conf
+/usr/local/lib
+
+
+sudo ldconfig
+
+sudo gedit /etc/bash.bashrc
+
+Add these two lines at the end of the file and save it:
+1	PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
+2	export PKG_CONFIG_PATH
+
+cd ~
+mkdir openCV_samples
+cp /usr/local/share/opencv/samples/c/* openCV_samples
+cd openCV_samples/
+chmod +x build_all.sh
+./build_all.sh
+
+
