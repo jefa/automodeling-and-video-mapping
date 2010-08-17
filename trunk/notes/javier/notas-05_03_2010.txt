@@ -1,0 +1,106 @@
+Coded Structured light as a technique to solve the correspondign problem
+
+Abstract
+
+We present a survey of the most signi?cant techniques, used in the last few years, concerning the
+coded structured light methods employed to get 3D information. In fact, depth perception is one of the most important subjects in computer vision. Stereovision is an attractive and widely used method, but, it is rather limited to make 3D surface maps, due to the correspondence problem. The correspondence problem can be improved using a method based on structured light concept, projecting a given pattern on the measuring surfaces. However, some relations between the projected pattern and the re?ected one must be solved. This relationship can be directly found codifying the projected light, so that, each imaged region of the projected pattern carries the needed information to solve the correspondence problem.
+
+
+1. INTRO
+
+When 3D information of a given surface is needed, we have to choose between a passive method and an active one. The most widely known passive method is stereovision which can be achieved by two different ways. In the first way, an optical sensor is moved to known relative positions in the scene. In the second way, two or more optical sensors are previously fixed in known positions. The surface to be measured is projected on the image plane of each sensor through each focal point. As described in this paper, 3D coordinates of the object point can be obtained by trigonometry from the known projections of an object point and, furthermore, from the relationship between the optical sensors. But we have to know, with correctness, for each object point, its projections on the optical sensor image planes. In fact, in order to obtain the 3D coordinates of a given point from n given projections (one from each sensor), these projections have to be necessarily from the same object point. This problem is known as the correspondence problem.
+
+The correspondence problem can be considerably alleviated by an active method. One of the most widely used active methods is based on structured light projection. Normally, only one camera is used to image the projection of a given pattern on the measuring surface. 3D information manifests itself in the apparent deformations of the imaged pattern from
+
+the projected one. Analysing these deformations we can get information about the position, the orientation, and the texture of the surface on which the pattern has been projected. The 3D analysis can also be quite alleviated using Coded Structured Light. This technique allows us to know for each imaged point, its original point on the emitted projector plane. Then, the correspondence problem can be directly obtained, so it is not necessary to use geometrical constraints to get it. 
+
+2. STEREOVISION
+A well-known stereoscopic vision system consists of one optical sensor (or camera) which can be moved, so its relative positions are known at any time. A more common stereoscopic system is done by two or more sensors maintaining always the same known positions relative to each other. If more than one sensor is used, it will be supposed that they are all identical, and each one can be modelled as an ideal camera, often called a pinhole model.
+
+<imagen de pinhole model>
+
+In the following discussions we will assume a general stereoscopic system made by the relationship between two cameras. In such a system, we have de?ned a general coordinate system with origin O=O1 , and co-ordinates vectors (x, y, z) equal to (x1, y1, z1), respectively. We suppose that optical sensors can be modelled as a pinhole model, with an optical axis which coincides with the z axis, and a focal point F placed at a distance f from the origin along the same axis. Furthermore, we assume that the image plane , with centre O , lies on the x y image plane. Obviously, the second camera has the same properties as the ?rst one, with a coordinate system (x2, y2, z2) and origin O2, where z coincides with its optical axis, a focal distance f along z , and an image plane which lies on the x2y2 image plane. This second coordinate system can be related to the ?rst one using
+
+<x2,y2,z2> = R <x1,y1,z1> + T
+
+where R is a 3x3 orthonormal matrix, which describes the rotation, and T is a vector which describes the translation of the O2 coordinate system with respect to O1.
+
+Consider now an object point P0 in the 3D space, which has a projection P1 on the Pi1 image plane, where the coordinates of P0 with respect to O1 are (xp0, yp0, zp0), and the coordinates of P1 with respect to O1 are (xp1, yp1, 0), then the projection P1, which corresponds to the object point P0 has to be projected through the focal point, so
+
+P1 = F1 + alfa(P0-F1)
+
+We choose an image point P1 on pi1, as the projection of an object point P0 along the l line, de?ned from F1 and P0. As P0 can be placed at any point on the l line, there is no unique position of P2 on pi2, if we only want to apply geometrical constraints. However, we can a?rm that the projection P2 on pi2 has to lie on the segment made by the intersection between the plane de?ned by the points F1 , F2 and P1 and the image plane pi2. This constraint is known as the epipolar constraint.
+If the projection point P1 on pi1 is known, the epipolar constraint allows us to ?nd the projection
+point P on in only one direction. Of course, we cannot know whether the P projection has been imaged on the pi2 image plane. It may be occluded by any other surface object of the scene, or it may be projected out of the range of the camera. The relationship between both projections is known as the correspondence problem, one of the most interesting topics in stereo.
+
+
+3. STRUCTURED LIGHT
+The mathematical solution of the correspondence problem can be simpli?ed leaving out passive methods such as stereo, and going to an active method based on the structured light concept. In this method the second stereo camera is replaced by a light source, which projects a known pattern of light on the measuring scene. A single camera images the illuminated scene. The required 3D information can be obtained by analysing the deformations of the imaged pattern with respect to the projected one. Of
+course, some correspondences between the projected pattern and the imaged one should be solved.
+If a single light dot or a slit line is projected on the scene, then, there is no correspondence problem to be solved, but all the scene has to be scanned to obtain the 3D map. 
+
+Shirai and Suwa in 1971, proposed a slit line projection to recognise polihedric objects. In 1973, Agin and Binford generalised this idea to recognise curvilinear objects. Two years later, Popplestone, Brown, Ambler and Crawford proposed a more general system which recognises either polihedrics or curvilinear objects. In 1986, Yamamoto, Sato and Inokuchi proposed a half plane illumination system instead of a slit line. In fact, binarizing an image of a scene illuminated by a half plane pattern corresponds to the boundary edge detection between the illuminated and the obscured area. Recently, some systems to obtain 3D maps of a scene have been presented. The most common systems are similar to
+the high-speed method presented by Ozeki, Nakano and Yamamoto, and the video rate method presented by Yokoyama, Sato, Yoshigahara and Inokuchi. There are also some authors, as Sato, Kitagawa and Fujita, who project two slit lines with di?erent orientation and position in the 3D coordinates system. In a similar way, Kemmotsu and Kanade chose to project three lines on the measuring scene.
+
+All these methods allow us to ?nd out 3D information from geometric constraint propagation, and some of them are rather limited for measuring surfaces with depth discontinuities. The correspondence problem can be directly solved codifying the projected pattern, so each projected light point carries some information. When the point is imaged on pi1, this information can be used to determine its coordinates on pi2, from where it has been emitted. In the following, the whole mathematical basis used to obtain 3D range information of a measuring scene is presented. The formulated equations have been adapted to the projection of an image and the capture of another, but, as can be seen, there is not much di?erence from the triangulation used in a stereoscopic system.
+
+BLOG Entry:
+
+"Coded Structured light as a technique to solve the corresponding problem"
+
+This paper covers the motivation, history and different techniques regarding the Structured Light and Coded Structured light methodologies for 3D surface reconstruction.
+
+First, a passive stereovision system with two sensor/cameras is explained and the mathematical equations and geometrical constraints are analyzed in detail. Then, structured light as an active method is covered and presented as an alternative to solve the "correspondence problem". Mathematical model is explained as well. Then, the purpose of the coded structured light is described, analyzing temporal dependence, emitted light dependence and depth surface discontinuity dependence. Finally several coded structured light techniques are covered, discussed and compared.
+
+Active and passive techniques are covered in separate, and then, when the mathematical models are explained, the similarities are remarked.
+
+Even though this paper is quite old (1998) it covers structured light and vision systems for 3D reconstruction from an historical perspective. That makes it a very useful source of information in order to understand structured light as a whole, and to be included, in the end, in our Sate of the Art document.
+
+----
+
+Real-time 3D shape measurement
+
+Structures light as a technique for 3D reconstruction has being extensively adopted by the industry and it has proven to work in controlled environments. On the other hand, there's a lot of preoccupation today about the performance of phase-shifting algorithms mostly when real-time 3D measurement comes into play.
+
+There are several directions the researchers are heading to have the performance of the algorithms improved, like for example use different techniques when projecting the encoded stripes, delegate some calculations to the GPUs, or improve the mathematical model itself.
+
+The following two papers present recent research about how to improve the computational cost of the phase-shifting algorithm, and both authors tackled the problem improving the mathematical model approximating the Arctan in the formula of the phase with an intensity ratio calculation and the use of a lookup table to compensate the approximation error.
+
+Actually, if you look at ThreePhase.java class of the Structured Light source code, you'll notice that there’s a comment within the code suggesting to do what these papers are proposing:
+
+public void phaseWrap() {
+	...
+      // this equation can be found in Song Zhang's
+      // "Recent progresses on real-time 3D shape measurement..."
+      // and it is the "bottleneck" of the algorithm
+      // it can be sped up with a look up table, which has the benefit
+      // of allowing for simultaneous gamma correction.
+      phase[y][x] = atan2(sqrt3 * (phase1 - phase3), 2 * phase2 - phase1 - phase3) / TWO_PI;
+	...
+}
+
+* Fast three-step phase-shifting algorithm - Peisen S. Huang and Song Zhang - 2006
+
+Abstract
+We propose a new three-step phase-shifting algorithm, which is much faster than the traditional three step algorithm. We achieve the speed advantage by using a simple intensity ratio function to replace the arctangent function in the traditional algorithm. The phase error caused by this new algorithm is compensated for by use of a lookup table. Our experimental results show that both the new algorithm and the traditional algorithm generate similar results, but the new algorithm is 3.4 times faster. By implementing this new algorithm in a high-resolution, real-time three-dimensional shape measurement system, we were able to achieve a measurement speed of 40 frames per second at a resolution of 532x500 pixels, all with an ordinary personal computer.
+
+
+* Recent progress on real-time 3D shape measurement using digital fringe projection techniques - Song Zhang - 2009
+
+Abstract
+Over the past few years, we have been developing techniques for high-speed 3D shape measurement using digital fringe projection and phase-shifting techniques: various algorithms have been developed to improve the phase computation speed, parallel programming has been employed to further increase the processing speed, and advanced hardware techniques have been adopted to boost the speed of coordinate calculations and 3D geometry rendering. We have successfully achieved simultaneous 3D absolute shape acquisition, reconstruction, and display at a speed of 30 frames/s with 300 K points per frame. This paper presents the principles of the real-time 3D shape measurement techniques that we developed, summarizes the most recent progress that have been made in this field, and discusses the challenges for advancing this technology further.
+
+----
+
+Fast 3D Scanning with Automatic Motion Compensation (Stereo approach)
+
+An intrinsic problem of phase-shifting methods is the inability to deal with blurred images caused by motion of the scanned object or person. There are a lot of initiatives or modifications performed to the original structured light method to support scanning of objects in motion. Please refer to Zhang's paper "Recent progress on real-time 3D shape measurement ... - Song Zhang" mentioned in the previous post. There Zhang cover some techniques to deal with blur by motion images with acceptable results.
+
+In the paper presented below, the authors have decided to replace the unwrap phase of the structured light method by an stereo-based approach to have the same problem of correspondence solved but by a different mechanism. They argued that the unwrapping phase does not solve the absolute phase and that if two surfaces been scanned have a discontinuity of more than 2pi then no method based on phase-shifting will correctly unwrap these two surfaces to each other.
+
+
+* Fast 3D Scanning with Automatic Motion Compensation - Thibaut Weise, Bastian Leibe and Luc Van Gool
+
+Abstract
+We present a novel 3D scanning system combining stereo and active illumination based on phase-shift for robust and accurate scene reconstruction. Stereo overcomes the traditional phase discontinuity problem and allows for the reconstruction of complex scenes containing multiple objects. Due to the sequential recording of three patterns, motion will introduce artifacts in the reconstruction. We develop a closed-form expression for the motion error in order to apply motion compensation on a pixel level. The resulting scanning system can capture accurate depth maps of complex dynamic scenes at 17 fps and can cope with both rigid and deformable objects.
+

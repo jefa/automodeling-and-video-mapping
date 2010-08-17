@@ -1,0 +1,45 @@
+1- prototipo para mapping de algo
+2- que funcione algo de structured light
+3- continuar con lecturas varias para log
+4- inicio documentacion formal
+
+
+ de mapping hay 2 cosas, lo que dijo el ILAVU y lo que dijo chindogu
+ 1) chindogu se interesó por una herramienta que permita mapear un video 2D a 3D 
+ o sea, lo básico que estamos haciendo
+ 2) ILAVU habló de mapear a superficies con curvas, que es mas o menos lo mismo
+
+
+estado del arte que incluye?
+	tecnicas de reconstruccion 3d
+		SL 
+			3-phase (kyle)
+			gray code (byo3d)
+		SL con laser
+		Sensores (Lee)
+		Stereo vision
+	bibliotecas
+		OpenCV
+	Edicion de gemoetria
+		file types
+		analisis de softwares disponibles
+	Video Mapping
+		analisis de softwares disponibles
+	Pruebas conceptuales (codigo)
+		lectura/escritura OBJ
+		Mapear sobre sup. plana - cubo
+		Mapear sobre sup. curva - cilindro
+	
+
+-- Mail para BYO3D
+
+
+Brown University
+dlanman@brown.edu
+http://mesh.brown.edu/dlanman
+
+Gabriel Taubin
+Brown University
+taubin@brown.edu
+http://mesh.brown.edu/taubin
+

@@ -1,0 +1,23 @@
+Kyle:
+
+We'er trying to capture iregular surfaces whichi may include objects with planed faces and continuous shpaes (see attached photo)
+
+the problem we;re experiencing is that we're getting stisfacotry resutls with contunous shapes but we are not beign able to scan groups of boxes and cones.
+
+is there any contraint with thte algorithm you're sugn that coudl explain the above experimental results? or is just us doing something wrong?
+
+just fro you to know, we tried with differetn projected patterns, allways three-phase, an we get the same result.
+
+
+
+Mapping:
+We're working on developing an automatic video/mapping modeling tool and we're interested on gather some requirements you could be interested in to inlcude as part of the scope ot the project.
+
+the poroject consists of three stages: 
+1) scan: this is an automated geometry scan process that will "export" the shape to an standard 3D representation (OBJ, etc)
+2) edition: manipulation to the 3D representation. eventually you'd like to cut the shape, adjust some unacuracies product of the automatic process (step 1). We're very open to suggestions here :)
+3) mapping: GUI to project videos, images, effects over the 3D shape. Strongly cupled or integrated within the same tool with the "editio" step 2.
+
+we're also interested in knowing how you do all these tasks today, what products/tools you use and if you have comments or suggestions to the presentd steps or if you can propose a completely different way of doing them.
+
+you can see where we are today (research stage yet) and what are the things we tried and their results.
