@@ -1,0 +1,1146 @@
+#LyX 1.6.7 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass article
+\use_default_options true
+\language spanish
+\inputencoding auto
+\font_roman default
+\font_sans default
+\font_typewriter default
+\font_default_family default
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout Plain Layout
+Proyección sobre superficies irregulares
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Author
+Daniel Gomez de Souza, Javier Fradiletti, Adriana Soucoff
+\end_layout
+
+\begin_layout Standard
+Tutor: Tomás Laurenzo
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+Los proyectores (cañones) son utilizados con gran frecuencia como dispositivo
+ de salida de las computadoras personales.
+ Las proyecciones muchas veces son, además, utilizados con fines expresivos,
+ ya sea acompañando bandas musicales, obras de teatro, etc.
+ Una tendencia relativamente nueva es la proyección sobre superficies distintas
+ de la tradicional (plana, perpendicular a la proyección), dando lugar a
+ nuevas modalidades de representación de imágenes.
+\end_layout
+
+\begin_layout Abstract
+Ejemplos de esto -llamado video mapping- pueden verse en los trabajos de
+ AntiVJ (
+\color blue
+http://www.antivj.com/
+\color inherit
+) entre muchos otros, existiendo incluso festivales dedicados a ello (
+\color blue
+http://www.mappingfestival.com/
+\color inherit
+).
+\end_layout
+
+\begin_layout Abstract
+Tradicionalmente el video mapping se realiza en forma manual (modelando
+ las superficies tridimensionales y luego aplicando las transformaciones
+ correspondientes a la imagen).
+ Sin embargo, algunos investigadores han desarrollado métodos de modelado
+ automático.
+\end_layout
+
+\begin_layout Abstract
+Como ejemplos de esto último citaremos a - Johnny Lee (Microsoft Research),
+ Automatic Projector Calibration with Embedded Light Sensors 
+\color blue
+http://www.youtube.com/watch?v=XgrGjJUBF_I http://johnnylee.net/academic/proj4.pdf
+\color inherit
+ - Kyle McDonald Structured Light 
+\color blue
+http://vimeo.com/8392566
+\color inherit
+ 
+\color blue
+http://code.google.com/p/structured-light/
+\end_layout
+
+\begin_layout Abstract
+El proyecto consiste en un estudio del estado del arte de las técnicas de
+ video mapping y de modelado automático de geometrías, para luego implementar
+ un producto que permita hacer ambas cosas (adquisición y proyección).
+ 
+\end_layout
+
+\begin_layout Abstract
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+\begin_inset Index
+status open
+
+\begin_layout Plain Layout
+1-Introducción
+\end_layout
+
+\end_inset
+
+
+\series bold
+\size large
+1-Introducción
+\end_layout
+
+\begin_layout Standard
+Video mapping es una técnica que consiste en proyectar imágenes ó videos
+ sobre superficies, estas pueden ser animadas ó inanimadas, el objetivo
+ es generar una ilusión visual realizando así un espectáculo novedoso e
+ impactante.
+ Otras posibles aplicaciones para esta técnica son: 
+\end_layout
+
+\begin_layout Standard
+- en el ámbito de la simulación, por ejemplo: en simulaciones de pilotos,
+ simulación de iluminación, aplicado a la arquitectura.
+ 
+\end_layout
+
+\begin_layout Standard
+- interfaz de usuario para visualizar información.
+ 
+\end_layout
+
+\begin_layout Standard
+- juegos.
+\end_layout
+
+\begin_layout Standard
+Actualmente esta aplicada principalmente al arte, existiendo proyecciones
+ sobre superficies animadas (es el caso de obras teatrales [1]), para superficie
+s inanimadas las más populares son fachadas, sobre las cuales se proyecta
+ un video (casi siempre acompañado de música)[2],[3], el video puede generar
+ la ilusión de deformaciones 3D ó la ilusión de una superficie inexistente.
+ 
+\end_layout
+
+\begin_layout Title
+
+\series bold
+Motivación
+\end_layout
+
+\begin_layout Standard
+Con las herramientas actualmente disponibles es necesario realizar un modelo
+ de la superficie en la cual se proyectará, comúnmente este modelo es realizado
+ en 2D y se corresponde con la proyección de los elementos 3D, luego manualmente
+ realizar el mapeo del video en la misma, este trabajo es meticuloso y engorroso.
+ Si el modelo es 2D las deformaciones del video originadas por la forma
+ de la superficie (3D) no se podrán visualizar en el momento de diseño limitando
+ de esta forma el diseño a superficies planas ó admitiendo esta incertidumbre
+ en estos casos.
+ 
+\end_layout
+
+\begin_layout Title
+
+\series bold
+Objetivos
+\end_layout
+
+\begin_layout Standard
+Proveer de una herramienta que permita automatizar el mapeo de video sobre
+ superficies irregulares, brindando al usuario la posibilidad de capturar
+ una geometría (representada por una nube de puntos), editar la misma para
+ realizar posibles correcciones (reducir la nube de puntos según algoritmos
+ disponibles), en el proceso de edición proveer de una interfaz de usuario
+ que brinde el modelo 3D de la geometría y sobre el mismo diseñar el mapping
+ permitiendo incorporar objetos 3D en la animación, finalmente la generación
+ de la proyección según lo definido por el usuario para la geometría especificad
+a.
+\end_layout
+
+\begin_layout Title
+
+\series bold
+Organización del documento
+\end_layout
+
+\begin_layout Standard
+2- Se presentan técnicas que resuelven la obtención de una geometría, discutiend
+o sus costos y herramientas existentes para realización de video-mapping.
+ 
+\end_layout
+
+\begin_layout Standard
+3- Definición de requerimientos de la solución, alcance.
+ 
+\end_layout
+
+\begin_layout Standard
+4- Discusión de las técnicas y herramientas seleccionadas para utilizar
+ en el proyecto.
+ 
+\end_layout
+
+\begin_layout Standard
+5-… 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+\begin_inset Index
+status open
+
+\begin_layout Plain Layout
+2-Estado del Arte
+\end_layout
+
+\end_inset
+
+
+\series bold
+\size large
+2-Estado del Arte
+\end_layout
+
+\begin_layout Standard
+Estudiaremos: 
+\end_layout
+
+\begin_layout Standard
+- Técnicas para obtención de geometrías, evaluándolas seleccionaremos una/s
+ para utilizar en nuestro prototipo, de esta forma una superficie irregular
+ dada será capturada y representada por una nube de puntos.
+ 
+\end_layout
+
+\begin_layout Standard
+- Bibliotecas para generación de modelos 3D y modificación de los mismos.
+ 
+\end_layout
+
+\begin_layout Standard
+- Técnicas de video mapping.
+ 
+\end_layout
+
+\begin_layout Title
+
+\series bold
+Método de triangulación
+\end_layout
+
+\begin_layout Standard
+Se utiliza la geometría de triángulos para determinar posiciones de puntos,
+ medidas de distancias o áreas de figuras.
+\end_layout
+
+\begin_layout Standard
+Sabiendo los ángulos A y C y la distancia b se puede calcular D.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename C:/Users/adriana/Pictures/1.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+
+\size large
+Técnicas para obtención de geometrías:
+\end_layout
+
+\begin_layout Title
+
+\series bold
+Structured Light
+\end_layout
+
+\begin_layout Standard
+Structured Light es el proceso de proyección de un patrón (o serie de patrones)
+ conocido de píxeles en una escena, el desplazamiento de las rayas permite
+ una recuperación exacta de las coordenadas 3D de todos los detalles de
+ la superficie del objeto utilizando método de triangulación.
+ Es un método activo porque utiliza una fuente de luz artificial.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename C:/Users/adriana/Pictures/2.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Clasificación de distintas técnicas de structured light basada en las distintas
+ estrategias de codificación de patrones [4]
+\end_layout
+
+\begin_layout Standard
+Cada píxel tiene su palabra de código, así que hay una mapeo directo de
+ las palabras código a las correspondientes coordenadas de los píxeles en
+ el modelo.
+ Las palabras de código son números, que se asignan en el modelo mediante
+ el uso de niveles de gris, el color o las representaciones geométricas.
+ 
+\end_layout
+
+\begin_layout Standard
+Se distinguen tres grupos de técnicas de proyección de patrones según estrategia
+ de codificación: 
+\end_layout
+
+\begin_layout Standard
+1- Time-multiplexing Se generan las palabras de código mediante la proyección
+ de una secuencia de patrones en el tiempo, por lo que la estructura de
+ cada modelo puede ser muy simple.
+ Un conjunto de patrones se proyectan sobre la superficie de medición, la
+ palabra código para un píxel dado, está formado por la secuencia de valores
+ de iluminación de ese píxel a través de los patrones proyectados.
+ La codificación se llama temporal porque los bits de las palabras código
+ son multiplexadas en el tiempo.
+ Este tipo de modelo puede alcanzar una alta precisión en las mediciones.
+ 
+\end_layout
+
+\begin_layout Standard
+Esto se debe a dos factores: 
+\end_layout
+
+\begin_layout Standard
+1)como múltiples patrones son proyectados, la palabra código tiende a ser
+ pequeña (normalmente binario) y por lo tanto es utilizado un pequeño conjunto
+ de primitivas, siendo fácilmente distinguibles entre sí.
+ 
+\end_layout
+
+\begin_layout Standard
+2)un paradigma de grueso-a-fino es seguido, ya que la posición de un píxel
+ se está codificando con mayor precisión, mientras que los patrones son
+ sucesivamente proyectados.
+ 
+\end_layout
+
+\begin_layout Standard
+Dentro del grupo de time-multiplexing se pueden clasificar distintas técnicas:
+ 
+\end_layout
+
+\begin_layout Standard
+a) Basada en código binario: se utiliza una secuencia de patrones binarios
+ en orden para generar las palabras código.
+ 
+\end_layout
+
+\begin_layout Standard
+b) Basada en código n-ario: se utiliza una base de n primitivas para generar
+ las palabras código.
+ 
+\end_layout
+
+\begin_layout Standard
+c) Códigos de Grises combinado con desplazamiento de fases (phase shifting):
+ el mismo patrón es projectado sucesivas veces con un desplazamiento de
+ fase en una dirección con el objetivo de incrementar la resolución.
+ 
+\end_layout
+
+\begin_layout Standard
+d) Técnicas hibridas: son una combinación de time-multiplexing y estrategias
+ de neighborhood.
+\end_layout
+
+\begin_layout Standard
+2- Neighborhood codification Representa las palabras código en un único
+ patrón.
+ 
+\end_layout
+
+\begin_layout Standard
+Clasificación de técnicas: 
+\end_layout
+
+\begin_layout Standard
+a) Estrategias basadas en codificación no formal: los vecinos son generados
+ intuitivamente.
+ 
+\end_layout
+
+\begin_layout Standard
+b) Estrategias basadas en secuencias de Bruijn: los vecinos son definidos
+ usando secuencias seudo-randomicas.
+ 
+\end_layout
+
+\begin_layout Standard
+c) Estrategias basadas en M-arrays: es una extensión de la teoría de seudo-rando
+mica generación a caso 2D .
+\end_layout
+
+\begin_layout Standard
+3- Direct codification Define una palabra de código para cada píxel, lo
+ que es igual a su nivel de gris o color, para lograrlo es necesario utilizar
+ una amplia gama de valores de color o introducir periodicidad.
+ En teoría, una alta resolución en 3D de la información puede ser obtenida.
+ La sensibilidad al ruido es muy alta debido a la "distancia" entre "palabras
+ de código", es decir, los colores utilizados son casi cero.
+ Por otra parte, los colores reflejados no sólo dependen de los colores
+ proyectados, sino también en el color intrínseco de la superficie de medición.
+ 
+\end_layout
+
+\begin_layout Standard
+Clasificación de técnicas: 
+\end_layout
+
+\begin_layout Standard
+a) Codificación basada en niveles de gris: un espectro de niveles de gris
+ es usado para codificar los puntos del patrón.
+ 
+\end_layout
+
+\begin_layout Standard
+b) Codificación basada en color: estas técnicas aprovechan un amplio espectro
+ de colores.
+ 
+\end_layout
+
+\begin_layout Title
+
+\series bold
+Escaneo utilizando laser
+\end_layout
+
+\begin_layout Standard
+Utilizando un laser (con método time-of-flight : al vuelo) se puede obtener
+ mediciones de hasta 50 metros de distancia con error de centímetros.
+ En el caso presentado en [5] se combina un laser 2D con un servo-drive,
+ esta combinación permite diferentes condiciones de visibilidad, dependiendo
+ de la posición del eje de rotación.
+\end_layout
+
+\begin_layout Standard
+Para el cálculo de la nube de puntos 3D se necesita una transformación con
+ entrada: 2D filas exploradas y la posición del escáner 2D.
+\end_layout
+
+\begin_layout Standard
+Posibles aplicaciones para los escáneres láser 3D son: localización de objetos
+ y el reconocimiento para un sistema automatizado, sistemas de seguridad,
+ vigilancia, navegación, etc.
+ 
+\end_layout
+
+\begin_layout Title
+
+\series bold
+Visión Stereo
+\end_layout
+
+\begin_layout Standard
+Se ve la escena desde dos ó más puntos de vista, luego se encuentran las
+ correspondencias entre las imágenes con el fin de triangular la posición
+ 3D.
+ La triangulación es posible si las cámaras están calibradas previamente.
+ Este método es el más conocido dentro de los métodos pasivos [6][7](se
+ dice pasivo porque en stereo la triangulación se resuelve sin utilización
+ de luz adicional, solo se utiliza la iluminación del ambiente).
+ Se puede implementar de dos formas: 
+\end_layout
+
+\begin_layout Standard
+- moviendo un sensor óptico para identificar posiciones relativas en la
+ escena.
+ 
+\end_layout
+
+\begin_layout Standard
+- otra forma sería tener dos o más sensores ópticos que son previamente
+ fijados, y de los cuales se sabe su posición.
+ 
+\end_layout
+
+\begin_layout Standard
+Para obtener las coordenadas 3D de un punto dado a partir de n proyecciones
+ (una de cada sensor óptico), estas proyecciones tienen que ser necesariamente
+ del mismo punto del objeto.
+ Este problema se conoce como el problema de correspondencia.
+\end_layout
+
+\begin_layout Standard
+Las principales etapas son: Pre procesamiento, establecimiento de correspondenci
+a, y obtención de profundidad.
+\end_layout
+
+\begin_layout Standard
+Stereo es limitado para hacer mapas en 3D de superficie, debido a no poder
+ resolver completamente el problema de correspondencia, esto se da cuando
+ ocurre oclusión en alguna de las imágenes analizadas de alguna región de
+ la escena, para esa región no existe correspondencia en las distintas imágenes
+ capturadas.
+\end_layout
+
+\begin_layout Title
+
+\series bold
+Sensores de Luz
+\end_layout
+
+\begin_layout Standard
+Se utilizan sensores de luz incorporados en la superficie de proyección
+ para resolver la calibración automática del proyector [8] .
+ El procedimiento consiste en proyectar patrones sobre la superficie de
+ proyección y localizar los sensores de luz allí instalados, la cantidad
+ de patrones utilizados será dependiendo de la resolución del proyector,
+ a mayor resolución, más patrones serán necesarios para identificar un pixel
+ (ej: para una resolución de proyector de 1024x768 cada pixel puede ser
+ identificado utilizando veinte patrones).
+ Luego de haber detectado los pixeles correspondientes a los sensores se
+ calcula una homografía que transforma la pantalla de pixeles a la superficie
+ de proyección reconocida.
+ Utilizando esta transformación la imagen es deformada y luego proyectada.
+ Un punto a considerar con esta técnica es que los sensores deben estar
+ visibles para el rango del proyector.
+\end_layout
+
+\begin_layout Standard
+Para obtener una geometría utilizando esta técnica sería necesario un sensor
+ para cada vértice, en caso de superficies curvas serían necesarios muchos
+ más para lograr obtener la misa.
+\end_layout
+
+\begin_layout Standard
+Otro tipo de sensor utilizado son los LED infrarrojos [9] los mismos permiten
+ que la superficie sea proyectada sin impedir la obtención de la geometría
+ pues la misma es capturada con una o varias cámaras especializadas para
+ detectar infrarrojos, de esta forma permite capturar la información en
+ cualquier momento, y recalcularla al vuelo, permitiendo movimiento de las
+ superficies.
+\end_layout
+
+\begin_layout Standard
+Posibles aplicaciones: 
+\end_layout
+
+\begin_layout Standard
+- visualización arquitectónica, 
+\end_layout
+
+\begin_layout Standard
+- interface para explorar datos de origen volumétricos definiendo secciones
+ de corte y visualización.
+ 
+\end_layout
+
+\begin_layout Standard
+- una interface de usuario de propósito general (ej: juegos) 
+\end_layout
+
+\begin_layout Title
+
+\series bold
+Ultrasonido
+\end_layout
+
+\begin_layout Standard
+[10] Es necesario una emisión de sonido (consiste en pulsos emitidos a distintas
+ frecuencias), esta se realiza por el Ultrasonic Transducer, la señal emitida
+ se refleja al encontrar una superficie en su camino.
+ El mismo transducer detecta la señal reflejada, y es procesada por un amplifica
+dor.
+ 
+\end_layout
+
+\begin_layout Standard
+Uno de los inconvenientes de esta técnica es la limitante del ángulo del
+ transducer (en la emisión de la señal), esto limita la resolución obtenida.
+ 
+\end_layout
+
+\begin_layout Standard
+Otro problema asociado a esta técnica es dado por las propiedades intrínsecas
+ de las ondas acústicas y las superficies reflejadas, por ejemplo: si el
+ transducer apunta de forma que su onda y la normal a la superficie están
+ a mas de 40º (de una extensa superficie), se emite una pequeña señal de
+ retorno la cual es un residuo, caso descripto en la figura, este tipo de
+ caso puede generar lecturas erróneas.
+ 
+\end_layout
+
+\begin_layout Standard
+Por estos inconvenientes esta técnica no es utilizada para obtener media-alta
+ definición de superficies con normales en direcciones arbitrarias, en cambio
+ para propósitos de navegación cruda es muy útil pues es un eficiente detector
+ de obstáculos.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename C:/Users/adriana/Pictures/3.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+
+\size large
+Herramientas existentes para realización de video-mapping:
+\end_layout
+
+\begin_layout Title
+
+\series bold
+Modul8
+\end_layout
+
+\begin_layout Standard
+[11]Es una aplicación para sistema operativo Mac diseñada para composición
+ y mezclador de video en tiempo real.
+ Ha sido diseñada por Vjs y live-performers.
+ Sus principales características son: 
+\end_layout
+
+\begin_layout Standard
+-Tiene una interfaz de usuario pensada para mezclar video en tiempo real,
+ esto permite hacer correcciones rápidas, previo ó en el momento que se
+ esta efectuando la performance.
+ Esta interfaz está basada en capas, cada cambio se puede ver de inmediato
+ en la composición.
+ 
+\end_layout
+
+\begin_layout Standard
+-Son 7 salidas mas una para la interface de usuario, se puede determinar
+ que región de la composición es enviada a que proyector o pantalla.
+ 
+\end_layout
+
+\begin_layout Standard
+-Es posible extender las funcionalidades incorporando módulos, los mismos
+ deben estar escritos en Python script (existiendo una librería on line
+ ).
+\end_layout
+
+\begin_layout Standard
+Modul8 es un software propietario.
+ 
+\end_layout
+
+\begin_layout Title
+
+\series bold
+VVVV
+\end_layout
+
+\begin_layout Standard
+[12] Es un toolkit multipropósito, brinda un entorno para programación gráfica,
+ es gratis para uso no comercial.
+ Principales características: 
+\end_layout
+
+\begin_layout Standard
+-Alto nivel de programación, la interface se realiza por medio de un entorno
+ gráfico, las operaciones son representadas por nodos, las mismas tienen
+ links, para unirlas definiendo un flujo de trabajo (esta estructura es
+ llamada patch).
+ El modo de vvvv es uno solo y es runtime ya sea para desarrollar o correr
+ programas.
+ 
+\end_layout
+
+\begin_layout Standard
+-Manipulación de distintos objetos (gráficos o de datos) con poco esfuerzo,
+ Utilizando spread para lograrlo, consiste en distribuir ó comunicar valores
+ a través de los objetos.
+ 
+\end_layout
+
+\begin_layout Standard
+-Está construido con una arquitectura cliente/servidor, esto permite controlar
+ una cantidad variada de render computers, estos serían los clientes que
+ reproducen un sistema generado de múltiple pantallas ó múltiple proyección
+ desde un único servidor.
+ -Extensible, permite incorporar nuevos nodos escritos en distintos lenguajes
+ (ej: c#, delphi, c++ ,etc) 
+\end_layout
+
+\begin_layout Standard
+-Alta performance en reproducción 3D, el motor está basado en Direct3D (una
+ API del estilo OpenGL) que brinda mejor performance utilizando la capacidad
+ de la GPU (unidad de procesamiento gráfico).
+ 
+\end_layout
+
+\begin_layout Standard
+-para animación tiene un grupo de nodos especializados para generar animaciones
+ de alta calidad.
+ 
+\end_layout
+
+\begin_layout Standard
+-Video Tracking y Efectos, el motor generador de video está basado en DirectShow
+, permite una variedad de formatos de video, los efectos son implementados
+ vía freeframe.
+ 
+\end_layout
+
+\begin_layout Standard
+-Audio, motor basado en DirectShow, puede utilizar todos los formatos que
+ funcionan en windos mediaplayer, permite FFT (Fast Fourier transform es
+ un algoritmo eficiente para calcular una transformación de Fourier discreta
+ y su inversa) análisis de streams.
+ 
+\end_layout
+
+\begin_layout Standard
+-Simulación, puede simular objetos rigidos, para ello tiene disponible nodos
+ que utilizan librería Open Dinamic Engine[13] para objetos 3D y Box2D para
+ caso 2D[14] 
+\end_layout
+
+\begin_layout Standard
+-Provee interface con dispositivos externos y protocolos.
+ Tiene nodos que permiten controlar pantallas touch-screen, switches, sensores
+ de posición y orientación, Interfaces DMX, teclados, etc.
+ Protocolos como TCP, UDP, RS232 para comunicación con otras computadoras
+ y nodos que permiten comunicación vía MIDI, DMX, ArtNet,OSC,HTTP, IRC etc.
+\end_layout
+
+\begin_layout Standard
+VVVV es un software propietario, existe una versión gratis disponible para
+ propósitos no comerciales.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+
+\series bold
+\size large
+\begin_inset Index
+status collapsed
+
+\begin_layout Plain Layout
+3- Definición de requerimientos de la solución, alcance.
+\end_layout
+
+\end_inset
+
+3- Definición de requerimientos de la solución, alcance.
+\end_layout
+
+\begin_layout Standard
+Diferenciamos tres etapas las cuales serán distintos módulos, los mismos
+ son: 
+\end_layout
+
+\begin_layout Standard
+- Obtención de Geometría 
+\end_layout
+
+\begin_layout Standard
+- Edición 
+\end_layout
+
+\begin_layout Standard
+- Proyección/Mapping
+\end_layout
+
+\begin_layout Standard
+* Fase de Obtención de Geometría
+\end_layout
+
+\begin_layout Standard
+.- "limpiado" de la malla el objeto 3d debería tener el mínimo conjunto de
+ puntos necesario para formar la geometría.
+ Por medio de algoritmos filtrado y minimización de puntos.
+\end_layout
+
+\begin_layout Standard
+* Fase de Edición
+\end_layout
+
+\begin_layout Standard
+.-Barra de Herramientas de efectos a proyectar sobre la forma: -proyectar
+ un video 2d sobre la malla 3d.
+ -punto de luz con estela que recorre bordes o el medio o la geometría.
+\end_layout
+
+\begin_layout Standard
+.- Animación Posibilidad de incorporar en la escena un objeto 3d dado y animarlo
+ (augmented reality).
+ Caso "snork" o "condorito".
+\end_layout
+
+\begin_layout Standard
+* Fase: proyección/mapping
+\end_layout
+
+\begin_layout Standard
+.- Calibración Luego de [ 1) capturar la geometría y 2) hacer el arte del
+ mapping ], se debería calibrar el objeto 3d capturado contra la figura/escena
+ real para ajustarlo automáticamente.
+ Necesitamos la distancia focal (distancia desde un punto de la escena hasta
+ el punto foco de la cámara) 
+\end_layout
+
+\begin_layout Title
+
+\series bold
+\size large
+\begin_inset Index
+status collapsed
+
+\begin_layout Plain Layout
+4- Discusión de las técnicas y herramientas seleccionadas para utilizar
+ en el proyecto.
+\end_layout
+
+\end_inset
+
+4- Discusión de las técnicas y herramientas seleccionadas para utilizar
+ en el proyecto.
+\end_layout
+
+\begin_layout Title
+
+\series bold
+\size large
+5-…
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset index_print
+LatexCommand printindex
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "1"
+key "key-1"
+
+\end_inset
+
+
+\color blue
+http://vimeo.com/2774865
+\color inherit
+ por Viktor Vicsek
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "2"
+key "key-2"
+
+\end_inset
+
+
+\color blue
+http://www.youtube.com/watch?v=BGXcfvWhdDQ&feature=PlayList&p=FCBC1672042919C8&pla
+ynext_from=PL&playnext=1&index=93
+\color inherit
+ Battle of Branchage.
+ Architectural Projection Mapping @ Branchage Film Festival 2009 www.seeper.com
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "3"
+key "key-3"
+
+\end_inset
+
+
+\color blue
+http://vimeo.com/5677104
+\color inherit
+ Production: 
+\color blue
+www.urbanscreen.com
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "4"
+key "key-4"
+
+\end_inset
+
+Pattern codification strategies in structured light systems Joaquim Salvi
+ Jordi Pagès Joan Batlle Institut d’Informàtica i Aplicacions Universitat
+ de Girona Av.
+ Lluís Santaló, s/n, E-17071 Girona (Spain) {qsalvi,jpages,jbatlle}@eia.udg.es
+ 
+\color blue
+http://www.google.com.uy/url?sa=t&source=web&cd=1&ved=0CBcQFjAA&url=http%3A%2F%2Fci
+teseerx.ist.psu.edu%2Fviewdoc%2Fdownload%3Fdoi%3D10.1.1.9.5774%26rep%3Drep1%26type%3Dpd
+f&rct=j&q=10.1.1.9.5774&ei=Q20ZTPySNcGBlAeRpcmxCw&usg=AFQjCNFAJSc7jcpjmM0bCoMVyeNAiq
+IkkQ
+\color inherit
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "5"
+key "key-5"
+
+\end_inset
+
+Caso 
+\color blue
+http://www.rts.uni-hannover.de/images/5/5f/Wulf03-CSCS.pdf
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "6"
+key "key-6"
+
+\end_inset
+
+RECENT PROGRESS IN CODED STRUCTURED LIGHT AS A TECHNIQUE TO SOLVE THE CORRESPOND
+ENCE PROBLEM: A SURVEY 
+\color blue
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.90.3817&rep=rep1&type=pdf
+\color inherit
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "7"
+key "key-7"
+
+\end_inset
+
+IEE Transactions On Systems, Man, and Cybernetics, vol19, no.6,November/dicember
+ 1989 Structure from Stereo- A Review 
+\color blue
+ftp://ftp.iutbayonne.univ-pau.fr/pub/perso/Gim/luthon/deposite/stereo25.pdf
+\color inherit
+ UMESH R.
+ DHOND, student member, IEEE, and J.K.
+ AGGARWAL,fellow, IEEE 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "8"
+key "key-8"
+
+\end_inset
+
+Automatic Projector Calibration with Embedded Light Sensors Johnny C.
+ Lee1,2, Paul H.
+ Dietz2, Dan Maynes-Aminzade2,3, Ramesh Raskar2, Scott E.
+ Hudson1 
+\color blue
+http://johnnylee.net/academic/proj4.pdf
+\color inherit
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "9"
+key "key-9"
+
+\end_inset
+
+Dynamic Projection Environments form Immersive Visualization 
+\color blue
+http://www.cs.rpi.edu/research/groups/graphics/procams2010/dynamic_projection_surfa
+ces.pdf
+\color inherit
+ 
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "10"
+key "key-10"
+
+\end_inset
+
+A Perspective on Range Finding Techniques for Computer Vision IEEE Transactions
+ on Pattern Analysis and Machine Intelligence, vol.Pami-5,NO.2 March 1983
+ 
+\color blue
+https://www.cs.sfu.ca/fas-info/cs/CC/821/li/material/source/Jarvis83.pdf
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "11"
+key "key-11"
+
+\end_inset
+
+
+\color blue
+http://www.modul8.ch/
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "12"
+key "key-12"
+
+\end_inset
+
+
+\color blue
+http://vvvv.org/
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "13"
+key "key-13"
+
+\end_inset
+
+
+\color blue
+http://ode.org/
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+label "14"
+key "key-14"
+
+\end_inset
+
+
+\color blue
+http://www.box2d.org/features.html
+\end_layout
+
+\end_body
+\end_document
