@@ -180,10 +180,30 @@ Video mapping es una técnica que consiste en proyectar imágenes ó videos
 
 \begin_layout Standard
 Actualmente esta aplicada principalmente al arte, existiendo proyecciones
- sobre superficies animadas (es el caso de obras teatrales [1]), para superficie
-s inanimadas las más populares son fachadas, sobre las cuales se proyecta
- un video (casi siempre acompañado de música)[2],[3], el video puede generar
- la ilusión de deformaciones 3D ó la ilusión de una superficie inexistente.
+ sobre superficies animadas (es el caso de obras teatrales 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-1"
+
+\end_inset
+
+), para superficies inanimadas las más populares son fachadas, sobre las
+ cuales se proyecta un video (casi siempre acompañado de música)
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-2"
+
+\end_inset
+
+,
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-3"
+
+\end_inset
+
+, el video puede generar la ilusión de deformaciones 3D ó la ilusión de
+ una superficie inexistente.
  
 \end_layout
 
@@ -353,7 +373,14 @@ Structured Light es el proceso de proyección de un patrón (o serie de patrones
 
 \begin_layout Standard
 Clasificación de distintas técnicas de structured light basada en las distintas
- estrategias de codificación de patrones [4]
+ estrategias de codificación de patrones 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-4"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -494,9 +521,15 @@ Escaneo utilizando laser
 \begin_layout Standard
 Utilizando un laser (con método time-of-flight : al vuelo) se puede obtener
  mediciones de hasta 50 metros de distancia con error de centímetros.
- En el caso presentado en [5] se combina un laser 2D con un servo-drive,
- esta combinación permite diferentes condiciones de visibilidad, dependiendo
- de la posición del eje de rotación.
+ En el caso presentado en 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-5"
+
+\end_inset
+
+ se combina un laser 2D con un servo-drive, esta combinación permite diferentes
+ condiciones de visibilidad, dependiendo de la posición del eje de rotación.
 \end_layout
 
 \begin_layout Standard
@@ -522,8 +555,21 @@ Se ve la escena desde dos ó más puntos de vista, luego se encuentran las
  correspondencias entre las imágenes con el fin de triangular la posición
  3D.
  La triangulación es posible si las cámaras están calibradas previamente.
- Este método es el más conocido dentro de los métodos pasivos [6][7](se
- dice pasivo porque en stereo la triangulación se resuelve sin utilización
+ Este método es el más conocido dentro de los métodos pasivos 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-6"
+
+\end_inset
+
+
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-7"
+
+\end_inset
+
+(se dice pasivo porque en stereo la triangulación se resuelve sin utilización
  de luz adicional, solo se utiliza la iluminación del ambiente).
  Se puede implementar de dos formas: 
 \end_layout
@@ -568,7 +614,14 @@ Sensores de Luz
 
 \begin_layout Standard
 Se utilizan sensores de luz incorporados en la superficie de proyección
- para resolver la calibración automática del proyector [8] .
+ para resolver la calibración automática del proyector 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-8"
+
+\end_inset
+
+ .
  El procedimiento consiste en proyectar patrones sobre la superficie de
  proyección y localizar los sensores de luz allí instalados, la cantidad
  de patrones utilizados será dependiendo de la resolución del proyector,
@@ -590,12 +643,18 @@ Para obtener una geometría utilizando esta técnica sería necesario un sensor
 \end_layout
 
 \begin_layout Standard
-Otro tipo de sensor utilizado son los LED infrarrojos [9] los mismos permiten
- que la superficie sea proyectada sin impedir la obtención de la geometría
- pues la misma es capturada con una o varias cámaras especializadas para
- detectar infrarrojos, de esta forma permite capturar la información en
- cualquier momento, y recalcularla al vuelo, permitiendo movimiento de las
- superficies.
+Otro tipo de sensor utilizado son los LED infrarrojos 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-9"
+
+\end_inset
+
+ los mismos permiten que la superficie sea proyectada sin impedir la obtención
+ de la geometría pues la misma es capturada con una o varias cámaras especializa
+das para detectar infrarrojos, de esta forma permite capturar la información
+ en cualquier momento, y recalcularla al vuelo, permitiendo movimiento de
+ las superficies.
 \end_layout
 
 \begin_layout Standard
@@ -623,7 +682,13 @@ Ultrasonido
 \end_layout
 
 \begin_layout Standard
-[10] Es necesario una emisión de sonido (consiste en pulsos emitidos a distintas
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-10"
+
+\end_inset
+
+Es necesario una emisión de sonido (consiste en pulsos emitidos a distintas
  frecuencias), esta se realiza por el Ultrasonic Transducer, la señal emitida
  se refleja al encontrar una superficie en su camino.
  El mismo transducer detecta la señal reflejada, y es procesada por un amplifica
@@ -678,8 +743,14 @@ Modul8
 \end_layout
 
 \begin_layout Standard
-[11]Es una aplicación para sistema operativo Mac diseñada para composición
- y mezclador de video en tiempo real.
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-11"
+
+\end_inset
+
+Es una aplicación para sistema operativo Mac diseñada para composición y
+ mezclador de video en tiempo real.
  Ha sido diseñada por Vjs y live-performers.
  Sus principales características son: 
 \end_layout
@@ -717,7 +788,13 @@ VVVV
 \end_layout
 
 \begin_layout Standard
-[12] Es un toolkit multipropósito, brinda un entorno para programación gráfica,
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-12"
+
+\end_inset
+
+Es un toolkit multipropósito, brinda un entorno para programación gráfica,
  es gratis para uso no comercial.
  Principales características: 
 \end_layout
@@ -778,8 +855,21 @@ VVVV
 
 \begin_layout Standard
 -Simulación, puede simular objetos rigidos, para ello tiene disponible nodos
- que utilizan librería Open Dinamic Engine[13] para objetos 3D y Box2D para
- caso 2D[14] 
+ que utilizan librería Open Dinamic Engine
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-13"
+
+\end_inset
+
+ para objetos 3D y Box2D para caso 2D
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-14"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
