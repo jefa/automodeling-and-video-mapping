@@ -89,6 +89,8 @@ http://ti.arc.nasa.gov/tech/asr/intelligent-robotics/nasa-vision-workbench/
 Alessandro Ferrari - Augmented Reality and Vision
 http://sites.google.com/site/ferrariimageprocessing/opencv-and-eclipse
 
+NATAL Project
+http://www.pixelsumo.com/post/inside-project-natal?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+pixelsumo+%28Pixelsumo%29
 
 === Computer Vision source code
 http://www.cs.cmu.edu/~cil/v-source.html
@@ -158,3 +160,10 @@ http://www.quickcamteam.net/documentation/how-to/how-to-enable-raw-streaming-on-
 PS3 Eye Windows Driver
 http://codelaboratories.com/products/eye/
 
+=== Matlab Toolbox
+
+Camera calibration
+http://www.vision.caltech.edu/bouguetj/calib_doc/
+
+ProCam Lib
+http://code.google.com/p/procamcalib/
