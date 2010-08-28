@@ -46,6 +46,13 @@ http://www.instructables.com/tag/?q=structured+light&limit%3Atype%3Aid=on&type%3
 
 
 === OpenCV
+
+OpenCV 2.0 C Reference
+http://opencv.willowgarage.com/documentation/index.html
+
+Introduction to programming with OpenCV (2006)
+http://www.cs.iit.edu/~agam/cs512/lect-notes/opencv-intro/opencv-intro.html
+
 http://www.samontab.com/web/2010/03/installing-opencv-2-0-in-ubuntu/
 
 http://opencv.willowgarage.com/wiki/EffortFor3dReconstruction
@@ -67,6 +74,16 @@ http://tech.groups.yahoo.com/group/OpenCV/message/71043
 OpenCV + Structured Light ::: gray code (not three phase)
 http://www.bluegalaxydesign.com/?page_id=327
 http://mesh.brown.edu/byo3d/source.html
+
+OpenCV Tutorials
+http://www.pages.drexel.edu/~nk752/tutorials.html
+
+Varios proyectos interesantes para bajar
+http://www.shervinemami.co.cc
+
+Optical Flow Sample
+http://ai.stanford.edu/~dstavens/cs223b/
+
 
 
 === Structured Light
@@ -101,7 +118,14 @@ http://www.robots.ox.ac.uk/~gk/PTAM/
 http://mi.eng.cam.ac.uk/~er258/cvd/cvd/html/index.html (libCVD)
 http://stackoverflow.com/questions/66722/what-is-the-best-library-for-computer-vision-in-c-c
 
+PTAMM (extension of PTAM)
+http://www.robots.ox.ac.uk/~bob/software/index.html
 http://ewokrampage.wordpress.com/troubleshooting-faq/
+http://www.minus-reality.com/?p=1 ::: How to run PTAMM in Ubuntu 9.10
+
+PTAM con OF
+http://www.openframeworks.cc/forum/viewtopic.php?f=10&t=1139&start=60
+http://code.google.com/p/ampontang/source/browse/#svn/trunk/ofxPTAM
 
 http://users.cecs.anu.edu.au/~hartley/Papers/CVPR99-tutorial/tut_4up.pdf
 
@@ -115,6 +139,7 @@ http://github.com/andyli/AugmentedMirror/tree/master/OpenFrameworks/addons/augme
 
 = Active Vision Group - Department of Engineering Science - University of Oxford
 http://www.robots.ox.ac.uk/ActiveVision/Research/index.html
+http://www.youtube.com/activevision
 
 = CVonline: The Evolving, Distributed, Non-Proprietary, On-Line Compendium of Computer Vision
 http://homepages.inf.ed.ac.uk/rbf/CVonline/
@@ -139,6 +164,7 @@ http://kaswy.free.fr/?q=node/38#ps3
 
 ARToolKit 
 http://www.hitl.washington.edu/artoolkit/
+
 
 === GENERAL
 
