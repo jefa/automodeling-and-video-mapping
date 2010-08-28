@@ -11,10 +11,15 @@ analizar algoritmos que vio Adriana para filtrado y minimizacion de puntos.
 proyectar un video 2d sobre la malla 3d.
 lucesita con estela que recorre bordes o el medio o la "sabana"
 autito (augmented reality) que "camina" sobre la malla 3d
-colores?
+paleta de colores
+degrades con timing, colores, todo parametrizable (scripting?)
 
 .- Animacion
 Posibilidad de incorporar en la escena un objeto 3d dado y animaarlo. Caso "snork" o "condorito".
+
+.-Timeline
+
+patrones de disenio, utilizar escenas, etc.
 
 
 * Phase: proyeccion/mapping
@@ -22,4 +27,11 @@ Posibilidad de incorporar en la escena un objeto 3d dado y animaarlo. Caso "snor
 .- Calibracion
 luego de 1)capturar obj y 2)hacer el arte del mapping en una notebook, se deberia calibrar el objeto 3d capturado contra la figura/escena real para ajustarlo automaticamente.
 necesitamos la distancia focal (distancia desde un punto de la escena hasta el punto foco de la camara)
+
+
+
+
+
+
+memo.tv - puede haber algo como para hacer interfaces graficas
 
