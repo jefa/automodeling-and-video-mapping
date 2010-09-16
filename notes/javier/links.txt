@@ -26,10 +26,6 @@ Johnny Lee (Microsoft Research) - Automatic Projector Calibration with Embedded 
 http://www.youtube.com/watch?v=XgrGjJUBF_I
 http://johnnylee.net/academic/proj4.pdf 
 
-Projector-Camera Calibration Toolbox v0.5
-http://code.google.com/p/procamcalib/downloads/detail?name=ProCamCalib_v0.5.zip&can=2&q=
-
-
 
 === Kyle McDonald Structured Light 
 http://vimeo.com/8392566
@@ -191,5 +187,5 @@ http://codelaboratories.com/products/eye/
 Camera calibration
 http://www.vision.caltech.edu/bouguetj/calib_doc/
 
-ProCam Lib
+ProCam Lib - Projector-Camera Calibration Toolbox v0.5
 http://code.google.com/p/procamcalib/
