@@ -515,6 +515,147 @@ b) Codificación basada en color: estas técnicas aprovechan un amplio espectro
 \begin_layout Title
 
 \series bold
+Calibracion Camara-Proyector
+\end_layout
+
+\begin_layout Standard
+Lo mas visto en terminos de calibracion y toma de conocimiento camara-proyector
+ son sistemas o biblitoecas que utilizan un damero (checkerboard) con dimensione
+s y caracteristicas conocidas para minimizar costos y complejidad.
+ Tambien se realiza la asumcion de considerar al projector como una "camara
+ invertida" que mapea imagenes en 2D en rayos 3D, haciendo la calibracion
+ del proyector muy similar a la de la camara.
+\end_layout
+
+\begin_layout Standard
+De esta manera, conociendo los puntos 2D proyectados y sus correspondientes
+ en 3D el sistema puede ser calibrado con metodos de calibracion de camaras
+ estandard como el de Boughet 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-13"
+
+\end_inset
+
+.
+ De esta forma, lo que obtendremos al final son parametros Intrinsicos y
+ Extrinsicos para ambos, camara y proyector.
+ Tanto las imagenes capturadas (camara) como proyectadas (proyector) estan
+ descriptas por el modelo de camara Pinhole
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-14"
+
+\end_inset
+
+ cuyos parametros intrinsicos son distancia focal, punto principal, factor
+ de 
+\begin_inset Quotes eld
+\end_inset
+
+disortion
+\begin_inset Quotes erd
+\end_inset
+
+ (desviacion de proyecciones rectilineas) y tamanio de pixel mientras que
+ los extrinsicos estan formados por las matrices de rotacion y traslacion
+ hacia el sistema de coordenadas de la camara o el proyector.
+\end_layout
+
+\begin_layout Standard
+En lineas generales, este metodo se divide en los siguientes pasos:
+\end_layout
+
+\begin_layout Itemize
+Calibrar la camara utilizando el metodo de Boughet (Matlab Toolbox)
+\end_layout
+
+\begin_layout Itemize
+Obtener el plano de calibratcion en terminos de coordenada del sistema
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Extrinsic params: 
+\begin_inset Graphics
+	filename ext_camera_params.PNG
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Plano de calibracion
+\begin_inset Graphics
+	filename calib_plane.PNG
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Aplicar algoritmo Ray-plane Intersection para obtener la posicion 3D de
+ los puntos proyectados
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+Ray-plane algorithm: 
+\begin_inset Graphics
+	filename ray-plane.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Calibrar el proyector utilizando correspondencia entre los puntos 2D de
+ la imagen proyectada con los puntos 3D y obtener finalmente los parametros
+ intrinsicos y extrinsicos del proyector
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+\begin_inset Graphics
+	filename matlab_extrinsic_plot.PNG
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+.
+\end_layout
+
+\begin_layout Standard
+Existe una biblioteca de reconstruccion 3D utilizando tecnicas de Structured
+ Light en la que se ha implementado esta misma metodologia de calibracion
+ camara-proyector basada en la biblioteca de codigo abierto de computer
+ vision OpenCV
+\begin_inset CommandInset citation
+LatexCommand cite
+key "key-15"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Title
+
+\series bold
 Escaneo utilizando laser
 \end_layout
 
@@ -1230,6 +1371,43 @@ key "key-14"
 
 \color blue
 http://www.box2d.org/features.html
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-13"
+
+\end_inset
+
+Boughet's Calibration Toolbox for Matlab 
+\color blue
+http://www.vision.caltech.edu/bouguetj/calib_doc
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-14"
+
+\end_inset
+
+Brief description of the camera pinhole model 
+\color blue
+http://en.wikipedia.org/wiki/Pinhole_camera_model http://en.wikipedia.org/wiki/Camer
+a_resectioning
+\end_layout
+
+\begin_layout Bibliography
+\begin_inset CommandInset bibitem
+LatexCommand bibitem
+key "key-15"
+
+\end_inset
+
+Byo3D-Build Your Own 3D Scanner-
+\color blue
+http://mesh.brown.edu/byo3d/source.html
 \end_layout
 
 \end_body
