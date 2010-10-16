@@ -523,8 +523,8 @@ Lo mas visto en terminos de calibracion y toma de conocimiento camara-proyector
  son sistemas o biblitoecas que utilizan un damero (checkerboard) con dimensione
 s y caracteristicas conocidas para minimizar costos y complejidad.
  Tambien se realiza la asumcion de considerar al projector como una "camara
- invertida" que mapea imagenes en 2D en rayos 3D, haciendo la calibracion
- del proyector muy similar a la de la camara.
+ invertida" que mapea imagenes 2D en rayos 3D, haciendo la calibracion del
+ proyector muy similar a la de una camara.
 \end_layout
 
 \begin_layout Standard
