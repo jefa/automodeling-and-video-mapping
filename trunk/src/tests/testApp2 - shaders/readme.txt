@@ -1,0 +1,1 @@
+TestApp2 es para probar la carga y manejo de shaders utilizando el addon OfxShader
