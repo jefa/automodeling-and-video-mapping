@@ -105,6 +105,9 @@ http://sites.google.com/site/ferrariimageprocessing/opencv-and-eclipse
 NATAL Project
 http://www.pixelsumo.com/post/inside-project-natal?utm_source=feedburner&utm_medium=feed&utm_campaign=Feed%3A+pixelsumo+%28Pixelsumo%29
 
+The KHRONOS PROJECTOR
+http://www.k2.t.u-tokyo.ac.jp/members/alvaro/Khronos/
+
 === Computer Vision source code
 http://www.cs.cmu.edu/~cil/v-source.html
 
@@ -129,8 +132,16 @@ OF and OpenCV
 http://www.openframeworks.cc/forum/viewtopic.php?p=6153
 http://www.openframeworks.cc/forum/viewtopic.php?t=850 (hand tracking)
 
+TSPS is a cross-platform Toolkit for Sensing People in Spaces.
+http://opentsps.com
+
 http://blog.onthewings.net/2010/01/04/stereo-correspondence-test/
 http://github.com/andyli/AugmentedMirror/tree/master/OpenFrameworks/addons/augmentedMirror/src/ (codigo de stereo correspondence)
+
+Mouse scroll wheel events with GLUT under MacOSX
+http://iihm.imag.fr/blanch/howtos/MacOSXGLUTMouseWheel.html
+http://www.realmtech.net/opengl/glut.php
+http://www.openframeworks.cc/forum/viewtopic.php?p=13047
 
 
 = Active Vision Group - Department of Engineering Science - University of Oxford
