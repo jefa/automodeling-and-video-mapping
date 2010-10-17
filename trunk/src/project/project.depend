@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1287267697 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
+1287275947 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
 	"testApp.h"
 
-1287019075 c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.h
+1287275947 c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.h
 	"ofMain.h"
 
 1265431764 c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\libs\openframeworks\ofmain.h
@@ -716,8 +716,27 @@
 	"ofGstUtils.h"
 	"ofQtUtils.h"
 
-1276409070 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\main.cpp
+1287275947 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\main.cpp
 	"ofMain.h"
 	"testApp.h"
 	"ofAppGlutWindow.h"
+
+1287291030 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\animationcontroller.cpp
+	"AnimationController.h"
+
+1287290068 c:\users\daniel\desktop\proyecto de grado\code\project\src\animationcontroller.h
+	<vector>
+	"Animation.h"
+	"ConcatenacionAnimaciones.h"
+
+1287290392 c:\users\daniel\desktop\proyecto de grado\code\project\src\animation.h
+	"propertyManager.h"
+	<string>
+
+1287275947 c:\users\daniel\desktop\proyecto de grado\code\project\src\propertymanager.h
+
+1287290000 c:\users\daniel\desktop\proyecto de grado\code\project\src\concatenacionanimaciones.h
+
+1287291043 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\animation.cpp
+	"Animation.h"
 
