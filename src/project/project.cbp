@@ -92,6 +92,13 @@
 			<Add after='cmd /c if not exist &quot;$(PROJECT_DIR)bin/data&quot; mkdir &quot;$(PROJECT_DIR)bin/data&quot;' />
 			<Mode after="always" />
 		</ExtraCommands>
+		<Unit filename="src\Animation.cpp" />
+		<Unit filename="src\Animation.h" />
+		<Unit filename="src\AnimationController.cpp" />
+		<Unit filename="src\AnimationController.h" />
+		<Unit filename="src\ConcatenacionAnimaciones.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="src\main.cpp" />
 		<Unit filename="src\propertyManager.h">
 			<Option target="&lt;{~None~}&gt;" />
