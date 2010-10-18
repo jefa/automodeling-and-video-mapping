@@ -1,14 +1,18 @@
-#ifndef PROPERTY_MANAGER
-#define PROPERTY_MANAGER
+#include <string>
+#include <vector>
+#include <exception>
+using namespace std;
 
-class IPropertyManager {
+#ifndef __PropertyManager_h__
+#define __PropertyManager_h__
 
+class IPropertyManager
+{
 	public:
 
-        virtual float getf(int propertyID)=0;
-
-        virtual void setf(int propertyID, float value)=0;
+	virtual void set(string aParam, float value) = 0;
+    virtual float get(string aParam) = 0;
 
 };
 
-#endif // PROPERTY_MANAGER
+#endif
