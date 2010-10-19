@@ -17,6 +17,8 @@ class Translation: public Modifier, public IPropertyManager
         string _z;
 
 	public:
+        Translation() : Modifier() {};
+        Translation(Object3D *objRef) : Modifier( objRef ) {};
         float get(string aParam);
         void set(string aParam, float aValue);
 };
