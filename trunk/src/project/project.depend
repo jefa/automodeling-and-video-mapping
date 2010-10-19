@@ -2,7 +2,7 @@
 1287275947 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
 	"testApp.h"
 
-1287275947 c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.h
+1287336890 c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.h
 	"ofMain.h"
 
 1265431764 c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\libs\openframeworks\ofmain.h
@@ -721,23 +721,26 @@
 	"testApp.h"
 	"ofAppGlutWindow.h"
 
-1287291030 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\animationcontroller.cpp
+1287336773 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\animationcontroller.cpp
 	"AnimationController.h"
 
-1287290068 c:\users\daniel\desktop\proyecto de grado\code\project\src\animationcontroller.h
+1287336740 c:\users\daniel\desktop\proyecto de grado\code\project\src\animationcontroller.h
 	<vector>
 	"Animation.h"
 	"ConcatenacionAnimaciones.h"
 
-1287290392 c:\users\daniel\desktop\proyecto de grado\code\project\src\animation.h
+1287336579 c:\users\daniel\desktop\proyecto de grado\code\project\src\animation.h
 	"propertyManager.h"
 	<string>
 
-1287275947 c:\users\daniel\desktop\proyecto de grado\code\project\src\propertymanager.h
+1287448555 c:\users\daniel\desktop\proyecto de grado\code\project\src\propertymanager.h
+	<string>
+	<vector>
+	<exception>
 
 1287290000 c:\users\daniel\desktop\proyecto de grado\code\project\src\concatenacionanimaciones.h
 
-1287291043 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\animation.cpp
+1287336271 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\animation.cpp
 	"Animation.h"
 
 1287280401 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\main.cpp

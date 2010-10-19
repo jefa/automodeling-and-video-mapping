@@ -13,11 +13,13 @@ class AnimationController
     public:
         AnimationController();
         virtual ~AnimationController();
-        void AddAnimation(Animation anim, ConcatenacionAnimaciones conc);
+        void AddAnimation(Animation *anim, ConcatenacionAnimaciones conc);
+        void Update(unsigned int interval);
+
     protected:
     private:
-        vector<Animation> animator;
-        vector<Animation> colaEspera;
+        vector<Animation*> animator;
+        vector<Animation*> colaEspera;
 };
 
 #endif // ANIMATIONCONTROLLER_H
