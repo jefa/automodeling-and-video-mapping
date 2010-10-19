@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "Animation.h"
-#include "ConcatenacionAnimaciones.h"
+#include "AnimationsLinking.h"
 
 using namespace std;
 
@@ -13,7 +13,7 @@ class AnimationController
     public:
         AnimationController();
         virtual ~AnimationController();
-        void AddAnimation(Animation *anim, ConcatenacionAnimaciones conc);
+        void AddAnimation(Animation *anim, AnimationsLinking conc);
         void Update(unsigned int interval);
 
     protected:
