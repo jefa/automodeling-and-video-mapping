@@ -15,10 +15,10 @@ AnimationController::~AnimationController()
 /// </summary>
 /// <param name="anim"></param>
 /// <param name="conc"></param>
-void AnimationController::AddAnimation(Animation *anim, ConcatenacionAnimaciones conc)
+void AnimationController::AddAnimation(Animation *anim, AnimationsLinking conc)
 {
 
-    if (conc == INMEDIATO)
+    if (conc == IMMEDIATE)
     {
         //Quito repetidos si los hay
         for (unsigned int i = 0; i < animator.size(); i++)
@@ -39,7 +39,7 @@ void AnimationController::AddAnimation(Animation *anim, ConcatenacionAnimaciones
         }
         animator.push_back(anim);
     }
-    else if (conc == ESPERAFIN)
+    else if (conc == WAITEND)
     {
         for (unsigned int i = 0; i < animator.size(); i++)
         {
