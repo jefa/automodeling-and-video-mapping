@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1287275947 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
+1287336912 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
 	"testApp.h"
 
 1287336890 c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.h
@@ -1550,6 +1550,62 @@
 	"PropertyManager.h"
 
 1287440724 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\translation.h
+	<string>
+	<vector>
+	<exception>
+	"Modifier.h"
+	"PropertyManager.h"
+
+1287448555 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\modifier.cpp
+	<string>
+	<vector>
+	<exception>
+	"Modifier.h"
+	"Object3D.h"
+
+1287448555 c:\users\daniel\desktop\proyecto de grado\code\project\src\modifier.h
+	<string>
+	<vector>
+	<exception>
+
+1287448555 c:\users\daniel\desktop\proyecto de grado\code\project\src\object3d.h
+	"Modifier.h"
+	"Clonable.h"
+	<string>
+
+1287448555 c:\users\daniel\desktop\proyecto de grado\code\project\src\clonable.h
+	<string>
+	<vector>
+	<exception>
+
+1287448555 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\object2d.cpp
+	<string>
+	<vector>
+	<exception>
+	"Object2D.h"
+
+1287448555 c:\users\daniel\desktop\proyecto de grado\code\project\src\object2d.h
+	<string>
+	<vector>
+	<exception>
+
+1287448555 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\object3d.cpp
+	<string>
+	<vector>
+	<exception>
+	"Object3D.h"
+	"Modifier.h"
+	"Clonable.h"
+
+1287448555 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\translation.cpp
+	<string>
+	<vector>
+	<exception>
+	"Translation.h"
+	"Modifier.h"
+	"PropertyManager.h"
+
+1287448555 c:\users\daniel\desktop\proyecto de grado\code\project\src\translation.h
 	<string>
 	<vector>
 	<exception>
