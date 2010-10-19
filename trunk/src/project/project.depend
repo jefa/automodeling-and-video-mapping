@@ -1459,22 +1459,22 @@
 	"ofGstUtils.h"
 	"ofQtUtils.h"
 
-1287280401 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\testapp.h
+1287486866 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\testapp.h
 	"ofMain.h"
 
 1287280401 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\testapp.cpp
 	"testApp.h"
 
-1287438498 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\animationcontroller.cpp
+1287486866 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\animationcontroller.cpp
 	"AnimationController.h"
 
-1287438498 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\animationcontroller.h
+1287486866 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\animationcontroller.h
 	<vector>
 	"Animation.h"
 	"ConcatenacionAnimaciones.h"
 
-1287438498 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\animation.h
-	"propertyManager.h"
+1287495584 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\animation.h
+	"IPropertyManager.h"
 	<string>
 
 1287439901 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\propertymanager.h
@@ -1484,21 +1484,20 @@
 
 1287438498 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\concatenacionanimaciones.h
 
-1287438498 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\animation.cpp
+1287486866 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\animation.cpp
 	"Animation.h"
 
-1287440261 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\material.cpp
+1287495604 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\material.cpp
 	<string>
 	<vector>
 	<exception>
 	"Material.h"
-	"PropertyManager.h"
 
-1287440146 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\material.h
+1287495591 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\material.h
 	<string>
 	<vector>
 	<exception>
-	"PropertyManager.h"
+	"IPropertyManager.h"
 
 1287440268 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\object2d.cpp
 	<string>
@@ -1511,21 +1510,23 @@
 	<vector>
 	<exception>
 
-1287439213 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\modifier.cpp
+1287446606 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\modifier.cpp
 	<string>
 	<vector>
 	<exception>
 	"Modifier.h"
 	"Object3D.h"
 
-1287441357 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\modifier.h
+1287446595 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\modifier.h
+	"Object3D.h"
 	<string>
 	<vector>
 	<exception>
 
-1287441331 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\object3d.h
+1287497723 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\object3d.h
 	"Modifier.h"
 	"Clonable.h"
+	"ofx3DBaseLoader.h"
 	<string>
 
 1287440504 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\clonable.h
@@ -1541,20 +1542,18 @@
 	"Modifier.h"
 	"Clonable.h"
 
-1287440741 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\translation.cpp
+1287496794 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\translation.cpp
 	<string>
 	<vector>
 	<exception>
 	"Translation.h"
-	"Modifier.h"
-	"PropertyManager.h"
 
-1287440724 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\translation.h
+1287496787 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\translation.h
 	<string>
 	<vector>
 	<exception>
 	"Modifier.h"
-	"PropertyManager.h"
+	"IPropertyManager.h"
 
 1287448555 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\modifier.cpp
 	<string>
@@ -1611,4 +1610,107 @@
 	<exception>
 	"Modifier.h"
 	"PropertyManager.h"
+
+1287486866 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\ipropertymanager.h
+	<string>
+	<vector>
+	<exception>
+
+1265431756 source:c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\model3ds.cpp
+	"model3DS.h"
+
+1265431756 c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\model3ds.h
+	"ofMain.h"
+	"texture3DS.h"
+	"Vector3DS.h"
+	"ofx3DBaseLoader.h"
+	<iostream>
+	<fstream>
+	<vector>
+	<list>
+	<map>
+	<string>
+	<sstream>
+	<cctype>
+	<algorithm>
+	<functional>
+	<iostream>
+	<assert.h>
+
+1265431756 c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\texture3ds.h
+	"ofMain.h"
+
+1265431756 c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\vector3ds.h
+	<math.h>
+	<iostream>
+
+1265431756 c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\ofx3dbaseloader.h
+
+1265431756 source:c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\ofx3dmodelloader.cpp
+	"ofx3DModelLoader.h"
+
+1265431756 c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\ofx3dmodelloader.h
+	"ofMain.h"
+	"model3DS.h"
+
+1265431756 source:c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\texture3ds.cpp
+	"texture3DS.h"
+
+1265431756 source:c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\model3ds.cpp
+	"model3DS.h"
+
+1265431756 c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\model3ds.h
+	"ofMain.h"
+	"texture3DS.h"
+	"Vector3DS.h"
+	"ofx3DBaseLoader.h"
+	<iostream>
+	<fstream>
+	<vector>
+	<list>
+	<map>
+	<string>
+	<sstream>
+	<cctype>
+	<algorithm>
+	<functional>
+	<iostream>
+	<assert.h>
+
+1265431756 c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\texture3ds.h
+	"ofMain.h"
+
+1265431756 c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\vector3ds.h
+	<math.h>
+	<iostream>
+
+1265431756 c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\\ofx3dbaseloader.h
+
+1265431756 source:c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\texture3ds.cpp
+	"texture3DS.h"
+
+1265431756 c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\\model3ds.h
+	"ofMain.h"
+	"texture3DS.h"
+	"Vector3DS.h"
+	"ofx3DBaseLoader.h"
+	<iostream>
+	<fstream>
+	<vector>
+	<list>
+	<map>
+	<string>
+	<sstream>
+	<cctype>
+	<algorithm>
+	<functional>
+	<iostream>
+	<assert.h>
+
+1265431756 c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\\texture3ds.h
+	"ofMain.h"
+
+1265431756 c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\\vector3ds.h
+	<math.h>
+	<iostream>
 

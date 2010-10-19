@@ -10,8 +10,14 @@ Modifier::Modifier()
 {
 }
 
+Modifier::Modifier(Object3D *objRef)
+{
+    this->objRef = objRef;
+}
+
 Modifier::~Modifier()
 {
+    this->objRef = NULL;
 }
 
 void Modifier::getGizmo()

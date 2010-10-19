@@ -4,7 +4,6 @@
 using namespace std;
 
 #include "Material.h"
-#include "PropertyManager.h"
 
 float Material::get(string aParam) {
 	throw "Not yet implemented";

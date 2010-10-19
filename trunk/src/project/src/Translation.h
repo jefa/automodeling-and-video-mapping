@@ -7,7 +7,7 @@ using namespace std;
 #define __Translation_h__
 
 #include "Modifier.h"
-#include "PropertyManager.h"
+#include "IPropertyManager.h"
 
 class Translation: public Modifier, public IPropertyManager
 {
