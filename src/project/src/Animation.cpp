@@ -13,7 +13,12 @@ Animation::~Animation()
     //dtor
 }
 
-bool Animation::mismaAnimacion(Animation anim)
+bool Animation::isOff()
 {
-    return (propMgr == anim.propMgr && propertyId == anim.propertyId);
+    return off;
+}
+
+bool Animation::mismaAnimacion(Animation *anim)
+{
+    return (propMgr == anim->propMgr && propertyId == anim->propertyId);
 }

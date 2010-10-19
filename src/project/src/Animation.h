@@ -11,7 +11,9 @@ class Animation
     public:
         Animation(IPropertyManager *pmgr, string propertyId, int timeMilliseconds);
         virtual ~Animation();
-        bool mismaAnimacion(Animation anim);
+        bool mismaAnimacion(Animation *anim);
+        virtual void Update(int elapsedTime)=0;
+        bool isOff();
 
     protected:
         IPropertyManager *propMgr;
@@ -20,6 +22,7 @@ class Animation
         int totalAnimationTime;
 
     private:
+        bool off;
 
 };
 
