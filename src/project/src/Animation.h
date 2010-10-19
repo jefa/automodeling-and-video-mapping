@@ -1,7 +1,7 @@
 #ifndef ANIMATION_H
 #define ANIMATION_H
 
-#include "propertyManager.h"
+#include "IPropertyManager.h"
 
 #include <string>
 using namespace std;

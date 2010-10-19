@@ -4,8 +4,6 @@
 using namespace std;
 
 #include "Translation.h"
-#include "Modifier.h"
-#include "PropertyManager.h"
 
 float Translation::get(string aParam) {
 	throw "Not yet implemented";

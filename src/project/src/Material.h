@@ -6,7 +6,7 @@ using namespace std;
 #ifndef __Material_h__
 #define __Material_h__
 
-#include "PropertyManager.h"
+#include "IPropertyManager.h"
 
 class Material : public IPropertyManager
 {
