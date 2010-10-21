@@ -15,7 +15,7 @@ void Object3D::clone() {
 void Object3D::setPosX(float param)
 {
     this->_x = param;
-    obj3d_1->setPosition(param, 1, 1);
+    obj3d_1->setPosition(param, this->_y , this->_z);
 }
 
 float Object3D::getPosX()
@@ -26,6 +26,7 @@ float Object3D::getPosX()
 void Object3D::setPosY(float param)
 {
     this->_y = param;
+    obj3d_1->setPosition(this->_x, param , this->_z);
 }
 
 float Object3D::getPosY()
@@ -36,6 +37,7 @@ float Object3D::getPosY()
 void Object3D::setPosZ(float param)
 {
     this->_z = param;
+    obj3d_1->setPosition(this->_x, this->_y, param);
 }
 
 float Object3D::getPosZ()

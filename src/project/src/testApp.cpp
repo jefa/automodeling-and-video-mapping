@@ -25,7 +25,9 @@ void testApp::setup(){
     //obj3D->addModifier(t);
 
     LinearAnimation *anim = new LinearAnimation(obj3D, "x", 5000, 200);
+    LinearAnimation *anim2 = new LinearAnimation(obj3D, "y", 10000, 300);
     animController.AddAnimation(anim, IMMEDIATE);
+    animController.AddAnimation(anim2, IMMEDIATE);
 
 }
 
