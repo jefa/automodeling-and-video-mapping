@@ -58,7 +58,6 @@ void AnimationController::AddAnimation(Animation *anim, AnimationsLinking conc)
 
 void AnimationController::Update(unsigned int interval)
 {
-    cout << animator.size() << endl;
     for (unsigned int i = 0; i < animator.size(); i++)
     {
         Animation *anim = animator[i];
