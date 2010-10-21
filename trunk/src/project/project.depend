@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1287549672 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
+1287625397 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
 	"testApp.h"
 
-1287542959 c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.h
+1287625398 c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.h
 	"ofMain.h"
 	"Object3D.h"
 	"Translation.h"
@@ -718,20 +718,20 @@
 	"ofGstUtils.h"
 	"ofQtUtils.h"
 
-1287275947 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\main.cpp
+1287625397 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\main.cpp
 	"ofMain.h"
 	"testApp.h"
 	"ofAppGlutWindow.h"
 
-1287535113 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\animationcontroller.cpp
+1287625397 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\animationcontroller.cpp
 	"AnimationController.h"
 
-1287535113 c:\users\daniel\desktop\proyecto de grado\code\project\src\animationcontroller.h
+1287625398 c:\users\daniel\desktop\proyecto de grado\code\project\src\animationcontroller.h
 	<vector>
 	"Animation.h"
 	"AnimationsLinking.h"
 
-1287535113 c:\users\daniel\desktop\proyecto de grado\code\project\src\animation.h
+1287625397 c:\users\daniel\desktop\proyecto de grado\code\project\src\animation.h
 	"IPropertyManager.h"
 	<string>
 
@@ -742,7 +742,7 @@
 
 1287290000 c:\users\daniel\desktop\proyecto de grado\code\project\src\concatenacionanimaciones.h
 
-1287336271 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\animation.cpp
+1287625397 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\animation.cpp
 	"Animation.h"
 
 1287280401 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\main.cpp
@@ -1558,54 +1558,55 @@
 	"Modifier.h"
 	"IPropertyManager.h"
 
-1287535113 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\modifier.cpp
+1287625397 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\modifier.cpp
 	<string>
 	<vector>
 	<exception>
 	"Modifier.h"
 	"Object3D.h"
 
-1287535113 c:\users\daniel\desktop\proyecto de grado\code\project\src\modifier.h
+1287625397 c:\users\daniel\desktop\proyecto de grado\code\project\src\modifier.h
 	"Object3D.h"
 	<string>
 	<vector>
 	<exception>
 
-1287541882 c:\users\daniel\desktop\proyecto de grado\code\project\src\object3d.h
+1287625397 c:\users\daniel\desktop\proyecto de grado\code\project\src\object3d.h
 	"Modifier.h"
 	"Clonable.h"
 	"ofx3DModelLoader.h"
+	"IPropertyManager.h"
 	<string>
 
-1287448555 c:\users\daniel\desktop\proyecto de grado\code\project\src\clonable.h
+1287625397 c:\users\daniel\desktop\proyecto de grado\code\project\src\clonable.h
 	<string>
 	<vector>
 	<exception>
 
-1287448555 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\object2d.cpp
+1287625398 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\object2d.cpp
 	<string>
 	<vector>
 	<exception>
 	"Object2D.h"
 
-1287448555 c:\users\daniel\desktop\proyecto de grado\code\project\src\object2d.h
+1287625397 c:\users\daniel\desktop\proyecto de grado\code\project\src\object2d.h
 	<string>
 	<vector>
 	<exception>
 
-1287541882 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\object3d.cpp
+1287625398 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\object3d.cpp
 	<string>
 	<vector>
 	<exception>
 	"Object3D.h"
 
-1287535113 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\translation.cpp
+1287625397 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\translation.cpp
 	<string>
 	<vector>
 	<exception>
 	"Translation.h"
 
-1287535113 c:\users\daniel\desktop\proyecto de grado\code\project\src\translation.h
+1287625397 c:\users\daniel\desktop\proyecto de grado\code\project\src\translation.h
 	<string>
 	<vector>
 	<exception>
@@ -1715,7 +1716,7 @@
 	<math.h>
 	<iostream>
 
-1287448555 c:\users\daniel\desktop\proyecto de grado\code\project\src\ipropertymanager.h
+1287625398 c:\users\daniel\desktop\proyecto de grado\code\project\src\ipropertymanager.h
 	<string>
 	<vector>
 	<exception>
@@ -1751,7 +1752,7 @@
 
 1265431756 c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\\ofx3dbaseloader.h
 
-1287549604 source:c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\model3ds.cpp
+1287550110 source:c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\model3ds.cpp
 	"model3DS.h"
 
 1265431756 c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\model3ds.h
@@ -1795,15 +1796,15 @@
 1239030986 c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\addons\ofxshader\ofxshader.h
 	"ofMain.h"
 
-1287535113 c:\users\daniel\desktop\proyecto de grado\code\project\src\animationslinking.h
+1287625397 c:\users\daniel\desktop\proyecto de grado\code\project\src\animationslinking.h
 
-1287535113 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\material.cpp
+1287625397 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\material.cpp
 	<string>
 	<vector>
 	<exception>
 	"Material.h"
 
-1287535113 c:\users\daniel\desktop\proyecto de grado\code\project\src\material.h
+1287625397 c:\users\daniel\desktop\proyecto de grado\code\project\src\material.h
 	<string>
 	<vector>
 	<exception>

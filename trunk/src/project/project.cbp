@@ -119,10 +119,10 @@
 		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\ofx3dModelLoader.cpp">
 			<Option virtualFolder="addons\ofx3DLoader\src" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxShader\src\ofShader.cpp">
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxShader\src\ofxShader.cpp">
 			<Option virtualFolder="addons\ofxShader\src\" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxShader\src\ofShader.h">
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxShader\src\ofxShader.h">
 			<Option virtualFolder="addons\ofxShader\src\" />
 		</Unit>
 		<Unit filename="src\Animation.cpp" />
