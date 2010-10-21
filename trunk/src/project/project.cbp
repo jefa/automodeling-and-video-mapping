@@ -60,6 +60,7 @@
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\3DS\" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\" />
+			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxShader\src\" />
 		</Compiler>
 		<Linker>
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/FreeImage/lib/win_cb/FreeImage.lib" />
@@ -80,9 +81,7 @@
 			<Add option="-ldsound" />
 			<Add option="-lwinmm" />
 			<Add option="-ldxguid" />
-			<Add option="-lstrmbase" />
 			<Add option="-lstrmiids" />
-			<Add option="-lz" />
 			<Add option="-luuid" />
 			<Add option="-lole32" />
 			<Add option="-loleaut32" />
@@ -120,10 +119,10 @@
 		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\ofx3dModelLoader.cpp">
 			<Option virtualFolder="addons\ofx3DLoader\src" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxShader\ofxShader.cpp">
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxShader\src\ofShader.cpp">
 			<Option virtualFolder="addons\ofxShader\src\" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxShader\ofxShader.h">
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxShader\src\ofShader.h">
 			<Option virtualFolder="addons\ofxShader\src\" />
 		</Unit>
 		<Unit filename="src\Animation.cpp" />

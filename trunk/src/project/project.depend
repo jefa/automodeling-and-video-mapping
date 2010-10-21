@@ -1461,19 +1461,21 @@
 	"ofGstUtils.h"
 	"ofQtUtils.h"
 
-1287486866 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\testapp.h
+1287500332 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\testapp.h
 	"ofMain.h"
+	"Object3D.h"
+	"Translation.h"
 
-1287280401 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\testapp.cpp
+1287501608 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\testapp.cpp
 	"testApp.h"
 
-1287486866 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\animationcontroller.cpp
+1287530738 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\animationcontroller.cpp
 	"AnimationController.h"
 
-1287486866 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\animationcontroller.h
+1287530738 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\animationcontroller.h
 	<vector>
 	"Animation.h"
-	"ConcatenacionAnimaciones.h"
+	"AnimationsLinking.h"
 
 1287495584 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\animation.h
 	"IPropertyManager.h"
@@ -1512,23 +1514,24 @@
 	<vector>
 	<exception>
 
-1287446606 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\modifier.cpp
+1287501042 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\modifier.cpp
 	<string>
 	<vector>
 	<exception>
 	"Modifier.h"
 	"Object3D.h"
 
-1287446595 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\modifier.h
+1287501054 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\modifier.h
 	"Object3D.h"
 	<string>
 	<vector>
 	<exception>
 
-1287497723 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\object3d.h
+1287621818 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\object3d.h
 	"Modifier.h"
 	"Clonable.h"
-	"ofx3DBaseLoader.h"
+	"ofx3DModelLoader.h"
+	"IPropertyManager.h"
 	<string>
 
 1287440504 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\clonable.h
@@ -1536,21 +1539,19 @@
 	<vector>
 	<exception>
 
-1287439676 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\object3d.cpp
+1287621757 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\object3d.cpp
 	<string>
 	<vector>
 	<exception>
 	"Object3D.h"
-	"Modifier.h"
-	"Clonable.h"
 
-1287496794 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\translation.cpp
+1287501075 source:c:\_person\fing\proyecto2010\_svnrepo\src\project\src\translation.cpp
 	<string>
 	<vector>
 	<exception>
 	"Translation.h"
 
-1287496787 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\translation.h
+1287501121 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\translation.h
 	<string>
 	<vector>
 	<exception>
@@ -1807,4 +1808,16 @@
 	<vector>
 	<exception>
 	"IPropertyManager.h"
+
+1217531222 source:c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofxshader\src\ofshader.cpp
+	"ofShader.h"
+
+1217477508 c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofxshader\src\ofshader.h
+	"ofMain.h"
+
+1287530738 c:\_person\fing\proyecto2010\_svnrepo\src\project\src\animationslinking.h
+
+1265431756 c:\_person\fing\proyecto2010\_svnrepo\src\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\\ofx3dmodelloader.h
+	"ofMain.h"
+	"model3DS.h"
 
