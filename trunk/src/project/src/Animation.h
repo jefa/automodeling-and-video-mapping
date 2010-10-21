@@ -13,7 +13,7 @@ class Animation
         virtual ~Animation();
         bool mismaAnimacion(Animation *anim);
         virtual void Update(int elapsedTime)=0;
-        bool isOff();
+        bool off;
 
     protected:
         IPropertyManager *propMgr;
@@ -22,7 +22,6 @@ class Animation
         int totalAnimationTime;
 
     private:
-        bool off;
 
 };
 
