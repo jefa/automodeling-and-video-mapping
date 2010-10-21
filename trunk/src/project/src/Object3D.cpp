@@ -6,6 +6,8 @@ using namespace std;
 
 #include "Object3D.h"
 
+ofx3DModelLoader *obj3d_1;
+
 void Object3D::clone() {
 	throw "Not yet implemented";
 }
@@ -13,6 +15,7 @@ void Object3D::clone() {
 void Object3D::setPosX(float param)
 {
     this->_x = param;
+    obj3d_1->setPosition(param, 1, 1);
 }
 
 float Object3D::getPosX()
@@ -40,9 +43,12 @@ float Object3D::getPosZ()
     return this->_z;
 }
 
+
+
 void Object3D::addObject(string path3dObj)
 {
     ofx3DModelLoader *obj3d = new ofx3DModelLoader();
+    obj3d_1 = obj3d;
     obj3d->loadModel(path3dObj, 20);
     this->obj3dModels.push_back(obj3d);
 }

@@ -1,4 +1,6 @@
 #include "AnimationController.h"
+#include <iostream>
+using namespace std;
 
 AnimationController::AnimationController()
 {
@@ -17,7 +19,6 @@ AnimationController::~AnimationController()
 /// <param name="conc"></param>
 void AnimationController::AddAnimation(Animation *anim, AnimationsLinking conc)
 {
-
     if (conc == IMMEDIATE)
     {
         //Quito repetidos si los hay
@@ -52,6 +53,7 @@ void AnimationController::AddAnimation(Animation *anim, AnimationsLinking conc)
         }
         animator.push_back(anim);
     }
+
 }
 
 void AnimationController::Update(unsigned int interval)
@@ -60,6 +62,7 @@ void AnimationController::Update(unsigned int interval)
     {
         Animation *anim = animator[i];
         anim->Update(interval);
+        break;
         if (anim->isOff())
         {
             animator.erase(animator.begin() + i);
