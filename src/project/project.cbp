@@ -148,6 +148,8 @@
 		<Unit filename="src\AnimationsLinking.h" />
 		<Unit filename="src\Clonable.h" />
 		<Unit filename="src\IPropertyManager.h" />
+		<Unit filename="src\LinearAnimation.cpp" />
+		<Unit filename="src\LinearAnimation.h" />
 		<Unit filename="src\Material.cpp" />
 		<Unit filename="src\Material.h" />
 		<Unit filename="src\Modifier.cpp" />
