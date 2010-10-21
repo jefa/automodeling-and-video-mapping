@@ -40,28 +40,57 @@ float Object3D::getPosZ()
     return this->_z;
 }
 
-void Object3D::addObject(ofx3DModelLoader *obj3d)
-{
-    this->obj3dModel = obj3d;
-
-}
-
 void Object3D::addObject(string path3dObj)
 {
-    if (this->obj3dModel == NULL)
-    {
-        this->obj3dModel = new ofx3DModelLoader();
-
-    }
-    this->obj3dModel->loadModel(path3dObj, 20);
+    ofx3DModelLoader *obj3d = new ofx3DModelLoader();
+    obj3d->loadModel(path3dObj, 20);
+    this->obj3dModels.push_back(obj3d);
 }
 
 void Object3D::draw()
 {
-    this->obj3dModel->draw();
+    vector<ofx3DModelLoader*>::iterator it;
+    for ( it=obj3dModels.begin() ; it < obj3dModels.end(); it++ )
+    {
+        //((ofx3DModelLoader)*it)->obj3dModel->draw();
+        ofx3DModelLoader *obj = (ofx3DModelLoader*) *it;
+        obj->draw();
+    }
 }
 
 void Object3D::addModifier(Modifier *m)
 {
     this->modifiers.push_back(m);
 }
+
+float Object3D::get(string aParam) {
+    if (aParam.compare("x") == 0)
+    {
+        return getPosX();
+
+    } else if (aParam.compare("y") == 0)
+    {
+        return getPosY();
+
+    } else if (aParam.compare("z") == 0)
+    {
+        return getPosZ();
+    }
+    return 0;
+}
+
+void Object3D::set(string aParam, float aValue) {
+    if (aParam.compare("x") == 0)
+    {
+        setPosX(aValue);
+
+    } else if (aParam.compare("y") == 0)
+    {
+        setPosY(aValue);
+
+    } else if (aParam.compare("z") == 0)
+    {
+        setPosZ(aValue);
+    }
+}
+

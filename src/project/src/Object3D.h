@@ -4,6 +4,7 @@
 #include "Modifier.h"
 #include "Clonable.h"
 #include "ofx3DModelLoader.h"
+#include "IPropertyManager.h"
 
 #include <string>
 using namespace std;
@@ -11,14 +12,14 @@ using namespace std;
 class Modifier;
 class Object3D;
 
-class Object3D : public Clonable
+class Object3D : public Clonable, public IPropertyManager
 {
     private:
         float _x;
         float _y;
         float _z;
         vector<Modifier*> modifiers;
-		ofx3DModelLoader *obj3dModel;
+		vector<ofx3DModelLoader*> obj3dModels;
 
 	public:
         void setPosX(float);
@@ -28,9 +29,11 @@ class Object3D : public Clonable
         void setPosZ(float);
         float getPosZ();
 
+        float get(string aParam);
+        void set(string aParam, float aValue);
+
         void clone();
         void addModifier(Modifier *m);
-        void addObject(ofx3DModelLoader *obj3d);
         void addObject(string );
         void draw();
 
