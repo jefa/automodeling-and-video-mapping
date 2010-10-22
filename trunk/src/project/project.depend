@@ -1420,7 +1420,7 @@
 1265431756 source:c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\model3ds.cpp
 	"model3DS.h"
 
-1265431756 c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\model3ds.h
+1287715712 c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\model3ds.h
 	"ofMain.h"
 	"texture3DS.h"
 	"Vector3DS.h"
@@ -2161,14 +2161,14 @@
 1265431756 source:c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\texture3ds.cpp
 	"texture3DS.h"
 
-1265431756 source:c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\ofx3dmodelloader.cpp
+1287707881 source:c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\ofx3dmodelloader.cpp
 	"ofx3DModelLoader.h"
 
 1265431756 c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\ofx3dmodelloader.h
 	"ofMain.h"
 	"model3DS.h"
 
-1265431756 c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\\model3ds.h
+1287715712 c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\addons\ofx3dmodelloader\src\3ds\\model3ds.h
 	"ofMain.h"
 	"texture3DS.h"
 	"Vector3DS.h"
@@ -2255,7 +2255,7 @@
 	<vector>
 	<exception>
 
-1287625397 c:\users\daniel\desktop\proyecto de grado\code\project\src\object3d.h
+1287713238 c:\users\daniel\desktop\proyecto de grado\code\project\src\object3d.h
 	"Modifier.h"
 	"Clonable.h"
 	"ofx3DModelLoader.h"
@@ -2282,7 +2282,7 @@
 	<vector>
 	<exception>
 
-1287634427 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\object3d.cpp
+1287716312 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\object3d.cpp
 	<string>
 	<vector>
 	<exception>
@@ -2311,10 +2311,20 @@
 	"Object3D.h"
 	"Translation.h"
 
-1287634716 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
+1287717589 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
 	"testApp.h"
 	"AnimationController.h"
 	"Animation.h"
 	"LinearAnimation.h"
 	"AnimationsLinking.h"
+	"Background.h"
+
+1287717558 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\background.cpp
+	"Background.h"
+	"ofMain.h"
+	<string>
+
+1287717304 c:\users\daniel\desktop\proyecto de grado\code\project\src\background.h
+	"IPropertyManager.h"
+	"ofTypes.h"
 
