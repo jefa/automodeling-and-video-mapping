@@ -76,6 +76,18 @@ float Object3D::get(string aParam) {
     else if (aParam.compare("z") == 0) {
         return getPosZ();
     }
+    else if (aParam.compare("diffuse.r") == 0) {
+        model3DS *m3ds = (model3DS*)(obj3d_1->model);
+        return m3ds->getMaterialByIndex(0).getDiffuseColor()[0];
+    }
+    else if (aParam.compare("diffuse.g") == 0) {
+        model3DS *m3ds = (model3DS*)(obj3d_1->model);
+        return m3ds->getMaterialByIndex(0).getDiffuseColor()[0];
+    }
+    else if (aParam.compare("diffuse.b") == 0) {
+        model3DS *m3ds = (model3DS*)(obj3d_1->model);
+        return m3ds->getMaterialByIndex(0).getDiffuseColor()[0];
+    }
     return 0;
 }
 
@@ -88,6 +100,24 @@ void Object3D::set(string aParam, float aValue) {
     }
     else if (aParam.compare("z") == 0) {
         setPosZ(aValue);
+    }
+    else if(aParam.compare("diffuse.r") == 0) {
+        model3DS *m3ds = (model3DS*)(obj3d_1->model);
+        const float *diffCol = m3ds->getMaterialByIndex(0).getDiffuseColor();
+        float newcol[3] = {aValue, diffCol[1], diffCol[2]};
+        m3ds->getMaterialByIndex(0).setDiffuseColor(newcol);
+    }
+    else if(aParam.compare("diffuse.g") == 0) {
+        model3DS *m3ds = (model3DS*)(obj3d_1->model);
+        const float *diffCol = m3ds->getMaterialByIndex(0).getDiffuseColor();
+        float newcol[3] = {diffCol[0], aValue, diffCol[2]};
+        m3ds->getMaterialByIndex(0).setDiffuseColor(newcol);
+    }
+    else if(aParam.compare("diffuse.b") == 0) {
+        model3DS *m3ds = (model3DS*)(obj3d_1->model);
+        const float *diffCol = m3ds->getMaterialByIndex(0).getDiffuseColor();
+        float newcol[3] = {diffCol[0], diffCol[1], aValue};
+        m3ds->getMaterialByIndex(0).setDiffuseColor(newcol);
     }
 }
 
