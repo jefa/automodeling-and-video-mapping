@@ -5,7 +5,7 @@
 		<Option title="project" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="addons\;addons\ofx3DLoader\src\;addons\ofxShader\;addons\ofxShader\src\;" />
+		<Option virtualFolders="addons\;addons\ofx3DLoader\src\;addons\ofxShader\;addons\ofxShader\src\;project\src\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin\$(PROJECT_NAME)_DEBUG" prefix_auto="1" extension_auto="1" />
@@ -131,6 +131,8 @@
 		<Unit filename="src\AnimationController.cpp" />
 		<Unit filename="src\AnimationController.h" />
 		<Unit filename="src\AnimationsLinking.h" />
+		<Unit filename="src\Background.cpp" />
+		<Unit filename="src\Background.h" />
 		<Unit filename="src\Clonable.h" />
 		<Unit filename="src\IPropertyManager.h" />
 		<Unit filename="src\LinearAnimation.cpp" />

@@ -14,38 +14,33 @@ void Object3D::clone() {
 
 void Object3D::setPosX(float param)
 {
-    this->_x = param;
-    obj3d_1->setPosition(param, this->_y , this->_z);
+    obj3d_1->pos.x = param;
 }
 
 float Object3D::getPosX()
 {
-    return this->_x;
+    return obj3d_1->pos.x;
 }
 
 void Object3D::setPosY(float param)
 {
-    this->_y = param;
-    obj3d_1->setPosition(this->_x, param , this->_z);
+    obj3d_1->pos.y = param;
 }
 
 float Object3D::getPosY()
 {
-    return this->_y;
+    return obj3d_1->pos.y;
 }
 
 void Object3D::setPosZ(float param)
 {
-    this->_z = param;
-    obj3d_1->setPosition(this->_x, this->_y, param);
+    obj3d_1->pos.z = param;
 }
 
 float Object3D::getPosZ()
 {
-    return this->_z;
+    return obj3d_1->pos.z;
 }
-
-
 
 void Object3D::addObject(string path3dObj)
 {
@@ -72,32 +67,26 @@ void Object3D::addModifier(Modifier *m)
 }
 
 float Object3D::get(string aParam) {
-    if (aParam.compare("x") == 0)
-    {
+    if (aParam.compare("x") == 0) {
         return getPosX();
-
-    } else if (aParam.compare("y") == 0)
-    {
+    }
+    else if (aParam.compare("y") == 0) {
         return getPosY();
-
-    } else if (aParam.compare("z") == 0)
-    {
+    }
+    else if (aParam.compare("z") == 0) {
         return getPosZ();
     }
     return 0;
 }
 
 void Object3D::set(string aParam, float aValue) {
-    if (aParam.compare("x") == 0)
-    {
+    if (aParam.compare("x") == 0) {
         setPosX(aValue);
-
-    } else if (aParam.compare("y") == 0)
-    {
+    }
+    else if (aParam.compare("y") == 0) {
         setPosY(aValue);
-
-    } else if (aParam.compare("z") == 0)
-    {
+    }
+    else if (aParam.compare("z") == 0) {
         setPosZ(aValue);
     }
 }

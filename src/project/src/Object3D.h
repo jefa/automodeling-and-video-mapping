@@ -15,9 +15,6 @@ class Object3D;
 class Object3D : public Clonable, public IPropertyManager
 {
     private:
-        float _x;
-        float _y;
-        float _z;
         vector<Modifier*> modifiers;
 		vector<ofx3DModelLoader*> obj3dModels;
 

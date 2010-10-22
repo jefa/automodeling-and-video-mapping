@@ -3,9 +3,10 @@
 #include "Animation.h"
 #include "LinearAnimation.h"
 #include "AnimationsLinking.h"
+#include "Background.h"
 
 AnimationController animController;
-
+Background *background;
 //--------------------------------------------------------------
 void testApp::setup(){
 
@@ -20,14 +21,21 @@ void testApp::setup(){
 
     obj3D = new Object3D();
     obj3D->addObject("squirrel/NewSquirrel.3ds");
+    //obj3D->addObject("sphere/sphere.3ds");
+
+    background = new Background();
 
     //Translation *t = new Translation(obj3D);
     //obj3D->addModifier(t);
 
     LinearAnimation *anim = new LinearAnimation(obj3D, "x", 5000, 200);
-    LinearAnimation *anim2 = new LinearAnimation(obj3D, "y", 10000, 300);
+    LinearAnimation *anim2 = new LinearAnimation(obj3D, "y", 5000, 500);
+    LinearAnimation *anim3 = new LinearAnimation(background, "color.r", 10000, 255);
+    LinearAnimation *anim4 = new LinearAnimation(background, "color.g", 10000, 255);
     animController.AddAnimation(anim, IMMEDIATE);
     animController.AddAnimation(anim2, IMMEDIATE);
+    animController.AddAnimation(anim3, IMMEDIATE);
+    animController.AddAnimation(anim4, IMMEDIATE);
 
 }
 
