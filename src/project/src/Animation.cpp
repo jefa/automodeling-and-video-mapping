@@ -1,6 +1,6 @@
 #include "Animation.h"
 
-Animation::Animation(IPropertyManager *pmgr, string propId, int timeMilliseconds)
+Animation::Animation(IPropertyManager *pmgr, int propId, int timeMilliseconds)
 {
     propMgr = pmgr;
     propertyId = propId;

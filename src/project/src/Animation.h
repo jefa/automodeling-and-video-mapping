@@ -3,13 +3,10 @@
 
 #include "IPropertyManager.h"
 
-#include <string>
-using namespace std;
-
 class Animation
 {
     public:
-        Animation(IPropertyManager *pmgr, string propertyId, int timeMilliseconds);
+        Animation(IPropertyManager *pmgr, int propertyId, int timeMilliseconds);
         virtual ~Animation();
         bool mismaAnimacion(Animation *anim);
         virtual void Update(int elapsedTime)=0;
@@ -17,7 +14,7 @@ class Animation
 
     protected:
         IPropertyManager *propMgr;
-        string propertyId;
+        int propertyId;
         int totalElapsedTime;
         int totalAnimationTime;
 
