@@ -8,6 +8,8 @@
 
 using namespace std;
 
+enum AnimationsLinking {IMMEDIATE, WAITEND};
+
 class AnimationController
 {
     public:
