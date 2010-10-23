@@ -2,7 +2,6 @@
 #include "AnimationController.h"
 #include "Animation.h"
 #include "LinearAnimation.h"
-#include "AnimationsLinking.h"
 #include "Background.h"
 
 AnimationController animController;
@@ -20,36 +19,28 @@ void testApp::setup(){
 
     obj3D = new Object3D();
     //obj3D->addObject("squirrel/NewSquirrel.3ds");
-    obj3D->addObject("sphere.3ds");
+    obj3D->addObject("sphere/sphere.3ds");
 
     background = new Background();
 
-    //Translation *t = new Translation(obj3D);
-    //obj3D->addModifier(t);
+    LinearAnimation *anim1 = new LinearAnimation(obj3D, POS_X, 5, 600);
+    LinearAnimation *anim2 = new LinearAnimation(obj3D, POS_Y, 4, 700);
+    //LinearAnimation *anim3 = new LinearAnimation(background, COLOR_R, 3, 255);
+    //LinearAnimation *anim4 = new LinearAnimation(background, COLOR_G, 3, 128);
+    anim1->Start();
+    anim2->Start();
 
-    LinearAnimation *anim = new LinearAnimation(obj3D, POS_X, 5000, 200);
-    LinearAnimation *anim2 = new LinearAnimation(obj3D, POS_Y, 5000, 500);
-    LinearAnimation *anim3 = new LinearAnimation(background, COLOR_R, 3000, 255);
-    LinearAnimation *anim4 = new LinearAnimation(background, COLOR_G, 3000, 128);
-    animController.AddAnimation(anim, IMMEDIATE);
+    animController.AddAnimation(anim1, IMMEDIATE);
     animController.AddAnimation(anim2, IMMEDIATE);
-    animController.AddAnimation(anim3, IMMEDIATE);
-    animController.AddAnimation(anim4, IMMEDIATE);
-
-    //animController.AddAnimation(anim, IMMEDIATE);
-    //animController.AddAnimation(anim2, IMMEDIATE);
     //animController.AddAnimation(anim3, IMMEDIATE);
     //animController.AddAnimation(anim4, IMMEDIATE);
-    //animController.AddAnimation(animR, IMMEDIATE);
-    //animController.AddAnimation(animG, IMMEDIATE);
-    animController.AddAnimation(animB, IMMEDIATE);
+
 
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-    int timeMillis = 1000 * ofGetLastFrameTime();
-    animController.Update(timeMillis);
+    animController.Update(ofGetLastFrameTime());
 }
 
 //--------------------------------------------------------------

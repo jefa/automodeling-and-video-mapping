@@ -2,31 +2,38 @@
 #include <iostream>
 using namespace std;
 
-LinearAnimation::LinearAnimation(IPropertyManager *pmgr, int propertyId, int timeMilliseconds, float targetValue)
-:Animation(pmgr,propertyId,timeMilliseconds)
+LinearAnimation::LinearAnimation(IPropertyManager *pmgr, int propertyId, double timestamp, float targetValue)
+:Animation(pmgr, propertyId, timestamp)
 {
     //ctor
     targetVal = targetValue;
 }
 
-float initValue;
-bool initialized = false;
-
-void LinearAnimation::Update(int elapsedTime)
+void LinearAnimation::Start()
 {
-    if(!initialized)
-    {
-        initialized = true;
-        initValue = this->propMgr->get(propertyId);
-        this->off = false;
+    Animation::Start();
+    initValue = this->propMgr->get(propertyId);
+}
+
+void LinearAnimation::End()
+{
+    Animation::End();
+}
+
+void LinearAnimation::Update(double timestamp)
+{
+    if(!isStarted()){
+        return;
     }
-    this->totalElapsedTime += elapsedTime;
-    float actualValue = initValue + ((float)(totalElapsedTime)/totalAnimationTime) * (targetVal - initValue);
+
+    this->totalElapsedTime += timestamp;
+    float actualValue = initValue + (totalElapsedTime/totalAnimationTime) * (targetVal - initValue);
+
     this->propMgr->set(propertyId, actualValue);
 
     if (totalElapsedTime >= totalAnimationTime)
     {
-        this->off = true;
+        this->End();
     }
 }
 

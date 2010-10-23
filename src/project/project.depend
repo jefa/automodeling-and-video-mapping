@@ -2199,30 +2199,29 @@
 1239030986 c:\users\daniel\desktop\proyecto de grado\code\project\addons\ofxshader\src\ofxshader.h
 	"ofMain.h"
 
-1287855573 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\animation.cpp
+1287864120 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\animation.cpp
 	"Animation.h"
 
-1287855567 c:\users\daniel\desktop\proyecto de grado\code\project\src\animation.h
+1287864093 c:\users\daniel\desktop\proyecto de grado\code\project\src\animation.h
 	"IPropertyManager.h"
 
 1287855513 c:\users\daniel\desktop\proyecto de grado\code\project\src\ipropertymanager.h
 
-1287634849 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\animationcontroller.cpp
+1287863950 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\animationcontroller.cpp
 	"AnimationController.h"
 	<iostream>
 
-1287625398 c:\users\daniel\desktop\proyecto de grado\code\project\src\animationcontroller.h
+1287859036 c:\users\daniel\desktop\proyecto de grado\code\project\src\animationcontroller.h
 	<vector>
 	"Animation.h"
-	"AnimationsLinking.h"
 
 1287625397 c:\users\daniel\desktop\proyecto de grado\code\project\src\animationslinking.h
 
-1287855595 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\linearanimation.cpp
+1287864512 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\linearanimation.cpp
 	"LinearAnimation.h"
 	<iostream>
 
-1287855609 c:\users\daniel\desktop\proyecto de grado\code\project\src\linearanimation.h
+1287864190 c:\users\daniel\desktop\proyecto de grado\code\project\src\linearanimation.h
 	"Animation.h"
 
 1287855656 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\material.cpp
@@ -2274,7 +2273,7 @@
 	<vector>
 	<exception>
 
-1287856513 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\object3d.cpp
+1287857659 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\object3d.cpp
 	<string>
 	<vector>
 	<exception>
@@ -2303,12 +2302,11 @@
 	"Object3D.h"
 	"Translation.h"
 
-1287856470 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
+1287863223 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
 	"testApp.h"
 	"AnimationController.h"
 	"Animation.h"
 	"LinearAnimation.h"
-	"AnimationsLinking.h"
 	"Background.h"
 
 1287856034 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\background.cpp
@@ -4133,4 +4131,16 @@
 	<vector>
 	<exception>
 	"Object3D.h"
+
+1265431774 c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\libs\quicktime\include\translation.h
+	<MacTypes.h>
+	<Files.h>
+	<Components.h>
+	<TranslationExtensions.h>
+
+1265431774 c:\users\daniel\desktop\proyecto de grado\code\of_prerelease_v0061_win_cb_fat\libs\quicktime\include\translationextensions.h
+	<MacTypes.h>
+	<Files.h>
+	<Quickdraw.h>
+	<Components.h>
 

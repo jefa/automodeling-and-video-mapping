@@ -56,13 +56,13 @@ void AnimationController::AddAnimation(Animation *anim, AnimationsLinking conc)
 
 }
 
-void AnimationController::Update(unsigned int interval)
+void AnimationController::Update(double timestamp)
 {
     for (unsigned int i = 0; i < animator.size(); i++)
     {
         Animation *anim = animator[i];
-        anim->Update(interval);
-        if (anim->off)
+        anim->Update(timestamp);
+        if (anim->isEnded())
         {
             animator.erase(animator.begin() + i);
 
