@@ -18,7 +18,6 @@ void testApp::setup(){
 	// also, frame rate:
 	ofSetFrameRate(60);
 
-
     obj3D = new Object3D();
     //obj3D->addObject("squirrel/NewSquirrel.3ds");
     obj3D->addObject("sphere.3ds");
@@ -28,13 +27,14 @@ void testApp::setup(){
     //Translation *t = new Translation(obj3D);
     //obj3D->addModifier(t);
 
-    //LinearAnimation *anim = new LinearAnimation(obj3D, "x", 5000, 200);
-    //LinearAnimation *anim2 = new LinearAnimation(obj3D, "y", 5000, 500);
-    //LinearAnimation *anim3 = new LinearAnimation(background, "color.r", 10000, 255);
-    //LinearAnimation *anim4 = new LinearAnimation(background, "color.g", 10000, 255);
-    LinearAnimation *animR = new LinearAnimation(obj3D, "diffuse.r", 5000, 1);
-    LinearAnimation *animG = new LinearAnimation(obj3D, "diffuse.g", 5000, 0);
-    LinearAnimation *animB = new LinearAnimation(obj3D, "diffuse.b", 5000, 1);
+    LinearAnimation *anim = new LinearAnimation(obj3D, POS_X, 5000, 200);
+    LinearAnimation *anim2 = new LinearAnimation(obj3D, POS_Y, 5000, 500);
+    LinearAnimation *anim3 = new LinearAnimation(background, COLOR_R, 3000, 255);
+    LinearAnimation *anim4 = new LinearAnimation(background, COLOR_G, 3000, 128);
+    animController.AddAnimation(anim, IMMEDIATE);
+    animController.AddAnimation(anim2, IMMEDIATE);
+    animController.AddAnimation(anim3, IMMEDIATE);
+    animController.AddAnimation(anim4, IMMEDIATE);
 
     //animController.AddAnimation(anim, IMMEDIATE);
     //animController.AddAnimation(anim2, IMMEDIATE);

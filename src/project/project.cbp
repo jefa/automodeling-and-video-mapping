@@ -130,7 +130,6 @@
 		<Unit filename="src\Animation.h" />
 		<Unit filename="src\AnimationController.cpp" />
 		<Unit filename="src\AnimationController.h" />
-		<Unit filename="src\AnimationsLinking.h" />
 		<Unit filename="src\Background.cpp" />
 		<Unit filename="src\Background.h" />
 		<Unit filename="src\Clonable.h" />
@@ -141,12 +140,8 @@
 		<Unit filename="src\Material.h" />
 		<Unit filename="src\Modifier.cpp" />
 		<Unit filename="src\Modifier.h" />
-		<Unit filename="src\Object2D.cpp" />
-		<Unit filename="src\Object2D.h" />
 		<Unit filename="src\Object3D.cpp" />
 		<Unit filename="src\Object3D.h" />
-		<Unit filename="src\Translation.cpp" />
-		<Unit filename="src\Translation.h" />
 		<Unit filename="src\main.cpp" />
 		<Unit filename="src\testApp.cpp" />
 		<Unit filename="src\testApp.h" />
