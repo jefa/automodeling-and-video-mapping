@@ -1,7 +1,6 @@
 #include <string>
 #include <vector>
 #include <exception>
-
 using namespace std;
 
 #include "Object3D.h"
@@ -10,36 +9,6 @@ ofx3DModelLoader *obj3d_1;
 
 void Object3D::clone() {
 	throw "Not yet implemented";
-}
-
-void Object3D::setPosX(float param)
-{
-    obj3d_1->pos.x = param;
-}
-
-float Object3D::getPosX()
-{
-    return obj3d_1->pos.x;
-}
-
-void Object3D::setPosY(float param)
-{
-    obj3d_1->pos.y = param;
-}
-
-float Object3D::getPosY()
-{
-    return obj3d_1->pos.y;
-}
-
-void Object3D::setPosZ(float param)
-{
-    obj3d_1->pos.z = param;
-}
-
-float Object3D::getPosZ()
-{
-    return obj3d_1->pos.z;
 }
 
 void Object3D::addObject(string path3dObj)
@@ -66,15 +35,15 @@ void Object3D::addModifier(Modifier *m)
     this->modifiers.push_back(m);
 }
 
-float Object3D::get(string aParam) {
-    if (aParam.compare("x") == 0) {
-        return getPosX();
-    }
-    else if (aParam.compare("y") == 0) {
-        return getPosY();
-    }
-    else if (aParam.compare("z") == 0) {
-        return getPosZ();
+float Object3D::get(int aParam) {
+    switch(aParam)
+    {
+        case POS_X:
+            return obj3d_1->pos.x;
+        case POS_Y:
+            return obj3d_1->pos.y;
+        case POS_Z:
+            return obj3d_1->pos.z;
     }
     else if (aParam.compare("diffuse.r") == 0) {
         model3DS *m3ds = (model3DS*)(obj3d_1->model);
@@ -91,15 +60,18 @@ float Object3D::get(string aParam) {
     return 0;
 }
 
-void Object3D::set(string aParam, float aValue) {
-    if (aParam.compare("x") == 0) {
-        setPosX(aValue);
-    }
-    else if (aParam.compare("y") == 0) {
-        setPosY(aValue);
-    }
-    else if (aParam.compare("z") == 0) {
-        setPosZ(aValue);
+void Object3D::set(int aParam, float aValue) {
+    switch(aParam)
+    {
+        case POS_X:
+            obj3d_1->pos.x = aValue;
+            break;
+        case POS_Y:
+            obj3d_1->pos.y = aValue;
+            break;
+        case POS_Z:
+            obj3d_1->pos.z = aValue;
+            break;
     }
     else if(aParam.compare("diffuse.r") == 0) {
         model3DS *m3ds = (model3DS*)(obj3d_1->model);
