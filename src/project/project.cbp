@@ -5,7 +5,7 @@
 		<Option title="project" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="addons\;addons\ofx3DLoader\src\;addons\ofxShader\;addons\ofxShader\src\;project\src\;" />
+		<Option virtualFolders="addons\;addons\ofx3DLoader\src\;addons\ofxShader\;addons\ofxShader\src\;project\src\;addons\ofxAlphaVideoPlayer\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin\$(PROJECT_NAME)_DEBUG" prefix_auto="1" extension_auto="1" />
@@ -119,6 +119,18 @@
 		</Unit>
 		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\ofx3dModelLoader.cpp">
 			<Option virtualFolder="addons\ofx3DLoader\src" />
+		</Unit>
+		<Unit filename="addons\ofxAlphaVideoPlayer\ofxAlphaVideoPlayer.cpp">
+			<Option virtualFolder="addons\ofxAlphaVideoPlayer\" />
+		</Unit>
+		<Unit filename="addons\ofxAlphaVideoPlayer\ofxAlphaVideoPlayer.h">
+			<Option virtualFolder="addons\ofxAlphaVideoPlayer\" />
+		</Unit>
+		<Unit filename="addons\ofxAlphaVideoPlayer\ofxQtUtils_alpha.cpp">
+			<Option virtualFolder="addons\ofxAlphaVideoPlayer\" />
+		</Unit>
+		<Unit filename="addons\ofxAlphaVideoPlayer\ofxQtUtils_alpha.h">
+			<Option virtualFolder="addons\ofxAlphaVideoPlayer\" />
 		</Unit>
 		<Unit filename="addons\ofxShader\src\ofxShader.cpp">
 			<Option virtualFolder="addons\ofxShader\src\" />
