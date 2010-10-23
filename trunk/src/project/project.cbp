@@ -142,6 +142,8 @@
 		<Unit filename="src\Modifier.h" />
 		<Unit filename="src\Object3D.cpp" />
 		<Unit filename="src\Object3D.h" />
+		<Unit filename="src\Quad2D.cpp" />
+		<Unit filename="src\Quad2D.h" />
 		<Unit filename="src\main.cpp" />
 		<Unit filename="src\testApp.cpp" />
 		<Unit filename="src\testApp.h" />

@@ -6,12 +6,15 @@
 class LinearAnimation : public Animation
 {
     public:
-        LinearAnimation(IPropertyManager *pmgr, int propertyId, int timeMilliseconds, float targetValue);
+        LinearAnimation(IPropertyManager *pmgr, int propertyId, double timeSeconds, float targetValue);
         virtual ~LinearAnimation();
-        virtual void Update(int elapsedTime);
+        virtual void Update(double timestamp);
+        virtual void Start();
+        virtual void End();
     protected:
     private:
         float targetVal;
+        float initValue;
 };
 
 #endif // LINEARANIMATION_H
