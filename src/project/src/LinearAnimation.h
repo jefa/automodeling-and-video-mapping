@@ -2,13 +2,11 @@
 #define LINEARANIMATION_H
 
 #include "Animation.h"
-#include <string>
-using namespace std;
 
 class LinearAnimation : public Animation
 {
     public:
-        LinearAnimation(IPropertyManager *pmgr, string propertyId, int timeMilliseconds, float targetValue);
+        LinearAnimation(IPropertyManager *pmgr, int propertyId, int timeMilliseconds, float targetValue);
         virtual ~LinearAnimation();
         virtual void Update(int elapsedTime);
     protected:
