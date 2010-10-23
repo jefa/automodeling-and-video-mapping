@@ -5,7 +5,7 @@
 		<Option title="project" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="addons\;addons\ofx3DLoader\src\;addons\ofxShader\;addons\ofxShader\src\;project\src\;addons\ofxAlphaVideoPlayer\;" />
+		<Option virtualFolders="addons\;addons\ofxOsc\src\;addons\ofx3DLoader\src\;addons\ofxShader\;addons\ofxShader\src\;project\src\;addons\ofxAlphaVideoPlayer\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin\$(PROJECT_NAME)_DEBUG" prefix_auto="1" extension_auto="1" />
@@ -62,6 +62,9 @@
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\3DS\" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\" />
+			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\" />
+			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\libs/oscpack/include/ip" />
+			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\libs/oscpack/include/osc" />
 		</Compiler>
 		<Linker>
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/FreeImage/lib/win_cb/FreeImage.lib" />
@@ -77,6 +80,7 @@
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/poco/lib/win_cb/libPocoUtilmt.a" />
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/poco/lib/win_cb/libPocoXMLmt.a" />
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/poco/lib/win_cb/libPocoFoundationmt.a" />
+			<Add option="../of_preRelease_v0061_win_cb_FAT/addons/ofxOsc/libs/oscpack/lib/win_cb/oscpack.a" />
 			<Add option="-lopengl32" />
 			<Add option="-lglu32" />
 			<Add option="-ldsound" />
@@ -137,6 +141,36 @@
 		</Unit>
 		<Unit filename="addons\ofxShader\src\ofxShader.h">
 			<Option virtualFolder="addons\ofxShader\src\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOsc.h">
+			<Option virtualFolder="addons\ofxOsc\src" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscArg.h">
+			<Option virtualFolder="addons\ofxOsc\src" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscBundle.cpp">
+			<Option virtualFolder="addons\ofxOsc\src" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscBundle.h">
+			<Option virtualFolder="addons\ofxOsc\src" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscMessage.cpp">
+			<Option virtualFolder="addons\ofxOsc\src" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscMessage.h">
+			<Option virtualFolder="addons\ofxOsc\src" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscReceiver.cpp">
+			<Option virtualFolder="addons\ofxOsc\src" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscReceiver.h">
+			<Option virtualFolder="addons\ofxOsc\src" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscSender.cpp">
+			<Option virtualFolder="addons\ofxOsc\src" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscSender.h">
+			<Option virtualFolder="addons\ofxOsc\src" />
 		</Unit>
 		<Unit filename="src\Animation.cpp" />
 		<Unit filename="src\Animation.h" />
