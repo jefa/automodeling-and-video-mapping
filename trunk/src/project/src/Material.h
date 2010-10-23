@@ -15,8 +15,8 @@ class Material : public IPropertyManager
         string* _texture;
 
 	public:
-        void set(string aParam, float value) = 0;
-        float get(string aParam) = 0;
+        void set(int aParam, float value) = 0;
+        float get(int aParam) = 0;
 
 };
 

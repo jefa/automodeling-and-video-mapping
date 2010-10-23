@@ -12,6 +12,8 @@ using namespace std;
 class Modifier;
 class Object3D;
 
+enum A_PARAM_OBJECT3D {POS_X, POS_Y, POS_Z};
+
 class Object3D : public Clonable, public IPropertyManager
 {
     private:
@@ -19,15 +21,8 @@ class Object3D : public Clonable, public IPropertyManager
 		vector<ofx3DModelLoader*> obj3dModels;
 
 	public:
-        void setPosX(float);
-        float getPosX();
-        void setPosY(float);
-        float getPosY();
-        void setPosZ(float);
-        float getPosZ();
-
-        float get(string aParam);
-        void set(string aParam, float aValue);
+        virtual float get(int aParam);
+        virtual void set(int aParam, float aValue);
 
         void clone();
         void addModifier(Modifier *m);

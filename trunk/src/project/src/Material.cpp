@@ -1,15 +1,10 @@
-#include <string>
-#include <vector>
-#include <exception>
-using namespace std;
-
 #include "Material.h"
 
-float Material::get(string aParam) {
+float Material::get(int aParam) {
 	throw "Not yet implemented";
 }
 
-void Material::set(string aParam, float value) {
+void Material::set(int aParam, float value) {
 	throw "Not yet implemented";
 }
 
