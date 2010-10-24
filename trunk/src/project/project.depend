@@ -2224,13 +2224,12 @@
 1287864190 c:\users\daniel\desktop\proyecto de grado\code\project\src\linearanimation.h
 	"Animation.h"
 
-1287855656 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\material.cpp
+1287948740 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\material.cpp
 	"Material.h"
+	"ofMain.h"
 
-1287855619 c:\users\daniel\desktop\proyecto de grado\code\project\src\material.h
+1287948445 c:\users\daniel\desktop\proyecto de grado\code\project\src\material.h
 	<string>
-	<vector>
-	<exception>
 	"IPropertyManager.h"
 
 1287625397 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\modifier.cpp
@@ -2292,17 +2291,17 @@
 	"Modifier.h"
 	"IPropertyManager.h"
 
-1287889331 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\main.cpp
+1287943892 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\main.cpp
 	"ofMain.h"
 	"testApp.h"
 	"ofAppGlutWindow.h"
 
-1287625398 c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.h
+1287944094 c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.h
 	"ofMain.h"
 	"Object3D.h"
 	"Translation.h"
 
-1287935017 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
+1287949590 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
 	"testApp.h"
 	"AnimationController.h"
 	"Animation.h"
@@ -2310,6 +2309,7 @@
 	"Background.h"
 	"Quad2D.h"
 	"VideoController.h"
+	<vector>
 
 1287856034 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\background.cpp
 	"Background.h"
@@ -4174,12 +4174,14 @@
 	"ofUtils.h"
 	<cstdlib>
 
-1287934879 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\quad2d.cpp
+1287952388 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\quad2d.cpp
 	"Quad2D.h"
 	"ofGraphics.h"
+	"ofMain.h"
 
-1287900376 c:\users\daniel\desktop\proyecto de grado\code\project\src\quad2d.h
+1287951191 c:\users\daniel\desktop\proyecto de grado\code\project\src\quad2d.h
 	"IPropertyManager.h"
+	"Material.h"
 
 1287871947 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\videocontroller.cpp
 	"VideoController.h"

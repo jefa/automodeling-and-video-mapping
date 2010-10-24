@@ -20,8 +20,6 @@ class testApp : public ofBaseApp{
 		void mousePressed(int x, int y, int button);
 		void mouseReleased(int x, int y, int button);
 		void windowResized(int w, int h);
-
-		Object3D *obj3D;
 };
 
 #endif
