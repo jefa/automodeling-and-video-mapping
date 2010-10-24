@@ -5,17 +5,22 @@
 #include "Background.h"
 #include "Quad2D.h"
 #include "VideoController.h"
+#include <vector>
+using namespace std;
 
 AnimationController animController;
 VideoController videoController;
 Background *background;
 
-Quad2D* quads[2];
+vector<Quad2D*> quads;
+vector<Material*> materials;
 
-int selectedIdx = -1;
+int selectedIdx = 0;
 int selectedVtx = 0;
 float xoffset = 5;
 float yoffset = 5;
+
+Object3D *obj3D;
 
 //--------------------------------------------------------------
 void testApp::setup(){
@@ -33,7 +38,6 @@ void testApp::setup(){
     obj3D->addObject("sphere/sphere.3ds");
 
     background = new Background();
-
     videoController.AddVideo("video1", "fingers.mov");
     videoController.PlayVideo("video1");
 
@@ -52,18 +56,17 @@ void testApp::setup(){
     //animController.AddAnimation(anim3, IMMEDIATE);
     //animController.AddAnimation(anim4, IMMEDIATE);
 
-    quads[0] = new Quad2D(100,100, 250,80, 270,260, 80,250);
-    quads[1] = new Quad2D(500,500, 650,480, 670,660, 480,650);
-
+    quads.push_back(new Quad2D(100,100, 250,80, 270,260, 80,250));
+    quads.push_back(new Quad2D(500,500, 650,480, 670,660, 480,650));
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
     animController.Update(ofGetLastFrameTime());
 
-    #ifndef CONSOLE
+    //#ifndef CONSOLE
     videoController.IdleMovies();
-    #endif
+    //#endif
 }
 
 //--------------------------------------------------------------
@@ -71,25 +74,27 @@ void testApp::draw(){
 	ofSetupScreen();
     //obj3D->draw();
 
-    #ifndef CONSOLE
-    videoController.bindTexture("video1");
-    #endif
+    //#ifndef CONSOLE
+    //videoController.bindTexture("video1");
+    //#endif
+    vector<Quad2D*>::iterator it;
+    for(it = quads.begin(); it != quads.end(); ++it)
+    {
+        (*it)->draw();
+    }
 
-    quads[0]->draw();
 
-    #ifndef CONSOLE
-    videoController.unbindTexture("video1");
-    #endif
+    //#ifndef CONSOLE
+    //videoController.unbindTexture("video1");
+    //#endif
 
-    #ifndef CONSOLE
-    videoController.bindTexture("video2");
-    #endif
+    //#ifndef CONSOLE
+    //videoController.bindTexture("video2");
+    //#endif
 
-    quads[1]->draw();
-
-    #ifndef CONSOLE
-    videoController.unbindTexture("video2");
-    #endif
+    //#ifndef CONSOLE
+    //videoController.unbindTexture("video2");
+    //#endif
 }
 
 
@@ -98,10 +103,29 @@ void testApp::draw(){
 void testApp::keyPressed  (int key){
     if(key == '1')
     {
-        ++selectedIdx;
-        selectedIdx %= 2;
+        if(quads.size() > 0) {
+            quads[selectedIdx]->setSelected(false);
+            ++selectedIdx;
+            selectedIdx %= quads.size();
+            quads[selectedIdx]->setSelected(true);
+        }
     }
     if(key == '2')
+    {
+        if(quads.size() > 0) {
+            quads[selectedIdx]->setSelected(false);
+            --selectedIdx;
+            selectedIdx %= quads.size();
+            quads[selectedIdx]->setSelected(true);
+        }
+    }
+
+    if(key == '3')
+    {
+        ++selectedVtx;
+        selectedVtx %= 4;
+    }
+    if(key == '4')
     {
         ++selectedVtx;
         selectedVtx %= 4;
@@ -135,6 +159,23 @@ void testApp::keyPressed  (int key){
         y -= yoffset;
         quads[selectedIdx]->setPoint(selectedVtx, x, y);
     }
+
+    if(key == ' ')
+    {
+        quads.push_back(new Quad2D());
+        quads[selectedIdx]->setSelected(false);
+        selectedIdx = quads.size() - 1;
+        quads[selectedIdx]->setSelected(true);
+    }
+    if(key == '\b') {
+        if(quads.size() > 0 && selectedIdx >= 0) {
+            vector<Quad2D*>::iterator it = quads.begin();
+            for(int i = 0; i < selectedIdx; i++)
+                ++it;
+            (*it)->setSelected(false);
+            quads.erase(it);
+        }
+    }
 }
 
 //--------------------------------------------------------------
@@ -149,7 +190,7 @@ void testApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
-    if(selectedIdx >= 0)
+    if(selectedIdx >= 0 && selectedVtx >= 0)
     {
         quads[selectedIdx]->setPoint(selectedVtx, x, y);
     }
@@ -157,21 +198,11 @@ void testApp::mouseDragged(int x, int y, int button){
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
-    for(int i = 0; i < 2; i++)
-    {
-        int cp = quads[i]->getControlPointAt(x,y);
-        if(cp >= 0)
-        {
-            selectedIdx = i;
-            selectedVtx = cp;
-            break;
-        }
-    }
+    selectedVtx = quads[selectedIdx]->getControlPointAt(x,y);
 }
 
 //--------------------------------------------------------------
 void testApp::mouseReleased(int x, int y, int button){
-    selectedIdx = -1;
 }
 
 //--------------------------------------------------------------
