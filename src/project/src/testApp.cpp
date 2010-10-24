@@ -53,14 +53,15 @@ void testApp::setup(){
     //animController.AddAnimation(anim4, IMMEDIATE);
 
     quads[0] = new Quad2D(100,100, 250,80, 270,260, 80,250);
-    quads[1] = new Quad2D(600,600, 750,580, 770,760, 580,750);
+    quads[1] = new Quad2D(500,500, 650,480, 670,660, 480,650);
 
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
-    #ifndef CONSOLE
     animController.Update(ofGetLastFrameTime());
+
+    #ifndef CONSOLE
     videoController.IdleMovies();
     #endif
 }
@@ -94,7 +95,6 @@ void testApp::draw(){
 
 //--------------------------------------------------------------
 
-/*
 void testApp::keyPressed  (int key){
     if(key == '1')
     {
@@ -135,11 +135,6 @@ void testApp::keyPressed  (int key){
         y -= yoffset;
         quads[selectedIdx]->setPoint(selectedVtx, x, y);
     }
-}
-*/
-
-void testApp::keyPressed  (int key){
-
 }
 
 //--------------------------------------------------------------
