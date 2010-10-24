@@ -92,6 +92,7 @@
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/poco/lib/win_cb/libPocoUtilmt.a" />
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/poco/lib/win_cb/libPocoXMLmt.a" />
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/poco/lib/win_cb/libPocoFoundationmt.a" />
+			<Add option="../of_preRelease_v0061_win_cb_FAT/addons/ofxOsc/libs/oscpack/lib/win_cb/oscpack.a" />
 			<Add option="-lopengl32" />
 			<Add option="-lglu32" />
 			<Add option="-ldsound" />
@@ -152,6 +153,36 @@
 		</Unit>
 		<Unit filename="addons\ofxShader\src\ofxShader.h">
 			<Option virtualFolder="addons\ofxShader\src\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOsc.h">
+			<Option virtualFolder="addons\ofxOsc\src\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscArg.h">
+			<Option virtualFolder="addons\ofxOsc\src\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscBundle.cpp">
+			<Option virtualFolder="addons\ofxOsc\src\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscBundle.h">
+			<Option virtualFolder="addons\ofxOsc\src\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscMessage.cpp">
+			<Option virtualFolder="addons\ofxOsc\src\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscMessage.h">
+			<Option virtualFolder="addons\ofxOsc\src\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscReceiver.cpp">
+			<Option virtualFolder="addons\ofxOsc\src\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscReceiver.h">
+			<Option virtualFolder="addons\ofxOsc\src\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscSender.cpp">
+			<Option virtualFolder="addons\ofxOsc\src\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscSender.h">
+			<Option virtualFolder="addons\ofxOsc\src\" />
 		</Unit>
 		<Unit filename="src\Animation.cpp" />
 		<Unit filename="src\Animation.h" />
