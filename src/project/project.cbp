@@ -190,6 +190,8 @@
 		<Unit filename="src\Object3D.h" />
 		<Unit filename="src\Quad2D.cpp" />
 		<Unit filename="src\Quad2D.h" />
+		<Unit filename="src\VideoController.cpp" />
+		<Unit filename="src\VideoController.h" />
 		<Unit filename="src\main.cpp" />
 		<Unit filename="src\testApp.cpp" />
 		<Unit filename="src\testApp.h" />
