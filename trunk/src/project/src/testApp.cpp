@@ -105,6 +105,8 @@ void testApp::draw(){
 //--------------------------------------------------------------
 
 void testApp::keyPressed  (int key){
+    #ifdef CONSOLE
+
     if(key == '1')
     {
         if(quads.size() > 0) {
@@ -180,6 +182,8 @@ void testApp::keyPressed  (int key){
             quads.erase(it);
         }
     }
+
+    #endif
 }
 
 //--------------------------------------------------------------
@@ -194,15 +198,23 @@ void testApp::mouseMoved(int x, int y ){
 
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
+    #ifdef CONSOLE
+
     if(selectedIdx >= 0 && selectedVtx >= 0)
     {
         quads[selectedIdx]->setPoint(selectedVtx, x, y);
     }
+
+    #endif
 }
 
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
+    #ifdef CONSOLE
+
     selectedVtx = quads[selectedIdx]->getControlPointAt(x,y);
+
+    #endif
 }
 
 //--------------------------------------------------------------
