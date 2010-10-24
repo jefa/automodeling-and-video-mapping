@@ -2302,7 +2302,7 @@
 	"Object3D.h"
 	"Translation.h"
 
-1287899356 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
+1287935017 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
 	"testApp.h"
 	"AnimationController.h"
 	"Animation.h"
@@ -4174,7 +4174,7 @@
 	"ofUtils.h"
 	<cstdlib>
 
-1287900383 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\quad2d.cpp
+1287934879 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\quad2d.cpp
 	"Quad2D.h"
 	"ofGraphics.h"
 

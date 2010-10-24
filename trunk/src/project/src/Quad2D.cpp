@@ -73,13 +73,15 @@ void Quad2D::draw()
 	#else
     //Modo consola, dibuja solo alrededor.
 
-    glColor3f(1.0f, 1.0f, 1.0f);
+    glDisable(GL_TEXTURE_2D);
+
+    glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
     glBegin(GL_LINE_LOOP);
     for(int i = 0; i < 8; i += 2) {
         glVertex2f(quadPoints[i], quadPoints[i+1]);
     }
     glEnd();
-    glColor3f(1.0f, 0.0f, 0.0f);
+
     ofCircle(quadPoints[0], quadPoints[1], radius);
     ofCircle(quadPoints[2], quadPoints[3], radius);
     ofCircle(quadPoints[4], quadPoints[5], radius);
