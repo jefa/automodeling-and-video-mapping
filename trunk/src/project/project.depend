@@ -2292,7 +2292,7 @@
 	"Modifier.h"
 	"IPropertyManager.h"
 
-1287625397 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\main.cpp
+1287889331 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\main.cpp
 	"ofMain.h"
 	"testApp.h"
 	"ofAppGlutWindow.h"
@@ -2302,12 +2302,14 @@
 	"Object3D.h"
 	"Translation.h"
 
-1287863223 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
+1287899356 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\testapp.cpp
 	"testApp.h"
 	"AnimationController.h"
 	"Animation.h"
 	"LinearAnimation.h"
 	"Background.h"
+	"Quad2D.h"
+	"VideoController.h"
 
 1287856034 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\background.cpp
 	"Background.h"
@@ -4143,4 +4145,47 @@
 	<Files.h>
 	<Quickdraw.h>
 	<Components.h>
+
+1271836418 source:c:\users\daniel\desktop\proyecto de grado\code\project\addons\ofxalphavideoplayer\ofxalphavideoplayer.cpp
+	"ofxAlphaVideoPlayer.h"
+	"ofUtils.h"
+	<gst/video/video.h>
+
+1271831416 c:\users\daniel\desktop\proyecto de grado\code\project\addons\ofxalphavideoplayer\ofxalphavideoplayer.h
+	"ofConstants.h"
+	"ofTexture.h"
+	"ofGstUtils.h"
+	"ofxQtUtils_alpha.h"
+
+1271835954 c:\users\daniel\desktop\proyecto de grado\code\project\addons\ofxalphavideoplayer\ofxqtutils_alpha.h
+	"ofConstants.h"
+	"ofGraphics.h"
+	<QuickTime/QuickTime.h>
+	<CoreServices/CoreServices.h>
+	<ApplicationServices/ApplicationServices.h>
+	<QTML.h>
+	<FixMath.h>
+	<QuickTimeComponents.h>
+	<TextUtils.h>
+	<MediaHandlers.h>
+
+1287797792 source:c:\users\daniel\desktop\proyecto de grado\code\project\addons\ofxalphavideoplayer\ofxqtutils_alpha.cpp
+	"ofxQtUtils_alpha.h"
+	"ofUtils.h"
+	<cstdlib>
+
+1287900383 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\quad2d.cpp
+	"Quad2D.h"
+	"ofGraphics.h"
+
+1287900376 c:\users\daniel\desktop\proyecto de grado\code\project\src\quad2d.h
+	"IPropertyManager.h"
+
+1287871947 source:c:\users\daniel\desktop\proyecto de grado\code\project\src\videocontroller.cpp
+	"VideoController.h"
+
+1287871994 c:\users\daniel\desktop\proyecto de grado\code\project\src\videocontroller.h
+	"../addons/ofxAlphaVideoPlayer/ofxAlphaVideoPlayer.h"
+	<string>
+	<map>
 
