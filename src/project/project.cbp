@@ -74,6 +74,9 @@
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\3DS\" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\" />
+			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\" />
+			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\libs\oscpack\include\ip" />
+			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\libs\oscpack\include\osc" />
 		</Compiler>
 		<Linker>
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/FreeImage/lib/win_cb/FreeImage.lib" />
@@ -157,6 +160,8 @@
 		<Unit filename="src\Background.cpp" />
 		<Unit filename="src\Background.h" />
 		<Unit filename="src\Clonable.h" />
+		<Unit filename="src\EventArg.h" />
+		<Unit filename="src\IEventListener.h" />
 		<Unit filename="src\IPropertyManager.h" />
 		<Unit filename="src\LinearAnimation.cpp" />
 		<Unit filename="src\LinearAnimation.h" />
@@ -166,8 +171,11 @@
 		<Unit filename="src\Modifier.h" />
 		<Unit filename="src\Object3D.cpp" />
 		<Unit filename="src\Object3D.h" />
+		<Unit filename="src\OscEventArg.h" />
 		<Unit filename="src\Quad2D.cpp" />
 		<Unit filename="src\Quad2D.h" />
+		<Unit filename="src\SynchManager.cpp" />
+		<Unit filename="src\SynchManager.h" />
 		<Unit filename="src\VideoController.cpp" />
 		<Unit filename="src\VideoController.h" />
 		<Unit filename="src\main.cpp" />
