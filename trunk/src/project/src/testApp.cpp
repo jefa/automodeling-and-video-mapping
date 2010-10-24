@@ -56,13 +56,17 @@ void testApp::setup(){
     //animController.AddAnimation(anim3, IMMEDIATE);
     //animController.AddAnimation(anim4, IMMEDIATE);
 
+    this->synchManager = new SynchManager(true);
+
     quads.push_back(new Quad2D(100,100, 250,80, 270,260, 80,250));
     quads.push_back(new Quad2D(500,500, 650,480, 670,660, 480,650));
+
 }
 
 //--------------------------------------------------------------
 void testApp::update(){
     animController.Update(ofGetLastFrameTime());
+    synchManager->checkForMessages();
 
     //#ifndef CONSOLE
     videoController.IdleMovies();
