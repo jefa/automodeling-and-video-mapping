@@ -5,6 +5,7 @@
 #include "Background.h"
 #include "Quad2D.h"
 #include "VideoController.h"
+#include "PointEventArg.h"
 #include <vector>
 using namespace std;
 
@@ -25,6 +26,8 @@ Object3D *obj3D;
 //--------------------------------------------------------------
 void testApp::setup(){
 
+    setupLogging();
+
 	//set background to black
 	ofBackground(0, 0, 0);
 
@@ -38,11 +41,11 @@ void testApp::setup(){
     obj3D->addObject("sphere/sphere.3ds");
 
     background = new Background();
-    videoController.AddVideo("video1", "fingers.mov");
-    videoController.PlayVideo("video1");
+    //videoController.AddVideo("video1", "fingers.mov");
+    //videoController.PlayVideo("video1");
 
-    videoController.AddVideo("video2", "cartoon.mov");
-    videoController.PlayVideo("video2");
+    //videoController.AddVideo("video2", "cartoon.mov");
+    //videoController.PlayVideo("video2");
 
     //LinearAnimation *anim1 = new LinearAnimation(obj3D, POS_X, 5, 600);
     //LinearAnimation *anim2 = new LinearAnimation(obj3D, POS_Y, 4, 700);
@@ -56,7 +59,13 @@ void testApp::setup(){
     //animController.AddAnimation(anim3, IMMEDIATE);
     //animController.AddAnimation(anim4, IMMEDIATE);
 
-    this->synchManager = new SynchManager(true);
+    #ifndef CONSOLE
+        this->synchManager = new SynchManager(false); //set as receiver
+        this->synchManager->addListener(this, "/all");
+        //this->synchManager->addListener(&animController, "/anim");
+    #else
+        this->synchManager = new SynchManager(true); //set as sender
+    #endif
 
     quads.push_back(new Quad2D(100,100, 250,80, 270,260, 80,250));
     quads.push_back(new Quad2D(500,500, 650,480, 670,660, 480,650));
@@ -66,7 +75,10 @@ void testApp::setup(){
 //--------------------------------------------------------------
 void testApp::update(){
     animController.Update(ofGetLastFrameTime());
-    synchManager->checkForMessages();
+
+    #ifndef CONSOLE
+        synchManager->checkForMessages();
+    #endif
 
     //#ifndef CONSOLE
     videoController.IdleMovies();
@@ -164,6 +176,11 @@ void testApp::keyPressed  (int key){
         quads[selectedIdx]->getPoint(selectedVtx, x, y);
         y -= yoffset;
         quads[selectedIdx]->setPoint(selectedVtx, x, y);
+
+        /*ofxOscMessage oscMessage;
+        oscMessage.addFloatArg(x);
+        oscMessage.addFloatArg(y);
+        this->synchManager->SendMessage(oscMessage, SETPOINT);*/
     }
 
     if(key == ' ')
@@ -199,12 +216,20 @@ void testApp::mouseMoved(int x, int y ){
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
     #ifdef CONSOLE
+    ofLog(OF_LOG_VERBOSE, "mouseDragged: x=%d, y=%d", x, y);
 
     if(selectedIdx >= 0 && selectedVtx >= 0)
     {
+        ofLog(OF_LOG_VERBOSE, "mouseDragged: ===== selectedIds=%d, selectedVtx=%d", selectedIdx,selectedVtx);
         quads[selectedIdx]->setPoint(selectedVtx, x, y);
-    }
 
+        ofxOscMessage oscMessage;
+        oscMessage.addIntArg(selectedIdx);
+        oscMessage.addIntArg(selectedVtx);
+        oscMessage.addIntArg(x);
+        oscMessage.addIntArg(y);
+        this->synchManager->SendMessage(oscMessage, SETPOINT);
+    }
     #endif
 }
 
@@ -226,3 +251,15 @@ void testApp::windowResized(int w, int h){
 
 }
 
+void testApp::event(EventArg *e)
+{
+    ofLog(OF_LOG_NOTICE, "=========EN ENENT EN TESTAPP!!!!!\n");
+    PointEventArg *evtArg = (PointEventArg*) e;
+    quads[evtArg->_shapeId]->setPoint(evtArg->_vertexId, evtArg->_x, evtArg->_y);
+
+}
+
+void testApp::setupLogging(){
+	ofSetLogLevel(OF_LOG_VERBOSE);
+	ofLog(OF_LOG_VERBOSE, "seteando logs");
+}
