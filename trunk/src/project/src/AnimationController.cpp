@@ -81,3 +81,18 @@ void AnimationController::Update(double timestamp)
         }
     }
 }
+
+void AnimationController::event(EventArg *e)
+{
+    AnimEventArg *animEvent = (AnimEventArg*) e;
+    if (animEvent->isActivate)
+    {
+        this->Animate(animEvent->source);
+    }
+}
+
+bool AnimationController::Animate(string animName)
+{
+    //TODO: Implement animate function
+    return false;
+}

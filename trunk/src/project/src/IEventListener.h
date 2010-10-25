@@ -5,7 +5,8 @@
 
 class IEventListener
 {
-    virtual void event(EventArg e)=0;
+    public:
+    virtual void event(EventArg *e)=0;
 };
 
 #endif // IEVENTLISTENER_H

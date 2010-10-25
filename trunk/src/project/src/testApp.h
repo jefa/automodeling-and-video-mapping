@@ -5,8 +5,9 @@
 #include "Object3D.h"
 #include "Translation.h"
 #include "SynchManager.h"
+#include "IEventListener.h"
 
-class testApp : public ofBaseApp{
+class testApp : public ofBaseApp, public IEventListener {
 
 	public:
 
@@ -21,6 +22,10 @@ class testApp : public ofBaseApp{
 		void mousePressed(int x, int y, int button);
 		void mouseReleased(int x, int y, int button);
 		void windowResized(int w, int h);
+
+		void event(EventArg *e);
+
+        void setupLogging();
 
     private:
 		Object3D *obj3D;
