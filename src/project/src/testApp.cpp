@@ -5,11 +5,13 @@
 #include "Background.h"
 #include "VideoController.h"
 #include "DrawEventArg.h"
+#include "ofxXmlSettings.h"
 #include <vector>
 using namespace std;
 
 AnimationController animController;
 VideoController videoController;
+ofxXmlSettings quadsXML;
 Background *background;
 
 vector<Quad2D*> quads;
@@ -66,8 +68,8 @@ void testApp::setup(){
         this->synchManager = new SynchManager(true); //set as sender
     #endif
 
-    quads.push_back(new Quad2D(100,100, 250,80, 270,260, 80,250));
-    quads.push_back(new Quad2D(500,500, 650,480, 670,660, 480,650));
+    //quads.push_back(new Quad2D(100,100, 250,80, 270,260, 80,250));
+    //quads.push_back(new Quad2D(500,500, 650,480, 670,660, 480,650));
 
 }
 
@@ -117,6 +119,11 @@ void testApp::draw(){
 
 void testApp::keyPressed  (int key){
     #ifdef CONSOLE
+
+    if(key == 'k')
+    {
+        loadQuads();
+    }
 
     if(key == '1')
     {
@@ -197,6 +204,9 @@ void testApp::keyPressed  (int key){
             (*it)->setSelected(false);
             quads.erase(it);
         }
+    }
+    if(key == 'l') {
+        saveQuads();
     }
 
     #endif
@@ -295,4 +305,89 @@ int testApp::addQuad(vector<Quad2D*> *shapes, int selIdx, bool sendEvent)
     shapes->at(selIdx)->setSelected(true);
 
     return selIdx;
+}
+
+void testApp::loadQuads()
+{
+    ofLog(OF_LOG_NOTICE, "loading project...");
+
+    quadsXML.loadFile("./quads.xml");
+
+    quadsXML.pushTag("quads");
+
+    int numQuadItems = quadsXML.getNumTags("quadItem");
+
+    for(int i = 0; i < numQuadItems; i++)
+    {
+        selectedIdx = addQuad(&quads, selectedIdx);
+
+        quadsXML.pushTag("quadItem", i);
+
+            double x0 = quadsXML.getAttribute("vx0", "x", 0.0, 0);
+            double y0 = quadsXML.getAttribute("vx0", "y", 0.0, 0);
+
+            double x1 = quadsXML.getAttribute("vx1", "x", 50.0, 0);
+            double y1 = quadsXML.getAttribute("vx1", "y", 0.0, 0);
+
+            double x2 = quadsXML.getAttribute("vx2", "x", 50.0, 0);
+            double y2 = quadsXML.getAttribute("vx2", "y", 50.0, 0);
+
+            double x3 = quadsXML.getAttribute("vx3", "x", 0.0, 0);
+            double y3 = quadsXML.getAttribute("vx3", "y", 50.0, 0);
+
+            setPoint(&quads, selectedIdx, 0, x0, y0);
+            setPoint(&quads, selectedIdx, 1, x1, y1);
+            setPoint(&quads, selectedIdx, 2, x2, y2);
+            setPoint(&quads, selectedIdx, 3, x3, y3);
+
+        quadsXML.popTag();
+    }
+
+    quadsXML.popTag();
+
+    ofLog(OF_LOG_NOTICE, "project loaded. loaded quads: %i", numQuadItems);
+}
+
+void testApp::saveQuads()
+{
+    ofLog(OF_LOG_NOTICE, "saving project...");
+    quadsXML.clear();
+    int quadsTagKey = quadsXML.addTag("quads");
+    quadsXML.pushTag("quads", quadsTagKey);
+
+    vector<Quad2D*>::iterator it;
+    for(it = quads.begin(); it != quads.end(); ++it)
+    {
+        int quadItemTagKey = quadsXML.addTag("quadItem");
+        quadsXML.pushTag("quadItem", quadItemTagKey);
+
+        float x0, y0, x1, y1, x2, y2, x3, y3;
+        (*it)->getPoint(0, x0, y0);
+        (*it)->getPoint(1, x1, y1);
+        (*it)->getPoint(2, x2, y2);
+        (*it)->getPoint(3, x3, y3);
+
+        int quadVx0Key = quadsXML.addTag("vx0");
+        quadsXML.addAttribute("vx0", "x", x0, quadVx0Key);
+        quadsXML.addAttribute("vx0", "y", y0, quadVx0Key);
+
+        int quadVx1Key = quadsXML.addTag("vx1");
+        quadsXML.addAttribute("vx1", "x", x1, quadVx1Key);
+        quadsXML.addAttribute("vx1", "y", y1, quadVx1Key);
+
+        int quadVx2Key = quadsXML.addTag("vx2");
+        quadsXML.addAttribute("vx2", "x", x2, quadVx2Key);
+        quadsXML.addAttribute("vx2", "y", y2, quadVx2Key);
+
+        int quadVx3Key = quadsXML.addTag("vx3");
+        quadsXML.addAttribute("vx3", "x", x3, quadVx3Key);
+        quadsXML.addAttribute("vx3", "y", y3, quadVx3Key);
+
+        quadsXML.popTag();
+    }
+    quadsXML.popTag();
+    quadsXML.saveFile("./quads.xml");
+
+    ofLog(OF_LOG_NOTICE, "Project saved.");
+
 }

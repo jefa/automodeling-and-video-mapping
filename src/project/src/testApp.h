@@ -31,6 +31,8 @@ class testApp : public ofBaseApp, public IEventListener {
 		void event(EventArg *e);
 
         void setupLogging();
+        void saveQuads();
+        void loadQuads();
 
     private:
 		Object3D *obj3D;

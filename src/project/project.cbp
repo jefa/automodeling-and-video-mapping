@@ -5,7 +5,7 @@
 		<Option title="project" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="addons\;addons\ofx3DLoader\src\;addons\ofxShader\;addons\ofxShader\src\;project\src\;addons\ofxAlphaVideoPlayer\;addons\ofxOsc\src\;addons\ofxMidiIn\events\;addons\ofxMidiIn\libs\;addons\ofxMidiIn\src\;" />
+		<Option virtualFolders="addons\;addons\ofx3DLoader\src\;addons\ofxShader\;addons\ofxShader\src\;project\src\;addons\ofxAlphaVideoPlayer\;addons\ofxOsc\src\;addons\ofxMidiIn\events\;addons\ofxMidiIn\libs\;addons\ofxMidiIn\src\;addons\ofxXmlSettings\;addons\ofxXmlSettings\src\;addons\ofxXmlSettings\libs\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin\$(PROJECT_NAME)_DEBUG" prefix_auto="1" extension_auto="1" />
@@ -80,6 +80,8 @@
 			<Add directory="addons\ofxMidiIn\src" />
 			<Add directory="addons\ofxMidiIn\events" />
 			<Add directory="addons\ofxMidiIn\libs" />
+			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\src" />
+			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs" />
 		</Compiler>
 		<Linker>
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/FreeImage/lib/win_cb/FreeImage.lib" />
@@ -168,6 +170,24 @@
 		</Unit>
 		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscSender.h">
 			<Option virtualFolder="addons\ofxOsc\src\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs\tinyxml.cpp">
+			<Option virtualFolder="addons\ofxXmlSettings\libs\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs\tinyxml.h">
+			<Option virtualFolder="addons\ofxXmlSettings\libs\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs\tinyxmlerror.cpp">
+			<Option virtualFolder="addons\ofxXmlSettings\libs\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
+			<Option virtualFolder="addons\ofxXmlSettings\libs\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\src\ofxXmlSettings.cpp">
+			<Option virtualFolder="addons\ofxXmlSettings\src\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\src\ofxXmlSettings.h">
+			<Option virtualFolder="addons\ofxXmlSettings\src\" />
 		</Unit>
 		<Unit filename="addons\ofxAlphaVideoPlayer\ofxAlphaVideoPlayer.cpp">
 			<Option virtualFolder="addons\ofxAlphaVideoPlayer\" />
