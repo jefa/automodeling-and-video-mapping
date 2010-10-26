@@ -181,13 +181,7 @@
 		<Unit filename="addons\ofxAlphaVideoPlayer\ofxQtUtils_alpha.h">
 			<Option virtualFolder="addons\ofxAlphaVideoPlayer\" />
 		</Unit>
-		<Unit filename="addons\ofxShader\src\ofxShader.cpp">
-			<Option virtualFolder="addons\ofxShader\src\" />
-		</Unit>
-		<Unit filename="addons\ofxShader\src\ofxShader.h">
-			<Option virtualFolder="addons\ofxShader\src\" />
-		</Unit>
-				<Unit filename="addons\ofxMidiIn\events\ofxMidiEvents.h">
+		<Unit filename="addons\ofxMidiIn\events\ofxMidiEvents.h">
 			<Option virtualFolder="addons\ofxMidiIn\events" />
 		</Unit>
 		<Unit filename="addons\ofxMidiIn\libs\RtMidi.cpp">
@@ -202,6 +196,12 @@
 		<Unit filename="addons\ofxMidiIn\src\ofxMidiIn.h">
 			<Option virtualFolder="addons\ofxMidiIn\src" />
 		</Unit>
+		<Unit filename="addons\ofxShader\src\ofxShader.cpp">
+			<Option virtualFolder="addons\ofxShader\src\" />
+		</Unit>
+		<Unit filename="addons\ofxShader\src\ofxShader.h">
+			<Option virtualFolder="addons\ofxShader\src\" />
+		</Unit>
 		<Unit filename="src\AnimEventArg.h" />
 		<Unit filename="src\Animation.cpp" />
 		<Unit filename="src\Animation.h" />
@@ -210,6 +210,7 @@
 		<Unit filename="src\Background.cpp" />
 		<Unit filename="src\Background.h" />
 		<Unit filename="src\Clonable.h" />
+		<Unit filename="src\DrawEventArg.h" />
 		<Unit filename="src\EventArg.h" />
 		<Unit filename="src\IEventListener.h" />
 		<Unit filename="src\IPropertyManager.h" />
@@ -221,8 +222,6 @@
 		<Unit filename="src\Modifier.h" />
 		<Unit filename="src\Object3D.cpp" />
 		<Unit filename="src\Object3D.h" />
-		<Unit filename="src\OscEventArg.h" />
-		<Unit filename="src\PointEventArg.h" />
 		<Unit filename="src\Quad2D.cpp" />
 		<Unit filename="src\Quad2D.h" />
 		<Unit filename="src\SynchManager.cpp" />

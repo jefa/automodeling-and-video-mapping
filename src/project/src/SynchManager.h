@@ -2,7 +2,6 @@
 #define SYNCHMANAGER_H
 
 #include "IEventListener.h"
-#include "OscEventArg.h"
 #include "ofxOsc.h"
 #include <vector>
 
