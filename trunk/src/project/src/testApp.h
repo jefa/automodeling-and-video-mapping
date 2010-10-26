@@ -6,6 +6,7 @@
 #include "Translation.h"
 #include "SynchManager.h"
 #include "IEventListener.h"
+#include "Quad2D.h"
 
 class testApp : public ofBaseApp, public IEventListener {
 
@@ -22,6 +23,10 @@ class testApp : public ofBaseApp, public IEventListener {
 		void mousePressed(int x, int y, int button);
 		void mouseReleased(int x, int y, int button);
 		void windowResized(int w, int h);
+
+        int setPoint(vector<Quad2D*> *shapes, int selectedIdx, int selectedVtx,
+                      int x, int y, bool sendEvent=true);
+		int addQuad(vector<Quad2D*> *shapes, int selIdx, bool sendEvent=true);
 
 		void event(EventArg *e);
 
