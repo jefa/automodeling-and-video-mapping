@@ -5,7 +5,7 @@
 		<Option title="project" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="addons\;addons\ofx3DLoader\src\;addons\ofxShader\;addons\ofxShader\src\;project\src\;addons\ofxAlphaVideoPlayer\;addons\ofxOsc\src\;" />
+		<Option virtualFolders="addons\;addons\ofx3DLoader\src\;addons\ofxShader\;addons\ofxShader\src\;project\src\;addons\ofxAlphaVideoPlayer\;addons\ofxOsc\src\;addons\ofxMidiIn\events\;addons\ofxMidiIn\libs\;addons\ofxMidiIn\src\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin\$(PROJECT_NAME)_DEBUG" prefix_auto="1" extension_auto="1" />
@@ -77,6 +77,9 @@
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\libs\oscpack\include\ip" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\libs\oscpack\include\osc" />
+			<Add directory="addons\ofxMidiIn\src" />
+			<Add directory="addons\ofxMidiIn\events" />
+			<Add directory="addons\ofxMidiIn\libs" />
 		</Compiler>
 		<Linker>
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/FreeImage/lib/win_cb/FreeImage.lib" />
@@ -183,6 +186,21 @@
 		</Unit>
 		<Unit filename="addons\ofxShader\src\ofxShader.h">
 			<Option virtualFolder="addons\ofxShader\src\" />
+		</Unit>
+				<Unit filename="addons\ofxMidiIn\events\ofxMidiEvents.h">
+			<Option virtualFolder="addons\ofxMidiIn\events" />
+		</Unit>
+		<Unit filename="addons\ofxMidiIn\libs\RtMidi.cpp">
+			<Option virtualFolder="addons\ofxMidiIn\libs" />
+		</Unit>
+		<Unit filename="addons\ofxMidiIn\libs\RtMidi.h">
+			<Option virtualFolder="addons\ofxMidiIn\libs" />
+		</Unit>
+		<Unit filename="addons\ofxMidiIn\src\ofxMidiIn.cpp">
+			<Option virtualFolder="addons\ofxMidiIn\src" />
+		</Unit>
+		<Unit filename="addons\ofxMidiIn\src\ofxMidiIn.h">
+			<Option virtualFolder="addons\ofxMidiIn\src" />
 		</Unit>
 		<Unit filename="src\AnimEventArg.h" />
 		<Unit filename="src\Animation.cpp" />
