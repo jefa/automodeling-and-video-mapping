@@ -10,7 +10,7 @@
 #define PORT 12345
 
 enum SYNCH_MSG_TYPE {
-    DISCOVERY, INIT, SYNCH, SHUTDOWN, SETPOINT
+    DISCOVERY, INIT, SYNCH, SHUTDOWN, SETPOINT, ADDQUAD
 };
 
 typedef pair<string, IEventListener*> listenerPair;

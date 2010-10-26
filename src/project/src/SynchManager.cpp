@@ -1,5 +1,5 @@
 #include "SynchManager.h"
-#include "PointEventArg.h"
+#include "DrawEventArg.h"
 #include "AnimEventArg.h"
 
 SynchManager::SynchManager(bool isMaster)
@@ -60,10 +60,12 @@ bool SynchManager::SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType)
     ofLog(OF_LOG_VERBOSE, "SynchManager:: Sending message: type=%d",msgType);
     if (msgType == SETPOINT)
     {
-        //ofLog(OF_LOG_VERBOSE, "SynchManager:: Sending message=%s\n",oscMessage.getAddress());
         oscMessage.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/setpoint" );
-        sender.sendMessage( oscMessage );
+    } else if (msgType == ADDQUAD)
+    {
+        oscMessage.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/addquad" );
     }
+    sender.sendMessage( oscMessage );
     return true;
 }
 
@@ -80,21 +82,29 @@ bool SynchManager::checkForMessages()
 
         if ( m.getAddress() == "/synch/setpoint" )
         {
-            evtArg = new PointEventArg();
-            ((PointEventArg*)evtArg)->_shapeId = m.getArgAsInt32(0);
-            ((PointEventArg*)evtArg)->_vertexId = m.getArgAsInt32(1);
-            ((PointEventArg*)evtArg)->_x = m.getArgAsInt32(2);
-            ((PointEventArg*)evtArg)->_y = m.getArgAsInt32(3);
-            ofLog(OF_LOG_VERBOSE, "SynchManager: SynchEvent/SetPoint received = [%d,%d,%f,%f]",((PointEventArg*)evtArg)->_shapeId,
-                  ((PointEventArg*)evtArg)->_vertexId, ((PointEventArg*)evtArg)->_x, ((PointEventArg*)evtArg)->_y);
+            evtArg = new DrawEventArg();
+            ((DrawEventArg*)evtArg)->_shapeId = m.getArgAsInt32(0);
+            ((DrawEventArg*)evtArg)->_vertexId = m.getArgAsInt32(1);
+            ((DrawEventArg*)evtArg)->_x = m.getArgAsInt32(2);
+            ((DrawEventArg*)evtArg)->_y = m.getArgAsInt32(3);
+            ((DrawEventArg*)evtArg)->_evtType = 0;
+            ofLog(OF_LOG_VERBOSE, "SynchManager: SynchEvent/SetPoint received = [%d,%d,%f,%f]",((DrawEventArg*)evtArg)->_shapeId,
+                  ((DrawEventArg*)evtArg)->_vertexId, ((DrawEventArg*)evtArg)->_x, ((DrawEventArg*)evtArg)->_y);
         }
         else if ( m.getAddress() == "/anim/animate" )
         {
             string anim_id = m.getArgAsString(0);
-            ofLog(OF_LOG_VERBOSE, "OscEvent: Anim/Animate received. Id = %s\n",anim_id);
+            ofLog(OF_LOG_VERBOSE, "SynchManager: Anim/Animate received. Id = %s\n",anim_id);
             evtArg = new AnimEventArg();
             ((AnimEventArg*)evtArg)->source = anim_id;
             ((AnimEventArg*)evtArg)->isActivate = true;
+        }
+        else if ( m.getAddress() == "/synch/addquad" )
+        {
+            evtArg = new DrawEventArg();
+            ((DrawEventArg*)evtArg)->_shapeId = m.getArgAsInt32(0);
+            ((DrawEventArg*)evtArg)->_evtType = 1;
+            ofLog(OF_LOG_VERBOSE, "SynchManager: SynchEvent/AddQuad received");
         }
         else
         {
@@ -113,7 +123,7 @@ bool SynchManager::checkForMessages()
                 else
                     msg_string += "unknown";
             }
-            ofLog(OF_LOG_VERBOSE, "OscEvent: Unrecognized message: %s\n", msg_string);
+            ofLog(OF_LOG_VERBOSE, "SynchManager: Unrecognized message: %s\n", msg_string);
         }
 
 

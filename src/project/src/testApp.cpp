@@ -3,9 +3,8 @@
 #include "Animation.h"
 #include "LinearAnimation.h"
 #include "Background.h"
-#include "Quad2D.h"
 #include "VideoController.h"
-#include "PointEventArg.h"
+#include "DrawEventArg.h"
 #include <vector>
 using namespace std;
 
@@ -154,41 +153,41 @@ void testApp::keyPressed  (int key){
         float x, y;
         quads[selectedIdx]->getPoint(selectedVtx, x, y);
         x -= xoffset;
-        quads[selectedIdx]->setPoint(selectedVtx, x, y);
+        //quads[selectedIdx]->setPoint(selectedVtx, x, y);
+        setPoint(&quads, selectedIdx, selectedVtx, x, y);
     }
     if(key == 'd')
     {
         float x, y;
         quads[selectedIdx]->getPoint(selectedVtx, x, y);
         x += xoffset;
-        quads[selectedIdx]->setPoint(selectedVtx, x, y);
+        //quads[selectedIdx]->setPoint(selectedVtx, x, y);
+        setPoint(&quads, selectedIdx, selectedVtx, x, y);
     }
     if(key == 's')
     {
         float x, y;
         quads[selectedIdx]->getPoint(selectedVtx, x, y);
         y += yoffset;
-        quads[selectedIdx]->setPoint(selectedVtx, x, y);
+        //quads[selectedIdx]->setPoint(selectedVtx, x, y);
+        setPoint(&quads, selectedIdx, selectedVtx, x, y);
     }
     if(key == 'w')
     {
         float x, y;
         quads[selectedIdx]->getPoint(selectedVtx, x, y);
         y -= yoffset;
-        quads[selectedIdx]->setPoint(selectedVtx, x, y);
-
-        /*ofxOscMessage oscMessage;
-        oscMessage.addFloatArg(x);
-        oscMessage.addFloatArg(y);
-        this->synchManager->SendMessage(oscMessage, SETPOINT);*/
+        //quads[selectedIdx]->setPoint(selectedVtx, x, y);
+        setPoint(&quads, selectedIdx, selectedVtx, x, y);
     }
 
     if(key == ' ')
     {
-        quads.push_back(new Quad2D());
+        /*quads.push_back(new Quad2D());
         quads[selectedIdx]->setSelected(false);
         selectedIdx = quads.size() - 1;
-        quads[selectedIdx]->setSelected(true);
+        quads[selectedIdx]->setSelected(true);*/
+        selectedIdx = addQuad(&quads, selectedIdx);
     }
     if(key == '\b') {
         if(quads.size() > 0 && selectedIdx >= 0) {
@@ -221,14 +220,7 @@ void testApp::mouseDragged(int x, int y, int button){
     if(selectedIdx >= 0 && selectedVtx >= 0)
     {
         ofLog(OF_LOG_VERBOSE, "mouseDragged: ===== selectedIds=%d, selectedVtx=%d", selectedIdx,selectedVtx);
-        quads[selectedIdx]->setPoint(selectedVtx, x, y);
-
-        ofxOscMessage oscMessage;
-        oscMessage.addIntArg(selectedIdx);
-        oscMessage.addIntArg(selectedVtx);
-        oscMessage.addIntArg(x);
-        oscMessage.addIntArg(y);
-        this->synchManager->SendMessage(oscMessage, SETPOINT);
+        setPoint(&quads, selectedIdx, selectedVtx, x, y);
     }
     #endif
 }
@@ -254,12 +246,53 @@ void testApp::windowResized(int w, int h){
 void testApp::event(EventArg *e)
 {
     ofLog(OF_LOG_NOTICE, "=========EN ENENT EN TESTAPP!!!!!\n");
-    PointEventArg *evtArg = (PointEventArg*) e;
-    quads[evtArg->_shapeId]->setPoint(evtArg->_vertexId, evtArg->_x, evtArg->_y);
+    DrawEventArg *evtArg = (DrawEventArg*) e;
+    if (evtArg->_evtType == 0) //setpoint
+    {
+        //quads[evtArg->_shapeId]->setPoint(evtArg->_vertexId, evtArg->_x, evtArg->_y);
+        setPoint(&quads, evtArg->_shapeId, evtArg->_vertexId, evtArg->_x, evtArg->_y, false);
+    } else if (evtArg->_evtType == 1) //draw new quad
+    {
+        selectedIdx = addQuad(&quads, evtArg->_shapeId, false);
+    }
 
 }
 
 void testApp::setupLogging(){
 	ofSetLogLevel(OF_LOG_VERBOSE);
 	ofLog(OF_LOG_VERBOSE, "seteando logs");
+}
+
+int testApp::setPoint(vector<Quad2D*> *shapes, int selectedIdx, int selectedVtx,
+                      int x, int y, bool sendEvent)
+{
+    shapes->at(selectedIdx)->setPoint(selectedVtx, x, y);
+
+    if (sendEvent)
+    {
+        ofxOscMessage oscMessage;
+        oscMessage.addIntArg(selectedIdx);
+        oscMessage.addIntArg(selectedVtx);
+        oscMessage.addIntArg(x);
+        oscMessage.addIntArg(y);
+        this->synchManager->SendMessage(oscMessage, SETPOINT);
+    }
+}
+
+int testApp::addQuad(vector<Quad2D*> *shapes, int selIdx, bool sendEvent)
+{
+    shapes->push_back(new Quad2D());
+    shapes->at(selIdx)->setSelected(false);
+
+    if (sendEvent)
+    {
+        ofxOscMessage oscMessage;
+        oscMessage.addIntArg(selIdx);
+        this->synchManager->SendMessage(oscMessage, ADDQUAD);
+    }
+
+    selIdx = shapes->size() - 1;
+    shapes->at(selIdx)->setSelected(true);
+
+    return selIdx;
 }
