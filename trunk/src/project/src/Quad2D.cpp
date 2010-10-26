@@ -78,7 +78,7 @@ int Quad2D::getControlPointAt(int x, int y)
         float xc = quadPoints[i * 2];
         float yc = quadPoints[(i * 2) + 1];
 
-        if ((((xc - x) * (xc - x)) + ((yc - y) * (yc - y))) <= (radius * radius))
+        if(ofDistSquared(xc, yc, x, y) <= pow(radius, 2))
         {
             return i;
         }
