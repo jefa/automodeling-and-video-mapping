@@ -5,10 +5,12 @@
 #include "Object3D.h"
 #include "Translation.h"
 #include "SynchManager.h"
+#include "MidiManager.h"
 #include "IEventListener.h"
 #include "Quad2D.h"
+#include "ofxMidiEvents.h"
 
-class testApp : public ofBaseApp, public IEventListener {
+class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener {
 
 	public:
 
@@ -37,6 +39,7 @@ class testApp : public ofBaseApp, public IEventListener {
     private:
 		Object3D *obj3D;
 		SynchManager *synchManager;
+		MidiManager	*midiManager;
 };
 
 #endif
