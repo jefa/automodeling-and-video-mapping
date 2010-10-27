@@ -17,7 +17,7 @@ Background *background;
 vector<Quad2D*> quads;
 vector<Material*> materials;
 
-int selectedIdx = 0;
+int selectedIdx = -1;
 int selectedVtx = 0;
 float xoffset = 5;
 float yoffset = 5;
@@ -241,7 +241,8 @@ void testApp::mouseDragged(int x, int y, int button){
 void testApp::mousePressed(int x, int y, int button){
     #ifdef CONSOLE
 
-    selectedVtx = quads[selectedIdx]->getControlPointAt(x,y);
+    if(selectedIdx >= 0)
+        selectedVtx = quads[selectedIdx]->getControlPointAt(x,y);
 
     #endif
 }
@@ -294,7 +295,8 @@ int testApp::setPoint(vector<Quad2D*> *shapes, int selectedIdx, int selectedVtx,
 int testApp::addQuad(vector<Quad2D*> *shapes, int selIdx, bool sendEvent)
 {
     shapes->push_back(new Quad2D());
-    shapes->at(selIdx)->setSelected(false);
+    if(selIdx >= 0)
+        shapes->at(selIdx)->setSelected(false);
 
     if (sendEvent)
     {
