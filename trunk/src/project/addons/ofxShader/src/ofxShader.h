@@ -31,8 +31,8 @@ public:
 	
 	ofxShader(){};
 	~ofxShader();
-	void 	loadShader(char * shaderName);	
-	void 	loadShader(char * fragmentShaderName, char * vertexShaderName);	
+	void 	loadShader(string shaderName);	
+	void 	loadShader(string fragmentShaderName, string vertexShaderName);	
 	
 	void 	unload();
 	void 	setShaderActive(bool bActive);

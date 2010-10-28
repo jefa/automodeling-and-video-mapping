@@ -11,8 +11,11 @@ ofxShader::~ofxShader(){
 	unload();	
 };
 //---------------------------------------------------------------
-void ofxShader::loadShader(char * fragmentName, char * vertexName){
+void ofxShader::loadShader(string fragmentName, string vertexName){
 	
+	fragmentName = ofToDataPath(fragmentName);
+	vertexName = ofToDataPath(vertexName);
+
 	
 	bLoaded = false;	
 	
@@ -20,11 +23,16 @@ void ofxShader::loadShader(char * fragmentName, char * vertexName){
 		
 		// ---------------------------------- (a) load in the shaders
 		char *vs = NULL,*fs = NULL;
-		vs = LoadShaderText(vertexName);
-		fs = LoadShaderText(fragmentName);
+		vs = LoadShaderText(vertexName.c_str());
+		fs = LoadShaderText(fragmentName.c_str());
 		
 		vertexShader = (GLhandleARB)glCreateShader(GL_VERTEX_SHADER);
 		fragmentShader = (GLhandleARB)glCreateShader(GL_FRAGMENT_SHADER);
+		
+		if( vs == NULL || fs == NULL ){
+			printf("unable to load %s \n", vertexName.c_str());
+			return;
+		}
 		
 		GLint length = strlen(vs);
 		glShaderSourceARB(vertexShader, 1, (const char**)&vs, &length);
@@ -39,9 +47,9 @@ void ofxShader::loadShader(char * fragmentName, char * vertexName){
 		glCompileShaderARB(vertexShader);
 		
 		//please add compile status check in:
-		//GLint compileStatus = 0;
-		//glGetObjectParameterivARB( vertexShader, GL_COMPILE_STATUS, &compileStatus );
-		//printf("%i \n", compileStatus);
+		GLint compileStatus = 0;
+		glGetObjectParameterivARB( vertexShader, GL_COMPILE_STATUS, &compileStatus );
+		printf("vertexShader status = %i \n", compileStatus);
 		
 		
 		glGetInfoLogARB(vertexShader, 999, &infobufferlen, infobuffer);
@@ -57,8 +65,8 @@ void ofxShader::loadShader(char * fragmentName, char * vertexName){
 		
 		
 
-		//glGetObjectParameterivARB( fragmentShader, GL_COMPILE_STATUS, &compileStatus );
-		//printf("%i \n", compileStatus);
+		glGetObjectParameterivARB( fragmentShader, GL_COMPILE_STATUS, &compileStatus );
+		printf("fragmentShader status %i \n", compileStatus);
 		
 		
 		glGetInfoLogARB(fragmentShader, 999, &infobufferlen, infobuffer);
@@ -87,12 +95,10 @@ void ofxShader::loadShader(char * fragmentName, char * vertexName){
 }
 		
 //---------------------------------------------------------------
-void ofxShader::loadShader(char * shaderName){
+void ofxShader::loadShader(string shaderName){
 	bLoaded = false;
-	char fragmentName[1024];
-	char vertexName[1024];
-	sprintf(fragmentName, "%s.frag", shaderName);
-	sprintf(vertexName, "%s.vert", shaderName);
+	string fragmentName = shaderName + ".frag";
+	string vertexName   = shaderName + ".vert";
 	loadShader(fragmentName, vertexName);
 }
 
