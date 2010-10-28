@@ -82,6 +82,7 @@
 			<Add directory="addons\ofxMidiIn\libs" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\src" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs" />
+			<Add directory="addons\ofxShader\src" />
 		</Compiler>
 		<Linker>
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/FreeImage/lib/win_cb/FreeImage.lib" />
@@ -238,6 +239,8 @@
 		<Unit filename="src\LinearAnimation.h" />
 		<Unit filename="src\Material.cpp" />
 		<Unit filename="src\Material.h" />
+		<Unit filename="src\MaterialController.cpp" />
+		<Unit filename="src\MaterialController.h" />
 		<Unit filename="src\MidiManager.cpp" />
 		<Unit filename="src\MidiManager.h" />
 		<Unit filename="src\Modifier.cpp" />
