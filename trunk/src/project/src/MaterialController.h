@@ -11,17 +11,16 @@ class MaterialController
         MaterialController();
         virtual ~MaterialController();
 
-        ofxShader ambient_shader;
+        static void Init();
+        static ofxShader ambient_shader;
 
-        void EnableShader(SHADER_TYPE type);
-        void DisableShader();
+        static void EnableShader(SHADER_TYPE type);
+        static void DisableShader();
     protected:
     private:
-        const string AMBIENT_SHADER_PATH;
-        SHADER_TYPE activeShader;
+        static const string AMBIENT_SHADER_PATH;
+        static SHADER_TYPE activeShader;
 
 };
-
-const string AMBIENT_SHADER_PATH = "shaders/ambient";
 
 #endif // MATERIALCONTROLLER_H

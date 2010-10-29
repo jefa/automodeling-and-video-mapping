@@ -64,12 +64,13 @@ void testApp::setup(){
         this->synchManager = new SynchManager(false); //set as receiver
         this->synchManager->addListener(this, "/all");
         //this->synchManager->addListener(&animController, "/anim");
+        this->midiManager = new MidiManager(); //midi  receiver
+        this->midiManager->addListener(this, "");
     #else
         this->synchManager = new SynchManager(true); //set as sender
     #endif
-    this->midiManager = new MidiManager(); //midi  receiver
-    this->midiManager->addListener(this, "");
-    //quads.push_back(new Quad2D(100,100, 250,80, 270,260, 80,250));
+
+    quads.push_back(new Quad2D(100,100, 250,80, 270,260, 80,250));
     //quads.push_back(new Quad2D(500,500, 650,480, 670,660, 480,650));
 
 }
