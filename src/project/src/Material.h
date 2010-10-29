@@ -1,14 +1,16 @@
 #ifndef __Material_h__
 #define __Material_h__
 
+#include "IPropertyManager.h"
+#include "MaterialController.h"
+
+#include "ofImage.h"
+
 #include <string>
 using namespace std;
 
-#include "IPropertyManager.h"
-
 enum A_PARAM_MATERIAL
 {
-    DIFFUSE_R, DIFFUSE_G, DIFFUSE_B,
     AMBIENT_R, AMBIENT_G, AMBIENT_B,
 };
 
@@ -19,12 +21,12 @@ class Material : public IPropertyManager
         virtual ~Material();
         void set(int aParam, float value);
         float get(int aParam);
-        void enable();
-        void disable();
+        void Enable();
+        void Disable();
 
 	private:
-        float diffuse[3];
         float ambient[3];
+        ofImage *image;
 
 };
 
