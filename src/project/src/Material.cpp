@@ -9,27 +9,62 @@ Material::Material(){
     ambient[2] = ofRandomuf();
 
     image = new ofImage();
-    image->loadImage("peg2.jpg");
+    image->loadImage("pegado.jpg");
 }
 
 Material::~Material(){
 }
 
 void Material::Enable(){
-    MaterialController::EnableShader(AMBIENT_SHADER);
-
     int textureID = image->getTextureReference().texData.textureID;
 
-    glActiveTextureARB(GL_TEXTURE0_ARB);
-	glEnable(GL_TEXTURE_2D);
+    //image->draw(50,50,100,100);
 
-	glBindTexture(GL_TEXTURE_2D, textureID);
+    //image->getTextureReference().draw(0,0);
+    //glActiveTextureARB(GL_TEXTURE0_ARB);
+    //glActiveTexture(GL_TEXTURE0);
+
+    //MaterialController::EnableShader(AMBIENT_SHADER);
+
+    //image->getTextureReference().bind();
+    //glEnable(GL_TEXTURE_2D);
+	//glBindTexture(GL_TEXTURE_2D, textureID);
+
+    ofTexture &tex = image->getTextureReference();
+
+    tex.bind();
+
+    glMatrixMode(GL_TEXTURE);
+    glPushMatrix();
+    //glLoadIdentity();
+
+    ofTextureData texData = tex.texData;// getTextureData();
+    if(texData.textureTarget == GL_TEXTURE_RECTANGLE_ARB) {
+        glScalef(tex.getWidth(), tex.getHeight(), 1.0f);
+        //ofLog(OF_LOG_NOTICE, "RECTANGULO! ES UN RECTANGULO!");
+    } else {
+        glScalef(tex.getWidth() / texData.tex_w, tex.getHeight() / texData.tex_h, 1.0f);
+    }
+
+    glMatrixMode(GL_MODELVIEW);
+
 }
 
 void Material::Disable() {
-    glActiveTextureARB(GL_TEXTURE0_ARB);
-	glDisable(GL_TEXTURE_2D);
-	MaterialController::DisableShader();
+
+
+    //glActiveTextureARB(GL_TEXTURE0_ARB);
+    //glActiveTexture(GL_TEXTURE0);
+    //image->getTextureReference().unbind();
+	//glDisable(GL_TEXTURE);
+	//glDisable(GL_TEXTURE_2D);
+
+	//MaterialController::DisableShader();
+
+    image->getTextureReference().unbind();
+    glMatrixMode(GL_TEXTURE);
+    glPopMatrix();
+    glMatrixMode(GL_MODELVIEW);
 }
 
 float Material::get(int aParam) {
