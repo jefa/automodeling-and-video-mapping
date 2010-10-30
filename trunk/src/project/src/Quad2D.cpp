@@ -3,10 +3,14 @@
 #include "ofMain.h"
 
 static const float quadTextCoords[] = {0,0, 1,0, 1,1, 0,1};
+
+//Radio de los circulos
 static const float radius = 5.0f;
 
-Quad2D::Quad2D() {
+Quad2D::Quad2D(string id) {
     selected = false;
+
+    this->id = id;
 
     float centerX = ofGetWidth() / 2.0f;
     float centerY = ofGetWidth() / 2.0f;
@@ -18,18 +22,20 @@ Quad2D::Quad2D() {
     quadPoints[4] = centerX + quadWidth;quadPoints[5] = centerY + quadHeight;
     quadPoints[6] = centerX - quadWidth;quadPoints[7] = centerY + quadHeight;
 
-    this->material = new Material();
+    this->material = NULL;
 }
 
-Quad2D::Quad2D(float x1,float y1,float x2,float y2,float x3, float y3, float x4, float y4) {
+Quad2D::Quad2D(string id, float x1,float y1,float x2,float y2,float x3, float y3, float x4, float y4) {
     selected = false;
+
+    this->id = id;
 
     quadPoints[0] = x1;quadPoints[1] = y1;
     quadPoints[2] = x2;quadPoints[3] = y2;
     quadPoints[4] = x3;quadPoints[5] = y3;
     quadPoints[6] = x4;quadPoints[7] = y4;
 
-    this->material = new Material();
+    this->material = NULL;
 }
 
 Quad2D::~Quad2D() {
@@ -83,7 +89,13 @@ void Quad2D::setSelected(bool selected) {
 }
 
 void Quad2D::draw() {
-    this->material->Enable();
+    if(this->material != NULL){
+        this->material->Enable();
+    }
+    else {
+        glColor3f(0.7, 0.8, 0.9);
+    }
+
 
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     glTexCoordPointer(2, GL_FLOAT, 0, &quadTextCoords);
@@ -96,10 +108,11 @@ void Quad2D::draw() {
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
 
-    this->material->Disable();
+    if(this->material != NULL){
+        this->material->Disable();
+    }
 
-    #ifndef CONSOLE
-	#else
+    #ifdef CONSOLE
     //Modo consola, dibuja solo alrededor.
 
     if(selected) {

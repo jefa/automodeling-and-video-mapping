@@ -7,6 +7,7 @@
 #include "DrawEventArg.h"
 #include "ofxXmlSettings.h"
 #include <vector>
+#include <map>
 using namespace std;
 
 AnimationController animController;
@@ -14,9 +15,12 @@ VideoController videoController;
 ofxXmlSettings quadsXML;
 Background *background;
 
-vector<Quad2D*> quads;
-vector<Material*> materials;
+map<string, Quad2D*> quads;
+map<string, Quad2D*>::iterator quadsIt;
 
+map<string, Material*> materials;
+
+string selectedQuadKey;
 int selectedIdx = -1;
 int selectedVtx = 0;
 float xoffset = 5;
@@ -71,10 +75,12 @@ void testApp::setup(){
         this->synchManager = new SynchManager(true); //set as sender
     #endif
 
-    quads.push_back(new Quad2D(100,100, 250,80, 270,260, 80,250));
-    //quads.push_back(new Quad2D(500,500, 650,480, 670,660, 480,650));
+    quads.insert(pair<string, Quad2D*>("quad1", new Quad2D("quad1", 100,100, 250,80, 270,260, 80,250))) ;
+    materials.insert(pair<string, Material*>("mat1", new Material()));
 
-    LinearAnimation *anim5 = new LinearAnimation(quads[0]->getMaterial(), AMBIENT_R, 5, 1.0);
+    quads["quad1"]->setMaterial(materials["mat1"]);
+
+    LinearAnimation *anim5 = new LinearAnimation(materials["mat1"], AMBIENT_R, 5, 1.0);
     animController.AddAnimation(anim5, IMMEDIATE);
     anim5->Start();
 }
@@ -100,10 +106,9 @@ void testApp::draw(){
     //#ifndef CONSOLE
     //videoController.bindTexture("video1");
     //#endif
-    vector<Quad2D*>::iterator it;
-    for(it = quads.begin(); it != quads.end(); ++it)
+    for(quadsIt = quads.begin(); quadsIt != quads.end(); ++quadsIt)
     {
-        (*it)->draw();
+        (*quadsIt).second->draw();
     }
 
 
@@ -123,6 +128,27 @@ void testApp::draw(){
 
 //--------------------------------------------------------------
 
+void cycleQuadSelection(bool fwd) {
+    if(quads.size() > 0) {
+        int oldSelectedIdx = selectedIdx;
+        if(fwd) {
+            ++selectedIdx;
+        }
+        else {
+            --selectedIdx;
+        }
+        selectedIdx %= quads.size();
+
+        quadsIt = quads.begin();
+        std::advance(quadsIt, oldSelectedIdx);
+        (*quadsIt).second->setSelected(false);
+        quadsIt = quads.begin();
+        std::advance(quadsIt, selectedIdx);
+        selectedQuadKey = (*quadsIt).first;
+        (*quadsIt).second->setSelected(true);
+    }
+}
+
 void testApp::keyPressed  (int key){
     #ifdef CONSOLE
 
@@ -133,21 +159,11 @@ void testApp::keyPressed  (int key){
 
     if(key == '1')
     {
-        if(quads.size() > 0) {
-            quads[selectedIdx]->setSelected(false);
-            ++selectedIdx;
-            selectedIdx %= quads.size();
-            quads[selectedIdx]->setSelected(true);
-        }
+        cycleQuadSelection(true);
     }
     if(key == '2')
     {
-        if(quads.size() > 0) {
-            quads[selectedIdx]->setSelected(false);
-            --selectedIdx;
-            selectedIdx %= quads.size();
-            quads[selectedIdx]->setSelected(true);
-        }
+        cycleQuadSelection(false);
     }
 
     if(key == '3')
@@ -163,52 +179,52 @@ void testApp::keyPressed  (int key){
 
     if(key == 'a')
     {
-        float x, y;
-        quads[selectedIdx]->getPoint(selectedVtx, x, y);
-        x -= xoffset;
-        //quads[selectedIdx]->setPoint(selectedVtx, x, y);
-        setPoint(&quads, selectedIdx, selectedVtx, x, y);
+        if(!selectedQuadKey.empty()) {
+            float x, y;
+            quads[selectedQuadKey]->getPoint(selectedVtx, x, y);
+            x -= xoffset;
+            setPoint(selectedIdx, selectedVtx, x, y);
+        }
     }
     if(key == 'd')
     {
-        float x, y;
-        quads[selectedIdx]->getPoint(selectedVtx, x, y);
-        x += xoffset;
-        //quads[selectedIdx]->setPoint(selectedVtx, x, y);
-        setPoint(&quads, selectedIdx, selectedVtx, x, y);
+        if(!selectedQuadKey.empty()) {
+            float x, y;
+            quads[selectedQuadKey]->getPoint(selectedVtx, x, y);
+            x += xoffset;
+            setPoint(selectedIdx, selectedVtx, x, y);
+        }
     }
     if(key == 's')
     {
-        float x, y;
-        quads[selectedIdx]->getPoint(selectedVtx, x, y);
-        y += yoffset;
-        //quads[selectedIdx]->setPoint(selectedVtx, x, y);
-        setPoint(&quads, selectedIdx, selectedVtx, x, y);
+        if(!selectedQuadKey.empty()) {
+            float x, y;
+            quads[selectedQuadKey]->getPoint(selectedVtx, x, y);
+            y += yoffset;
+            setPoint(selectedIdx, selectedVtx, x, y);
+        }
     }
     if(key == 'w')
     {
-        float x, y;
-        quads[selectedIdx]->getPoint(selectedVtx, x, y);
-        y -= yoffset;
-        //quads[selectedIdx]->setPoint(selectedVtx, x, y);
-        setPoint(&quads, selectedIdx, selectedVtx, x, y);
+        if(!selectedQuadKey.empty()) {
+            float x, y;
+            quads[selectedQuadKey]->getPoint(selectedVtx, x, y);
+            y -= yoffset;
+            setPoint(selectedIdx, selectedVtx, x, y);
+        }
     }
 
     if(key == ' ')
     {
-        /*quads.push_back(new Quad2D());
-        quads[selectedIdx]->setSelected(false);
-        selectedIdx = quads.size() - 1;
-        quads[selectedIdx]->setSelected(true);*/
-        selectedIdx = addQuad(&quads, selectedIdx);
+        selectedIdx = addQuad(selectedIdx);
     }
     if(key == '\b') {
         if(quads.size() > 0 && selectedIdx >= 0) {
-            vector<Quad2D*>::iterator it = quads.begin();
-            for(int i = 0; i < selectedIdx; i++)
-                ++it;
-            (*it)->setSelected(false);
-            quads.erase(it);
+            quadsIt = quads.begin();
+            std::advance(quadsIt, selectedIdx);
+            (*quadsIt).second->setSelected(false);
+            quads.erase(quadsIt);
+            selectedQuadKey = "";
         }
     }
     if(key == 'l') {
@@ -236,7 +252,7 @@ void testApp::mouseDragged(int x, int y, int button){
     if(selectedIdx >= 0 && selectedVtx >= 0)
     {
         ofLog(OF_LOG_VERBOSE, "mouseDragged: ===== selectedIds=%d, selectedVtx=%d", selectedIdx,selectedVtx);
-        setPoint(&quads, selectedIdx, selectedVtx, x, y);
+        setPoint(selectedIdx, selectedVtx, x, y);
     }
     #endif
 }
@@ -245,8 +261,9 @@ void testApp::mouseDragged(int x, int y, int button){
 void testApp::mousePressed(int x, int y, int button){
     #ifdef CONSOLE
 
-    if(selectedIdx >= 0)
-        selectedVtx = quads[selectedIdx]->getControlPointAt(x,y);
+    if(!selectedQuadKey.empty()) {
+        selectedVtx = quads[selectedQuadKey]->getControlPointAt(x,y);
+    }
 
     #endif
 }
@@ -260,30 +277,28 @@ void testApp::windowResized(int w, int h){
 
 }
 
-void testApp::event(EventArg *e)
-{
+void testApp::event(EventArg *e) {
     ofLog(OF_LOG_NOTICE, "=========EN ENENT EN TESTAPP!!!!!\n");
     DrawEventArg *evtArg = (DrawEventArg*) e;
     if (evtArg->_evtType == 0) //setpoint
     {
-        //quads[evtArg->_shapeId]->setPoint(evtArg->_vertexId, evtArg->_x, evtArg->_y);
-        setPoint(&quads, evtArg->_shapeId, evtArg->_vertexId, evtArg->_x, evtArg->_y, false);
+        setPoint(evtArg->_shapeId, evtArg->_vertexId, evtArg->_x, evtArg->_y, false);
     } else if (evtArg->_evtType == 1) //draw new quad
     {
-        selectedIdx = addQuad(&quads, evtArg->_shapeId, false);
+        selectedIdx = addQuad(evtArg->_shapeId, false);
     }
 
 }
 
-void testApp::setupLogging(){
+void testApp::setupLogging() {
 	ofSetLogLevel(OF_LOG_VERBOSE);
 	ofLog(OF_LOG_VERBOSE, "seteando logs");
 }
 
-int testApp::setPoint(vector<Quad2D*> *shapes, int selectedIdx, int selectedVtx,
-                      int x, int y, bool sendEvent)
-{
-    shapes->at(selectedIdx)->setPoint(selectedVtx, x, y);
+int testApp::setPoint(int selectedIdx, int selectedVtx, int x, int y, bool sendEvent) {
+    quadsIt = quads.begin();
+    std::advance(quadsIt, selectedIdx);
+    (*quadsIt).second->setPoint(selectedVtx, x, y);
 
     if (sendEvent)
     {
@@ -296,27 +311,32 @@ int testApp::setPoint(vector<Quad2D*> *shapes, int selectedIdx, int selectedVtx,
     }
 }
 
-int testApp::addQuad(vector<Quad2D*> *shapes, int selIdx, bool sendEvent)
-{
-    shapes->push_back(new Quad2D());
-    if(selIdx >= 0)
-        shapes->at(selIdx)->setSelected(false);
+int testApp::addQuad(int selIdx, bool sendEvent) {
+    quads.insert(pair<string, Quad2D*>("quadX", new Quad2D("quadX"))) ;
 
-    if (sendEvent)
-    {
+    if(selIdx >= 0) {
+        quadsIt = quads.begin();
+        std::advance(quadsIt, selIdx);
+        (*quadsIt).second->setSelected(false);
+    }
+
+    if (sendEvent) {
         ofxOscMessage oscMessage;
         oscMessage.addIntArg(selIdx);
         this->synchManager->SendMessage(oscMessage, ADDQUAD);
     }
 
-    selIdx = shapes->size() - 1;
-    shapes->at(selIdx)->setSelected(true);
+    selIdx = quads.size() - 1;
+
+    quadsIt = quads.begin();
+    std::advance(quadsIt, selIdx);
+    selectedQuadKey = (*quadsIt).first;
+    (*quadsIt).second->setSelected(true);
 
     return selIdx;
 }
 
-void testApp::loadQuads()
-{
+void testApp::loadQuads() {
     ofLog(OF_LOG_NOTICE, "loading project...");
 
     quadsXML.loadFile("./quads.xml");
@@ -327,7 +347,7 @@ void testApp::loadQuads()
 
     for(int i = 0; i < numQuadItems; i++)
     {
-        selectedIdx = addQuad(&quads, selectedIdx);
+        selectedIdx = addQuad(selectedIdx);
 
         quadsXML.pushTag("quadItem", i);
 
@@ -343,10 +363,10 @@ void testApp::loadQuads()
             double x3 = quadsXML.getAttribute("vx3", "x", 0.0, 0);
             double y3 = quadsXML.getAttribute("vx3", "y", 50.0, 0);
 
-            setPoint(&quads, selectedIdx, 0, x0, y0);
-            setPoint(&quads, selectedIdx, 1, x1, y1);
-            setPoint(&quads, selectedIdx, 2, x2, y2);
-            setPoint(&quads, selectedIdx, 3, x3, y3);
+            setPoint(selectedIdx, 0, x0, y0);
+            setPoint(selectedIdx, 1, x1, y1);
+            setPoint(selectedIdx, 2, x2, y2);
+            setPoint(selectedIdx, 3, x3, y3);
 
         quadsXML.popTag();
     }
@@ -356,24 +376,22 @@ void testApp::loadQuads()
     ofLog(OF_LOG_NOTICE, "project loaded. loaded quads: %i", numQuadItems);
 }
 
-void testApp::saveQuads()
-{
+void testApp::saveQuads() {
     ofLog(OF_LOG_NOTICE, "saving project...");
     quadsXML.clear();
     int quadsTagKey = quadsXML.addTag("quads");
     quadsXML.pushTag("quads", quadsTagKey);
 
-    vector<Quad2D*>::iterator it;
-    for(it = quads.begin(); it != quads.end(); ++it)
+    for(quadsIt = quads.begin(); quadsIt != quads.end(); ++quadsIt)
     {
         int quadItemTagKey = quadsXML.addTag("quadItem");
         quadsXML.pushTag("quadItem", quadItemTagKey);
 
         float x0, y0, x1, y1, x2, y2, x3, y3;
-        (*it)->getPoint(0, x0, y0);
-        (*it)->getPoint(1, x1, y1);
-        (*it)->getPoint(2, x2, y2);
-        (*it)->getPoint(3, x3, y3);
+        (*quadsIt).second->getPoint(0, x0, y0);
+        (*quadsIt).second->getPoint(1, x1, y1);
+        (*quadsIt).second->getPoint(2, x2, y2);
+        (*quadsIt).second->getPoint(3, x3, y3);
 
         int quadVx0Key = quadsXML.addTag("vx0");
         quadsXML.addAttribute("vx0", "x", x0, quadVx0Key);

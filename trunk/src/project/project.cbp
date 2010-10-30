@@ -239,8 +239,6 @@
 		<Unit filename="src\LinearAnimation.h" />
 		<Unit filename="src\Material.cpp" />
 		<Unit filename="src\Material.h" />
-		<Unit filename="src\MaterialController.cpp" />
-		<Unit filename="src\MaterialController.h" />
 		<Unit filename="src\MidiManager.cpp" />
 		<Unit filename="src\MidiManager.h" />
 		<Unit filename="src\Modifier.cpp" />

@@ -4,11 +4,14 @@
 #include "IPropertyManager.h"
 #include "Material.h"
 
+#include <string>
+using namespace std;
+
 class Quad2D : public IPropertyManager
 {
     public:
-        Quad2D();
-        Quad2D(float x1,float y1,float x2,float y2,float x3, float y3, float x4, float y4);
+        Quad2D(string id);
+        Quad2D(string id, float x1,float y1,float x2,float y2,float x3, float y3, float x4, float y4);
         virtual ~Quad2D();
         virtual void set(int aParam, float value);
         virtual float get(int aParam);
@@ -24,6 +27,7 @@ class Quad2D : public IPropertyManager
         float quadPoints[8];
         Material *material;
         bool selected;
+        string id;
 };
 
 #endif // QUAD2D_H
