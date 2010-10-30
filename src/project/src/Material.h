@@ -2,7 +2,8 @@
 #define __Material_h__
 
 #include "IPropertyManager.h"
-#include "MaterialController.h"
+
+#include "ofxShader.h"
 
 #include "ofImage.h"
 
