@@ -52,6 +52,7 @@ void testApp::setup(){
     //LinearAnimation *anim2 = new LinearAnimation(obj3D, POS_Y, 4, 700);
     //LinearAnimation *anim3 = new LinearAnimation(background, COLOR_R, 3, 255);
     //LinearAnimation *anim4 = new LinearAnimation(background, COLOR_G, 3, 128);
+
     //anim1->Start();
     //anim2->Start();
 
@@ -73,6 +74,9 @@ void testApp::setup(){
     quads.push_back(new Quad2D(100,100, 250,80, 270,260, 80,250));
     //quads.push_back(new Quad2D(500,500, 650,480, 670,660, 480,650));
 
+    LinearAnimation *anim5 = new LinearAnimation(quads[0]->getMaterial(), AMBIENT_R, 5, 1.0);
+    animController.AddAnimation(anim5, IMMEDIATE);
+    anim5->Start();
 }
 
 //--------------------------------------------------------------
@@ -86,7 +90,6 @@ void testApp::update(){
     //#ifndef CONSOLE
     videoController.IdleMovies();
     //#endif
-
 }
 
 //--------------------------------------------------------------

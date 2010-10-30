@@ -2,74 +2,38 @@
 #include "ofMain.h"
 
 Material::Material(){
-    MaterialController::Init();
-
     ambient[0] = ofRandomuf();
     ambient[1] = ofRandomuf();
     ambient[2] = ofRandomuf();
+    ambient[3] = 1;
 
     image = new ofImage();
     image->loadImage("pegado.jpg");
+
+    ambient_shader.loadShader("shaders/texture_ambient");
 }
 
 Material::~Material(){
 }
 
 void Material::Enable(){
-    int textureID = image->getTextureReference().texData.textureID;
-
-    //image->draw(50,50,100,100);
-
-    //image->getTextureReference().draw(0,0);
-    //glActiveTextureARB(GL_TEXTURE0_ARB);
-    //glActiveTexture(GL_TEXTURE0);
-
-    //MaterialController::EnableShader(AMBIENT_SHADER);
-
-    //image->getTextureReference().bind();
-    //glEnable(GL_TEXTURE_2D);
-	//glBindTexture(GL_TEXTURE_2D, textureID);
-
     ofTexture &tex = image->getTextureReference();
+    int textureID = tex.texData.textureID;
 
-    tex.bind();
+    glActiveTextureARB(GL_TEXTURE0_ARB);
+    glBindTexture(GL_TEXTURE_2D, textureID);
 
-    glMatrixMode(GL_TEXTURE);
-    glPushMatrix();
-    //glLoadIdentity();
-
-    ofTextureData texData = tex.texData;// getTextureData();
-    if(texData.textureTarget == GL_TEXTURE_RECTANGLE_ARB) {
-        glScalef(tex.getWidth(), tex.getHeight(), 1.0f);
-        //ofLog(OF_LOG_NOTICE, "RECTANGULO! ES UN RECTANGULO!");
-    } else {
-        glScalef(tex.getWidth() / texData.tex_w, tex.getHeight() / texData.tex_h, 1.0f);
-    }
-
-    glMatrixMode(GL_MODELVIEW);
-
+    ambient_shader.setShaderActive(true);
+    ambient_shader.setUniformVariable2f("texSize", tex.getWidth(), tex.getHeight());
+    ambient_shader.setUniformVariable3f("color", ambient[0], ambient[1], ambient[2]);
 }
 
 void Material::Disable() {
-
-
-    //glActiveTextureARB(GL_TEXTURE0_ARB);
-    //glActiveTexture(GL_TEXTURE0);
-    //image->getTextureReference().unbind();
-	//glDisable(GL_TEXTURE);
-	//glDisable(GL_TEXTURE_2D);
-
-	//MaterialController::DisableShader();
-
-    image->getTextureReference().unbind();
-    glMatrixMode(GL_TEXTURE);
-    glPopMatrix();
-    glMatrixMode(GL_MODELVIEW);
+	ambient_shader.setShaderActive(false);
 }
 
 float Material::get(int aParam) {
-    switch(aParam)
-    {
+    switch(aParam) {
         case AMBIENT_R:
             return ambient[0];
         case AMBIENT_G:
