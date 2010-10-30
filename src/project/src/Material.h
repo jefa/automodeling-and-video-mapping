@@ -25,8 +25,9 @@ class Material : public IPropertyManager
         void Disable();
 
 	private:
-        float ambient[3];
+        float ambient[4];
         ofImage *image;
+        ofxShader ambient_shader;
 
 };
 

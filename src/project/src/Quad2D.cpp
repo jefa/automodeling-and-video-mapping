@@ -5,8 +5,7 @@
 static const float quadTextCoords[] = {0,0, 1,0, 1,1, 0,1};
 static const float radius = 5.0f;
 
-Quad2D::Quad2D()
-{
+Quad2D::Quad2D() {
     selected = false;
 
     float centerX = ofGetWidth() / 2.0f;
@@ -22,8 +21,7 @@ Quad2D::Quad2D()
     this->material = new Material();
 }
 
-Quad2D::Quad2D(float x1,float y1,float x2,float y2,float x3, float y3, float x4, float y4)
-{
+Quad2D::Quad2D(float x1,float y1,float x2,float y2,float x3, float y3, float x4, float y4) {
     selected = false;
 
     quadPoints[0] = x1;quadPoints[1] = y1;
@@ -34,23 +32,19 @@ Quad2D::Quad2D(float x1,float y1,float x2,float y2,float x3, float y3, float x4,
     this->material = new Material();
 }
 
-Quad2D::~Quad2D()
-{
+Quad2D::~Quad2D() {
     //dtor
 }
 
-void Quad2D::setMaterial(Material *mat)
-{
+void Quad2D::setMaterial(Material *mat) {
     this->material = mat;
 }
 
-Material* Quad2D::getMaterial()
-{
+Material* Quad2D::getMaterial() {
     return this->material;
 }
 
-void Quad2D::setPoint(int i, float x, float y)
-{
+void Quad2D::setPoint(int i, float x, float y) {
     if(i >= 0 && i <= 3)
     {
         quadPoints[i * 2] = x;
@@ -58,8 +52,7 @@ void Quad2D::setPoint(int i, float x, float y)
     }
 }
 
-void Quad2D::getPoint(int i, float &x, float &y)
-{
+void Quad2D::getPoint(int i, float &x, float &y) {
     if(i >= 0 && i <= 3)
     {
         x = quadPoints[i * 2];
@@ -67,8 +60,7 @@ void Quad2D::getPoint(int i, float &x, float &y)
     }
 }
 
-int Quad2D::getControlPointAt(int x, int y)
-{
+int Quad2D::getControlPointAt(int x, int y) {
     int result = -1;
     if(!this->selected)
         return result;
@@ -86,14 +78,13 @@ int Quad2D::getControlPointAt(int x, int y)
     return result;
 }
 
-void Quad2D::setSelected(bool selected)
-{
+void Quad2D::setSelected(bool selected) {
     this->selected = selected;
 }
 
-void Quad2D::draw()
-{
+void Quad2D::draw() {
     this->material->Enable();
+
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     glTexCoordPointer(2, GL_FLOAT, 0, &quadTextCoords);
 
@@ -110,8 +101,6 @@ void Quad2D::draw()
     #ifndef CONSOLE
 	#else
     //Modo consola, dibuja solo alrededor.
-
-    //glDisable(GL_TEXTURE_2D);
 
     if(selected) {
         glColor4f(1.0f, 0.3f, 0.3f, 1.0f);
@@ -135,11 +124,9 @@ void Quad2D::draw()
 	#endif
 }
 
-void Quad2D::set(int aParam, float value)
-{
+void Quad2D::set(int aParam, float value) {
 }
 
-float Quad2D::get(int aParam)
-{
+float Quad2D::get(int aParam) {
     return 0;
 }
