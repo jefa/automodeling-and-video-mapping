@@ -22,12 +22,15 @@ class Quad2D : public IPropertyManager
         void setSelected(bool selected);
         void setMaterial(Material *mat);
         Material* getMaterial();
+        void setEnabled(bool enabled);
+        bool isEnabled();
     protected:
     private:
         float quadPoints[8];
         Material *material;
         bool selected;
         string id;
+        bool enabled;
 };
 
 #endif // QUAD2D_H
