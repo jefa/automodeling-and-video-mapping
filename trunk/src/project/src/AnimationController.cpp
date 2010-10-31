@@ -12,72 +12,20 @@ AnimationController::~AnimationController()
     //dtor
 }
 
-/// <summary>
-/// Agrega una animacion a la lista correspondiente dependiendo del tipo de concatenación.
-/// </summary>
-/// <param name="anim"></param>
-/// <param name="conc"></param>
-void AnimationController::AddAnimation(Animation *anim, AnimationsLinking conc)
-{
-    if (conc == IMMEDIATE)
-    {
-        //Quito repetidos si los hay
-        for (unsigned int i = 0; i < animator.size(); i++)
-        {
-            Animation *animIter = animator[i];
-            if (animIter->mismaAnimacion(anim))
-            {
-                animator.erase(animator.begin() + i);
-            }
-        }
-        for (unsigned int i = 0; i < colaEspera.size(); i++)
-        {
-            Animation *animIter = colaEspera[i];
-            if (animIter->mismaAnimacion(anim))
-            {
-                colaEspera.erase(colaEspera.begin() + i);
-            }
-        }
-        animator.push_back(anim);
-    }
-    else if (conc == WAITEND)
-    {
-        for (unsigned int i = 0; i < animator.size(); i++)
-        {
-            Animation *animIter = animator[i];
-            if (animIter->mismaAnimacion(anim))
-            {
-                colaEspera.push_back(anim);
-                return; //Retorno porque hay una animacion activa del mismo tipo.
-            }
-        }
-        animator.push_back(anim);
-    }
+void AnimationController::AddLoop(string key, AnimationLoop *anim) {
+    loops.insert(pair<string, AnimationLoop*>(key, anim));
+}
 
+void AnimationController::PlayLoop(string key) {
+    loops[key]->Play();
 }
 
 void AnimationController::Update(double timestamp)
 {
-    for (unsigned int i = 0; i < animator.size(); i++)
-    {
-        Animation *anim = animator[i];
-        anim->Update(timestamp);
-        if (anim->isEnded())
-        {
-            animator.erase(animator.begin() + i);
-
-            //Busco si hay una animacion del mismo tipo esperando
-            //y si encuentro una la agrego a animator y la saco de colaEspera
-            for (unsigned int j = 0; j < colaEspera.size(); j++)
-            {
-                Animation *espera = colaEspera[j];
-                if (espera->mismaAnimacion(anim))
-                {
-                    animator.push_back(espera);
-                    colaEspera.erase(colaEspera.begin() + j);
-                    break;
-                }
-            }
+    map<string, AnimationLoop*>::iterator it;
+    for(it = loops.begin(); it != loops.end(); ++it) {
+        if((*it).second->isStarted()) {
+            (*it).second->Update(timestamp);
         }
     }
 }
@@ -87,12 +35,6 @@ void AnimationController::event(EventArg *e)
     AnimEventArg *animEvent = (AnimEventArg*) e;
     if (animEvent->isActivate)
     {
-        this->Animate(animEvent->source);
+        //this->Animate(animEvent->source);
     }
-}
-
-bool AnimationController::Animate(string animName)
-{
-    //TODO: Implement animate function
-    return false;
 }

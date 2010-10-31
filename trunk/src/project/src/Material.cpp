@@ -7,29 +7,29 @@ Material::Material(){
     ambient[2] = ofRandomuf();
     ambient[3] = 1;
 
-    image = new ofImage();
-    image->loadImage("pegado.jpg");
-
-    ambient_shader.loadShader("shaders/texture_ambient");
+    texture_shader.loadShader("shaders/texture_ambient");
 }
 
 Material::~Material(){
 }
 
+void Material::SetTextureParams(string id, textureType type) {
+    this->texID = id;
+    this->texType = type;
+}
+
 void Material::Enable(){
-    ofTexture &tex = image->getTextureReference();
-    int textureID = tex.texData.textureID;
-
+    ofTexture &tex = TextureManager::GetTextureReference(texID, texType);
     glActiveTextureARB(GL_TEXTURE0_ARB);
-    glBindTexture(GL_TEXTURE_2D, textureID);
+    glBindTexture(GL_TEXTURE_2D, tex.texData.textureID);
 
-    ambient_shader.setShaderActive(true);
-    ambient_shader.setUniformVariable2f("texSize", tex.getWidth(), tex.getHeight());
-    ambient_shader.setUniformVariable3f("color", ambient[0], ambient[1], ambient[2]);
+    texture_shader.setShaderActive(true);
+    texture_shader.setUniformVariable2f("texSize", tex.getWidth(), tex.getHeight());
+    texture_shader.setUniformVariable3f("color", ambient[0], ambient[1], ambient[2]);
 }
 
 void Material::Disable() {
-	ambient_shader.setShaderActive(false);
+	texture_shader.setShaderActive(false);
 }
 
 float Material::get(int aParam) {

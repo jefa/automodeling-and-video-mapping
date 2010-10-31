@@ -228,6 +228,8 @@
 		<Unit filename="src\Animation.h" />
 		<Unit filename="src\AnimationController.cpp" />
 		<Unit filename="src\AnimationController.h" />
+		<Unit filename="src\AnimationLoop.cpp" />
+		<Unit filename="src\AnimationLoop.h" />
 		<Unit filename="src\Background.cpp" />
 		<Unit filename="src\Background.h" />
 		<Unit filename="src\Clonable.h" />
@@ -249,6 +251,8 @@
 		<Unit filename="src\Quad2D.h" />
 		<Unit filename="src\SynchManager.cpp" />
 		<Unit filename="src\SynchManager.h" />
+		<Unit filename="src\TextureManager.cpp" />
+		<Unit filename="src\TextureManager.h" />
 		<Unit filename="src\VideoController.cpp" />
 		<Unit filename="src\VideoController.h" />
 		<Unit filename="src\main.cpp" />

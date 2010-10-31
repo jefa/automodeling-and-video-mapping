@@ -51,6 +51,13 @@ bool SynchManager::SendMessage(string msg, SYNCH_MSG_TYPE msgType)
         m.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/setpoint" );
         m.addStringArg( msg );
         sender.sendMessage( m );
+    } else if (msgType == ANIMATIONLOOP)
+    {
+        ofLog(OF_LOG_VERBOSE, "SynchManager:: Sending message=%s\n",msg);
+        ofxOscMessage m;
+        m.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/animationloop" );
+        m.addStringArg( msg );
+        sender.sendMessage( m );
     }
     return true;
 }
@@ -105,6 +112,13 @@ bool SynchManager::checkForMessages()
             ((DrawEventArg*)evtArg)->_shapeId = m.getArgAsInt32(0);
             ((DrawEventArg*)evtArg)->_evtType = 1;
             ofLog(OF_LOG_VERBOSE, "SynchManager: SynchEvent/AddQuad received");
+        }
+        else if ( m.getAddress() == "/synch/animationloop" )
+        {
+          /*  string animloop_id = m.getArgAsString(0);
+            evtArg = new AnimationLoopArg();
+            ((AnimationLoopArg*)evtArg)->source = animloop_id;
+            ((AnimationLoopArg*)evtArg)->isActivate = true;*/
         }
         else
         {

@@ -1,30 +1,27 @@
 #ifndef ANIMATIONCONTROLLER_H
 #define ANIMATIONCONTROLLER_H
 
-#include <vector>
+#include <map>
 
-#include "Animation.h"
+#include "AnimationLoop.h"
 #include "AnimEventArg.h"
 #include "IEventListener.h"
 
 using namespace std;
-
-enum AnimationsLinking {IMMEDIATE, WAITEND};
 
 class AnimationController : public IEventListener
 {
     public:
         AnimationController();
         virtual ~AnimationController();
-        void AddAnimation(Animation *anim, AnimationsLinking conc);
+        void AddLoop(string key, AnimationLoop *anim);
+        void PlayLoop(string key);
         void Update(double timestamp);
-        bool Animate(string animName);
         void event(EventArg *e);
 
     protected:
     private:
-        vector<Animation*> animator;
-        vector<Animation*> colaEspera;
+        map<string, AnimationLoop*> loops;
 };
 
 #endif // ANIMATIONCONTROLLER_H
