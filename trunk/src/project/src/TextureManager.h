@@ -16,7 +16,9 @@ class TextureManager
         virtual ~TextureManager();
         static void LoadImageTexture(string key, string path);
         static void LoadVideoTexture(string key, string path);
+        static void PlayVideo(string key);
         static ofTexture& GetTextureReference(string key, textureType type);
+        static void Update();
     protected:
     private:
         static map<string, ofImage*> imageTextures;

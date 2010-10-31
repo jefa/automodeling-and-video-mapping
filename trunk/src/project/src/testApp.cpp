@@ -77,8 +77,11 @@ void testApp::setup(){
 
     quads.insert(pair<string, Quad2D*>("quad1", new Quad2D("quad1", 100,100, 250,80, 270,260, 80,250))) ;
     materials.insert(pair<string, Material*>("mat1", new Material()));
-    TextureManager::LoadImageTexture("pegado", "pegado.jpg");
-    materials["mat1"]->SetTextureParams("pegado", imageTexture);
+
+    //TextureManager::LoadImageTexture("pegado", "pegado.jpg");
+    TextureManager::LoadVideoTexture("pegado", "cartoon.mov");
+    //materials["mat1"]->SetTextureParams("pegado", imageTexture);
+    materials["mat1"]->SetTextureParams("pegado", videoTexture);
 
     quads["quad1"]->setMaterial(materials["mat1"]);
 
@@ -101,7 +104,7 @@ void testApp::update(){
     #endif
 
     //#ifndef CONSOLE
-    videoController.IdleMovies();
+    TextureManager::Update();
     //#endif
 }
 
@@ -143,38 +146,31 @@ void cycleQuadSelection(bool fwd) {
 void testApp::keyPressed  (int key){
     #ifdef CONSOLE
 
-    if(key == 'g')
-    {
+    if(key == 'h') {
+        quads["quad1"]->setEnabled(true);
+    }
+    if(key == 'g') {
         animController.PlayLoop("loop1");
     }
-
-    if(key == 'k')
-    {
+    if(key == 'k') {
         loadQuads();
     }
-
-    if(key == '1')
-    {
+    if(key == '1') {
         cycleQuadSelection(true);
     }
-    if(key == '2')
-    {
+    if(key == '2') {
         cycleQuadSelection(false);
     }
-
-    if(key == '3')
-    {
+    if(key == '3') {
         ++selectedVtx;
         selectedVtx %= 4;
     }
-    if(key == '4')
-    {
+    if(key == '4') {
         ++selectedVtx;
         selectedVtx %= 4;
     }
 
-    if(key == 'a')
-    {
+    if(key == 'a') {
         if(!selectedQuadKey.empty()) {
             float x, y;
             quads[selectedQuadKey]->getPoint(selectedVtx, x, y);
@@ -182,8 +178,7 @@ void testApp::keyPressed  (int key){
             setPoint(selectedIdx, selectedVtx, x, y);
         }
     }
-    if(key == 'd')
-    {
+    if(key == 'd') {
         if(!selectedQuadKey.empty()) {
             float x, y;
             quads[selectedQuadKey]->getPoint(selectedVtx, x, y);
@@ -191,8 +186,7 @@ void testApp::keyPressed  (int key){
             setPoint(selectedIdx, selectedVtx, x, y);
         }
     }
-    if(key == 's')
-    {
+    if(key == 's') {
         if(!selectedQuadKey.empty()) {
             float x, y;
             quads[selectedQuadKey]->getPoint(selectedVtx, x, y);
@@ -200,8 +194,7 @@ void testApp::keyPressed  (int key){
             setPoint(selectedIdx, selectedVtx, x, y);
         }
     }
-    if(key == 'w')
-    {
+    if(key == 'w') {
         if(!selectedQuadKey.empty()) {
             float x, y;
             quads[selectedQuadKey]->getPoint(selectedVtx, x, y);
@@ -209,9 +202,7 @@ void testApp::keyPressed  (int key){
             setPoint(selectedIdx, selectedVtx, x, y);
         }
     }
-
-    if(key == ' ')
-    {
+    if(key == ' ') {
         selectedIdx = addQuad(selectedIdx);
     }
     if(key == '\b') {

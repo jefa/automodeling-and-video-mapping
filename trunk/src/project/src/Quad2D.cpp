@@ -9,6 +9,7 @@ static const float radius = 5.0f;
 
 Quad2D::Quad2D(string id) {
     selected = false;
+    enabled = false;
 
     this->id = id;
 
@@ -27,6 +28,7 @@ Quad2D::Quad2D(string id) {
 
 Quad2D::Quad2D(string id, float x1,float y1,float x2,float y2,float x3, float y3, float x4, float y4) {
     selected = false;
+    enabled = false;
 
     this->id = id;
 
@@ -40,6 +42,14 @@ Quad2D::Quad2D(string id, float x1,float y1,float x2,float y2,float x3, float y3
 
 Quad2D::~Quad2D() {
     //dtor
+}
+
+void Quad2D::setEnabled(bool enabled) {
+    this->enabled = enabled;
+}
+
+bool Quad2D::isEnabled() {
+    return this->enabled;
 }
 
 void Quad2D::setMaterial(Material *mat) {
@@ -89,6 +99,10 @@ void Quad2D::setSelected(bool selected) {
 }
 
 void Quad2D::draw() {
+    if(!enabled) {
+        return;
+    }
+
     if(this->material != NULL){
         this->material->Enable();
     }

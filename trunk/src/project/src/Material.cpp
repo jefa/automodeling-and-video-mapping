@@ -19,6 +19,9 @@ void Material::SetTextureParams(string id, textureType type) {
 }
 
 void Material::Enable(){
+    if(texType == videoTexture) {
+        TextureManager::PlayVideo(texID);
+    }
     ofTexture &tex = TextureManager::GetTextureReference(texID, texType);
     glActiveTextureARB(GL_TEXTURE0_ARB);
     glBindTexture(GL_TEXTURE_2D, tex.texData.textureID);
