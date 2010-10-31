@@ -2,6 +2,7 @@
 #define __Material_h__
 
 #include "IPropertyManager.h"
+#include "TextureManager.h"
 
 #include "ofxShader.h"
 
@@ -25,10 +26,14 @@ class Material : public IPropertyManager
         void Enable();
         void Disable();
 
+        void SetTextureParams(string id, textureType type);
+
 	private:
         float ambient[4];
-        ofImage *image;
-        ofxShader ambient_shader;
+        ofxShader texture_shader;
+
+        string texID;
+        textureType texType;
 
 };
 

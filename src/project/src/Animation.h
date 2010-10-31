@@ -12,8 +12,7 @@ class Animation
         virtual void Update(double timestamp)=0;
         virtual void Start();
         virtual void End();
-        bool isStarted();
-        bool isEnded();
+        bool isRunning();
 
     protected:
         IPropertyManager *propMgr;

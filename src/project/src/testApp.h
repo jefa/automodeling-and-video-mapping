@@ -26,7 +26,7 @@ class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener 
 		void mouseReleased(int x, int y, int button);
 		void windowResized(int w, int h);
 
-        int setPoint(int selectedIdx, int selectedVtx,
+        void setPoint(int selectedIdx, int selectedVtx,
                       int x, int y, bool sendEvent=true);
 		int addQuad(int selIdx, bool sendEvent=true);
 

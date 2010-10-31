@@ -22,7 +22,7 @@ void LinearAnimation::End()
 
 void LinearAnimation::Update(double timestamp)
 {
-    if(!isStarted()){
+    if(!isRunning()){
         return;
     }
 

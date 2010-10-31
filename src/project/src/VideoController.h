@@ -19,7 +19,7 @@ class VideoController
         void unbindTexture(string id);
     protected:
     private:
-        std::map<std::string, ofxAlphaVideoPlayer*> videos;
+        map<string, ofxAlphaVideoPlayer*> videos;
 };
 
 #endif // VIDEOCONTROLLER_H

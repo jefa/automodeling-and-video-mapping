@@ -4,13 +4,13 @@ Animation::Animation(IPropertyManager *pmgr, int propId, double timestamp)
 {
     propMgr = pmgr;
     propertyId = propId;
-    totalElapsedTime = 0;
     totalAnimationTime = timestamp;
     off = true;
 }
 
 void Animation::Start()
 {
+    totalElapsedTime = 0;
     off = false;
 }
 
@@ -19,14 +19,9 @@ void Animation::End()
     off = true;
 }
 
-bool Animation::isStarted()
+bool Animation::isRunning()
 {
     return !off;
-}
-
-bool Animation::isEnded()
-{
-    return off;
 }
 
 Animation::~Animation()

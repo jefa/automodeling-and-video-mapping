@@ -77,12 +77,19 @@ void testApp::setup(){
 
     quads.insert(pair<string, Quad2D*>("quad1", new Quad2D("quad1", 100,100, 250,80, 270,260, 80,250))) ;
     materials.insert(pair<string, Material*>("mat1", new Material()));
+    TextureManager::LoadImageTexture("pegado", "pegado.jpg");
+    materials["mat1"]->SetTextureParams("pegado", imageTexture);
 
     quads["quad1"]->setMaterial(materials["mat1"]);
 
-    LinearAnimation *anim5 = new LinearAnimation(materials["mat1"], AMBIENT_R, 5, 1.0);
-    animController.AddAnimation(anim5, IMMEDIATE);
-    anim5->Start();
+    LinearAnimation *anim5 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 1.0);
+    LinearAnimation *anim6 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 0.0);
+
+    AnimationLoop *loop1 = new AnimationLoop("loop1");
+    loop1->AddAnimation(anim5);
+    loop1->AddAnimation(anim6);
+
+    animController.AddLoop("loop1", loop1);
 }
 
 //--------------------------------------------------------------
@@ -103,26 +110,10 @@ void testApp::draw(){
 	ofSetupScreen();
     //obj3D->draw();
 
-    //#ifndef CONSOLE
-    //videoController.bindTexture("video1");
-    //#endif
     for(quadsIt = quads.begin(); quadsIt != quads.end(); ++quadsIt)
     {
         (*quadsIt).second->draw();
     }
-
-
-    //#ifndef CONSOLE
-    //videoController.unbindTexture("video1");
-    //#endif
-
-    //#ifndef CONSOLE
-    //videoController.bindTexture("video2");
-    //#endif
-
-    //#ifndef CONSOLE
-    //videoController.unbindTexture("video2");
-    //#endif
 }
 
 
@@ -151,6 +142,11 @@ void cycleQuadSelection(bool fwd) {
 
 void testApp::keyPressed  (int key){
     #ifdef CONSOLE
+
+    if(key == 'g')
+    {
+        animController.PlayLoop("loop1");
+    }
 
     if(key == 'k')
     {
@@ -295,7 +291,7 @@ void testApp::setupLogging() {
 	ofLog(OF_LOG_VERBOSE, "seteando logs");
 }
 
-int testApp::setPoint(int selectedIdx, int selectedVtx, int x, int y, bool sendEvent) {
+void testApp::setPoint(int selectedIdx, int selectedVtx, int x, int y, bool sendEvent) {
     quadsIt = quads.begin();
     std::advance(quadsIt, selectedIdx);
     (*quadsIt).second->setPoint(selectedVtx, x, y);
