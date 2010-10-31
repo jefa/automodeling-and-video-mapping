@@ -3,7 +3,6 @@
 #include "Animation.h"
 #include "LinearAnimation.h"
 #include "Background.h"
-#include "VideoController.h"
 #include "DrawEventArg.h"
 #include "ofxXmlSettings.h"
 #include <vector>
@@ -11,7 +10,6 @@
 using namespace std;
 
 AnimationController animController;
-VideoController videoController;
 ofxXmlSettings quadsXML;
 Background *background;
 
@@ -46,11 +44,6 @@ void testApp::setup(){
     obj3D->addObject("sphere/sphere.3ds");
 
     background = new Background();
-    //videoController.AddVideo("video1", "fingers.mov");
-    //videoController.PlayVideo("video1");
-
-    //videoController.AddVideo("video2", "cartoon.mov");
-    //videoController.PlayVideo("video2");
 
     //LinearAnimation *anim1 = new LinearAnimation(obj3D, POS_X, 5, 600);
     //LinearAnimation *anim2 = new LinearAnimation(obj3D, POS_Y, 4, 700);
