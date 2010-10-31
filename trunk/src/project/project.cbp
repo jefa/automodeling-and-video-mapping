@@ -83,6 +83,7 @@
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\src" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs" />
 			<Add directory="addons\ofxShader\src" />
+		    <Add directory="addons/ofxConsole/src" />
 		</Compiler>
 		<Linker>
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/FreeImage/lib/win_cb/FreeImage.lib" />
@@ -222,6 +223,18 @@
 		</Unit>
 		<Unit filename="addons\ofxShader\src\ofxShader.h">
 			<Option virtualFolder="addons\ofxShader\src\" />
+		</Unit>
+		<Unit filename="addons/ofxConsole/src/ofxConsole.h">
+			<Option virtualFolder="addons/ofxConsole/src"/>
+		</Unit>
+		<Unit filename="addons/ofxConsole/src/ofxConsoleBase.cpp">
+			<Option virtualFolder="addons/ofxConsole/src"/>
+		</Unit>
+		<Unit filename="addons/ofxConsole/src/ofxConsoleBase.h">
+			<Option virtualFolder="addons/ofxConsole/src"/>
+		</Unit>
+		<Unit filename="addons/ofxConsole/src/ofxConsoleFunctor.h">
+			<Option virtualFolder="addons/ofxConsole/src"/>
 		</Unit>
 		<Unit filename="src\AnimEventArg.h" />
 		<Unit filename="src\Animation.cpp" />
