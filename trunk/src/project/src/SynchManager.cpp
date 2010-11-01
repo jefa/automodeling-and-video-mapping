@@ -110,6 +110,7 @@ bool SynchManager::checkForMessages()
         {
             evtArg = new DrawEventArg();
             ((DrawEventArg*)evtArg)->_shapeId = m.getArgAsInt32(0);
+            ((DrawEventArg*)evtArg)->source = m.getArgAsString(1);
             ((DrawEventArg*)evtArg)->_evtType = 1;
             ofLog(OF_LOG_VERBOSE, "SynchManager: SynchEvent/AddQuad received");
         }

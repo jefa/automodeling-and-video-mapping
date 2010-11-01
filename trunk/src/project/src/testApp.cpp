@@ -5,9 +5,7 @@
 #include "Background.h"
 #include "DrawEventArg.h"
 #include "ofxXmlSettings.h"
-#include <vector>
 #include <map>
-using namespace std;
 
 AnimationController animController;
 ofxXmlSettings quadsXML;
@@ -68,7 +66,7 @@ void testApp::setup(){
         this->synchManager = new SynchManager(true); //set as sender
     #endif
 
-    quads.insert(pair<string, Quad2D*>("quad1", new Quad2D("quad1", 100,100, 250,80, 270,260, 80,250))) ;
+    quads.insert(pair<string, Quad2D*>("quad100", new Quad2D("quad100", 100,100, 250,80, 270,260, 80,250))) ;
     materials.insert(pair<string, Material*>("mat1", new Material()));
 
     //TextureManager::LoadImageTexture("pegado", "pegado.jpg");
@@ -76,7 +74,7 @@ void testApp::setup(){
     //materials["mat1"]->SetTextureParams("pegado", imageTexture);
     materials["mat1"]->SetTextureParams("pegado", videoTexture);
 
-    quads["quad1"]->setMaterial(materials["mat1"]);
+    quads["quad100"]->setMaterial(materials["mat1"]);
 
     LinearAnimation *anim5 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 1.0);
     LinearAnimation *anim6 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 0.0);
@@ -86,6 +84,9 @@ void testApp::setup(){
     loop1->AddAnimation(anim6);
 
     animController.AddLoop("loop1", loop1);
+
+    setupConsole();
+
 }
 
 //--------------------------------------------------------------
@@ -110,6 +111,9 @@ void testApp::draw(){
     {
         (*quadsIt).second->draw();
     }
+
+    console->render();
+
 }
 
 
@@ -140,7 +144,7 @@ void testApp::keyPressed  (int key){
     #ifdef CONSOLE
 
     if(key == 'h') {
-        quads["quad1"]->setEnabled(true);
+        quads["quad100"]->setEnabled(true);
     }
     if(key == 'g') {
         animController.PlayLoop("loop1");
@@ -195,9 +199,9 @@ void testApp::keyPressed  (int key){
             setPoint(selectedIdx, selectedVtx, x, y);
         }
     }
-    if(key == ' ') {
+    /*if(key == ' ') {
         selectedIdx = addQuad(selectedIdx);
-    }
+    }*/
     if(key == '\b') {
         if(quads.size() > 0 && selectedIdx >= 0) {
             quadsIt = quads.begin();
@@ -257,15 +261,18 @@ void testApp::windowResized(int w, int h){
 
 }
 
+void testApp::quit(const std::vector<std::string> & args){
+	std::exit(0);
+}
+
 void testApp::event(EventArg *e) {
-    ofLog(OF_LOG_NOTICE, "=========EN ENENT EN TESTAPP!!!!!\n");
     DrawEventArg *evtArg = (DrawEventArg*) e;
     if (evtArg->_evtType == 0) //setpoint
     {
         setPoint(evtArg->_shapeId, evtArg->_vertexId, evtArg->_x, evtArg->_y, false);
     } else if (evtArg->_evtType == 1) //draw new quad
     {
-        selectedIdx = addQuad(evtArg->_shapeId, false);
+        selectedIdx = addQuad(evtArg->_shapeId, evtArg->source.c_str(), false);
     }
 
 }
@@ -273,6 +280,15 @@ void testApp::event(EventArg *e) {
 void testApp::setupLogging() {
 	ofSetLogLevel(OF_LOG_VERBOSE);
 	ofLog(OF_LOG_VERBOSE, "seteando logs");
+}
+
+void testApp::setupConsole()
+{
+    console = new ofxConsole();
+    console->setDimentions(ofGetWidth(), ofGetHeight()/15);
+	console->print("Automodeling app started...");
+	console->addFunction("quit", this, &testApp::quit);
+	console->addFunction("addQuad", this, &testApp::addQuad);
 }
 
 void testApp::setPoint(int selectedIdx, int selectedVtx, int x, int y, bool sendEvent) {
@@ -291,8 +307,28 @@ void testApp::setPoint(int selectedIdx, int selectedVtx, int x, int y, bool send
     }
 }
 
-int testApp::addQuad(int selIdx, bool sendEvent) {
-    quads.insert(pair<string, Quad2D*>("quadX", new Quad2D("quadX"))) ;
+void testApp::addQuad(const std::vector<std::string> & args)
+{
+	if(args.size()<4){
+		console->print("Wrong number of arguments for < "+args[0]+" >!", CTEXT_ERROR);
+		ofLog(OF_LOG_ERROR, "Wrong number of arguments for < "+args[0]+" >!");
+		return;
+	}
+	int selIdx = atoi(args[1].c_str());
+	string label = args[2];
+    addQuad(selIdx, label.c_str());
+}
+
+int testApp::addQuad(int selIdx, const char* label, bool sendEvent) {
+    ofLog(OF_LOG_NOTICE, "Adding QUAD [%d, %s, %d]", selIdx, label, sendEvent);
+
+    if (label == NULL) {
+        char buffer [50];
+        sprintf (buffer, "quad%d", quads.size());
+        label = buffer;
+    }
+
+    quads.insert(pair<string, Quad2D*>(label, new Quad2D(label)));
 
     if(selIdx >= 0) {
         quadsIt = quads.begin();
@@ -303,6 +339,7 @@ int testApp::addQuad(int selIdx, bool sendEvent) {
     if (sendEvent) {
         ofxOscMessage oscMessage;
         oscMessage.addIntArg(selIdx);
+        oscMessage.addStringArg(label);
         this->synchManager->SendMessage(oscMessage, ADDQUAD);
     }
 
@@ -312,6 +349,7 @@ int testApp::addQuad(int selIdx, bool sendEvent) {
     std::advance(quadsIt, selIdx);
     selectedQuadKey = (*quadsIt).first;
     (*quadsIt).second->setSelected(true);
+    (*quadsIt).second->setEnabled(true);
 
     return selIdx;
 }
