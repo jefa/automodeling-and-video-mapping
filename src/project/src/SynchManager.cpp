@@ -51,7 +51,7 @@ bool SynchManager::SendMessage(string msg, SYNCH_MSG_TYPE msgType)
         m.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/setpoint" );
         m.addStringArg( msg );
         sender.sendMessage( m );
-    } else if (msgType == ANIMATIONLOOP)
+    } else if (msgType == ANIMATE)
     {
         ofLog(OF_LOG_VERBOSE, "SynchManager:: Sending message=%s\n",msg);
         ofxOscMessage m;
