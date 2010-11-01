@@ -279,7 +279,7 @@ void testApp::event(EventArg *e) {
 
 void testApp::setupLogging() {
 	ofSetLogLevel(OF_LOG_VERBOSE);
-	ofLog(OF_LOG_VERBOSE, "seteando logs");
+	ofLog(OF_LOG_VERBOSE, "Configuring Logs");
 }
 
 void testApp::setupConsole()
@@ -309,7 +309,7 @@ void testApp::setPoint(int selectedIdx, int selectedVtx, int x, int y, bool send
 
 void testApp::addQuad(const std::vector<std::string> & args)
 {
-	if(args.size()<4){
+	if(args.size()<3){
 		console->print("Wrong number of arguments for < "+args[0]+" >!", CTEXT_ERROR);
 		ofLog(OF_LOG_ERROR, "Wrong number of arguments for < "+args[0]+" >!");
 		return;
