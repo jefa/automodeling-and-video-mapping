@@ -5,7 +5,7 @@
 		<Option title="project" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="addons\;addons\ofx3DLoader\src\;addons\ofxShader\;addons\ofxShader\src\;project\src\;addons\ofxAlphaVideoPlayer\;addons\ofxOsc\src\;addons\ofxMidiIn\events\;addons\ofxMidiIn\libs\;addons\ofxMidiIn\src\;addons\ofxXmlSettings\;addons\ofxXmlSettings\src\;addons\ofxXmlSettings\libs\;" />
+		<Option virtualFolders="addons\;addons\ofx3DLoader\src\;addons\ofxShader\;addons\ofxShader\src\;project\src\;addons\ofxAlphaVideoPlayer\;addons\ofxOsc\src\;addons\ofxMidiIn\events\;addons\ofxMidiIn\libs\;addons\ofxMidiIn\src\;addons\ofxXmlSettings\;addons\ofxXmlSettings\src\;addons\ofxXmlSettings\libs\;addons\ofxConsole\src\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin\$(PROJECT_NAME)_DEBUG" prefix_auto="1" extension_auto="1" />
@@ -83,7 +83,7 @@
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\src" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs" />
 			<Add directory="addons\ofxShader\src" />
-		    <Add directory="addons/ofxConsole/src" />
+			<Add directory="addons\ofxConsole\src" />
 		</Compiler>
 		<Linker>
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/FreeImage/lib/win_cb/FreeImage.lib" />
@@ -203,6 +203,18 @@
 		<Unit filename="addons\ofxAlphaVideoPlayer\ofxQtUtils_alpha.h">
 			<Option virtualFolder="addons\ofxAlphaVideoPlayer\" />
 		</Unit>
+		<Unit filename="addons\ofxConsole\src\ofxConsole.h">
+			<Option virtualFolder="addons\ofxConsole\src" />
+		</Unit>
+		<Unit filename="addons\ofxConsole\src\ofxConsoleBase.cpp">
+			<Option virtualFolder="addons\ofxConsole\src" />
+		</Unit>
+		<Unit filename="addons\ofxConsole\src\ofxConsoleBase.h">
+			<Option virtualFolder="addons\ofxConsole\src" />
+		</Unit>
+		<Unit filename="addons\ofxConsole\src\ofxConsoleFunctor.h">
+			<Option virtualFolder="addons\ofxConsole\src" />
+		</Unit>
 		<Unit filename="addons\ofxMidiIn\events\ofxMidiEvents.h">
 			<Option virtualFolder="addons\ofxMidiIn\events" />
 		</Unit>
@@ -223,18 +235,6 @@
 		</Unit>
 		<Unit filename="addons\ofxShader\src\ofxShader.h">
 			<Option virtualFolder="addons\ofxShader\src\" />
-		</Unit>
-		<Unit filename="addons/ofxConsole/src/ofxConsole.h">
-			<Option virtualFolder="addons/ofxConsole/src"/>
-		</Unit>
-		<Unit filename="addons/ofxConsole/src/ofxConsoleBase.cpp">
-			<Option virtualFolder="addons/ofxConsole/src"/>
-		</Unit>
-		<Unit filename="addons/ofxConsole/src/ofxConsoleBase.h">
-			<Option virtualFolder="addons/ofxConsole/src"/>
-		</Unit>
-		<Unit filename="addons/ofxConsole/src/ofxConsoleFunctor.h">
-			<Option virtualFolder="addons/ofxConsole/src"/>
 		</Unit>
 		<Unit filename="src\AnimEventArg.h" />
 		<Unit filename="src\Animation.cpp" />
@@ -266,8 +266,6 @@
 		<Unit filename="src\SynchManager.h" />
 		<Unit filename="src\TextureManager.cpp" />
 		<Unit filename="src\TextureManager.h" />
-		<Unit filename="src\VideoController.cpp" />
-		<Unit filename="src\VideoController.h" />
 		<Unit filename="src\main.cpp" />
 		<Unit filename="src\testApp.cpp" />
 		<Unit filename="src\testApp.h" />
