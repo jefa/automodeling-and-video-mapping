@@ -32,6 +32,12 @@ void testApp::setup(){
 	//set background to black
 	ofBackground(0, 0, 0);
 
+    #ifdef CONSOLE
+    ofSetWindowTitle("Console APP");
+    #else
+    ofSetWindowTitle("Client APP");
+    #endif
+
 	//for smooth animation, set vertical sync if we can
 	ofSetVerticalSync(true);
 	// also, frame rate:
@@ -66,24 +72,34 @@ void testApp::setup(){
         this->synchManager = new SynchManager(true); //set as sender
     #endif
 
-    quads.insert(pair<string, Quad2D*>("quad100", new Quad2D("quad100", 100,100, 250,80, 270,260, 80,250))) ;
+    TextureManager::LoadVideoTexture("cartoon", "cartoon.mov");
+    TextureManager::LoadVideoTexture("fingers", "fingers.mov");
+
+    TextureManager::PlayVideo("cartoon");
+    TextureManager::PlayVideo("fingers");
+
     materials.insert(pair<string, Material*>("mat1", new Material()));
+    materials["mat1"]->SetTextureParams("cartoon", videoTexture, 0);
 
-    //TextureManager::LoadImageTexture("pegado", "pegado.jpg");
-    TextureManager::LoadVideoTexture("pegado", "cartoon.mov");
-    //materials["mat1"]->SetTextureParams("pegado", imageTexture);
-    materials["mat1"]->SetTextureParams("pegado", videoTexture);
+    materials.insert(pair<string, Material*>("mat2", new Material()));
+    materials["mat2"]->SetTextureParams("fingers", videoTexture, 0);
 
-    quads["quad100"]->setMaterial(materials["mat1"]);
+    quads.insert(pair<string, Quad2D*>("quad1", new Quad2D("quad1", 100,100, 250,80, 270,260, 80,250))) ;
+    quads["quad1"]->setMaterial(materials["mat1"]);
+    quads["quad1"]->setEnabled(true);
 
-    LinearAnimation *anim5 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 1.0);
+    quads.insert(pair<string, Quad2D*>("quad2", new Quad2D("quad2", 300,100, 450,80, 470,260, 280,250))) ;
+    quads["quad2"]->setMaterial(materials["mat2"]);
+    quads["quad2"]->setEnabled(true);
+
+    /*LinearAnimation *anim5 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 1.0);
     LinearAnimation *anim6 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 0.0);
 
     AnimationLoop *loop1 = new AnimationLoop("loop1");
     loop1->AddAnimation(anim5);
     loop1->AddAnimation(anim6);
 
-    animController.AddLoop("loop1", loop1);
+    animController.AddLoop("loop1", loop1);*/
 
     setupConsole();
 
@@ -97,18 +113,14 @@ void testApp::update(){
         synchManager->checkForMessages();
     #endif
 
-    //#ifndef CONSOLE
     TextureManager::Update();
-    //#endif
 }
 
 //--------------------------------------------------------------
 void testApp::draw(){
 	ofSetupScreen();
-    //obj3D->draw();
 
-    for(quadsIt = quads.begin(); quadsIt != quads.end(); ++quadsIt)
-    {
+    for(quadsIt = quads.begin(); quadsIt != quads.end(); ++quadsIt) {
         (*quadsIt).second->draw();
     }
 
@@ -141,11 +153,17 @@ void cycleQuadSelection(bool fwd) {
 }
 
 void testApp::keyPressed  (int key){
-    #ifdef CONSOLE
 
-    if(key == 'h') {
-        quads["quad100"]->setEnabled(true);
+#ifdef CONSOLE
+
+    if(key == 't') {
+        //quads["quad1"]->setMaterial(materials["mat2"]);
+        //quads["quad1"]->setMaterial(materials["mat2"]);
+        //materials["mat1"]->SetTextureParams("pegado", videoTexture, 0);
+        //materials["mat1"]->SetTextureParams("scanner", imageTexture, 3);
+        //TextureManager::UnloadVideoTexture("pegado");
     }
+
     if(key == 'g') {
         animController.PlayLoop("loop1");
     }
@@ -296,8 +314,7 @@ void testApp::setPoint(int selectedIdx, int selectedVtx, int x, int y, bool send
     std::advance(quadsIt, selectedIdx);
     (*quadsIt).second->setPoint(selectedVtx, x, y);
 
-    if (sendEvent)
-    {
+    if (sendEvent) {
         ofxOscMessage oscMessage;
         oscMessage.addIntArg(selectedIdx);
         oscMessage.addIntArg(selectedVtx);

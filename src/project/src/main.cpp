@@ -9,7 +9,7 @@ int main( ){
 	ofSetupOpenGL(&window, 1024,768, OF_WINDOW);			// <-------- setup the GL context
 
     #ifndef CONSOLE
-    //ofSetWindowPosition(-1024,0);
+    ofSetWindowPosition(-1024,0);
     #endif
 
 	// this kicks off the running of my app

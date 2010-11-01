@@ -26,7 +26,7 @@ class Material : public IPropertyManager
         void Enable();
         void Disable();
 
-        void SetTextureParams(string id, textureType type);
+        void SetTextureParams(string id, textureType type, int textureUnit);
 
 	private:
         float ambient[4];
@@ -34,6 +34,7 @@ class Material : public IPropertyManager
 
         string texID;
         textureType texType;
+        int textureUnit;
 
 };
 

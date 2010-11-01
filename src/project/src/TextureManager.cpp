@@ -14,13 +14,17 @@ TextureManager::~TextureManager() {
 void TextureManager::LoadImageTexture(string key, string path) {
     ofImage * image = new ofImage();
     image->loadImage(path);
-    imageTextures.insert(make_pair(key, image));
+    imageTextures.insert(pair<string, ofImage*>(key, image));
 }
 
 void TextureManager::LoadVideoTexture(string key, string path) {
     ofxAlphaVideoPlayer *video = new ofxAlphaVideoPlayer();
     video->loadMovie(path);
-    videoTextures.insert(make_pair(key, video));
+    videoTextures.insert(pair<string, ofxAlphaVideoPlayer*>(key, video));
+}
+
+void TextureManager::UnloadVideoTexture(string key) {
+    videoTextures.erase(key);
 }
 
 void TextureManager::Update() {
@@ -36,9 +40,13 @@ void TextureManager::PlayVideo(string key) {
 
 ofTexture& TextureManager::GetTextureReference(string key, textureType type) {
     if(type == imageTexture) {
-        return imageTextures[key]->getTextureReference();
+        ofImage *image = imageTextures[key];
+        image->update();
+        return image->getTextureReference();
     }
     else if (type == videoTexture) {
-        return videoTextures[key]->getTextureReference();
+        ofxAlphaVideoPlayer *vid = videoTextures[key];
+        vid->draw(0,0,0,0); //HACK: la textura se actualiza con este draw
+        return vid->getTextureReference();
     }
 }
