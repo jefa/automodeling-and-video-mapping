@@ -103,8 +103,8 @@ bool SynchManager::checkForMessages()
             string anim_id = m.getArgAsString(0);
             ofLog(OF_LOG_VERBOSE, "SynchManager: Anim/Animate received. Id = %s\n",anim_id);
             evtArg = new AnimEventArg();
-            ((AnimEventArg*)evtArg)->source = anim_id;
             ((AnimEventArg*)evtArg)->isActivate = true;
+            ((AnimEventArg*)evtArg)->id = anim_id;
         }
         else if ( m.getAddress() == "/synch/addquad" )
         {
@@ -113,13 +113,6 @@ bool SynchManager::checkForMessages()
             ((DrawEventArg*)evtArg)->source = m.getArgAsString(1);
             ((DrawEventArg*)evtArg)->_evtType = 1;
             ofLog(OF_LOG_VERBOSE, "SynchManager: SynchEvent/AddQuad received");
-        }
-        else if ( m.getAddress() == "/synch/animationloop" )
-        {
-          /*  string animloop_id = m.getArgAsString(0);
-            evtArg = new AnimationLoopArg();
-            ((AnimationLoopArg*)evtArg)->source = animloop_id;
-            ((AnimationLoopArg*)evtArg)->isActivate = true;*/
         }
         else
         {

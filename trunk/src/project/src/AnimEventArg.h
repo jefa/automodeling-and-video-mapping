@@ -6,6 +6,7 @@
 class AnimEventArg : public EventArg {
   public:
     bool isActivate;
+    string id;
 
 };
 

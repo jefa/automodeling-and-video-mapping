@@ -2,9 +2,9 @@
 #include "ofMain.h"
 
 Material::Material(){
-    ambient[0] = ofRandomuf();
-    ambient[1] = ofRandomuf();
-    ambient[2] = ofRandomuf();
+    ambient[0] = 1.0f;//ofRandomuf();
+    ambient[1] = 1.0f;//ofRandomuf();
+    ambient[2] = 1.0f;//ofRandomuf();
     ambient[3] = 1;
 
     texture_shader.loadShader("shaders/texture_ambient");
@@ -13,26 +13,34 @@ Material::Material(){
 Material::~Material(){
 }
 
-void Material::SetTextureParams(string id, textureType type) {
+void Material::SetTextureParams(string id, textureType type, int textureUnit) {
     this->texID = id;
     this->texType = type;
+    this->textureUnit = textureUnit;
 }
 
 void Material::Enable(){
-    if(texType == videoTexture) {
+    /*if(texType == videoTexture) {
         TextureManager::PlayVideo(texID);
-    }
+    }*/
     ofTexture &tex = TextureManager::GetTextureReference(texID, texType);
-    glActiveTextureARB(GL_TEXTURE0_ARB);
+
+    glEnable(GL_TEXTURE_2D);
+    glActiveTextureARB(GL_TEXTURE0_ARB + textureUnit);
+
     glBindTexture(GL_TEXTURE_2D, tex.texData.textureID);
 
     texture_shader.setShaderActive(true);
     texture_shader.setUniformVariable2f("texSize", tex.getWidth(), tex.getHeight());
     texture_shader.setUniformVariable3f("color", ambient[0], ambient[1], ambient[2]);
+    texture_shader.setUniformVariable1i("tex", textureUnit);
 }
 
 void Material::Disable() {
+	//glActiveTextureARB(GL_TEXTURE0_ARB + textureUnit);
+    //glBindTexture(GL_TEXTURE_2D, NULL);
 	texture_shader.setShaderActive(false);
+	//glDisable(GL_TEXTURE_2D);
 }
 
 float Material::get(int aParam) {
