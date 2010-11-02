@@ -133,7 +133,6 @@ void testApp::draw(){
 
 }
 
-
 //--------------------------------------------------------------
 
 void cycleQuadSelection(bool fwd) {
@@ -309,7 +308,7 @@ void testApp::setupConsole()
 {
     console = new ofxConsole();
     console->setDimentions(ofGetWidth(), ofGetHeight()/15);
-	console->print("Automodeling app started...");
+	console->print("Mapping app started...");
 	console->addFunction("quit", this, &testApp::quit);
 	console->addFunction("addQuad", this, &testApp::addQuad);
 }
