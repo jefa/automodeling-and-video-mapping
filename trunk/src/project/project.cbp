@@ -266,6 +266,8 @@
 		<Unit filename="src\SynchManager.h" />
 		<Unit filename="src\TextureManager.cpp" />
 		<Unit filename="src\TextureManager.h" />
+		<Unit filename="src\TimeManager.cpp" />
+		<Unit filename="src\TimeManager.h" />
 		<Unit filename="src\main.cpp" />
 		<Unit filename="src\testApp.cpp" />
 		<Unit filename="src\testApp.h" />

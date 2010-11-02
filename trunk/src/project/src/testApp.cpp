@@ -3,6 +3,7 @@
 #include "Animation.h"
 #include "LinearAnimation.h"
 #include "Background.h"
+#include "TimeManager.h"
 #include "DrawEventArg.h"
 #include "ofxXmlSettings.h"
 #include <map>
@@ -28,6 +29,8 @@ Object3D *obj3D;
 void testApp::setup(){
 
     setupLogging();
+
+    TimeManager::Init();
 
 	//set background to black
 	ofBackground(0, 0, 0);
@@ -114,6 +117,8 @@ void testApp::update(){
     #endif
 
     TextureManager::Update();
+
+    TimeManager::Update();
 }
 
 //--------------------------------------------------------------
