@@ -11,7 +11,7 @@ int main( ){
     #ifndef CONSOLE
     ofSetWindowPosition(-1024,0);
     #else
-    ofSetWindowPosition(200,0);
+    ofSetWindowPosition(200,30);
     #endif
 
 	// this kicks off the running of my app
