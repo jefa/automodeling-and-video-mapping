@@ -269,6 +269,7 @@
 		<Unit filename="src\TextureManager.h" />
 		<Unit filename="src\TimeManager.cpp" />
 		<Unit filename="src\TimeManager.h" />
+		<Unit filename="src\TimedEventArg.h" />
 		<Unit filename="src\main.cpp" />
 		<Unit filename="src\testApp.cpp" />
 		<Unit filename="src\testApp.h" />

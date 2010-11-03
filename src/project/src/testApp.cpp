@@ -5,6 +5,7 @@
 #include "Background.h"
 #include "TimeManager.h"
 #include "DrawEventArg.h"
+#include "TimedEventArg.h"
 #include "ofxXmlSettings.h"
 #include <map>
 
@@ -29,8 +30,6 @@ Object3D *obj3D;
 void testApp::setup(){
 
     setupLogging();
-
-    TimeManager::Init();
 
 	//set background to black
 	ofBackground(0, 0, 0);
@@ -78,9 +77,6 @@ void testApp::setup(){
     TextureManager::LoadVideoTexture("cartoon", "cartoon.mov");
     TextureManager::LoadVideoTexture("fingers", "fingers.mov");
 
-    TextureManager::PlayVideo("cartoon");
-    TextureManager::PlayVideo("fingers");
-
     materials.insert(pair<string, Material*>("mat1", new Material()));
     materials["mat1"]->SetTextureParams("cartoon", videoTexture, 0);
 
@@ -103,6 +99,11 @@ void testApp::setup(){
     loop1->AddAnimation(anim6);
 
     animController.AddLoop("loop1", loop1);*/
+
+    TimeManager::AddTimedEvent(3.0f, this, "vid1");
+    TimeManager::AddTimedEvent(5.0f, this, "vid2");
+
+    TimeManager::Init();
 
     setupConsole();
 
@@ -288,15 +289,25 @@ void testApp::quit(const std::vector<std::string> & args){
 }
 
 void testApp::event(EventArg *e) {
-    DrawEventArg *evtArg = (DrawEventArg*) e;
-    if (evtArg->_evtType == 0) //setpoint
-    {
-        setPoint(evtArg->_shapeId, evtArg->_vertexId, evtArg->_x, evtArg->_y, false);
-    } else if (evtArg->_evtType == 1) //draw new quad
-    {
-        selectedIdx = addQuad(evtArg->_shapeId, evtArg->source.c_str(), false);
-    }
 
+    if (e->source.compare("TimedEventArg") == 0) {
+        TimedEventArg *evtArg = (TimedEventArg*) e;
+        if (evtArg->param.compare("vid1") == 0) {
+            TextureManager::PlayVideo("fingers");
+        }
+        else if (evtArg->param.compare("vid2") == 0) {
+            TextureManager::PlayVideo("cartoon");
+        }
+    }
+    else {
+        DrawEventArg *evtArg = (DrawEventArg*) e;
+        if (evtArg->_evtType == 0) { //setpoint
+            setPoint(evtArg->_shapeId, evtArg->_vertexId, evtArg->_x, evtArg->_y, false);
+        }
+        else if (evtArg->_evtType == 1) { //draw new quad
+            selectedIdx = addQuad(evtArg->_shapeId, evtArg->source.c_str(), false);
+        }
+    }
 }
 
 void testApp::setupLogging() {
