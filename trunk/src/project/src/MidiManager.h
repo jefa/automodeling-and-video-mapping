@@ -2,17 +2,17 @@
 #define MIDIMANAGER_H
 
 #include "IEventListener.h"
-#include "ofxMidiIn.h"
+#include "ofxMidiEvents.h"
 
+typedef pair<string, IEventListener*> listenerPair;
 
 using namespace std;
 
-class MidiManager
-{
+class MidiManager : public ofxMidiListener{
     public:
         MidiManager();
         virtual ~MidiManager();
-        void addListener(ofxMidiListener*, string);
+        void addListener(IEventListener*, string);
 
         int port;
 		int id;
@@ -25,7 +25,7 @@ class MidiManager
 
     private:
         ofxMidiIn	midiIn;
-       // map<string,IEventListener*> listeners;
+        map<string,IEventListener*> listeners;
 
 };
 
