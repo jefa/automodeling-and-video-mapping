@@ -2,6 +2,8 @@
 #define TIMEDEVENT_H_INCLUDED
 
 #include "EventArg.h"
+#include <string>
+using namespace std;
 
 class TimedEventArg : public EventArg {
   public:
@@ -9,6 +11,7 @@ class TimedEventArg : public EventArg {
         this->source = "TimedEventArg";
     }
     double _timestamp;
+    string opName;
     string param;
 };
 

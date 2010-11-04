@@ -100,8 +100,8 @@ void testApp::setup(){
 
     animController.AddLoop("loop1", loop1);*/
 
-    TimeManager::AddTimedEvent(3.0f, this, "vid1");
-    TimeManager::AddTimedEvent(5.0f, this, "vid2");
+    TimeManager::AddTimedEvent(3.0f, this, "PlayVideo", "cartoon");
+    TimeManager::AddTimedEvent(5.0f, this, "PlayVideo", "fingers");
 
     TimeManager::Init();
 
@@ -292,11 +292,8 @@ void testApp::event(EventArg *e) {
 
     if (e->source.compare("TimedEventArg") == 0) {
         TimedEventArg *evtArg = (TimedEventArg*) e;
-        if (evtArg->param.compare("vid1") == 0) {
-            TextureManager::PlayVideo("fingers");
-        }
-        else if (evtArg->param.compare("vid2") == 0) {
-            TextureManager::PlayVideo("cartoon");
+        if(evtArg->opName.compare("PlayVideo") == 0) {  //El parametro indica que video iniciar.
+            TextureManager::PlayVideo(evtArg->param);
         }
     }
     else {
@@ -468,7 +465,7 @@ void testApp::saveQuads() {
 
 }
 
-
+/*
 void testApp::loadShow() {
 
     ofLog(OF_LOG_NOTICE, "loading show config...");
@@ -543,7 +540,6 @@ void testApp::loadShow() {
     numItems = showConfig.getNumTags("Event");
     for(int i = 0; i < numItems; i++)
     {
-
         showConfig.pushTag("Event", i);
         string name = showConfig.getAttribute("Data", "name","", 0);
         string type = showConfig.getAttribute("Data", "type","", 0);
@@ -556,6 +552,7 @@ void testApp::loadShow() {
 
     ofLog(OF_LOG_NOTICE, "Show config loaded.");
 }
+*/
 
 void testApp::saveShow() {
 
