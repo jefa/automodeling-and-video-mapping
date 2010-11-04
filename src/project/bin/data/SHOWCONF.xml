@@ -1,0 +1,60 @@
+<Show>
+  <Data name="showname1"/>
+	<Ports>
+		<Port type="osc" useSocket="true" port="12345" />
+	</Ports>
+	<Ports>  		
+		<Port type="midi" useSocket="false" />
+	</Ports>
+	<Network>
+		<Node name="node1" address="10.1.1.1" port="12345" />
+	</Network>	
+	<Network>  	
+		<Node name="node2" address="10.1.1.2" port="12345" />
+	</Network>	
+	<Network> 		
+		<Node name="node3" address="10.1.1.3" port="12345" />
+	</Network>	
+	<Network> 		
+		<Node name="node4" address="10.1.1.4" port="12345" />
+	</Network>
+	<Textures>
+		<Images>
+			<Image name="basetextura" path="Ima1.jpg" />
+		</Images>
+		<Images>
+			<Image name="barraazul" path="config\repository\Images\Ima2.jpg" />
+		</Images>
+		<Images>      		
+			<Image name="otraimagen" path="config\repository\Images\Ima3.jpg" />
+		</Images>
+		<Videos>
+			<Video name="pelotitarebotando" path="config\repository\Videos/Vid1.mov" />
+		</Videos>			
+		<Videos>
+			<Video name="otrovideo" path="config\repository\Videos/Vid2.mov" />
+		</Videos> 
+	</Textures> 
+	<Shapes>
+    <Shape id="quad1" type="quad" />
+  </Shapes>
+	<Shapes>
+    <Shape id="quad2" type="quad" />
+  </Shapes>
+	<Shapes>
+    <Shape id="circ1" type="circle" />
+  </Shapes>
+	<Shapes>
+    <Shape id="obje1" type="obj3d" />
+  </Shapes>
+	<AnimationList><!--   Id,  ... parameters?  -->  
+	</AnimationList>
+	<Events>
+	  <Event>
+		<Data name="lanzarbolitarebotando" type="osc" destination="all"/>
+		</Event>
+		<Event>
+		<Data name="lanzarotrovideo" type="osc" destination="node3" delay="10ms"/>
+		</Event>
+	</Events>
+</Show>
