@@ -46,6 +46,9 @@ class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener 
         void saveQuads();
         void loadQuads();
 
+        void saveShow();
+        void loadShow();
+
     private:
 		Object3D *obj3D;
 		SynchManager *synchManager;

@@ -467,3 +467,98 @@ void testApp::saveQuads() {
     ofLog(OF_LOG_NOTICE, "Project saved.");
 
 }
+
+
+void testApp::loadShow() {
+
+    ofLog(OF_LOG_NOTICE, "loading show config...");
+    showConfig.loadFile("./SHOWCONF.xml");
+    showConfig.pushTag("Show");
+
+    string showName = showConfig.getAttribute("Data", "name", "", 0);
+    //std::cout << " showName: "<< showName;
+
+    int numItems = showConfig.getNumTags("Ports");
+
+    for(int i = 0; i < numItems; i++)
+    {
+        showConfig.pushTag("Ports", i);
+        string type = showConfig.getAttribute("Port", "type", "", 0);
+        string useSocket = showConfig.getAttribute("Port", "useSocket", "", 0);
+        string port = showConfig.getAttribute("Port", "port", "", 0);
+        //std::cout << " Port Data: "<< type + " " + useSocket + " "+ port;
+        showConfig.popTag();
+    }
+
+    numItems = showConfig.getNumTags("Network");
+
+    for(int i = 0; i < numItems; i++)
+    {
+        showConfig.pushTag("Network", i);
+        string name = showConfig.getAttribute("Node", "name", "", 0);
+        string address = showConfig.getAttribute("Node", "address", "", 0);
+        string port = showConfig.getAttribute("Node", "port", "", 0);
+        //std::cout << " Network Data: "<< name + " " + address + " "+ port;
+        showConfig.popTag();
+    }
+
+
+    showConfig.pushTag("Textures", 0);
+    numItems = showConfig.getNumTags("Images");
+
+    for(int i = 0; i < numItems; i++)
+    {
+        showConfig.pushTag("Images", i);
+        string name = showConfig.getAttribute("Image", "name","", 0);
+        string path = showConfig.getAttribute("Image", "path","", 0);
+        //std::cout << " Images Data: "<< name + " " + path;
+        showConfig.popTag();
+    }
+
+    numItems = showConfig.getNumTags("Videos");
+
+    for(int i = 0; i < numItems; i++)
+    {
+        showConfig.pushTag("Videos", i);
+        string name = showConfig.getAttribute("Video", "name","", 0);
+        string path = showConfig.getAttribute("Video", "path","", 0);
+        //std::cout << " Videos Data: "<< name + " " + path;
+        showConfig.popTag();
+    }
+    showConfig.popTag();
+
+    numItems = showConfig.getNumTags("Shapes");
+
+    for(int i = 0; i < numItems; i++)
+    {
+
+        showConfig.pushTag("Shapes", i);
+        string id = showConfig.getAttribute("Shape", "id","", 0);
+        string type = showConfig.getAttribute("Shape", "type","", 0);
+        //std::cout << " Shapes Data: "<< id + " " + type;
+        showConfig.popTag();
+    }
+
+    showConfig.pushTag("Events", 0);
+    numItems = showConfig.getNumTags("Event");
+    for(int i = 0; i < numItems; i++)
+    {
+
+        showConfig.pushTag("Event", i);
+        string name = showConfig.getAttribute("Data", "name","", 0);
+        string type = showConfig.getAttribute("Data", "type","", 0);
+        string destination = showConfig.getAttribute("Data", "destination","", 0);
+        string delay = showConfig.getAttribute("Data", "delay","", 0);
+        //std::cout << " Event Data: "<< name + " " + type+ " " +destination+ " " +delay;
+        showConfig.popTag();
+    }
+    showConfig.popTag();
+
+    ofLog(OF_LOG_NOTICE, "Show config loaded.");
+}
+
+void testApp::saveShow() {
+
+    //showConfig.saveFile("./SHOWCONF.xml");
+    //ofLog(OF_LOG_NOTICE, "Show config saved.");
+}
