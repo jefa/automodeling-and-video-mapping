@@ -11,6 +11,7 @@
 
 AnimationController animController;
 ofxXmlSettings quadsXML;
+ofxXmlSettings showConfig;
 Background *background;
 
 map<string, Quad2D*> quads;
@@ -33,6 +34,9 @@ void testApp::setup(){
 
 	//set background to black
 	ofBackground(0, 0, 0);
+
+	//load showconfig from xml
+	loadShow();
 
     #ifdef CONSOLE
     ofSetWindowTitle("Console APP");
@@ -465,7 +469,7 @@ void testApp::saveQuads() {
 
 }
 
-/*
+
 void testApp::loadShow() {
 
     ofLog(OF_LOG_NOTICE, "loading show config...");
@@ -552,7 +556,7 @@ void testApp::loadShow() {
 
     ofLog(OF_LOG_NOTICE, "Show config loaded.");
 }
-*/
+
 
 void testApp::saveShow() {
 
