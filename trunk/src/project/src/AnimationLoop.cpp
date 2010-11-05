@@ -48,11 +48,11 @@ bool AnimationLoop::isStarted() {
 void AnimationLoop::Stop() {
 }
 
-void AnimationLoop::Update(double timestamp) {
+void AnimationLoop::Update() {
     if(this->started) {
         for (unsigned int i = 0; i < playable_animations.size(); i++) {
             Animation *anim = playable_animations[i];
-            anim->Update(timestamp);
+            anim->Update();
             if(!anim->isRunning()) {
                 playable_animations.erase(playable_animations.begin() + i);
 

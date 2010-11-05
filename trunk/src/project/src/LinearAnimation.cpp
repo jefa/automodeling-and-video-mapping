@@ -1,3 +1,5 @@
+#include "ofAppRunner.h"
+
 #include "LinearAnimation.h"
 #include <iostream>
 using namespace std;
@@ -20,8 +22,9 @@ void LinearAnimation::End()
     Animation::End();
 }
 
-void LinearAnimation::Update(double timestamp)
+void LinearAnimation::Update()
 {
+    float timestamp = ofGetLastFrameTime();
     if(!isRunning()){
         return;
     }

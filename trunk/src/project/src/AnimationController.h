@@ -14,14 +14,14 @@ class AnimationController : public IEventListener
     public:
         AnimationController();
         virtual ~AnimationController();
-        void AddLoop(string key, AnimationLoop *anim);
-        void PlayLoop(string key);
-        void Update(double timestamp);
+        static void AddLoop(string key, AnimationLoop *anim);
+        static void PlayLoop(string key);
+        static void Update();
         void event(EventArg *e);
 
     protected:
     private:
-        map<string, AnimationLoop*> loops;
+        static map<string, AnimationLoop*> loops;
 };
 
 #endif // ANIMATIONCONTROLLER_H
