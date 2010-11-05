@@ -36,6 +36,7 @@ void TextureManager::Update() {
 
 void TextureManager::PlayVideo(string key) {
     videoTextures[key]->play();
+    videoTextures[key]->setLoopState(OF_LOOP_NONE);
 }
 
 ofTexture& TextureManager::GetTextureReference(string key, textureType type) {
