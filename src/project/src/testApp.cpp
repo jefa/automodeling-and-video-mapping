@@ -75,23 +75,17 @@ void testApp::setup(){
     /* Aqui se carga el show */
 
     //load showconfig from xml
-	loadShow();
+	//loadShow();
 
     TextureManager::LoadVideoTexture("cartoon", "cartoon.mov");
     TextureManager::LoadVideoTexture("fingers", "fingers.mov");
 
-    materials.insert(pair<string, Material*>("mat1", new Material()));
-    materials["mat1"]->SetTextureParams("cartoon", videoTexture, 0);
-
-    materials.insert(pair<string, Material*>("mat2", new Material()));
-    materials["mat2"]->SetTextureParams("fingers", videoTexture, 0);
-
     quads.insert(pair<string, Quad2D*>("quad1", new Quad2D("quad1", 100,100, 250,80, 270,260, 80,250))) ;
-    quads["quad1"]->setMaterial(materials["mat1"]);
+    quads["quad1"]->getMaterial()->SetTextureParams("cartoon", videoTexture, 0);
     quads["quad1"]->setEnabled(true);
 
     quads.insert(pair<string, Quad2D*>("quad2", new Quad2D("quad2", 300,100, 450,80, 470,260, 280,250))) ;
-    quads["quad2"]->setMaterial(materials["mat2"]);
+    quads["quad2"]->getMaterial()->SetTextureParams("fingers", videoTexture, 0);
     quads["quad2"]->setEnabled(true);
 
     /*LinearAnimation *anim5 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 1.0);
