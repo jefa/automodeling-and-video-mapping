@@ -23,6 +23,26 @@ int selectedVtx = 0;
 float xoffset = 5;
 float yoffset = 5;
 
+
+struct Port  {  string useSocket;
+                string port;    };
+map<string, Port > Ports;
+
+
+struct Node  {  string address;
+                string port;    };
+map<string, Node > Network;
+
+
+struct Shape  { string type;
+                                };
+map<string, Shape > Shapes;
+
+struct Event  { string type;
+                string destination;
+                string delay;   };
+map<string, Event > Events;
+
 //--------------------------------------------------------------
 void testApp::setup(){
 
@@ -407,6 +427,7 @@ void testApp::loadQuads() {
 }
 
 void testApp::saveQuads() {
+
     ofLog(OF_LOG_NOTICE, "saving project...");
     quadsXML.clear();
     int quadsTagKey = quadsXML.addTag("quads");
@@ -467,6 +488,12 @@ void testApp::loadShow() {
         string useSocket = showConfig.getAttribute("Port", "useSocket", "", 0);
         string port = showConfig.getAttribute("Port", "port", "", 0);
         //std::cout << " Port Data: "<< type + " " + useSocket + " "+ port;
+
+        Port PortData;
+        PortData.useSocket = useSocket;
+        PortData.port = port;
+        Ports.insert(pair<string, Port>(type, PortData));
+
         showConfig.popTag();
     }
 
@@ -479,9 +506,14 @@ void testApp::loadShow() {
         string address = showConfig.getAttribute("Node", "address", "", 0);
         string port = showConfig.getAttribute("Node", "port", "", 0);
         //std::cout << " Network Data: "<< name + " " + address + " "+ port;
+
+        Node NodeData;
+        NodeData.address = address;
+        NodeData.port = port;
+        Network.insert(pair<string, Node>(name, NodeData));
+
         showConfig.popTag();
     }
-
 
     showConfig.pushTag("Textures", 0);
     numItems = showConfig.getNumTags("Images");
@@ -492,6 +524,9 @@ void testApp::loadShow() {
         string name = showConfig.getAttribute("Image", "name","", 0);
         string path = showConfig.getAttribute("Image", "path","", 0);
         //std::cout << " Images Data: "<< name + " " + path;
+
+        TextureManager::LoadImageTexture(name, path);
+
         showConfig.popTag();
     }
 
@@ -503,6 +538,9 @@ void testApp::loadShow() {
         string name = showConfig.getAttribute("Video", "name","", 0);
         string path = showConfig.getAttribute("Video", "path","", 0);
         //std::cout << " Videos Data: "<< name + " " + path;
+
+        TextureManager::LoadVideoTexture(name, path);
+
         showConfig.popTag();
     }
     showConfig.popTag();
@@ -516,6 +554,11 @@ void testApp::loadShow() {
         string id = showConfig.getAttribute("Shape", "id","", 0);
         string type = showConfig.getAttribute("Shape", "type","", 0);
         //std::cout << " Shapes Data: "<< id + " " + type;
+
+        Shape ShapeData;
+        ShapeData.type = type;
+        Shapes.insert(pair<string, Shape>(id, ShapeData));
+
         showConfig.popTag();
     }
 
@@ -529,9 +572,52 @@ void testApp::loadShow() {
         string destination = showConfig.getAttribute("Data", "destination","", 0);
         string delay = showConfig.getAttribute("Data", "delay","", 0);
         //std::cout << " Event Data: "<< name + " " + type+ " " +destination+ " " +delay;
+
+        Event EventData;
+        EventData.type = type;
+        EventData.destination = destination;
+        EventData.delay = delay;
+        Events.insert(pair<string, Event>(name, EventData));
+
         showConfig.popTag();
     }
     showConfig.popTag();
+
+/*
+    showConfig.pushTag("quads");
+
+    numItems = showConfig.getNumTags("quadItem");
+
+    for(int i = 0; i < numItems; i++)
+    {
+
+        selectedIdx = addQuad(????);
+
+        showConfig.pushTag("quadItem", i);
+
+            double x0 = showConfig.getAttribute("vx0", "x", 0.0, 0);
+            double y0 = showConfig.getAttribute("vx0", "y", 0.0, 0);
+
+            double x1 = showConfig.getAttribute("vx1", "x", 50.0, 0);
+            double y1 = showConfig.getAttribute("vx1", "y", 0.0, 0);
+
+            double x2 = showConfig.getAttribute("vx2", "x", 50.0, 0);
+            double y2 = showConfig.getAttribute("vx2", "y", 50.0, 0);
+
+            double x3 = showConfig.getAttribute("vx3", "x", 0.0, 0);
+            double y3 = showConfig.getAttribute("vx3", "y", 50.0, 0);
+            std::cout << " quaditem x0: "<< x0 ;
+            setPoint(selectedIdx, 0, x0, y0);
+            setPoint(selectedIdx, 1, x1, y1);
+            setPoint(selectedIdx, 2, x2, y2);
+            setPoint(selectedIdx, 3, x3, y3);
+
+        showConfig.popTag();
+    }
+
+    showConfig.popTag();
+
+*/
 
     ofLog(OF_LOG_NOTICE, "Show config loaded.");
 }
