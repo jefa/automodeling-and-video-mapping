@@ -8,7 +8,7 @@ class LinearAnimation : public Animation
     public:
         LinearAnimation(IPropertyManager *pmgr, int propertyId, double timeSeconds, float targetValue);
         virtual ~LinearAnimation();
-        virtual void Update(double timestamp);
+        virtual void Update();
         virtual void Start();
         virtual void End();
     protected:

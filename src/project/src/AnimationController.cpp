@@ -2,6 +2,8 @@
 #include <iostream>
 using namespace std;
 
+map<string, AnimationLoop*> AnimationController::loops;
+
 AnimationController::AnimationController()
 {
     //ctor
@@ -20,12 +22,12 @@ void AnimationController::PlayLoop(string key) {
     loops[key]->Play();
 }
 
-void AnimationController::Update(double timestamp)
+void AnimationController::Update()
 {
     map<string, AnimationLoop*>::iterator it;
     for(it = loops.begin(); it != loops.end(); ++it) {
         if((*it).second->isStarted()) {
-            (*it).second->Update(timestamp);
+            (*it).second->Update();
         }
     }
 }

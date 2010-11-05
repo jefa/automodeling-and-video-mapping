@@ -9,10 +9,8 @@
 #include "ofxXmlSettings.h"
 #include <map>
 
-AnimationController animController;
 ofxXmlSettings quadsXML;
 ofxXmlSettings showConfig;
-Background *background;
 
 map<string, Quad2D*> quads;
 map<string, Quad2D*>::iterator quadsIt;
@@ -25,48 +23,24 @@ int selectedVtx = 0;
 float xoffset = 5;
 float yoffset = 5;
 
-Object3D *obj3D;
-
 //--------------------------------------------------------------
 void testApp::setup(){
-
-    setupLogging();
 
 	//set background to black
 	ofBackground(0, 0, 0);
 
-	//load showconfig from xml
-	loadShow();
-
-    #ifdef CONSOLE
-    ofSetWindowTitle("Console APP");
-    #else
-    ofSetWindowTitle("Client APP");
-    #endif
-
-	//for smooth animation, set vertical sync if we can
+    //for smooth animation, set vertical sync if we can
 	ofSetVerticalSync(true);
 	// also, frame rate:
 	ofSetFrameRate(60);
 
-    obj3D = new Object3D();
-    //obj3D->addObject("squirrel/NewSquirrel.3ds");
-    obj3D->addObject("sphere/sphere.3ds");
+    setupLogging();
 
-    background = new Background();
-
-    //LinearAnimation *anim1 = new LinearAnimation(obj3D, POS_X, 5, 600);
-    //LinearAnimation *anim2 = new LinearAnimation(obj3D, POS_Y, 4, 700);
-    //LinearAnimation *anim3 = new LinearAnimation(background, COLOR_R, 3, 255);
-    //LinearAnimation *anim4 = new LinearAnimation(background, COLOR_G, 3, 128);
-
-    //anim1->Start();
-    //anim2->Start();
-
-    //animController.AddAnimation(anim1, IMMEDIATE);
-    //animController.AddAnimation(anim2, IMMEDIATE);
-    //animController.AddAnimation(anim3, IMMEDIATE);
-    //animController.AddAnimation(anim4, IMMEDIATE);
+    #ifdef CONSOLE
+        ofSetWindowTitle("Console APP");
+    #else
+        ofSetWindowTitle("Client APP");
+    #endif
 
     #ifndef CONSOLE
         this->synchManager = new SynchManager(false); //set as receiver
@@ -77,6 +51,11 @@ void testApp::setup(){
     #else
         this->synchManager = new SynchManager(true); //set as sender
     #endif
+
+    /* Aqui se carga el show */
+
+    //load showconfig from xml
+	loadShow();
 
     TextureManager::LoadVideoTexture("cartoon", "cartoon.mov");
     TextureManager::LoadVideoTexture("fingers", "fingers.mov");
@@ -115,7 +94,7 @@ void testApp::setup(){
 
 //--------------------------------------------------------------
 void testApp::update(){
-    animController.Update(ofGetLastFrameTime());
+    AnimationController::Update();
 
     #ifndef CONSOLE
         synchManager->checkForMessages();
@@ -174,7 +153,7 @@ void testApp::keyPressed  (int key){
     }
 
     if(key == 'g') {
-        animController.PlayLoop("loop1");
+        AnimationController::PlayLoop("loop1");
     }
     if(key == 'k') {
         loadQuads();

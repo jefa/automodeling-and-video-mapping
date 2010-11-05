@@ -15,7 +15,7 @@ class AnimationLoop
         void AddAnimation(Animation* anim);
         void Play();
         void Stop();
-        void Update(double timestamp);
+        void Update();
         void setLoopable(bool);
         bool isStarted();
     protected:

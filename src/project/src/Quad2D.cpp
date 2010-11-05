@@ -23,7 +23,7 @@ Quad2D::Quad2D(string id) {
     quadPoints[4] = centerX + quadWidth;quadPoints[5] = centerY + quadHeight;
     quadPoints[6] = centerX - quadWidth;quadPoints[7] = centerY + quadHeight;
 
-    this->material = NULL;
+    this->material = new Material();
 }
 
 Quad2D::Quad2D(string id, float x1,float y1,float x2,float y2,float x3, float y3, float x4, float y4) {
@@ -37,7 +37,7 @@ Quad2D::Quad2D(string id, float x1,float y1,float x2,float y2,float x3, float y3
     quadPoints[4] = x3;quadPoints[5] = y3;
     quadPoints[6] = x4;quadPoints[7] = y4;
 
-    this->material = NULL;
+    this->material = new Material();
 }
 
 Quad2D::~Quad2D() {
