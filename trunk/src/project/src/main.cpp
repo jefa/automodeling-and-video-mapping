@@ -6,8 +6,8 @@
 int main( int argc, char** argv ) {
 
     string nodeName = "noname";
-    if (argc > 0){
-        nodeName = argv[0];
+    if (argc > 1){
+        nodeName = argv[1];
     }
 
     ofAppGlutWindow window;
