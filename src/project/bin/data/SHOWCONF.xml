@@ -3,7 +3,7 @@
     <Ports>
         <!--  port midi, port OSC-->
         <OscPorts>
-            <Port name="javier" port="12345" />
+            <Port name="osc" port="12345" />
         </OscPorts>
         <MidiPorts>
             <Port name="midi1" port="0" />
