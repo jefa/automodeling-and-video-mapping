@@ -69,8 +69,6 @@ void testApp::setup(){
         this->oscManager = new OscManager(nodeName, Network, OscPorts); //set as sender
     #endif
 
-	TextureManager::Init();
-
     TextureManager::LoadVideoTexture("cartoon", "cartoon.mov");
     TextureManager::LoadVideoTexture("fingers", "fingers.mov");
     TextureManager::LoadVideoTexture("cartoons", "cartoons.mov");
@@ -80,9 +78,6 @@ void testApp::setup(){
 
     quads.insert(pair<string, Quad2D*>("quad2", new Quad2D("quad2", 300,100, 450,80, 470,260, 280,250))) ;
     quads["quad2"]->setEnabled(true);*/
-
-    //quads["quad1"]->getMaterial()->SetTextureParams("cartoon", videoTexture, 0);
-    //quads["quad2"]->getMaterial()->SetTextureParams("fingers", videoTexture, 0);
 
     /*LinearAnimation *anim5 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 1.0);
     LinearAnimation *anim6 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 0.0);
@@ -162,11 +157,7 @@ void testApp::keyPressed  (int key){
 #ifdef CONSOLE
 
     if(key == 't') {
-        //quads["quad1"]->setMaterial(materials["mat2"]);
-        //quads["quad1"]->setMaterial(materials["mat2"]);
-        //materials["mat1"]->SetTextureParams("pegado", videoTexture, 0);
-        //materials["mat1"]->SetTextureParams("scanner", imageTexture, 3);
-        //TextureManager::UnloadVideoTexture("pegado");
+        TimeManager::Init();
     }
 
     if(key == 'g') {
