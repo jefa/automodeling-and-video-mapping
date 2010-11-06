@@ -49,7 +49,7 @@ void testApp::setup(){
     setupLogging();
 
     //load showconfig from xml
-	//loadShow();
+	loadShow();
 
     #ifdef CONSOLE
         ofSetWindowTitle("Console APP");
@@ -68,8 +68,6 @@ void testApp::setup(){
     #else
         this->oscManager = new OscManager(nodeName, Network, OscPorts); //set as sender
     #endif
-
-    //OscManager(string nodeName, map<string, Node> network, map<string, int > OscPorts = NULL, bool isMaster = true);
 
 	TextureManager::Init();
 
@@ -301,7 +299,7 @@ void testApp::event(EventArg *e) {
             setPoint(evtArg->_shapeId, evtArg->_vertexId, evtArg->_x, evtArg->_y, false);
         }
         else if (evtArg->_evtType == 1) { //draw new quad
-            selectedIdx = addQuad(evtArg->_shapeId, evtArg->source.c_str(), false);
+            selectedIdx = addQuad(/*evtArg->_shapeId, */evtArg->source.c_str(), false);
         }
     }
 }
@@ -344,11 +342,11 @@ void testApp::addQuad(const std::vector<std::string> & args)
 	}
 	int selIdx = atoi(args[1].c_str());
 	string label = args[2];
-    addQuad(selIdx, label.c_str());
+    addQuad(/*selIdx,*/ label.c_str());
 }
 
-int testApp::addQuad(int selIdx, const char* label, bool sendEvent) {
-    ofLog(OF_LOG_NOTICE, "Adding QUAD [%d, %s, %d]", selIdx, label, sendEvent);
+int testApp::addQuad(/*int selIdx,*/ const char* label, bool sendEvent) {
+    //ofLog(OF_LOG_NOTICE, "Adding QUAD [%d, %s, %d]", selIdx, label, sendEvent);
 
     if (label == NULL) {
         char buffer [50];
@@ -356,30 +354,33 @@ int testApp::addQuad(int selIdx, const char* label, bool sendEvent) {
         label = buffer;
     }
 
-    quads.insert(pair<string, Quad2D*>(label, new Quad2D(label)));
+    Quad2D *q = new Quad2D(label);
+    q->setSelected(true);
+    q->setEnabled(true);
+    quads.insert(pair<string, Quad2D*>(label, q));
 
-    if(selIdx >= 0) {
+    /*if(selIdx >= 0) {
         quadsIt = quads.begin();
         std::advance(quadsIt, selIdx);
         (*quadsIt).second->setSelected(false);
-    }
+    }*/
 
     if (sendEvent) {
         ofxOscMessage oscMessage;
-        oscMessage.addIntArg(selIdx);
+        //oscMessage.addIntArg(selIdx);
         oscMessage.addStringArg(label);
         this->oscManager->SendMessage(oscMessage, ADDQUAD);
     }
 
-    selIdx = quads.size() - 1;
+    /*selIdx = quads.size() - 1;
 
     quadsIt = quads.begin();
     std::advance(quadsIt, selIdx);
     selectedQuadKey = (*quadsIt).first;
     (*quadsIt).second->setSelected(true);
     (*quadsIt).second->setEnabled(true);
-
-    return selIdx;
+*/
+    return 0;
 }
 
 void testApp::loadQuads() {
@@ -393,7 +394,7 @@ void testApp::loadQuads() {
 
     for(int i = 0; i < numQuadItems; i++)
     {
-        selectedIdx = addQuad(selectedIdx);
+        selectedIdx = addQuad(/*selectedIdx*/);
 
         quadsXML.pushTag("quadItem", i);
 
@@ -567,15 +568,12 @@ void testApp::loadShow() {
 
         double x2 = showConfig.getAttribute("vx2", "x", 50.0, i);
         double y2 = showConfig.getAttribute("vx2", "y", 50.0, i);
-        //std::cout << " Quad2D Data: "<< id;
+        std::cout << " Quad2D Data: "<< id;
 
         // add quad2
-        /*
-        selectedIdx = addQuad(????);
+        addQuad(id.c_str());
 
 
-
-        */
     }
 
     showConfig.popTag();
@@ -611,7 +609,7 @@ void testApp::saveShow() {
     showConfig.pushTag("Quads2D");
 
     showConfig.clear();
-    showConfig.addTag("Quads2D");
+    //showConfig.addTag("Quads2D");
     showConfig.pushTag("Quads2D");
 
 
@@ -628,7 +626,6 @@ void testApp::saveShow() {
         while (iter != quads.end() )
         {
             int showTagKey = showConfig.addTag("Quad2D");
-            showConfig.pushTag("Quad2D", showTagKey);
             id=iter->first;
             showConfig.addAttribute("Quad2D", "id", id, showTagKey);
             (iter->second)->getPoint(0,x0,y0);
@@ -646,11 +643,9 @@ void testApp::saveShow() {
 
             iter++;
             std::cout << " iter id quad2D: "<< id;
+
         }
 
-
-
-    showConfig.popTag();
     showConfig.popTag();
     showConfig.popTag();
 
