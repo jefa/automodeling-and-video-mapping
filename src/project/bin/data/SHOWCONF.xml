@@ -1,55 +1,52 @@
 <Show>
-  <Data name="showname1"/>
-	<Ports> <!--  port midi, port OSC-->
-		<OscPorts>
-			<Port name="osc1" port="12345"/>
-		</OscPorts>
-		<MidiPorts>
-			<Port name="midi1" port="0" />
-		</MidiPorts>
-	</Ports>
-	<Network>
-		<Node name="node1" address="10.1.1.1" port="12345" />
-		<Node name="node2" address="10.1.1.2" port="12345" />
-		<Node name="node3" address="10.1.1.3" port="12345" />
-		<Node name="node4" address="10.1.1.4" port="12345" />
-	</Network>
-	<Textures>
-		<Images>
-			<Image name="basetextura" path="Ima1.jpg" />
-			<Image name="barraazul" path="config\repository\Images\Ima2.jpg" />
-			<Image name="otraimagen" path="config\repository\Images\Ima3.jpg" />
-		</Images>
-		<Videos>
-			<Video name="pelotitarebotando" path="config\repository\Videos/Vid1.mov" />
-			<Video name="otrovideo" path="config\repository\Videos/Vid2.mov" />
-		</Videos> 
-	</Textures> 
-	<Shapes>
-		<Quads2D>
-			<Quad2D id="quad1" x0="100" y0="50" x1="300" y1="50" x2="350" y2="400" x3="110" y3="370" />
-			<Quad2D id="quad2" x0="500" y0="450" x1="700" y1="450" x2="750" y2="800" x3="510" y3="770" />
-		</Quads2D>
-		<Objs3D>
-			<Obj3D id="squirrel" filepath="./data/models/squirrel.3ds" posX="0" posY="0" posZ="0" />
-		</Objs3D>
-		
-		<!-- otras shapes ... -->
-		
-	</Shapes>
-	<AnimationLoops>
-		<AnimationLoop id="animLoop1">
-			<LinearAnimation PropertyManagerId="material1" ParamId="AMBIENT_R" duration="2.0" targetValue="1.0" />
-		</AnimationLoop>
-	</AnimationLoops>
-	<AnimationList><!--   Id,  ... parameters?  -->  
-		
-	</AnimationList>
-	<Events> <!--  occurrence time in seconds ,  Message Type@ID@... parameters?  -->   
-		<OscEvents>
-			<Event name="lanzarbolitarebotando" destination="all" />
-			<Event name="lanzarotrovideo" destination="node3" delay="10ms" />
-		</OscEvents>
-	</Events>
-	
+    <Data name="showname1" />
+    <Ports>
+        <!--  port midi, port OSC-->
+        <OscPorts>
+            <Port name="javier" port="12345" />
+        </OscPorts>
+        <MidiPorts>
+            <Port name="midi1" port="0" />
+        </MidiPorts>
+    </Ports>
+    <Network>
+        <Node name="javier" address="10.1.4.84" port="12345" />
+		<Node name="adriana" address="10.1.4.109" port="12345" />
+    </Network>
+    <Textures>
+        <Images>
+            <Image name="basetextura" path="Ima1.jpg" />
+            <Image name="barraazul" path="config\repository\Images\Ima2.jpg" />
+            <Image name="otraimagen" path="config\repository\Images\Ima3.jpg" />
+        </Images>
+        <Videos>
+            <Video name="pelotitarebotando" path="config\repository\Videos/Vid1.mov" />
+            <Video name="otrovideo" path="config\repository\Videos/Vid2.mov" />
+        </Videos>
+    </Textures>
+    <Shapes>
+        <Quads2D>
+            <Quad2D id="quad1" x0="317.000000" y0="223.000000" x1="166.000000" y1="529.000000" x2="612.000000" y2="612.000000" x3="412.000000" y3="612.000000"></Quad2D>
+            <Quad2D id="quad2" x0="643.000000" y0="136.000000" x1="850.000000" y1="175.000000" x2="794.000000" y2="494.000000" x3="615.000000" y3="291.000000"></Quad2D>
+        </Quads2D>
+        <Objs3D>
+            <Obj3D id="squirrel" filepath="./data/models/squirrel.3ds" posX="0" posY="0" posZ="0" />
+        </Objs3D>
+        <!-- otras shapes ... -->
+    </Shapes>
+    <AnimationLoops>
+        <AnimationLoop id="animLoop1">
+            <LinearAnimation PropertyManagerId="material1" ParamId="AMBIENT_R" duration="2.0" targetValue="1.0" />
+        </AnimationLoop>
+    </AnimationLoops>
+    <AnimationList>
+        <!--   Id,  ... parameters?  -->
+    </AnimationList>
+    <Events>
+        <!--  occurrence time in seconds ,  Message Type@ID@... parameters?  -->
+        <OscEvents>
+            <Event name="lanzarbolitarebotando" destination="all" />
+            <Event name="lanzarotrovideo" destination="node3" delay="10ms" />
+        </OscEvents>
+    </Events>
 </Show>
