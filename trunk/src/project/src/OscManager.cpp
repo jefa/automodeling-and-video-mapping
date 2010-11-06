@@ -17,12 +17,11 @@ OscManager::OscManager(string nodeName, map<string, Node> network, map<string, i
         {
             string nName = iter->first;
             Node n = iter->second;
-            ofLog(OF_LOG_VERBOSE, "OscManager:: Detected node ",n.port, n.address);
+            //ofLog(OF_LOG_VERBOSE, "OscManager:: Detected node %s:%d", n.address, n.port);
 
             ofxOscSender *sender = new ofxOscSender();
             sender->setup(n.address, n.port);
             senders.insert (pair<string, ofxOscSender*>(nName, sender));
-            //ofLog(OF_LOG_VERBOSE, "OscManager:: Initializing sender for Port=%d Host=%s",PORT, HOST);
 
             iter++;
         }
@@ -41,6 +40,8 @@ OscManager::OscManager(string nodeName, map<string, Node> network, map<string, i
 
         //receiver.setup( PORT );
     }
+    ofLog(OF_LOG_VERBOSE, "OscManager:: Configured!");
+
 }
 
 OscManager::~OscManager()
@@ -155,8 +156,8 @@ bool OscManager::checkForMessages()
         else if ( m.getAddress() == "/synch/addquad" )
         {
             evtArg = new DrawEventArg();
-            ((DrawEventArg*)evtArg)->_shapeId = m.getArgAsInt32(0);
-            ((DrawEventArg*)evtArg)->source = m.getArgAsString(1);
+            //((DrawEventArg*)evtArg)->_shapeId = m.getArgAsInt32(0);
+            ((DrawEventArg*)evtArg)->source = m.getArgAsString(0);
             ((DrawEventArg*)evtArg)->_evtType = 1;
             ofLog(OF_LOG_VERBOSE, "OscManager: SynchEvent/AddQuad received");
         }

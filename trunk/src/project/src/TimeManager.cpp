@@ -55,5 +55,7 @@ void TimeManager::Update() {
         ++it;
         events.erase(it2);
         nextTimeEvent = (*it).first;
-    }
+    }/* else {
+        ofLog(OF_LOG_NOTICE, "TimeManager:: No timed events to process in update.");
+    }*/
 }
