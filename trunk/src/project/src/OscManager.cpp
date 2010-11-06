@@ -1,27 +1,27 @@
-#include "SynchManager.h"
+#include "OscManager.h"
 #include "DrawEventArg.h"
 #include "AnimEventArg.h"
 
-SynchManager::SynchManager(bool isMaster)
+OscManager::OscManager(bool isMaster)
 {
     this->master = isMaster;
     if (isMaster)
     {
-        ofLog(OF_LOG_VERBOSE, "SynchManager:: Configuring as Master (sender). Port=%d Host=%s",PORT, HOST);
+        ofLog(OF_LOG_VERBOSE, "OscManager:: Configuring as Master (sender). Port=%d Host=%s",PORT, HOST);
         sender.setup( HOST, PORT );
     } else
     {
-        ofLog(OF_LOG_VERBOSE, "SynchManager:: Configuring as Slave (receiver). Port=%d",PORT);
+        ofLog(OF_LOG_VERBOSE, "OscManager:: Configuring as Slave (receiver). Port=%d",PORT);
         receiver.setup( PORT );
     }
 }
 
-SynchManager::~SynchManager()
+OscManager::~OscManager()
 {
-     ofLog(OF_LOG_VERBOSE, "SynchManager:: Destroying...");
+     ofLog(OF_LOG_VERBOSE, "OscManager:: Destroying...");
 }
 
-void SynchManager::addListener(IEventListener *listener, string evtKey)
+void OscManager::addListener(IEventListener *listener, string evtKey)
 {
     listeners.insert( listenerPair(evtKey, listener) );
 
@@ -42,18 +42,18 @@ void SynchManager::addListener(IEventListener *listener, string evtKey)
 
 }
 
-bool SynchManager::SendMessage(string msg, SYNCH_MSG_TYPE msgType)
+bool OscManager::SendMessage(string msg, SYNCH_MSG_TYPE msgType)
 {
     if (msgType == SETPOINT)
     {
-        ofLog(OF_LOG_VERBOSE, "SynchManager:: Sending message=%s\n",msg);
+        ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message=%s\n",msg);
         ofxOscMessage m;
         m.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/setpoint" );
         m.addStringArg( msg );
         sender.sendMessage( m );
     } else if (msgType == ANIMATE)
     {
-        ofLog(OF_LOG_VERBOSE, "SynchManager:: Sending message=%s\n",msg);
+        ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message=%s\n",msg);
         ofxOscMessage m;
         m.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/animationloop" );
         m.addStringArg( msg );
@@ -62,9 +62,9 @@ bool SynchManager::SendMessage(string msg, SYNCH_MSG_TYPE msgType)
     return true;
 }
 
-bool SynchManager::SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType)
+bool OscManager::SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType)
 {
-    ofLog(OF_LOG_VERBOSE, "SynchManager:: Sending message: type=%d",msgType);
+    ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message: type=%d",msgType);
     if (msgType == SETPOINT)
     {
         oscMessage.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/setpoint" );
@@ -76,11 +76,11 @@ bool SynchManager::SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType)
     return true;
 }
 
-bool SynchManager::checkForMessages()
+bool OscManager::checkForMessages()
 {
     string msg_string;
 
-    //ofLog(OF_LOG_VERBOSE, "SynchManager: Checking for messages...\n");
+    //ofLog(OF_LOG_VERBOSE, "OscManager: Checking for messages...\n");
     while( receiver.hasWaitingMessages() )
     {
         ofxOscMessage m;
@@ -95,13 +95,13 @@ bool SynchManager::checkForMessages()
             ((DrawEventArg*)evtArg)->_x = m.getArgAsInt32(2);
             ((DrawEventArg*)evtArg)->_y = m.getArgAsInt32(3);
             ((DrawEventArg*)evtArg)->_evtType = 0;
-            ofLog(OF_LOG_VERBOSE, "SynchManager: SynchEvent/SetPoint received = [%d,%d,%f,%f]",((DrawEventArg*)evtArg)->_shapeId,
+            ofLog(OF_LOG_VERBOSE, "OscManager: SynchEvent/SetPoint received = [%d,%d,%f,%f]",((DrawEventArg*)evtArg)->_shapeId,
                   ((DrawEventArg*)evtArg)->_vertexId, ((DrawEventArg*)evtArg)->_x, ((DrawEventArg*)evtArg)->_y);
         }
         else if ( m.getAddress() == "/anim/animate" )
         {
             string anim_id = m.getArgAsString(0);
-            ofLog(OF_LOG_VERBOSE, "SynchManager: Anim/Animate received. Id = %s\n",anim_id);
+            ofLog(OF_LOG_VERBOSE, "OscManager: Anim/Animate received. Id = %s\n",anim_id);
             evtArg = new AnimEventArg();
             ((AnimEventArg*)evtArg)->isActivate = true;
             ((AnimEventArg*)evtArg)->id = anim_id;
@@ -112,7 +112,7 @@ bool SynchManager::checkForMessages()
             ((DrawEventArg*)evtArg)->_shapeId = m.getArgAsInt32(0);
             ((DrawEventArg*)evtArg)->source = m.getArgAsString(1);
             ((DrawEventArg*)evtArg)->_evtType = 1;
-            ofLog(OF_LOG_VERBOSE, "SynchManager: SynchEvent/AddQuad received");
+            ofLog(OF_LOG_VERBOSE, "OscManager: SynchEvent/AddQuad received");
         }
         else
         {
@@ -131,7 +131,7 @@ bool SynchManager::checkForMessages()
                 else
                     msg_string += "unknown";
             }
-            ofLog(OF_LOG_VERBOSE, "SynchManager: Unrecognized message: %s\n", msg_string);
+            ofLog(OF_LOG_VERBOSE, "OscManager: Unrecognized message: %s\n", msg_string);
         }
 
 

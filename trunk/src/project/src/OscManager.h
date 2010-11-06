@@ -16,12 +16,12 @@ typedef pair<string, IEventListener*> listenerPair;
 
 using namespace std;
 
-class SynchManager
+class OscManager
 {
     public:
-        SynchManager();
-        SynchManager(bool isMaster = true);
-        virtual ~SynchManager();
+        //OscManager();
+        OscManager(/*map<string, string > OscPorts, */bool isMaster = true);
+        virtual ~OscManager();
         bool SendMessage(string msg, SYNCH_MSG_TYPE msgType);
         bool SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType);
         bool checkForMessages();
