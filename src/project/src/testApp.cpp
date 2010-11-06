@@ -68,6 +68,7 @@ void testApp::setup(){
 
     //load showconfig from xml
 	//loadShow();
+	TextureManager::Init();
 
     TextureManager::LoadVideoTexture("cartoon", "cartoon.mov");
     TextureManager::LoadVideoTexture("fingers", "fingers.mov");
@@ -90,6 +91,8 @@ void testApp::setup(){
     animController.AddLoop("loop1", loop1);*/
 
     TimeManager::AddTimedEvent(3.0f, this, "PlayVideo", "cartoon");
+    TimeManager::AddTimedEvent(3.6f, this, "StopVideo", "cartoon");
+
     TimeManager::AddTimedEvent(5.0f, this, "PlayVideo", "fingers");
 
     TimeManager::Init();
@@ -283,6 +286,9 @@ void testApp::event(EventArg *e) {
         TimedEventArg *evtArg = (TimedEventArg*) e;
         if(evtArg->opName.compare("PlayVideo") == 0) {  //El parametro indica que video iniciar.
             TextureManager::PlayVideo(evtArg->param);
+        }
+        else if(evtArg->opName.compare("StopVideo") == 0) {  //El parametro indica que video detener.
+            TextureManager::StopVideo(evtArg->param);
         }
     }
     else {

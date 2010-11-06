@@ -102,6 +102,8 @@ class ofxAlphaVideoPlayer : public ofBaseVideo{
 		bool 				bUseTexture;			// are we using a texture
 		bool				allocated;				// so we know to free pixels or not
 
+        bool                isPlaying();
+
 	protected:
 
 

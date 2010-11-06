@@ -20,20 +20,23 @@ void Material::SetTextureParams(string id, textureType type, int textureUnit) {
 }
 
 void Material::Enable(){
-    /*if(texType == videoTexture) {
-        TextureManager::PlayVideo(texID);
-    }*/
-    ofTexture &tex = TextureManager::GetTextureReference(texID, texType);
+    bool isTexReady = TextureManager::IsTextureReady(texID, texType);
+    if(isTexReady) {
+        ofTexture &tex = TextureManager::GetTextureReference(texID, texType);
 
-    glEnable(GL_TEXTURE_2D);
-    glActiveTextureARB(GL_TEXTURE0_ARB + textureUnit);
+        glEnable(GL_TEXTURE_2D);
+        glActiveTextureARB(GL_TEXTURE0_ARB + textureUnit);
 
-    glBindTexture(GL_TEXTURE_2D, tex.texData.textureID);
+        glBindTexture(GL_TEXTURE_2D, tex.texData.textureID);
 
-    texture_shader.setShaderActive(true);
-    texture_shader.setUniformVariable2f("texSize", tex.getWidth(), tex.getHeight());
-    texture_shader.setUniformVariable3f("color", ambient[0], ambient[1], ambient[2]);
-    texture_shader.setUniformVariable1i("tex", textureUnit);
+        texture_shader.setShaderActive(true);
+        texture_shader.setUniformVariable2f("texSize", tex.getWidth(), tex.getHeight());
+        texture_shader.setUniformVariable3f("color", ambient[0], ambient[1], ambient[2]);
+        texture_shader.setUniformVariable1i("tex", textureUnit);
+    }
+    else {
+        glColor3f(0, 0, 0);
+    }
 }
 
 void Material::Disable() {

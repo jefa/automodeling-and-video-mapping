@@ -181,6 +181,10 @@ bool ofxAlphaVideoPlayer::isFrameNew(){
 
 }
 
+bool ofxAlphaVideoPlayer::isPlaying() {
+    return bStarted;
+}
+
 //--------------------------------------------------------------------
 void ofxAlphaVideoPlayer::update(){
 	idleMovie();
@@ -224,13 +228,18 @@ void ofxAlphaVideoPlayer::idleMovie(){
 	// 		and it was badly named so now, newness happens
 	// 		per-idle not per isNew call
 	// ---------------------------------------------------
-	
+
 	if (bLoaded == true){
 
 		bIsFrameNew = bHavePixelsChanged;
 		if (bHavePixelsChanged == true) {
 			bHavePixelsChanged = false;
 		}
+
+		if(getCurrentFrame() == getTotalNumFrames()) {
+		    bStarted = false;
+		}
+
 	}
 
 }
@@ -312,15 +321,15 @@ void ofxAlphaVideoPlayer::createImgMemAndGWorld(){
 
 	#if defined(TARGET_OSX) && defined(__BIG_ENDIAN__)
 		cout << "with Big Endian"<<endl;
-		QTNewGWorldFromPtr (&(offscreenGWorld), k32ARGBPixelFormat, &(movieRect), NULL, NULL, 0, (offscreenGWorldPixels), 4 * width);		
+		QTNewGWorldFromPtr (&(offscreenGWorld), k32ARGBPixelFormat, &(movieRect), NULL, NULL, 0, (offscreenGWorldPixels), 4 * width);
 	#else
 		cout << "no Big Endian"<<endl;
 		QTNewGWorldFromPtr (&(offscreenGWorld), k32RGBAPixelFormat, &(movieRect), NULL, NULL, 0, (pixels), 4 * width);
 	#endif
-	/** POSSIBLE PIXEL FORMATS 
+	/** POSSIBLE PIXEL FORMATS
 	k32BGRAPixelFormat            = 'BGRA', // 32 bit bgra    (Matrox)
-	k32ABGRPixelFormat            = 'ABGR', // 32 bit abgr   
-	k32RGBAPixelFormat            = 'RGBA', // 32 bit rgba   	
+	k32ABGRPixelFormat            = 'ABGR', // 32 bit abgr
+	k32RGBAPixelFormat            = 'RGBA', // 32 bit rgba
 	 ***********/
 	LockPixels(GetGWorldPixMap(offscreenGWorld));
 	SetGWorld (offscreenGWorld, NULL);
