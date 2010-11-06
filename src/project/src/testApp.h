@@ -1,9 +1,6 @@
 #ifndef _TEST_APP
 #define _TEST_APP
 
-//#include <vector>
-//#include <string>
-
 #include "ofMain.h"
 #include "Object3D.h"
 #include "Translation.h"
@@ -16,9 +13,12 @@
 #include "DrawEventArg.h"
 #include "TimedEventArg.h"
 
+
 class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener {
 
 	public:
+
+        testApp(string nodeName);
 
 		void setup();
 		void update();
@@ -50,6 +50,7 @@ class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener 
         void loadShow();
 
     private:
+        string nodeName;
 		Object3D *obj3D;
 		OscManager *oscManager;
 		MidiManager	*midiManager;
