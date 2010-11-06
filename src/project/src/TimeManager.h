@@ -15,7 +15,7 @@ class TimeManager
         virtual ~TimeManager();
         static void Init();
         static void Update();
-        static void AddTimedEvent(float time, IEventListener *eventListener, string opName, string param);
+        static void AddTimedEvent(float time, IEventListener *evtLstnr, string opName, string param1, string param2 = "");
 
     protected:
     private:
