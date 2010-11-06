@@ -1,81 +1,55 @@
 <Show>
   <Data name="showname1"/>
-	<Ports>
-		<Port type="osc" useSocket="true" port="12345" />
-	</Ports>
-	<Ports>  		
-		<Port type="midi" useSocket="false" />
+	<Ports> <!--  port midi, port OSC-->
+		<OscPorts>
+			<Port name="osc1" port="12345"/>
+		</OscPorts>
+		<MidiPorts>
+			<Port name="midi1" port="0" />
+		</MidiPorts>
 	</Ports>
 	<Network>
 		<Node name="node1" address="10.1.1.1" port="12345" />
-	</Network>	
-	<Network>  	
 		<Node name="node2" address="10.1.1.2" port="12345" />
-	</Network>	
-	<Network> 		
 		<Node name="node3" address="10.1.1.3" port="12345" />
-	</Network>	
-	<Network> 		
 		<Node name="node4" address="10.1.1.4" port="12345" />
 	</Network>
 	<Textures>
 		<Images>
 			<Image name="basetextura" path="Ima1.jpg" />
-		</Images>
-		<Images>
 			<Image name="barraazul" path="config\repository\Images\Ima2.jpg" />
-		</Images>
-		<Images>      		
 			<Image name="otraimagen" path="config\repository\Images\Ima3.jpg" />
 		</Images>
 		<Videos>
 			<Video name="pelotitarebotando" path="config\repository\Videos/Vid1.mov" />
-		</Videos>			
-		<Videos>
 			<Video name="otrovideo" path="config\repository\Videos/Vid2.mov" />
 		</Videos> 
 	</Textures> 
 	<Shapes>
-    <Shape id="quad1" type="quad" />
-  </Shapes>
-	<Shapes>
-    <Shape id="quad2" type="quad" />
-  </Shapes>
-	<Shapes>
-    <Shape id="circ1" type="circle" />
-  </Shapes>
-	<Shapes>
-    <Shape id="obje1" type="obj3d" />
-  </Shapes>
+		<Quads2D>
+			<Quad2D id="quad1" x0="100" y0="50" x1="300" y1="50" x2="350" y2="400" x3="110" y3="370" />
+			<Quad2D id="quad2" x0="500" y0="450" x1="700" y1="450" x2="750" y2="800" x3="510" y3="770" />
+		</Quads2D>
+		<Objs3D>
+			<Obj3D id="squirrel" filepath="./data/models/squirrel.3ds" posX="0" posY="0" posZ="0" />
+		</Objs3D>
+		
+		<!-- otras shapes ... -->
+		
+	</Shapes>
+	<AnimationLoops>
+		<AnimationLoop id="animLoop1">
+			<LinearAnimation PropertyManagerId="material1" ParamId="AMBIENT_R" duration="2.0" targetValue="1.0" />
+		</AnimationLoop>
+	</AnimationLoops>
 	<AnimationList><!--   Id,  ... parameters?  -->  
+		
 	</AnimationList>
-	<Events>
-	  <Event>
-		<Data name="lanzarbolitarebotando" type="osc" destination="all"/>
-		</Event>
-		<Event>
-		<Data name="lanzarotrovideo" type="osc" destination="node3" delay="10ms"/>
-		</Event>
+	<Events> <!--  occurrence time in seconds ,  Message Type@ID@... parameters?  -->   
+		<OscEvents>
+			<Event name="lanzarbolitarebotando" destination="all" />
+			<Event name="lanzarotrovideo" destination="node3" delay="10ms" />
+		</OscEvents>
 	</Events>
-<quads>
-    <quadItem>
-        <vx0 x="476.000000" y="110.000000"></vx0>
-        <vx1 x="612.000000" y="412.000000"></vx1>
-        <vx2 x="419.000000" y="396.000000"></vx2>
-        <vx3 x="243.000000" y="316.000000"></vx3>
-    </quadItem>
-    <quadItem>
-        <vx0 x="390.000000" y="478.000000"></vx0>
-        <vx1 x="460.000000" y="497.000000"></vx1>
-        <vx2 x="612.000000" y="612.000000"></vx2>
-        <vx3 x="412.000000" y="612.000000"></vx3>
-    </quadItem>
-    <quadItem>
-        <vx0 x="711.000000" y="151.000000"></vx0>
-        <vx1 x="907.000000" y="60.000000"></vx1>
-        <vx2 x="933.000000" y="385.000000"></vx2>
-        <vx3 x="693.000000" y="308.000000"></vx3>
-    </quadItem>
-</quads>
 	
 </Show>
