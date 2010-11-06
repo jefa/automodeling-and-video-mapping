@@ -49,7 +49,7 @@ void testApp::setup(){
     setupLogging();
 
     //load showconfig from xml
-	loadShow();
+	//loadShow();
 
     #ifdef CONSOLE
         ofSetWindowTitle("Console APP");
@@ -73,14 +73,16 @@ void testApp::setup(){
 
     TextureManager::LoadVideoTexture("cartoon", "cartoon.mov");
     TextureManager::LoadVideoTexture("fingers", "fingers.mov");
+    TextureManager::LoadVideoTexture("cartoons", "cartoons.mov");
 
     quads.insert(pair<string, Quad2D*>("quad1", new Quad2D("quad1", 100,100, 250,80, 270,260, 80,250))) ;
-    quads["quad1"]->getMaterial()->SetTextureParams("cartoon", videoTexture, 0);
     quads["quad1"]->setEnabled(true);
 
     quads.insert(pair<string, Quad2D*>("quad2", new Quad2D("quad2", 300,100, 450,80, 470,260, 280,250))) ;
-    quads["quad2"]->getMaterial()->SetTextureParams("fingers", videoTexture, 0);
     quads["quad2"]->setEnabled(true);
+
+    //quads["quad1"]->getMaterial()->SetTextureParams("cartoon", videoTexture, 0);
+    //quads["quad2"]->getMaterial()->SetTextureParams("fingers", videoTexture, 0);
 
     /*LinearAnimation *anim5 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 1.0);
     LinearAnimation *anim6 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 0.0);
@@ -91,10 +93,15 @@ void testApp::setup(){
 
     animController.AddLoop("loop1", loop1);*/
 
+    TimeManager::AddTimedEvent(0.5f, this, "SetVideo", "quad1", "cartoon");
+    TimeManager::AddTimedEvent(0.5f, this, "SetVideo", "quad2", "fingers");
+
     TimeManager::AddTimedEvent(3.0f, this, "PlayVideo", "cartoon");
     TimeManager::AddTimedEvent(3.6f, this, "StopVideo", "cartoon");
-
     TimeManager::AddTimedEvent(5.0f, this, "PlayVideo", "fingers");
+
+    TimeManager::AddTimedEvent(6.3f, this, "SetVideo", "quad2", "cartoons");
+    TimeManager::AddTimedEvent(6.3f, this, "PlayVideo", "cartoons");
 
     TimeManager::Init();
 
@@ -286,11 +293,18 @@ void testApp::event(EventArg *e) {
 
     if (e->source.compare("TimedEventArg") == 0) {
         TimedEventArg *evtArg = (TimedEventArg*) e;
-        if(evtArg->opName.compare("PlayVideo") == 0) {  //El parametro indica que video iniciar.
-            TextureManager::PlayVideo(evtArg->param);
+        if(evtArg->opName.compare("PlayVideo") == 0) {
+            //El parametro indica que video iniciar.
+            TextureManager::PlayVideo(evtArg->param1);
         }
-        else if(evtArg->opName.compare("StopVideo") == 0) {  //El parametro indica que video detener.
-            TextureManager::StopVideo(evtArg->param);
+        else if(evtArg->opName.compare("StopVideo") == 0) {
+            //El parametro indica que video detener.
+            TextureManager::StopVideo(evtArg->param1);
+        }
+        else if(evtArg->opName.compare("SetVideo") == 0) {
+            //Param1 indica el quad al que asignar el video.
+            //Param2 indica el id del video a asignar.
+            quads[evtArg->param1]->getMaterial()->SetTextureParams(evtArg->param2, videoTexture, 0);
         }
     }
     else {

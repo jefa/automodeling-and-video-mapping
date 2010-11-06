@@ -29,12 +29,18 @@ void TimeManager::Init() {
 }
 
 
-void TimeManager::AddTimedEvent(float time, IEventListener *evtLstnr, string opName, string param) {
+void TimeManager::AddTimedEvent(float time, IEventListener *evtLstnr, string opName, string param1, string param2) {
     TimedEventArg *timedEvtArg = new TimedEventArg();
     timedEvtArg->opName = opName;
-    timedEvtArg->param = param;
+    timedEvtArg->param1 = param1;
+    timedEvtArg->param2 = param2;
 
-    events.insert(make_pair(time, make_pair(evtLstnr, timedEvtArg)));
+    float time_fixed = time;
+
+    while(events.count(time_fixed) > 0) {
+        time_fixed += 0.00001f;
+    }
+    events.insert(make_pair(time_fixed, make_pair(evtLstnr, timedEvtArg)));
 }
 
 void TimeManager::Update() {

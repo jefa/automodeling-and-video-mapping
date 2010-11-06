@@ -8,6 +8,8 @@ Material::Material(){
     ambient[3] = 1;
 
     texture_shader.loadShader("shaders/texture_ambient");
+
+    this->texID = "";
 }
 
 Material::~Material(){
@@ -20,7 +22,12 @@ void Material::SetTextureParams(string id, textureType type, int textureUnit) {
 }
 
 void Material::Enable(){
-    bool isTexReady = TextureManager::IsTextureReady(texID, texType);
+    bool isTexReady;
+    if(this->texID.compare("") == 0 )
+        isTexReady = false;
+    else {
+        isTexReady = TextureManager::IsTextureReady(texID, texType);
+    }
     if(isTexReady) {
         ofTexture &tex = TextureManager::GetTextureReference(texID, texType);
 

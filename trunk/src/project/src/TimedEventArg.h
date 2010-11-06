@@ -12,7 +12,8 @@ class TimedEventArg : public EventArg {
     }
     double _timestamp;
     string opName;
-    string param;
+    string param1;
+    string param2;
 };
 
 #endif
