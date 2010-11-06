@@ -14,7 +14,6 @@ class TextureManager
     public:
         TextureManager();
         virtual ~TextureManager();
-        static void Init();
         static void LoadImageTexture(string key, string path);
         static void LoadVideoTexture(string key, string path);
         static void UnloadVideoTexture(string key);

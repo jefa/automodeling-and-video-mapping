@@ -11,9 +11,6 @@ TextureManager::~TextureManager() {
     //dtor
 }
 
-void TextureManager::Init() {
-}
-
 void TextureManager::LoadImageTexture(string key, string path) {
     ofImage * image = new ofImage();
     image->loadImage(path);
