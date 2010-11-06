@@ -25,7 +25,7 @@ using namespace std;
 class OscManager
 {
     public:
-        OscManager(string nodeName, map<string, Node> network, map<string, int > OscPorts = NULL, bool isMaster = true);
+        OscManager(string nodeName, map<string, Node> network, map<string, int > OscPorts, bool isMaster = true);
         virtual ~OscManager();
         bool SendMessage(string msg, SYNCH_MSG_TYPE msgType, char* destNode = NULL);
         bool SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType, char* destNode = NULL);
