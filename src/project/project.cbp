@@ -261,10 +261,10 @@
 		<Unit filename="src\Modifier.h" />
 		<Unit filename="src\Object3D.cpp" />
 		<Unit filename="src\Object3D.h" />
+		<Unit filename="src\OscManager.cpp" />
+		<Unit filename="src\OscManager.h" />
 		<Unit filename="src\Quad2D.cpp" />
 		<Unit filename="src\Quad2D.h" />
-		<Unit filename="src\SynchManager.cpp" />
-		<Unit filename="src\SynchManager.h" />
 		<Unit filename="src\TextureManager.cpp" />
 		<Unit filename="src\TextureManager.h" />
 		<Unit filename="src\TimeManager.cpp" />
