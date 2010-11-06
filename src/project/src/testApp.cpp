@@ -55,13 +55,13 @@ void testApp::setup(){
     #endif
 
     #ifndef CONSOLE
-        this->synchManager = new SynchManager(false); //set as receiver
-        this->synchManager->addListener(this, "/all");
+        this->oscManager = new OscManager(false); //set as receiver
+        this->oscManager->addListener(this, "/all");
         //this->synchManager->addListener(&animController, "/anim");
         this->midiManager = new MidiManager(); //midi  receiver
         this->midiManager->addListener(this, "");
     #else
-        this->synchManager = new SynchManager(true); //set as sender
+        this->oscManager = new OscManager(true); //set as sender
     #endif
 
     /* Aqui se carga el show */
@@ -103,7 +103,7 @@ void testApp::update(){
     AnimationController::Update();
 
     #ifndef CONSOLE
-        synchManager->checkForMessages();
+        oscManager->checkForMessages();
     #endif
 
     TextureManager::Update();
@@ -321,7 +321,7 @@ void testApp::setPoint(int selectedIdx, int selectedVtx, int x, int y, bool send
         oscMessage.addIntArg(selectedVtx);
         oscMessage.addIntArg(x);
         oscMessage.addIntArg(y);
-        this->synchManager->SendMessage(oscMessage, SETPOINT);
+        this->oscManager->SendMessage(oscMessage, SETPOINT);
     }
 }
 
@@ -358,7 +358,7 @@ int testApp::addQuad(int selIdx, const char* label, bool sendEvent) {
         ofxOscMessage oscMessage;
         oscMessage.addIntArg(selIdx);
         oscMessage.addStringArg(label);
-        this->synchManager->SendMessage(oscMessage, ADDQUAD);
+        this->oscManager->SendMessage(oscMessage, ADDQUAD);
     }
 
     selIdx = quads.size() - 1;

@@ -7,7 +7,7 @@
 #include "ofMain.h"
 #include "Object3D.h"
 #include "Translation.h"
-#include "SynchManager.h"
+#include "OscManager.h"
 #include "MidiManager.h"
 #include "IEventListener.h"
 #include "Quad2D.h"
@@ -51,7 +51,7 @@ class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener 
 
     private:
 		Object3D *obj3D;
-		SynchManager *synchManager;
+		OscManager *oscManager;
 		MidiManager	*midiManager;
         ofxConsole * console;
 
