@@ -30,7 +30,7 @@ OscManager::OscManager(string nodeName, map<string, Node> network, map<string, i
 
         //buscar en OSCPorts el puerto a escuchar
 
-        map<string, int>::iterator p = OscPorts.find(name);
+        map<string, int>::iterator p = OscPorts.find("osc");
         if(p != OscPorts.end()){
             int receivePort = p->second;
             ofLog(OF_LOG_VERBOSE, "OscManager:: Configuring as Slave (receiver). Port=%d",receivePort);
