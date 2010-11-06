@@ -11,6 +11,9 @@ TextureManager::~TextureManager() {
     //dtor
 }
 
+void TextureManager::Init() {
+}
+
 void TextureManager::LoadImageTexture(string key, string path) {
     ofImage * image = new ofImage();
     image->loadImage(path);
@@ -37,6 +40,18 @@ void TextureManager::Update() {
 void TextureManager::PlayVideo(string key) {
     videoTextures[key]->play();
     videoTextures[key]->setLoopState(OF_LOOP_NONE);
+}
+
+void TextureManager::StopVideo(string key) {
+    videoTextures[key]->stop();
+}
+
+bool TextureManager::IsTextureReady(string key, textureType type) {
+    if(type == videoTexture) {
+        ofxAlphaVideoPlayer *vid = videoTextures[key];
+        return vid->isPlaying();
+    }
+    return true;
 }
 
 ofTexture& TextureManager::GetTextureReference(string key, textureType type) {
