@@ -49,7 +49,7 @@ void testApp::setup(){
     setupLogging();
 
     //load showconfig from xml
-	//loadShow();
+	loadShow();
 
     #ifdef CONSOLE
         ofSetWindowTitle("Console APP");
@@ -75,11 +75,11 @@ void testApp::setup(){
     TextureManager::LoadVideoTexture("fingers", "fingers.mov");
     TextureManager::LoadVideoTexture("cartoons", "cartoons.mov");
 
-    quads.insert(pair<string, Quad2D*>("quad1", new Quad2D("quad1", 100,100, 250,80, 270,260, 80,250))) ;
+    /*quads.insert(pair<string, Quad2D*>("quad1", new Quad2D("quad1", 100,100, 250,80, 270,260, 80,250))) ;
     quads["quad1"]->setEnabled(true);
 
     quads.insert(pair<string, Quad2D*>("quad2", new Quad2D("quad2", 300,100, 450,80, 470,260, 280,250))) ;
-    quads["quad2"]->setEnabled(true);
+    quads["quad2"]->setEnabled(true);*/
 
     //quads["quad1"]->getMaterial()->SetTextureParams("cartoon", videoTexture, 0);
     //quads["quad2"]->getMaterial()->SetTextureParams("fingers", videoTexture, 0);
@@ -255,11 +255,9 @@ void testApp::mouseMoved(int x, int y ){
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
     #ifdef CONSOLE
-    ofLog(OF_LOG_VERBOSE, "mouseDragged: x=%d, y=%d", x, y);
-
     if(selectedIdx >= 0 && selectedVtx >= 0)
     {
-        ofLog(OF_LOG_VERBOSE, "mouseDragged: ===== selectedIds=%d, selectedVtx=%d", selectedIdx,selectedVtx);
+        //ofLog(OF_LOG_VERBOSE, "mouseDragged: ===== selectedIds=%d, selectedVtx=%d", selectedIdx,selectedVtx);
         setPoint(selectedIdx, selectedVtx, x, y);
     }
     #endif
@@ -360,7 +358,7 @@ void testApp::addQuad(const std::vector<std::string> & args)
 }
 
 int testApp::addQuad(/*int selIdx,*/ const char* label, bool sendEvent) {
-    //ofLog(OF_LOG_NOTICE, "Adding QUAD [%d, %s, %d]", selIdx, label, sendEvent);
+    //ofLog(OF_LOG_NOTICE, "Adding QUAD [%s, %d]", label, sendEvent);
 
     if (label == NULL) {
         char buffer [50];
@@ -386,15 +384,13 @@ int testApp::addQuad(/*int selIdx,*/ const char* label, bool sendEvent) {
         this->oscManager->SendMessage(oscMessage, ADDQUAD);
     }
 
-    /*selIdx = quads.size() - 1;
-
-    quadsIt = quads.begin();
+/*    quadsIt = quads.begin();
     std::advance(quadsIt, selIdx);
     selectedQuadKey = (*quadsIt).first;
     (*quadsIt).second->setSelected(true);
     (*quadsIt).second->setEnabled(true);
 */
-    return 0;
+    return quads.size() - 1;
 }
 
 void testApp::loadQuads() {
@@ -498,7 +494,7 @@ void testApp::loadShow() {
     {
         string name = showConfig.getAttribute("Port", "name", "", i);
         string port = showConfig.getAttribute("Port", "port", "", i);
-        //std::cout << " Port OscPorts Data: "<<  port;
+        //std::cout << " Port OscPorts Data: "<<  port << endl;
 
         OscPorts.insert(pair<string, int>(name, atoi(port.c_str())));
     }
@@ -527,10 +523,11 @@ void testApp::loadShow() {
         string name = showConfig.getAttribute("Node", "name", "", i);
         string address = showConfig.getAttribute("Node", "address", "", i);
         string port = showConfig.getAttribute("Node", "port", "", i);
-        //std::cout << " Network Data: "<< name + " " + address + " "+ port;
+        //std::cout << " Network Data: "<< name + " " + address + " "+ port<< endl;
 
         Node NodeData;
-        NodeData.address = address;
+        string newStr (address);
+        NodeData.address = newStr;//address;
         NodeData.port = atoi(port.c_str());
         Network.insert(pair<string, Node>(name, NodeData));
 
@@ -574,19 +571,26 @@ void testApp::loadShow() {
     for(int i = 0; i < numItems; i++)
     {
         string id = showConfig.getAttribute("Quad2D", "id","", i);
-        double x0 = showConfig.getAttribute("vx0", "x", 0.0, i);
-        double y0 = showConfig.getAttribute("vx0", "y", 0.0, i);
+        double x0 = showConfig.getAttribute("Quad2D", "x0", 0.0, i);
+        double y0 = showConfig.getAttribute("Quad2D", "y0", 0.0, i);
 
-        double x1 = showConfig.getAttribute("vx1", "x", 50.0, i);
-        double y1 = showConfig.getAttribute("vx1", "y", 0.0, i);
+        double x1 = showConfig.getAttribute("Quad2D", "x1", 50.0, i);
+        double y1 = showConfig.getAttribute("Quad2D", "y1", 0.0, i);
 
-        double x2 = showConfig.getAttribute("vx2", "x", 50.0, i);
-        double y2 = showConfig.getAttribute("vx2", "y", 50.0, i);
-        std::cout << " Quad2D Data: "<< id;
+        double x2 = showConfig.getAttribute("Quad2D", "x2", 50.0, i);
+        double y2 = showConfig.getAttribute("Quad2D", "y2", 50.0, i);
+
+        double x3 = showConfig.getAttribute("Quad2D", "x3", 50.0, i);
+        double y3 = showConfig.getAttribute("Quad2D", "y3", 50.0, i);
+
+        //std::cout << " Quad2D Data: "<< id<< endl;
 
         // add quad2
-        addQuad(id.c_str());
-
+        int selIdx = addQuad(id.c_str(), false);
+        setPoint(selIdx, 0, x0, y0, false);
+        setPoint(selIdx, 1, x1, y1, false);
+        setPoint(selIdx, 2, x2, y2, false);
+        setPoint(selIdx, 3, x3, y3, false);
 
     }
 
