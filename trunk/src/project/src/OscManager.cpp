@@ -2,17 +2,44 @@
 #include "DrawEventArg.h"
 #include "AnimEventArg.h"
 
-OscManager::OscManager(bool isMaster)
+OscManager::OscManager(string nodeName, map<string, Node> network, map<string, int> OscPorts, bool isMaster)
 {
+    this->name = nodeName;
+    this->oscPorts = OscPorts;
     this->master = isMaster;
+
     if (isMaster)
     {
-        ofLog(OF_LOG_VERBOSE, "OscManager:: Configuring as Master (sender). Port=%d Host=%s",PORT, HOST);
-        sender.setup( HOST, PORT );
-    } else
-    {
-        ofLog(OF_LOG_VERBOSE, "OscManager:: Configuring as Slave (receiver). Port=%d",PORT);
-        receiver.setup( PORT );
+        ofLog(OF_LOG_VERBOSE, "OscManager:: Configuring as Master");
+
+        map<string, Node>::iterator iter = network.begin();
+        while (iter != network.end() )
+        {
+            string nName = iter->first;
+            Node n = iter->second;
+            ofLog(OF_LOG_VERBOSE, "OscManager:: Detected node ",n.port, n.address);
+
+            ofxOscSender *sender = new ofxOscSender();
+            sender->setup(n.address, n.port);
+            senders.insert (pair<string, ofxOscSender*>(nName, sender));
+            //ofLog(OF_LOG_VERBOSE, "OscManager:: Initializing sender for Port=%d Host=%s",PORT, HOST);
+
+            iter++;
+        }
+        //sender.setup( HOST, PORT );
+    } else {
+
+        //buscar en OSCPorts el puerto a escuchar
+
+        map<string, int>::iterator p = OscPorts.find(name);
+        if(p != OscPorts.end()){
+            int receivePort = p->second;
+            ofLog(OF_LOG_VERBOSE, "OscManager:: Configuring as Slave (receiver). Port=%d",receivePort);
+            receiver.setup( receivePort );
+        } else
+            ofLog(OF_LOG_WARNING, "OscManager:: Node declared as SLAVE but no OSCPORT defined for '"+name+"'");
+
+        //receiver.setup( PORT );
     }
 }
 
@@ -42,27 +69,36 @@ void OscManager::addListener(IEventListener *listener, string evtKey)
 
 }
 
-bool OscManager::SendMessage(string msg, SYNCH_MSG_TYPE msgType)
+bool OscManager::SendMessage(string msg, SYNCH_MSG_TYPE msgType, char* destNode)
 {
+     ofxOscMessage m;
     if (msgType == SETPOINT)
     {
         ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message=%s\n",msg);
-        ofxOscMessage m;
         m.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/setpoint" );
         m.addStringArg( msg );
-        sender.sendMessage( m );
+        //sender.sendMessage( m );
     } else if (msgType == ANIMATE)
     {
         ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message=%s\n",msg);
-        ofxOscMessage m;
         m.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/animationloop" );
         m.addStringArg( msg );
-        sender.sendMessage( m );
+        //sender.sendMessage( m );
+    }
+    if (destNode == NULL){
+        getSender(destNode)->sendMessage( m );
+    } else {
+        map<string, ofxOscSender*>::iterator iter = senders.begin();
+        while (iter != senders.end() )
+        {
+            iter->second->sendMessage( m );
+            iter++;
+        }
     }
     return true;
 }
 
-bool OscManager::SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType)
+bool OscManager::SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType, char* destNode)
 {
     ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message: type=%d",msgType);
     if (msgType == SETPOINT)
@@ -72,7 +108,17 @@ bool OscManager::SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType)
     {
         oscMessage.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/addquad" );
     }
-    sender.sendMessage( oscMessage );
+    //sender.sendMessage( oscMessage );
+    if (destNode != NULL){
+        getSender(destNode)->sendMessage( oscMessage );
+    } else {
+        map<string, ofxOscSender*>::iterator iter = senders.begin();
+        while (iter != senders.end() )
+        {
+            iter->second->sendMessage( oscMessage );
+            iter++;
+        }
+    }
     return true;
 }
 
@@ -151,3 +197,14 @@ bool OscManager::checkForMessages()
         }
     }
 }
+
+ofxOscSender* OscManager::getSender(string nodeName){
+    map<string, ofxOscSender*>::iterator s = senders.find(nodeName);
+    if(s != senders.end())
+        return s->second;
+    else
+        ofLog(OF_LOG_WARNING, "OscManager:: In getSender cannot find node for name '"+nodeName+"'");
+    return NULL;
+}
+
+

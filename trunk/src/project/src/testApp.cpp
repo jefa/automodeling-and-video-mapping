@@ -23,17 +23,19 @@ int selectedVtx = 0;
 float xoffset = 5;
 float yoffset = 5;
 
-map<string, string > OscPorts;
+map<string, int> OscPorts;
 
 map<string, string > MidiPorts;
 
-
-struct Node  {  string address;
-                string port;    };
 map<string, Node > Network;
 
 
 //--------------------------------------------------------------
+
+testApp::testApp(string nodeName) : ofBaseApp() {
+    this->nodeName = nodeName;
+}
+
 void testApp::setup(){
 
 	//set background to black
@@ -46,6 +48,9 @@ void testApp::setup(){
 
     setupLogging();
 
+    //load showconfig from xml
+	//loadShow();
+
     #ifdef CONSOLE
         ofSetWindowTitle("Console APP");
     #else
@@ -53,19 +58,19 @@ void testApp::setup(){
     #endif
 
     #ifndef CONSOLE
-        this->oscManager = new OscManager(false); //set as receiver
+        //this->oscManager = new OscManager(OscPorts, false); //set as receiver
+        this->oscManager = new OscManager(nodeName, Network, OscPorts, false); //set as sender
         this->oscManager->addListener(this, "/all");
         //this->synchManager->addListener(&animController, "/anim");
+
         this->midiManager = new MidiManager(); //midi  receiver
         this->midiManager->addListener(this, "");
     #else
-        this->oscManager = new OscManager(true); //set as sender
+        this->oscManager = new OscManager(nodeName, Network, OscPorts); //set as sender
     #endif
 
-    /* Aqui se carga el show */
+    //OscManager(string nodeName, map<string, Node> network, map<string, int > OscPorts = NULL, bool isMaster = true);
 
-    //load showconfig from xml
-	//loadShow();
 	TextureManager::Init();
 
     TextureManager::LoadVideoTexture("cartoon", "cartoon.mov");
@@ -480,7 +485,7 @@ void testApp::loadShow() {
         string port = showConfig.getAttribute("Port", "port", "", i);
         //std::cout << " Port OscPorts Data: "<<  port;
 
-        OscPorts.insert(pair<string, string>(name, port));
+        OscPorts.insert(pair<string, int>(name, atoi(port.c_str())));
     }
     showConfig.popTag();
 
@@ -511,7 +516,7 @@ void testApp::loadShow() {
 
         Node NodeData;
         NodeData.address = address;
-        NodeData.port = port;
+        NodeData.port = atoi(port.c_str());
         Network.insert(pair<string, Node>(name, NodeData));
 
     }
