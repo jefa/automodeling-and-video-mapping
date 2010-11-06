@@ -38,15 +38,15 @@ testApp::testApp(string nodeName) : ofBaseApp() {
 
 void testApp::setup(){
 
-	//set background to black
+    setupLogging();
+
+    //set background to black
 	ofBackground(0, 0, 0);
 
     //for smooth animation, set vertical sync if we can
 	ofSetVerticalSync(true);
 	// also, frame rate:
 	ofSetFrameRate(60);
-
-    setupLogging();
 
     //load showconfig from xml
 	loadShow();
@@ -310,6 +310,7 @@ void testApp::event(EventArg *e) {
 void testApp::setupLogging() {
 	ofSetLogLevel(OF_LOG_VERBOSE);
 	ofLog(OF_LOG_VERBOSE, "Configuring Logs");
+    ofLog(OF_LOG_VERBOSE, "Initiating with nodeName="+this->nodeName);
 }
 
 void testApp::setupConsole()
@@ -338,18 +339,17 @@ void testApp::setPoint(int selectedIdx, int selectedVtx, int x, int y, bool send
 
 void testApp::addQuad(const std::vector<std::string> & args)
 {
-	if(args.size()<3){
+	if(args.size()<2){
 		console->print("Wrong number of arguments for < "+args[0]+" >!", CTEXT_ERROR);
 		ofLog(OF_LOG_ERROR, "Wrong number of arguments for < "+args[0]+" >!");
 		return;
 	}
-	int selIdx = atoi(args[1].c_str());
-	string label = args[2];
-    addQuad(/*selIdx,*/ label.c_str());
+	string label = args[1];
+    addQuad(label.c_str());
 }
 
-int testApp::addQuad(/*int selIdx,*/ const char* label, bool sendEvent) {
-    //ofLog(OF_LOG_NOTICE, "Adding QUAD [%s, %d]", label, sendEvent);
+int testApp::addQuad(const char* label, bool sendEvent) {
+    ofLog(OF_LOG_NOTICE, "Adding QUAD [%s, %d]", label, sendEvent);
 
     if (label == NULL) {
         char buffer [50];
@@ -362,25 +362,12 @@ int testApp::addQuad(/*int selIdx,*/ const char* label, bool sendEvent) {
     q->setEnabled(true);
     quads.insert(pair<string, Quad2D*>(label, q));
 
-    /*if(selIdx >= 0) {
-        quadsIt = quads.begin();
-        std::advance(quadsIt, selIdx);
-        (*quadsIt).second->setSelected(false);
-    }*/
-
     if (sendEvent) {
         ofxOscMessage oscMessage;
-        //oscMessage.addIntArg(selIdx);
         oscMessage.addStringArg(label);
         this->oscManager->SendMessage(oscMessage, ADDQUAD);
     }
 
-/*    quadsIt = quads.begin();
-    std::advance(quadsIt, selIdx);
-    selectedQuadKey = (*quadsIt).first;
-    (*quadsIt).second->setSelected(true);
-    (*quadsIt).second->setEnabled(true);
-*/
     return quads.size() - 1;
 }
 
