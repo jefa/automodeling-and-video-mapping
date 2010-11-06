@@ -23,8 +23,6 @@ int selectedVtx = 0;
 float xoffset = 5;
 float yoffset = 5;
 
-Object3D Obj3D;
-
 map<string, string > OscPorts;
 
 map<string, string > MidiPorts;
@@ -228,6 +226,7 @@ void testApp::keyPressed  (int key){
     }
     if(key == 'l') {
         saveQuads();
+        saveShow();
     }
 
     #endif
@@ -576,27 +575,6 @@ void testApp::loadShow() {
 
     showConfig.popTag();
 
-    showConfig.pushTag("Objs3D");
-    numItems = showConfig.getNumTags("Obj3D");
-
-    for(int i = 0; i < numItems; i++)
-    {
-        string id = showConfig.getAttribute("Obj3D", "id","", i);
-        string filepath = showConfig.getAttribute("Obj3D", "filepath","", i);
-        float posX = showConfig.getAttribute("Obj3D", "posX", 0.0, i);
-        float posY = showConfig.getAttribute("Obj3D", "posY", 0.0, i);
-        float posZ = showConfig.getAttribute("Obj3D", "posZ", 0.0, i);
-
-        // add Obj3D
-
-        Obj3D.addObject(filepath);
-        Obj3D.set(POS_X, posX);
-        Obj3D.set(POS_Y, posY);
-        Obj3D.set(POS_Z, posZ);
-    }
-
-    showConfig.popTag();
-
     showConfig.popTag();
 
     showConfig.pushTag("Events", 0);
@@ -622,6 +600,55 @@ void testApp::loadShow() {
 
 void testApp::saveShow() {
 
-    //showConfig.saveFile("./SHOWCONF.xml");
+    showConfig.loadFile("./SHOWCONF.xml");
+    showConfig.pushTag("Show");
+    showConfig.pushTag("Shapes");
+    showConfig.pushTag("Quads2D");
+
+    showConfig.clear();
+    showConfig.addTag("Quads2D");
+    showConfig.pushTag("Quads2D");
+
+
+        float x0;
+        float y0;
+        float x1;
+        float y1;
+        float x2;
+        float y2;
+        float x3;
+        float y3;
+        string id;
+        map<string, Quad2D*>::iterator iter = quads.begin();
+        while (iter != quads.end() )
+        {
+            int showTagKey = showConfig.addTag("Quad2D");
+            showConfig.pushTag("Quad2D", showTagKey);
+            id=iter->first;
+            showConfig.addAttribute("Quad2D", "id", id, showTagKey);
+            (iter->second)->getPoint(0,x0,y0);
+            showConfig.addAttribute("Quad2D", "x0", x0, showTagKey);
+            showConfig.addAttribute("Quad2D", "y0", y0, showTagKey);
+            (iter->second)->getPoint(1,x1,y1);
+            showConfig.addAttribute("Quad2D", "x1", x1, showTagKey);
+            showConfig.addAttribute("Quad2D", "y1", y1, showTagKey);
+            (iter->second)->getPoint(2,x2,y2);
+            showConfig.addAttribute("Quad2D", "x2", x2, showTagKey);
+            showConfig.addAttribute("Quad2D", "y2", y2, showTagKey);
+            (iter->second)->getPoint(3,x3,y3);
+            showConfig.addAttribute("Quad2D", "x3", x3, showTagKey);
+            showConfig.addAttribute("Quad2D", "y3", y3, showTagKey);
+
+            iter++;
+            std::cout << " iter id quad2D: "<< id;
+        }
+
+
+
+    showConfig.popTag();
+    showConfig.popTag();
+    showConfig.popTag();
+
+    showConfig.saveFile("./SHOWCONF.xml");
     //ofLog(OF_LOG_NOTICE, "Show config saved.");
 }
