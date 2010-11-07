@@ -16,7 +16,7 @@ int main( int argc, char** argv ) {
     #ifndef CONSOLE
     ofSetWindowPosition(-1024,0);
     #else
-    ofSetWindowPosition(200,30);
+    ofSetWindowPosition(200,20);
     #endif
 
 	// this kicks off the running of my app

@@ -42,7 +42,7 @@ void Material::Enable(){
         texture_shader.setUniformVariable1i("tex", textureUnit);
     }
     else {
-        glColor3f(0, 0, 0);
+        glColor3f(0, 0, 1);
     }
 }
 

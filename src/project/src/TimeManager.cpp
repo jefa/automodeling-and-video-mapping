@@ -56,7 +56,7 @@ void TimeManager::Update() {
         string destination = it->second.first.c_str();
         ofxOscMessage msg = it->second.second->args;
 
-        OscManager::SendMessage(msg);
+        OscManager::SendMessage(msg, destination);
 
         evtlstnr->event(it->second.second);//Esto es para mostrar los eventos en consola tambien.
 
