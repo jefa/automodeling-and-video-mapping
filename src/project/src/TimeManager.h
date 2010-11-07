@@ -13,7 +13,7 @@ class TimeManager
     public:
         TimeManager();
         virtual ~TimeManager();
-        static void Init();
+        static void Init(IEventListener *e);
         static void Update();
         static void ScheduleEvent(float time, string destination, EventArg *eventArg);
 

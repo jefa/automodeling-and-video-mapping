@@ -100,10 +100,10 @@ void OscManager::SendMessage(string msg, string address, string destNode)
 
 void OscManager::SendMessage(ofxOscMessage oscMessage, string destNode)
 {
-    ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message: type=%s", oscMessage.getAddress());
+    ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message: type=%s", oscMessage.getAddress().c_str());
 
     if (!destNode.empty()){
-        getSender(destNode)->sendMessage( oscMessage );
+        getSender(destNode.c_str())->sendMessage( oscMessage );
     }
     else {
         map<string, ofxOscSender*>::iterator iter = senders.begin();
