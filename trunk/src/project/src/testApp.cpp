@@ -120,7 +120,6 @@ void testApp::draw(){
 //--------------------------------------------------------------
 
 void cycleQuadSelection(bool fwd) {
-    ofLog(OF_LOG_NOTICE, "testApp:: cycleQuadSelection fwd=%d, selectedIdx=%d", fwd, selectedIdx);
     if(quads.size() > 0) {
         int oldSelectedIdx = selectedIdx;
         if(fwd) {
@@ -130,18 +129,18 @@ void cycleQuadSelection(bool fwd) {
             --selectedIdx;
         }
         selectedIdx %= quads.size();
-        ofLog(OF_LOG_NOTICE, "testApp:: New selectedIdx=%d", selectedIdx);
 
-        quadsIt = quads.begin();
-        std::advance(quadsIt, oldSelectedIdx);
-        (*quadsIt).second->setSelected(false);
+        if (oldSelectedIdx < quads.size()){
+            quadsIt = quads.begin();
+            std::advance(quadsIt, oldSelectedIdx);
+            (*quadsIt).second->setSelected(false);
+        } else {
+            ofLog(OF_LOG_WARNING, "testApp: cycleQuadSelection: oldSelectedIndex=%d is invalid for quads.size=%d. Probably was removed...", oldSelectedIdx, quads.size());
+        }
         quadsIt = quads.begin();
         std::advance(quadsIt, selectedIdx);
         selectedQuadKey = (*quadsIt).first;
         (*quadsIt).second->setSelected(true);
-
-        ofLog(OF_LOG_NOTICE, "testApp:: sycle ended");
-
     }
 }
 
