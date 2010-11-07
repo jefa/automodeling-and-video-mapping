@@ -83,15 +83,15 @@ void testApp::setup(){
 
     #ifdef CONSOLE
 
-    TimeManager::AddTimedEvent(0.5f, this, "SetVideo", "quad1", "cartoon");
-    TimeManager::AddTimedEvent(0.5f, this, "SetVideo", "quad2", "fingers");
+    TimeManager::ScheduleEvent(0.5f, "console", new EventArg("/video/set", "quad1", "cartoon"));
+    TimeManager::ScheduleEvent(0.5f, "console", new EventArg("/video/set", "quad2", "fingers"));
 
-    TimeManager::AddTimedEvent(3.0f, this, "PlayVideo", "cartoon");
-    TimeManager::AddTimedEvent(3.6f, this, "StopVideo", "cartoon");
-    TimeManager::AddTimedEvent(5.0f, this, "PlayVideo", "fingers");
+    TimeManager::ScheduleEvent(3.0f, "console", new EventArg("/video/play", "cartoon"));
+    TimeManager::ScheduleEvent(3.6f, "console", new EventArg("/video/stop", "cartoon"));
+    TimeManager::ScheduleEvent(5.0f, "console", new EventArg("/video/play", "fingers"));
 
-    TimeManager::AddTimedEvent(6.3f, this, "SetVideo", "quad2", "cartoons");
-    TimeManager::AddTimedEvent(6.3f, this, "PlayVideo", "cartoons");
+    TimeManager::ScheduleEvent(6.3f, "console", new EventArg("/video/set", "quad2", "cartoons"));
+    TimeManager::ScheduleEvent(6.3f, "console", new EventArg("/video/play", "cartoons"));
 
     TimeManager::Init();
 
@@ -330,11 +330,12 @@ void testApp::setPoint(int selectedIdx, int selectedVtx, int x, int y, bool send
 
     if (sendEvent) {
         ofxOscMessage oscMessage;
+        oscMessage.setAddress("/synch/setpoint");
         oscMessage.addIntArg(selectedIdx);
         oscMessage.addIntArg(selectedVtx);
         oscMessage.addIntArg(x);
         oscMessage.addIntArg(y);
-        OscManager::SendMessage(oscMessage, SETPOINT);
+        OscManager::SendMessage(oscMessage);
     }
 }
 
@@ -349,10 +350,10 @@ void testApp::addQuad(const std::vector<std::string> & args)
     addQuad(label.c_str());
 }
 
-int testApp::addQuad(const char* label, bool sendEvent) {
+int testApp::addQuad(string label, bool sendEvent) {
     ofLog(OF_LOG_NOTICE, "Adding QUAD [%s, %d]", label, sendEvent);
 
-    if (label == NULL) {
+    if (label.empty()) {
         char buffer [50];
         sprintf (buffer, "quad%d", quads.size());
         label = buffer;
@@ -365,8 +366,9 @@ int testApp::addQuad(const char* label, bool sendEvent) {
 
     if (sendEvent) {
         ofxOscMessage oscMessage;
+        oscMessage.setAddress("/synch/addquad");
         oscMessage.addStringArg(label);
-        OscManager::SendMessage(oscMessage, ADDQUAD);
+        OscManager::SendMessage(oscMessage);
     }
 
     return quads.size() - 1;

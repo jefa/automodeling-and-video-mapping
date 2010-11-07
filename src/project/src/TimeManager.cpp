@@ -6,12 +6,10 @@
 static double totalAnimTime;
 static double deltaStartTime;       //Tiempo entre que comenzó la aplicación y se hizo init a TimeManager
 
-static map<float, pair<IEventListener*, EventArg*> >::iterator it;
+map<float, pair<string, EventArg*> > TimeManager::events;
+static map<float, pair<string, EventArg*> >::iterator it;
 
 static float nextTimeEvent;
-
-map<float, pair<IEventListener*, EventArg*> > TimeManager::events;
-
 bool moreEvents = true;
 
 TimeManager::TimeManager()
@@ -37,19 +35,13 @@ void TimeManager::Init() {
     deltaStartTime = ofGetElapsedTimef();
 }
 
-void TimeManager::AddTimedEvent(float time, IEventListener *evtLstnr, string opName, string param1, string param2) {
-    EventArg *timedEvtArg = new EventArg();
-    timedEvtArg->type = "TIME";
-    timedEvtArg->args.setAddress(opName);
-    timedEvtArg->args.addStringArg(param1);
-    timedEvtArg->args.addStringArg(param2);
-
+void TimeManager::ScheduleEvent(float time, string destination, EventArg *eventArg) {
     float time_fixed = time;
 
     while(events.count(time_fixed) > 0) {
         time_fixed += 0.001f;
     }
-    events.insert(make_pair(time_fixed, make_pair(evtLstnr, timedEvtArg)));
+    events.insert(make_pair(time_fixed, make_pair(destination, eventArg)));
 }
 
 void TimeManager::Update() {
@@ -62,13 +54,15 @@ void TimeManager::Update() {
         timedEvtArg->_timestamp = totalAnimTime;
         (*it).second.first->event(timedEvtArg);
         */ //ACA ENVIAR EVENTO POR OSC A DESTINATARIOS CORRECTOS
+        OscManager::SendMessage(it->second.second->args, it->second.first);
+
         ++it;
 
         if(it == events.end()) {
             moreEvents = false;
         }
         else {
-            nextTimeEvent = (*it).first;
+            nextTimeEvent = it->first;
         }
     }/* else {
         ofLog(OF_LOG_NOTICE, "TimeManager:: No timed events to process in update.");

@@ -15,11 +15,11 @@ class TimeManager
         virtual ~TimeManager();
         static void Init();
         static void Update();
-        static void AddTimedEvent(float time, IEventListener *evtLstnr, string opName, string param1, string param2 = "");
+        static void ScheduleEvent(float time, string destination, EventArg *eventArg);
 
     protected:
     private:
-        static map<float, pair<IEventListener*,EventArg*> > events;
+        static map<float, pair<string, EventArg*> > events;
 };
 
 #endif // TIMEMANAGER_H

@@ -36,7 +36,7 @@ class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener 
 
         void setPoint(int selectedIdx, int selectedVtx,
                       int x, int y, bool sendEvent=true);
-		int addQuad(const char* label=NULL, bool sendEvent=true);
+		int addQuad(string label = "", bool sendEvent=true);
 		void addQuad(const std::vector<std::string> & args);
 
 		void event(EventArg *e);
