@@ -12,6 +12,8 @@ static map<float, pair<string, EventArg*> >::iterator it;
 static float nextTimeEvent;
 bool moreEvents = true;
 
+IEventListener *evtlstnr;
+
 TimeManager::TimeManager()
 {
     //ctor
@@ -22,11 +24,12 @@ TimeManager::~TimeManager()
     //dtor
 }
 
-void TimeManager::Init() {
+void TimeManager::Init(IEventListener *e) {
     totalAnimTime = 0;
+    evtlstnr = e;
     if(events.size() > 0) {
         it = events.begin();
-        nextTimeEvent = (*it).first;
+        nextTimeEvent = it->first;
     }
     else {
         moreEvents = false;
@@ -50,11 +53,12 @@ void TimeManager::Update() {
     if(moreEvents && events.size() > 0 && totalAnimTime > nextTimeEvent) {
         ofLog(OF_LOG_VERBOSE, "%f :: llamando a func...", totalAnimTime);
 
-        /*EventArg *timedEvtArg = (*it).second.second;
-        timedEvtArg->_timestamp = totalAnimTime;
-        (*it).second.first->event(timedEvtArg);
-        */ //ACA ENVIAR EVENTO POR OSC A DESTINATARIOS CORRECTOS
-        OscManager::SendMessage(it->second.second->args, it->second.first);
+        string destination = it->second.first.c_str();
+        ofxOscMessage msg = it->second.second->args;
+
+        OscManager::SendMessage(msg);
+
+        evtlstnr->event(it->second.second);//Esto es para mostrar los eventos en consola tambien.
 
         ++it;
 
@@ -64,7 +68,5 @@ void TimeManager::Update() {
         else {
             nextTimeEvent = it->first;
         }
-    }/* else {
-        ofLog(OF_LOG_NOTICE, "TimeManager:: No timed events to process in update.");
-    }*/
+    }
 }
