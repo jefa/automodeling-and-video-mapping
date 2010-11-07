@@ -47,7 +47,7 @@ void testApp::setup(){
 	ofSetFrameRate(60);
 
     //load showconfig from xml
-	//loadShow();
+	loadShow();
 
     #ifdef CONSOLE
         ofSetWindowTitle("Console APP");
@@ -66,11 +66,11 @@ void testApp::setup(){
     TextureManager::LoadVideoTexture("fingers", "fingers.mov");
     TextureManager::LoadVideoTexture("cartoons", "cartoons.mov");
 
-    quads.insert(pair<string, Quad2D*>("quad1", new Quad2D("quad1", 100,100, 250,80, 270,260, 80,250))) ;
+    /*quads.insert(pair<string, Quad2D*>("quad1", new Quad2D("quad1", 100,100, 250,80, 270,260, 80,250))) ;
     quads["quad1"]->setEnabled(true);
 
     quads.insert(pair<string, Quad2D*>("quad2", new Quad2D("quad2", 300,100, 450,80, 470,260, 280,250))) ;
-    quads["quad2"]->setEnabled(true);
+    quads["quad2"]->setEnabled(true);*/
 
     /*LinearAnimation *anim5 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 1.0);
     LinearAnimation *anim6 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 0.0);
@@ -80,6 +80,8 @@ void testApp::setup(){
     loop1->AddAnimation(anim6);
 
     animController.AddLoop("loop1", loop1);*/
+
+    #ifdef CONSOLE
 
     TimeManager::AddTimedEvent(0.5f, this, "SetVideo", "quad1", "cartoon");
     TimeManager::AddTimedEvent(0.5f, this, "SetVideo", "quad2", "fingers");
@@ -95,6 +97,8 @@ void testApp::setup(){
 
     setupConsole();
 
+    #endif
+
 }
 
 //--------------------------------------------------------------
@@ -103,6 +107,7 @@ void testApp::update(){
 
     #ifndef CONSOLE
         OscManager::Update();    //Check for messages
+    #else
         TimeManager::Update();
     #endif
 
@@ -117,7 +122,9 @@ void testApp::draw(){
         (*quadsIt).second->draw();
     }
 
-    console->render();
+    #ifdef CONSOLE
+        console->render();
+    #endif
 
 }
 
