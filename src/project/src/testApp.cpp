@@ -474,7 +474,7 @@ void testApp::loadShow() {
     {
         string name = showConfig.getAttribute("Port", "name", "", i);
         string port = showConfig.getAttribute("Port", "port", "", i);
-        //std::cout << " Port MidiPorts Data: "<<  port;
+        //std::cout << " Port MidiPorts Data: "<<  port << endl;
 
         MidiPorts.insert(pair<string, string>(name, port));
     }
@@ -509,7 +509,7 @@ void testApp::loadShow() {
     {
         string name = showConfig.getAttribute("Image", "name","", i);
         string path = showConfig.getAttribute("Image", "path","", i);
-        //std::cout << " Images Data: "<< name + " " + path;
+        //std::cout << " Images Data: "<< name + " " + path << endl;
 
         TextureManager::LoadImageTexture(name, path);
 
@@ -523,7 +523,7 @@ void testApp::loadShow() {
     {
         string name = showConfig.getAttribute("Video", "name","", i);
         string path = showConfig.getAttribute("Video", "path","", i);
-        //std::cout << " Videos Data: "<< name + " " + path;
+        //std::cout << " Videos Data: "<< name + " " + path << endl;
 
         TextureManager::LoadVideoTexture(name, path);
     }
@@ -574,14 +574,37 @@ void testApp::loadShow() {
         string name = showConfig.getAttribute("Event", "name","", i);
         string destination = showConfig.getAttribute("Event", "destination","", i);
         string delay = showConfig.getAttribute("Event", "delay","", i);
-        //std::cout << " Event Data: "<< name + " " +destination+ " " +delay;
+        //std::cout << " Event Data: "<< name + " " +destination+ " " +delay << endl;
 
         //   add synchmanager event
     }
 
-    showConfig.popTag();
-    showConfig.popTag();
+    showConfig.popTag(); //OscEvents
 
+    showConfig.pushTag("TimedEvents");
+    numItems = showConfig.getNumTags("TimedEvent");
+    for(int i = 0; i < numItems; i++)
+    {
+        string destination = showConfig.getAttribute("TimedEvent", "destination","", i);
+        double time = showConfig.getAttribute("TimedEvent", "time", 0, i);
+        //std::cout << " TimedEvent Data: "<< destination+ " " +time << endl;
+
+        string address = showConfig.getAttribute("TimedEvent:Message", "address","", i);
+        string param1 = showConfig.getAttribute("TimedEvent:Message", "param1","", i);
+        string param2 = showConfig.getAttribute("TimedEvent:Message", "param2","", i);
+        string param3 = showConfig.getAttribute("TimedEvent:Message", "param3","", i);
+        string param4 = showConfig.getAttribute("TimedEvent:Message", "param4","", i);
+        string param5 = showConfig.getAttribute("TimedEvent:Message", "param5","", i);
+
+        std::cout << " TimedEvent Message: "<< address+ " " +param1 << " " << param2 << " " << param3 << " " << param4 << " " << param5 << endl;
+        #ifdef CONSOLE
+        TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2, param3, param4, param5));
+        #endif
+
+    }
+
+    showConfig.popTag(); //TimedEvents
+    showConfig.popTag(); //Events
     ofLog(OF_LOG_NOTICE, "Show config loaded.");
 }
 
@@ -626,7 +649,7 @@ void testApp::saveShow() {
             showConfig.addAttribute("Quad2D", "y3", y3, showTagKey);
 
             iter++;
-            std::cout << " iter id quad2D: "<< id;
+            std::cout << " iter id quad2D: "<< id << endl;
 
         }
 
