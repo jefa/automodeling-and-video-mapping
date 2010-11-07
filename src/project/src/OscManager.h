@@ -22,7 +22,6 @@ class OscManager
         OscManager();
         virtual ~OscManager();
         static void Init(string nodeName, map<string, Node> network, map<string, int> OscPorts, bool isMaster = true);
-        static void SendMessage(string msg, string address, string destNode = "");
         static void SendMessage(ofxOscMessage oscMessage, string destNode = "");
         static void Update();
         static void AddListener(IEventListener*, string);

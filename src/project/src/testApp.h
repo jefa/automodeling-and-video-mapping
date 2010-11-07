@@ -38,6 +38,10 @@ class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener 
 		int addQuad(string label = "", bool sendEvent=true);
 		void addQuad(const std::vector<std::string> & args);
 
+		int removeQuad(string label = "", bool sendEvent=true);
+		void removeQuad(const std::vector<std::string> & args);
+		void removeQuadSelected(const std::vector<std::string> & args);
+
 		void event(EventArg *e);
 
         void saveQuads();
