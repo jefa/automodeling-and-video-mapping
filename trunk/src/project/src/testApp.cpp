@@ -119,7 +119,7 @@ void testApp::draw(){
 //--------------------------------------------------------------
 
 void cycleQuadSelection(bool fwd) {
-    //ofLog(OF_LOG_NOTICE, "testApp:: cycleQuadSelection fwd=%d, selectedIdx=%d", fwd, selectedIdx);
+    ofLog(OF_LOG_NOTICE, "testApp:: cycleQuadSelection fwd=%d, selectedIdx=%d", fwd, selectedIdx);
     if(quads.size() > 0) {
         int oldSelectedIdx = selectedIdx;
         if(fwd) {
@@ -129,13 +129,13 @@ void cycleQuadSelection(bool fwd) {
             --selectedIdx;
         }
         selectedIdx %= quads.size();
-        //ofLog(OF_LOG_NOTICE, "testApp:: New selectedIdx=%d", selectedIdx);
+        ofLog(OF_LOG_NOTICE, "testApp:: New selectedIdx=%d", selectedIdx);
 
         quadsIt = quads.begin();
         std::advance(quadsIt, oldSelectedIdx);
         (*quadsIt).second->setSelected(false);
         quadsIt = quads.begin();
-        std::advance(quadsIt, selectedIdx);d
+        std::advance(quadsIt, selectedIdx);
         selectedQuadKey = (*quadsIt).first;
         (*quadsIt).second->setSelected(true);
     }
@@ -206,13 +206,13 @@ void testApp::keyPressed  (int key){
         selectedIdx = addQuad(selectedIdx);
     }*/
     if(key == '\b') {
-        if(quads.size() > 0 && selectedIdx >= 0) {
+        /*if(quads.size() > 0 && selectedIdx >= 0) {
             quadsIt = quads.begin();
             std::advance(quadsIt, selectedIdx);
             (*quadsIt).second->setSelected(false);
             quads.erase(quadsIt);
             selectedQuadKey = "";
-        }
+        }*/
     }
     if(key == 'l') {
         saveQuads();
@@ -283,6 +283,9 @@ void testApp::event(EventArg *e) {
     else if(address.compare("/synch/addquad") == 0) {
         selectedIdx = addQuad(e->args.getArgAsString(0).c_str(), false);
     }
+    else if(address.compare("/synch/removequad") == 0) {
+        selectedIdx = removeQuad(e->args.getArgAsString(0).c_str(), false);
+    }
     else {
         ofLog(OF_LOG_WARNING, "unknown event with address %s", address);
     }
@@ -300,6 +303,8 @@ void testApp::setupConsole() {
 	console->print("Mapping app started...");
 	console->addFunction("quit", this, &testApp::quit);
 	console->addFunction("addQuad", this, &testApp::addQuad);
+	console->addFunction("removeQuad", this, &testApp::removeQuad);
+	console->addFunction("removeQuadSel", this, &testApp::removeQuadSelected);
 }
 
 void testApp::setPoint(int selectedIdx, int selectedVtx, int x, int y, bool sendEvent) {
@@ -345,6 +350,66 @@ int testApp::addQuad(string label, bool sendEvent) {
     if (sendEvent) {
         ofxOscMessage oscMessage;
         oscMessage.setAddress("/synch/addquad");
+        oscMessage.addStringArg(label);
+        OscManager::SendMessage(oscMessage);
+    }
+
+    return quads.size() - 1;
+}
+
+void testApp::removeQuadSelected(const std::vector<std::string> & args) {
+	if(args.size()<1){
+		console->print("Wrong number of arguments for < "+args[0]+" >!", CTEXT_ERROR);
+		ofLog(OF_LOG_ERROR, "Wrong number of arguments for < "+args[0]+" >!");
+		return;
+	}
+    removeQuad();
+}
+
+void testApp::removeQuad(const std::vector<std::string> & args) {
+	if(args.size()<2){
+		console->print("Wrong number of arguments for < "+args[0]+" >!", CTEXT_ERROR);
+		ofLog(OF_LOG_ERROR, "Wrong number of arguments for < "+args[0]+" >!");
+		return;
+	}
+	string label = args[1];
+    removeQuad(label.c_str());
+}
+
+int testApp::removeQuad(string label, bool sendEvent) {
+    ofLog(OF_LOG_NOTICE, "Removing QUAD [%s, %d]", label.c_str(), sendEvent);
+
+    if (label.empty()) {
+        ofLog(OF_LOG_WARNING, "Removing Quad with no label provided. Removing selected...");
+        if(quads.size() > 0 && selectedIdx >= 0) {
+            quadsIt = quads.begin();
+            std::advance(quadsIt, selectedIdx);
+            label = (*quadsIt).first;
+            (*quadsIt).second->setSelected(false);
+            quads.erase(quadsIt);
+            selectedQuadKey = "";
+        } else {
+            ofLog(OF_LOG_WARNING, "Removing Quad: no quads or not one selected.");
+            return -1;
+        }
+    } else if (quads.size() > 0) {
+        map<string, Quad2D*>::iterator q = quads.find(label);
+        if(q != quads.end()){
+            q->second->setSelected(false);
+            quads.erase(q);
+            selectedQuadKey = "";
+        } else {
+            ofLog(OF_LOG_WARNING, "testApp:: No Quad for label '"+label+"'");
+            return -1;
+        }
+    } else {
+        ofLog(OF_LOG_ERROR, "Removing Quad:: Neither label or selected index provided.");
+        return -1;
+    }
+
+    if (sendEvent) {
+        ofxOscMessage oscMessage;
+        oscMessage.setAddress("/synch/removequad");
         oscMessage.addStringArg(label);
         OscManager::SendMessage(oscMessage);
     }

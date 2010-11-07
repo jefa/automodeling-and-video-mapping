@@ -60,47 +60,11 @@ OscManager::~OscManager()
 void OscManager::AddListener(IEventListener *listener, string evtKey)
 {
     listeners.insert(make_pair(evtKey, listener));
-
-    /*map<string, IEventListener*>::iterator iter = listeners.begin();
-    while (iter != listeners.end() )
-    {
-        ofLog(OF_LOG_VERBOSE, "====== Listener %d\n", iter);
-        iter++;
-    }*/
-
-    /*string s = "Ruben";
-    map<string, string>::iterator p = directorio.find(s);
-    if(p != directorio.end())
-        cout << "Numero telefonico de : " << s << " = " << p->second << endl;
-    else
-        cout << s << " no está en el directorio.\n";
-    */
-
-}
-
-void OscManager::SendMessage(string msg, string address, string destNode)
-{
-     ofxOscMessage m;
-     m.setAddress(address);
-     m.addStringArg(msg);
-     ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message=%s", msg);
-
-    if (!destNode.empty()){
-        getSender(destNode)->sendMessage( m );
-    }
-    else {
-        map<string, ofxOscSender*>::iterator iter = senders.begin();
-        while (iter != senders.end() )
-        {
-            iter->second->sendMessage( m );
-            iter++;
-        }
-    }
 }
 
 void OscManager::SendMessage(ofxOscMessage oscMessage, string destNode)
 {
-    ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message: type=%s", oscMessage.getAddress().c_str());
+    //ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message: type=%s", oscMessage.getAddress().c_str());
 
     if (!destNode.empty()){
         getSender(destNode.c_str())->sendMessage( oscMessage );
@@ -140,7 +104,13 @@ void OscManager::Update()
         {
             evtArg->args.setAddress("/synch/addquad");
             evtArg->args.addStringArg(m.getArgAsString(0));
-            ofLog(OF_LOG_VERBOSE, "OscManager: SynchEvent/AddQuad received");
+            ofLog(OF_LOG_VERBOSE, "OscManager: SynchEvent/AddQuad received for "+m.getArgAsString(0));
+        }
+        else if ( m.getAddress() == "/synch/removequad" )
+        {
+            evtArg->args.setAddress("/synch/removequad");
+            evtArg->args.addStringArg(m.getArgAsString(0));
+            ofLog(OF_LOG_VERBOSE, "OscManager: SynchEvent/RemoveQuad received for "+m.getArgAsString(0));
         }
         else
         {
@@ -173,7 +143,6 @@ void OscManager::Update()
         map<string, IEventListener*>::iterator iter = listeners.begin();
         while (iter != listeners.end() )
         {
-            //ofLog(OF_LOG_VERBOSE, "====== Listener \n"/*, iter->first*/);
             iter->second->event(evtArg);
             iter++;
         }
