@@ -10,8 +10,6 @@
 #include "Quad2D.h"
 #include "ofxMidiEvents.h"
 #include "ofxConsole.h"
-#include "DrawEventArg.h"
-#include "TimedEventArg.h"
 
 
 class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener {

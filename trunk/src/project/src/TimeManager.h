@@ -2,10 +2,10 @@
 #define TIMEMANAGER_H
 
 #include "IEventListener.h"
-#include "TimedEventArg.h"
 
 #include <string>
 #include <map>
+
 using namespace std;
 
 class TimeManager
@@ -19,7 +19,7 @@ class TimeManager
 
     protected:
     private:
-        static map<float, pair<IEventListener*,TimedEventArg*> > events;
+        static map<float, pair<IEventListener*,EventArg*> > events;
 };
 
 #endif // TIMEMANAGER_H

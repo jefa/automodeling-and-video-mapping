@@ -1,6 +1,4 @@
 #include "OscManager.h"
-#include "DrawEventArg.h"
-#include "AnimEventArg.h"
 
 string OscManager::name;
 bool OscManager::master;
@@ -144,33 +142,23 @@ bool OscManager::Update()
     {
         ofxOscMessage m;
         receiver.getNextMessage( &m );
-        EventArg *evtArg;
+        EventArg *evtArg = new EventArg();
+        evtArg->type = "OSC";
 
         if ( m.getAddress() == "/synch/setpoint" )
         {
-            evtArg = new DrawEventArg();
-            ((DrawEventArg*)evtArg)->_shapeId = m.getArgAsInt32(0);
-            ((DrawEventArg*)evtArg)->_vertexId = m.getArgAsInt32(1);
-            ((DrawEventArg*)evtArg)->_x = m.getArgAsInt32(2);
-            ((DrawEventArg*)evtArg)->_y = m.getArgAsInt32(3);
-            ((DrawEventArg*)evtArg)->_evtType = 0;
-            ofLog(OF_LOG_VERBOSE, "OscManager: SynchEvent/SetPoint received = [%d,%d,%f,%f]",((DrawEventArg*)evtArg)->_shapeId,
-                  ((DrawEventArg*)evtArg)->_vertexId, ((DrawEventArg*)evtArg)->_x, ((DrawEventArg*)evtArg)->_y);
-        }
-        else if ( m.getAddress() == "/anim/animate" )
-        {
-            string anim_id = m.getArgAsString(0);
-            ofLog(OF_LOG_VERBOSE, "OscManager: Anim/Animate received. Id = %s\n",anim_id);
-            evtArg = new AnimEventArg();
-            ((AnimEventArg*)evtArg)->isActivate = true;
-            ((AnimEventArg*)evtArg)->id = anim_id;
+            evtArg->args.setAddress("/synch/setpoint");
+            evtArg->args.addIntArg(m.getArgAsInt32(0));
+            evtArg->args.addIntArg(m.getArgAsInt32(1));
+            evtArg->args.addIntArg(m.getArgAsInt32(2));
+            evtArg->args.addIntArg(m.getArgAsInt32(3));
+            //ofLog(OF_LOG_VERBOSE, "OscManager: SynchEvent/SetPoint received = [%d,%d,%f,%f]",((DrawEventArg*)evtArg)->_shapeId,
+            //      ((DrawEventArg*)evtArg)->_vertexId, ((DrawEventArg*)evtArg)->_x, ((DrawEventArg*)evtArg)->_y);
         }
         else if ( m.getAddress() == "/synch/addquad" )
         {
-            evtArg = new DrawEventArg();
-            //((DrawEventArg*)evtArg)->_shapeId = m.getArgAsInt32(0);
-            ((DrawEventArg*)evtArg)->source = m.getArgAsString(0);
-            ((DrawEventArg*)evtArg)->_evtType = 1;
+            evtArg->args.setAddress("/synch/addquad");
+            evtArg->args.addStringArg(m.getArgAsString(0));
             ofLog(OF_LOG_VERBOSE, "OscManager: SynchEvent/AddQuad received");
         }
         else
