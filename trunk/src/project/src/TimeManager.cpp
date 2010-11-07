@@ -61,7 +61,8 @@ void TimeManager::Update() {
         /*EventArg *timedEvtArg = (*it).second.second;
         timedEvtArg->_timestamp = totalAnimTime;
         (*it).second.first->event(timedEvtArg);
-        ++it;*/ //ACA ENVIAR EVENTO POR OSC A DESTINATARIOS CORRECTOS
+        */ //ACA ENVIAR EVENTO POR OSC A DESTINATARIOS CORRECTOS
+        ++it;
 
         if(it == events.end()) {
             moreEvents = false;
