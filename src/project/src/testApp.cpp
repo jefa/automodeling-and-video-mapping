@@ -146,8 +146,6 @@ void cycleQuadSelection(bool fwd) {
     }
 }
 
-bool consolaAbierta = false;
-
 void testApp::keyPressed  (int key){
 
 #ifdef CONSOLE
@@ -156,17 +154,12 @@ void testApp::keyPressed  (int key){
         consoleEnabled = !consoleEnabled;
         ofLog(OF_LOG_NOTICE, "CONSOLE ENABLED = %d", consoleEnabled);
     }
-
     if (consoleEnabled)
         return;
 
     if(key == 't') {
         addQuad();
     }
-    if (consolaAbierta) {
-        return;
-    }
-
 
     if(key == 'k') {
         loadQuads();
