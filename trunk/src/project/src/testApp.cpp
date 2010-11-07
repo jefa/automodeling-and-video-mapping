@@ -20,6 +20,7 @@ int selectedIdx = 0;
 int selectedVtx = 0;
 float xoffset = 5;
 float yoffset = 5;
+bool consoleEnabled = false;
 
 map<string, int> OscPorts;
 
@@ -138,6 +139,9 @@ void cycleQuadSelection(bool fwd) {
         std::advance(quadsIt, selectedIdx);
         selectedQuadKey = (*quadsIt).first;
         (*quadsIt).second->setSelected(true);
+
+        ofLog(OF_LOG_NOTICE, "testApp:: sycle ended");
+
     }
 }
 
@@ -145,10 +149,17 @@ void testApp::keyPressed  (int key){
 
 #ifdef CONSOLE
 
-    if(key == 't') {
-        addQuad("", false);
+    if(key == '+') {
+        consoleEnabled = !consoleEnabled;
+        ofLog(OF_LOG_NOTICE, "CONSOLE ENABLED = %d", consoleEnabled);
     }
 
+    if (consoleEnabled)
+        return;
+
+    if(key == 't') {
+        addQuad();
+    }
     if(key == 'g') {
         AnimationController::PlayLoop("loop1");
     }
@@ -428,7 +439,7 @@ void testApp::loadQuads() {
 
     for(int i = 0; i < numQuadItems; i++)
     {
-        selectedIdx = addQuad(/*selectedIdx*/);
+        selectedIdx = addQuad();
 
         quadsXML.pushTag("quadItem", i);
 
