@@ -83,17 +83,17 @@ void testApp::setup(){
 
     #ifdef CONSOLE
 
-    TimeManager::ScheduleEvent(0.5f, "console", new EventArg("/video/set", "quad1", "cartoon"));
-    TimeManager::ScheduleEvent(0.5f, "console", new EventArg("/video/set", "quad2", "fingers"));
+    //TimeManager::ScheduleEvent(0.5f, "client", new EventArg("/video/set", "quad1", "cartoon"));
+    //TimeManager::ScheduleEvent(0.5f, "client", new EventArg("/video/set", "quad2", "fingers"));
 
-    TimeManager::ScheduleEvent(3.0f, "console", new EventArg("/video/play", "cartoon"));
-    TimeManager::ScheduleEvent(3.6f, "console", new EventArg("/video/stop", "cartoon"));
-    TimeManager::ScheduleEvent(5.0f, "console", new EventArg("/video/play", "fingers"));
+    //TimeManager::ScheduleEvent(3.0f, "client", new EventArg("/video/play", "cartoon"));
+    //TimeManager::ScheduleEvent(3.6f, "client", new EventArg("/video/stop", "cartoon"));
+    //TimeManager::ScheduleEvent(5.0f, "client", new EventArg("/video/play", "fingers"));
 
-    TimeManager::ScheduleEvent(6.3f, "console", new EventArg("/video/set", "quad2", "cartoons"));
-    TimeManager::ScheduleEvent(6.3f, "console", new EventArg("/video/play", "cartoons"));
+    //TimeManager::ScheduleEvent(6.3f, "client", new EventArg("/video/set", "quad2", "cartoons"));
+    //TimeManager::ScheduleEvent(6.3f, "client", new EventArg("/video/play", "cartoons"));
 
-    TimeManager::Init();
+    TimeManager::Init(this);
 
     setupConsole();
 
@@ -125,7 +125,6 @@ void testApp::draw(){
     #ifdef CONSOLE
         console->render();
     #endif
-
 }
 
 //--------------------------------------------------------------
@@ -156,7 +155,7 @@ void testApp::keyPressed  (int key){
 #ifdef CONSOLE
 
     if(key == 't') {
-        TimeManager::Init();
+        addQuad("", false);
     }
 
     if(key == 'g') {
@@ -234,12 +233,10 @@ void testApp::keyPressed  (int key){
 
 //--------------------------------------------------------------
 void testApp::keyReleased(int key){
-
 }
 
 //--------------------------------------------------------------
 void testApp::mouseMoved(int x, int y ){
-
 }
 
 //--------------------------------------------------------------
@@ -268,43 +265,35 @@ void testApp::mousePressed(int x, int y, int button){
 void testApp::mouseReleased(int x, int y, int button){
 }
 
-//--------------------------------------------------------------
-void testApp::windowResized(int w, int h){
-
-}
-
 void testApp::quit(const std::vector<std::string> & args){
 	std::exit(0);
 }
 
 void testApp::event(EventArg *e) {
-
-    if (e->type.compare("TIME") == 0) {
-        if(e->args.getAddress().compare("PlayVideo") == 0) {
-            //El parametro indica que video iniciar.
-            TextureManager::PlayVideo(e->args.getArgAsString(0));
-        }
-        else if(e->args.getAddress().compare("StopVideo") == 0) {
-            //El parametro indica que video detener.
-            TextureManager::StopVideo(e->args.getArgAsString(0));
-        }
-        else if(e->args.getAddress().compare("SetVideo") == 0) {
-            //Param1 indica el quad al que asignar el video.
-            //Param2 indica el id del video a asignar.
-            quads[e->args.getArgAsString(0)]->getMaterial()->SetTextureParams(e->args.getArgAsString(1), videoTexture, 0);
-        }
-    } else if (e->type.compare("OSC")){
-        if(e->args.getAddress().compare("/synch/setpoint") == 0) {
-
-
-            setPoint(e->args.getArgAsInt32(0), e->args.getArgAsInt32(1), e->args.getArgAsInt32(2),
-                     e->args.getArgAsInt32(3), false);
-        }
-        else if(e->args.getAddress().compare("/synch/addquad") == 0) {
-            selectedIdx = addQuad(e->args.getArgAsString(0).c_str(), false);
-        }
+    string address = e->args.getAddress();
+    if(address.compare("/video/play") == 0) {
+        //El parametro 0 indica que video iniciar.
+        TextureManager::PlayVideo(e->args.getArgAsString(0));
+    }
+    else if(address.compare("/video/stop") == 0) {
+        //El parametro 0 indica que video detener.
+        TextureManager::StopVideo(e->args.getArgAsString(0));
+    }
+    else if(address.compare("/video/set") == 0) {
+        //param0 indica el quad al que asignar el video.
+        //param1 indica el id del video a asignar.
+        quads[e->args.getArgAsString(0)]->getMaterial()->SetTextureParams(e->args.getArgAsString(1), videoTexture, 0);
+    }
+    else if(address.compare("/synch/setpoint") == 0) {
+        //param0
+        setPoint(e->args.getArgAsInt32(0), e->args.getArgAsInt32(1), e->args.getArgAsInt32(2),
+                 e->args.getArgAsInt32(3), false);
+    }
+    else if(address.compare("/synch/addquad") == 0) {
+        selectedIdx = addQuad(e->args.getArgAsString(0).c_str(), false);
     }
     else {
+        ofLog(OF_LOG_WARNING, "unknown event with address %s", address);
     }
 }
 
@@ -314,8 +303,7 @@ void testApp::setupLogging() {
     ofLog(OF_LOG_VERBOSE, "Initiating with nodeName="+this->nodeName);
 }
 
-void testApp::setupConsole()
-{
+void testApp::setupConsole() {
     console = new ofxConsole();
     console->setDimentions(ofGetWidth(), ofGetHeight()/15);
 	console->print("Mapping app started...");
@@ -339,8 +327,7 @@ void testApp::setPoint(int selectedIdx, int selectedVtx, int x, int y, bool send
     }
 }
 
-void testApp::addQuad(const std::vector<std::string> & args)
-{
+void testApp::addQuad(const std::vector<std::string> & args) {
 	if(args.size()<2){
 		console->print("Wrong number of arguments for < "+args[0]+" >!", CTEXT_ERROR);
 		ofLog(OF_LOG_ERROR, "Wrong number of arguments for < "+args[0]+" >!");
@@ -351,7 +338,7 @@ void testApp::addQuad(const std::vector<std::string> & args)
 }
 
 int testApp::addQuad(string label, bool sendEvent) {
-    ofLog(OF_LOG_NOTICE, "Adding QUAD [%s, %d]", label, sendEvent);
+    ofLog(OF_LOG_NOTICE, "Adding QUAD [%s, %d]", label.c_str(), sendEvent);
 
     if (label.empty()) {
         char buffer [50];
@@ -456,7 +443,6 @@ void testApp::saveQuads() {
     ofLog(OF_LOG_NOTICE, "Project saved.");
 
 }
-
 
 void testApp::loadShow() {
 
@@ -598,7 +584,6 @@ void testApp::loadShow() {
 
     ofLog(OF_LOG_NOTICE, "Show config loaded.");
 }
-
 
 void testApp::saveShow() {
 
