@@ -88,9 +88,9 @@ void OscManager::Update()
         ofxOscMessage m;
         receiver.getNextMessage( &m );
         EventArg *evtArg = new EventArg();
-        evtArg->type = "OSC";
+        //evtArg->type = "OSC";
 
-        if ( m.getAddress() == "/synch/setpoint" )
+        /*if ( m.getAddress() == "/synch/setpoint" )
         {
             evtArg->args.setAddress("/synch/setpoint");
             evtArg->args.addIntArg(m.getArgAsInt32(0));
@@ -130,7 +130,7 @@ void OscManager::Update()
                     msg_string += "unknown";
             }
             ofLog(OF_LOG_VERBOSE, "OscManager: Unrecognized message: %s\n", msg_string);
-        }
+        }*/
 
 
         /*map<string, IEventListener*>::iterator l = listeners.find(s);
@@ -139,6 +139,8 @@ void OscManager::Update()
         else
             cout << s << " no está en listeners.\n";
         */
+
+        evtArg->args = m;
 
         map<string, IEventListener*>::iterator iter = listeners.begin();
         while (iter != listeners.end() )

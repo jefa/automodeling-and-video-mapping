@@ -261,8 +261,12 @@ void testApp::quit(const std::vector<std::string> & args){
 
 void testApp::event(EventArg *e) {
     string address = e->args.getAddress();
+    ofLog(OF_LOG_VERBOSE, "testApp:: Event received. address=%s", address.c_str());
     if(address.compare("/video/play") == 0) {
         //El parametro 0 indica que video iniciar.
+
+        //ofLog(OF_LOG_VERBOSE, "testApp:: Playing arg0=%s, arg1=%s", e->args.getArgAsString(0).c_str(), e->args.getArgAsString(1).c_str());
+
         TextureManager::PlayVideo(e->args.getArgAsString(0));
     }
     else if(address.compare("/video/stop") == 0) {
