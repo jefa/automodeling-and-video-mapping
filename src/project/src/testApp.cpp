@@ -16,7 +16,7 @@ map<string, Quad2D*>::iterator quadsIt;
 map<string, Material*> materials;
 
 string selectedQuadKey;
-int selectedIdx = -1;
+int selectedIdx = 0;
 int selectedVtx = 0;
 float xoffset = 5;
 float yoffset = 5;
@@ -83,18 +83,7 @@ void testApp::setup(){
 
     #ifdef CONSOLE
 
-    //TimeManager::ScheduleEvent(0.5f, "client", new EventArg("/video/set", "quad1", "cartoon"));
-    //TimeManager::ScheduleEvent(0.5f, "client", new EventArg("/video/set", "quad2", "fingers"));
-
-    //TimeManager::ScheduleEvent(3.0f, "client", new EventArg("/video/play", "cartoon"));
-    //TimeManager::ScheduleEvent(3.6f, "client", new EventArg("/video/stop", "cartoon"));
-    //TimeManager::ScheduleEvent(5.0f, "client", new EventArg("/video/play", "fingers"));
-
-    //TimeManager::ScheduleEvent(6.3f, "client", new EventArg("/video/set", "quad2", "cartoons"));
-    //TimeManager::ScheduleEvent(6.3f, "client", new EventArg("/video/play", "cartoons"));
-
     TimeManager::Init(this);
-
     setupConsole();
 
     #endif
@@ -130,6 +119,7 @@ void testApp::draw(){
 //--------------------------------------------------------------
 
 void cycleQuadSelection(bool fwd) {
+    //ofLog(OF_LOG_NOTICE, "testApp:: cycleQuadSelection fwd=%d, selectedIdx=%d", fwd, selectedIdx);
     if(quads.size() > 0) {
         int oldSelectedIdx = selectedIdx;
         if(fwd) {
@@ -139,6 +129,7 @@ void cycleQuadSelection(bool fwd) {
             --selectedIdx;
         }
         selectedIdx %= quads.size();
+        //ofLog(OF_LOG_NOTICE, "testApp:: New selectedIdx=%d", selectedIdx);
 
         quadsIt = quads.begin();
         std::advance(quadsIt, oldSelectedIdx);
