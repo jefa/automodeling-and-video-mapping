@@ -63,16 +63,6 @@ void testApp::setup(){
         OscManager::Init(nodeName, Network, OscPorts); //set as sender
     #endif
 
-    //TextureManager::LoadVideoTexture("cartoon", "cartoon.mov");
-    //TextureManager::LoadVideoTexture("fingers", "fingers.mov");
-    //TextureManager::LoadVideoTexture("cartoons", "cartoons.mov");
-
-    /*quads.insert(pair<string, Quad2D*>("quad1", new Quad2D("quad1", 100,100, 250,80, 270,260, 80,250))) ;
-    quads["quad1"]->setEnabled(true);
-
-    quads.insert(pair<string, Quad2D*>("quad2", new Quad2D("quad2", 300,100, 450,80, 470,260, 280,250))) ;
-    quads["quad2"]->setEnabled(true);*/
-
     /*LinearAnimation *anim5 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 1.0);
     LinearAnimation *anim6 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 0.0);
 
@@ -211,17 +201,17 @@ void testApp::keyPressed  (int key){
             setPoint(selectedIdx, selectedVtx, x, y);
         }
     }
-    /*if(key == ' ') {
-        selectedIdx = addQuad(selectedIdx);
-    }*/
+    if(key == ' ') {
+        selectedIdx = addQuad();
+    }
     if(key == '\b') {
-        /*if(quads.size() > 0 && selectedIdx >= 0) {
+        if(quads.size() > 0 && selectedIdx >= 0) {
             quadsIt = quads.begin();
             std::advance(quadsIt, selectedIdx);
             (*quadsIt).second->setSelected(false);
             quads.erase(quadsIt);
             selectedQuadKey = "";
-        }*/
+        }
     }
     if(key == 'l') {
         saveQuads();
@@ -684,39 +674,38 @@ void testApp::saveShow() {
     //showConfig.addTag("Quads2D");
     showConfig.pushTag("Quads2D");
 
+    float x0;
+    float y0;
+    float x1;
+    float y1;
+    float x2;
+    float y2;
+    float x3;
+    float y3;
+    string id;
+    map<string, Quad2D*>::iterator iter = quads.begin();
+    while (iter != quads.end() )
+    {
+        int showTagKey = showConfig.addTag("Quad2D");
+        id=iter->first;
+        showConfig.addAttribute("Quad2D", "id", id, showTagKey);
+        (iter->second)->getPoint(0,x0,y0);
+        showConfig.addAttribute("Quad2D", "x0", x0, showTagKey);
+        showConfig.addAttribute("Quad2D", "y0", y0, showTagKey);
+        (iter->second)->getPoint(1,x1,y1);
+        showConfig.addAttribute("Quad2D", "x1", x1, showTagKey);
+        showConfig.addAttribute("Quad2D", "y1", y1, showTagKey);
+        (iter->second)->getPoint(2,x2,y2);
+        showConfig.addAttribute("Quad2D", "x2", x2, showTagKey);
+        showConfig.addAttribute("Quad2D", "y2", y2, showTagKey);
+        (iter->second)->getPoint(3,x3,y3);
+        showConfig.addAttribute("Quad2D", "x3", x3, showTagKey);
+        showConfig.addAttribute("Quad2D", "y3", y3, showTagKey);
 
-        float x0;
-        float y0;
-        float x1;
-        float y1;
-        float x2;
-        float y2;
-        float x3;
-        float y3;
-        string id;
-        map<string, Quad2D*>::iterator iter = quads.begin();
-        while (iter != quads.end() )
-        {
-            int showTagKey = showConfig.addTag("Quad2D");
-            id=iter->first;
-            showConfig.addAttribute("Quad2D", "id", id, showTagKey);
-            (iter->second)->getPoint(0,x0,y0);
-            showConfig.addAttribute("Quad2D", "x0", x0, showTagKey);
-            showConfig.addAttribute("Quad2D", "y0", y0, showTagKey);
-            (iter->second)->getPoint(1,x1,y1);
-            showConfig.addAttribute("Quad2D", "x1", x1, showTagKey);
-            showConfig.addAttribute("Quad2D", "y1", y1, showTagKey);
-            (iter->second)->getPoint(2,x2,y2);
-            showConfig.addAttribute("Quad2D", "x2", x2, showTagKey);
-            showConfig.addAttribute("Quad2D", "y2", y2, showTagKey);
-            (iter->second)->getPoint(3,x3,y3);
-            showConfig.addAttribute("Quad2D", "x3", x3, showTagKey);
-            showConfig.addAttribute("Quad2D", "y3", y3, showTagKey);
+        iter++;
+        std::cout << " iter id quad2D: "<< id << endl;
 
-            iter++;
-            std::cout << " iter id quad2D: "<< id << endl;
-
-        }
+    }
 
     showConfig.popTag();
     showConfig.popTag();
