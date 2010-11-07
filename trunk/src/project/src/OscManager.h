@@ -21,10 +21,10 @@ class OscManager
     public:
         OscManager();
         virtual ~OscManager();
-        static void Init(string nodeName, map<string, Node> network, map<string, int > OscPorts, bool isMaster = true);
-        static bool SendMessage(string msg, SYNCH_MSG_TYPE msgType, string destNode = "");
-        static bool SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType, string destNode = "");
-        static bool Update();
+        static void Init(string nodeName, map<string, Node> network, map<string, int> OscPorts, bool isMaster = true);
+        static void SendMessage(string msg, string address, string destNode = "");
+        static void SendMessage(ofxOscMessage oscMessage, string destNode = "");
+        static void Update();
         static void AddListener(IEventListener*, string);
 
     protected:

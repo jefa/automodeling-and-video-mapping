@@ -78,22 +78,13 @@ void OscManager::AddListener(IEventListener *listener, string evtKey)
 
 }
 
-bool OscManager::SendMessage(string msg, SYNCH_MSG_TYPE msgType, string destNode)
+void OscManager::SendMessage(string msg, string address, string destNode)
 {
      ofxOscMessage m;
-    if (msgType == SETPOINT)
-    {
-        ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message=%s\n",msg);
-        m.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/setpoint" );
-        m.addStringArg( msg );
-        //sender.sendMessage( m );
-    } else if (msgType == ANIMATE)
-    {
-        ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message=%s\n",msg);
-        m.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/animationloop" );
-        m.addStringArg( msg );
-        //sender.sendMessage( m );
-    }
+     m.setAddress(address);
+     m.addStringArg(msg);
+     ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message=%s", msg);
+
     if (!destNode.empty()){
         getSender(destNode)->sendMessage( m );
     }
@@ -105,35 +96,25 @@ bool OscManager::SendMessage(string msg, SYNCH_MSG_TYPE msgType, string destNode
             iter++;
         }
     }
-    return true;
 }
 
-bool OscManager::SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType, string destNode)
+void OscManager::SendMessage(ofxOscMessage oscMessage, string destNode)
 {
-    ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message: type=%d",msgType);
-    if (msgType == SETPOINT)
-    {
-        oscMessage.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/setpoint" );
-    } else if (msgType == ADDQUAD)
-    {
-        oscMessage.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/addquad" );
-    }
-    //sender.sendMessage( oscMessage );
+    ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message: type=%s", oscMessage.getAddress());
+
     if (!destNode.empty()){
         getSender(destNode)->sendMessage( oscMessage );
     }
     else {
         map<string, ofxOscSender*>::iterator iter = senders.begin();
-        while (iter != senders.end() )
-        {
+        while (iter != senders.end()) {
             iter->second->sendMessage( oscMessage );
             iter++;
         }
     }
-    return true;
 }
 
-bool OscManager::Update()
+void OscManager::Update()
 {
     string msg_string;
 
