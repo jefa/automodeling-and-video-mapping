@@ -4,15 +4,11 @@
 #include "IEventListener.h"
 #include "ofxOsc.h"
 #include <vector>
-
-#define HOST "localhost"
-#define PORT 12345
+using namespace std;
 
 enum SYNCH_MSG_TYPE {
-    DISCOVERY, INIT, SYNCH, SHUTDOWN, SETPOINT, ADDQUAD, ANIMATE
+    SETPOINT, ADDQUAD, ANIMATE
 };
-
-typedef pair<string, IEventListener*> listenerPair;
 
 struct Node  {
     string address;
@@ -20,31 +16,29 @@ struct Node  {
     bool isActive;
 };
 
-using namespace std;
-
 class OscManager
 {
     public:
-        OscManager(string nodeName, map<string, Node> network, map<string, int > OscPorts, bool isMaster = true);
+        OscManager();
         virtual ~OscManager();
-        bool SendMessage(string msg, SYNCH_MSG_TYPE msgType, char* destNode = NULL);
-        bool SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType, char* destNode = NULL);
-        bool checkForMessages();
-        void addListener(IEventListener*, string);
+        static void Init(string nodeName, map<string, Node> network, map<string, int > OscPorts, bool isMaster = true);
+        static bool SendMessage(string msg, SYNCH_MSG_TYPE msgType, string destNode = "");
+        static bool SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType, string destNode = "");
+        static bool Update();
+        static void AddListener(IEventListener*, string);
 
     protected:
-        ofxOscSender* getSender(string nodeName);
+        static ofxOscSender* getSender(string nodeName);
 
     private:
-        string name;
-        bool master;
-        map<string,IEventListener*> listeners;
+        static string name;
+        static bool master;
+        static map<string,IEventListener*> listeners;
 
-        //ofxOscSender sender;
-		ofxOscReceiver	receiver;
+		static ofxOscReceiver	receiver;
 
-        map<string, ofxOscSender*> senders;
-        map<string, int > oscPorts;
+        static map<string, ofxOscSender*> senders;
+        static map<string, int > oscPorts;
 };
 
 #endif // SYNCHMANAGER_H

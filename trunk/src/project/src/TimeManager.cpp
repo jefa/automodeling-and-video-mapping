@@ -1,6 +1,7 @@
 #include "TimeManager.h"
 
 #include "ofAppRunner.h"
+#include "OscManager.h"
 
 static double totalAnimTime;
 static double deltaStartTime;       //Tiempo entre que comenzó la aplicación y se hizo init a TimeManager
@@ -57,7 +58,9 @@ void TimeManager::Update() {
         ofLog(OF_LOG_VERBOSE, "%f :: llamando a func...", totalAnimTime);
         TimedEventArg *timedEvtArg = (*it).second.second;
         timedEvtArg->_timestamp = totalAnimTime;
+
         (*it).second.first->event(timedEvtArg);
+
         ++it;
         if(it == events.end()) {
             moreEvents = false;

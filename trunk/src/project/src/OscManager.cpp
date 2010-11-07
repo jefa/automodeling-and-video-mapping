@@ -2,11 +2,21 @@
 #include "DrawEventArg.h"
 #include "AnimEventArg.h"
 
-OscManager::OscManager(string nodeName, map<string, Node> network, map<string, int> OscPorts, bool isMaster)
+string OscManager::name;
+bool OscManager::master;
+map<string,IEventListener*> OscManager::listeners;
+ofxOscReceiver OscManager::receiver;
+map<string, ofxOscSender*> OscManager::senders;
+map<string, int > OscManager::oscPorts;
+
+OscManager::OscManager() {
+}
+
+void OscManager::Init(string nodeName, map<string, Node> network, map<string, int> OscPorts, bool isMaster)
 {
-    this->name = nodeName;
-    this->oscPorts = OscPorts;
-    this->master = isMaster;
+    OscManager::name = nodeName;
+    OscManager::oscPorts = OscPorts;
+    OscManager::master = isMaster;
 
     if (isMaster)
     {
@@ -49,9 +59,9 @@ OscManager::~OscManager()
      ofLog(OF_LOG_VERBOSE, "OscManager:: Destroying...");
 }
 
-void OscManager::addListener(IEventListener *listener, string evtKey)
+void OscManager::AddListener(IEventListener *listener, string evtKey)
 {
-    listeners.insert( listenerPair(evtKey, listener) );
+    listeners.insert(make_pair(evtKey, listener));
 
     /*map<string, IEventListener*>::iterator iter = listeners.begin();
     while (iter != listeners.end() )
@@ -70,7 +80,7 @@ void OscManager::addListener(IEventListener *listener, string evtKey)
 
 }
 
-bool OscManager::SendMessage(string msg, SYNCH_MSG_TYPE msgType, char* destNode)
+bool OscManager::SendMessage(string msg, SYNCH_MSG_TYPE msgType, string destNode)
 {
      ofxOscMessage m;
     if (msgType == SETPOINT)
@@ -86,9 +96,10 @@ bool OscManager::SendMessage(string msg, SYNCH_MSG_TYPE msgType, char* destNode)
         m.addStringArg( msg );
         //sender.sendMessage( m );
     }
-    if (destNode == NULL){
+    if (!destNode.empty()){
         getSender(destNode)->sendMessage( m );
-    } else {
+    }
+    else {
         map<string, ofxOscSender*>::iterator iter = senders.begin();
         while (iter != senders.end() )
         {
@@ -99,7 +110,7 @@ bool OscManager::SendMessage(string msg, SYNCH_MSG_TYPE msgType, char* destNode)
     return true;
 }
 
-bool OscManager::SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType, char* destNode)
+bool OscManager::SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType, string destNode)
 {
     ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message: type=%d",msgType);
     if (msgType == SETPOINT)
@@ -110,9 +121,10 @@ bool OscManager::SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType, c
         oscMessage.setAddress( /*SYNCH_MSG_TYPE.SYNCH*/ "/synch/addquad" );
     }
     //sender.sendMessage( oscMessage );
-    if (destNode != NULL){
+    if (!destNode.empty()){
         getSender(destNode)->sendMessage( oscMessage );
-    } else {
+    }
+    else {
         map<string, ofxOscSender*>::iterator iter = senders.begin();
         while (iter != senders.end() )
         {
@@ -123,7 +135,7 @@ bool OscManager::SendMessage(ofxOscMessage oscMessage, SYNCH_MSG_TYPE msgType, c
     return true;
 }
 
-bool OscManager::checkForMessages()
+bool OscManager::Update()
 {
     string msg_string;
 
