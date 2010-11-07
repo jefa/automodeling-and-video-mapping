@@ -42,8 +42,6 @@
     <Events>
         <!--  occurrence time in seconds ,  Message Type@ID@... parameters?  -->
         <OscEvents>
-            <Event name="lanzarbolitarebotando" destination="all" />
-            <Event name="lanzarotrovideo" destination="node3" delay="10ms" />
         </OscEvents>
         <TimedEvents>
             <TimedEvent destination="javier" time="0.5" >
@@ -67,6 +65,12 @@
 			<TimedEvent destination="javier" time="6.3" >
 				<Message address="/video/play" param1="cartoons" param2="1" />
 			</TimedEvent>
+			<TimedEvent destination="javier" time="8.0" >
+				<Message address="/texture/setcolor" param1="quad1" param2="0.8" param3="0.8" param4="0.1" />
+			</TimedEvent>
+			<TimedEvent destination="javier" time="10.0" >
+				<Message address="/texture/setcolor" param1="quad1" param2="1" param3="1" param4="1" />
+				</TimedEvent>
         </TimedEvents>
     </Events>
 </Show>

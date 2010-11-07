@@ -264,9 +264,6 @@ void testApp::event(EventArg *e) {
     ofLog(OF_LOG_VERBOSE, "testApp:: Event received. address=%s", address.c_str());
     if(address.compare("/video/play") == 0) {
         //El parametro 0 indica que video iniciar.
-
-        //ofLog(OF_LOG_VERBOSE, "testApp:: Playing arg0=%s, arg1=%s", e->args.getArgAsString(0).c_str(), e->args.getArgAsString(1).c_str());
-
         TextureManager::PlayVideo(e->args.getArgAsString(0), e->args.getArgAsFloat(1));
     }
     else if(address.compare("/video/stop") == 0) {
@@ -288,6 +285,13 @@ void testApp::event(EventArg *e) {
     }
     else if(address.compare("/synch/removequad") == 0) {
         selectedIdx = removeQuad(e->args.getArgAsString(0).c_str(), false);
+    }
+    else if(address.compare("/texture/setcolor") == 0) {
+        Quad2D *quad = quads[e->args.getArgAsString(0)];
+        //quad->getMaterial()->SetTextureParams("", imageTexture, 0);
+        quad->getMaterial()->set(AMBIENT_R, e->args.getArgAsFloat(1));
+        quad->getMaterial()->set(AMBIENT_G, e->args.getArgAsFloat(2));
+        quad->getMaterial()->set(AMBIENT_B, e->args.getArgAsFloat(3));
     }
     else {
         ofLog(OF_LOG_WARNING, "unknown event with address %s", address);
@@ -654,19 +658,21 @@ void testApp::loadShow() {
         string param3 = showConfig.getAttribute("TimedEvent:Message", "param3","", i);
         string param4 = showConfig.getAttribute("TimedEvent:Message", "param4","", i);
         string param5 = showConfig.getAttribute("TimedEvent:Message", "param5","", i);
+        std::cout << " TimedEvent Message: "<< address+ " " +param1 << " " << param2 << " " << param3 << " " << param4 << " " << param5 << endl;
 
+        #ifdef CONSOLE
         if(address.compare("/video/play") == 0) {
             float param2f = showConfig.getAttribute("TimedEvent:Message", "param2", 1, i);
             TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f));
+        } else if(address.compare("/texture/setcolor") == 0) {
+            float param2f = showConfig.getAttribute("TimedEvent:Message", "param2", 1, i);
+            float param3f = showConfig.getAttribute("TimedEvent:Message", "param3", 1, i);
+            float param4f = showConfig.getAttribute("TimedEvent:Message", "param4", 1, i);
+            TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f, param3f, param4f));
+        } else {
+            TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2, param3, param4, param5));
         }
-        else {
-
-        std::cout << " TimedEvent Message: "<< address+ " " +param1 << " " << param2 << " " << param3 << " " << param4 << " " << param5 << endl;
-        #ifdef CONSOLE
-        TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2, param3, param4, param5));
         #endif
-        }
-
     }
 
     showConfig.popTag(); //TimedEvents
