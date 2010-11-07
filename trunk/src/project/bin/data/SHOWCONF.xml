@@ -15,13 +15,11 @@
     </Network>
     <Textures>
         <Images>
-            <Image name="basetextura" path="Ima1.jpg" />
-            <Image name="barraazul" path="config\repository\Images\Ima2.jpg" />
-            <Image name="otraimagen" path="config\repository\Images\Ima3.jpg" />
         </Images>
         <Videos>
-            <Video name="pelotitarebotando" path="config\repository\Videos/Vid1.mov" />
-            <Video name="otrovideo" path="config\repository\Videos/Vid2.mov" />
+            <Video name="cartoon" path="cartoon.mov" />
+            <Video name="fingers" path="fingers.mov" />
+			<Video name="cartoons" path="cartoons.mov" />
         </Videos>
     </Textures>
     <Shapes>

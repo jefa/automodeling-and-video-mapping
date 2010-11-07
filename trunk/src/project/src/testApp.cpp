@@ -18,8 +18,8 @@ map<string, Material*> materials;
 string selectedQuadKey;
 int selectedIdx = 0;
 int selectedVtx = 0;
-float xoffset = 5;
-float yoffset = 5;
+float xoffset = 1;
+float yoffset = 1;
 bool consoleEnabled = false;
 
 map<string, int> OscPorts;
@@ -63,9 +63,9 @@ void testApp::setup(){
         OscManager::Init(nodeName, Network, OscPorts); //set as sender
     #endif
 
-    TextureManager::LoadVideoTexture("cartoon", "cartoon.mov");
-    TextureManager::LoadVideoTexture("fingers", "fingers.mov");
-    TextureManager::LoadVideoTexture("cartoons", "cartoons.mov");
+    //TextureManager::LoadVideoTexture("cartoon", "cartoon.mov");
+    //TextureManager::LoadVideoTexture("fingers", "fingers.mov");
+    //TextureManager::LoadVideoTexture("cartoons", "cartoons.mov");
 
     /*quads.insert(pair<string, Quad2D*>("quad1", new Quad2D("quad1", 100,100, 250,80, 270,260, 80,250))) ;
     quads["quad1"]->setEnabled(true);
@@ -141,8 +141,12 @@ void cycleQuadSelection(bool fwd) {
         std::advance(quadsIt, selectedIdx);
         selectedQuadKey = (*quadsIt).first;
         (*quadsIt).second->setSelected(true);
+
+        ofLog(OF_LOG_VERBOSE, selectedQuadKey.c_str());
     }
 }
+
+bool consolaAbierta = false;
 
 void testApp::keyPressed  (int key){
 
@@ -159,9 +163,11 @@ void testApp::keyPressed  (int key){
     if(key == 't') {
         addQuad();
     }
-    if(key == 'g') {
-        AnimationController::PlayLoop("loop1");
+    if (consolaAbierta) {
+        return;
     }
+
+
     if(key == 'k') {
         loadQuads();
     }
