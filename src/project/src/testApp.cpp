@@ -49,7 +49,7 @@ void testApp::setup(){
 	ofSetFrameRate(60);
 
     //load showconfig from xml
-	loadShow();
+	//loadShow();
 
     #ifdef CONSOLE
         ofSetWindowTitle("Console APP");
@@ -58,26 +58,21 @@ void testApp::setup(){
     #endif
 
     #ifndef CONSOLE
-        //this->oscManager = new OscManager(OscPorts, false); //set as receiver
-        this->oscManager = new OscManager(nodeName, Network, OscPorts, false); //set as sender
-        this->oscManager->addListener(this, "/all");
-        //this->synchManager->addListener(&animController, "/anim");
-
-        this->midiManager = new MidiManager(); //midi  receiver
-        this->midiManager->addListener(this, "");
+        OscManager::Init(nodeName, Network, OscPorts, false); //set as sender
+        OscManager::AddListener(this, "/all");
     #else
-        this->oscManager = new OscManager(nodeName, Network, OscPorts); //set as sender
+        OscManager::Init(nodeName, Network, OscPorts); //set as sender
     #endif
 
     TextureManager::LoadVideoTexture("cartoon", "cartoon.mov");
     TextureManager::LoadVideoTexture("fingers", "fingers.mov");
     TextureManager::LoadVideoTexture("cartoons", "cartoons.mov");
 
-    /*quads.insert(pair<string, Quad2D*>("quad1", new Quad2D("quad1", 100,100, 250,80, 270,260, 80,250))) ;
+    quads.insert(pair<string, Quad2D*>("quad1", new Quad2D("quad1", 100,100, 250,80, 270,260, 80,250))) ;
     quads["quad1"]->setEnabled(true);
 
     quads.insert(pair<string, Quad2D*>("quad2", new Quad2D("quad2", 300,100, 450,80, 470,260, 280,250))) ;
-    quads["quad2"]->setEnabled(true);*/
+    quads["quad2"]->setEnabled(true);
 
     /*LinearAnimation *anim5 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 1.0);
     LinearAnimation *anim6 = new LinearAnimation(materials["mat1"], AMBIENT_R, 2, 0.0);
@@ -109,12 +104,11 @@ void testApp::update(){
     AnimationController::Update();
 
     #ifndef CONSOLE
-        oscManager->checkForMessages();
+        OscManager::Update();    //Check for messages
+        TimeManager::Update();
     #endif
 
     TextureManager::Update();
-
-    TimeManager::Update();
 }
 
 //--------------------------------------------------------------
@@ -333,7 +327,7 @@ void testApp::setPoint(int selectedIdx, int selectedVtx, int x, int y, bool send
         oscMessage.addIntArg(selectedVtx);
         oscMessage.addIntArg(x);
         oscMessage.addIntArg(y);
-        this->oscManager->SendMessage(oscMessage, SETPOINT);
+        OscManager::SendMessage(oscMessage, SETPOINT);
     }
 }
 
@@ -365,7 +359,7 @@ int testApp::addQuad(const char* label, bool sendEvent) {
     if (sendEvent) {
         ofxOscMessage oscMessage;
         oscMessage.addStringArg(label);
-        this->oscManager->SendMessage(oscMessage, ADDQUAD);
+        OscManager::SendMessage(oscMessage, ADDQUAD);
     }
 
     return quads.size() - 1;

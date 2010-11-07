@@ -51,9 +51,6 @@ class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener 
 
     private:
         string nodeName;
-		Object3D *obj3D;
-		OscManager *oscManager;
-		MidiManager	*midiManager;
         ofxConsole * console;
 
 };
