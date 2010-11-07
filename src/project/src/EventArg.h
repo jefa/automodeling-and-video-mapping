@@ -1,11 +1,15 @@
 #ifndef EVENTARGS_H_INCLUDED
 #define EVENTARGS_H_INCLUDED
 
+#include "ofxOsc.h"
 #include <string>
+
+using namespace std;
 
 class EventArg{
     public:
-        std::string source;
+        string type;
+        ofxOscMessage args;
 };
 
 #endif // EVENTARGS_H_INCLUDED

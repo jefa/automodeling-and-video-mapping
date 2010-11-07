@@ -1,7 +1,5 @@
 #include "MidiManager.h"
 #include "ofUtils.h"
-#include "MidiEventArg.h"
-
 
 MidiManager::MidiManager()
 {
@@ -36,16 +34,13 @@ void MidiManager::newMessage(int _port, int _id, int _value, double _timestamp){
 	cout<<"MidiManager::newMessage  Bulid Message ";
 
 
-	EventArg *evtArg;
+	EventArg *evtArg = new EventArg();
 
-	// armar el mensaje a mandar  de ieventlistener
-	evtArg = new MidiEventArg();
-
-	((MidiEventArg*)evtArg)->_value = _value;
-	((MidiEventArg*)evtArg)->_id = _id;
-	((MidiEventArg*)evtArg)->_port = _port;
-	((MidiEventArg*)evtArg)->_timestamp = _timestamp;
-
+    evtArg->type = "MIDI";
+	evtArg->args.addIntArg(_value);
+	evtArg->args.addIntArg(_id);
+	evtArg->args.addIntArg(_port);
+	evtArg->args.addFloatArg(_timestamp);
 
     map<string, IEventListener*>::iterator iter = listeners.begin();
     while (iter != listeners.end() ) {

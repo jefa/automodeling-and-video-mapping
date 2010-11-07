@@ -4,12 +4,11 @@
 #include <map>
 
 #include "AnimationLoop.h"
-#include "AnimEventArg.h"
 #include "IEventListener.h"
 
 using namespace std;
 
-class AnimationController : public IEventListener
+class AnimationController
 {
     public:
         AnimationController();
@@ -17,7 +16,6 @@ class AnimationController : public IEventListener
         static void AddLoop(string key, AnimationLoop *anim);
         static void PlayLoop(string key);
         static void Update();
-        void event(EventArg *e);
 
     protected:
     private:

@@ -32,11 +32,3 @@ void AnimationController::Update()
     }
 }
 
-void AnimationController::event(EventArg *e)
-{
-    AnimEventArg *animEvent = (AnimEventArg*) e;
-    if (animEvent->isActivate)
-    {
-        //this->Animate(animEvent->source);
-    }
-}

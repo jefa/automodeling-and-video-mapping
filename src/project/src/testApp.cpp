@@ -4,8 +4,6 @@
 #include "LinearAnimation.h"
 #include "Background.h"
 #include "TimeManager.h"
-#include "DrawEventArg.h"
-#include "TimedEventArg.h"
 #include "ofxXmlSettings.h"
 #include <map>
 
@@ -274,30 +272,32 @@ void testApp::quit(const std::vector<std::string> & args){
 
 void testApp::event(EventArg *e) {
 
-    if (e->source.compare("TimedEventArg") == 0) {
-        TimedEventArg *evtArg = (TimedEventArg*) e;
-        if(evtArg->opName.compare("PlayVideo") == 0) {
+    if (e->type.compare("TIME") == 0) {
+        if(e->args.getAddress().compare("PlayVideo") == 0) {
             //El parametro indica que video iniciar.
-            TextureManager::PlayVideo(evtArg->param1);
+            TextureManager::PlayVideo(e->args.getArgAsString(0));
         }
-        else if(evtArg->opName.compare("StopVideo") == 0) {
+        else if(e->args.getAddress().compare("StopVideo") == 0) {
             //El parametro indica que video detener.
-            TextureManager::StopVideo(evtArg->param1);
+            TextureManager::StopVideo(e->args.getArgAsString(0));
         }
-        else if(evtArg->opName.compare("SetVideo") == 0) {
+        else if(e->args.getAddress().compare("SetVideo") == 0) {
             //Param1 indica el quad al que asignar el video.
             //Param2 indica el id del video a asignar.
-            quads[evtArg->param1]->getMaterial()->SetTextureParams(evtArg->param2, videoTexture, 0);
+            quads[e->args.getArgAsString(0)]->getMaterial()->SetTextureParams(e->args.getArgAsString(1), videoTexture, 0);
+        }
+    } else if (e->type.compare("OSC")){
+        if(e->args.getAddress().compare("/synch/setpoint") == 0) {
+
+
+            setPoint(e->args.getArgAsInt32(0), e->args.getArgAsInt32(1), e->args.getArgAsInt32(2),
+                     e->args.getArgAsInt32(3), false);
+        }
+        else if(e->args.getAddress().compare("/synch/addquad") == 0) {
+            selectedIdx = addQuad(e->args.getArgAsString(0).c_str(), false);
         }
     }
     else {
-        DrawEventArg *evtArg = (DrawEventArg*) e;
-        if (evtArg->_evtType == 0) { //setpoint
-            setPoint(evtArg->_shapeId, evtArg->_vertexId, evtArg->_x, evtArg->_y, false);
-        }
-        else if (evtArg->_evtType == 1) { //draw new quad
-            selectedIdx = addQuad(/*evtArg->_shapeId, */evtArg->source.c_str(), false);
-        }
     }
 }
 
