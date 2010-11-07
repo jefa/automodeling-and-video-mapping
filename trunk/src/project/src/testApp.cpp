@@ -135,7 +135,7 @@ void cycleQuadSelection(bool fwd) {
         std::advance(quadsIt, oldSelectedIdx);
         (*quadsIt).second->setSelected(false);
         quadsIt = quads.begin();
-        std::advance(quadsIt, selectedIdx);
+        std::advance(quadsIt, selectedIdx);d
         selectedQuadKey = (*quadsIt).first;
         (*quadsIt).second->setSelected(true);
     }
