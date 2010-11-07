@@ -10,8 +10,8 @@
         </MidiPorts>
     </Ports>
     <Network>
-        <Node name="javier" address="10.1.4.36" port="12345" />
-        <Node name="adriana" address="10.1.4.109" port="12345" />
+        <Node name="javier" address="localhost" port="12345" />
+        <!--Node name="adriana" address="10.1.4.109" port="12345" /-->
     </Network>
     <Textures>
         <Images>
@@ -26,9 +26,8 @@
     </Textures>
     <Shapes>
         <Quads2D>
-            <Quad2D id="otro" x0="600.000000" y0="600.000000" x1="800.000000" y1="600.000000" x2="800.000000" y2="800.000000" x3="600.000000" y3="800.000000"></Quad2D>
-            <Quad2D id="quad1" x0="182.000000" y0="287.000000" x1="194.000000" y1="470.000000" x2="456.000000" y2="454.000000" x3="435.000000" y3="278.000000"></Quad2D>
-            <Quad2D id="quad2" x0="668.000000" y0="546.000000" x1="850.000000" y1="175.000000" x2="794.000000" y2="494.000000" x3="747.000000" y3="560.000000"></Quad2D>
+            <Quad2D id="quad1" x0="139.000000" y0="179.000000" x1="293.000000" y1="295.000000" x2="136.000000" y2="546.000000" x3="109.000000" y3="394.000000"></Quad2D>
+            <Quad2D id="quad2" x0="707.000000" y0="199.000000" x1="938.000000" y1="343.000000" x2="612.000000" y2="612.000000" x3="412.000000" y3="612.000000"></Quad2D>
         </Quads2D>
         <Objs3D>
             <Obj3D id="squirrel" filepath="./data/models/squirrel.3ds" posX="0" posY="0" posZ="0" />
@@ -49,8 +48,8 @@
             <Event name="lanzarbolitarebotando" destination="all" />
             <Event name="lanzarotrovideo" destination="node3" delay="10ms" />
         </OscEvents>
-		<TimedEvents>
-			<TimedEvent destination="javier" time="0.5" >
+        <TimedEvents>
+            <TimedEvent destination="javier" time="0.5" >
 				<Message address="/video/set" param1="quad1" param2="cartoon" param3="" param4="" param5="" />
 			</TimedEvent>
 			<TimedEvent destination="javier" time="0.5" >
@@ -62,7 +61,7 @@
 			<TimedEvent destination="javier" time="3.6" >
 				<Message address="/video/stop" param1="quad2" param2="cartoon" param3="" param4="" param5="" />
 			</TimedEvent>
-			<TimedEvent destination="javier" time="5.0" >
+			<!--TimedEvent destination="javier" time="5.0" >
 				<Message address="/video/play" param1="quad2" param2="fingers" param3="" param4="" param5="" />
 			</TimedEvent>
 			<TimedEvent destination="javier" time="6.3" >
@@ -70,8 +69,7 @@
 			</TimedEvent>
 			<TimedEvent destination="javier" time="6.3" >
 				<Message address="/video/play" param1="quad2" param2="cartoons" param3="" param4="" param5="" />
-			</TimedEvent>
-		</TimedEvents>
-		
+			</TimedEvent-->
+        </TimedEvents>
     </Events>
 </Show>
