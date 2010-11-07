@@ -8,7 +8,7 @@ using namespace std;
 
 class EventArg{
     public:
-        string type;
+        //string type;
         ofxOscMessage args;
 
         EventArg() {}

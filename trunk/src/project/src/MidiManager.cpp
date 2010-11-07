@@ -36,7 +36,7 @@ void MidiManager::newMessage(int _port, int _id, int _value, double _timestamp){
 
 	EventArg *evtArg = new EventArg();
 
-    evtArg->type = "MIDI";
+    //evtArg->type = "MIDI";
 	evtArg->args.addIntArg(_value);
 	evtArg->args.addIntArg(_id);
 	evtArg->args.addIntArg(_port);
