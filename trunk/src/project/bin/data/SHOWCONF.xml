@@ -53,19 +53,19 @@
 				<Message address="/video/set" param1="quad2" param2="cartoon"/>
 			</TimedEvent>
 			<TimedEvent destination="javier" time="3.0" >
-				<Message address="/video/play" param1="cartoon" />
+				<Message address="/video/play" param1="cartoon" param2="1" />
 			</TimedEvent>
             <TimedEvent destination="javier" time="3.6" >
 				<Message address="/video/stop" param1="cartoon" />
 			</TimedEvent>
             <TimedEvent destination="javier" time="5.0" >
-				<Message address="/video/play" param1="fingers" />
+				<Message address="/video/play" param1="fingers" param2="2" />
 			</TimedEvent>
 			<TimedEvent destination="javier" time="6.3" >
 				<Message address="/video/set" param1="quad2" param2="cartoons" />
 			</TimedEvent>
 			<TimedEvent destination="javier" time="6.3" >
-				<Message address="/video/play" param1="cartoons" />
+				<Message address="/video/play" param1="cartoons" param2="1" />
 			</TimedEvent>
         </TimedEvents>
     </Events>

@@ -267,7 +267,7 @@ void testApp::event(EventArg *e) {
 
         //ofLog(OF_LOG_VERBOSE, "testApp:: Playing arg0=%s, arg1=%s", e->args.getArgAsString(0).c_str(), e->args.getArgAsString(1).c_str());
 
-        TextureManager::PlayVideo(e->args.getArgAsString(0));
+        TextureManager::PlayVideo(e->args.getArgAsString(0), e->args.getArgAsFloat(1));
     }
     else if(address.compare("/video/stop") == 0) {
         //El parametro 0 indica que video detener.
@@ -655,10 +655,17 @@ void testApp::loadShow() {
         string param4 = showConfig.getAttribute("TimedEvent:Message", "param4","", i);
         string param5 = showConfig.getAttribute("TimedEvent:Message", "param5","", i);
 
+        if(address.compare("/video/play") == 0) {
+            float param2f = showConfig.getAttribute("TimedEvent:Message", "param2", 1, i);
+            TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f));
+        }
+        else {
+
         std::cout << " TimedEvent Message: "<< address+ " " +param1 << " " << param2 << " " << param3 << " " << param4 << " " << param5 << endl;
         #ifdef CONSOLE
         TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2, param3, param4, param5));
         #endif
+        }
 
     }
 
