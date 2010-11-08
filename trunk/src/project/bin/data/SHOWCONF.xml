@@ -65,6 +65,9 @@
 			<TimedEvent destination="javier" time="6.3" >
 				<Message address="/video/play" param1="cartoons" param2="1" />
 			</TimedEvent>
+			<TimedEvent destination="javier" time="8.3" >
+				<Message address="/texture/fadeout" param1="quad2" param2="1.0" />
+			</TimedEvent>
 			<TimedEvent destination="javier" time="8.0" >
 				<Message address="/texture/setcolor" param1="quad1" param2="0.3" param3="0.3" param4="0.7" param5="1" />
 			</TimedEvent>

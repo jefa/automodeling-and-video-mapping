@@ -293,6 +293,14 @@ void testApp::event(EventArg *e) {
         quad->getMaterial()->set(AMBIENT_B, e->args.getArgAsFloat(3));
         quad->getMaterial()->set(AMBIENT_A, e->args.getArgAsFloat(4));
     }
+    else if(address.compare("/texture/fadeout") == 0) {
+        Material *mat = quads[e->args.getArgAsString(0)]->getMaterial();
+        Animation *a = new LinearAnimation(mat, AMBIENT_A, e->args.getArgAsFloat(1), 0.0f);
+        AnimationLoop *loop = new AnimationLoop("loop");
+        loop->AddAnimation(a);
+        AnimationController::AddLoop("loop", loop);
+        AnimationController::PlayLoop("loop");
+    }
     else {
         ofLog(OF_LOG_WARNING, "unknown event with address %s", address.c_str());
     }
@@ -664,6 +672,10 @@ void testApp::loadShow() {
             float param4f = showConfig.getAttribute("TimedEvent:Message", "param4", 1.0, i);
             float param5f = showConfig.getAttribute("TimedEvent:Message", "param5", 1.0, i);
             TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f, param3f, param4f, param5f));
+        } else if(address.compare("/texture/fadeout") == 0) {
+            float param2f = showConfig.getAttribute("TimedEvent:Message", "param2", 1.0, i);
+            TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f));
+
         } else {
             string param2 = showConfig.getAttribute("TimedEvent:Message", "param2", "", i);
             string param3 = showConfig.getAttribute("TimedEvent:Message", "param3", "", i);
