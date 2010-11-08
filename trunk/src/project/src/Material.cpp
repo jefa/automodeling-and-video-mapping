@@ -5,7 +5,7 @@ Material::Material(){
     ambient[0] = 1.0f;//ofRandomuf();
     ambient[1] = 1.0f;//ofRandomuf();
     ambient[2] = 1.0f;//ofRandomuf();
-    ambient[3] = 1;
+    ambient[3] = 1.0f;
 
     texture_shader.loadShader("shaders/texture_ambient");
 
@@ -31,18 +31,21 @@ void Material::Enable(){
     if(isTexReady) {
         ofTexture &tex = TextureManager::GetTextureReference(texID, texType);
 
-        glEnable(GL_TEXTURE_2D);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glActiveTextureARB(GL_TEXTURE0_ARB + textureUnit);
 
         glBindTexture(GL_TEXTURE_2D, tex.texData.textureID);
 
         texture_shader.setShaderActive(true);
         texture_shader.setUniformVariable2f("texSize", tex.getWidth(), tex.getHeight());
-        texture_shader.setUniformVariable3f("color", ambient[0], ambient[1], ambient[2]);
+        texture_shader.setUniformVariable4f("color", ambient[0], ambient[1], ambient[2], ambient[3]);
         texture_shader.setUniformVariable1i("tex", textureUnit);
     }
     else {
-        glColor3f(ambient[0], ambient[1], ambient[2]);
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glColor4fv(ambient);
     }
 }
 
@@ -61,6 +64,8 @@ float Material::get(int aParam) {
             return ambient[1];
         case AMBIENT_B:
             return ambient[2];
+        case AMBIENT_A:
+            return ambient[3];
     }
 	return 0;
 }
@@ -76,6 +81,9 @@ void Material::set(int aParam, float value) {
             break;
         case AMBIENT_B:
             ambient[2] = value;
+            break;
+        case AMBIENT_A:
+            ambient[3] = value;
             break;
     }
 }

@@ -13,7 +13,7 @@ using namespace std;
 
 enum A_PARAM_MATERIAL
 {
-    AMBIENT_R, AMBIENT_G, AMBIENT_B,
+    AMBIENT_R, AMBIENT_G, AMBIENT_B, AMBIENT_A
 };
 
 class Material : public IPropertyManager

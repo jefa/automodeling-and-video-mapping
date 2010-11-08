@@ -40,7 +40,7 @@ void testApp::setup(){
     setupLogging();
 
     //set background to black
-	ofBackground(0, 0, 0);
+	ofBackground(0, 200, 0);
 
     //for smooth animation, set vertical sync if we can
 	ofSetVerticalSync(true);
@@ -288,13 +288,13 @@ void testApp::event(EventArg *e) {
     }
     else if(address.compare("/texture/setcolor") == 0) {
         Quad2D *quad = quads[e->args.getArgAsString(0)];
-        //quad->getMaterial()->SetTextureParams("", imageTexture, 0);
         quad->getMaterial()->set(AMBIENT_R, e->args.getArgAsFloat(1));
         quad->getMaterial()->set(AMBIENT_G, e->args.getArgAsFloat(2));
         quad->getMaterial()->set(AMBIENT_B, e->args.getArgAsFloat(3));
+        quad->getMaterial()->set(AMBIENT_A, e->args.getArgAsFloat(4));
     }
     else {
-        ofLog(OF_LOG_WARNING, "unknown event with address %s", address);
+        ofLog(OF_LOG_WARNING, "unknown event with address %s", address.c_str());
     }
 }
 
@@ -649,27 +649,27 @@ void testApp::loadShow() {
     for(int i = 0; i < numItems; i++)
     {
         string destination = showConfig.getAttribute("TimedEvent", "destination","", i);
-        double time = showConfig.getAttribute("TimedEvent", "time", 0, i);
+        float time = showConfig.getAttribute("TimedEvent", "time", 0.0, i);
         //std::cout << " TimedEvent Data: "<< destination+ " " +time << endl;
-
-        string address = showConfig.getAttribute("TimedEvent:Message", "address","", i);
-        string param1 = showConfig.getAttribute("TimedEvent:Message", "param1","", i);
-        string param2 = showConfig.getAttribute("TimedEvent:Message", "param2","", i);
-        string param3 = showConfig.getAttribute("TimedEvent:Message", "param3","", i);
-        string param4 = showConfig.getAttribute("TimedEvent:Message", "param4","", i);
-        string param5 = showConfig.getAttribute("TimedEvent:Message", "param5","", i);
-        std::cout << " TimedEvent Message: "<< address+ " " +param1 << " " << param2 << " " << param3 << " " << param4 << " " << param5 << endl;
+        string address = showConfig.getAttribute("TimedEvent:Message", "address", "", i);
+        string param1 = showConfig.getAttribute("TimedEvent:Message", "param1", "", i);
 
         #ifdef CONSOLE
         if(address.compare("/video/play") == 0) {
-            float param2f = showConfig.getAttribute("TimedEvent:Message", "param2", 1, i);
+            float param2f = showConfig.getAttribute("TimedEvent:Message", "param2", 1.0, i);
             TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f));
         } else if(address.compare("/texture/setcolor") == 0) {
-            float param2f = showConfig.getAttribute("TimedEvent:Message", "param2", 1, i);
-            float param3f = showConfig.getAttribute("TimedEvent:Message", "param3", 1, i);
-            float param4f = showConfig.getAttribute("TimedEvent:Message", "param4", 1, i);
-            TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f, param3f, param4f));
+            float param2f = showConfig.getAttribute("TimedEvent:Message", "param2", 1.0, i);
+            float param3f = showConfig.getAttribute("TimedEvent:Message", "param3", 1.0, i);
+            float param4f = showConfig.getAttribute("TimedEvent:Message", "param4", 1.0, i);
+            float param5f = showConfig.getAttribute("TimedEvent:Message", "param5", 1.0, i);
+            TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f, param3f, param4f, param5f));
         } else {
+            string param2 = showConfig.getAttribute("TimedEvent:Message", "param2", "", i);
+            string param3 = showConfig.getAttribute("TimedEvent:Message", "param3", "", i);
+            string param4 = showConfig.getAttribute("TimedEvent:Message", "param4", "", i);
+            string param5 = showConfig.getAttribute("TimedEvent:Message", "param5", "", i);
+            std::cout << " TimedEvent Message: "<< address+ " " +param1 << " " << param2 << " " << param3 << " " << param4 << " " << param5 << endl;
             TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2, param3, param4, param5));
         }
         #endif
@@ -691,14 +691,10 @@ void testApp::saveShow() {
     //showConfig.addTag("Quads2D");
     showConfig.pushTag("Quads2D");
 
-    float x0;
-    float y0;
-    float x1;
-    float y1;
-    float x2;
-    float y2;
-    float x3;
-    float y3;
+    float x0, y0;
+    float x1, y1;
+    float x2, y2;
+    float x3, y3;
     string id;
     map<string, Quad2D*>::iterator iter = quads.begin();
     while (iter != quads.end() )

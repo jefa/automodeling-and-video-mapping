@@ -2,98 +2,98 @@
 
 
 //char *textFileRead(char *fn);		// some memory allocation happens here
-									// be careful...  please don't call load shader 
+									// be careful...  please don't call load shader
 									// repeatedly !!!!! (you have been warned)
 
 GLchar *LoadShaderText(const char *fileName);
 
 ofxShader::~ofxShader(){
-	unload();	
+	unload();
 };
 //---------------------------------------------------------------
 void ofxShader::loadShader(string fragmentName, string vertexName){
-	
+
 	fragmentName = ofToDataPath(fragmentName);
 	vertexName = ofToDataPath(vertexName);
 
-	
-	bLoaded = false;	
-	
+
+	bLoaded = false;
+
 	if (GLEE_ARB_shader_objects){
-		
+
 		// ---------------------------------- (a) load in the shaders
 		char *vs = NULL,*fs = NULL;
 		vs = LoadShaderText(vertexName.c_str());
 		fs = LoadShaderText(fragmentName.c_str());
-		
+
 		vertexShader = (GLhandleARB)glCreateShader(GL_VERTEX_SHADER);
 		fragmentShader = (GLhandleARB)glCreateShader(GL_FRAGMENT_SHADER);
-		
+
 		if( vs == NULL || fs == NULL ){
 			printf("unable to load %s \n", vertexName.c_str());
 			return;
 		}
-		
+
 		GLint length = strlen(vs);
 		glShaderSourceARB(vertexShader, 1, (const char**)&vs, &length);
 		length = strlen(fs);
 		glShaderSourceARB(fragmentShader, 1, (const char**)&fs, &length);
-		
+
 		char infobuffer[1000];
 		GLsizei infobufferlen = 0;
-		
+
 		// ----------------------------------- (b) compile the shaders
 		// try to compile "vertex shader"
 		glCompileShaderARB(vertexShader);
-		
+
 		//please add compile status check in:
 		GLint compileStatus = 0;
 		glGetObjectParameterivARB( vertexShader, GL_COMPILE_STATUS, &compileStatus );
 		printf("vertexShader status = %i \n", compileStatus);
-		
-		
+
+
 		glGetInfoLogARB(vertexShader, 999, &infobufferlen, infobuffer);
 		if (infobufferlen != 0){
 			infobuffer[infobufferlen] = 0;
 			printf("vertexShader reports: %s \n", infobuffer);
 			return;
 		}
-		
+
 		// ------------------------------------
 		// try to compile "fragment shader"
 		glCompileShaderARB(fragmentShader);
-		
-		
+
+
 
 		glGetObjectParameterivARB( fragmentShader, GL_COMPILE_STATUS, &compileStatus );
 		printf("fragmentShader status %i \n", compileStatus);
-		
-		
+
+
 		glGetInfoLogARB(fragmentShader, 999, &infobufferlen, infobuffer);
 		if (infobufferlen != 0){
 			infobuffer[infobufferlen] = 0;
 			printf("fragmentShader reports: %s \n", infobuffer);
 			return;
 		}
-		
+
 		// ----------------------------------- (c) link the shaders
 		shader = glCreateProgramObjectARB();
 		glAttachObjectARB(shader,vertexShader);
 		glAttachObjectARB(shader,fragmentShader);
 		glLinkProgramARB(shader);
-		
-		
+
+
 		bLoaded = true;
-			
+
 	} else {
-	
+
 		printf("sorry, it looks like you can't run 'ARB_shader_objects' \n please check the capabilites of your graphics card (http://www.ozone3d.net/gpu_caps_viewer/) \n");
-	
+
 	}
 
 
 }
-		
+
 //---------------------------------------------------------------
 void ofxShader::loadShader(string shaderName){
 	bLoaded = false;
@@ -106,24 +106,24 @@ void ofxShader::loadShader(string shaderName){
 
 //---------------------------------------------------------------
 void ofxShader::unload(){
-	
+
 	if (vertexShader){
 		glDetachObjectARB(shader,vertexShader);
 		glDeleteObjectARB(vertexShader);
 		vertexShader = NULL;
 	}
-	
+
 	if (fragmentShader){
 		glDetachObjectARB(shader,fragmentShader);
 		glDeleteObjectARB(fragmentShader);
 		fragmentShader = NULL;
 	}
-	
+
 	if (shader){
 		glDeleteObjectARB(shader);
 		shader = NULL;
 	}
-	
+
 }
 
 //---------------------------------------------------------------
@@ -175,6 +175,11 @@ void ofxShader::setUniformVariable3f (char * name, float value, float value2, fl
 		glUniform3fARB(glGetUniformLocationARB(shader, name), value, value2, value3);
 	}
 }
+void ofxShader::setUniformVariable4f (char * name, float value, float value2, float value3, float value4){
+	if (bLoaded == true){
+		glUniform4fARB(glGetUniformLocationARB(shader, name), value, value2, value3, value4);
+	}
+}
 
 //---------------------------------------------------------
 // below is from: www.lighthouse3d.com
@@ -190,8 +195,8 @@ char *textFileRead(char *fn) {
 	if (fn != NULL) {
 		fp = fopen(fn,"rt");
 		if (fp != NULL) {
-		
-		      
+
+
       fseek(fp, 0, SEEK_END);
       count = ftell(fp);
       fseek(fp, 0, SEEK_SET);
@@ -204,7 +209,7 @@ char *textFileRead(char *fn) {
 			fclose(fp);
 		}
 	}
-	
+
 	return content;
 }*/
 
