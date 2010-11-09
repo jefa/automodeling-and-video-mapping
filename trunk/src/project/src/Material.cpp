@@ -33,14 +33,20 @@ void Material::Enable(){
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glActiveTextureARB(GL_TEXTURE0_ARB + textureUnit);
 
-        glBindTexture(GL_TEXTURE_2D, tex.texData.textureID);
+        glActiveTexture(GL_TEXTURE0 + textureUnit);
+        glBindTexture(tex.texData.textureTarget, (GLuint)tex.texData.textureID);
 
         texture_shader.setShaderActive(true);
-        texture_shader.setUniformVariable2f("texSize", tex.getWidth(), tex.getHeight());
+
+        int texwidth = tex.getWidth();
+        int texheight = tex.getHeight();
+        float texwidthpow2 = ofNextPow2(texwidth);
+        float texheightpow2 = ofNextPow2(texheight);
+
+        texture_shader.setUniformVariable2f("texCorrection", texwidth / texwidthpow2, texheight / texheightpow2);
         texture_shader.setUniformVariable4f("color", ambient[0], ambient[1], ambient[2], ambient[3]);
-        texture_shader.setUniformVariable1i("tex", textureUnit);
+        texture_shader.setUniformVariable1i("tex", GL_TEXTURE0 + textureUnit);
     }
     else {
         glEnable(GL_BLEND);
@@ -50,8 +56,6 @@ void Material::Enable(){
 }
 
 void Material::Disable() {
-	//glActiveTextureARB(GL_TEXTURE0_ARB + textureUnit);
-    //glBindTexture(GL_TEXTURE_2D, NULL);
 	texture_shader.setShaderActive(false);
 	//glDisable(GL_TEXTURE_2D);
 }

@@ -18,6 +18,7 @@ void TextureManager::LoadImageTexture(string key, string path) {
 }
 
 void TextureManager::LoadVideoTexture(string key, string path) {
+    ofDisableArbTex();
     ofxAlphaVideoPlayer *video = new ofxAlphaVideoPlayer();
     video->loadMovie(path);
     videoTextures.insert(pair<string, ofxAlphaVideoPlayer*>(key, video));
