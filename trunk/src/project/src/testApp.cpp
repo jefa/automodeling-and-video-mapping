@@ -40,7 +40,7 @@ void testApp::setup(){
     setupLogging();
 
     //set background to black
-	ofBackground(0, 200, 0);
+	ofBackground(0, 60, 0);
 
     //for smooth animation, set vertical sync if we can
 	ofSetVerticalSync(true);
@@ -300,6 +300,13 @@ void testApp::event(EventArg *e) {
         loop->AddAnimation(a);
         //AnimationController::AddLoop("loop", loop);
         //AnimationController::PlayLoop("loop");
+        AnimationController::PlayLoop(loop);
+    }
+    else if(address.compare("/texture/fadein") == 0) {
+        Material *mat = quads[e->args.getArgAsString(0)]->getMaterial();
+        Animation *a = new LinearAnimation(mat, AMBIENT_A, e->args.getArgAsFloat(1), 1.0f);
+        AnimationLoop *loop = new AnimationLoop("loop");
+        loop->AddAnimation(a);
         AnimationController::PlayLoop(loop);
     }
     else {
@@ -673,7 +680,7 @@ void testApp::loadShow() {
             float param4f = showConfig.getAttribute("TimedEvent:Message", "param4", 1.0, i);
             float param5f = showConfig.getAttribute("TimedEvent:Message", "param5", 1.0, i);
             TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f, param3f, param4f, param5f));
-        } else if(address.compare("/texture/fadeout") == 0) {
+        } else if((address.compare("/texture/fadeout") == 0) || (address.compare("/texture/fadein") == 0)) {
             float param2f = showConfig.getAttribute("TimedEvent:Message", "param2", 1.0, i);
             TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f));
 
