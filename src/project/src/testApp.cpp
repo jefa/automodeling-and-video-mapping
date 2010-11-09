@@ -77,6 +77,16 @@ void testApp::setup(){
     TimeManager::Init(this);
     setupConsole();
 
+    std::cout << " ofSoundPlayer ";
+
+    //mySound.loadSound("sounds/export_mapping.mp3");
+    mySound.loadSound("sounds/Violet.mp3");
+    mySound.setMultiPlay(false);
+    mySound.setVolume(1.0f);
+    mySound.play();
+
+    std::cout << " ejecutando ahora: "<<   mySound.getIsPlaying() ;
+
     #endif
 
 }

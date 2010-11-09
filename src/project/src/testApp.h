@@ -53,6 +53,8 @@ class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener 
     private:
         string nodeName;
         ofxConsole * console;
+        ofSoundPlayer mySound;
+
 
 };
 
