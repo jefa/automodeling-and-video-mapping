@@ -56,7 +56,15 @@
             <TimedEvent destination="javier" time="4.6" >
 				<Message address="/video/stop" param1="cartoon" />
 			</TimedEvent>
-            <TimedEvent destination="javier" time="5.0" >
+			
+            <TimedEvent destination="javier" time="4.98" >
+				<Message address="/texture/setcolor" param1="quad1" param2="1.0" param3="1.0" param4="1.0" param5="0" />
+			</TimedEvent>
+			<TimedEvent destination="javier" time="4.99" >
+				<Message address="/texture/fadein" param1="quad1" param2="1.0" />
+			</TimedEvent>
+			
+			<TimedEvent destination="javier" time="5.0" >
 				<Message address="/video/play" param1="fingers" param2="2" />
 			</TimedEvent>
 			<TimedEvent destination="javier" time="6.3" >
@@ -65,14 +73,14 @@
 			<TimedEvent destination="javier" time="6.3" >
 				<Message address="/video/play" param1="cartoons" param2="1" />
 			</TimedEvent>
-			<TimedEvent destination="javier" time="8.3" >
-				<Message address="/texture/fadeout" param1="quad2" param2="1.0" />
+			<TimedEvent destination="javier" time="7.8" >
+				<Message address="/texture/fadeout" param1="quad1" param2="1.0" />
 			</TimedEvent>
 			<TimedEvent destination="javier" time="8.0" >
-				<Message address="/texture/setcolor" param1="quad1" param2="0.3" param3="0.3" param4="0.7" param5="1" />
+				<Message address="/texture/setcolor" param1="quad2" param2="0.3" param3="0.3" param4="0.7" param5="1" />
 			</TimedEvent>
 			<TimedEvent destination="javier" time="10.0" >
-				<Message address="/texture/setcolor" param1="quad1" param2="1" param3="1" param4="0" param5="0.7" />
+				<Message address="/texture/setcolor" param1="quad2" param2="1" param3="1" param4="0" param5="0.7" />
 			</TimedEvent>
         </TimedEvents>
     </Events>
