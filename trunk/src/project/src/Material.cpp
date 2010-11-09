@@ -30,21 +30,17 @@ void Material::Enable(){
     }
     if(isTexReady) {
         ofTexture &tex = TextureManager::GetTextureReference(texID, texType);
+        ofTextureData texData = tex.texData;
 
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
         glActiveTexture(GL_TEXTURE0 + textureUnit);
-        glBindTexture(tex.texData.textureTarget, (GLuint)tex.texData.textureID);
+        glBindTexture(texData.textureTarget, (GLuint)texData.textureID);
 
         texture_shader.setShaderActive(true);
 
-        int texwidth = tex.getWidth();
-        int texheight = tex.getHeight();
-        float texwidthpow2 = ofNextPow2(texwidth);
-        float texheightpow2 = ofNextPow2(texheight);
-
-        texture_shader.setUniformVariable2f("texCorrection", texwidth / texwidthpow2, texheight / texheightpow2);
+        texture_shader.setUniformVariable2f("texCorrection", texData.width / texData.tex_w, texData.height / texData.tex_h);
         texture_shader.setUniformVariable4f("color", ambient[0], ambient[1], ambient[2], ambient[3]);
         texture_shader.setUniformVariable1i("tex", GL_TEXTURE0 + textureUnit);
     }
