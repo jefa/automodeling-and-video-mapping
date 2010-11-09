@@ -21,6 +21,7 @@ int selectedVtx = 0;
 float xoffset = 1;
 float yoffset = 1;
 bool consoleEnabled = false;
+bool bFullscreen = true;
 
 map<string, int> OscPorts;
 
@@ -41,6 +42,7 @@ void testApp::setup(){
 
     //set background to black
 	ofBackground(0, 60, 0);
+    ofSetFullscreen(bFullscreen);
 
     //for smooth animation, set vertical sync if we can
 	ofSetVerticalSync(true);
@@ -178,6 +180,11 @@ void testApp::keyPressed  (int key){
         ++selectedVtx;
         selectedVtx %= 4;
     }
+
+	if(key == 'f'){
+		bFullscreen = !bFullscreen;
+        ofSetFullscreen(bFullscreen);
+	}
 
     if(key == 'a') {
         if(!selectedQuadKey.empty()) {
