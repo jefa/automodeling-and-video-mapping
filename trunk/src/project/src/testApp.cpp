@@ -298,8 +298,9 @@ void testApp::event(EventArg *e) {
         Animation *a = new LinearAnimation(mat, AMBIENT_A, e->args.getArgAsFloat(1), 0.0f);
         AnimationLoop *loop = new AnimationLoop("loop");
         loop->AddAnimation(a);
-        AnimationController::AddLoop("loop", loop);
-        AnimationController::PlayLoop("loop");
+        //AnimationController::AddLoop("loop", loop);
+        //AnimationController::PlayLoop("loop");
+        AnimationController::PlayLoop(loop);
     }
     else {
         ofLog(OF_LOG_WARNING, "unknown event with address %s", address.c_str());
