@@ -21,7 +21,7 @@ int selectedVtx = 0;
 float xoffset = 1;
 float yoffset = 1;
 bool consoleEnabled = false;
-bool bFullscreen = true;
+bool bFullscreen = false;
 
 map<string, int> OscPorts;
 
@@ -150,6 +150,11 @@ void cycleQuadSelection(bool fwd) {
 
 void testApp::keyPressed  (int key){
 
+	if(key == 'f'){
+		bFullscreen = !bFullscreen;
+        ofSetFullscreen(bFullscreen);
+	}
+
 #ifdef CONSOLE
 
     if(key == '+') {
@@ -180,11 +185,6 @@ void testApp::keyPressed  (int key){
         ++selectedVtx;
         selectedVtx %= 4;
     }
-
-	if(key == 'f'){
-		bFullscreen = !bFullscreen;
-        ofSetFullscreen(bFullscreen);
-	}
 
     if(key == 'a') {
         if(!selectedQuadKey.empty()) {
