@@ -37,7 +37,7 @@ void TextureManager::Update() {
 
 void TextureManager::PlayVideo(string key, float speed) {
     videoTextures[key]->play();
-    videoTextures[key]->setLoopState(OF_LOOP_NONE);
+    videoTextures[key]->setLoopState(OF_LOOP_NORMAL);
     videoTextures[key]->setSpeed(speed);
 }
 
