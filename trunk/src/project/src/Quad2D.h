@@ -24,6 +24,7 @@ class Quad2D : public IPropertyManager
         Material* getMaterial();
         void setEnabled(bool enabled);
         bool isEnabled();
+        string getId();
     protected:
     private:
         float quadPoints[8];

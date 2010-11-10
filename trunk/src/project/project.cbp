@@ -191,6 +191,18 @@
 		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\src\ofxXmlSettings.h">
 			<Option virtualFolder="addons\ofxXmlSettings\src\" />
 		</Unit>
+		<Unit filename="addons\ofSoundPlayer\src\ofSoundPlayer.cpp">
+			<Option virtualFolder="addons\ofSoundPlayer\src\" />
+		</Unit>
+		<Unit filename="addons\ofSoundPlayer\src\ofSoundPlayer.h">
+			<Option virtualFolder="addons\ofSoundPlayer\src\" />
+		</Unit>
+		<Unit filename="addons\ofSoundPlayer\src\ofSoundStream.cpp">
+			<Option virtualFolder="addons\ofSoundPlayer\src\" />
+		</Unit>
+		<Unit filename="addons\ofSoundPlayer\src\ofSoundStream.h">
+			<Option virtualFolder="addons\ofSoundPlayer\src\" />
+		</Unit>
 		<Unit filename="addons\ofxAlphaVideoPlayer\ofxAlphaVideoPlayer.cpp">
 			<Option virtualFolder="addons\ofxAlphaVideoPlayer\" />
 		</Unit>
@@ -236,18 +248,6 @@
 		<Unit filename="addons\ofxShader\src\ofxShader.h">
 			<Option virtualFolder="addons\ofxShader\src\" />
 		</Unit>
-		<Unit filename="addons\ofSoundPlayer\src\ofSoundPlayer.h">
-			<Option virtualFolder="addons\ofSoundPlayer\src\" />
-		</Unit>
-		<Unit filename="addons\ofSoundPlayer\src\ofSoundPlayer.cpp">
-			<Option virtualFolder="addons\ofSoundPlayer\src\" />
-		</Unit> 
-    <Unit filename="addons\ofSoundPlayer\src\ofSoundStream.h">
-			<Option virtualFolder="addons\ofSoundPlayer\src\" />
-		</Unit>
-		<Unit filename="addons\ofSoundPlayer\src\ofSoundStream.cpp">
-			<Option virtualFolder="addons\ofSoundPlayer\src\" />
-		</Unit> 
 		<Unit filename="src\Animation.cpp" />
 		<Unit filename="src\Animation.h" />
 		<Unit filename="src\AnimationController.cpp" />
