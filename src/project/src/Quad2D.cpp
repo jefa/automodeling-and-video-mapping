@@ -44,6 +44,10 @@ Quad2D::~Quad2D() {
     //dtor
 }
 
+string Quad2D::getId() {
+    return id;
+}
+
 void Quad2D::setEnabled(bool enabled) {
     this->enabled = enabled;
 }

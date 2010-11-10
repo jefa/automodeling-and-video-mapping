@@ -13,6 +13,8 @@ ofxXmlSettings showConfig;
 map<string, Quad2D*> quads;
 map<string, Quad2D*>::iterator quadsIt;
 
+multimap<float, Quad2D*> quadsByZ;
+
 map<string, Material*> materials;
 
 string selectedQuadKey;
@@ -110,8 +112,12 @@ void testApp::update(){
 void testApp::draw(){
 	ofSetupScreen();
 
-    for(quadsIt = quads.begin(); quadsIt != quads.end(); ++quadsIt) {
+    /*for(quadsIt = quads.begin(); quadsIt != quads.end(); ++quadsIt) {
         (*quadsIt).second->draw();
+    }*/
+    multimap<float, Quad2D*>::iterator it;
+    for(it = quadsByZ.begin(); it != quadsByZ.end(); it++) {
+        it->second->draw();
     }
 
     #ifdef CONSOLE
@@ -150,12 +156,12 @@ void cycleQuadSelection(bool fwd) {
 
 void testApp::keyPressed  (int key){
 
-	if(key == 'f'){
+#ifdef CONSOLE
+
+    if(key == 'f'){
 		bFullscreen = !bFullscreen;
         ofSetFullscreen(bFullscreen);
 	}
-
-#ifdef CONSOLE
 
     if(key == '+') {
         consoleEnabled = !consoleEnabled;
@@ -236,9 +242,7 @@ void testApp::keyPressed  (int key){
             setPoint(selectedQuadKey, selectedVtx, x, y);
         }
     }
-    if(key == ' ') {
-        selectedIdx = addQuad();
-    }
+
     if(key == '\b') {
         if(quads.size() > 0 && selectedIdx >= 0) {
             quadsIt = quads.begin();
@@ -294,6 +298,24 @@ void testApp::quit(const std::vector<std::string> & args){
 }
 
 int textureUnit = 0;
+
+void setZ(string id, float z) {
+    multimap<float, Quad2D*>::iterator it;
+    bool quadFound = false;
+    for(it = quadsByZ.begin(); it != quadsByZ.end(); it++) {
+        if(it->second->getId().compare(id) == 0) {
+            quadsByZ.erase(it);
+            quadFound = true;
+            break;
+        }
+    }
+    if(quadFound) {
+        quadsByZ.insert(pair<float, Quad2D*>(z, it->second));
+    }
+    else {
+        ofLog(OF_LOG_VERBOSE, "Quad %s was not found to change Z.", id.c_str());
+    }
+}
 
 void testApp::event(EventArg *e) {
     string address = e->args.getAddress().c_str();
@@ -351,6 +373,11 @@ void testApp::event(EventArg *e) {
         loop->AddAnimation(a);
         AnimationController::PlayLoop(loop);
     }
+    else if(address.compare("/quads/setz") == 0) {
+        string quadID = e->args.getArgAsString(0);
+        float z = e->args.getArgAsFloat(1);
+        setZ(quadID, z);
+    }
     else {
         ofLog(OF_LOG_WARNING, "unknown event with address %s", address.c_str());
     }
@@ -393,7 +420,7 @@ void testApp::addQuad(const std::vector<std::string> & args) {
 		return;
 	}
 	string label = args[1];
-    addQuad(label.c_str());
+    addQuad(label.c_str(), true);
 }
 
 int testApp::addQuad(string label, bool sendEvent) {
@@ -409,6 +436,7 @@ int testApp::addQuad(string label, bool sendEvent) {
     q->setSelected(true);
     q->setEnabled(true);
     quads.insert(pair<string, Quad2D*>(label, q));
+    quadsByZ.insert(pair<float, Quad2D*>(0, q));
 
     if (sendEvent) {
         ofxOscMessage oscMessage;
@@ -426,7 +454,7 @@ void testApp::removeQuadSelected(const std::vector<std::string> & args) {
 		ofLog(OF_LOG_ERROR, "Wrong number of arguments for < "+args[0]+" >!");
 		return;
 	}
-    removeQuad();
+    removeQuad("", true);
 }
 
 void testApp::removeQuad(const std::vector<std::string> & args) {
@@ -436,7 +464,19 @@ void testApp::removeQuad(const std::vector<std::string> & args) {
 		return;
 	}
 	string label = args[1];
-    removeQuad(label.c_str());
+    removeQuad(label.c_str(), true);
+}
+
+void removeQuadFromQuadsByZ(string label) {
+    multimap<float, Quad2D*>::iterator it;
+    for(it = quadsByZ.begin(); it != quadsByZ.end(); it++) {
+        if(it->second->getId().compare(label) == 0) {
+            quadsByZ.erase(it);
+            ofLog(OF_LOG_VERBOSE, "testApp: quad %s removed from z container.", label.c_str());
+            return;
+        }
+    }
+    ofLog(OF_LOG_VERBOSE, "testApp: quad with id: %s not found in z container", label.c_str());
 }
 
 int testApp::removeQuad(string label, bool sendEvent) {
@@ -450,6 +490,7 @@ int testApp::removeQuad(string label, bool sendEvent) {
             label = (*quadsIt).first;
             (*quadsIt).second->setSelected(false);
             quads.erase(quadsIt);
+            removeQuadFromQuadsByZ(label);
             selectedQuadKey = "";
         } else {
             ofLog(OF_LOG_WARNING, "Removing Quad: no quads or not one selected.");
@@ -460,6 +501,7 @@ int testApp::removeQuad(string label, bool sendEvent) {
         if(q != quads.end()){
             q->second->setSelected(false);
             quads.erase(q);
+            removeQuadFromQuadsByZ(label);
             selectedQuadKey = "";
         } else {
             ofLog(OF_LOG_WARNING, "testApp:: No Quad for label '"+label+"'");
@@ -639,6 +681,10 @@ void testApp::loadShow() {
                 float param2f = showConfig.getAttribute("Message", "param2", 1.0, j);
                 float param3f = showConfig.getAttribute("Message", "param3", 1.0, j);
                 TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f, param3f));
+
+            } else if((address.compare("/quads/setz") == 0)) {
+                float param2f = showConfig.getAttribute("Message", "param2", 0.0, j);
+                TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f));
 
             } else {
                 string param2 = showConfig.getAttribute("Message", "param2", "", j);
