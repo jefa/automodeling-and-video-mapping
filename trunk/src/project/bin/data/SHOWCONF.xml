@@ -10,21 +10,29 @@
         </MidiPorts>
     </Ports>
     <Network>
-        <Node name="javier" address="localhost" port="12345" />
-        <!--Node name="adriana" address="10.1.4.109" port="12345" /-->
+        <Node name="daniel" address="10.1.4.44" port="12345" />
+        <Node name="javier" address="10.1.4.36" port="12345" />
+        <Node name="adriana" address="10.1.4.109" port="12345" />
+        <Node name="chachi" address="localhost" port="12345" />
     </Network>
     <Textures>
-        <Images />
+        <Images>
+            <Image name="basetextura" path="Ima1.jpg" />
+            <Image name="barraazul" path="config\repository\Images\Ima2.jpg" />
+            <Image name="otraimagen" path="config\repository\Images\Ima3.jpg" />
+        </Images>
         <Videos>
+            <Video name="ferrofluid" path="videos\ferrofluid.mov" />
+            
         </Videos>
     </Textures>
     <Shapes>
         <Quads2D>
-		
-            <Quad2D id="quad01" x0="10"  y0="10" x1="60"  y1="10" x2="60"  y2="60" x3="10"  y3="60"></Quad2D>
-			<Quad2D id="quad02" x0="70"  y0="10" x1="120" y1="10" x2="120" y2="60" x3="70"  y3="60"></Quad2D>
-			
-			
+			<Quad2D id="aa" x0="100" y0="100" x1="200" y1="100" x2="200" y2="200" x3="100" y3="200"></Quad2D>
+			<Quad2D id="bb" x0="100" y0="300" x1="200" y1="300" x2="200" y2="400" x3="100" y3="400"></Quad2D>
+			<Quad2D id="cc" x0="100" y0="500" x1="200" y1="500" x2="200" y2="600" x3="100" y3="600"></Quad2D>
+            <Quad2D id="1_general" x0="252.000000" y0="48.000000" x1="2042.000000" y1="-1.000000" x2="2040.000000" y2="773.000000" x3="264.000000" y3="771.000000"></Quad2D>
+            
         </Quads2D>
         <Objs3D>
             <Obj3D id="squirrel" filepath="./data/models/squirrel.3ds" posX="0" posY="0" posZ="0" />
@@ -41,12 +49,42 @@
     </AnimationList>
     <Events>
         <!--  occurrence time in seconds ,  Message Type@ID@... parameters?  -->
-        <OscEvents />
+        <OscEvents>
+            <Event name="lanzarbolitarebotando" destination="all" />
+            <Event name="lanzarotrovideo" destination="node3" delay="10ms" />
+        </OscEvents>
         <TimedEvents>
-            <TimedEvent destination="javier" time="2.5">
-                <Message address="/texture/setcolor" param1="quad01" param2="1" param3="0" param4="0" param5="1" />
-
-            </TimedEvent>
+		
+			<TimedEvent destination="chachi" time="0.5" >
+				<Message address="/texture/setcolorall" param1="0.5" param2="0.5" param3="0.5" param4="1.0" />
+			</TimedEvent>
+			<TimedEvent destination="chachi" time="2.5" >
+				<Message address="/texture/setcolorall" param1="0.9" param2="0.9" param3="0.5" param4="1.0" />
+			</TimedEvent>
+            <!--<TimedEvent destination="chachi" time="0.5">
+				<Message address="/texture/setcolor" param1="1_maskColumna2" param2="1" param3="0" param4="0" param5="1" />
+				<Message address="/texture/setcolor" param1="extractor" param2="1" param3="0" param4="1" param5="1" />
+			</TimedEvent>
+            
+			
+			<TimedEvent destination="javier" time="0.5" >
+				<Message address="/video/set" param1="quad2" param2="fingers" param3="" param4="" param5="" />
+			</TimedEvent>
+			<TimedEvent destination="javier" time="3.0" >
+				<Message address="/video/play" param1="quad2" param2="cartoon" param3="" param4="" param5="" />
+			</TimedEvent>
+			<TimedEvent destination="javier" time="3.6" >
+				<Message address="/video/stop" param1="quad2" param2="cartoon" param3="" param4="" param5="" />
+			</TimedEvent>
+			<TimedEvent destination="javier" time="5.0" >
+				<Message address="/video/play" param1="quad2" param2="fingers" param3="" param4="" param5="" />
+			</TimedEvent>
+			<TimedEvent destination="javier" time="6.3" >
+				<Message address="/video/set" param1="quad2" param2="cartoons" param3="" param4="" param5="" />
+			</TimedEvent>
+			<TimedEvent destination="javier" time="6.3" >
+				<Message address="/video/play" param1="quad2" param2="cartoons" param3="" param4="" param5="" />
+			</TimedEvent>-->
         </TimedEvents>
     </Events>
 </Show>

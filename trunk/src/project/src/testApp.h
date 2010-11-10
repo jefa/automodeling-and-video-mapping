@@ -33,7 +33,7 @@ class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener 
         void setupLogging();
         void setupConsole();
 
-        void setPoint(int selectedIdx, int selectedVtx,
+        void setPoint(string selectedQuad, int selectedVtx,
                       int x, int y, bool sendEvent=true);
 		int addQuad(string label = "", bool sendEvent=true);
 		void addQuad(const std::vector<std::string> & args);
@@ -43,9 +43,6 @@ class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener 
 		void removeQuadSelected(const std::vector<std::string> & args);
 
 		void event(EventArg *e);
-
-        void saveQuads();
-        void loadQuads();
 
         void saveShow();
         void loadShow();

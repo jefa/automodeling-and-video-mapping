@@ -13,8 +13,8 @@ Quad2D::Quad2D(string id) {
 
     this->id = id;
 
-    float centerX = ofGetWidth() / 2.0f;
-    float centerY = ofGetWidth() / 2.0f;
+    float centerX = 200.0f;
+    float centerY = 200.0f;
     float quadWidth = 100.0f;
     float quadHeight = 100.0f;
 
