@@ -35,6 +35,13 @@ class EventArg{
             args.addFloatArg(param2);
         }
 
+        EventArg(string address, string param1, float param2, float param3) {
+            args.setAddress(address);
+            args.addStringArg(param1);
+            args.addFloatArg(param2);
+            args.addFloatArg(param3);
+        }
+
         EventArg(string address, string param1, float param2, float param3, float param4) {
             args.setAddress(address);
             args.addStringArg(param1);
