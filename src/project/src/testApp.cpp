@@ -168,9 +168,6 @@ void testApp::keyPressed  (int key){
         addQuad();
     }
 
-    if(key == 'k') {
-        loadQuads();
-    }
     if(key == '1') {
         cycleQuadSelection(true);
     }
@@ -212,7 +209,7 @@ void testApp::keyPressed  (int key){
             float x, y;
             quads[selectedQuadKey]->getPoint(selectedVtx, x, y);
             x -= xoffset;
-            setPoint(selectedIdx, selectedVtx, x, y);
+            setPoint(selectedQuadKey, selectedVtx, x, y);
         }
     }
     if(key == 'd') {
@@ -220,7 +217,7 @@ void testApp::keyPressed  (int key){
             float x, y;
             quads[selectedQuadKey]->getPoint(selectedVtx, x, y);
             x += xoffset;
-            setPoint(selectedIdx, selectedVtx, x, y);
+            setPoint(selectedQuadKey, selectedVtx, x, y);
         }
     }
     if(key == 's') {
@@ -228,7 +225,7 @@ void testApp::keyPressed  (int key){
             float x, y;
             quads[selectedQuadKey]->getPoint(selectedVtx, x, y);
             y += yoffset;
-            setPoint(selectedIdx, selectedVtx, x, y);
+            setPoint(selectedQuadKey, selectedVtx, x, y);
         }
     }
     if(key == 'w') {
@@ -236,7 +233,7 @@ void testApp::keyPressed  (int key){
             float x, y;
             quads[selectedQuadKey]->getPoint(selectedVtx, x, y);
             y -= yoffset;
-            setPoint(selectedIdx, selectedVtx, x, y);
+            setPoint(selectedQuadKey, selectedVtx, x, y);
         }
     }
     if(key == ' ') {
@@ -252,7 +249,6 @@ void testApp::keyPressed  (int key){
         }
     }
     if(key == 'l') {
-        saveQuads();
         saveShow();
     }
 
@@ -273,7 +269,7 @@ void testApp::mouseDragged(int x, int y, int button){
     if(selectedIdx >= 0 && selectedVtx >= 0)
     {
         //ofLog(OF_LOG_VERBOSE, "mouseDragged: ===== selectedIds=%d, selectedVtx=%d", selectedIdx,selectedVtx);
-        setPoint(selectedIdx, selectedVtx, x, y);
+        setPoint(selectedQuadKey, selectedVtx, x, y);
     }
     #endif
 }
@@ -318,7 +314,7 @@ void testApp::event(EventArg *e) {
     }
     else if(address.compare("/synch/setpoint") == 0) {
         //param0
-        setPoint(e->args.getArgAsInt32(0), e->args.getArgAsInt32(1), e->args.getArgAsInt32(2),
+        setPoint(e->args.getArgAsString(0), e->args.getArgAsInt32(1), e->args.getArgAsInt32(2),
                  e->args.getArgAsInt32(3), false);
     }
     else if(address.compare("/synch/addquad") == 0) {
@@ -333,6 +329,20 @@ void testApp::event(EventArg *e) {
         quad->getMaterial()->set(AMBIENT_G, e->args.getArgAsFloat(2));
         quad->getMaterial()->set(AMBIENT_B, e->args.getArgAsFloat(3));
         quad->getMaterial()->set(AMBIENT_A, e->args.getArgAsFloat(4));
+    }
+    else if(address.compare("/texture/setcolorall") == 0) {
+        float r = e->args.getArgAsFloat(0);
+        float g = e->args.getArgAsFloat(1);
+        float b = e->args.getArgAsFloat(2);
+        float a = e->args.getArgAsFloat(3);
+        map<string, Quad2D*>::iterator it;
+        for(it = quads.begin(); it != quads.end(); ++it)
+        {
+            it->second->getMaterial()->set(AMBIENT_R, r);
+            it->second->getMaterial()->set(AMBIENT_G, g);
+            it->second->getMaterial()->set(AMBIENT_B, b);
+            it->second->getMaterial()->set(AMBIENT_A, a);
+        }
     }
     else if(address.compare("/texture/fadeto") == 0) {
         Material *mat = quads[e->args.getArgAsString(0)]->getMaterial();
@@ -362,15 +372,13 @@ void testApp::setupConsole() {
 	console->addFunction("removeQuadSel", this, &testApp::removeQuadSelected);
 }
 
-void testApp::setPoint(int selectedIdx, int selectedVtx, int x, int y, bool sendEvent) {
-    quadsIt = quads.begin();
-    std::advance(quadsIt, selectedIdx);
-    (*quadsIt).second->setPoint(selectedVtx, x, y);
+void testApp::setPoint(string selectedQuad, int selectedVtx, int x, int y, bool sendEvent) {
+    quads[selectedQuad]->setPoint(selectedVtx, x, y);
 
     if (sendEvent) {
         ofxOscMessage oscMessage;
         oscMessage.setAddress("/synch/setpoint");
-        oscMessage.addIntArg(selectedIdx);
+        oscMessage.addStringArg(selectedQuad);
         oscMessage.addIntArg(selectedVtx);
         oscMessage.addIntArg(x);
         oscMessage.addIntArg(y);
@@ -472,89 +480,6 @@ int testApp::removeQuad(string label, bool sendEvent) {
     return quads.size() - 1;
 }
 
-void testApp::loadQuads() {
-    ofLog(OF_LOG_NOTICE, "loading project...");
-
-    quadsXML.loadFile("./quads.xml");
-
-    quadsXML.pushTag("quads");
-
-    int numQuadItems = quadsXML.getNumTags("quadItem");
-
-    for(int i = 0; i < numQuadItems; i++)
-    {
-        selectedIdx = addQuad();
-
-        quadsXML.pushTag("quadItem", i);
-
-            double x0 = quadsXML.getAttribute("vx0", "x", 0.0, 0);
-            double y0 = quadsXML.getAttribute("vx0", "y", 0.0, 0);
-
-            double x1 = quadsXML.getAttribute("vx1", "x", 50.0, 0);
-            double y1 = quadsXML.getAttribute("vx1", "y", 0.0, 0);
-
-            double x2 = quadsXML.getAttribute("vx2", "x", 50.0, 0);
-            double y2 = quadsXML.getAttribute("vx2", "y", 50.0, 0);
-
-            double x3 = quadsXML.getAttribute("vx3", "x", 0.0, 0);
-            double y3 = quadsXML.getAttribute("vx3", "y", 50.0, 0);
-
-            setPoint(selectedIdx, 0, x0, y0);
-            setPoint(selectedIdx, 1, x1, y1);
-            setPoint(selectedIdx, 2, x2, y2);
-            setPoint(selectedIdx, 3, x3, y3);
-
-        quadsXML.popTag();
-    }
-
-    quadsXML.popTag();
-
-    ofLog(OF_LOG_NOTICE, "project loaded. loaded quads: %i", numQuadItems);
-}
-
-void testApp::saveQuads() {
-
-    ofLog(OF_LOG_NOTICE, "saving project...");
-    quadsXML.clear();
-    int quadsTagKey = quadsXML.addTag("quads");
-    quadsXML.pushTag("quads", quadsTagKey);
-
-    for(quadsIt = quads.begin(); quadsIt != quads.end(); ++quadsIt)
-    {
-        int quadItemTagKey = quadsXML.addTag("quadItem");
-        quadsXML.pushTag("quadItem", quadItemTagKey);
-
-        float x0, y0, x1, y1, x2, y2, x3, y3;
-        (*quadsIt).second->getPoint(0, x0, y0);
-        (*quadsIt).second->getPoint(1, x1, y1);
-        (*quadsIt).second->getPoint(2, x2, y2);
-        (*quadsIt).second->getPoint(3, x3, y3);
-
-        int quadVx0Key = quadsXML.addTag("vx0");
-        quadsXML.addAttribute("vx0", "x", x0, quadVx0Key);
-        quadsXML.addAttribute("vx0", "y", y0, quadVx0Key);
-
-        int quadVx1Key = quadsXML.addTag("vx1");
-        quadsXML.addAttribute("vx1", "x", x1, quadVx1Key);
-        quadsXML.addAttribute("vx1", "y", y1, quadVx1Key);
-
-        int quadVx2Key = quadsXML.addTag("vx2");
-        quadsXML.addAttribute("vx2", "x", x2, quadVx2Key);
-        quadsXML.addAttribute("vx2", "y", y2, quadVx2Key);
-
-        int quadVx3Key = quadsXML.addTag("vx3");
-        quadsXML.addAttribute("vx3", "x", x3, quadVx3Key);
-        quadsXML.addAttribute("vx3", "y", y3, quadVx3Key);
-
-        quadsXML.popTag();
-    }
-    quadsXML.popTag();
-    quadsXML.saveFile("./quads.xml");
-
-    ofLog(OF_LOG_NOTICE, "Project saved.");
-
-}
-
 void testApp::loadShow() {
 
     ofLog(OF_LOG_NOTICE, "loading show config...");
@@ -642,27 +567,27 @@ void testApp::loadShow() {
     for(int i = 0; i < showConfig.getNumTags("Quad2D"); i++)
     {
         string id = showConfig.getAttribute("Quad2D", "id","", i);
-        double x0 = showConfig.getAttribute("Quad2D", "x0", 0.0, i);
-        double y0 = showConfig.getAttribute("Quad2D", "y0", 0.0, i);
+        int x0 = showConfig.getAttribute("Quad2D", "x0", 0, i);
+        int y0 = showConfig.getAttribute("Quad2D", "y0", 0, i);
 
-        double x1 = showConfig.getAttribute("Quad2D", "x1", 50.0, i);
-        double y1 = showConfig.getAttribute("Quad2D", "y1", 0.0, i);
+        int x1 = showConfig.getAttribute("Quad2D", "x1", 50, i);
+        int y1 = showConfig.getAttribute("Quad2D", "y1", 0, i);
 
-        double x2 = showConfig.getAttribute("Quad2D", "x2", 50.0, i);
-        double y2 = showConfig.getAttribute("Quad2D", "y2", 50.0, i);
+        int x2 = showConfig.getAttribute("Quad2D", "x2", 50, i);
+        int y2 = showConfig.getAttribute("Quad2D", "y2", 50, i);
 
-        double x3 = showConfig.getAttribute("Quad2D", "x3", 50.0, i);
-        double y3 = showConfig.getAttribute("Quad2D", "y3", 50.0, i);
+        int x3 = showConfig.getAttribute("Quad2D", "x3", 50, i);
+        int y3 = showConfig.getAttribute("Quad2D", "y3", 50, i);
 
         //std::cout << " Quad2D Data: "<< id<< endl;
 
         // add quad2
-        int selIdx = addQuad(id.c_str(), false);
-        setPoint(selIdx, 0, x0, y0, false);
-        setPoint(selIdx, 1, x1, y1, false);
-        setPoint(selIdx, 2, x2, y2, false);
-        setPoint(selIdx, 3, x3, y3, false);
+        addQuad(id, false);
 
+        setPoint(id, 0, x0, y0, false);
+        setPoint(id, 1, x1, y1, false);
+        setPoint(id, 2, x2, y2, false);
+        setPoint(id, 3, x3, y3, false);
     }
 
     showConfig.popTag();
@@ -704,6 +629,12 @@ void testApp::loadShow() {
                 float param4f = showConfig.getAttribute("Message", "param4", 1.0, j);
                 float param5f = showConfig.getAttribute("Message", "param5", 1.0, j);
                 TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f, param3f, param4f, param5f));
+            } else if(address.compare("/texture/setcolorall") == 0){
+                float param1f = showConfig.getAttribute("Message", "param1", 1.0, j);
+                float param2f = showConfig.getAttribute("Message", "param2", 1.0, j);
+                float param3f = showConfig.getAttribute("Message", "param3", 1.0, j);
+                float param4f = showConfig.getAttribute("Message", "param4", 1.0, j);
+                TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1f, param2f, param3f, param4f));
             } else if((address.compare("/texture/fadeto") == 0)) {
                 float param2f = showConfig.getAttribute("Message", "param2", 1.0, j);
                 float param3f = showConfig.getAttribute("Message", "param3", 1.0, j);
