@@ -185,6 +185,27 @@ void testApp::keyPressed  (int key){
         ++selectedVtx;
         selectedVtx %= 4;
     }
+    if(key == '9') {
+        ofxOscMessage oscMessage;
+        oscMessage.setAddress("/texture/setcolor");
+        oscMessage.addStringArg(selectedQuadKey);
+        oscMessage.addFloatArg(1.0f);
+        oscMessage.addFloatArg(1.0f);
+        oscMessage.addFloatArg(0.0f);
+        oscMessage.addFloatArg(1.0f);
+        OscManager::SendMessage(oscMessage);
+    }
+    if(key == '0') {
+        ofxOscMessage oscMessage;
+        oscMessage.setAddress("/texture/setcolor");
+        oscMessage.addStringArg(selectedQuadKey);
+        oscMessage.addFloatArg(1.0f);
+        oscMessage.addFloatArg(1.0f);
+        oscMessage.addFloatArg(1.0f);
+        oscMessage.addFloatArg(1.0f);
+        OscManager::SendMessage(oscMessage);
+    }
+
 
     if(key == 'a') {
         if(!selectedQuadKey.empty()) {
@@ -276,8 +297,10 @@ void testApp::quit(const std::vector<std::string> & args){
 	std::exit(0);
 }
 
+int textureUnit = 0;
+
 void testApp::event(EventArg *e) {
-    string address = e->args.getAddress();
+    string address = e->args.getAddress().c_str();
     ofLog(OF_LOG_VERBOSE, "testApp:: Event received. address=%s", address.c_str());
     if(address.compare("/video/play") == 0) {
         //El parametro 0 indica que video iniciar.
@@ -290,7 +313,8 @@ void testApp::event(EventArg *e) {
     else if(address.compare("/video/set") == 0) {
         //param0 indica el quad al que asignar el video.
         //param1 indica el id del video a asignar.
-        quads[e->args.getArgAsString(0)]->getMaterial()->SetTextureParams(e->args.getArgAsString(1), videoTexture, 0);
+        quads[e->args.getArgAsString(0)]->getMaterial()->SetTextureParams(e->args.getArgAsString(1), videoTexture, textureUnit);
+        //textureUnit = (textureUnit + 1) % 8;
     }
     else if(address.compare("/synch/setpoint") == 0) {
         //param0
@@ -310,18 +334,9 @@ void testApp::event(EventArg *e) {
         quad->getMaterial()->set(AMBIENT_B, e->args.getArgAsFloat(3));
         quad->getMaterial()->set(AMBIENT_A, e->args.getArgAsFloat(4));
     }
-    else if(address.compare("/texture/fadeout") == 0) {
+    else if(address.compare("/texture/fadeto") == 0) {
         Material *mat = quads[e->args.getArgAsString(0)]->getMaterial();
-        Animation *a = new LinearAnimation(mat, AMBIENT_A, e->args.getArgAsFloat(1), 0.0f);
-        AnimationLoop *loop = new AnimationLoop("loop");
-        loop->AddAnimation(a);
-        //AnimationController::AddLoop("loop", loop);
-        //AnimationController::PlayLoop("loop");
-        AnimationController::PlayLoop(loop);
-    }
-    else if(address.compare("/texture/fadein") == 0) {
-        Material *mat = quads[e->args.getArgAsString(0)]->getMaterial();
-        Animation *a = new LinearAnimation(mat, AMBIENT_A, e->args.getArgAsFloat(1), 1.0f);
+        Animation *a = new LinearAnimation(mat, AMBIENT_A, e->args.getArgAsFloat(1), e->args.getArgAsFloat(2));
         AnimationLoop *loop = new AnimationLoop("loop");
         loop->AddAnimation(a);
         AnimationController::PlayLoop(loop);
@@ -550,10 +565,10 @@ void testApp::loadShow() {
     //std::cout << " showName: "<< showName;
 
     showConfig.pushTag("Ports");
-    int numItems = showConfig.getNumTags("OscPorts");
+    int numTags = showConfig.getNumTags("OscPorts");
     showConfig.pushTag("OscPorts");
 
-    for(int i = 0; i < numItems; i++)
+    for(int i = 0; i < numTags; i++)
     {
         string name = showConfig.getAttribute("Port", "name", "", i);
         string port = showConfig.getAttribute("Port", "port", "", i);
@@ -563,10 +578,10 @@ void testApp::loadShow() {
     }
     showConfig.popTag();
 
-    numItems = showConfig.getNumTags("MidiPorts");
+    numTags = showConfig.getNumTags("MidiPorts");
     showConfig.pushTag("MidiPorts");
 
-    for(int i = 0; i < numItems; i++)
+    for(int i = 0; i < numTags; i++)
     {
         string name = showConfig.getAttribute("Port", "name", "", i);
         string port = showConfig.getAttribute("Port", "port", "", i);
@@ -579,9 +594,8 @@ void testApp::loadShow() {
     showConfig.popTag();
 
     showConfig.pushTag("Network");
-    numItems = showConfig.getNumTags("Node");
 
-    for(int i = 0; i < numItems; i++)
+    for(int i = 0; i < showConfig.getNumTags("Node"); i++)
     {
         string name = showConfig.getAttribute("Node", "name", "", i);
         string address = showConfig.getAttribute("Node", "address", "", i);
@@ -599,9 +613,8 @@ void testApp::loadShow() {
 
     showConfig.pushTag("Textures", 0);
     showConfig.pushTag("Images");
-    numItems = showConfig.getNumTags("Image");
 
-    for(int i = 0; i < numItems; i++)
+    for(int i = 0; i < showConfig.getNumTags("Image"); i++)
     {
         string name = showConfig.getAttribute("Image", "name","", i);
         string path = showConfig.getAttribute("Image", "path","", i);
@@ -612,15 +625,11 @@ void testApp::loadShow() {
     }
     showConfig.popTag();
 
-
     showConfig.pushTag("Videos");
-    numItems = showConfig.getNumTags("Video");
-    for(int i = 0; i < numItems; i++)
+    for(int i = 0; i < showConfig.getNumTags("Video"); i++)
     {
         string name = showConfig.getAttribute("Video", "name","", i);
         string path = showConfig.getAttribute("Video", "path","", i);
-        //std::cout << " Videos Data: "<< name + " " + path << endl;
-
         TextureManager::LoadVideoTexture(name, path);
     }
     showConfig.popTag();
@@ -629,9 +638,8 @@ void testApp::loadShow() {
 
     showConfig.pushTag("Shapes");
     showConfig.pushTag("Quads2D");
-    numItems = showConfig.getNumTags("Quad2D");
 
-    for(int i = 0; i < numItems; i++)
+    for(int i = 0; i < showConfig.getNumTags("Quad2D"); i++)
     {
         string id = showConfig.getAttribute("Quad2D", "id","", i);
         double x0 = showConfig.getAttribute("Quad2D", "x0", 0.0, i);
@@ -663,9 +671,8 @@ void testApp::loadShow() {
 
     showConfig.pushTag("Events", 0);
     showConfig.pushTag("OscEvents");
-    numItems = showConfig.getNumTags("Event");
 
-    for(int i = 0; i < numItems; i++)
+    for(int i = 0; i < showConfig.getNumTags("Event"); i++)
     {
         string name = showConfig.getAttribute("Event", "name","", i);
         string destination = showConfig.getAttribute("Event", "destination","", i);
@@ -678,38 +685,41 @@ void testApp::loadShow() {
     showConfig.popTag(); //OscEvents
 
     showConfig.pushTag("TimedEvents");
-    numItems = showConfig.getNumTags("TimedEvent");
-    for(int i = 0; i < numItems; i++)
+    for(int i = 0; i < showConfig.getNumTags("TimedEvent"); i++)
     {
         string destination = showConfig.getAttribute("TimedEvent", "destination","", i);
         float time = showConfig.getAttribute("TimedEvent", "time", 0.0, i);
-        //std::cout << " TimedEvent Data: "<< destination+ " " +time << endl;
-        string address = showConfig.getAttribute("TimedEvent:Message", "address", "", i);
-        string param1 = showConfig.getAttribute("TimedEvent:Message", "param1", "", i);
 
-        #ifdef CONSOLE
-        if(address.compare("/video/play") == 0) {
-            float param2f = showConfig.getAttribute("TimedEvent:Message", "param2", 1.0, i);
-            TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f));
-        } else if(address.compare("/texture/setcolor") == 0) {
-            float param2f = showConfig.getAttribute("TimedEvent:Message", "param2", 1.0, i);
-            float param3f = showConfig.getAttribute("TimedEvent:Message", "param3", 1.0, i);
-            float param4f = showConfig.getAttribute("TimedEvent:Message", "param4", 1.0, i);
-            float param5f = showConfig.getAttribute("TimedEvent:Message", "param5", 1.0, i);
-            TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f, param3f, param4f, param5f));
-        } else if((address.compare("/texture/fadeout") == 0) || (address.compare("/texture/fadein") == 0)) {
-            float param2f = showConfig.getAttribute("TimedEvent:Message", "param2", 1.0, i);
-            TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f));
+        showConfig.pushTag("TimedEvent", i);
+        for(int j=0; j< showConfig.getNumTags("Message"); j++) {
+            string address = showConfig.getAttribute("Message", "address", "", j);
+            string param1 = showConfig.getAttribute("Message", "param1", "", j);
+            #ifdef CONSOLE
+            if(address.compare("/video/play") == 0) {
+                float param2f = showConfig.getAttribute("Message", "param2", 1.0, j);
+                TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f));
+            } else if(address.compare("/texture/setcolor") == 0) {
+                float param2f = showConfig.getAttribute("Message", "param2", 1.0, j);
+                float param3f = showConfig.getAttribute("Message", "param3", 1.0, j);
+                float param4f = showConfig.getAttribute("Message", "param4", 1.0, j);
+                float param5f = showConfig.getAttribute("Message", "param5", 1.0, j);
+                TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f, param3f, param4f, param5f));
+            } else if((address.compare("/texture/fadeto") == 0)) {
+                float param2f = showConfig.getAttribute("Message", "param2", 1.0, j);
+                float param3f = showConfig.getAttribute("Message", "param3", 1.0, j);
+                TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f, param3f));
 
-        } else {
-            string param2 = showConfig.getAttribute("TimedEvent:Message", "param2", "", i);
-            string param3 = showConfig.getAttribute("TimedEvent:Message", "param3", "", i);
-            string param4 = showConfig.getAttribute("TimedEvent:Message", "param4", "", i);
-            string param5 = showConfig.getAttribute("TimedEvent:Message", "param5", "", i);
-            std::cout << " TimedEvent Message: "<< address+ " " +param1 << " " << param2 << " " << param3 << " " << param4 << " " << param5 << endl;
-            TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2, param3, param4, param5));
+            } else {
+                string param2 = showConfig.getAttribute("Message", "param2", "", j);
+                string param3 = showConfig.getAttribute("Message", "param3", "", j);
+                string param4 = showConfig.getAttribute("Message", "param4", "", j);
+                string param5 = showConfig.getAttribute("Message", "param5", "", j);
+                std::cout << " TimedEvent Message: "<< address+ " " +param1 << " " << param2 << " " << param3 << " " << param4 << " " << param5 << endl;
+                TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2, param3, param4, param5));
+            }
+            #endif
         }
-        #endif
+        showConfig.popTag(); //TimedEvent
     }
 
     showConfig.popTag(); //TimedEvents

@@ -16,15 +16,15 @@
     <Textures>
         <Images />
         <Videos>
-            <Video name="cartoon" path="cartoon.mov" />
-            <Video name="fingers" path="fingers.mov" />
-            <Video name="cartoons" path="cartoons.mov" />
         </Videos>
     </Textures>
     <Shapes>
         <Quads2D>
-            <Quad2D id="quad1" x0="682.000000" y0="628.000000" x1="636.000000" y1="506.000000" x2="976.000000" y2="456.000000" x3="858.000000" y3="693.000000"></Quad2D>
-            <Quad2D id="quad2" x0="871.000000" y0="107.000000" x1="938.000000" y1="343.000000" x2="291.000000" y2="109.000000" x3="720.000000" y3="56.000000"></Quad2D>
+		
+            <Quad2D id="quad01" x0="10"  y0="10" x1="60"  y1="10" x2="60"  y2="60" x3="10"  y3="60"></Quad2D>
+			<Quad2D id="quad02" x0="70"  y0="10" x1="120" y1="10" x2="120" y2="60" x3="70"  y3="60"></Quad2D>
+			
+			
         </Quads2D>
         <Objs3D>
             <Obj3D id="squirrel" filepath="./data/models/squirrel.3ds" posX="0" posY="0" posZ="0" />
@@ -41,47 +41,12 @@
     </AnimationList>
     <Events>
         <!--  occurrence time in seconds ,  Message Type@ID@... parameters?  -->
-        <OscEvents>
-        </OscEvents>
+        <OscEvents />
         <TimedEvents>
-            <TimedEvent destination="javier" time="0.5" >
-				<Message address="/video/set" param1="quad1" param2="fingers" />
-			</TimedEvent>
-			<TimedEvent destination="javier" time="0.5" >
-				<Message address="/video/set" param1="quad2" param2="cartoon"/>
-			</TimedEvent>
-			<TimedEvent destination="javier" time="3.0" >
-				<Message address="/video/play" param1="cartoon" param2="1" />
-			</TimedEvent>
-            <TimedEvent destination="javier" time="4.6" >
-				<Message address="/video/stop" param1="cartoon" />
-			</TimedEvent>
-			
-            <TimedEvent destination="javier" time="4.98" >
-				<Message address="/texture/setcolor" param1="quad1" param2="1.0" param3="1.0" param4="1.0" param5="0" />
-			</TimedEvent>
-			<TimedEvent destination="javier" time="4.99" >
-				<Message address="/texture/fadein" param1="quad1" param2="1.0" />
-			</TimedEvent>
-			
-			<TimedEvent destination="javier" time="5.0" >
-				<Message address="/video/play" param1="fingers" param2="2" />
-			</TimedEvent>
-			<TimedEvent destination="javier" time="6.3" >
-				<Message address="/video/set" param1="quad2" param2="cartoons" />
-			</TimedEvent>
-			<TimedEvent destination="javier" time="6.3" >
-				<Message address="/video/play" param1="cartoons" param2="1" />
-			</TimedEvent>
-			<TimedEvent destination="javier" time="7.8" >
-				<Message address="/texture/fadeout" param1="quad1" param2="1.0" />
-			</TimedEvent>
-			<TimedEvent destination="javier" time="8.0" >
-				<Message address="/texture/setcolor" param1="quad2" param2="0.3" param3="0.3" param4="0.7" param5="1" />
-			</TimedEvent>
-			<TimedEvent destination="javier" time="10.0" >
-				<Message address="/texture/setcolor" param1="quad2" param2="1" param3="1" param4="0" param5="0.7" />
-			</TimedEvent>
+            <TimedEvent destination="javier" time="2.5">
+                <Message address="/texture/setcolor" param1="quad01" param2="1" param3="0" param4="0" param5="1" />
+
+            </TimedEvent>
         </TimedEvents>
     </Events>
 </Show>

@@ -236,10 +236,6 @@ void ofxAlphaVideoPlayer::idleMovie(){
 			bHavePixelsChanged = false;
 		}
 
-		if(getCurrentFrame() == getTotalNumFrames()) {
-		    bStarted = false;
-		}
-
 	}
 
 }

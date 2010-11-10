@@ -22,13 +22,20 @@ void Material::SetTextureParams(string id, textureType type, int textureUnit) {
 }
 
 void Material::Enable(){
-    bool isTexReady;
+    /*bool isTexReady;
     if(this->texID.compare("") == 0 )
         isTexReady = false;
     else {
         isTexReady = TextureManager::IsTextureReady(texID, texType);
     }
-    if(isTexReady) {
+    if(isTexReady) {*/
+    if(texID.empty())
+    {
+        glEnable(GL_BLEND);
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        glColor4fv(ambient);
+    }
+    else {
         ofTexture &tex = TextureManager::GetTextureReference(texID, texType);
         ofTextureData texData = tex.texData;
 
@@ -43,11 +50,6 @@ void Material::Enable(){
         texture_shader.setUniformVariable2f("texCorrection", texData.width / texData.tex_w, texData.height / texData.tex_h);
         texture_shader.setUniformVariable4f("color", ambient[0], ambient[1], ambient[2], ambient[3]);
         texture_shader.setUniformVariable1i("tex", GL_TEXTURE0 + textureUnit);
-    }
-    else {
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glColor4fv(ambient);
     }
 }
 
