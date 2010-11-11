@@ -36,6 +36,9 @@ void TimeManager::Init(IEventListener *e) {
     }
 
     deltaStartTime = ofGetElapsedTimef();
+
+    EventArg *evtArgs = new EventArg("/internal/playaudio", "dummyparam");
+    e->event(evtArgs);
 }
 
 void TimeManager::ScheduleEvent(float time, string destination, EventArg *eventArg) {
