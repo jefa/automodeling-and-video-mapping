@@ -78,18 +78,14 @@ void testApp::setup(){
 
     #ifdef CONSOLE
 
-    TimeManager::Init(this);
-    setupConsole();
-
     std::cout << " ofSoundPlayer ";
 
-    //mySound.loadSound("sounds/export_mapping.mp3");
-    mySound.loadSound("sounds/Violet.mp3");
+    mySound.loadSound("sounds/export_mapping.mp3");
     mySound.setMultiPlay(false);
     mySound.setVolume(1.0f);
-    mySound.play();
 
-    std::cout << " ejecutando ahora: "<<   mySound.getIsPlaying() ;
+    TimeManager::Init(this);
+    setupConsole();
 
     #endif
 
@@ -112,9 +108,6 @@ void testApp::update(){
 void testApp::draw(){
 	ofSetupScreen();
 
-    /*for(quadsIt = quads.begin(); quadsIt != quads.end(); ++quadsIt) {
-        (*quadsIt).second->draw();
-    }*/
     multimap<float, Quad2D*>::iterator it;
     for(it = quadsByZ.begin(); it != quadsByZ.end(); it++) {
         it->second->draw();
@@ -156,12 +149,12 @@ void cycleQuadSelection(bool fwd) {
 
 void testApp::keyPressed  (int key){
 
-#ifdef CONSOLE
-
     if(key == 'f'){
 		bFullscreen = !bFullscreen;
         ofSetFullscreen(bFullscreen);
 	}
+
+#ifdef CONSOLE
 
     if(key == '+') {
         consoleEnabled = !consoleEnabled;
@@ -377,6 +370,10 @@ void testApp::event(EventArg *e) {
         string quadID = e->args.getArgAsString(0);
         float z = e->args.getArgAsFloat(1);
         setZ(quadID, z);
+    }
+    else if(address.compare("/internal/playaudio") == 0) {
+        mySound.play();
+        std::cout << " ejecutando ahora: "<<   mySound.getIsPlaying() ;
     }
     else {
         ofLog(OF_LOG_WARNING, "unknown event with address %s", address.c_str());
