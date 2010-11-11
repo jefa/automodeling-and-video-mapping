@@ -12,8 +12,9 @@ ofxXmlSettings showConfig;
 
 map<string, Quad2D*> quads;
 map<string, Quad2D*>::iterator quadsIt;
-
 multimap<float, Quad2D*> quadsByZ;
+
+map<string, vector<Quad2D*> > quadGroups;
 
 map<string, Material*> materials;
 
@@ -43,7 +44,7 @@ void testApp::setup(){
     setupLogging();
 
     //set background to black
-	ofBackground(0, 60, 0);
+	ofBackground(0, 0, 0);
     ofSetFullscreen(bFullscreen);
 
     //for smooth animation, set vertical sync if we can
@@ -345,18 +346,19 @@ void testApp::event(EventArg *e) {
         quad->getMaterial()->set(AMBIENT_B, e->args.getArgAsFloat(3));
         quad->getMaterial()->set(AMBIENT_A, e->args.getArgAsFloat(4));
     }
-    else if(address.compare("/texture/setcolorall") == 0) {
-        float r = e->args.getArgAsFloat(0);
-        float g = e->args.getArgAsFloat(1);
-        float b = e->args.getArgAsFloat(2);
-        float a = e->args.getArgAsFloat(3);
-        map<string, Quad2D*>::iterator it;
-        for(it = quads.begin(); it != quads.end(); ++it)
+    else if(address.compare("/texture/setcolorgroup") == 0) {
+        string groupId = e->args.getArgAsString(0);
+        float r = e->args.getArgAsFloat(1);
+        float g = e->args.getArgAsFloat(2);
+        float b = e->args.getArgAsFloat(3);
+        float a = e->args.getArgAsFloat(4);
+        vector<Quad2D*>::iterator it;
+        for(it = quadGroups[groupId].begin(); it != quadGroups[groupId].end(); ++it)
         {
-            it->second->getMaterial()->set(AMBIENT_R, r);
-            it->second->getMaterial()->set(AMBIENT_G, g);
-            it->second->getMaterial()->set(AMBIENT_B, b);
-            it->second->getMaterial()->set(AMBIENT_A, a);
+            (*it)->getMaterial()->set(AMBIENT_R, r);
+            (*it)->getMaterial()->set(AMBIENT_G, g);
+            (*it)->getMaterial()->set(AMBIENT_B, b);
+            (*it)->getMaterial()->set(AMBIENT_A, a);
         }
     }
     else if(address.compare("/texture/fadeto") == 0) {
@@ -365,6 +367,18 @@ void testApp::event(EventArg *e) {
         AnimationLoop *loop = new AnimationLoop("loop");
         loop->AddAnimation(a);
         AnimationController::PlayLoop(loop);
+    }
+    else if(address.compare("/texture/fadetogroup") == 0) {
+        string groupId = e->args.getArgAsString(0);
+        vector<Quad2D*>::iterator it;
+        for(it = quadGroups[groupId].begin(); it != quadGroups[groupId].end(); ++it)
+        {
+            Material *mat = (*it)->getMaterial();
+            Animation *a = new LinearAnimation(mat, AMBIENT_A, e->args.getArgAsFloat(1), e->args.getArgAsFloat(2));
+            AnimationLoop *loop = new AnimationLoop("loop");
+            loop->AddAnimation(a);
+            AnimationController::PlayLoop(loop);
+        }
     }
     else if(address.compare("/quads/setz") == 0) {
         string quadID = e->args.getArgAsString(0);
@@ -603,8 +617,7 @@ void testApp::loadShow() {
     showConfig.pushTag("Shapes");
     showConfig.pushTag("Quads2D");
 
-    for(int i = 0; i < showConfig.getNumTags("Quad2D"); i++)
-    {
+    for(int i = 0; i < showConfig.getNumTags("Quad2D"); i++) {
         string id = showConfig.getAttribute("Quad2D", "id","", i);
         int x0 = showConfig.getAttribute("Quad2D", "x0", 0, i);
         int y0 = showConfig.getAttribute("Quad2D", "y0", 0, i);
@@ -618,8 +631,6 @@ void testApp::loadShow() {
         int x3 = showConfig.getAttribute("Quad2D", "x3", 50, i);
         int y3 = showConfig.getAttribute("Quad2D", "y3", 50, i);
 
-        //std::cout << " Quad2D Data: "<< id<< endl;
-
         // add quad2
         addQuad(id, false);
 
@@ -629,9 +640,26 @@ void testApp::loadShow() {
         setPoint(id, 3, x3, y3, false);
     }
 
-    showConfig.popTag();
+    showConfig.popTag();//Quads2D
+    showConfig.popTag();//Shapes
 
-    showConfig.popTag();
+    showConfig.pushTag("Groups", 0);
+
+    for(int i=0; i < showConfig.getNumTags("Group"); i++) {
+        string idGroup = showConfig.getAttribute("Group", "id", "", i);
+        showConfig.pushTag("Group", i);
+
+        vector<Quad2D*> qGroup;
+        for(int j=0; j < showConfig.getNumTags("Item"); j++) {
+            Quad2D *q = quads[showConfig.getAttribute("Item", "id", "", j)];
+            qGroup.push_back(q);
+        }
+        quadGroups.insert(make_pair(idGroup.c_str(), qGroup));
+        ofLog(OF_LOG_VERBOSE, "Cargando grupo %s con %i elementos.", idGroup.c_str(), qGroup.size());
+        showConfig.popTag();
+    }
+
+    showConfig.popTag();//Groups
 
     showConfig.pushTag("Events", 0);
     showConfig.pushTag("OscEvents");
@@ -668,17 +696,20 @@ void testApp::loadShow() {
                 float param4f = showConfig.getAttribute("Message", "param4", 1.0, j);
                 float param5f = showConfig.getAttribute("Message", "param5", 1.0, j);
                 TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f, param3f, param4f, param5f));
-            } else if(address.compare("/texture/setcolorall") == 0){
-                float param1f = showConfig.getAttribute("Message", "param1", 1.0, j);
+            } else if(address.compare("/texture/setcolorgroup") == 0){
                 float param2f = showConfig.getAttribute("Message", "param2", 1.0, j);
                 float param3f = showConfig.getAttribute("Message", "param3", 1.0, j);
                 float param4f = showConfig.getAttribute("Message", "param4", 1.0, j);
-                TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1f, param2f, param3f, param4f));
+                float param5f = showConfig.getAttribute("Message", "param5", 1.0, j);
+                TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f, param3f, param4f, param5f));
             } else if((address.compare("/texture/fadeto") == 0)) {
                 float param2f = showConfig.getAttribute("Message", "param2", 1.0, j);
                 float param3f = showConfig.getAttribute("Message", "param3", 1.0, j);
                 TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f, param3f));
-
+            } else if((address.compare("/texture/fadetogroup") == 0)) {
+                float param2f = showConfig.getAttribute("Message", "param2", 1.0, j);
+                float param3f = showConfig.getAttribute("Message", "param3", 1.0, j);
+                TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f, param3f));
             } else if((address.compare("/quads/setz") == 0)) {
                 float param2f = showConfig.getAttribute("Message", "param2", 0.0, j);
                 TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f));
