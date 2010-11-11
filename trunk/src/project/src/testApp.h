@@ -16,7 +16,7 @@ class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener 
 
 	public:
 
-        testApp(string nodeName);
+        testApp(string nodeName/*, int timeOffset*/);
 
 		void setup();
 		void update();
@@ -49,6 +49,7 @@ class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener 
 
     private:
         string nodeName;
+        //int timeOffset;
         ofxConsole * console;
         ofSoundPlayer mySound;
 

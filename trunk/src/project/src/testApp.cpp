@@ -340,6 +340,7 @@ void testApp::event(EventArg *e) {
         selectedIdx = removeQuad(e->args.getArgAsString(0).c_str(), false);
     }
     else if(address.compare("/texture/setcolor") == 0) {
+        ofLog(OF_LOG_VERBOSE, "testApp:: Setcolor for quad %s", e->args.getArgAsString(0).c_str());
         Quad2D *quad = quads[e->args.getArgAsString(0)];
         quad->getMaterial()->set(AMBIENT_R, e->args.getArgAsFloat(1));
         quad->getMaterial()->set(AMBIENT_G, e->args.getArgAsFloat(2));
@@ -388,6 +389,13 @@ void testApp::event(EventArg *e) {
     else if(address.compare("/internal/playaudio") == 0) {
         mySound.play();
         std::cout << " ejecutando ahora: "<<   mySound.getIsPlaying() ;
+    }
+    else if(address.compare("/internal/settime") == 0) {
+        float offset = e->args.getArgAsFloat(0);
+        float percentPos = offset/632;        //dura 10 mins + 32 segs = 600 segs + 32 segs = 632 segs
+        ofLog(OF_LOG_VERBOSE, "====== NUEVA POSITION %f", percentPos);
+        mySound.setPosition(percentPos);
+        TimeManager::SetOffset(offset);
     }
     else {
         ofLog(OF_LOG_WARNING, "unknown event with address %s", address.c_str());
@@ -713,7 +721,9 @@ void testApp::loadShow() {
             } else if((address.compare("/quads/setz") == 0)) {
                 float param2f = showConfig.getAttribute("Message", "param2", 0.0, j);
                 TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1, param2f));
-
+            } else if((address.compare("/internal/settime") == 0)) {
+                float param1f = showConfig.getAttribute("Message", "param1", 0.0, j);
+                TimeManager::ScheduleEvent(time, destination, new EventArg(address, param1f, 0.0f, 0.0f, 0.0f));
             } else {
                 string param2 = showConfig.getAttribute("Message", "param2", "", j);
                 string param3 = showConfig.getAttribute("Message", "param3", "", j);

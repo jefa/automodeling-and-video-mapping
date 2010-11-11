@@ -17,7 +17,7 @@ int main( int argc, char** argv ) {
     string nodeName = "noname";
     int resWidth, resHeight, posWinX, posWinY;
     if (argc != 6){
-        ofLog(OF_LOG_ERROR, "Debe iniciar el programa con 6 argumentos: %s nodeName resWidth resHeight posWinX posWinY", argv[0]);
+        ofLog(OF_LOG_ERROR, "Debe iniciar el programa con 6 argumentos: %s nodeName resWidth resHeight posWinX posWinY timeOffset", argv[0]);
         return -1;
     }
     else {
