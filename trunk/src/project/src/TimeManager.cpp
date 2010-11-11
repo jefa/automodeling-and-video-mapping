@@ -54,7 +54,7 @@ void TimeManager::Update() {
     totalAnimTime = ofGetElapsedTimef() - deltaStartTime;
 
     if(moreEvents && events.size() > 0 && totalAnimTime > nextTimeEvent) {
-        //ofLog(OF_LOG_VERBOSE, "%f :: llamando a func...", totalAnimTime);
+        ofLog(OF_LOG_VERBOSE, "%f :: llamando a func...", totalAnimTime);
 
         string destination = it->second.first.c_str();
         ofxOscMessage msg = it->second.second->args;
