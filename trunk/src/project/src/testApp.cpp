@@ -264,10 +264,12 @@ void testApp::mouseMoved(int x, int y ){
 //--------------------------------------------------------------
 void testApp::mouseDragged(int x, int y, int button){
     #ifdef CONSOLE
-    if(selectedIdx >= 0 && selectedVtx >= 0)
-    {
-        //ofLog(OF_LOG_VERBOSE, "mouseDragged: ===== selectedIds=%d, selectedVtx=%d", selectedIdx,selectedVtx);
-        setPoint(selectedQuadKey, selectedVtx, x, y);
+    if(!selectedQuadKey.empty()) {
+        if(selectedIdx >= 0 && selectedVtx >= 0)
+        {
+            //ofLog(OF_LOG_VERBOSE, "mouseDragged: ===== selectedIds=%d, selectedVtx=%d", selectedIdx,selectedVtx);
+            setPoint(selectedQuadKey, selectedVtx, x, y);
+        }
     }
     #endif
 }
@@ -275,7 +277,6 @@ void testApp::mouseDragged(int x, int y, int button){
 //--------------------------------------------------------------
 void testApp::mousePressed(int x, int y, int button){
     #ifdef CONSOLE
-
     if(!selectedQuadKey.empty()) {
         selectedVtx = quads[selectedQuadKey]->getControlPointAt(x,y);
     }
@@ -624,6 +625,7 @@ void testApp::loadShow() {
 
     showConfig.pushTag("Shapes");
     showConfig.pushTag("Quads2D");
+    int CountQuad2D = showConfig.getNumTags("Quad2D");
 
     for(int i = 0; i < showConfig.getNumTags("Quad2D"); i++) {
         string id = showConfig.getAttribute("Quad2D", "id","", i);
@@ -740,6 +742,15 @@ void testApp::loadShow() {
     showConfig.popTag(); //TimedEvents
     showConfig.popTag(); //Events
     ofLog(OF_LOG_NOTICE, "Show config loaded.");
+
+   #ifdef CONSOLE
+   if (CountQuad2D > 0) {
+        quadsIt = quads.begin();
+        std::advance(quadsIt, 0);
+        selectedQuadKey = (*quadsIt).first;
+        (*quadsIt).second->setSelected(true);
+   }
+   #endif
 }
 
 void testApp::saveShow() {
