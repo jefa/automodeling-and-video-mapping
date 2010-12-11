@@ -389,14 +389,15 @@ void testApp::event(EventArg *e) {
     }
     else if(address.compare("/internal/playaudio") == 0) {
         mySound.play();
-        std::cout << " ejecutando ahora: "<<   mySound.getIsPlaying() ;
+        //std::cout << " ejecutando ahora: "<<   mySound.getIsPlaying() ;
     }
     else if(address.compare("/internal/settime") == 0) {
         float offset = e->args.getArgAsFloat(0);
         float percentPos = offset/632;        //dura 10 mins + 32 segs = 600 segs + 32 segs = 632 segs
-        ofLog(OF_LOG_VERBOSE, "====== NUEVA POSITION %f", percentPos);
+        //ofLog(OF_LOG_VERBOSE, "====== NUEVA POSITION %f", percentPos);
         mySound.setPosition(percentPos);
-        TimeManager::SetOffset(offset);
+        //TimeManager::SetOffset(offset);
+        TimeManager::SetTime(offset);
     }
     else {
         ofLog(OF_LOG_WARNING, "unknown event with address %s", address.c_str());
