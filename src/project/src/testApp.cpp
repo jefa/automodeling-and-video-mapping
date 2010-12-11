@@ -341,7 +341,6 @@ void testApp::event(EventArg *e) {
         selectedIdx = removeQuad(e->args.getArgAsString(0).c_str(), false);
     }
     else if(address.compare("/texture/setcolor") == 0) {
-        ofLog(OF_LOG_VERBOSE, "testApp:: Setcolor for quad %s", e->args.getArgAsString(0).c_str());
         Quad2D *quad = quads[e->args.getArgAsString(0)];
         quad->getMaterial()->set(AMBIENT_R, e->args.getArgAsFloat(1));
         quad->getMaterial()->set(AMBIENT_G, e->args.getArgAsFloat(2));
