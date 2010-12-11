@@ -18,7 +18,7 @@
         <Image name="pegado" path="pegado.jpg" />
         </Images>
         <Videos>
-			<Video name="puntito" path="videos/puntito.mov" />
+			<Video name="static" path="videos/static.mov" />
         </Videos>
     </Textures>
     <Shapes>
@@ -104,16 +104,16 @@
 				<Message address="/texture/fadeto" param1="quad01" param2="2" param3="0" /> 
           </TimedEvent>
 		  
-		  <!--
-			<TimedEvent destination="javier" time="7">
-				<Message address="/video/set" param1="botellas_sintapa" param2="puntito" />
-				<Message address="/video/play" param1="puntito" param2="1" />
+			<TimedEvent destination="javier" time="12">
+				<Message address="/video/set" param1="quad02" param2="static" />
+				<Message address="/video/play" param1="static" param2="1" />
 			</TimedEvent>
-			-->
 		  
+		  <!--
           <TimedEvent destination="javier" time="12">
               <Message address="/internal/settime" param1="0.0" />
           </TimedEvent>
+			-->
 		  
         </TimedEvents>        
     </Events>
