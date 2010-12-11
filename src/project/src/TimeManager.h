@@ -16,10 +16,12 @@ class TimeManager
         static void Init(IEventListener *e/*, float offset=0*/);
         static void Update();
         static void ScheduleEvent(float time, string destination, EventArg *eventArg);
-        static void SetOffset(float timeOffset);
+        static void SetTime(float to_time);
 
     protected:
     private:
+        static void InitializeInternal();
+        static void SetOffset(float timeOffset);
         static map<float, pair<string, EventArg*> > events;
 };
 
