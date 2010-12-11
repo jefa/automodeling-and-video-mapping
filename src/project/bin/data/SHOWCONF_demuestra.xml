@@ -1,0 +1,2792 @@
+<Show>
+    <Data name="showname1" />
+    <Ports>
+        <!--  port midi, port OSC-->
+        <OscPorts>
+            <Port name="osc" port="12345" />
+        </OscPorts>
+        <MidiPorts>
+            <Port name="midi1" port="0" />
+        </MidiPorts>
+    </Ports>
+    <Network>
+        <Node name="daniel" address="192.168.1.101" port="12345" />
+        <Node name="chachi" address="192.168.1.3" port="12345" />
+    </Network>
+    <Textures>
+        <Images />
+        <Videos>
+			<Video name="movie9" path="videos/movie9.mov" />
+			<Video name="noisef" path="videos/noisef.mov" />
+			<Video name="static" path="videos/static.mov" />
+			<Video name="tejido" path="videos/tejido.mov" />
+			<Video name="nubes" path="videos/nubes.mov" />
+			<Video name="nubsat" path="videos/nubsat.mov" />
+			<Video name="nubesciudadsatan" path="videos/nubesciudadsatan.mov" />
+			<Video name="particulas1" path="videos/particulas1.mov" />
+			<Video name="puntito" path="videos/puntito.mov" />
+        </Videos>
+    </Textures>
+    <Shapes>
+        <Quads2D>
+            <Quad2D id="2_a10" x0="925.000000" y0="123.000000" x1="1037.000000" y1="130.000000" x2="1024.000000" y2="184.000000" x3="928.000000" y3="195.000000"></Quad2D>
+            <Quad2D id="2_a6" x0="-12.000000" y0="75.000000" x1="148.000000" y1="84.000000" x2="250.000000" y2="227.000000" x3="121.000000" y3="235.000000"></Quad2D>
+            <Quad2D id="2_a7" x0="216.000000" y0="83.000000" x1="403.000000" y1="93.000000" x2="464.000000" y2="215.000000" x3="310.000000" y3="225.000000"></Quad2D>
+            <Quad2D id="2_a8" x0="458.000000" y0="96.000000" x1="653.000000" y1="107.000000" x2="675.000000" y2="200.000000" x3="507.000000" y3="210.000000"></Quad2D>
+            <Quad2D id="2_a9" x0="692.000000" y0="109.000000" x1="897.000000" y1="121.000000" x2="897.000000" y2="188.000000" x3="709.000000" y3="200.000000"></Quad2D>
+            <Quad2D id="2_b10" x0="738.000000" y0="340.000000" x1="894.000000" y1="332.000000" x2="893.000000" y2="463.000000" x3="761.000000" y3="468.000000"></Quad2D>
+            <Quad2D id="2_b11" x0="917.000000" y0="331.000000" x1="1024.000000" y1="327.000000" x2="1024.000000" y2="458.000000" x3="915.000000" y3="461.000000"></Quad2D>
+            <Quad2D id="2_b6" x0="73.000000" y0="376.000000" x1="181.000000" y1="370.000000" x2="293.000000" y2="486.000000" x3="195.000000" y3="491.000000"></Quad2D>
+            <Quad2D id="2_b7" x0="232.000000" y0="366.000000" x1="353.000000" y1="360.000000" x2="438.000000" y2="481.000000" x3="332.000000" y3="485.000000"></Quad2D>
+            <Quad2D id="2_b8" x0="394.000000" y0="358.000000" x1="531.000000" y1="350.000000" x2="589.000000" y2="474.000000" x3="471.000000" y3="478.000000"></Quad2D>
+            <Quad2D id="2_b9" x0="565.000000" y0="349.000000" x1="707.000000" y1="341.000000" x2="736.000000" y2="469.000000" x3="614.000000" y3="473.000000"></Quad2D>
+            <Quad2D id="2_c10" x0="773.000000" y0="558.000000" x1="886.000000" y1="556.000000" x2="884.000000" y2="710.000000" x3="798.000000" y3="711.000000"></Quad2D>
+            <Quad2D id="2_c11" x0="907.000000" y0="555.000000" x1="1031.000000" y1="551.000000" x2="1005.000000" y2="707.000000" x3="896.000000" y3="709.000000"></Quad2D>
+            <Quad2D id="2_c4" x0="53.000000" y0="580.000000" x1="122.000000" y1="582.000000" x2="314.000000" y2="723.000000" x3="262.000000" y3="724.000000"></Quad2D>
+            <Quad2D id="2_c5" x0="170.000000" y0="580.000000" x1="245.000000" y1="580.000000" x2="413.000000" y2="721.000000" x3="353.000000" y3="722.000000"></Quad2D>
+            <Quad2D id="2_c6" x0="284.000000" y0="576.000000" x1="373.000000" y1="573.000000" x2="499.000000" y2="719.000000" x3="435.000000" y3="721.000000"></Quad2D>
+            <Quad2D id="2_c7" x0="405.000000" y0="571.000000" x1="493.000000" y1="568.000000" x2="592.000000" y2="717.000000" x3="525.000000" y3="718.000000"></Quad2D>
+            <Quad2D id="2_c8" x0="524.000000" y0="566.000000" x1="621.000000" y1="565.000000" x2="690.000000" y2="714.000000" x3="614.000000" y3="715.000000"></Quad2D>
+            <Quad2D id="2_c9" x0="645.000000" y0="563.000000" x1="753.000000" y1="560.000000" x2="783.000000" y2="712.000000" x3="713.000000" y3="713.000000"></Quad2D>
+            <Quad2D id="2_d5" x0="1.000000" y0="260.000000" x1="1024.000000" y1="199.000000" x2="1024.000000" y2="279.000000" x3="1.000000" y3="338.000000"></Quad2D>
+            <Quad2D id="2_d7" x0="34.000000" y0="504.000000" x1="1033.000000" y1="465.000000" x2="1025.000000" y2="531.000000" x3="3.000000" y3="562.000000"></Quad2D>
+            <Quad2D id="2_d9" x0="30.000000" y0="731.000000" x1="1011.000000" y1="708.000000" x2="1004.000000" y2="742.000000" x3="30.000000" y3="769.000000"></Quad2D>
+            <Quad2D id="2_global1" x0="-3.000000" y0="77.000000" x1="1025.000000" y1="129.000000" x2="983.000000" y2="742.000000" x3="256.000000" y3="754.000000"></Quad2D>
+            <Quad2D id="3_a1" x0="54.000000" y0="184.000000" x1="115.000000" y1="183.000000" x2="374.000000" y2="350.000000" x3="320.000000" y3="352.000000"></Quad2D>
+            <Quad2D id="3_a2" x0="207.000000" y0="187.000000" x1="292.000000" y1="190.000000" x2="508.000000" y2="345.000000" x3="443.000000" y3="348.000000"></Quad2D>
+            <Quad2D id="3_a3" x0="385.000000" y0="196.000000" x1="477.000000" y1="202.000000" x2="649.000000" y2="341.000000" x3="577.000000" y3="345.000000"></Quad2D>
+            <Quad2D id="3_a4" x0="566.000000" y0="211.000000" x1="677.000000" y1="213.000000" x2="803.000000" y2="336.000000" x3="711.000000" y3="339.000000"></Quad2D>
+            <Quad2D id="3_a5" x0="757.000000" y0="219.000000" x1="883.000000" y1="223.000000" x2="972.000000" y2="332.000000" x3="866.000000" y3="337.000000"></Quad2D>
+            <Quad2D id="3_b1" x0="364.000000" y0="443.000000" x1="404.000000" y1="443.000000" x2="527.000000" y2="515.000000" x3="481.000000" y3="509.000000"></Quad2D>
+            <Quad2D id="3_b2" x0="468.000000" y0="442.000000" x1="514.000000" y1="441.000000" x2="631.000000" y2="514.000000" x3="583.000000" y3="513.000000"></Quad2D>
+            <Quad2D id="3_b3" x0="587.000000" y0="447.000000" x1="644.000000" y1="447.000000" x2="743.000000" y2="517.000000" x3="684.000000" y3="516.000000"></Quad2D>
+            <Quad2D id="3_b4" x0="692.000000" y0="440.000000" x1="769.000000" y1="443.000000" x2="866.000000" y2="521.000000" x3="801.000000" y3="518.000000"></Quad2D>
+            <Quad2D id="3_b5" x0="826.000000" y0="440.000000" x1="912.000000" y1="442.000000" x2="988.000000" y2="521.000000" x3="916.000000" y3="521.000000"></Quad2D>
+            <Quad2D id="3_c1" x0="613.000000" y0="585.000000" x1="643.000000" y1="586.000000" x2="849.000000" y2="710.000000" x3="816.000000" y3="705.000000"></Quad2D>
+            <Quad2D id="3_c2" x0="709.000000" y0="593.000000" x1="745.000000" y1="593.000000" x2="926.000000" y2="712.000000" x3="891.000000" y3="710.000000"></Quad2D>
+            <Quad2D id="3_c3" x0="797.000000" y0="595.000000" x1="852.000000" y1="599.000000" x2="1011.000000" y2="718.000000" x3="969.000000" y3="714.000000"></Quad2D>
+            <Quad2D id="3_d1" x0="105.000000" y0="458.000000" x1="159.000000" y1="477.000000" x2="367.000000" y2="737.000000" x3="360.000000" y3="771.000000"></Quad2D>
+            <Quad2D id="3_d2" x0="181.000000" y0="452.000000" x1="239.000000" y1="474.000000" x2="455.000000" y2="765.000000" x3="430.000000" y3="773.000000"></Quad2D>
+            <Quad2D id="3_d3" x0="280.000000" y0="370.000000" x1="966.000000" y1="339.000000" x2="958.000000" y2="442.000000" x3="244.000000" y3="442.000000"></Quad2D>
+            <Quad2D id="3_d4" x0="464.000000" y0="526.000000" x1="1011.000000" y1="540.000000" x2="1029.000000" y2="600.000000" x3="478.000000" y3="575.000000"></Quad2D>
+            <Quad2D id="3_global1" x0="7.000000" y0="177.000000" x1="891.000000" y1="224.000000" x2="1020.000000" y2="723.000000" x3="812.000000" y3="706.000000"></Quad2D>
+        </Quads2D>
+        <Objs3D>
+            <Obj3D id="squirrel" filepath="./data/models/squirrel.3ds" posX="0" posY="0" posZ="0" />
+        </Objs3D>
+        <!-- otras shapes ... -->
+    </Shapes>
+    <Groups>
+        <Group id="2_a">
+            <Item id="2_a6" />
+            <Item id="2_a7" />
+            <Item id="2_a8" />
+            <Item id="2_a9" />
+            <Item id="2_a10" />
+        </Group>
+        <Group id="2_b">
+            <Item id="2_b6" />
+            <Item id="2_b7" />
+            <Item id="2_b8" />
+            <Item id="2_b9" />
+            <Item id="2_b10" />
+            <Item id="2_b11" />
+        </Group>
+        <Group id="2_c">
+            <Item id="2_c4" />
+            <Item id="2_c5" />
+            <Item id="2_c6" />
+            <Item id="2_c7" />
+            <Item id="2_c8" />
+            <Item id="2_c9" />
+            <Item id="2_c10" />
+            <Item id="2_c11" />
+        </Group>
+        <Group id="2_d">
+            <Item id="2_d5" />
+            <Item id="2_d7" />
+            <Item id="2_d9" />
+        </Group>
+        <Group id="2_abc">
+            <Item id="2_a6" />
+            <Item id="2_a7" />
+            <Item id="2_a8" />
+            <Item id="2_a9" />
+            <Item id="2_a10" />
+            <Item id="2_b6" />
+            <Item id="2_b7" />
+            <Item id="2_b8" />
+            <Item id="2_b9" />
+            <Item id="2_b10" />
+            <Item id="2_b11" />
+            <Item id="2_c4" />
+            <Item id="2_c5" />
+            <Item id="2_c6" />
+            <Item id="2_c7" />
+            <Item id="2_c8" />
+            <Item id="2_c9" />
+            <Item id="2_c10" />
+            <Item id="2_c11" />
+        </Group>
+        <Group id="2_all">
+            <Item id="2_a6" />
+            <Item id="2_a7" />
+            <Item id="2_a8" />
+            <Item id="2_a9" />
+            <Item id="2_a10" />
+            <Item id="2_b6" />
+            <Item id="2_b7" />
+            <Item id="2_b8" />
+            <Item id="2_b9" />
+            <Item id="2_b10" />
+            <Item id="2_b11" />
+            <Item id="2_c4" />
+            <Item id="2_c5" />
+            <Item id="2_c6" />
+            <Item id="2_c7" />
+            <Item id="2_c8" />
+            <Item id="2_c9" />
+            <Item id="2_c10" />
+            <Item id="2_c11" />
+            <Item id="2_d5" />
+            <Item id="2_d7" />
+            <Item id="2_d9" />
+        </Group>
+        <Group id="3_a">
+            <Item id="3_a1" />
+            <Item id="3_a2" />
+            <Item id="3_a3" />
+            <Item id="3_a4" />
+            <Item id="3_a5" />
+        </Group>
+        <Group id="3_b">
+            <Item id="3_b1" />
+            <Item id="3_b2" />
+            <Item id="3_b3" />
+            <Item id="3_b4" />
+            <Item id="3_b5" />
+        </Group>
+        <Group id="3_c">
+            <Item id="3_c1" />
+            <Item id="3_c2" />
+            <Item id="3_c3" />
+        </Group>
+        <Group id="3_d">
+            <Item id="3_d1" />
+            <Item id="3_d2" />
+            <Item id="3_d3" />
+            <Item id="3_d4" />
+        </Group>
+        <Group id="3_abc">
+            <Item id="3_a1" />
+            <Item id="3_a2" />
+            <Item id="3_a3" />
+            <Item id="3_a4" />
+            <Item id="3_a5" />
+            <Item id="3_b1" />
+            <Item id="3_b2" />
+            <Item id="3_b3" />
+            <Item id="3_b4" />
+            <Item id="3_b5" />
+            <Item id="3_c1" />
+            <Item id="3_c2" />
+            <Item id="3_c3" />
+        </Group>
+        <Group id="3_all">
+            <Item id="3_a1" />
+            <Item id="3_a2" />
+            <Item id="3_a3" />
+            <Item id="3_a4" />
+            <Item id="3_a5" />
+            <Item id="3_b1" />
+            <Item id="3_b2" />
+            <Item id="3_b3" />
+            <Item id="3_b4" />
+            <Item id="3_b5" />
+            <Item id="3_c1" />
+            <Item id="3_c2" />
+            <Item id="3_c3" />
+            <Item id="3_d1" />
+            <Item id="3_d2" />
+            <Item id="3_d3" />
+            <Item id="3_d4" />
+        </Group>
+        <Group id="3_random_a1">
+            <Item id="3_a1" />
+            <Item id="3_a4" />
+            <Item id="3_a5" />
+        </Group>
+        <Group id="3_random_a2">
+            <Item id="3_a2" />
+            <Item id="3_a3" />
+        </Group>
+        <Group id="2_random_a1">
+            <Item id="2_a7" />
+            <Item id="2_a8" />
+            <Item id="2_a10" />
+        </Group>
+        <Group id="2_random_a2">
+            <Item id="2_a7" />
+            <Item id="2_a9" />
+            <Item id="2_a10" />
+        </Group>
+        <Group id="3_random_b1">
+            <Item id="3_b1" />
+            <Item id="3_b4" />
+        </Group>
+        <Group id="3_random_b2">
+            <Item id="3_b2" />
+            <Item id="3_b3" />
+        </Group>
+        <Group id="2_random_b1">
+            <Item id="2_b7" />
+            <Item id="2_b8" />
+            <Item id="2_b11" />
+        </Group>
+        <Group id="2_random_b2">
+            <Item id="2_b6" />
+            <Item id="2_b10" />
+            <Item id="2_b11" />
+        </Group>
+        <Group id="3_random_c1">
+            <Item id="3_c2" />
+        </Group>
+        <Group id="3_random_c2">
+            <Item id="3_c1" />
+            <Item id="3_c3" />
+        </Group>
+        <Group id="2_random_c1">
+            <Item id="2_c4" />
+            <Item id="2_c7" />
+            <Item id="2_c9" />
+            <Item id="2_c11" />
+        </Group>
+        <Group id="2_random_c2">
+            <Item id="2_c5" />
+            <Item id="2_c8" />
+            <Item id="2_c10" />
+        </Group>
+        <Group id="3_square_ab1">
+            <Item id="3_a1" />
+            <Item id="3_a2" />
+            <Item id="3_a3" />
+            <Item id="3_b1" />
+            <Item id="3_b2" />
+        </Group>
+        <Group id="3_square_ab2">
+            <Item id="3_a4" />
+            <Item id="3_a5" />
+            <Item id="3_b3" />
+            <Item id="3_b4" />
+            <Item id="3_b5" />
+        </Group>
+        <Group id="2_square_ab1">
+            <Item id="2_a6" />
+            <Item id="2_a7" />
+            <Item id="2_a8" />
+            <Item id="2_b6" />
+            <Item id="2_b7" />
+            <Item id="2_b8" />
+        </Group>
+        <Group id="2_square_ab2">
+            <Item id="2_a9" />
+            <Item id="2_a10" />
+            <Item id="2_b9" />
+            <Item id="2_b10" />
+            <Item id="2_b11" />
+        </Group>
+        <Group id="3_square_bc1">
+            <Item id="3_b1" />
+            <Item id="3_b2" />
+            <Item id="3_b3" />
+            <Item id="3_c1" />
+            <Item id="3_c2" />
+        </Group>
+        <Group id="3_square_bc2">
+            <Item id="3_b4" />
+            <Item id="3_b5" />
+            <Item id="3_c3" />
+        </Group>
+        <Group id="2_square_bc1">
+            <Item id="2_b6" />
+            <Item id="2_b7" />
+            <Item id="2_c4" />
+            <Item id="2_c5" />
+            <Item id="2_c6" />
+            <Item id="2_c7" />
+        </Group>
+        <Group id="2_square_bc2">
+            <Item id="2_b8" />
+            <Item id="2_b9" />
+            <Item id="2_b10" />
+            <Item id="2_b11" />
+            <Item id="2_c8" />
+            <Item id="2_c9" />
+            <Item id="2_c10" />
+            <Item id="2_c11" />
+        </Group>
+    </Groups>
+    <AnimationLoops>
+        <AnimationLoop id="animLoop1">
+            <LinearAnimation PropertyManagerId="material1" ParamId="AMBIENT_R" duration="2.0" targetValue="1.0" />
+        </AnimationLoop>
+    </AnimationLoops>
+    <AnimationList>
+        <!--   Id,  ... parameters?  -->
+    </AnimationList>
+    <Events>
+        <!--  occurrence time in seconds ,  Message Type@ID@... parameters?  -->
+        <OscEvents />
+        <TimedEvents>
+            <TimedEvent destination="chachi" time="0.1">
+                <Message address="/texture/setcolorgroup" param1="3_all" param2="1" param3="1" param4="1" param5="0" />
+                <Message address="/texture/setcolorgroup" param1="2_all" param2="1" param3="1" param4="1" param5="0" />
+				<Message address="/texture/setcolor" param1="3_global1" param2="1" param3="1" param4="1" param5="0" />
+				<Message address="/texture/setcolor" param1="2_global1" param2="1" param3="1" param4="1" param5="0" />
+				<Message address="/quads/setz" param1="3_global1" param2="-1" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="0.1">
+                <Message address="/texture/setcolorgroup" param1="3_all" param2="1" param3="1" param4="1" param5="0" />
+                <Message address="/texture/setcolorgroup" param1="2_all" param2="1" param3="1" param4="1" param5="0" />
+				<Message address="/texture/setcolor" param1="3_global1" param2="1" param3="1" param4="1" param5="0" />
+				<Message address="/texture/setcolor" param1="2_global1" param2="1" param3="1" param4="1" param5="0" />
+				<Message address="/quads/setz" param1="2_global1" param2="-1" />
+            </TimedEvent>
+			
+			<!--
+            <TimedEvent destination="chachi" time="0.3">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/video/setgroup" param1="3_a" param2="movie2" />
+                <Message address="/video/play" param1="movie2" param2="1" />
+            </TimedEvent>
+			<TimedEvent destination="daniel" time="0.3">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/video/setgroup" param1="2_a" param2="movie2" />
+                <Message address="/video/play" param1="movie2" param2="1" />
+            </TimedEvent>
+			-->
+            <TimedEvent destination="chachi" time="1.772">
+                <Message address="/texture/setcolorgroup" param1="3_all" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_all" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="1.772">
+                <Message address="/texture/setcolorgroup" param1="2_all" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_all" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="13.083">
+                <Message address="/texture/setcolorgroup" param1="3_all" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_all" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="13.083">
+                <Message address="/texture/setcolorgroup" param1="2_all" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_all" param2="1.0" param3="0" />
+            </TimedEvent>
+			
+			<!-- STATIC -->
+			<TimedEvent destination="chachi" time="14.982">
+				<Message address="/texture/setcolor" param1="3_global1" param2="1" param3="1" param4="1" param5="0.6" />
+				<Message address="/video/set" param1="3_global1" param2="static" />
+                <Message address="/video/play" param1="static" param2="1" />
+				
+				<Message address="/texture/setcolorgroup" param1="3_d" param2="1" param3="1" param4="1" param5="1.0" />
+				<Message address="/video/setgroup" param1="3_d" param2="noisef" />
+				<Message address="/video/setgroup" param1="3_abc" param2="noisef" />
+				
+				<Message address="/video/play" param1="noisef" param2="noisef" />
+			</TimedEvent>
+			<TimedEvent destination="daniel" time="14.982">
+				<Message address="/texture/setcolor" param1="2_global1" param2="1" param3="1" param4="1" param5="0.6" />
+				<Message address="/video/set" param1="2_global1" param2="static" />
+                <Message address="/video/play" param1="static" param2="1" />
+				
+				<Message address="/texture/setcolorgroup" param1="2_d" param2="1" param3="1" param4="1" param5="1.0" />
+				<Message address="/video/setgroup" param1="2_d" param2="noisef" />
+				<Message address="/video/setgroup" param1="2_abc" param2="noisef" />
+				<Message address="/video/play" param1="noisef" param2="noisef" />
+			</TimedEvent>
+			
+            <!-- BOMBOS -->
+            <!-- BOMBO1 -->
+            <TimedEvent destination="chachi" time="43.58">
+				<Message address="/texture/setcolor" param1="3_global1" param2="1" param3="1" param4="1" param5="0.0" />
+				<Message address="/texture/setcolorgroup" param1="3_d" param2="1" param3="1" param4="1" param5="0.0" />
+				
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="43.58">
+				<Message address="/texture/setcolor" param1="2_global1" param2="1" param3="1" param4="1" param5="0.0" />
+				<Message address="/texture/setcolorgroup" param1="2_d" param2="1" param3="1" param4="1" param5="0.0" />
+			
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO2 -->
+            <TimedEvent destination="chachi" time="44.495">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="44.495">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO3 -->
+            <TimedEvent destination="chachi" time="45.681">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="45.681">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO4 -->
+            <TimedEvent destination="chachi" time="46.888">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="46.888">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO5 -->
+            <TimedEvent destination="chachi" time="48.034">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="48.034">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="48.334">
+                <Message address="/texture/setcolorgroup" param1="3_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="48.334">
+                <Message address="/texture/setcolorgroup" param1="2_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="48.634">
+                <Message address="/texture/setcolorgroup" param1="3_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="48.634">
+                <Message address="/texture/setcolorgroup" param1="2_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO6 -->
+            <TimedEvent destination="chachi" time="49.28">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="49.28">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="49.58">
+                <Message address="/texture/setcolorgroup" param1="3_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_b1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="49.58">
+                <Message address="/texture/setcolorgroup" param1="2_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_b1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="49.88">
+                <Message address="/texture/setcolorgroup" param1="3_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_b2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="49.88">
+                <Message address="/texture/setcolorgroup" param1="2_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_b2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO7 -->
+            <TimedEvent destination="chachi" time="50.494">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="50.494">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="50.794">
+                <Message address="/texture/setcolorgroup" param1="3_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_b1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="50.794">
+                <Message address="/texture/setcolorgroup" param1="2_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_b2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="51.094">
+                <Message address="/texture/setcolorgroup" param1="3_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_b2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="51.094">
+                <Message address="/texture/setcolorgroup" param1="2_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_b1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO8 -->
+            <TimedEvent destination="chachi" time="51.7">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="51.7">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="52.0">
+                <Message address="/texture/setcolorgroup" param1="3_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="52.0">
+                <Message address="/texture/setcolorgroup" param1="2_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="52.3">
+                <Message address="/texture/setcolorgroup" param1="3_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="52.3">
+                <Message address="/texture/setcolorgroup" param1="2_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO9 -->
+            <TimedEvent destination="chachi" time="52.906">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="52.906">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="53.206">
+                <Message address="/texture/setcolorgroup" param1="3_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_b2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="53.206">
+                <Message address="/texture/setcolorgroup" param1="2_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_b2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="53.506">
+                <Message address="/texture/setcolorgroup" param1="3_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_b1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="53.506">
+                <Message address="/texture/setcolorgroup" param1="2_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_b1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO10 -->
+            <TimedEvent destination="chachi" time="54.073">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="54.073">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="54.373">
+                <Message address="/texture/setcolorgroup" param1="3_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_c2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_b2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="54.373">
+                <Message address="/texture/setcolorgroup" param1="2_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_c1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_b1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="54.673">
+                <Message address="/texture/setcolorgroup" param1="3_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_c1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_b1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="54.673">
+                <Message address="/texture/setcolorgroup" param1="2_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_c2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_b2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO11 -->
+            <TimedEvent destination="chachi" time="55.297">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="55.297">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="55.597">
+                <Message address="/texture/setcolorgroup" param1="3_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_c1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_a1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="55.597">
+                <Message address="/texture/setcolorgroup" param1="2_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_c1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_a1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="55.897">
+                <Message address="/texture/setcolorgroup" param1="3_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_c2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_a2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="55.897">
+                <Message address="/texture/setcolorgroup" param1="2_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_c2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_a2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO12 -->
+            <TimedEvent destination="chachi" time="56.473">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="56.473">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="56.773">
+                <Message address="/texture/setcolorgroup" param1="3_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_b1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_a1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="56.773">
+                <Message address="/texture/setcolorgroup" param1="2_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_b1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_a1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="57.073">
+                <Message address="/texture/setcolorgroup" param1="3_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_b2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_a2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="57.073">
+                <Message address="/texture/setcolorgroup" param1="2_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_b2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_a2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO13 -->
+            <TimedEvent destination="chachi" time="57.679">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="57.679">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="57.979">
+                <Message address="/texture/setcolorgroup" param1="3_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_b1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="57.979">
+                <Message address="/texture/setcolorgroup" param1="2_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_b1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="58.279">
+                <Message address="/texture/setcolorgroup" param1="3_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_b2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="58.279">
+                <Message address="/texture/setcolorgroup" param1="2_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_b2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO14 -->
+            <TimedEvent destination="chachi" time="58.896">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="58.896">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="59.196">
+                <Message address="/texture/setcolorgroup" param1="3_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="59.196">
+                <Message address="/texture/setcolorgroup" param1="2_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="59.496">
+                <Message address="/texture/setcolorgroup" param1="3_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="59.496">
+                <Message address="/texture/setcolorgroup" param1="2_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO15 -->
+            <TimedEvent destination="chachi" time="60.042">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="60.042">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="60.342">
+                <Message address="/texture/setcolorgroup" param1="3_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_b1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="60.342">
+                <Message address="/texture/setcolorgroup" param1="2_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_b1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="60.642">
+                <Message address="/texture/setcolorgroup" param1="3_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_b2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="60.642">
+                <Message address="/texture/setcolorgroup" param1="2_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_b2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO16 -->
+            <TimedEvent destination="chachi" time="61.228">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="61.228">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="61.528">
+                <Message address="/texture/setcolorgroup" param1="3_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_c1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_b1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="61.528">
+                <Message address="/texture/setcolorgroup" param1="2_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_c1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_b1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="61.828">
+                <Message address="/texture/setcolorgroup" param1="3_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_c2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_b2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="61.828">
+                <Message address="/texture/setcolorgroup" param1="2_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_c2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_b2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO17 -->
+            <TimedEvent destination="chachi" time="62.543">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="62.543">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="62.843">
+                <Message address="/texture/setcolorgroup" param1="3_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_c1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_a1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="62.843">
+                <Message address="/texture/setcolorgroup" param1="2_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_c1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_a1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="63.143">
+                <Message address="/texture/setcolorgroup" param1="3_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_c2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_a2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="63.143">
+                <Message address="/texture/setcolorgroup" param1="2_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_c2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_a2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO18 -->
+            <TimedEvent destination="chachi" time="63.688">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="63.688">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="63.988">
+                <Message address="/texture/setcolorgroup" param1="3_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_b1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_a1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="63.988">
+                <Message address="/texture/setcolorgroup" param1="2_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_b1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_a1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="64.288">
+                <Message address="/texture/setcolorgroup" param1="3_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_b2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_a2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="64.288">
+                <Message address="/texture/setcolorgroup" param1="2_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_b2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_a2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO19 -->
+            <TimedEvent destination="chachi" time="64.875">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="64.875">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="65.175">
+                <Message address="/texture/setcolorgroup" param1="3_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_b1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="65.175">
+                <Message address="/texture/setcolorgroup" param1="2_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_b1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="65.475">
+                <Message address="/texture/setcolorgroup" param1="3_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_b2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="65.475">
+                <Message address="/texture/setcolorgroup" param1="2_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_b2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO20 -->
+            <TimedEvent destination="chachi" time="66.1">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="66.1">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="66.4">
+                <Message address="/texture/setcolorgroup" param1="3_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="66.4">
+                <Message address="/texture/setcolorgroup" param1="2_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="66.7">
+                <Message address="/texture/setcolorgroup" param1="3_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="66.7">
+                <Message address="/texture/setcolorgroup" param1="2_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO21 -->
+            <TimedEvent destination="chachi" time="67.295">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="67.295">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="67.595">
+                <Message address="/texture/setcolorgroup" param1="3_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_b1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="67.595">
+                <Message address="/texture/setcolorgroup" param1="2_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_b1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="67.895">
+                <Message address="/texture/setcolorgroup" param1="3_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_b2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="67.895">
+                <Message address="/texture/setcolorgroup" param1="2_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_a2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_b2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO22 -->
+            <TimedEvent destination="chachi" time="68.531">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="68.531">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="68.831">
+                <Message address="/texture/setcolorgroup" param1="3_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_c1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_b1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="68.831">
+                <Message address="/texture/setcolorgroup" param1="2_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_c1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_b1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="69.131">
+                <Message address="/texture/setcolorgroup" param1="3_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_c2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_b2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="69.131">
+                <Message address="/texture/setcolorgroup" param1="2_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_c2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_b2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO23 -->
+            <TimedEvent destination="chachi" time="69.675">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="69.675">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="69.975">
+                <Message address="/texture/setcolorgroup" param1="3_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_c1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_a1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="69.975">
+                <Message address="/texture/setcolorgroup" param1="2_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_c1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_a1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="70.275">
+                <Message address="/texture/setcolorgroup" param1="3_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_c2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_a2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="70.275">
+                <Message address="/texture/setcolorgroup" param1="2_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_c2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_a2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO24 -->
+            <TimedEvent destination="chachi" time="70.933">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="70.933">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="71.233">
+                <Message address="/texture/setcolorgroup" param1="3_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_b1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_a1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="71.233">
+                <Message address="/texture/setcolorgroup" param1="2_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_a1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_b1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_a1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="71.533">
+                <Message address="/texture/setcolorgroup" param1="3_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_b2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_a2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="71.533">
+                <Message address="/texture/setcolorgroup" param1="2_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_a2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_b2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_a2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO25 -->
+            <TimedEvent destination="chachi" time="72.089">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="72.089">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="72.389">
+                <Message address="/texture/setcolorgroup" param1="3_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_b1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="72.389">
+                <Message address="/texture/setcolorgroup" param1="2_random_b1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c1" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_b1" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c1" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="72.689">
+                <Message address="/texture/setcolorgroup" param1="3_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="3_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="3_random_b2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="3_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="72.689">
+                <Message address="/texture/setcolorgroup" param1="2_random_b2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/setcolorgroup" param1="2_random_c2" param2="1" param3="1" param4="1" param5="0.7" />
+                <Message address="/texture/fadetogroup" param1="2_random_b2" param2="0.25" param3="0" />
+                <Message address="/texture/fadetogroup" param1="2_random_c2" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBOS SEGUNDO -->
+            <!-- BOMBO26 -->
+            <TimedEvent destination="chachi" time="79.3">
+				<Message address="/video/setgroup" param1="3_abc" param2="movie9" />
+				<Message address="/video/play" param1="movie9" param2="1" />
+				
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="79.3">
+				<Message address="/video/setgroup" param1="2_abc" param2="movie9" />
+				<Message address="/video/play" param1="movie9" param2="1" />
+				
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+            <TimedEvent destination="daniel" time="79.59">
+                <Message address="/texture/setcolor" param1="2_d9" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d9" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="79.88">
+                <Message address="/texture/setcolor" param1="3_d4" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d4" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="79.88">
+                <Message address="/texture/setcolor" param1="2_d7" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d7" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="80.17">
+                <Message address="/texture/setcolor" param1="3_d3" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d3" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="80.17">
+                <Message address="/texture/setcolor" param1="2_d5" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d5" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO27 -->
+            <TimedEvent destination="chachi" time="80.456">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="80.456">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="80.746">
+                <Message address="/texture/setcolor" param1="2_d9" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d9" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="81.036">
+                <Message address="/texture/setcolor" param1="3_d4" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d4" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="81.036">
+                <Message address="/texture/setcolor" param1="2_d7" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d7" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="81.326">
+                <Message address="/texture/setcolor" param1="3_d3" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d3" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="81.326">
+                <Message address="/texture/setcolor" param1="2_d5" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d5" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO28 -->
+            <TimedEvent destination="chachi" time="81.612">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="81.612">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="81.902">
+                <Message address="/texture/setcolor" param1="2_d9" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d9" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="82.192">
+                <Message address="/texture/setcolor" param1="3_d4" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d4" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="82.192">
+                <Message address="/texture/setcolor" param1="2_d7" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d7" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="82.482">
+                <Message address="/texture/setcolor" param1="3_d3" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d3" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="82.482">
+                <Message address="/texture/setcolor" param1="2_d5" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d5" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO29 -->
+            <TimedEvent destination="chachi" time="82.768">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="82.768">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="83.058">
+                <Message address="/texture/setcolor" param1="2_d9" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d9" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="83.348">
+                <Message address="/texture/setcolor" param1="3_d4" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d4" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="83.348">
+                <Message address="/texture/setcolor" param1="2_d7" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d7" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="83.638">
+                <Message address="/texture/setcolor" param1="3_d3" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d3" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="83.638">
+                <Message address="/texture/setcolor" param1="2_d5" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d5" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO30 -->
+            <TimedEvent destination="chachi" time="83.924">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="83.924">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="84.214">
+                <Message address="/texture/setcolor" param1="2_d9" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d9" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="84.504">
+                <Message address="/texture/setcolor" param1="3_d4" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d4" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="84.504">
+                <Message address="/texture/setcolor" param1="2_d7" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d7" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="84.794">
+                <Message address="/texture/setcolor" param1="3_d3" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d3" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="84.794">
+                <Message address="/texture/setcolor" param1="2_d5" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d5" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO31 -->
+            <TimedEvent destination="chachi" time="85.08">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="85.08">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="85.37">
+                <Message address="/texture/setcolor" param1="2_d9" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d9" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="85.66">
+                <Message address="/texture/setcolor" param1="3_d4" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d4" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="85.66">
+                <Message address="/texture/setcolor" param1="2_d7" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d7" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="85.95">
+                <Message address="/texture/setcolor" param1="3_d3" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d3" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="85.95">
+                <Message address="/texture/setcolor" param1="2_d5" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d5" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO32 -->
+            <TimedEvent destination="chachi" time="86.236">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="86.236">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="86.526">
+                <Message address="/texture/setcolor" param1="2_d9" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d9" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="86.816">
+                <Message address="/texture/setcolor" param1="3_d4" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d4" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="86.816">
+                <Message address="/texture/setcolor" param1="2_d7" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d7" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="87.106">
+                <Message address="/texture/setcolor" param1="3_d3" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d3" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="87.106">
+                <Message address="/texture/setcolor" param1="2_d5" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d5" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO33 -->
+            <TimedEvent destination="chachi" time="87.71">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="87.71">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="87.682">
+                <Message address="/texture/setcolor" param1="2_d9" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d9" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="87.972">
+                <Message address="/texture/setcolor" param1="3_d4" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d4" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="87.972">
+                <Message address="/texture/setcolor" param1="2_d7" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d7" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="chachi" time="88.262">
+                <Message address="/texture/setcolor" param1="3_d3" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="3_d3" param2="0.25" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="88.262">
+                <Message address="/texture/setcolor" param1="2_d5" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadeto" param1="2_d5" param2="0.25" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO34 -->
+            <TimedEvent destination="chachi" time="88.88">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="88.88">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO35 -->
+            <TimedEvent destination="chachi" time="90.13">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="90.13">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO36 -->
+            <TimedEvent destination="chachi" time="91.32">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="91.32">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO37 -->
+            <TimedEvent destination="chachi" time="92.52">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="92.52">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO38 -->
+            <TimedEvent destination="chachi" time="93.73">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="93.73">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO39 -->
+            <TimedEvent destination="chachi" time="94.9">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="94.9">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			<!-- BOMBO40 VACIO -->
+			
+            <!-- BOMBO41 -->
+            <TimedEvent destination="chachi" time="96.1">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+			<TimedEvent destination="daniel" time="96.1">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			<!-- BOMBO42 -->
+            <TimedEvent destination="chachi" time="97.3">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="97.3">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO43 -->
+            <TimedEvent destination="chachi" time="98.51">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="98.51">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO44 -->
+            <TimedEvent destination="chachi" time="99.7">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="99.7">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO45 -->
+            <TimedEvent destination="chachi" time="100.89">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="100.89">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO46 -->
+            <TimedEvent destination="chachi" time="102.1">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="102.1">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO47 -->
+            <TimedEvent destination="chachi" time="103.31">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="103.31">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO48 -->
+            <TimedEvent destination="chachi" time="104.5">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="104.5">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO49 -->
+            <TimedEvent destination="chachi" time="105.69">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="105.69">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO50 -->
+            <TimedEvent destination="chachi" time="106.93">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="106.93">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO51 -->
+            <TimedEvent destination="chachi" time="108.12">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="108.12">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO52 -->
+            <TimedEvent destination="chachi" time="109.31">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="109.31">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO53 -->
+            <TimedEvent destination="chachi" time="110.5">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="110.5">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO54 -->
+            <TimedEvent destination="chachi" time="111.71">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="111.71">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO55 -->
+            <TimedEvent destination="chachi" time="112.9">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="112.9">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO56 -->
+            <TimedEvent destination="chachi" time="114.16">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="114.16">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO57 -->
+            <TimedEvent destination="chachi" time="115.28">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="115.28">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO58 -->
+            <TimedEvent destination="chachi" time="116.52">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="116.52">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO59 -->
+            <TimedEvent destination="chachi" time="117.68">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="117.68">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO60 -->
+            <TimedEvent destination="chachi" time="118.94">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="118.94">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+            <!-- BOMBO61 -->
+            <TimedEvent destination="chachi" time="120.11">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+				
+				<Message address="/texture/setcolor" param1="3_global1" param2="1" param3="1" param4="1" param5="1" />
+				<Message address="/video/set" param1="3_global1" param2="tejido" />
+				<Message address="/video/play" param1="tejido" param2="1" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="120.11">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+				
+				<Message address="/texture/setcolor" param1="2_global1" param2="1" param3="1" param4="1" param5="1" />
+				<Message address="/video/set" param1="2_global1" param2="tejido" />
+				<Message address="/video/play" param1="tejido" param2="1" />
+            </TimedEvent>
+			
+			<!-- PARTE 3 por 4 -->
+			<!--<TimedEvent destination="daniel" time="175.36">
+                <Message address="/video/setgroup" param1="2_abc" param2="noisef" />
+                <Message address="/video/play" param1="noisef" param2="1" />
+            </TimedEvent>-->
+			
+			<TimedEvent destination="chachi" time="169.36">
+				<Message address="/texture/fadeto" param1="3_global1" param2="4.0" param3="0" />
+				<Message address="/video/setgroup" param1="3_abc" param2="tejido" />
+			</TimedEvent>
+			<TimedEvent destination="daniel" time="169.36">
+				<Message address="/texture/fadeto" param1="2_global1" param2="4.0" param3="0" />
+				<Message address="/video/setgroup" param1="2_abc" param2="tejido" />
+			</TimedEvent>
+			
+			<!-- BOMBO1 -->
+            <TimedEvent destination="chachi" time="175.36">
+				<Message address="/texture/fadeto" param1="3_global1" param2="2.0" param3="1" />
+				<Message address="/video/set" param1="3_global1" param2="nubes" />
+				<Message address="/video/play" param1="nubes" param2="1" />
+			
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="175.36">
+				<Message address="/texture/fadeto" param1="2_global1" param2="2.0" param3="1" />
+				<Message address="/video/set" param1="2_global1" param2="nubes" />
+				<Message address="/video/play" param1="nubes" param2="1" />
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO2 -->
+            <TimedEvent destination="chachi" time="176.58">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="176.58">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO3 -->
+            <TimedEvent destination="chachi" time="177.89">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="177.89">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO4 -->
+            <TimedEvent destination="chachi" time="178.91">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="178.91">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO5 -->
+            <TimedEvent destination="chachi" time="180.09">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="180.09">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO6 -->
+            <TimedEvent destination="chachi" time="181.29">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="181.29">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO7 -->
+            <TimedEvent destination="chachi" time="182.51">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="182.51">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO8 -->
+            <TimedEvent destination="chachi" time="183.69">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="183.69">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO9 -->
+            <TimedEvent destination="chachi" time="184.91">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="184.91">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO10 -->
+            <TimedEvent destination="chachi" time="186.13">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="186.13">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO11 -->
+            <TimedEvent destination="chachi" time="187.32">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="187.32">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO12 -->
+            <TimedEvent destination="chachi" time="188.54">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="188.54">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO13 -->
+            <TimedEvent destination="chachi" time="189.72">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="189.72">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO14 -->
+            <TimedEvent destination="chachi" time="190.89">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="190.89">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO15 -->
+            <TimedEvent destination="chachi" time="192.1">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="192.1">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO16 -->
+            <TimedEvent destination="chachi" time="193.27">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="193.27">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO17 -->
+            <TimedEvent destination="chachi" time="194.5">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="194.5">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO18 -->
+            <TimedEvent destination="chachi" time="195.7">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="195.7">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO19 -->
+            <TimedEvent destination="chachi" time="196.91">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="196.91">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO20 -->
+            <TimedEvent destination="chachi" time="198.1">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="198.1">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO21 -->
+            <TimedEvent destination="chachi" time="199.35">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="199.35">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO22 -->
+            <TimedEvent destination="chachi" time="200.5">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="200.5">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO23 -->
+            <TimedEvent destination="chachi" time="201.72">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="201.72">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO23 -->
+            <TimedEvent destination="chachi" time="202.95">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="202.95">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO24 -->
+            <TimedEvent destination="chachi" time="204.13">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="204.13">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO25 -->
+            <TimedEvent destination="chachi" time="205.33">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="205.33">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO26 -->
+            <TimedEvent destination="chachi" time="206.55">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="206.55">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO27 -->
+            <TimedEvent destination="chachi" time="207.69">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+				<Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="207.69">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+				<Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO28 -->
+            <TimedEvent destination="chachi" time="208.93">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+				<Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="208.93">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+				<Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO29 -->
+            <TimedEvent destination="chachi" time="210.15">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+				<Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="210.15">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+				<Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO30 -->
+            <TimedEvent destination="chachi" time="211.31">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="211.31">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO31 -->
+            <TimedEvent destination="chachi" time="212.49">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="212.49">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO32 -->
+            <TimedEvent destination="chachi" time="213.68">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="213.68">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO33 -->
+            <TimedEvent destination="chachi" time="214.87">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="214.87">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO34 -->
+            <TimedEvent destination="chachi" time="216.11">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="216.11">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO35 -->
+            <TimedEvent destination="chachi" time="217.32">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="217.32">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO36 -->
+            <TimedEvent destination="chachi" time="218.51">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="218.51">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO37 -->
+            <TimedEvent destination="chachi" time="219.69">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="219.69">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO38 -->
+            <TimedEvent destination="chachi" time="220.89">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="220.89">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO39 -->
+            <TimedEvent destination="chachi" time="222.15">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="222.15">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO40 -->
+            <TimedEvent destination="chachi" time="223.33">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="223.33">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO41 -->
+            <TimedEvent destination="chachi" time="224.52">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="224.52">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO42 -->
+            <TimedEvent destination="chachi" time="225.72">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="225.72">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO43 -->
+            <TimedEvent destination="chachi" time="226.9">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="226.9">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO44 -->
+            <TimedEvent destination="chachi" time="228.11">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="228.11">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO45 -->
+            <TimedEvent destination="chachi" time="229.35">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="229.35">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO46 -->
+            <TimedEvent destination="chachi" time="230.54">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="230.54">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO47 -->
+            <TimedEvent destination="chachi" time="231.73">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="231.73">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO48 -->
+            <TimedEvent destination="chachi" time="232.92">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="232.92">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO49 -->
+            <TimedEvent destination="chachi" time="234.09">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="234.09">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO50 -->
+            <TimedEvent destination="chachi" time="235.3">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="235.3">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO51 -->
+            <TimedEvent destination="chachi" time="236.52">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="236.52">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO52 -->
+            <TimedEvent destination="chachi" time="237.73">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="237.73">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO53 -->
+            <TimedEvent destination="chachi" time="238.89">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="238.89">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO54 -->
+            <TimedEvent destination="chachi" time="240.17">
+                <Message address="/texture/setcolorgroup" param1="3_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_a" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="240.17">
+                <Message address="/texture/setcolorgroup" param1="2_a" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_a" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO55 -->
+            <TimedEvent destination="chachi" time="241.33">
+                <Message address="/texture/setcolorgroup" param1="3_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_b" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="241.33">
+                <Message address="/texture/setcolorgroup" param1="2_b" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_b" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO56 -->
+            <TimedEvent destination="chachi" time="242.51">
+                <Message address="/texture/setcolorgroup" param1="3_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_c" param2="1.0" param3="0" />
+				<Message address="/texture/fadeto" param1="3_global1" param2="10" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="242.51">
+                <Message address="/texture/setcolorgroup" param1="2_c" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_c" param2="1" param3="0" />
+				
+				<Message address="/texture/fadeto" param1="2_global1" param2="10" param3="0" />
+            </TimedEvent>
+			
+            <!-- PARTE 3por4 - 2 -->
+			
+			<!-- BOMBO1 -->
+            <TimedEvent destination="chachi" time="261.75">
+                <Message address="/texture/fadeto" param1="3_global1" param2="0.5" param3="1" />
+				<Message address="/video/set" param1="3_global1" param2="nubesciudadsatan" />
+				<Message address="/video/play" param1="nubesciudadsatan" param2="1" />
+				
+				<Message address="/video/setgroup" param1="3_abc" param2="movie9" />
+				
+				<Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="261.75">
+				<Message address="/texture/fadeto" param1="2_global1" param2="0.5" param3="1" />
+				<Message address="/video/set" param1="2_global1" param2="nubesciudadsatan" />
+				<Message address="/video/play" param1="nubesciudadsatan" param2="1" />
+				
+				<Message address="/video/setgroup" param1="2_abc" param2="movie9" />
+				
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO2 -->
+            <TimedEvent destination="chachi" time="262.9">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="262.9">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO3 -->
+            <TimedEvent destination="chachi" time="264.11">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="264.11">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO4 -->
+            <TimedEvent destination="chachi" time="265.35">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="265.35">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO5 -->
+            <TimedEvent destination="chachi" time="266.53">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="266.53">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO6 -->
+            <TimedEvent destination="chachi" time="267.7">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="267.7">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO7 -->
+            <TimedEvent destination="chachi" time="268.94">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="268.94">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO8 -->
+            <TimedEvent destination="chachi" time="270.13">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="270.13">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO9 -->
+            <TimedEvent destination="chachi" time="271.34">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="271.34">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO10 -->
+            <TimedEvent destination="chachi" time="272.56">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="272.56">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO11 -->
+            <TimedEvent destination="chachi" time="273.75">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="273.75">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO12 -->
+            <TimedEvent destination="chachi" time="274.94">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="274.94">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO13 -->
+            <TimedEvent destination="chachi" time="276.13">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="276.13">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO14 -->
+            <TimedEvent destination="chachi" time="277.32">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="277.32">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO15 -->
+            <TimedEvent destination="chachi" time="278.53">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="278.53">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO16 -->
+            <TimedEvent destination="chachi" time="279.72">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="279.72">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO17 -->
+            <TimedEvent destination="chachi" time="280.91">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="280.91">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			
+			
+			<!-- BOMBO18 -->
+            <TimedEvent destination="chachi" time="282.07">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="282.07">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO19 -->
+            <TimedEvent destination="chachi" time="283.33">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="283.33">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO20 -->
+            <TimedEvent destination="chachi" time="284.52">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="284.52">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO21 -->
+            <TimedEvent destination="chachi" time="285.73">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="285.73">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO22 -->
+            <TimedEvent destination="chachi" time="286.9">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="286.9">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO23 -->
+            <TimedEvent destination="chachi" time="288.12">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="288.12">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO24 -->
+            <TimedEvent destination="chachi" time="289.3">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="289.3">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO25 -->
+            <TimedEvent destination="chachi" time="290.52">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="290.52">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			
+			<!-- BOMBO26 -->
+            <TimedEvent destination="chachi" time="291.73">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="291.73">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO27 -->
+            <TimedEvent destination="chachi" time="292.9">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="292.9">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO28 -->
+            <TimedEvent destination="chachi" time="294.13">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="294.13">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO29 -->
+			<TimedEvent destination="chachi" time="295.33">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="295.33">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+
+			<!-- BOMBO30 -->
+            <TimedEvent destination="chachi" time="296.51">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="296.51">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO31 -->
+            <TimedEvent destination="chachi" time="297.72">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="297.72">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO32 -->
+            <TimedEvent destination="chachi" time="298.91">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="298.91">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO33 -->
+            <TimedEvent destination="chachi" time="300.11">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="300.11">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO34 -->
+            <TimedEvent destination="chachi" time="301.25">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="301.25">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO35 -->
+            <TimedEvent destination="chachi" time="302.55">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="302.55">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO36 -->
+            <TimedEvent destination="chachi" time="303.71">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="303.71">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO37 -->
+            <TimedEvent destination="chachi" time="304.93">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="304.93">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO38 -->
+            <TimedEvent destination="chachi" time="306.09">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="306.09">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO39 -->
+            <TimedEvent destination="chachi" time="307.33">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="307.33">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+           
+		   <!-- BOMBO40 -->
+			<TimedEvent destination="chachi" time="308.51">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="308.51">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO41 -->
+            <TimedEvent destination="chachi" time="309.73">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="309.73">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO42 -->
+            <TimedEvent destination="chachi" time="310.91">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="310.91">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO43 -->
+            <TimedEvent destination="chachi" time="312.12">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="312.12">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO44 -->
+            <TimedEvent destination="chachi" time="313.33">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="313.33">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO45 -->
+            <TimedEvent destination="chachi" time="314.51">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="314.51">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO46 -->
+            <TimedEvent destination="chachi" time="315.73">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="315.73">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO47 -->
+            <TimedEvent destination="chachi" time="316.91">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="316.91">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+
+			<!-- BOMBO48 -->
+            <TimedEvent destination="chachi" time="318.13">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="318.13">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- BOMBO49 -->
+            <TimedEvent destination="chachi" time="319.32">
+                <Message address="/texture/setcolorgroup" param1="3_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="3_abc" param2="1.0" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="319.32">
+                <Message address="/texture/setcolorgroup" param1="2_abc" param2="1" param3="1" param4="1" param5="1" />
+                <Message address="/texture/fadetogroup" param1="2_abc" param2="1" param3="0" />
+            </TimedEvent>
+			
+			<!-- OTROS -->
+			<TimedEvent destination="chachi" time="319.32">
+                <Message address="/texture/fadeto" param1="3_global1" param2="0.3" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="319.32">
+				<Message address="/texture/fadeto" param1="2_global1" param2="0.3" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="chachi" time="319.72">
+                <Message address="/texture/fadeto" param1="3_global1" param2="4" param3="0.3" />
+				<Message address="/video/set" param1="3_global1" param2="particulas1" />
+				<Message address="/video/play" param1="particulas1" param2="1" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="319.72">
+				<Message address="/texture/fadeto" param1="2_global1" param2="4" param3="0.3" />
+				<Message address="/video/set" param1="2_global1" param2="particulas1" />
+				<Message address="/video/play" param1="particulas1" param2="1" />
+            </TimedEvent>
+			
+			
+			<TimedEvent destination="chachi" time="562">
+                <Message address="/texture/fadeto" param1="3_global1" param2="1" param3="1.0" />
+				<Message address="/video/set" param1="3_global1" param2="puntito" />
+				<Message address="/video/play" param1="puntito" param2="1" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="562">
+				<Message address="/texture/fadeto" param1="2_global1" param2="4" param3="1.0" />
+				<Message address="/video/set" param1="2_global1" param2="puntito" />
+				<Message address="/video/play" param1="puntito" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="chachi" time="600">
+                <Message address="/texture/fadeto" param1="3_global1" param2="2" param3="0" />
+            </TimedEvent>
+            <TimedEvent destination="daniel" time="600">
+				<Message address="/texture/fadeto" param1="2_global1" param2="2" param3="0" />
+            </TimedEvent>
+			
+        </TimedEvents>
+    </Events>
+</Show>
