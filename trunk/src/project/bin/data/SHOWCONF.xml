@@ -87,6 +87,7 @@
             </TimedEvent>
             <TimedEvent destination="javier" time="4.0">
                 <Message address="/texture/setcolorgroup" param1="botellas_sintapa" param2="1" param3="0" param4="1" param5="0" />
+                <Message address="/audio/play" param1="sounds/Violet.mp3" param2="1" />
             </TimedEvent>
             <TimedEvent destination="javier" time="6.5">
                 <Message address="/texture/setcolor" param1="quad01" param2="1" param3="1" param4="0" param5="1" />
@@ -102,6 +103,7 @@
           <TimedEvent destination="javier" time="11">
 				<Message address="/texture/setcolor" param1="quad01" param2="1" param3="1" param4="0" param5="1" />
 				<Message address="/texture/fadeto" param1="quad01" param2="2" param3="0" /> 
+                <Message address="/audio/play" param1="sounds/Sonar ping.mp3" param2="1" />
           </TimedEvent>
 		  
 			<TimedEvent destination="javier" time="12">
@@ -109,11 +111,9 @@
 				<Message address="/video/play" param1="static" param2="1" />
 			</TimedEvent>
 		  
-		  <!--
           <TimedEvent destination="javier" time="12">
               <Message address="/internal/settime" param1="0.0" />
           </TimedEvent>
-			-->
 		  
         </TimedEvents>        
     </Events>
