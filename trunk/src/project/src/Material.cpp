@@ -49,7 +49,8 @@ void Material::Enable(){
 
         texture_shader.setUniformVariable2f("texCorrection", texData.width / texData.tex_w, texData.height / texData.tex_h);
         texture_shader.setUniformVariable4f("color", ambient[0], ambient[1], ambient[2], ambient[3]);
-        texture_shader.setUniformVariable1i("tex", GL_TEXTURE0 + textureUnit);
+        //texture_shader.setUniformVariable1i("tex", GL_TEXTURE0 + textureUnit);
+        texture_shader.setUniformVariable1i("tex", textureUnit);
     }
 }
 

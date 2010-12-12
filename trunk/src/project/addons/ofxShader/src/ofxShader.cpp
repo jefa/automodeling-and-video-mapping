@@ -56,7 +56,7 @@ void ofxShader::loadShader(string fragmentName, string vertexName){
 		if (infobufferlen != 0){
 			infobuffer[infobufferlen] = 0;
 			printf("vertexShader reports: %s \n", infobuffer);
-			return;
+			//return;
 		}
 
 		// ------------------------------------
@@ -73,7 +73,7 @@ void ofxShader::loadShader(string fragmentName, string vertexName){
 		if (infobufferlen != 0){
 			infobuffer[infobufferlen] = 0;
 			printf("fragmentShader reports: %s \n", infobuffer);
-			return;
+			//return;
 		}
 
 		// ----------------------------------- (c) link the shaders

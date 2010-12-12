@@ -107,11 +107,12 @@
           </TimedEvent>
 		  
 			<TimedEvent destination="javier" time="12">
+				<Message address="/texture/setcolor" param1="quad02" param2="1" param3="1" param4="1" param5="1" />
 				<Message address="/video/set" param1="quad02" param2="static" />
 				<Message address="/video/play" param1="static" param2="1" />
 			</TimedEvent>
 		  
-          <TimedEvent destination="javier" time="12">
+          <TimedEvent destination="javier" time="16">
               <Message address="/internal/settime" param1="0.0" />
           </TimedEvent>
 		  
