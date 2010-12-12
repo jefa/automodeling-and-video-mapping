@@ -51,7 +51,8 @@ class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener 
         string nodeName;
         //int timeOffset;
         ofxConsole * console;
-        ofSoundPlayer mySound;
+        ofSoundPlayer mainSound;
+        ofSoundPlayer eventsSound;
 
 
 };
