@@ -329,6 +329,14 @@ void testApp::event(EventArg *e) {
         quads[e->args.getArgAsString(0)]->getMaterial()->SetTextureParams(e->args.getArgAsString(1), videoTexture, textureUnit);
         //textureUnit = (textureUnit + 1) % 8;
     }
+    else if(address.compare("/video/setgroup") == 0) {
+        string groupId = e->args.getArgAsString(0);
+        vector<Quad2D*>::iterator it;
+        for(it = quadGroups[groupId].begin(); it != quadGroups[groupId].end(); ++it)
+        {
+            (*it)->getMaterial()->SetTextureParams(e->args.getArgAsString(1), videoTexture, textureUnit);
+        }
+    }
     else if(address.compare("/synch/setpoint") == 0) {
         //param0
         setPoint(e->args.getArgAsString(0), e->args.getArgAsInt32(1), e->args.getArgAsInt32(2),
@@ -555,7 +563,6 @@ void testApp::loadShow() {
     showConfig.pushTag("Show");
 
     string showName = showConfig.getAttribute("Data", "name", "", 0);
-    //std::cout << " showName: "<< showName;
 
     showConfig.pushTag("Ports");
     int numTags = showConfig.getNumTags("OscPorts");
@@ -770,7 +777,6 @@ void testApp::saveShow() {
     showConfig.pushTag("Quads2D");
 
     showConfig.clear();
-    //showConfig.addTag("Quads2D");
     showConfig.pushTag("Quads2D");
 
     float x0, y0;
@@ -806,5 +812,5 @@ void testApp::saveShow() {
     showConfig.popTag();
 
     showConfig.saveFile("./SHOWCONF.xml");
-    //ofLog(OF_LOG_NOTICE, "Show config saved.");
+    ofLog(OF_LOG_NOTICE, "Show config saved.");
 }
