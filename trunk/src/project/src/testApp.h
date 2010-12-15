@@ -48,11 +48,12 @@ class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener 
         void loadShow();
 
     private:
+        Quad2D* testApp::GetQuad(string id);
+
         string nodeName;
         ofxConsole * console;
         ofSoundPlayer mainSound;
         ofSoundPlayer eventsSound;
-
 
 };
 
