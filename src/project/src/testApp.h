@@ -48,7 +48,7 @@ class testApp : public ofBaseApp, public IEventListener, public ofxMidiListener 
         void loadShow();
 
     private:
-        Quad2D* testApp::GetQuad(string id);
+        Quad2D* GetQuad(string id);
 
         string nodeName;
         ofxConsole * console;
