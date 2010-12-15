@@ -23,7 +23,11 @@ class TextureManager
         static ofTexture& GetTextureReference(string key, textureType type);
         static void Update();
     protected:
+
     private:
+        static ofxAlphaVideoPlayer* GetVideoTexture(string key);
+        static ofImage* GetImageTexture(string key);
+
         static map<string, ofImage*> imageTextures;
         static map<string, ofxAlphaVideoPlayer*> videoTextures;
         static ofTexture defaultTexture;

@@ -36,21 +36,25 @@ void Material::Enable(){
         glColor4fv(ambient);
     }
     else {
-        ofTexture &tex = TextureManager::GetTextureReference(texID, texType);
-        ofTextureData texData = tex.texData;
+        try {
+            ofTexture &tex = TextureManager::GetTextureReference(texID, texType);
+            ofTextureData texData = tex.texData;
 
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-        glActiveTexture(GL_TEXTURE0 + textureUnit);
-        glBindTexture(texData.textureTarget, (GLuint)texData.textureID);
+            glActiveTexture(GL_TEXTURE0 + textureUnit);
+            glBindTexture(texData.textureTarget, (GLuint)texData.textureID);
 
-        texture_shader.setShaderActive(true);
+            texture_shader.setShaderActive(true);
 
-        texture_shader.setUniformVariable2f("texCorrection", texData.width / texData.tex_w, texData.height / texData.tex_h);
-        texture_shader.setUniformVariable4f("color", ambient[0], ambient[1], ambient[2], ambient[3]);
-        //texture_shader.setUniformVariable1i("tex", GL_TEXTURE0 + textureUnit);
-        texture_shader.setUniformVariable1i("tex", textureUnit);
+            texture_shader.setUniformVariable2f("texCorrection", texData.width / texData.tex_w, texData.height / texData.tex_h);
+            texture_shader.setUniformVariable4f("color", ambient[0], ambient[1], ambient[2], ambient[3]);
+            //texture_shader.setUniformVariable1i("tex", GL_TEXTURE0 + textureUnit);
+            texture_shader.setUniformVariable1i("tex", textureUnit);
+        } catch (exception& e) {
+            ofLog(OF_LOG_ERROR, "Error al obtener textura: %s", e.what());
+        }
     }
 }
 

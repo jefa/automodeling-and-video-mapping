@@ -326,7 +326,11 @@ void testApp::event(EventArg *e) {
     else if(address.compare("/video/set") == 0) {
         //param0 indica el quad al que asignar el video.
         //param1 indica el id del video a asignar.
-        quads[e->args.getArgAsString(0)]->getMaterial()->SetTextureParams(e->args.getArgAsString(1), videoTexture, textureUnit);
+        if (GetQuad(e->args.getArgAsString(0)) == NULL){
+            ofLog(OF_LOG_ERROR, "testApp:: Quad '%s' not found!", e->args.getArgAsString(0));
+            return;
+        }
+        GetQuad(e->args.getArgAsString(0))->getMaterial()->SetTextureParams(e->args.getArgAsString(1), videoTexture, textureUnit);
         //textureUnit = (textureUnit + 1) % 8;
     }
     else if(address.compare("/video/setgroup") == 0) {
@@ -349,7 +353,11 @@ void testApp::event(EventArg *e) {
         selectedIdx = removeQuad(e->args.getArgAsString(0).c_str(), false);
     }
     else if(address.compare("/texture/setcolor") == 0) {
-        Quad2D *quad = quads[e->args.getArgAsString(0)];
+        Quad2D *quad = GetQuad(e->args.getArgAsString(0));
+        if (quad == NULL){
+            ofLog(OF_LOG_ERROR, "testApp:: Quad '%s' not found!", e->args.getArgAsString(0));
+            return;
+        }
         quad->getMaterial()->set(AMBIENT_R, e->args.getArgAsFloat(1));
         quad->getMaterial()->set(AMBIENT_G, e->args.getArgAsFloat(2));
         quad->getMaterial()->set(AMBIENT_B, e->args.getArgAsFloat(3));
@@ -371,7 +379,13 @@ void testApp::event(EventArg *e) {
         }
     }
     else if(address.compare("/texture/fadeto") == 0) {
-        Material *mat = quads[e->args.getArgAsString(0)]->getMaterial();
+        Quad2D* quad = GetQuad(e->args.getArgAsString(0));
+        if (quad == NULL){
+            ofLog(OF_LOG_ERROR, "testApp:: Quad '%s' not found!", e->args.getArgAsString(0));
+            return;
+        }
+
+        Material *mat = quad->getMaterial();
         Animation *a = new LinearAnimation(mat, AMBIENT_A, e->args.getArgAsFloat(1), e->args.getArgAsFloat(2));
         AnimationLoop *loop = new AnimationLoop("loop");
         loop->AddAnimation(a);
@@ -813,4 +827,13 @@ void testApp::saveShow() {
 
     showConfig.saveFile("./SHOWCONF.xml");
     ofLog(OF_LOG_NOTICE, "Show config saved.");
+}
+
+Quad2D* testApp::GetQuad(string id){
+    map<string, Quad2D*>::iterator it = quads.find(id);
+    if(it != quads.end())
+    {
+       return it->second;
+    }
+    return NULL;
 }

@@ -36,17 +36,29 @@ void TextureManager::Update() {
 }
 
 void TextureManager::PlayVideo(string key, float speed) {
-    videoTextures[key]->play();
-    videoTextures[key]->setSpeed(speed);
+    if (GetVideoTexture(key) == NULL){
+        ofLog(OF_LOG_ERROR, "TextureManager: Cannot play video %s", key);
+        return;
+    }
+    GetVideoTexture(key)->play();
+    GetVideoTexture(key)->setSpeed(speed);
 }
 
 void TextureManager::StopVideo(string key) {
-    videoTextures[key]->stop();
+    if (GetVideoTexture(key) == NULL){
+        ofLog(OF_LOG_ERROR, "TextureManager: Cannot stop video %s", key);
+        return;
+    }
+    GetVideoTexture(key)->stop();
 }
 
 bool TextureManager::IsTextureReady(string key, textureType type) {
     if(type == videoTexture) {
-        ofxAlphaVideoPlayer *vid = videoTextures[key];
+        ofxAlphaVideoPlayer *vid = GetVideoTexture(key);
+        if (vid == NULL){
+            ofLog(OF_LOG_ERROR, "TextureManager: TextureReady video not found: %s", key);
+            return false;
+        }
         return vid->isPlaying();
     }
     return true;
@@ -54,13 +66,41 @@ bool TextureManager::IsTextureReady(string key, textureType type) {
 
 ofTexture& TextureManager::GetTextureReference(string key, textureType type) {
     if(type == imageTexture) {
-        ofImage *image = imageTextures[key];
+        ofImage *image = GetImageTexture(key);
+        if (image == NULL){
+            ofLog(OF_LOG_ERROR, "TextureManager: Texture image not found: %s", key);
+            //return NULL;
+            throw exception();
+        }
         image->update();
         return image->getTextureReference();
     }
     else if (type == videoTexture) {
-        ofxAlphaVideoPlayer *vid = videoTextures[key];
+        ofxAlphaVideoPlayer *vid = GetVideoTexture(key);
+        if (vid == NULL){
+            ofLog(OF_LOG_ERROR, "TextureManager: Texture video not found: %s", key);
+            //return NULL;
+            throw exception();
+        }
         vid->draw(0,0,0,0); //HACK: la textura se actualiza con este draw
         return vid->getTextureReference();
     }
+}
+
+ofxAlphaVideoPlayer* TextureManager::GetVideoTexture(string key){
+    map<string, ofxAlphaVideoPlayer*>::iterator it = videoTextures.find(key);
+    if(it != videoTextures.end())
+    {
+       return it->second;
+    }
+    return NULL;
+}
+
+ofImage* TextureManager::GetImageTexture(string key){
+    map<string, ofImage*>::iterator it = imageTextures.find(key);
+    if(it != imageTextures.end())
+    {
+       return it->second;
+    }
+    return NULL;
 }
