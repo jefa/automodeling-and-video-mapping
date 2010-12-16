@@ -37,16 +37,17 @@ void TextureManager::Update() {
 
 void TextureManager::PlayVideo(string key, float speed) {
     if (GetVideoTexture(key) == NULL){
-        ofLog(OF_LOG_ERROR, "TextureManager: Cannot play video %s", key);
+        ofLog(OF_LOG_ERROR, "TextureManager: Cannot play video %s", key.c_str());
         return;
     }
+    ofLog(OF_LOG_NOTICE, "TextureManager: Video %s found", key.c_str());
     GetVideoTexture(key)->play();
     GetVideoTexture(key)->setSpeed(speed);
 }
 
 void TextureManager::StopVideo(string key) {
     if (GetVideoTexture(key) == NULL){
-        ofLog(OF_LOG_ERROR, "TextureManager: Cannot stop video %s", key);
+        ofLog(OF_LOG_ERROR, "TextureManager: Cannot stop video %s", key.c_str());
         return;
     }
     GetVideoTexture(key)->stop();
@@ -56,7 +57,7 @@ bool TextureManager::IsTextureReady(string key, textureType type) {
     if(type == videoTexture) {
         ofxAlphaVideoPlayer *vid = GetVideoTexture(key);
         if (vid == NULL){
-            ofLog(OF_LOG_ERROR, "TextureManager: TextureReady video not found: %s", key);
+            ofLog(OF_LOG_ERROR, "TextureManager: TextureReady video not found: %s", key.c_str());
             return false;
         }
         return vid->isPlaying();
@@ -68,7 +69,7 @@ ofTexture& TextureManager::GetTextureReference(string key, textureType type) {
     if(type == imageTexture) {
         ofImage *image = GetImageTexture(key);
         if (image == NULL){
-            ofLog(OF_LOG_ERROR, "TextureManager: Texture image not found: %s", key);
+            ofLog(OF_LOG_ERROR, "TextureManager: Texture image not found: %s", key.c_str());
             //return NULL;
             throw exception();
         }
@@ -78,7 +79,7 @@ ofTexture& TextureManager::GetTextureReference(string key, textureType type) {
     else if (type == videoTexture) {
         ofxAlphaVideoPlayer *vid = GetVideoTexture(key);
         if (vid == NULL){
-            ofLog(OF_LOG_ERROR, "TextureManager: Texture video not found: %s", key);
+            ofLog(OF_LOG_ERROR, "TextureManager: Texture video not found: %s", key.c_str());
             //return NULL;
             throw exception();
         }
