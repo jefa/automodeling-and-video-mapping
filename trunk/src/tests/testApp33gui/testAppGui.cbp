@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="testAppGui" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option virtualFolders="addons\;src\;" />
+		<Build>
+			<Target title="release">
+				<Option output="bin\$(PROJECT_NAME)" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin" />
+				<Option object_output="obj\release" />
+				<Option external_deps="..\..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworksCompiled\lib\win_cb\openFrameworks.lib;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="../../of_preRelease_v0061_win_cb_FAT/libs/openFrameworksCompiled/lib/win_cb/openFrameworks.lib" />
+				</Linker>
+			</Target>
+			<Target title="debug">
+				<Option output="bin\$(PROJECT_NAME)_DEBUG" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="bin" />
+				<Option object_output="obj\debug\" />
+				<Option external_deps="..\..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworksCompiled\lib\win_cb\openFrameworksDebug.lib;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="../../of_preRelease_v0061_win_cb_FAT/libs/openFrameworksCompiled/lib/win_cb/openFrameworksDebug.lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wno-multichar" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\glu\include" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\freetype\include" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\freetype\include\freetype2" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\FreeImage\include" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\quicktime\include" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\rtAudio\include" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\fmodex\include" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\videoInput\include" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\glee\include" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\glut\include" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\app" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\events" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\graphics" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\utils" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\sound" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\video" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\communication" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\libs\poco\include" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\addons" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\src" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\addons\ofxMSAInteractiveObject\src" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\addons\ofxSimpleGuiToo\src" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\addons\ofxSimpleGuiToo\src\Controls" />
+			<Add directory="..\..\of_preRelease_v0061_win_cb_FAT\addons\ofxObjLoader\src" />
+		</Compiler>
+		<Linker>
+			<Add option="../../of_preRelease_v0061_win_cb_FAT/libs/FreeImage/lib/win_cb/FreeImage.lib" />
+			<Add option="../../of_preRelease_v0061_win_cb_FAT/libs/rtAudio/lib/win_cb/RtAudio.a" />
+			<Add option="../../of_preRelease_v0061_win_cb_FAT/libs/quicktime/lib/win_cb/qtmlClient.lib" />
+			<Add option="../../of_preRelease_v0061_win_cb_FAT/libs/freetype/lib/win_cb/libfreetype.a" />
+			<Add option="../../of_preRelease_v0061_win_cb_FAT/libs/glut/lib/win_cb/libglut.a" />
+			<Add option="../../of_preRelease_v0061_win_cb_FAT/libs/videoInput/lib/win_cb/videoInputLib.a" />
+			<Add option="../../of_preRelease_v0061_win_cb_FAT/libs/fmodex/lib/win_cb/libfmodex.a" />
+			<Add option="../../of_preRelease_v0061_win_cb_FAT/libs/glee/lib/win_cb/GLee.lib" />
+			<Add option="../../of_preRelease_v0061_win_cb_FAT/libs/glu/lib/win_cb/glu32.lib" />
+			<Add option="../../of_preRelease_v0061_win_cb_FAT/libs/poco/lib/win_cb/libPocoNetmt.a" />
+			<Add option="../../of_preRelease_v0061_win_cb_FAT/libs/poco/lib/win_cb/libPocoUtilmt.a" />
+			<Add option="../../of_preRelease_v0061_win_cb_FAT/libs/poco/lib/win_cb/libPocoXMLmt.a" />
+			<Add option="../../of_preRelease_v0061_win_cb_FAT/libs/poco/lib/win_cb/libPocoFoundationmt.a" />
+			<Add option="-lopengl32" />
+			<Add option="-lglu32" />
+			<Add option="-ldsound" />
+			<Add option="-lwinmm" />
+			<Add option="-ldxguid" />
+			<Add option="-lstrmiids" />
+			<Add option="-luuid" />
+			<Add option="-lole32" />
+			<Add option="-loleaut32" />
+			<Add option="-lsetupapi" />
+			<Add option="-lwsock32" />
+			<Add option="-lws2_32" />
+			<Add option="-lIphlpapi" />
+		</Linker>
+		<ExtraCommands>
+			<Add after='xcopy /e /i /y &quot;$(PROJECT_DIR)../../of_preRelease_v0061_win_cb_FAT/export\win_cb\*.dll&quot;  &quot;$(PROJECT_DIR)bin&quot;' />
+			<Add after='cmd /c if not exist &quot;$(PROJECT_DIR)bin/data&quot; mkdir &quot;$(PROJECT_DIR)bin/data&quot;' />
+			<Mode after="always" />
+		</ExtraCommands>
+		<Unit filename="src\main.cpp">
+			<Option virtualFolder="src\" />
+		</Unit>
+		<Unit filename="src\testApp.cpp">
+			<Option virtualFolder="src\" />
+		</Unit>
+		<Unit filename="src\testApp.h">
+			<Option virtualFolder="src\" />
+		</Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofAddons.h"><Option virtualFolder="addons/"/></Unit>
+		
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxObjLoader\src\ofxObjLoader.cpp"><Option virtualFolder="addons/ofxObjLoader/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxObjLoader\src\ofxObjLoader.h"><Option virtualFolder="addons/ofxObjLoader/src"/></Unit>
+
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\ofxSimpleGuiConfig.cpp"><Option virtualFolder="addons/ofxSimpleGuiToos/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\ofxSimpleGuiConfig.h"><Option virtualFolder="addons/ofxSimpleGuiToos/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\ofxSimpleGuiControl.cpp"><Option virtualFolder="addons/ofxSimpleGuiToos/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\ofxSimpleGuiControl.h"><Option virtualFolder="addons/ofxSimpleGuiToos/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\ofxSimpleGuiIncludes.h"><Option virtualFolder="addons/ofxSimpleGuiToos/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\ofxSimpleGuiPage.cpp"><Option virtualFolder="addons/ofxSimpleGuiToos/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\ofxSimpleGuiPage.h"><Option virtualFolder="addons/ofxSimpleGuiToos/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\ofxSimpleGuiToo.cpp"><Option virtualFolder="addons/ofxSimpleGuiToos/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\ofxSimpleGuiToo.h"><Option virtualFolder="addons/ofxSimpleGuiToos/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\ofxSimpleGuiValueControl.cpp"><Option virtualFolder="addons/ofxSimpleGuiToos/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\ofxSimpleGuiValueControl.h"><Option virtualFolder="addons/ofxSimpleGuiToos/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiButton.cpp"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiButton.h"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiColorPicker.cpp"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiColorPicker.h"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiComboBox.cpp"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiComboBox.h"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiContent.cpp"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiContent.h"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiFPSCounter.cpp"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiFPSCounter.h"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiMovieSlider.cpp"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiMovieSlider.h"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiQuadWarp.cpp"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiQuadWarp.h"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiSlider2d.cpp"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiSlider2d.h"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiSliderBase.h"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiSliderFloat.h"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiSliderInt.h"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiTitle.cpp"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiTitle.h"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiToggle.cpp"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxSimpleGuiToo\src\Controls\ofxSimpleGuiToggle.h"><Option virtualFolder="addons/ofxSimpleGuiToos\Controls/src"/></Unit>
+
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxMSAInteractiveObject\src\ofxMSAInteractiveObject.cpp"><Option virtualFolder="addons/ofxMSAInteractiveObjects/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxMSAInteractiveObject\src\ofxMSAInteractiveObject.h"><Option virtualFolder="addons/ofxMSAInteractiveObjects/src"/></Unit>
+
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxXmlSettings\src\ofxXmlSettings.cpp"><Option virtualFolder="addons/ofXmlSettings/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxXmlSettings\src\ofxXmlSettings.h"><Option virtualFolder="addons/ofXmlSettings/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxXmlSettings\libs\tinyxml.cpp"><Option virtualFolder="addons/ofXmlSettings/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxXmlSettings\libs\tinyxml.h"><Option virtualFolder="addons/ofXmlSettings/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxXmlSettings\libs\tinyxmlerror.cpp"><Option virtualFolder="addons/ofXmlSettings/src"/></Unit>
+		<Unit filename="../../of_preRelease_v0061_win_cb_FAT/addons\ofxXmlSettings\libs\tinyxmlparser.cpp"><Option virtualFolder="addons/ofXmlSettings/src"/></Unit>
+		
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
