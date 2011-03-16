@@ -15,9 +15,9 @@
 #include "ofAddons.h"
 
 class testApp : public ofSimpleApp{
-	
+
 	public:
-  
+
 		void setup();
 		void update();
 		void draw();
@@ -28,14 +28,14 @@ class testApp : public ofSimpleApp{
 		void mousePressed(int x, int y, int button);
 		void mouseReleased();
 
-		void testApp::drawOBJ(ofxObjLoader obj3d);
-		void testApp::loadProject();
-		void testApp::saveProject();
-		void testApp::setupLogging();
+		void /*testApp::*/drawOBJ(ofxObjLoader obj3d);
+		void /*testApp::*/loadProject();
+		void /*testApp::*/saveProject();
+		void /*testApp::*/setupLogging();
 
 		ofxXmlSettings XML;
 		ofxXmlSettings jefaXML;
-		
+
 		//my 3d model
 		ofxObjLoader crane;
 		ofxObjLoader crane2;
@@ -48,4 +48,4 @@ class testApp : public ofSimpleApp{
 
 };
 
-#endif	
+#endif
