@@ -11,7 +11,7 @@ int main(int argc, char *argv[]){//you have to add
     //Q_INIT_RESOURCE(yourResources); //Load Qt resource (icons) //named “yourResources” in the lib
 
     ofAppGlutWindow window2;
-	ofSetupOpenGL(&window2, 1024,768, OF_WINDOW);			// <-------- setup the GL context
+	ofSetupOpenGL(&window2, 800,600, OF_WINDOW);			// <-------- setup the GL context
 
 	// this kicks off the running of my app
 	// can be OF_WINDOW or OF_FULLSCREEN

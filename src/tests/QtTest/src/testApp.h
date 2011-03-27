@@ -3,6 +3,7 @@
 
 #include "ofMain.h"
 #include "window.h"
+#include "timeline.h"
 
 class testApp : public ofBaseApp {
 
@@ -27,7 +28,10 @@ class testApp : public ofBaseApp {
 		char eventString[255];
 		char timeString[255];
 
+        ofSoundPlayer  synth;
+
 		Window sliderWindow;
+		timeline timelineWindow;
 
 };
 

@@ -96,7 +96,7 @@
 			<Add option="-lIphlpapi" />
 		</Linker>
 		<ExtraCommands>
-			<Add after='xcopy /e /i /y &quot;$(PROJECT_DIR)..\of_preRelease_v0061_win_cb_FAT\export\win_cb\*.dll&quot;  &quot;$(PROJECT_DIR)bin&quot;' />
+			<Add after='xcopy /e /i /y &quot;$(PROJECT_DIR)..\..\of_preRelease_v0061_win_cb_FAT\export\win_cb\*.dll&quot;  &quot;$(PROJECT_DIR)bin&quot;' />
 			<Add after='cmd /c if not exist &quot;$(PROJECT_DIR)bin/data&quot; mkdir &quot;$(PROJECT_DIR)bin/data&quot;' />
 			<Mode after="always" />
 		</ExtraCommands>
@@ -104,6 +104,7 @@
 			<Option virtualFolder="src\" />
 		</Unit>
 		<Unit filename="src\moc_slidersgroup.cpp" />
+		<Unit filename="src\moc_timeline.cpp" />
 		<Unit filename="src\moc_window.cpp" />
 		<Unit filename="src\slidersgroup.cpp" />
 		<Unit filename="src\slidersgroup.h">
@@ -115,6 +116,10 @@
 		<Unit filename="src\testApp.h">
 			<Option virtualFolder="src\" />
 			<Option compiler="gcc" use="1" buildCommand="C:\Qt\2010.05\qt\bin\moc testApp.h -o moc_testApp.cpp" />
+		</Unit>
+		<Unit filename="src\timeline.cpp" />
+		<Unit filename="src\timeline.h">
+			<Option compiler="gcc" use="1" buildCommand="C:\Qt\2010.05\qt\bin\moc timeline.h -o moc_timeline.cpp" />
 		</Unit>
 		<Unit filename="src\window.cpp">
 			<Option compiler="gcc" use="0" buildCommand="moc window.h -o moc_window.cpp" />
