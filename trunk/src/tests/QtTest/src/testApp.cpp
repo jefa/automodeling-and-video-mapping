@@ -1,12 +1,43 @@
 #include "testApp.h"
+#include <QtGui>
 
 //--------------------------------------------------------------
 void testApp::setup(){
 	counter = 0;
 	vagRounded.loadFont("vag.ttf", 32);
 	ofBackground(50,50,50);
+	synth.loadSound("sounds/synth.wav");
 
-	//sliderWindow = new Window(this);
+	//FMOD_System_GetSpectrum(sys, fftSpectrum, nBandsToGet, 0, FMOD_DSP_FFT_WINDOW_HANNING);
+
+
+     QGraphicsItem *ball = new QGraphicsEllipseItem(0, 0, 20, 20);
+     QGraphicsItem *bar = new QGraphicsLineItem(0, 0, 0, 20);
+
+     QPen mypen = QPen( QColor( 204, 0, 255, 76 ) );
+     mypen.setWidth(5);
+     ((QGraphicsLineItem*)bar)->setPen(mypen);
+
+     QTimeLine *timer = new QTimeLine(5000);
+     timer->setFrameRange(0, 100);
+
+     QGraphicsItemAnimation *animation = new QGraphicsItemAnimation;
+     //animation->setItem(ball);
+     animation->setItem(bar);
+     animation->setTimeLine(timer);
+
+     for (int i = 0; i < 200; ++i)
+         animation->setPosAt(i / 200.0, QPointF(i, /*i*/1));
+
+     QGraphicsScene *scene = new QGraphicsScene();
+     scene->setSceneRect(0, 0, 250, 250);
+     scene->addItem(ball);
+     scene->addItem(bar);
+
+     QGraphicsView *view = new QGraphicsView(scene);
+     view->show();
+
+     timer->start();
 
 }
 
@@ -43,8 +74,11 @@ void testApp::draw(){
 //--------------------------------------------------------------
 void testApp::keyPressed  (int key){
 	sprintf(eventString, "keyPressed = (%i)", key);
+	printf("keyPressed = (%i)\n", key);
 	if (key = 's') {
         sliderWindow.show();
+        timelineWindow.show();
+//	} else if (key = 't') {
 	}
 
 }
