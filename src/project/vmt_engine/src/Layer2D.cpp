@@ -40,6 +40,10 @@ bool Layer2D::isEnabled(){
     return enabled;
 }
 
+string Layer2D::getName(){
+    return this->name;
+}
+
 void Layer2D::draw() {
     if(!enabled)
         return;

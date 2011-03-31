@@ -21,6 +21,7 @@ class Layer2D
         void setEnabled(bool enabled);
         void setName(string name);
         bool isEnabled();
+        string getName();
 
     private:
         string name;
