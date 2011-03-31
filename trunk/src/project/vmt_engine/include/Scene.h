@@ -17,6 +17,7 @@ class Scene
 
         Layer2D* addLayer2D(string id);
         Layer2D* getLayer2D(string id);
+        map<string, Layer2D*> getLayers2D();
 
         void draw();
         void setBackground(int r, int g, int b);
@@ -25,6 +26,7 @@ class Scene
 
         ofxLight* addLight(string id);
         ofxLight* getLight(string id);
+
     private:
         map<string, Layer2D*> layers2D;
         map<string, ofxCamera*> cameras;
