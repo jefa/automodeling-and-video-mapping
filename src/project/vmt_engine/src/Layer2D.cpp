@@ -5,7 +5,12 @@ map<string, Quad2D*>::iterator quadsIt;
 
 Layer2D::Layer2D()
 {
-    enabled = true;
+    this->enabled = true;
+}
+
+Layer2D::Layer2D(string name){
+    this->enabled = true;
+    this->name = name;
 }
 
 Layer2D::~Layer2D()
@@ -25,6 +30,14 @@ Quad2D* Layer2D::getQuad2D(string id) {
 
 void Layer2D::setEnabled(bool enabled) {
     this->enabled = enabled;
+}
+
+void Layer2D::setName(string name){
+    this->name = name;
+}
+
+bool Layer2D::isEnabled(){
+    return enabled;
 }
 
 void Layer2D::draw() {
