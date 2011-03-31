@@ -1,13 +1,7 @@
 #include "Scene.h"
 #include "ofMain.h"
 
-map<string, Layer2D*> layers2D;
 map<string, Layer2D*>::iterator layersIt;
-
-map<string, ofxCamera*> cameras;
-ofxCamera* activeCamera;
-
-map<string, ofxLight*> lights;
 
 Scene::Scene() {
     //ctor

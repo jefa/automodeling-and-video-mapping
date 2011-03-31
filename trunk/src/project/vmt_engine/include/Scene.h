@@ -26,7 +26,10 @@ class Scene
         ofxLight* addLight(string id);
         ofxLight* getLight(string id);
     private:
-
+        map<string, Layer2D*> layers2D;
+        map<string, ofxCamera*> cameras;
+        ofxCamera* activeCamera;
+        map<string, ofxLight*> lights;
 };
 
 #endif // SCENE_H
