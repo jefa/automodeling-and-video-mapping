@@ -42,6 +42,10 @@ Layer2D* Scene::getLayer2D(string id) {
     return layers2D[id];
 }
 
+map<string, Layer2D*> Scene::getLayers2D() {
+    return layers2D;
+}
+
 void Scene::draw() {
 
     activeCamera->place();
