@@ -15,10 +15,16 @@
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="C:\Qt\2010.05\qt\include" />
+					<Add directory="C:\Qt\2010.05\qt\include\QtGui" />
+					<Add directory="C:\Qt\2010.05\qt\include\QtCore" />
 				</Compiler>
 				<Linker>
 					<Add option="../of_preRelease_v0061_win_cb_FAT/libs/openFrameworksCompiled/lib/win_cb/openFrameworksDebug.lib" />
 					<Add option="../vmt_engine/lib/vmt_engine_dbg.lib" />
+					<Add library="QtCore4" />
+					<Add library="QtGui4" />
+					<Add directory="C:\Qt\2010.05\qt\lib" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -30,11 +36,17 @@
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add directory="C:\Qt\2010.05\qt\include" />
+					<Add directory="C:\Qt\2010.05\qt\include\QtGui" />
+					<Add directory="C:\Qt\2010.05\qt\include\QtCore" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
 					<Add option="../of_preRelease_v0061_win_cb_FAT/libs/openFrameworksCompiled/lib/win_cb/openFrameworks.lib" />
 					<Add option="../vmt_engine/lib/vmt_engine.lib" />
+					<Add library="QtCore4" />
+					<Add library="QtGui4" />
+					<Add directory="C:\Qt\2010.05\qt\lib" />
 				</Linker>
 			</Target>
 		</Build>
@@ -106,8 +118,16 @@
 			<Add after='cmd /c if not exist &quot;$(PROJECT_DIR)bin/data&quot; mkdir &quot;$(PROJECT_DIR)bin/data&quot;' />
 			<Mode after="always" />
 		</ExtraCommands>
+		<Unit filename="include\treeitem.h" />
+		<Unit filename="include\treemodel.h" />
+		<Unit filename="include\treewindow.h" />
 		<Unit filename="include\vmt.h" />
 		<Unit filename="src\main.cpp" />
+		<Unit filename="src\moc_treemodel.cpp" />
+		<Unit filename="src\moc_treewindow.cpp" />
+		<Unit filename="src\treeitem.cpp" />
+		<Unit filename="src\treemodel.cpp" />
+		<Unit filename="src\treewindow.cpp" />
 		<Unit filename="src\vmt.cpp" />
 		<Extensions>
 			<code_completion />

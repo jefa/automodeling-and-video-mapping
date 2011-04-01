@@ -6,6 +6,11 @@
 #include "ofxCamera.h"
 #include "ofxLight.h"
 
+#include "Scene.h"
+#include "treewindow.h"
+
+using namespace gui;
+
 class vmt : public ofBaseApp {
 
 	public:
@@ -26,6 +31,8 @@ class vmt : public ofBaseApp {
         float camX, camY, camZ;
 
     private:
+        Scene *scene;
+        TreeWindow *treeWindow;
 
 };
 

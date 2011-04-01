@@ -2,8 +2,12 @@
 #include "vmt.h"
 #include "ofAppGlutWindow.h"
 
+#include <QtGui\QApplication>
+
 //========================================================================
 int main( int argc, char** argv ) {
+
+    QApplication app(argc, argv); //Qt app
 
     int resWidth, resHeight, posWinX, posWinY;
 
@@ -22,4 +26,5 @@ int main( int argc, char** argv ) {
 	// pass in width and height too:
 	ofRunApp( new vmt());
 
+    return app.exec(); //Qt app
 }
