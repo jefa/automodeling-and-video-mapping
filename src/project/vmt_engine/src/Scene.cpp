@@ -4,7 +4,7 @@
 map<string, Layer2D*>::iterator layersIt;
 
 Scene::Scene() {
-    //ctor
+    activeCamera = NULL;
 }
 
 Scene::~Scene() {
@@ -48,12 +48,16 @@ map<string, Layer2D*> Scene::getLayers2D() {
 
 void Scene::draw() {
 
+    if(activeCamera == NULL) {
+        ofLog(OF_LOG_ERROR, "There is no active camera.");
+        return;
+    }
     activeCamera->place();
 
 	ofxLightsOn(); //turn lights on
 	ofSetColor(255, 255, 255);
 
-    //glutSolidTeapot(100);
+    //draw3D
 
     ofxLightsOff(); //turn lights off to draw text
     activeCamera->remove();
