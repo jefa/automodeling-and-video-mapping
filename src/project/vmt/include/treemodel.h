@@ -17,9 +17,7 @@ class TreeModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
-    TreeModel(const QStringList &headers, const QString &data,
-              QObject *parent = 0);
-    TreeModel(const QStringList &headers, Scene *scene);
+    TreeModel(Scene *scene, QObject *parent = 0);
     ~TreeModel();
 //! [0] //! [1]
 
@@ -46,16 +44,19 @@ public:
     //                   const QModelIndex &parent = QModelIndex());
     //bool removeColumns(int position, int columns,
     //                   const QModelIndex &parent = QModelIndex());
-    //bool insertRows(int position, int rows,
-    //                const QModelIndex &parent = QModelIndex());
+    bool insertRows(int position, int rows,
+                    const QModelIndex &parent = QModelIndex());
     //bool removeRows(int position, int rows,
     //                const QModelIndex &parent = QModelIndex());
 
 private:
-    void setupModelData(const QStringList &lines, TreeItem *parent);
+    //void setupModelData(const QStringList &lines, TreeItem *parent);
+    void setupModelLayersData(TreeItem *parent);
+    void setupModelObjectsData(TreeItem *parent);
     TreeItem *getItem(const QModelIndex &index) const;
 
     TreeItem *rootItem;
+    Scene *scene;
 };
 //! [2]
 

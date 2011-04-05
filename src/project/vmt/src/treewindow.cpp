@@ -9,16 +9,14 @@ TreeWindow::TreeWindow(Scene *scene)
 {
     setupUi(this);
 
-    QStringList headers;
-    headers << tr("Title") << tr("Description");
+    //QStringList headers;
+    //headers << tr("Title") << tr("Description");
 
     //QFile file(":/default.txt");
     //file.open(QIODevice::ReadOnly);
     //TreeModel *model = new TreeModel(headers, file.readAll());
     //file.close();
-    TreeModel *model = new TreeModel(headers, scene);
-
-    //qDebug("===== row count::: %d", model->rowCount());
+    TreeModel *model = new TreeModel(scene, NULL);
 
     view->setModel(model);
     for (int column = 0; column < model->columnCount(); ++column)

@@ -18,9 +18,6 @@ void vmt::setup(){
 
     scene->setBackground(150, 250, 250);
 
-    //treeWindow = new TreeWindow(this->scene);
-    //treeWindow->show();
-
     scene = new Scene();
     scene->addCamera("cam1");
     ofxCamera* cam1 = scene->activateCamera("cam1");
@@ -30,6 +27,10 @@ void vmt::setup(){
     Layer2D* layer1 = scene->addLayer2D("layer1");
     Quad2D* quad1 = layer1->addQuad2D("q1");
     quad1->setEnabled(true);
+
+    treeWindow = new TreeWindow(this->scene);
+    treeWindow->show();
+
 }
 
 //--------------------------------------------------------------
