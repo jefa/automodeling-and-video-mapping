@@ -72,16 +72,26 @@
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxVectorMath\src" />
 			<Add directory="include" />
 		</Compiler>
+		<Unit filename="addons\ofxAlphaVideoPlayer\ofxAlphaVideoPlayer.cpp" />
+		<Unit filename="addons\ofxAlphaVideoPlayer\ofxAlphaVideoPlayer.h" />
+		<Unit filename="addons\ofxAlphaVideoPlayer\ofxQtUtils_alpha.cpp" />
+		<Unit filename="addons\ofxAlphaVideoPlayer\ofxQtUtils_alpha.h" />
+		<Unit filename="addons\ofxShader\ofxShader.cpp" />
+		<Unit filename="addons\ofxShader\ofxShader.h" />
 		<Unit filename="include\Layer2D.h" />
+		<Unit filename="include\Material.h" />
 		<Unit filename="include\Mesh3D.h" />
 		<Unit filename="include\Quad2D.h" />
 		<Unit filename="include\Scene.h" />
+		<Unit filename="include\TextureManager.h" />
 		<Unit filename="include\ofxCamera.h" />
 		<Unit filename="include\ofxLight.h" />
 		<Unit filename="src\Layer2D.cpp" />
+		<Unit filename="src\Material.cpp" />
 		<Unit filename="src\Mesh3D.cpp" />
 		<Unit filename="src\Quad2D.cpp" />
 		<Unit filename="src\Scene.cpp" />
+		<Unit filename="src\TextureManager.cpp" />
 		<Unit filename="src\ofxCamera.cpp" />
 		<Unit filename="src\ofxLight.cpp" />
 		<Extensions>
