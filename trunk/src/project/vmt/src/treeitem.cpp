@@ -6,10 +6,11 @@ using namespace gui;
 
 //! [0]
 //TreeItem::TreeItem(const QVector<QVariant> &data, TreeItem *parent)
-TreeItem::TreeItem(TreeItemData *data, TreeItem *parent)
+TreeItem::TreeItem(TreeItemData *data, TreeItem *parent, string label)
 {
     parentItem = parent;
     itemData = data;
+    itemLabel = label;
 }
 //! [0]
 
@@ -23,7 +24,11 @@ TreeItem::~TreeItem()
 //! [2]
 TreeItem *TreeItem::child(int number)
 {
-    return childItems.value(number);
+    //qDebug("=== TREEITEM child number=%d\n", number);
+    TreeItem *retVal = childItems.value(number);
+    if (retVal == NULL)
+        qDebug("=== retVal NULL\n");
+    return retVal;
 }
 //! [2]
 
@@ -45,10 +50,10 @@ int TreeItem::childNumber() const
 //! [4]
 
 //! [5]
-int TreeItem::columnCount() const
+/*int TreeItem::columnCount() const
 {
     return 2;//itemData.count();
-}
+}*/
 //! [5]
 
 //! [6]
@@ -56,7 +61,7 @@ QVariant TreeItem::data(int column) //const
 {
     if (itemData == NULL) { //is root
         if (column == 0)
-            return QVariant(QString("Escena"));
+            return QVariant(QString(itemLabel.c_str()));
         if (column == 1)
             return QVariant(QString(""));
     }
@@ -66,19 +71,29 @@ QVariant TreeItem::data(int column) //const
 //! [6]
 
 //! [7]
-/*bool TreeItem::insertChildren(int position, int count, int columns)
+bool TreeItem::insertChildren(int position, int count, /*int columns*/TreeItemData *itemData, string label )
 {
+
+    //qDebug("=== position:: %d\n", position);
+
+    if (itemData == NULL)
+        qDebug("=== itemData NULL\n");
+
     if (position < 0 || position > childItems.size())
         return false;
 
     for (int row = 0; row < count; ++row) {
-        QVector<QVariant> data(columns);
-        TreeItem *item = new TreeItem(data, this);
+        //QVector<QVariant> data(columns);
+        TreeItem *item = new TreeItem(itemData, this, label);
+
+        if (item  == NULL)
+            qDebug("=== item  NULL\n");
+
         childItems.insert(position, item);
     }
 
     return true;
-}*/
+}
 //! [7]
 
 //! [8]
@@ -105,7 +120,7 @@ TreeItem *TreeItem::parent()
 //! [9]
 
 //! [10]
-/*bool TreeItem::removeChildren(int position, int count)
+bool TreeItem::removeChildren(int position, int count)
 {
     if (position < 0 || position + count > childItems.size())
         return false;
@@ -114,7 +129,7 @@ TreeItem *TreeItem::parent()
         delete childItems.takeAt(position);
 
     return true;
-}*/
+}
 //! [10]
 
 /*bool TreeItem::removeColumns(int position, int columns)
@@ -132,13 +147,16 @@ TreeItem *TreeItem::parent()
 }*/
 
 //! [11]
-bool TreeItem::setData(int column, TreeItemData *value)
+bool TreeItem::setData(int column, /*TreeItemData *value*/const QVariant &value)
 {
     if (column < 0 || column >= /*itemData.size()*/2)
         return false;
 
+    if (itemData == NULL)
+        return false;
+
     //itemData[column] = value;
-    itemData = value;
+    itemData->setData(column, value);
     return true;
 }
 //! [11]
@@ -152,6 +170,7 @@ LayerItemData::~LayerItemData(){
 }
 
 QVariant LayerItemData::getData(int column){
+    //qDebug("LayerItemData::getData:: col=%d\n", column);
     if (column == 0)
         return QVariant(QString(this->layer->getName().c_str()));
     if (column == 1)
@@ -160,4 +179,33 @@ QVariant LayerItemData::getData(int column){
 }
 
 void LayerItemData::setData(int column, QVariant colValue){
+    qDebug("LayerItemData::setData:: col=%d, value=%s\n", column, colValue.toString().toStdString().c_str());
+    if (column == 0)
+        this->layer->setName(colValue.toString().toStdString());
+    if (column == 1)
+        this->layer->setEnabled(colValue.toBool());
+}
+
+ObjectItemData::ObjectItemData(Quad2D *quad2D){
+    this->quad = quad2D;
+}
+
+ObjectItemData::~ObjectItemData(){
+}
+
+QVariant ObjectItemData::getData(int column){
+    //qDebug("LayerItemData::getData:: col=%d\n", column);
+    if (column == 0)
+        return QVariant(QString(this->quad->getName().c_str()));
+    if (column == 1)
+        return QVariant(this->quad->isEnabled());
+    return QVariant(QString("no data"));
+}
+
+void ObjectItemData::setData(int column, QVariant colValue){
+    qDebug("LayerItemData::setData:: col=%d, value=%s\n", column, colValue.toString().toStdString().c_str());
+    if (column == 0)
+        this->quad->setName(colValue.toString().toStdString());
+    if (column == 1)
+        this->quad->setEnabled(colValue.toBool());
 }

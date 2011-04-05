@@ -6,30 +6,16 @@
 using namespace gui;
 
 //! [0]
-TreeModel::TreeModel(const QStringList &headers, const QString &data,
-                     QObject *parent)
+TreeModel::TreeModel(Scene *scene, QObject *parent)
     : QAbstractItemModel(parent)
 {
-    QVector<QVariant> rootData;
-    foreach (QString header, headers)
-        rootData << header;
+    this->scene = scene;
+    rootItem = new TreeItem(NULL, NULL, "Root");
+    rootItem->insertChildren(0, 1, NULL, "LAYERS");
+    rootItem->insertChildren(1, 1, NULL, "OBJECTS");
 
-    //rootItem = new TreeItem();
-    //rootItem->
-    //setupModelData(data.split(QString("\n")), rootItem);
-}
-
-TreeModel::TreeModel(const QStringList &headers, Scene *scene)
-{
-    QVector<QVariant> rootData;
-    foreach (QString header, headers)
-        rootData << header;
-
-    //rootItem = new TreeItem();
-    //rootItem.insertColumns(0, 1);
-    //rootItem.it
-
-    //setupModelData(data.split(QString("\n")), rootItem);
+    setupModelLayersData(rootItem->child(0));
+    setupModelObjectsData(rootItem->child(1));
 }
 //! [0]
 
@@ -41,9 +27,9 @@ TreeModel::~TreeModel()
 //! [1]
 
 //! [2]
-int TreeModel::columnCount(const QModelIndex & /* parent */) const
+int TreeModel::columnCount(const QModelIndex & parent ) const
 {
-    return rootItem->columnCount();
+    return 2; //rootItem->columnCount();
 }
 //! [2]
 
@@ -73,7 +59,7 @@ Qt::ItemFlags TreeModel::flags(const QModelIndex &index) const
 //! [4]
 TreeItem *TreeModel::getItem(const QModelIndex &index) const
 {
-    qDebug("\t=== getItem: indexValid=%d, indexCol=%d, indexRow=%d\n", index.isValid(), index.column(), index.row());
+    //qDebug("\t=== getItem: indexValid=%d, indexCol=%d, indexRow=%d\n", index.isValid(), index.column(), index.row());
     if (index.isValid()) {
         TreeItem *item = static_cast<TreeItem*>(index.internalPointer());
         if (item) return item;
@@ -118,7 +104,7 @@ QModelIndex TreeModel::index(int row, int column, const QModelIndex &parent) con
     endInsertColumns();
 
     return success;
-}
+}*/
 
 bool TreeModel::insertRows(int position, int rows, const QModelIndex &parent)
 {
@@ -126,11 +112,16 @@ bool TreeModel::insertRows(int position, int rows, const QModelIndex &parent)
     bool success;
 
     beginInsertRows(parent, position, position + rows - 1);
-    success = parentItem->insertChildren(position, rows, rootItem->columnCount());
+
+    Layer2D *newLayer = this->scene->addLayer2D("New Layer");
+    newLayer->setEnabled(false);
+    LayerItemData *layerItemData = new LayerItemData(newLayer);
+
+    success = parentItem->insertChildren(position, rows, /*rootItem->columnCount()*/ layerItemData);
     endInsertRows();
 
     return success;
-}*/
+}
 
 //! [7]
 QModelIndex TreeModel::parent(const QModelIndex &index) const
@@ -186,23 +177,22 @@ int TreeModel::rowCount(const QModelIndex &parent) const
 bool TreeModel::setData(const QModelIndex &index, const QVariant &value,
                         int role)
 {
-    /*if (role != Qt::EditRole)
+    if (role != Qt::EditRole)
         return false;
 
     TreeItem *item = getItem(index);
-    value.asBitArray()
     bool result = item->setData(index.column(), value);
 
     if (result)
         emit dataChanged(index, index);
 
-    return result;*/return false;
+    return result;
 }
 
 bool TreeModel::setHeaderData(int section, Qt::Orientation orientation,
                               const QVariant &value, int role)
 {
-/*    if (role != Qt::EditRole || orientation != Qt::Horizontal)
+    if (role != Qt::EditRole || orientation != Qt::Horizontal)
         return false;
 
     bool result = rootItem->setData(section, value);
@@ -210,10 +200,10 @@ bool TreeModel::setHeaderData(int section, Qt::Orientation orientation,
     if (result)
         emit headerDataChanged(orientation, section, section);
 
-    return result;*/return false;
+    return result;
 }
 
-void TreeModel::setupModelData(const QStringList &lines, TreeItem *parent)
+/*void TreeModel::setupModelData(const QStringList &lines, TreeItem *parent)
 {
     QList<TreeItem*> parents;
     QList<int> indentations;
@@ -263,4 +253,77 @@ void TreeModel::setupModelData(const QStringList &lines, TreeItem *parent)
 
         number++;
     }
+}*/
+
+void TreeModel::setupModelLayersData(TreeItem *parent)
+{
+
+    qDebug("==== setupModelLayersData\n");
+
+    int position = 0;
+
+    if (parent == NULL)
+        qDebug("=== PARENT NULL\n");
+
+    if (scene == NULL)
+        qDebug("=== SCENE NULL\n");
+
+    map<string, Layer2D*> layersMap = this->scene->getLayers2D();
+    map<string, Layer2D*>::iterator layersIt;
+    for(layersIt = layersMap.begin(); layersIt != layersMap.end(); layersIt++) {
+
+        Layer2D* currentLayer = layersIt->second;
+        LayerItemData *layerItem = new LayerItemData(currentLayer);
+
+        if (currentLayer == NULL)
+            qDebug("=== currentLayer NULL\n");
+        else
+            qDebug("=== currentLayer NOOO NULL\n");
+
+        if (layerItem == NULL)
+            qDebug("=== layerItem NULL\n");
+        else
+            qDebug("=== layerItem NOOO NULL\n");
+
+        parent->insertChildren(position, 1, layerItem, "");
+
+        position++;
+    }
+}
+
+void TreeModel::setupModelObjectsData(TreeItem *parent)
+{
+
+    qDebug("==== setupModelObjectsData\n");
+
+/*    int position = 0;
+
+    if (parent == NULL)
+        qDebug("=== PARENT NULL\n");
+
+    if (scene == NULL)
+        qDebug("=== SCENE NULL\n");
+
+    map<string, Quad2D*> quadsMap = this->scene->getQuads2D();
+    map<string, Quad2D*>::iterator quadsIt;
+    for(quadsIt = quadsMap.begin(); quadsIt != quadsMap.end(); quadsIt++) {
+
+        Quad2D* currentQuad = quadssIt->second;
+        ObjectItemData *quadItem = new ObjectItemData(currentQuad);
+
+        if (currentLayer == NULL)
+            qDebug("=== currentLayer NULL\n");
+        else
+            qDebug("=== currentLayer NOOO NULL\n");
+
+        if (layerItem == NULL)
+            qDebug("=== layerItem NULL\n");
+        else
+            qDebug("=== layerItem NOOO NULL\n");
+
+        parent->insertChildren(position, 1, layerItem, "dummylayerstr");
+
+        position++;
+    }
+*/
 }
