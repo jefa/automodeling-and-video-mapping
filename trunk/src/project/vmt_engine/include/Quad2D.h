@@ -19,11 +19,14 @@ class Quad2D
         void setSelected(bool selected);
         void setEnabled(bool enabled);
         bool isEnabled();
+        void setName(string name);
+        string getName();
     protected:
     private:
         float quadPoints[8];
         bool selected;
         bool enabled;
+        string name;
 };
 
 #endif // QUAD2D_H

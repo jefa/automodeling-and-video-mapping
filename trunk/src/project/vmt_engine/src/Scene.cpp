@@ -33,7 +33,7 @@ ofxLight* Scene::getLight(string id) {
 }
 
 Layer2D* Scene::addLayer2D(string id) {
-    Layer2D* layer = new Layer2D();
+    Layer2D* layer = new Layer2D(id);
     layers2D.insert(pair<string, Layer2D*>(id, layer));
     return layer;
 }
