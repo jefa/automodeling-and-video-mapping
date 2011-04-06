@@ -32,12 +32,12 @@ public:
     bool removeChildren(int position, int count);
     //bool removeColumns(int position, int columns);
     int childNumber() const;
-    bool setData(int column, /*TreeItemData *value*/const QVariant &value);
+    bool setData(int column, const QVariant &value);
 
 private:
     string itemLabel;
     QList<TreeItem*> childItems;
-    /*QVector<QVariant>*/TreeItemData *itemData;
+    TreeItemData *itemData;
     TreeItem *parentItem;
 };
 //! [0]
@@ -73,7 +73,6 @@ class ObjectItemData : public TreeItemData {
     private:
     Quad2D *quad;
 };
-
 
 }
 #endif

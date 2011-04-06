@@ -50,9 +50,7 @@ public:
     //                const QModelIndex &parent = QModelIndex());
 
 private:
-    //void setupModelData(const QStringList &lines, TreeItem *parent);
-    void setupModelLayersData(TreeItem *parent);
-    void setupModelObjectsData(TreeItem *parent);
+    void setupModelData(TreeItem *parent);
     TreeItem *getItem(const QModelIndex &index) const;
 
     TreeItem *rootItem;

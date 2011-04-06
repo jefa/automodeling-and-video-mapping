@@ -1,6 +1,5 @@
 #include "Layer2D.h"
 
-map<string, Quad2D*> quads2D;
 map<string, Quad2D*>::iterator quadsIt;
 
 Layer2D::Layer2D()
@@ -20,6 +19,7 @@ Layer2D::~Layer2D()
 
 Quad2D* Layer2D::addQuad2D(string id) {
     Quad2D* quad2D = new Quad2D();
+    quad2D->setName(id);
     quads2D.insert(pair<string, Quad2D*>(id, quad2D));
     return quad2D;
 }
@@ -42,6 +42,10 @@ bool Layer2D::isEnabled(){
 
 string Layer2D::getName(){
     return this->name;
+}
+
+map<string, Quad2D*> Layer2D::getQuads2D() {
+    return quads2D;
 }
 
 void Layer2D::draw() {

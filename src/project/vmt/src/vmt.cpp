@@ -27,6 +27,21 @@ void vmt::setup(){
     Layer2D* layer1 = scene->addLayer2D("layer1");
     Quad2D* quad1 = layer1->addQuad2D("q1");
     quad1->setEnabled(true);
+    Quad2D* quad2 = layer1->addQuad2D("q2");
+    quad2->setPoint(0, 10, 10);
+    quad2->setPoint(1, 10, 20);
+    quad2->setPoint(2, 30, 20);
+    quad2->setPoint(3, 30, 10);
+    quad2->setEnabled(true);
+
+    Layer2D* layer2 = scene->addLayer2D("layer2");
+    Quad2D* quad3 = layer2->addQuad2D("q3");
+    quad3->setEnabled(true);
+    quad3->setPoint(0, 10+20, 10+20);
+    quad3->setPoint(1, 10+20, 20+20);
+    quad3->setPoint(2, 30+20, 20+20);
+    quad3->setPoint(3, 30+20, 10+20);
+    quad3->setEnabled(true);
 
     treeWindow = new TreeWindow(this->scene);
     treeWindow->show();
