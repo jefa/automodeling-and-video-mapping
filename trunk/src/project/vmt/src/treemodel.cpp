@@ -10,12 +10,11 @@ TreeModel::TreeModel(Scene *scene, QObject *parent)
     : QAbstractItemModel(parent)
 {
     this->scene = scene;
-    rootItem = new TreeItem(NULL, NULL, "Root");
+    rootItem = new TreeItem(NULL, NULL, "Scene");
     rootItem->insertChildren(0, 1, NULL, "LAYERS");
     rootItem->insertChildren(1, 1, NULL, "OBJECTS");
 
-    setupModelLayersData(rootItem->child(0));
-    setupModelObjectsData(rootItem->child(1));
+    setupModelData(rootItem->child(0));
 }
 //! [0]
 
@@ -203,64 +202,12 @@ bool TreeModel::setHeaderData(int section, Qt::Orientation orientation,
     return result;
 }
 
-/*void TreeModel::setupModelData(const QStringList &lines, TreeItem *parent)
-{
-    QList<TreeItem*> parents;
-    QList<int> indentations;
-    parents << parent;
-    indentations << 0;
-
-    int number = 0;
-
-    while (number < lines.count()) {
-        int position = 0;
-        while (position < lines[number].length()) {
-            if (lines[number].mid(position, 1) != " ")
-                break;
-            position++;
-        }
-
-        QString lineData = lines[number].mid(position).trimmed();
-
-        if (!lineData.isEmpty()) {
-            // Read the column data from the rest of the line.
-            QStringList columnStrings = lineData.split("\t", QString::SkipEmptyParts);
-            QVector<QVariant> columnData;
-            for (int column = 0; column < columnStrings.count(); ++column)
-                columnData << columnStrings[column];
-
-            if (position > indentations.last()) {
-                // The last child of the current parent is now the new parent
-                // unless the current parent has no children.
-
-                if (parents.last()->childCount() > 0) {
-                    parents << parents.last()->child(parents.last()->childCount()-1);
-                    indentations << position;
-                }
-            } else {
-                while (position < indentations.last() && parents.count() > 0) {
-                    parents.pop_back();
-                    indentations.pop_back();
-                }
-            }
-
-            // Append a new item to the current parent's list of children.
-            TreeItem *parent = parents.last();
-            //parent->insertChildren(parent->childCount(), 1, rootItem->columnCount());
-            //for (int column = 0; column < columnData.size(); ++column)
-            //    parent->child(parent->childCount() - 1)->setData(column, columnData[column]);
-        }
-
-        number++;
-    }
-}*/
-
-void TreeModel::setupModelLayersData(TreeItem *parent)
+void TreeModel::setupModelData(TreeItem *parent)
 {
 
     qDebug("==== setupModelLayersData\n");
 
-    int position = 0;
+    int positionLayer = 0;
 
     if (parent == NULL)
         qDebug("=== PARENT NULL\n");
@@ -285,45 +232,30 @@ void TreeModel::setupModelLayersData(TreeItem *parent)
         else
             qDebug("=== layerItem NOOO NULL\n");
 
-        parent->insertChildren(position, 1, layerItem, "");
+        parent->insertChildren(positionLayer, 1, layerItem, "");
+        TreeItem *childItem = parent->child(positionLayer);
+        int positionQuad =0;
 
-        position++;
+        map<string, Quad2D*> quadsMap = currentLayer->getQuads2D();
+        map<string, Quad2D*>::iterator quadsIt;
+        for(quadsIt = quadsMap.begin(); quadsIt != quadsMap.end(); quadsIt++) {
+
+            Quad2D* currentQuad = quadsIt->second;
+            ObjectItemData *quadItem = new ObjectItemData(currentQuad);
+            if (currentQuad == NULL)
+                qDebug("=== currentQuad NULL\n");
+            else
+                qDebug("=== currentQuad NOOO NULL\n");
+
+            if (quadItem == NULL)
+                qDebug("=== quadItem NULL\n");
+            else
+                qDebug("=== quadItem NOOO NULL\n");
+
+            childItem->insertChildren(positionQuad, 1, quadItem, "dummyquadstr");
+
+            positionQuad++;
+        }
+        positionLayer++;
     }
-}
-
-void TreeModel::setupModelObjectsData(TreeItem *parent)
-{
-
-    qDebug("==== setupModelObjectsData\n");
-
-/*    int position = 0;
-
-    if (parent == NULL)
-        qDebug("=== PARENT NULL\n");
-
-    if (scene == NULL)
-        qDebug("=== SCENE NULL\n");
-
-    map<string, Quad2D*> quadsMap = this->scene->getQuads2D();
-    map<string, Quad2D*>::iterator quadsIt;
-    for(quadsIt = quadsMap.begin(); quadsIt != quadsMap.end(); quadsIt++) {
-
-        Quad2D* currentQuad = quadssIt->second;
-        ObjectItemData *quadItem = new ObjectItemData(currentQuad);
-
-        if (currentLayer == NULL)
-            qDebug("=== currentLayer NULL\n");
-        else
-            qDebug("=== currentLayer NOOO NULL\n");
-
-        if (layerItem == NULL)
-            qDebug("=== layerItem NULL\n");
-        else
-            qDebug("=== layerItem NOOO NULL\n");
-
-        parent->insertChildren(position, 1, layerItem, "dummylayerstr");
-
-        position++;
-    }
-*/
 }

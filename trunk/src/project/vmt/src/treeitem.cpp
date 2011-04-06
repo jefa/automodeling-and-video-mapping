@@ -5,7 +5,6 @@
 using namespace gui;
 
 //! [0]
-//TreeItem::TreeItem(const QVector<QVariant> &data, TreeItem *parent)
 TreeItem::TreeItem(TreeItemData *data, TreeItem *parent, string label)
 {
     parentItem = parent;
@@ -24,7 +23,6 @@ TreeItem::~TreeItem()
 //! [2]
 TreeItem *TreeItem::child(int number)
 {
-    //qDebug("=== TREEITEM child number=%d\n", number);
     TreeItem *retVal = childItems.value(number);
     if (retVal == NULL)
         qDebug("=== retVal NULL\n");
@@ -65,7 +63,6 @@ QVariant TreeItem::data(int column) //const
         if (column == 1)
             return QVariant(QString(""));
     }
-    //return itemData.value(column);
     return itemData->getData(column);
 }
 //! [6]
@@ -147,7 +144,7 @@ bool TreeItem::removeChildren(int position, int count)
 }*/
 
 //! [11]
-bool TreeItem::setData(int column, /*TreeItemData *value*/const QVariant &value)
+bool TreeItem::setData(int column, const QVariant &value)
 {
     if (column < 0 || column >= /*itemData.size()*/2)
         return false;

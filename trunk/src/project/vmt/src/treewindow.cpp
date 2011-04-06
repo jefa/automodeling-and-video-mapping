@@ -9,13 +9,6 @@ TreeWindow::TreeWindow(Scene *scene)
 {
     setupUi(this);
 
-    //QStringList headers;
-    //headers << tr("Title") << tr("Description");
-
-    //QFile file(":/default.txt");
-    //file.open(QIODevice::ReadOnly);
-    //TreeModel *model = new TreeModel(headers, file.readAll());
-    //file.close();
     TreeModel *model = new TreeModel(scene, NULL);
 
     view->setModel(model);
@@ -217,7 +210,7 @@ void TreeWindow::setupUi(QWidget *treeWindow)
 
 void TreeWindow::retranslateUi(QWidget *treeWindow)
 {
-    treeWindow->setWindowTitle(QApplication::translate("treeWindow", "Editable Tree Model", 0, QApplication::UnicodeUTF8));
+    treeWindow->setWindowTitle(QApplication::translate("treeWindow", "Barra de herramientas", 0, QApplication::UnicodeUTF8));
     exitAction->setText(QApplication::translate("treeWindow", "E&xit", 0, QApplication::UnicodeUTF8));
     exitAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+Q", 0, QApplication::UnicodeUTF8));
     insertRowAction->setText(QApplication::translate("treeWindow", "Insert Row", 0, QApplication::UnicodeUTF8));
