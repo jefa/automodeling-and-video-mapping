@@ -24,7 +24,12 @@ void vmt::setup(){
     cam1->setOrigin(OF_ORIGIN_ZERO);
 	cam1->position(ofGetWidth()/2, ofGetHeight()/2, 500); //initialize the camera at a far position from the sphere
 
-    Layer2D* layer1 = scene->addLayer2D("layer1");
+    scene->addCamera("cam2");
+    ofxCamera* cam2 = scene->getCamera("cam2");
+    cam2->setOrigin(OF_ORIGIN_ZERO);
+	cam2->position(ofGetWidth()/8, ofGetHeight()/8, 700); //initialize the camera at a far position from the sphere
+
+    Layer2D* layer1 = cam1->addLayer2D("layer1");
     Quad2D* quad1 = layer1->addQuad2D("q1");
     quad1->setEnabled(true);
     Quad2D* quad2 = layer1->addQuad2D("q2");
@@ -34,7 +39,7 @@ void vmt::setup(){
     quad2->setPoint(3, 30, 10);
     quad2->setEnabled(true);
 
-    Layer2D* layer2 = scene->addLayer2D("layer2");
+    Layer2D* layer2 = cam1->addLayer2D("layer2");
     Quad2D* quad3 = layer2->addQuad2D("q3");
     quad3->setEnabled(true);
     quad3->setPoint(0, 10+20, 10+20);

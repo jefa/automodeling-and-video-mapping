@@ -197,3 +197,125 @@ ofxVec3f ofxCamera::getEye() {
 ofxVec3f ofxCamera::getUp() {
 	return upVec;
 }
+
+void ofxCamera::drawCamera(/*MeshModel &m, Shotf &ls, */bool DrawFrustum/*, int cameraSourceId, QPainter *painter, QFont qf*/)
+{
+
+    ofLog(OF_LOG_VERBOSE, "DRAW CAMERA::::\n");
+
+  /*if(!ls.IsValid())
+  {
+    if(cameraSourceId == 1 ) glLabel::render2D(painter,glLabel::TOP_LEFT,"Current Mesh Has an invalid Camera");
+    else if(cameraSourceId == 2 ) glLabel::render2D(painter,glLabel::TOP_LEFT,"Current Raster Has an invalid Camera");
+    else glLabel::render2D(painter,glLabel::TOP_LEFT,"Current TrackBall Has an invalid Camera");
+    return;
+  }*/
+
+  glPushAttrib(GL_LIGHTING_BIT | GL_CURRENT_BIT | GL_DEPTH_BUFFER_BIT );
+	glDepthFunc(GL_ALWAYS);
+	glDisable(GL_LIGHTING);
+	glColor3f(.8f,.8f,.8f);
+
+  int ln=0;
+  //if(ls.Intrinsics.cameraType == Camera<float>::PERSPECTIVE) glLabel::render2D(painter,glLabel::TOP_LEFT,ln++, "Camera Type: Perspective");
+  //if(ls.Intrinsics.cameraType == Camera<float>::ORTHO)       glLabel::render2D(painter,glLabel::TOP_LEFT,ln++, "Camera Type: Orthographic");
+
+  //Point3f vp = ls.GetViewPoint();
+  ofxVec3f vp = this->getEye();
+  //glLabel::render2D(painter,glLabel::TOP_LEFT,ln++, QString("ViewPoint %1 %2 %3").arg(vp[0]).arg(vp[1]).arg(vp[2]));
+  //Point3f ax0 = ls.Axis(0);
+  ofxVec3f ax0 = this->getPosition()[0];
+  //glLabel::render2D(painter,glLabel::TOP_LEFT,ln++, QString("axis 0 - %1 %2 %3").arg(ax0[0]).arg(ax0[1]).arg(ax0[2]));
+  //Point3f ax1 = ls.Axis(1);
+  ofxVec3f ax1 = this->getPosition()[1];
+  //glLabel::render2D(painter,glLabel::TOP_LEFT,ln++, QString("axis 1 - %1 %2 %3").arg(ax1[0]).arg(ax1[1]).arg(ax1[2]));
+  //Point3f ax2 = ls.Axis(2);
+  ofxVec3f ax2 = this->getPosition()[2];
+  //glLabel::render2D(painter,glLabel::TOP_LEFT,ln++, QString("axis 2 - %1 %2 %3").arg(ax2[0]).arg(ax2[1]).arg(ax2[2]));
+  //float fov = ls.GetFovFromFocal();
+  //glLabel::render2D(painter,glLabel::TOP_LEFT,ln++, QString("Fov %1 ( %2 x %3) ").arg(fov).arg(ls.Intrinsics.ViewportPx[0]).arg(ls.Intrinsics.ViewportPx[1]));
+  //float focal = ls.Intrinsics.FocalMm;
+  //glLabel::render2D(painter,glLabel::TOP_LEFT,ln++, QString("Focal Lenght %1 (pxsize %2 x %3) ").arg(focal).arg(ls.Intrinsics.PixelSizeMm[0]).arg(ls.Intrinsics.PixelSizeMm[1]));
+  //if(ls.Intrinsics.cameraType == Camera<float>::PERSPECTIVE)
+  //{
+	//float len = m.cm.bbox.Diag()/20.0;
+	float len = 200/20.0;
+	 	glBegin(GL_LINES);
+			glVertex3f(vp[0]-len,vp[1],vp[2]); 	glVertex3f(vp[0]+len,vp[1],vp[2]);
+			glVertex3f(vp[0],vp[1]-len,vp[2]); 	glVertex3f(vp[0],vp[1]+len,vp[2]);
+			glVertex3f(vp[0],vp[1],vp[2]-len); 	glVertex3f(vp[0],vp[1],vp[2]+len);
+		glEnd();
+
+    glBegin(GL_LINES);
+      ofxVec3f vp1 = vp+ax0*len*2.0;
+      glColor3f(1.0,0,0); /*gl*/ofVertex(vp.x,vp.y); 	/*gl*/ofVertex(vp1.x, vp1.y);
+      ofxVec3f vp2 = vp+ax1*len*2.0;
+      glColor3f(0,1.0,0); /*gl*/ofVertex(vp.x,vp.y); 	/*gl*/ofVertex(vp2.x, vp2.y);
+      ofxVec3f vp3 = vp+ax2*len*2.0;
+      glColor3f(0,0,1.0); /*gl*/ofVertex(vp.x,vp.y); 	/*gl*/ofVertex(vp3.x, vp3.y);
+    glEnd();
+
+// Now draw the frustum
+/*    ofxVec3f viewportCenter = vp - ax2*ls.Intrinsics.FocalMm;
+    ofxVec3f viewportHorizontal = ax0* float(ls.Intrinsics.ViewportPx[0]*ls.Intrinsics.PixelSizeMm[0]/2.0f);
+    ofxVec3f viewportVertical   = ax1* float(ls.Intrinsics.ViewportPx[1]*ls.Intrinsics.PixelSizeMm[1]/2.0f);
+
+    glColor3f(0.0f,1.0f,1.0f);
+    glBegin(GL_LINES);
+    glColor(Color4b::White);
+    glVertex3f(vp[0],vp[1],vp[2]); glVertex(viewportCenter);
+    glColor(Color4b::Cyan);
+    glVertex(vp); glVertex(viewportCenter+viewportHorizontal+viewportVertical);
+    glVertex(vp); glVertex(viewportCenter+viewportHorizontal-viewportVertical);
+    glVertex(vp); glVertex(viewportCenter-viewportHorizontal+viewportVertical);
+    glVertex(vp); glVertex(viewportCenter-viewportHorizontal-viewportVertical);
+    glEnd();
+
+    glBegin(GL_LINE_LOOP);
+    glVertex(viewportCenter+viewportHorizontal+viewportVertical);
+    glVertex(viewportCenter+viewportHorizontal-viewportVertical);
+    glVertex(viewportCenter-viewportHorizontal-viewportVertical);
+    glVertex(viewportCenter-viewportHorizontal+viewportVertical);
+    glEnd();
+
+
+    if(DrawFrustum)
+    {
+      glEnable(GL_BLEND);
+      glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+      glColor4f(.8f,.8f,.8f,.2f);
+      glBegin(GL_TRIANGLE_FAN);
+      glVertex(vp);
+      glVertex(viewportCenter+viewportHorizontal+viewportVertical);
+      glVertex(viewportCenter+viewportHorizontal-viewportVertical);
+      glVertex(viewportCenter-viewportHorizontal-viewportVertical);
+      glVertex(viewportCenter-viewportHorizontal+viewportVertical);
+      glVertex(viewportCenter+viewportHorizontal+viewportVertical);
+      glEnd();
+    }
+*/  //}
+    glPopAttrib();
+}
+
+bool ofxCamera::isProjector(){
+    return projector;
+}
+
+void ofxCamera::setIsProjector(bool projector){
+    this->projector = projector;
+}
+
+Layer2D* ofxCamera::addLayer2D(string id) {
+    Layer2D* layer = new Layer2D(id);
+    layers2D.insert(pair<string, Layer2D*>(id, layer));
+    return layer;
+}
+
+Layer2D* ofxCamera::getLayer2D(string id) {
+    return layers2D[id];
+}
+
+map<string, Layer2D*> ofxCamera::getLayers2D() {
+    return layers2D;
+}
+

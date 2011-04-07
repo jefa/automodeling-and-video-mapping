@@ -2,6 +2,8 @@
 
 #include "treeitem.h"
 
+#include <QColor>
+
 using namespace gui;
 
 //! [0]
@@ -196,6 +198,7 @@ QVariant ObjectItemData::getData(int column){
         return QVariant(QString(this->quad->getName().c_str()));
     if (column == 1)
         return QVariant(this->quad->isEnabled());
+        //return QVariant(QColor(Qt::black));
     return QVariant(QString("no data"));
 }
 

@@ -2,6 +2,7 @@
 #include "ofMain.h"
 
 map<string, Layer2D*>::iterator layersIt;
+map<string, ofxCamera*>::iterator camerasIt;
 
 Scene::Scene() {
     activeCamera = NULL;
@@ -17,8 +18,16 @@ ofxCamera* Scene::addCamera(string id) {
     return camera;
 }
 
+ofxCamera* Scene::getCamera(string id) {
+    return cameras[id];
+}
+
 ofxCamera* Scene::activateCamera(string id) {
     activeCamera = cameras[id];
+    return getActiveCamera();
+}
+
+ofxCamera* Scene::getActiveCamera() {
     return activeCamera;
 }
 
@@ -32,20 +41,6 @@ ofxLight* Scene::getLight(string id) {
     return lights[id];
 }
 
-Layer2D* Scene::addLayer2D(string id) {
-    Layer2D* layer = new Layer2D(id);
-    layers2D.insert(pair<string, Layer2D*>(id, layer));
-    return layer;
-}
-
-Layer2D* Scene::getLayer2D(string id) {
-    return layers2D[id];
-}
-
-map<string, Layer2D*> Scene::getLayers2D() {
-    return layers2D;
-}
-
 void Scene::draw() {
 
     if(activeCamera == NULL) {
@@ -57,15 +52,23 @@ void Scene::draw() {
 	ofxLightsOn(); //turn lights on
 	ofSetColor(255, 255, 255);
 
+    map<string, ofxCamera*> camerasMap = this->cameras;
+    for(camerasIt = camerasMap.begin(); camerasIt != camerasMap.end(); camerasIt++) {
+        if (camerasIt->second != activeCamera)
+            camerasIt->second->drawCamera(true);
+    }
+
     //draw3D
 
     ofxLightsOff(); //turn lights off to draw text
+
+    for(layersIt = activeCamera->getLayers2D().begin();
+        layersIt != activeCamera->getLayers2D().end(); layersIt++) {
+            layersIt->second->draw();
+    }
+
     activeCamera->remove();
 
-    //Las layers2D se dibujan sin luces y sin camara.
-    for(layersIt = layers2D.begin(); layersIt != layers2D.end(); layersIt++) {
-        layersIt->second->draw();
-    }
 }
 
 void Scene::setBackground(int r, int g, int b) {

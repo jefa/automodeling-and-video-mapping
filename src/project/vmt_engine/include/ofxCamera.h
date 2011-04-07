@@ -2,6 +2,7 @@
 
 #include "ofMain.h"
 #include "ofxVectorMath.h"
+#include "Layer2D.h"
 
 enum cameraOrigin {
     OF_ORIGIN,
@@ -47,6 +48,15 @@ public:
 	ofxVec3f getEye();
 	ofxVec3f getUp();
 
+    void drawCamera(/*MeshModel &m, Shotf &ls, */bool DrawFrustum/*, int cameraSourceId, QPainter *painter, QFont qf*/);
+    bool isProjector();
+    void setIsProjector(bool);
+
+    Layer2D* addLayer2D(string id);
+    Layer2D* getLayer2D(string id);
+    map<string, Layer2D*> getLayers2D();
+
+
 protected:
 	ofxVec3f posCoord;
 	ofxVec3f eyeCoord;
@@ -59,6 +69,12 @@ protected:
 	int	h;
 	float	aspectRatio;
 	float zNear, zFar;
+
+private:
+	bool projector;
+    map<string, Layer2D*> layers2D;
+
+
 };
 
 
