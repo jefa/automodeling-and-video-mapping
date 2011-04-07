@@ -112,7 +112,7 @@ bool TreeModel::insertRows(int position, int rows, const QModelIndex &parent)
 
     beginInsertRows(parent, position, position + rows - 1);
 
-    Layer2D *newLayer = this->scene->addLayer2D("New Layer");
+    Layer2D *newLayer = this->scene->getActiveCamera()->addLayer2D("New Layer");
     newLayer->setEnabled(false);
     LayerItemData *layerItemData = new LayerItemData(newLayer);
 
@@ -215,7 +215,7 @@ void TreeModel::setupModelData(TreeItem *parent)
     if (scene == NULL)
         qDebug("=== SCENE NULL\n");
 
-    map<string, Layer2D*> layersMap = this->scene->getLayers2D();
+    map<string, Layer2D*> layersMap = this->scene->getActiveCamera()->getLayers2D();
     map<string, Layer2D*>::iterator layersIt;
     for(layersIt = layersMap.begin(); layersIt != layersMap.end(); layersIt++) {
 
