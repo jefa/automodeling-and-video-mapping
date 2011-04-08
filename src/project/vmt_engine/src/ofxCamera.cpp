@@ -1,5 +1,7 @@
 #include "ofxCamera.h"
 
+map<string, Layer2D*>::iterator layersIt;
+
 ofxCamera::ofxCamera() {
     setOrigin(OF_ORIGIN);
 	perspective();
@@ -201,8 +203,6 @@ ofxVec3f ofxCamera::getUp() {
 void ofxCamera::drawCamera(/*MeshModel &m, Shotf &ls, */bool DrawFrustum/*, int cameraSourceId, QPainter *painter, QFont qf*/)
 {
 
-    ofLog(OF_LOG_VERBOSE, "DRAW CAMERA::::\n");
-
   /*if(!ls.IsValid())
   {
     if(cameraSourceId == 1 ) glLabel::render2D(painter,glLabel::TOP_LEFT,"Current Mesh Has an invalid Camera");
@@ -319,3 +319,8 @@ map<string, Layer2D*> ofxCamera::getLayers2D() {
     return layers2D;
 }
 
+void ofxCamera::drawLayers() {
+    for(layersIt = layers2D.begin(); layersIt != layers2D.end(); layersIt++) {
+            layersIt->second->draw();
+    }
+}

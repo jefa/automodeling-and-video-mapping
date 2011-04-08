@@ -1,8 +1,8 @@
 #include "Scene.h"
 #include "ofMain.h"
 
-map<string, Layer2D*>::iterator layersIt;
 map<string, ofxCamera*>::iterator camerasIt;
+map<string, Mesh3D*>::iterator meshesIt;
 
 Scene::Scene() {
     activeCamera = NULL;
@@ -24,7 +24,7 @@ ofxCamera* Scene::getCamera(string id) {
 
 ofxCamera* Scene::activateCamera(string id) {
     activeCamera = cameras[id];
-    return getActiveCamera();
+    return activeCamera;
 }
 
 ofxCamera* Scene::getActiveCamera() {
@@ -39,6 +39,11 @@ ofxLight* Scene::addLight(string id) {
 
 ofxLight* Scene::getLight(string id) {
     return lights[id];
+}
+
+Mesh3D* Scene::addMesh3D(string id, string path) {
+    Mesh3D *mesh = new Mesh3D(path);
+    meshes.insert(pair<string, Mesh3D*>(id, mesh));
 }
 
 void Scene::draw() {
@@ -58,17 +63,15 @@ void Scene::draw() {
             camerasIt->second->drawCamera(true);
     }
 
-    //draw3D
+    for(meshesIt = meshes.begin(); meshesIt != meshes.end(); meshesIt++) {
+        meshesIt->second->draw();
+    }
 
     ofxLightsOff(); //turn lights off to draw text
 
     activeCamera->remove();
 
-    for(layersIt = activeCamera->getLayers2D().begin();
-        layersIt != activeCamera->getLayers2D().end(); layersIt++) {
-            layersIt->second->draw();
-    }
-
+    activeCamera->drawLayers();
 }
 
 void Scene::setBackground(int r, int g, int b) {
