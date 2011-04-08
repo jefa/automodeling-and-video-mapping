@@ -62,12 +62,12 @@ void Scene::draw() {
 
     ofxLightsOff(); //turn lights off to draw text
 
+    activeCamera->remove();
+
     for(layersIt = activeCamera->getLayers2D().begin();
         layersIt != activeCamera->getLayers2D().end(); layersIt++) {
             layersIt->second->draw();
     }
-
-    activeCamera->remove();
 
 }
 
