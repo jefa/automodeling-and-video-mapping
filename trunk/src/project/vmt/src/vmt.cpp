@@ -1,4 +1,5 @@
 #include "Quad2D.h"
+#include "Mesh3D.h"
 #include "vmt.h"
 #include <map>
 //--------------------------------------------------------------
@@ -7,6 +8,8 @@ vmt::vmt() : ofBaseApp() {
 }
 
 void vmt::setup(){
+
+    ofSetLogLevel(OF_LOG_VERBOSE);
 
     //for smooth animation, set vertical sync if we can
 	ofSetVerticalSync(true);
@@ -19,15 +22,16 @@ void vmt::setup(){
     scene->setBackground(150, 250, 250);
 
     scene = new Scene();
-    scene->addCamera("cam1");
-    ofxCamera* cam1 = scene->activateCamera("cam1");
+    ofxCamera* cam1 = scene->addCamera("cam1");
     cam1->setOrigin(OF_ORIGIN_ZERO);
-	cam1->position(ofGetWidth()/2, ofGetHeight()/2, 500); //initialize the camera at a far position from the sphere
+	cam1->position(ofGetWidth()/2, ofGetHeight()/2, 300); //initialize the camera at a far position from the sphere
 
     scene->addCamera("cam2");
     ofxCamera* cam2 = scene->getCamera("cam2");
     cam2->setOrigin(OF_ORIGIN_ZERO);
-	cam2->position(ofGetWidth()/8, ofGetHeight()/8, 700); //initialize the camera at a far position from the sphere
+	cam2->position(ofGetWidth()/2, ofGetHeight()/2, -300); //initialize the camera at a far position from the sphere
+
+    scene->activateCamera("cam2");
 
     Layer2D* layer1 = cam1->addLayer2D("layer1");
     Quad2D* quad1 = layer1->addQuad2D("q1");
@@ -48,6 +52,41 @@ void vmt::setup(){
     quad3->setPoint(3, 30+20, 10+20);
     quad3->setEnabled(true);
 
+    scene->addMesh3D("squirrel", "NewSquirrel.3ds");
+
+    /*Lighting*/
+
+    //each light will emit white reflexions
+    //light1
+    ofxLight* light1 = scene->addLight("light1");
+    light1->specular(100, 255, 255);
+
+    float L1DirectionX = 1, L1DirectionY = 0, L1DirectionZ = 0;
+    light1->directionalLight(255, 0, 0, L1DirectionX, L1DirectionY, L1DirectionZ);
+
+    //light2
+    ofxLight* light2 = scene->addLight("light2");
+    light2->specular(255, 100, 255);
+
+    float L2ConeAngle = 50, L2Concentration = 60;
+    float L2PosX = 400, L2PosY = 400, L2PosZ = 800;
+    float L2DirectionX = 0, L2DirectionY = 0, L2DirectionZ = -1;
+
+    light2->spotLight(0, 255, 0,
+                     L2PosX, L2PosY, L2PosZ,
+                     L2DirectionX, L2DirectionY, L2DirectionZ,
+                     L2ConeAngle,
+                     L2Concentration);
+
+    //light3
+    ofxLight* light3 = scene->addLight("light3");
+    light3->specular(255, 255, 100);
+
+    float L3PosX = ofGetWidth(), L3PosY = 50, L3PosZ = 500;
+    light3->pointLight(0, 0, 255, L3PosX, L3PosY, L3PosZ);
+
+    /* End Lighting */
+
     treeWindow = new TreeWindow(this->scene);
     treeWindow->show();
 
@@ -66,65 +105,18 @@ void vmt::draw(){
 
 //--------------------------------------------------------------
 
-int keypressed = 0;
+int activeCamera = 0;
 
-void vmt::keyPressed  (int key){
+void vmt::keyPressed(int key){
 
-    keypressed++;
-
-    if(keypressed == 1) {
-        //each light will emit white reflexions
-        ofxLight* light1 = scene->addLight("light1");
-        light1->specular(100, 255, 255);
-
-        //light1
-        float L1DirectionX = 1;
-        float L1DirectionY = 0;
-        float L1DirectionZ = 0;
-
-        light1->directionalLight(255, 0, 0, L1DirectionX, L1DirectionY, L1DirectionZ);
+    if(activeCamera == 0) {
+        scene->activateCamera("cam1");
+        activeCamera = 1;
     }
-    else if(keypressed == 2) {
-        ofxLight* light2 = scene->addLight("light2");
-        light2->specular(255, 100, 255);
-
-        //light2
-        float L2ConeAngle = 50;
-        float L2Concentration = 60;
-        float L2PosX = 400;
-        float L2PosY = 400;
-        float L2PosZ = 800;
-        float L2DirectionX = 0;
-        float L2DirectionY = 0;
-        float L2DirectionZ = -1;
-
-        light2->spotLight(0, 255, 0,
-                         L2PosX, L2PosY, L2PosZ,
-                         L2DirectionX, L2DirectionY, L2DirectionZ,
-                         L2ConeAngle,
-                         L2Concentration);
+    else {
+        scene->activateCamera("cam2");
+        activeCamera = 0;
     }
-    else if(keypressed == 3) {
-        ofxLight* light3 = scene->addLight("light3");
-        light3->specular(255, 255, 100);
-
-        //light3
-        float L3PosX = ofGetWidth();
-        float L3PosY = 50;
-        float L3PosZ = 500;
-        light3->pointLight(0, 0, 255, L3PosX, L3PosY, L3PosZ);
-    }
-    else if (keypressed == 4) {
-
-        ofxLight* light1 = scene->getLight("light1");
-        ofxLight* light2 = scene->getLight("light2");
-        ofxLight* light3 = scene->getLight("light3");
-
-        light1->off();
-        light2->off();
-        light3->off();
-    }
-
 }
 
 //--------------------------------------------------------------
