@@ -3,6 +3,7 @@
 
 #include "ofxCamera.h"
 #include "ofxLight.h"
+#include "Mesh3D.h"
 
 #include <string>
 #include <map>
@@ -24,10 +25,13 @@ class Scene
         ofxLight* addLight(string id);
         ofxLight* getLight(string id);
 
+        Mesh3D* addMesh3D(string id, string path);
+
     private:
         map<string, ofxCamera*> cameras;
         ofxCamera* activeCamera;
         map<string, ofxLight*> lights;
+        map<string, Mesh3D*> meshes;
 };
 
 #endif // SCENE_H

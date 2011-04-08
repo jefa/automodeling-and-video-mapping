@@ -52,6 +52,8 @@ public:
     bool isProjector();
     void setIsProjector(bool);
 
+    void drawLayers();
+
     Layer2D* addLayer2D(string id);
     Layer2D* getLayer2D(string id);
     map<string, Layer2D*> getLayers2D();
