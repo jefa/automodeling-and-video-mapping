@@ -48,6 +48,8 @@ Mesh3D* Scene::addMesh3D(string id, string path) {
 
 void Scene::draw() {
 
+    //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+
     if(activeCamera == NULL) {
         ofLog(OF_LOG_ERROR, "There is no active camera.");
         return;
