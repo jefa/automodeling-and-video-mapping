@@ -161,6 +161,30 @@ bool TreeItem::setData(int column, const QVariant &value)
 //! [11]
 
 
+CameraItemData::CameraItemData(ofxCamera *camera){
+    this->camera = camera;
+}
+
+CameraItemData::~CameraItemData(){
+}
+
+QVariant CameraItemData::getData(int column){
+    //qDebug("CameraItemData::getData:: col=%d\n", column);
+    /*if (column == 0)
+        return QVariant(QString(this->camera->getName().c_str()));
+    if (column == 1)
+        return QVariant(this->layer->isEnabled());
+    */return QVariant(QString("no data"));
+}
+
+void CameraItemData::setData(int column, QVariant colValue){
+    /*qDebug("CameraItemData::setData:: col=%d, value=%s\n", column, colValue.toString().toStdString().c_str());
+    if (column == 0)
+        this->layer->setName(colValue.toString().toStdString());
+    if (column == 1)
+        this->layer->setEnabled(colValue.toBool());
+*/}
+
 LayerItemData::LayerItemData(Layer2D *layer2D){
     this->layer = layer2D;
 }
