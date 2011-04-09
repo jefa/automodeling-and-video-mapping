@@ -24,14 +24,16 @@ void vmt::setup(){
     scene = new Scene();
     ofxCamera* cam1 = scene->addCamera("cam1");
     cam1->setOrigin(OF_ORIGIN_ZERO);
-	cam1->position(ofGetWidth()/2, ofGetHeight()/2, 300); //initialize the camera at a far position from the sphere
-	cam1->eye(0, 0, 50);
+	//cam1->position(ofGetWidth()/2, ofGetHeight()/2, 300); //initialize the camera at a far position from the sphere
+	cam1->position(0, 0, 0); //initialize the camera at a far position from the sphere
+	cam1->eye(1, 0, 0);
 
     scene->addCamera("cam2");
     ofxCamera* cam2 = scene->getCamera("cam2");
     cam2->setOrigin(OF_ORIGIN_ZERO);
-	cam2->position(ofGetWidth()/2, ofGetHeight()/2, -300); //initialize the camera at a far position from the sphere
-	cam2->eye(0, 0, 50);
+	//cam2->position(ofGetWidth()/2, ofGetHeight()/2, -300); //initialize the camera at a far position from the sphere
+	cam2->position(0, 0, -30); //initialize the camera at a far position from the sphere
+	cam2->eye(0, 0, 0);
 
     scene->activateCamera("cam2");
 
