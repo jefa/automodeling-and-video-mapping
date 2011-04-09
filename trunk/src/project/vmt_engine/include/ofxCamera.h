@@ -48,7 +48,8 @@ public:
 	ofxVec3f getEye();
 	ofxVec3f getUp();
 
-    void drawCamera(/*MeshModel &m, Shotf &ls, */bool DrawFrustum/*, int cameraSourceId, QPainter *painter, QFont qf*/);
+    void drawCamera(bool);
+    void drawCamera2();
     bool isProjector();
     void setIsProjector(bool);
 

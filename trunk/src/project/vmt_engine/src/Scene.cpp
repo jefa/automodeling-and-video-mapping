@@ -31,6 +31,10 @@ ofxCamera* Scene::getActiveCamera() {
     return activeCamera;
 }
 
+map<string, ofxCamera*> Scene::getCameras() {
+    return this->cameras;
+}
+
 ofxLight* Scene::addLight(string id) {
     ofxLight* light = new ofxLight();
     lights.insert(pair<string, ofxLight*>(id, light));
@@ -60,7 +64,8 @@ void Scene::draw() {
     map<string, ofxCamera*> camerasMap = this->cameras;
     for(camerasIt = camerasMap.begin(); camerasIt != camerasMap.end(); camerasIt++) {
         if (camerasIt->second != activeCamera)
-            camerasIt->second->drawCamera(true);
+            //camerasIt->second->drawCamera(true);
+            camerasIt->second->drawCamera2();
     }
 
     //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
