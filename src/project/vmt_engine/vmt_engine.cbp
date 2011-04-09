@@ -58,8 +58,6 @@
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\rtAudio\include" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\videoInput\include" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\3DS\" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\libs\oscpack\include\ip" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\libs\oscpack\include\osc" />
@@ -73,14 +71,6 @@
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxVectorMath\src" />
 			<Add directory="include" />
 		</Compiler>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\3DS\Vector3DS.h" />
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\3DS\model3DS.cpp" />
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\3DS\model3DS.h" />
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\3DS\texture3DS.cpp" />
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\3DS\texture3DS.h" />
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\ofx3DBaseLoader.h" />
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\ofx3DModelLoader.h" />
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\ofx3dModelLoader.cpp" />
 		<Unit filename="addons\ofxAlphaVideoPlayer\ofxAlphaVideoPlayer.cpp" />
 		<Unit filename="addons\ofxAlphaVideoPlayer\ofxAlphaVideoPlayer.h" />
 		<Unit filename="addons\ofxAlphaVideoPlayer\ofxQtUtils_alpha.cpp" />
@@ -89,20 +79,24 @@
 		<Unit filename="addons\ofxShader\ofxShader.h" />
 		<Unit filename="include\Layer2D.h" />
 		<Unit filename="include\Material.h" />
-		<Unit filename="include\Mesh3D.h" />
+		<Unit filename="include\Object3D.h" />
 		<Unit filename="include\Quad2D.h" />
 		<Unit filename="include\Scene.h" />
 		<Unit filename="include\TextureManager.h" />
+		<Unit filename="include\model3DS.h" />
 		<Unit filename="include\ofxCamera.h" />
 		<Unit filename="include\ofxLight.h" />
+		<Unit filename="include\texture3DS.h" />
 		<Unit filename="src\Layer2D.cpp" />
 		<Unit filename="src\Material.cpp" />
-		<Unit filename="src\Mesh3D.cpp" />
+		<Unit filename="src\Object3D.cpp" />
 		<Unit filename="src\Quad2D.cpp" />
 		<Unit filename="src\Scene.cpp" />
 		<Unit filename="src\TextureManager.cpp" />
+		<Unit filename="src\model3DS.cpp" />
 		<Unit filename="src\ofxCamera.cpp" />
 		<Unit filename="src\ofxLight.cpp" />
+		<Unit filename="src\texture3DS.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />

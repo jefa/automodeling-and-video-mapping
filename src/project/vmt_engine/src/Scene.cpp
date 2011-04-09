@@ -2,7 +2,7 @@
 #include "ofMain.h"
 
 map<string, ofxCamera*>::iterator camerasIt;
-map<string, Mesh3D*>::iterator meshesIt;
+map<string, Object3D*>::iterator objects3DIt;
 
 Scene::Scene() {
     activeCamera = NULL;
@@ -41,14 +41,12 @@ ofxLight* Scene::getLight(string id) {
     return lights[id];
 }
 
-Mesh3D* Scene::addMesh3D(string id, string path) {
-    Mesh3D *mesh = new Mesh3D(path);
-    meshes.insert(pair<string, Mesh3D*>(id, mesh));
+Object3D* Scene::addObject3D(string id, string path) {
+    Object3D *obj3D = new Object3D(path);
+    objects3D.insert(pair<string, Object3D*>(id, obj3D));
 }
 
 void Scene::draw() {
-
-    //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 
     if(activeCamera == NULL) {
         ofLog(OF_LOG_ERROR, "There is no active camera.");
@@ -65,14 +63,19 @@ void Scene::draw() {
             camerasIt->second->drawCamera(true);
     }
 
-    for(meshesIt = meshes.begin(); meshesIt != meshes.end(); meshesIt++) {
-        meshesIt->second->draw();
+    //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
+
+    for(objects3DIt = objects3D.begin(); objects3DIt != objects3D.end(); objects3DIt++) {
+        objects3DIt->second->draw();
     }
+
+    glPolygonMode( GL_FRONT_AND_BACK, GL_FILL );
 
     ofxLightsOff(); //turn lights off to draw text
 
     activeCamera->remove();
 
+    //Draw the 2d layers after removing the camera.
     activeCamera->drawLayers();
 }
 
