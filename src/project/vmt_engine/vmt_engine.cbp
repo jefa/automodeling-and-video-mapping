@@ -77,9 +77,12 @@
 		<Unit filename="addons\ofxAlphaVideoPlayer\ofxQtUtils_alpha.h" />
 		<Unit filename="addons\ofxShader\ofxShader.cpp" />
 		<Unit filename="addons\ofxShader\ofxShader.h" />
+		<Unit filename="include\Effect.h" />
+		<Unit filename="include\IPropertyManager.h" />
 		<Unit filename="include\Layer2D.h" />
 		<Unit filename="include\Material.h" />
 		<Unit filename="include\Object3D.h" />
+		<Unit filename="include\PositionEffect.h" />
 		<Unit filename="include\Quad2D.h" />
 		<Unit filename="include\Scene.h" />
 		<Unit filename="include\TextureManager.h" />
@@ -87,9 +90,11 @@
 		<Unit filename="include\ofxCamera.h" />
 		<Unit filename="include\ofxLight.h" />
 		<Unit filename="include\texture3DS.h" />
+		<Unit filename="src\Effect.cpp" />
 		<Unit filename="src\Layer2D.cpp" />
 		<Unit filename="src\Material.cpp" />
 		<Unit filename="src\Object3D.cpp" />
+		<Unit filename="src\PositionEffect.cpp" />
 		<Unit filename="src\Quad2D.cpp" />
 		<Unit filename="src\Scene.cpp" />
 		<Unit filename="src\TextureManager.cpp" />
