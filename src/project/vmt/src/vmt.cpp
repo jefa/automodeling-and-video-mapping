@@ -129,12 +129,38 @@ void vmt::keyReleased(int key){
 void vmt::mouseMoved(int x, int y ){
 }
 
+int xMouseDown, yMouseDown;
+
 //--------------------------------------------------------------
 void vmt::mouseDragged(int x, int y, int button){
+    int dx = x - xMouseDown;
+    int dy = y - yMouseDown;
+
+    ofxCamera *cam = scene->getActiveCamera();
+
+    ofxVec3f dir = -(cam->getDir());
+
+    float rotScale = 0.3f;
+
+    dir.rotate(dx * rotScale, ofxVec3f(0,-1,0));
+
+    ofxVec3f axis2 = dir.getCrossed(ofxVec3f(0,1,0));
+    axis2.normalize();
+
+    dir.rotate(dy * rotScale, axis2);
+
+    ofxVec3f eye = cam->getEye();
+
+    cam->position(eye + dir);
+
+    xMouseDown = x;
+    yMouseDown = y;
 }
 
 //--------------------------------------------------------------
 void vmt::mousePressed(int x, int y, int button){
+    xMouseDown = x;
+    yMouseDown = y;
 }
 
 //--------------------------------------------------------------
