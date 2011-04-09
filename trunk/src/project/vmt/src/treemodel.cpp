@@ -207,7 +207,7 @@ void TreeModel::setupModelData(TreeItem *parent)
 
     qDebug("==== setupModelLayersData\n");
 
-    int positionLayer = 0;
+    int positionCamera = 0;
 
     if (parent == NULL)
         qDebug("=== PARENT NULL\n");
@@ -215,47 +215,59 @@ void TreeModel::setupModelData(TreeItem *parent)
     if (scene == NULL)
         qDebug("=== SCENE NULL\n");
 
-    map<string, Layer2D*> layersMap = this->scene->getActiveCamera()->getLayers2D();
-    map<string, Layer2D*>::iterator layersIt;
-    for(layersIt = layersMap.begin(); layersIt != layersMap.end(); layersIt++) {
+    map<string, ofxCamera*> camerasMap = this->scene->getCameras();
+    map<string, ofxCamera*>::iterator camerasIt;
+    for(camerasIt = camerasMap.begin(); camerasIt != camerasMap.end(); camerasIt++) {
+        ofxCamera* camera = camerasIt->second;
+        CameraItemData *cameraItem = new CameraItemData(camera);
 
-        Layer2D* currentLayer = layersIt->second;
-        LayerItemData *layerItem = new LayerItemData(currentLayer);
+        parent->insertChildren(positionCamera, 1, cameraItem, "");
+        TreeItem *childItemCamera = parent->child(positionCamera);
 
-        if (currentLayer == NULL)
-            qDebug("=== currentLayer NULL\n");
-        else
-            qDebug("=== currentLayer NOOO NULL\n");
+        int positionLayer = 0;
 
-        if (layerItem == NULL)
-            qDebug("=== layerItem NULL\n");
-        else
-            qDebug("=== layerItem NOOO NULL\n");
+        map<string, Layer2D*> layersMap = camera->getLayers2D();
+        map<string, Layer2D*>::iterator layersIt;
+        for(layersIt = layersMap.begin(); layersIt != layersMap.end(); layersIt++) {
 
-        parent->insertChildren(positionLayer, 1, layerItem, "");
-        TreeItem *childItem = parent->child(positionLayer);
-        int positionQuad =0;
+            Layer2D* currentLayer = layersIt->second;
+            LayerItemData *layerItem = new LayerItemData(currentLayer);
 
-        map<string, Quad2D*> quadsMap = currentLayer->getQuads2D();
-        map<string, Quad2D*>::iterator quadsIt;
-        for(quadsIt = quadsMap.begin(); quadsIt != quadsMap.end(); quadsIt++) {
-
-            Quad2D* currentQuad = quadsIt->second;
-            ObjectItemData *quadItem = new ObjectItemData(currentQuad);
-            if (currentQuad == NULL)
-                qDebug("=== currentQuad NULL\n");
+            if (currentLayer == NULL)
+                qDebug("=== currentLayer NULL\n");
             else
-                qDebug("=== currentQuad NOOO NULL\n");
+                qDebug("=== currentLayer NOOO NULL\n");
 
-            if (quadItem == NULL)
-                qDebug("=== quadItem NULL\n");
+            if (layerItem == NULL)
+                qDebug("=== layerItem NULL\n");
             else
-                qDebug("=== quadItem NOOO NULL\n");
+                qDebug("=== layerItem NOOO NULL\n");
 
-            childItem->insertChildren(positionQuad, 1, quadItem, "dummyquadstr");
+            childItemCamera->insertChildren(positionLayer, 1, layerItem, "");
+            TreeItem *childItemLayer = childItemCamera->child(positionLayer);
+            int positionQuad =0;
 
-            positionQuad++;
+            map<string, Quad2D*> quadsMap = currentLayer->getQuads2D();
+            map<string, Quad2D*>::iterator quadsIt;
+            for(quadsIt = quadsMap.begin(); quadsIt != quadsMap.end(); quadsIt++) {
+
+                Quad2D* currentQuad = quadsIt->second;
+                ObjectItemData *quadItem = new ObjectItemData(currentQuad);
+                if (currentQuad == NULL)
+                    qDebug("=== currentQuad NULL\n");
+                else
+                    qDebug("=== currentQuad NOOO NULL\n");
+
+                if (quadItem == NULL)
+                    qDebug("=== quadItem NULL\n");
+                else
+                    qDebug("=== quadItem NOOO NULL\n");
+
+                childItemLayer->insertChildren(positionQuad, 1, quadItem, "dummyquadstr");
+
+                positionQuad++;
+            }
+            positionLayer++;
         }
-        positionLayer++;
     }
 }
