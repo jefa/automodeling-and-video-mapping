@@ -1,5 +1,7 @@
 #include "ofxCamera.h"
 
+#include <cmath>
+
 map<string, Layer2D*>::iterator layersIt;
 
 ofxCamera::ofxCamera() {
@@ -200,7 +202,7 @@ ofxVec3f ofxCamera::getUp() {
 	return upVec;
 }
 
-void ofxCamera::drawCamera(/*MeshModel &m, Shotf &ls, */bool DrawFrustum/*, int cameraSourceId, QPainter *painter, QFont qf*/)
+void ofxCamera::drawCamera(bool DrawFrustum)
 {
 
   /*if(!ls.IsValid())
@@ -216,21 +218,25 @@ void ofxCamera::drawCamera(/*MeshModel &m, Shotf &ls, */bool DrawFrustum/*, int 
 	glDisable(GL_LIGHTING);
 	glColor3f(.8f,.8f,.8f);
 
-  int ln=0;
+  //int ln=0;
   //if(ls.Intrinsics.cameraType == Camera<float>::PERSPECTIVE) glLabel::render2D(painter,glLabel::TOP_LEFT,ln++, "Camera Type: Perspective");
   //if(ls.Intrinsics.cameraType == Camera<float>::ORTHO)       glLabel::render2D(painter,glLabel::TOP_LEFT,ln++, "Camera Type: Orthographic");
 
   //Point3f vp = ls.GetViewPoint();
   ofxVec3f vp = this->getEye();
+  printf("================= Vector Eye: (%f,%f,%f)\n", vp[0],vp[1],vp[2]);
   //glLabel::render2D(painter,glLabel::TOP_LEFT,ln++, QString("ViewPoint %1 %2 %3").arg(vp[0]).arg(vp[1]).arg(vp[2]));
   //Point3f ax0 = ls.Axis(0);
-  ofxVec3f ax0 = this->getPosition()[0];
+  ofxVec3f ax0(this->getPosition()[0],0,0);
+  printf("================= Vector AX0: (%f,%f,%f)\n", ax0[0],ax0[1],ax0[2]);
   //glLabel::render2D(painter,glLabel::TOP_LEFT,ln++, QString("axis 0 - %1 %2 %3").arg(ax0[0]).arg(ax0[1]).arg(ax0[2]));
   //Point3f ax1 = ls.Axis(1);
-  ofxVec3f ax1 = this->getPosition()[1];
+  ofxVec3f ax1(0,this->getPosition()[1],0);
+  printf("================= Vector AX1: (%f,%f,%f)\n", ax1[0],ax1[1],ax1[2]);
   //glLabel::render2D(painter,glLabel::TOP_LEFT,ln++, QString("axis 1 - %1 %2 %3").arg(ax1[0]).arg(ax1[1]).arg(ax1[2]));
   //Point3f ax2 = ls.Axis(2);
-  ofxVec3f ax2 = this->getPosition()[2];
+  ofxVec3f ax2(0,0,this->getPosition()[2]);
+  printf("================= Vector AX2: (%f,%f,%f)\n", ax2[0],ax2[1],ax2[2]);
   //glLabel::render2D(painter,glLabel::TOP_LEFT,ln++, QString("axis 2 - %1 %2 %3").arg(ax2[0]).arg(ax2[1]).arg(ax2[2]));
   //float fov = ls.GetFovFromFocal();
   //glLabel::render2D(painter,glLabel::TOP_LEFT,ln++, QString("Fov %1 ( %2 x %3) ").arg(fov).arg(ls.Intrinsics.ViewportPx[0]).arg(ls.Intrinsics.ViewportPx[1]));
@@ -254,16 +260,21 @@ void ofxCamera::drawCamera(/*MeshModel &m, Shotf &ls, */bool DrawFrustum/*, int 
       ofxVec3f vp3 = vp+ax2*len*2.0;
       glColor3f(0,0,1.0); /*gl*/ofVertex(vp.x,vp.y); 	/*gl*/ofVertex(vp3.x, vp3.y);
     glEnd();
-
+/*
 // Now draw the frustum
-/*    ofxVec3f viewportCenter = vp - ax2*ls.Intrinsics.FocalMm;
-    ofxVec3f viewportHorizontal = ax0* float(ls.Intrinsics.ViewportPx[0]*ls.Intrinsics.PixelSizeMm[0]/2.0f);
-    ofxVec3f viewportVertical   = ax1* float(ls.Intrinsics.ViewportPx[1]*ls.Intrinsics.PixelSizeMm[1]/2.0f);
+    //ofxVec3f viewportCenter = vp - ax2*ls.Intrinsics.FocalMm;
+    ofxVec3f viewportCenter = vp - ax2* 5;
+    //ofxVec3f viewportHorizontal = ax0* float(ls.Intrinsics.ViewportPx[0]*ls.Intrinsics.PixelSizeMm[0]/2.0f);
+    ofxVec3f viewportHorizontal = ax0* float(10*10/2.0f);
+    //ofxVec3f viewportVertical   = ax1* float(ls.Intrinsics.ViewportPx[1]*ls.Intrinsics.PixelSizeMm[1]/2.0f);
+    ofxVec3f viewportVertical   = ax1* float(10*10/2.0f);
 
     glColor3f(0.0f,1.0f,1.0f);
     glBegin(GL_LINES);
-    glColor(Color4b::White);
-    glVertex3f(vp[0],vp[1],vp[2]); glVertex(viewportCenter);
+    //glColor(Color4b::White);
+    ofColor(ofColor());
+    //glVertex3f(vp[0],vp[1],vp[2]); glVertex(viewportCenter);
+    glVertex3f(vp[0],vp[1],vp[2]); glVertex3f(viewportCenter);
     glColor(Color4b::Cyan);
     glVertex(vp); glVertex(viewportCenter+viewportHorizontal+viewportVertical);
     glVertex(vp); glVertex(viewportCenter+viewportHorizontal-viewportVertical);
@@ -293,8 +304,8 @@ void ofxCamera::drawCamera(/*MeshModel &m, Shotf &ls, */bool DrawFrustum/*, int 
       glVertex(viewportCenter+viewportHorizontal+viewportVertical);
       glEnd();
     }
-*/  //}
-    glPopAttrib();
+  //}
+*/    glPopAttrib();
 }
 
 bool ofxCamera::isProjector(){
@@ -323,4 +334,75 @@ void ofxCamera::drawLayers() {
     for(layersIt = layers2D.begin(); layersIt != layers2D.end(); layersIt++) {
             layersIt->second->draw();
     }
+}
+
+void ofxCamera::drawCamera2(){
+
+    glPushAttrib(GL_LIGHTING_BIT | GL_CURRENT_BIT | GL_DEPTH_BUFFER_BIT );
+    glDepthFunc(GL_ALWAYS);
+    glDisable(GL_LIGHTING);
+    glColor3f(.8f,.8f,.8f);
+
+    long len = 50;
+
+    ofxVec3f eye = this->getEye();
+    ofxVec3f pos = (this->getPosition()/this->getPosition()) * len;
+    //ofxVec3f pos = this->getPosition()/*.normalize()*/;
+    //printf("================= Vector EYE: (%f,%f,%f)\n", eye[0],eye[1],eye[2]);
+    //printf("================= Vector POS: (%f,%f,%f)\n", pos[0],pos[1],pos[2]);
+    ofxVec3f ax0(pos[0],0,0);
+    //printf("================= Vector AX0: (%f,%f,%f)\n", ax0[0],ax0[1],ax0[2]);
+    ofxVec3f ax1(0,pos[1],0);
+    //printf("================= Vector AX1: (%f,%f,%f)\n", ax1[0],ax1[1],ax1[2]);
+    ofxVec3f ax2(0,0,pos[2]);
+    //printf("================= Vector AX2: (%f,%f,%f)\n", ax2[0],ax2[1],ax2[2]);
+
+    ofCircle(pos[0], pos[1],10);
+
+    glBegin(GL_LINES);
+        glVertex3f(pos[0],pos[1],pos[2]); 	glVertex3f(ax0[0],ax0[1],ax0[2]);
+        glVertex3f(pos[0],pos[1],pos[2]); 	glVertex3f(ax1[0],ax1[1],ax1[2]);
+        glVertex3f(pos[0],pos[1],pos[2]); 	glVertex3f(ax2[0],ax2[1],ax2[2]);
+    glEnd();
+
+    ofxVec3f lVec = getDir();
+    ofxVec3f upVec = getUp();
+    ofxVec3f rightVec = lVec.crossed(upVec);
+    printf("================= Vector L:     (%f,%f,%f)\n", lVec[0],lVec[1],lVec[2]);
+    printf("================= Vector UP:    (%f,%f,%f)\n", upVec[0],upVec[1],upVec[2]);
+    printf("================= Vector RIGHT: (%f,%f,%f)\n", rightVec[0],rightVec[1],rightVec[2]);
+
+    glColor3f(1.0, 1.0, 0.0);
+    /*glBegin(GL_LINES);
+        glVertex3f(pos[0],pos[1],pos[2]); 	glVertex3f(lVec[0],lVec[1],lVec[2]);
+    glEnd();*/
+
+    //lVec = lVec.normalize();
+    //printf("================= Vector LNORM: (%f,%f,%f)\n", lVec[0],lVec[1],lVec[2]);
+
+    //ofxVec3f apH = 2 * lVec/*.normalize()*/ * tan ( this->fieldOfView / 2 );
+    //printf("================= Vector APH: (%f,%f,%f)\n", apH[0],apH[1],apH[2]);
+
+    float length = lVec.length();
+    float apHf = 2 * length * tan ( this->fieldOfView / 2 );
+    float apVf = apHf / aspectRatio;
+    printf("================= Vector LVEC length: %f\n", length);
+    printf("================= Vector ASPECTRATIO: %f \n", aspectRatio);
+    printf("================= Vector APH: %f ::: APV: %f\n", apHf, apVf);
+
+    ofxVec3f vecUp =  upVec * apVf / 2; //(0, apVf/2, eye[2]);
+    ofxVec3f vecRight = rightVec * apHf ; //(apHf/2, 0, eye[2]);
+    ofxVec3f p2 = lVec + vecRight + vecUp;
+    ofxVec3f p2a (apVf/2,apHf/2,eye[2]);
+    printf("================= Vector P2:  (%f,%f,%f)\n", p2[0],p2[1],p2[2]);
+    printf("================= Vector P2A: (%f,%f,%f)\n", p2a[0],p2a[1],p2a[2]);
+
+    //ofxVec3f p2 = eye + ofxVec3f()
+    //ofxVec3f p3 = eye + ofxVec3f()
+    //ofxVec3f p4 = eye + ofxVec3f()
+
+    glBegin(GL_LINES);
+        glVertex3f(pos[0],pos[1],pos[2]); 	glVertex3f(p2[0],p2[1],p2[2]);
+    glEnd();
+
 }

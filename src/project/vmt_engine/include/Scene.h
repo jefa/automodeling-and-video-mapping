@@ -21,6 +21,7 @@ class Scene
         ofxCamera* getCamera(string id);
         ofxCamera* activateCamera(string id);
         ofxCamera* getActiveCamera();
+        map<string, ofxCamera*> getCameras();
 
         ofxLight* addLight(string id);
         ofxLight* getLight(string id);
