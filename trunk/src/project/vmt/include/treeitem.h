@@ -3,6 +3,7 @@
 
 #include "Layer2D.h"
 #include "Quad2D.h"
+#include "ofxCamera.h"
 
 #include <QList>
 #include <QVariant>
@@ -46,6 +47,19 @@ class TreeItemData {
     public:
     virtual QVariant getData(int column)=0;
     virtual void setData(int column, QVariant colValue)=0;
+};
+
+class CameraItemData : public TreeItemData {
+
+    public:
+    CameraItemData(ofxCamera *camera);
+    ~CameraItemData();
+
+    QVariant getData(int column);
+    void setData(int column, QVariant colValue);
+
+    private:
+    ofxCamera *camera;
 };
 
 class LayerItemData : public TreeItemData {
