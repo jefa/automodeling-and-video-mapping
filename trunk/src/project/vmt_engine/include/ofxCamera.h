@@ -48,8 +48,7 @@ public:
 	ofxVec3f getEye();
 	ofxVec3f getUp();
 
-    void drawCamera(bool);
-    void drawCamera2();
+    void drawCamera();
     bool isProjector();
     void setIsProjector(bool);
 
