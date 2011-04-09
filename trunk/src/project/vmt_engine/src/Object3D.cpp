@@ -26,7 +26,7 @@ Object3D::Object3D(string path){
 
 	string ext = getExtension( path );
 	if( ext == "3ds" || ext == "3DS" ){
-		model = new model3DS(path.c_str(), 30);
+		model = new model3DS(path.c_str(), 1);
 	}
 }
 

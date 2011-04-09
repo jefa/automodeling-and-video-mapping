@@ -64,8 +64,7 @@ void Scene::draw() {
     map<string, ofxCamera*> camerasMap = this->cameras;
     for(camerasIt = camerasMap.begin(); camerasIt != camerasMap.end(); camerasIt++) {
         if (camerasIt->second != activeCamera)
-            //camerasIt->second->drawCamera(true);
-            camerasIt->second->drawCamera2();
+            camerasIt->second->drawCamera();
     }
 
     //glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
