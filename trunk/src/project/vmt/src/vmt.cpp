@@ -1,5 +1,5 @@
 #include "Quad2D.h"
-#include "Mesh3D.h"
+#include "Object3D.h"
 #include "vmt.h"
 #include <map>
 //--------------------------------------------------------------
@@ -52,7 +52,7 @@ void vmt::setup(){
     quad3->setPoint(3, 30+20, 10+20);
     quad3->setEnabled(true);
 
-    scene->addMesh3D("squirrel", "NewSquirrel.3ds");
+    scene->addObject3D("squirrel", "data/NewSquirrel.3ds");
 
     /*Lighting*/
 
