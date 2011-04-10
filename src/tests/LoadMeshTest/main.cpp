@@ -15,7 +15,7 @@ int main()
   MyMesh m;
   ProcessMesh p;
   string filename;
-  filename = "greek_helmet.obj";
+  filename = "greek_helmet2.obj";
   // load a mesh from a .obj file
   p.LoadMesh((&m) ,filename);
   //p.LoadMesh2((&m) ,filename);

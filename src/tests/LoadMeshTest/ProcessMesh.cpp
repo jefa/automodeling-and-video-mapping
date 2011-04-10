@@ -227,7 +227,9 @@ MyMesh::FaceIterator fi;
   cout << "number of faces " << (*m).face.size()<< '\n';
 
   file.close();
+
  }
+ tri::UpdateBounding<MyMesh>::Box((*m));
 }
 void ProcessMesh::WriteMesh(MyMesh *m) {
 }
@@ -257,7 +259,8 @@ for(vi = (*m).vert.begin(); vi!=(*m).vert.end(); ++vi )
             float radius;
             radius= tri::SurfaceSampling<MyMesh,BaseSampler>::ComputePoissonDiskRadius((*m),sampleNum);
 
-            cout<< "radius poissondisksampling   " << radius<< '\n';
+            //cout<< "radius poissondisksampling   " << radius<< '\n';
+            radius=0.246799;
 
             tri::SurfaceSampling<MyMesh,BaseSampler>::PoissonDiskParam pp;
 
@@ -283,9 +286,9 @@ for(vi = (*m).vert.begin(); vi!=(*m).vert.end(); ++vi )
 }
 void ProcessMesh::ComputeNormalsForPointSet(MyMesh *m) {
 
-  Allocator<MyMesh>::CompactVertexVector((*m));
-  NormalExtrapolation<vector<MyVertex> >::ExtrapolateNormals((*m).vert.begin(), (*m).vert.end(), 16,-1,NormalExtrapolation<vector<MyVertex> >::IsCorrect);
-   cout << "number of normal after ComputeNormalsForPointSet : " <<  (*m).vn  << '\n';
+  //Allocator<MyMesh>::CompactVertexVector((*m));
+  //NormalExtrapolation<vector<MyVertex> >::ExtrapolateNormals((*m).vert.begin(), (*m).vert.end(), 16,-1,NormalExtrapolation<vector<MyVertex> >::IsCorrect);
+  // cout << "number of normal after ComputeNormalsForPointSet : " <<  (*m).vn  << '\n';
 
 }
 void ProcessMesh::SurfaceReconstructionPoisson(MyMesh *m) {
