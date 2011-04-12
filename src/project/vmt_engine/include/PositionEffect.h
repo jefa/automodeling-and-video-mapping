@@ -12,6 +12,7 @@ class PositionEffect : public Effect
         virtual ~PositionEffect();
 
         virtual void play();
+        virtual void test();
     protected:
     private:
         Object3D *object3d;
