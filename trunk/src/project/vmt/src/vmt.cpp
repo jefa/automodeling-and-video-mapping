@@ -1,5 +1,6 @@
 #include "Quad2D.h"
 #include "Object3D.h"
+#include "PositionEffect.h"
 #include "vmt.h"
 #include <map>
 //--------------------------------------------------------------
@@ -37,7 +38,7 @@ void vmt::setup(){
 
     scene->activateCamera("cam2");
 
-    Layer2D* layer1 = cam1->addLayer2D("layer1");
+    Layer2D* layer1 = cam2->addLayer2D("layer1");
     Quad2D* quad1 = layer1->addQuad2D("q1");
     quad1->setEnabled(true);
     Quad2D* quad2 = layer1->addQuad2D("q2");
@@ -56,7 +57,11 @@ void vmt::setup(){
     quad3->setPoint(3, 30+20, 10+20);
     quad3->setEnabled(true);
 
-    scene->addObject3D("squirrel", "data/NewSquirrel.3DS");
+    Object3D *obj3d = scene->addObject3D("squirrel", "data/NewSquirrel.3DS");
+
+    scene->addEffect("ef1", new PositionEffect(obj3d, ofxVec3f(0,3,0), ofxVec3f(0,-3,0), 0.5f));
+    scene->addEffect("ef2", new PositionEffect(obj3d, ofxVec3f(3,0,0), ofxVec3f(-3,0,0), 0.5f));
+    scene->addEffect("ef3", new PositionEffect(obj3d, ofxVec3f(0,0,3), ofxVec3f(0,0,-3), 0.5f));
 
     /*Lighting*/
 
@@ -99,6 +104,7 @@ void vmt::setup(){
 //--------------------------------------------------------------
 void vmt::update(){
 	//camera.lerpPosition(centerX, centerY, 500, 0.05); //interpolate the camera into a closer position
+	scene->update();
 }
 
 //--------------------------------------------------------------
@@ -109,18 +115,22 @@ void vmt::draw(){
 
 //--------------------------------------------------------------
 
-int activeCamera = 0;
-
 void vmt::keyPressed(int key){
 
-    if(activeCamera == 0) {
+    if(key == '1')
         scene->activateCamera("cam1");
-        activeCamera = 1;
-    }
-    else {
+
+    if(key == '2')
         scene->activateCamera("cam2");
-        activeCamera = 0;
-    }
+
+    if(key == 'z')
+        scene->testEffect("ef1");
+
+    if(key == 'x')
+        scene->testEffect("ef2");
+
+    if(key == 'c')
+        scene->testEffect("ef3");
 }
 
 //--------------------------------------------------------------
