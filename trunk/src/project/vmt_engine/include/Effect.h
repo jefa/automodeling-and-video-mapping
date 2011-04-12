@@ -9,6 +9,7 @@ class Effect
         virtual ~Effect();
 
         virtual void play() = 0;
+        virtual void test() = 0;
     protected:
     private:
 };

@@ -3,12 +3,15 @@
 
 #include "ofMain.h"
 #include "model3DS.h"
+#include "IPropertyManager.h"
 
 #include <vector>
 #include <string>
 using namespace std;
 
-class Object3D
+enum A_PARAM_OBJECT3D {POS_X, POS_Y, POS_Z};
+
+class Object3D : public IPropertyManager
 {
     public:
         Object3D(string path);
@@ -19,6 +22,9 @@ class Object3D
         void setPosition(float x, float y, float z);
         void setScale(float x, float y, float z);
         void setRotation(int which, float angle, float rot_x, float rot_y, float r_z);
+
+        virtual float get(int aParam);
+        virtual void set(int aParam, float aValue);
 
     protected:
     private:
