@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "ofMain.h"
+#include "AnimationManager.h"
 
 map<string, ofxCamera*>::iterator camerasIt;
 map<string, Object3D*>::iterator objects3DIt;
@@ -48,6 +49,23 @@ ofxLight* Scene::getLight(string id) {
 Object3D* Scene::addObject3D(string id, string path) {
     Object3D *obj3D = new Object3D(path);
     objects3D.insert(pair<string, Object3D*>(id, obj3D));
+    return obj3D;
+}
+
+Object3D* Scene::getObject3D(string id) {
+    return objects3D[id];
+}
+
+Effect* Scene::addEffect(string id, Effect* effect) {
+    effects.insert(pair<string, Effect*>(id, effect));
+}
+
+void Scene::testEffect(string id) {
+    effects[id]->test();
+}
+
+void Scene::update() {
+    AnimationManager::Update();
 }
 
 void Scene::draw() {
@@ -80,7 +98,10 @@ void Scene::draw() {
     activeCamera->remove();
 
     //Draw the 2d layers after removing the camera.
+
+    glDisable(GL_DEPTH_TEST);
     activeCamera->drawLayers();
+    glEnable(GL_DEPTH_TEST);
 }
 
 void Scene::setBackground(int r, int g, int b) {
