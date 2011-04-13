@@ -19,7 +19,7 @@ Layer2D::~Layer2D()
 
 Quad2D* Layer2D::addQuad2D(string id) {
     Quad2D* quad2D = new Quad2D();
-    quad2D->setName(id);
+    quad2D->setId(id);
     quads2D.insert(pair<string, Quad2D*>(id, quad2D));
     return quad2D;
 }

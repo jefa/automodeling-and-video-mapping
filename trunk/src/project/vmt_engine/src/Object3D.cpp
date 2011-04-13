@@ -14,7 +14,8 @@ static string getExtension( string filename ){
 }
 
 //-------------------------------------------
-Object3D::Object3D(string path){
+Object3D::Object3D(string id, string path){
+    this->id;
     numRotations = 0;
     rotAngle.clear();
     rotAxis.clear();
@@ -106,4 +107,12 @@ void Object3D::set(int aParam, float aValue) {
             pos.z = aValue;
             break;
     }
+}
+
+void Object3D::setId(string id){
+    this->id = id;
+}
+
+string Object3D::getId(){
+    return this->id;
 }

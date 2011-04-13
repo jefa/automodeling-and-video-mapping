@@ -26,15 +26,15 @@ class Quad2D : public IPropertyManager
         void setSelected(bool selected);
         void setEnabled(bool enabled);
         bool isEnabled();
-        void setName(string name);
-        string getName();
+        void setId(string id);
+        string getId();
     protected:
     private:
         float quadPoints[8];
         float quadTextCoords[8];
         bool selected;
         bool enabled;
-        string name;
+        string id;
         ofxVec4f color;
 
 };
