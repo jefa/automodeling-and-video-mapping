@@ -12,7 +12,7 @@ TreeModel::TreeModel(Scene *scene, QObject *parent)
     this->scene = scene;
     setupSceneModelData();
     setupLayersModelData(rootItem->child(0));
-    //setupObjectsModelData(rootItem->child(1));
+    setupObjectsModelData(rootItem->child(1));
 }
 //! [0]
 

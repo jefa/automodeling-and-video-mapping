@@ -32,15 +32,21 @@ class Scene
         Object3D* addObject3D(string id, string path);
         Object3D* getObject3D(string id);
         map<string, Object3D*> getObjects3D();
+        Object3D* activateObject(string id);
+        Object3D* getActiveObject();
+        void deActivateObject();
 
         QuadGroup* addGroup(string id);
 
         Effect* addEffect(string id, Effect* effect);
         void testEffect(string id);
 
+
+
     private:
         map<string, ofxCamera*> cameras;
         ofxCamera* activeCamera;
+        Object3D* activeObject;
         map<string, ofxLight*> lights;
         map<string, Object3D*> objects3D;
         map<string, QuadGroup*> quadGroups;

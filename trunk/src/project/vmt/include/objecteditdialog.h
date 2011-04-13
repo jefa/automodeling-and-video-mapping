@@ -1,9 +1,21 @@
 #ifndef OBJECTEDITORDIALOG_H
 #define OBJECTEDITORDIALOG_H
 
-#include <QDialog>
+#include "Object3D.h"
 
-QT_BEGIN_NAMESPACE
+#include <QDialog>
+#include <QAction>
+#include <QDialogButtonBox>
+#include <QGroupBox>
+#include <QLabel>
+#include <QLineEdit>
+#include <QMenu>
+#include <QMenuBar>
+#include <QPushButton>
+#include <QSpinBox>
+#include <QTextEdit>
+
+/*QT_BEGIN_NAMESPACE
 class QAction;
 class QDialogButtonBox;
 class QGroupBox;
@@ -13,7 +25,9 @@ class QMenu;
 class QMenuBar;
 class QPushButton;
 class QTextEdit;
-QT_END_NAMESPACE
+QT_END_NAMESPACE*/
+
+namespace gui {
 
 //! [0]
 class ObjectEditorDialog : public QWidget
@@ -21,7 +35,12 @@ class ObjectEditorDialog : public QWidget
     Q_OBJECT
 
 public:
-    ObjectEditorDialog();
+    ObjectEditorDialog(Object3D *obj3d);
+
+private slots:
+    void xValueChanged(int);
+    void yValueChanged(int);
+    void zValueChanged(int);
 
 private:
     //void createMenu();
@@ -35,16 +54,25 @@ private:
     //QGroupBox *horizontalGroupBox;
     //QGroupBox *gridGroupBox;
     QGroupBox *formGroupBox;
-    QTextEdit *smallEditor;
-    QTextEdit *bigEditor;
+    //QTextEdit *smallEditor;
+    //QTextEdit *bigEditor;
     QLabel *labels[NumGridRows];
     QLineEdit *lineEdits[NumGridRows];
     QPushButton *buttons[NumButtons];
     QDialogButtonBox *buttonBox;
 
-    QMenu *fileMenu;
-    QAction *exitAction;
+    //QMenu *fileMenu;
+    //QAction *exitAction;
+
+    QSpinBox *xCoordSpinBox;
+    QSpinBox *yCoordSpinBox;
+    QSpinBox *zCoordSpinBox;
+
+    Object3D *object3d;
+
 };
 //! [0]
+
+}
 
 #endif

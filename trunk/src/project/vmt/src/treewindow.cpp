@@ -3,7 +3,8 @@
 #include "treewindow.h"
 #include "treemodel.h"
 #include "treeitem.h"
-//#include "colorlisteditor.h"
+#include "colorlisteditor.h"
+#include "objecteditdialog.h"
 
 using namespace gui;
 
@@ -121,7 +122,7 @@ void TreeWindow::removeRow()
 
 void TreeWindow::updateActions()
 {
-    printf("===== UPDATEACTIONS!!!\n");
+    //printf("===== UPDATEACTIONS!!!\n");
 /*    bool hasSelection = !view->selectionModel()->selection().isEmpty();
     removeRowAction->setEnabled(hasSelection);
     removeColumnAction->setEnabled(hasSelection);
@@ -262,8 +263,14 @@ void TreeWindow::clickedTree(const QModelIndex &index)
     //QStandardItem *item = myStandardItemModel->itemFromIndex(index);
     //TreeItem *item = view->model()->index(index.row(), index.column(), index.parent());
     TreeModel *model = (TreeModel*) view->model();
-    TreeItem *item = model->getItem(index);
-    item->setSeleted(model->getScene());
+    model->getItem(index)->setSeleted(model->getScene());
+}
+
+void TreeWindow::editObject(){
+    printf("\tEDITOBJECT!!!\n");
+    TreeModel *model = (TreeModel*) view->model();
+    ObjectEditorDialog *d = new ObjectEditorDialog(model->getScene()->getActiveObject());
+    d->show();
 }
 
 void registerColorItemEditorFactory(){
@@ -277,6 +284,3 @@ void registerColorItemEditorFactory(){
     QItemEditorFactory::setDefaultFactory(factory);
 }
 
-void editObject(){
-
-}
