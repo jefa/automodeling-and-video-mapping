@@ -46,6 +46,12 @@ ofxLight* Scene::getLight(string id) {
     return lights[id];
 }
 
+QuadGroup* Scene::addGroup(string id) {
+    QuadGroup *group = new QuadGroup(id);
+    quadGroups.insert(pair<string, QuadGroup*>(id, group));
+    return group;
+}
+
 Object3D* Scene::addObject3D(string id, string path) {
     Object3D *obj3D = new Object3D(path);
     objects3D.insert(pair<string, Object3D*>(id, obj3D));

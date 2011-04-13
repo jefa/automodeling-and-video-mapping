@@ -88,6 +88,7 @@
 		<Unit filename="include\Object3D.h" />
 		<Unit filename="include\PositionEffect.h" />
 		<Unit filename="include\Quad2D.h" />
+		<Unit filename="include\QuadGroup.h" />
 		<Unit filename="include\Scene.h" />
 		<Unit filename="include\TextureManager.h" />
 		<Unit filename="include\model3DS.h" />
@@ -104,6 +105,7 @@
 		<Unit filename="src\Object3D.cpp" />
 		<Unit filename="src\PositionEffect.cpp" />
 		<Unit filename="src\Quad2D.cpp" />
+		<Unit filename="src\QuadGroup.cpp" />
 		<Unit filename="src\Scene.cpp" />
 		<Unit filename="src\TextureManager.cpp" />
 		<Unit filename="src\model3DS.cpp" />
