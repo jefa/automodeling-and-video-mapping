@@ -3,6 +3,7 @@
 #include "treewindow.h"
 #include "treemodel.h"
 #include "treeitem.h"
+#include "colorlisteditor.h"
 
 using namespace gui;
 
@@ -30,6 +31,7 @@ TreeWindow::TreeWindow(Scene *scene)
     connect(removeRowAction, SIGNAL(clicked()), this, SLOT(removeRow()));
     connect(removeColumnAction, SIGNAL(clicked()), this, SLOT(removeColumn()));
     connect(insertChildAction, SIGNAL(clicked()), this, SLOT(insertChild()));
+    connect(editObjectAction, SIGNAL(clicked()), this, SLOT(editObject()));
 
     connect(view, SIGNAL(clicked(QModelIndex)), this, SLOT(clickedTree(QModelIndex)));
 
@@ -120,6 +122,7 @@ void TreeWindow::removeRow()
 
 void TreeWindow::updateActions()
 {
+    printf("===== UPDATEACTIONS!!!\n");
 /*    bool hasSelection = !view->selectionModel()->selection().isEmpty();
     removeRowAction->setEnabled(hasSelection);
     removeColumnAction->setEnabled(hasSelection);
@@ -181,6 +184,7 @@ void TreeWindow::setupUi(QWidget *treeWindow)
     layout->addWidget(removeRowAction, 1, 0);
     layout->addWidget(insertColumnAction, 1, 1);
     layout->addWidget(insertChildAction, 2, 0);
+    layout->addWidget(editObjectAction, 2, 1);
 
     vboxLayout->addLayout(layout);
 
@@ -228,6 +232,10 @@ void TreeWindow::retranslateUi(QWidget *treeWindow)
     removeColumnAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+R, C", 0, QApplication::UnicodeUTF8));
     insertChildAction->setText(QApplication::translate("treeWindow", "Insert Child", 0, QApplication::UnicodeUTF8));
     insertChildAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+N", 0, QApplication::UnicodeUTF8));
+
+    editObjectAction->setText(QApplication::translate("treeWindow", "Edit Object", 0, QApplication::UnicodeUTF8));
+    editObjectAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+O", 0, QApplication::UnicodeUTF8));
+
     //fileMenu->setTitle(QApplication::translate("treeWindow", "&File", 0, QApplication::UnicodeUTF8));
     //actionsMenu->setTitle(QApplication::translate("treeWindow", "&Actions", 0, QApplication::UnicodeUTF8));
 } // retranslateUi
@@ -254,6 +262,20 @@ void TreeWindow::clickedTree(const QModelIndex &index)
     //TreeItem *item = view->model()->index(index.row(), index.column(), index.parent());
     TreeModel *model = (TreeModel*) view->model();
     TreeItem *item = model->getItem(index);
+    item->setSeleted(model->getScene());
+}
 
-    item->setSeleted();
+void registerColorItemEditorFactory(){
+    QItemEditorFactory *factory = new QItemEditorFactory;
+
+    QItemEditorCreatorBase *colorListCreator =
+        new QStandardItemEditorCreator<ColorListEditor>();
+
+    factory->registerEditor(QVariant::Color, colorListCreator);
+
+    QItemEditorFactory::setDefaultFactory(factory);
+}
+
+void editObject(){
+
 }

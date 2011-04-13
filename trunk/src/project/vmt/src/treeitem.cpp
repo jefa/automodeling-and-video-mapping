@@ -161,10 +161,10 @@ bool TreeItem::setData(int column, const QVariant &value)
 //! [11]
 
 
-bool TreeItem::setSeleted(){
+bool TreeItem::setSeleted(Scene *scene){
     if (this->itemData == NULL)
         return false;
-    return this->itemData->setSeleted();
+    return this->itemData->setSeleted(scene);
 }
 
 CameraItemData::CameraItemData(ofxCamera *camera){
@@ -176,23 +176,25 @@ CameraItemData::~CameraItemData(){
 
 QVariant CameraItemData::getData(int column){
     //qDebug("CameraItemData::getData:: col=%d\n", column);
-    /*if (column == 0)
-        return QVariant(QString(this->camera->getName().c_str()));
-    if (column == 1)
-        return QVariant(this->layer->isEnabled());
-    */return QVariant(QString("no data"));
+    if (column == 0)
+        return QVariant(QString(this->camera->getId().c_str()));
+    //if (column == 1)
+    //    return QVariant(this->layer->isEnabled());
+    return QVariant(QString("no data"));
 }
 
 void CameraItemData::setData(int column, QVariant colValue){
-    /*qDebug("CameraItemData::setData:: col=%d, value=%s\n", column, colValue.toString().toStdString().c_str());
-    if (column == 0)
-        this->layer->setName(colValue.toString().toStdString());
-    if (column == 1)
-        this->layer->setEnabled(colValue.toBool());
-*/}
+    //qDebug("CameraItemData::setData:: col=%d, value=%s\n", column, colValue.toString().toStdString().c_str());
+    //if (column == 0)
+    //    this->camera->setId(colValue.toString().toStdString());
+    //if (column == 1)
+    //    this->camera->setEnabled(colValue.toBool());
+}
 
-bool CameraItemData::setSeleted(){
+bool CameraItemData::setSeleted(Scene *scene){
     //activate camera
+    ofxCamera *tmpCamera = scene->activateCamera(this->camera->getId());
+    return (tmpCamera != NULL);
 }
 
 LayerItemData::LayerItemData(Layer2D *layer2D){
@@ -219,8 +221,8 @@ void LayerItemData::setData(int column, QVariant colValue){
         this->layer->setEnabled(colValue.toBool());
 }
 
-bool LayerItemData::setSeleted(){
-    //activate camera
+bool LayerItemData::setSeleted(Scene *scene){
+    //activate layer
     return false;
 }
 
@@ -248,7 +250,7 @@ void QuadItemData::setData(int column, QVariant colValue){
         this->quad2d->setEnabled(colValue.toBool());
 }
 
-bool QuadItemData::setSeleted(){
+bool QuadItemData::setSeleted(Scene *scene){
     //activate quad
     return false;
 }
@@ -277,6 +279,6 @@ void ObjectItemData::setData(int column, QVariant colValue){
         //this->quad->setEnabled(colValue.toBool());
 }
 
-bool ObjectItemData::setSeleted(){
+bool ObjectItemData::setSeleted(Scene *scene){
     return false;
 }

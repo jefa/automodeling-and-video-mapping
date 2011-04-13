@@ -45,6 +45,7 @@ public:
     QPushButton *insertColumnAction;
     QPushButton *removeColumnAction;
     QPushButton *insertChildAction;
+    QPushButton *editObjectAction;
     QVBoxLayout *vboxLayout;
     QGridLayout *layout;
     QTreeView *view;
