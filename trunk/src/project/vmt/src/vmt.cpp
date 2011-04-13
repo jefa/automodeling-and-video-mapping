@@ -1,6 +1,7 @@
 #include "Quad2D.h"
 #include "Object3D.h"
 #include "PositionEffect.h"
+#include "FadeEffect.h"
 #include "vmt.h"
 #include <map>
 //--------------------------------------------------------------
@@ -38,10 +39,15 @@ void vmt::setup(){
 
     scene->activateCamera("cam2");
 
+    QuadGroup* group1 = scene->addGroup("group1");
+
     Layer2D* layer1 = cam2->addLayer2D("layer1");
     Quad2D* quad1 = layer1->addQuad2D("q1");
+    group1->addQuad2D(quad1);
     quad1->setEnabled(true);
+
     Quad2D* quad2 = layer1->addQuad2D("q2");
+    group1->addQuad2D(quad2);
     quad2->setPoint(0, 10, 10);
     quad2->setPoint(1, 10, 20);
     quad2->setPoint(2, 30, 20);
@@ -62,6 +68,8 @@ void vmt::setup(){
     scene->addEffect("ef1", new PositionEffect(obj3d, ofxVec3f(0,3,0), ofxVec3f(0,-3,0), 0.5f));
     scene->addEffect("ef2", new PositionEffect(obj3d, ofxVec3f(3,0,0), ofxVec3f(-3,0,0), 0.5f));
     scene->addEffect("ef3", new PositionEffect(obj3d, ofxVec3f(0,0,3), ofxVec3f(0,0,-3), 0.5f));
+
+    scene->addEffect("ef4", new FadeEffect(group1, ofxVec4f(0,0,0,0), ofxVec4f(1,1,1,1), 0.5f));
 
     /*Lighting*/
 
@@ -131,6 +139,9 @@ void vmt::keyPressed(int key){
 
     if(key == 'c')
         scene->testEffect("ef3");
+
+    if(key == 'a')
+        scene->testEffect("ef4");
 }
 
 //--------------------------------------------------------------
