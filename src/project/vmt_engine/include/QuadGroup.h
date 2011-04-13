@@ -23,8 +23,6 @@ class QuadGroup : public IPropertyManager
         string name;
         bool enabled;
         map<string, Quad2D*> quads2D;
-
-        map<string, Quad2D*>::iterator quadsIt;
 };
 
 #endif // QUADGROUP_H

@@ -9,13 +9,13 @@ QuadGroup::~QuadGroup() {
 }
 
 void QuadGroup::addQuad2D(Quad2D* quad) {
-    quads2D.insert(pair<string, Quad2D*>(quad->getName(), quad));
+    quads2D.insert(pair<string, Quad2D*>(quad->getId(), quad));
 
     //Expandir si corresponde el contenedor
 }
 
 void QuadGroup::genUVWCoords() {
-
+    map<string, Quad2D*>::iterator quadsIt;
     //Case FaceMap
     for(quadsIt = quads2D.begin(); quadsIt != quads2D.end(); quadsIt++) {
         quadsIt->second->setUVCoordinate(0, 0,0);
@@ -30,6 +30,7 @@ float QuadGroup::get(int aParam) {
 }
 
 void QuadGroup::set(int aParam, float aValue) {
+    map<string, Quad2D*>::iterator quadsIt;
     for(quadsIt = quads2D.begin(); quadsIt != quads2D.end(); quadsIt++) {
         quadsIt->second->set(aParam, aValue);
     }

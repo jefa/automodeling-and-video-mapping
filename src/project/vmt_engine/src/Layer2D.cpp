@@ -1,7 +1,5 @@
 #include "Layer2D.h"
 
-map<string, Quad2D*>::iterator quadsIt;
-
 Layer2D::Layer2D()
 {
     this->enabled = true;
@@ -52,6 +50,7 @@ void Layer2D::draw() {
     if(!enabled)
         return;
 
+    map<string, Quad2D*>::iterator quadsIt;
     for(quadsIt = quads2D.begin(); quadsIt != quads2D.end(); quadsIt++) {
         quadsIt->second->draw();
     }
