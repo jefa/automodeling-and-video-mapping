@@ -83,8 +83,7 @@ void Object3D::setRotation(int which, float angle, float rot_x, float rot_y, flo
 }
 
 float Object3D::get(int aParam) {
-    switch(aParam)
-    {
+    switch(aParam) {
         case POS_X:
             return pos.x;
         case POS_Y:
@@ -96,8 +95,7 @@ float Object3D::get(int aParam) {
 }
 
 void Object3D::set(int aParam, float aValue) {
-    switch(aParam)
-    {
+    switch(aParam) {
         case POS_X:
             pos.x = aValue;
             break;

@@ -5,6 +5,7 @@
 #include "ofxLight.h"
 #include "Object3D.h"
 #include "Effect.h"
+#include "QuadGroup.h"
 
 #include <string>
 #include <map>
@@ -31,6 +32,8 @@ class Scene
         Object3D* addObject3D(string id, string path);
         Object3D* getObject3D(string id);
 
+        QuadGroup* addGroup(string id);
+
         Effect* addEffect(string id, Effect* effect);
         void testEffect(string id);
 
@@ -39,6 +42,7 @@ class Scene
         ofxCamera* activeCamera;
         map<string, ofxLight*> lights;
         map<string, Object3D*> objects3D;
+        map<string, QuadGroup*> quadGroups;
         map<string, Effect*> effects;
 };
 

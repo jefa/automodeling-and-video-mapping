@@ -2,27 +2,11 @@
 #include "ofGraphics.h"
 #include "ofMain.h"
 
-static const float quadTextCoords[] = {0,0, 1,0, 1,1, 0,1};
-
 //Radio de los circulos
 static const float radius = 5.0f;
 
-Quad2D::Quad2D() {
-    selected = false;
-    enabled = false;
-
-    float centerX = 200.0f;
-    float centerY = 200.0f;
-    float quadWidth = 100.0f;
-    float quadHeight = 100.0f;
-
-    quadPoints[0] = centerX - quadWidth;quadPoints[1] = centerY - quadHeight;
-    quadPoints[2] = centerX + quadWidth;quadPoints[3] = centerY - quadHeight;
-    quadPoints[4] = centerX + quadWidth;quadPoints[5] = centerY + quadHeight;
-    quadPoints[6] = centerX - quadWidth;quadPoints[7] = centerY + quadHeight;
-}
-
-Quad2D::Quad2D(float x1,float y1,float x2,float y2,float x3, float y3, float x4, float y4) {
+Quad2D::Quad2D(float x1, float y1, float x2, float y2,
+               float x3, float y3, float x4, float y4) {
     selected = false;
     enabled = false;
 
@@ -30,6 +14,13 @@ Quad2D::Quad2D(float x1,float y1,float x2,float y2,float x3, float y3, float x4,
     quadPoints[2] = x2;quadPoints[3] = y2;
     quadPoints[4] = x3;quadPoints[5] = y3;
     quadPoints[6] = x4;quadPoints[7] = y4;
+
+    quadTextCoords[0] = 0;quadTextCoords[1] = 0;
+    quadTextCoords[2] = 1;quadTextCoords[3] = 0;
+    quadTextCoords[4] = 1;quadTextCoords[5] = 1;
+    quadTextCoords[6] = 0;quadTextCoords[7] = 1;
+
+    color = ofxVec4f(0.7f, 0.8f, 0.9f, 1.0f);
 }
 
 Quad2D::~Quad2D() {
@@ -45,18 +36,24 @@ bool Quad2D::isEnabled() {
 }
 
 void Quad2D::setPoint(int i, float x, float y) {
-    if(i >= 0 && i <= 3)
-    {
+    if(i >= 0 && i <= 3) {
         quadPoints[i * 2] = x;
         quadPoints[1 + (i * 2)] = y;
     }
 }
 
 void Quad2D::getPoint(int i, float &x, float &y) {
-    if(i >= 0 && i <= 3)
-    {
+    if(i >= 0 && i <= 3) {
         x = quadPoints[i * 2];
         y = quadPoints[1 + (i * 2)];
+    }
+}
+
+void Quad2D::setUVCoordinate(int i, float u, float v) {
+    if(i >= 0 && i <= 3)
+    {
+        quadTextCoords[i * 2] = u;
+        quadTextCoords[1 + (i * 2)] = v;
     }
 }
 
@@ -87,7 +84,8 @@ void Quad2D::draw() {
         return;
     }
 
-    glColor3f(0.7, 0.8, 0.9);
+    //glColor3f(0.7, 0.8, 0.9);
+    glColor4f(color.x, color.y, color.z, color.w);
 
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     glTexCoordPointer(2, GL_FLOAT, 0, &quadTextCoords);
@@ -135,6 +133,20 @@ string Quad2D::getName(){
 
 
 void Quad2D::set(int aParam, float value) {
+    switch(aParam) {
+        case COL_R:
+            color.x = value;
+            break;
+        case COL_G:
+            color.y = value;
+            break;
+        case COL_B:
+            color.z = value;
+            break;
+        case COL_A:
+            color.w = value;
+            break;
+    }
 }
 
 float Quad2D::get(int aParam) {
