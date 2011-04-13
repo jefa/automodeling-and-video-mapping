@@ -3,7 +3,7 @@
 #include "treewindow.h"
 #include "treemodel.h"
 #include "treeitem.h"
-#include "colorlisteditor.h"
+//#include "colorlisteditor.h"
 
 using namespace gui;
 
@@ -268,10 +268,10 @@ void TreeWindow::clickedTree(const QModelIndex &index)
 void registerColorItemEditorFactory(){
     QItemEditorFactory *factory = new QItemEditorFactory;
 
-    QItemEditorCreatorBase *colorListCreator =
-        new QStandardItemEditorCreator<ColorListEditor>();
+  //  QItemEditorCreatorBase *colorListCreator =
+    //    new QStandardItemEditorCreator<ColorListEditor>();
 
-    factory->registerEditor(QVariant::Color, colorListCreator);
+//    factory->registerEditor(QVariant::Color, colorListCreator);
 
     QItemEditorFactory::setDefaultFactory(factory);
 }

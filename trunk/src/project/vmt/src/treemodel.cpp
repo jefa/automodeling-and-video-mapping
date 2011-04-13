@@ -226,11 +226,11 @@ void TreeModel::setupLayersModelData(TreeItem *parent)
             TreeItem *childItemLayer = childItemCamera->child(positionLayer);
             int positionQuad =0;
 
-            map<string, Quad2D*> quadsMap = currentLayer->getQuads2D();
-            map<string, Quad2D*>::iterator quadsIt;
+            vector<Quad2D*> quadsMap = currentLayer->getQuads2D();
+            vector<Quad2D*>::iterator quadsIt;
             for(quadsIt = quadsMap.begin(); quadsIt != quadsMap.end(); quadsIt++) {
 
-                Quad2D* currentQuad = quadsIt->second;
+                Quad2D* currentQuad = (*quadsIt);
                 QuadItemData *quadItem = new QuadItemData(currentQuad);
                 childItemLayer->insertChildren(positionQuad, 1, quadItem, "dummyquadstr");
                 positionQuad++;
