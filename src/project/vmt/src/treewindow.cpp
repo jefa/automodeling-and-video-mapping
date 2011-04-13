@@ -12,7 +12,6 @@ TreeWindow::TreeWindow(Scene *scene)
     setupUi(this);
 
     TreeModel *model = new TreeModel(scene, NULL);
-
     view->setModel(model);
     //for (int column = 0; column < model->columnCount(); ++column)
     //    view->resizeColumnToContents(column);
