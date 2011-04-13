@@ -31,6 +31,7 @@ class Scene
 
         Object3D* addObject3D(string id, string path);
         Object3D* getObject3D(string id);
+        map<string, Object3D*> getObjects3D();
 
         QuadGroup* addGroup(string id);
 

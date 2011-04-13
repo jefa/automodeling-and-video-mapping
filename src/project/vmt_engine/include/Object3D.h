@@ -14,8 +14,11 @@ enum A_PARAM_OBJECT3D {POS_X, POS_Y, POS_Z};
 class Object3D : public IPropertyManager
 {
     public:
-        Object3D(string path);
+        Object3D(string id, string path);
         virtual ~Object3D();
+
+        void setId(string id);
+        string getId();
 
         void draw();
 
@@ -35,7 +38,7 @@ class Object3D : public IPropertyManager
 
         int numRotations;
         model3DS * model;
-
+        string id;
 };
 
 #endif // MESH3D_H

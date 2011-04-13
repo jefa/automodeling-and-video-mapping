@@ -123,12 +123,12 @@ void Quad2D::draw() {
 	#endif
 }
 
-void Quad2D::setName(string name){
-    this->name = name;
+void Quad2D::setId(string id){
+    this->id = id;
 }
 
-string Quad2D::getName(){
-    return this->name;
+string Quad2D::getId(){
+    return this->id;
 }
 
 

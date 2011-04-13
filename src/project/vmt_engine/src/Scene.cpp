@@ -53,13 +53,17 @@ QuadGroup* Scene::addGroup(string id) {
 }
 
 Object3D* Scene::addObject3D(string id, string path) {
-    Object3D *obj3D = new Object3D(path);
+    Object3D *obj3D = new Object3D(id, path);
     objects3D.insert(pair<string, Object3D*>(id, obj3D));
     return obj3D;
 }
 
 Object3D* Scene::getObject3D(string id) {
     return objects3D[id];
+}
+
+map<string, Object3D*> Scene::getObjects3D() {
+    return objects3D;
 }
 
 Effect* Scene::addEffect(string id, Effect* effect) {
