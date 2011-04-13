@@ -10,11 +10,9 @@ TreeModel::TreeModel(Scene *scene, QObject *parent)
     : QAbstractItemModel(parent)
 {
     this->scene = scene;
-    rootItem = new TreeItem(NULL, NULL, "Scene");
-    rootItem->insertChildren(0, 1, NULL, "LAYERS");
-    rootItem->insertChildren(1, 1, NULL, "OBJECTS");
-
-    setupModelData(rootItem->child(0));
+    setupSceneModelData();
+    setupLayersModelData(rootItem->child(0));
+    setupObjectsModelData(rootItem->child(1));
 }
 //! [0]
 
@@ -202,10 +200,9 @@ bool TreeModel::setHeaderData(int section, Qt::Orientation orientation,
     return result;
 }
 
-void TreeModel::setupModelData(TreeItem *parent)
+void TreeModel::setupLayersModelData(TreeItem *parent)
 {
-
-    qDebug("==== setupModelLayersData\n");
+    qDebug("==== setupLayersModelData\n");
 
     int positionCamera = 0;
 
@@ -252,7 +249,7 @@ void TreeModel::setupModelData(TreeItem *parent)
             for(quadsIt = quadsMap.begin(); quadsIt != quadsMap.end(); quadsIt++) {
 
                 Quad2D* currentQuad = quadsIt->second;
-                ObjectItemData *quadItem = new ObjectItemData(currentQuad);
+                QuadItemData *quadItem = new QuadItemData(currentQuad);
                 if (currentQuad == NULL)
                     qDebug("=== currentQuad NULL\n");
                 else
@@ -269,5 +266,35 @@ void TreeModel::setupModelData(TreeItem *parent)
             }
             positionLayer++;
         }
+    }
+}
+
+void TreeModel::setupSceneModelData()
+{
+    rootItem = new TreeItem(NULL, NULL, "Scene");
+    rootItem->insertChildren(0, 1, NULL, "LAYERS");
+    rootItem->insertChildren(1, 1, NULL, "OBJECTS");
+}
+
+void TreeModel::setupObjectsModelData(TreeItem *parent)
+{
+    qDebug("==== setupObjectsModelData\n");
+
+    int positionObject = 0;
+
+    if (parent == NULL)
+        qDebug("=== PARENT NULL\n");
+
+    if (scene == NULL)
+        qDebug("=== SCENE NULL\n");
+
+    map<string, Object3D*> objectsMap = this->scene->getObjects3D();
+    map<string, Object3D*>::iterator objectsIt;
+    for(objectsIt = objectsMap.begin(); objectsIt != objectsMap.end(); objectsIt++) {
+        Object3D* object = objectsIt->second;
+        ObjectItemData *objectItem = new ObjectItemData(object);
+
+        parent->insertChildren(positionObject, 1, objectItem, "");
+        TreeItem *childItemObject = parent->child(positionObject);
     }
 }

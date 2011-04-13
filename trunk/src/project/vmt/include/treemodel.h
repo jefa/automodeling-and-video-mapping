@@ -49,9 +49,12 @@ public:
     //bool removeRows(int position, int rows,
     //                const QModelIndex &parent = QModelIndex());
 
-private:
-    void setupModelData(TreeItem *parent);
     TreeItem *getItem(const QModelIndex &index) const;
+
+private:
+    void setupSceneModelData();
+    void setupLayersModelData(TreeItem *parent);
+    void setupObjectsModelData(TreeItem *parent);
 
     TreeItem *rootItem;
     Scene *scene;

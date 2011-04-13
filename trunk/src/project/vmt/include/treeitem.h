@@ -3,6 +3,7 @@
 
 #include "Layer2D.h"
 #include "Quad2D.h"
+#include "Object3D.h"
 #include "ofxCamera.h"
 
 #include <QList>
@@ -34,6 +35,7 @@ public:
     //bool removeColumns(int position, int columns);
     int childNumber() const;
     bool setData(int column, const QVariant &value);
+    bool setSeleted();
 
 private:
     string itemLabel;
@@ -47,6 +49,7 @@ class TreeItemData {
     public:
     virtual QVariant getData(int column)=0;
     virtual void setData(int column, QVariant colValue)=0;
+    virtual bool setSeleted()=0;
 };
 
 class CameraItemData : public TreeItemData {
@@ -57,6 +60,7 @@ class CameraItemData : public TreeItemData {
 
     QVariant getData(int column);
     void setData(int column, QVariant colValue);
+    bool setSeleted();
 
     private:
     ofxCamera *camera;
@@ -70,22 +74,39 @@ class LayerItemData : public TreeItemData {
 
     QVariant getData(int column);
     void setData(int column, QVariant colValue);
+    bool setSeleted();
 
     private:
     Layer2D *layer;
 };
 
+class QuadItemData : public TreeItemData {
+
+    public:
+    QuadItemData(Quad2D *quad2D);
+    ~QuadItemData();
+
+    QVariant getData(int column);
+    void setData(int column, QVariant colValue);
+    bool setSeleted();
+
+    private:
+    Quad2D *quad2d;
+};
+
+
 class ObjectItemData : public TreeItemData {
 
     public:
-    ObjectItemData(Quad2D *quad2D);
+    ObjectItemData(Object3D *object3d);
     ~ObjectItemData();
 
     QVariant getData(int column);
     void setData(int column, QVariant colValue);
+    bool setSeleted();
 
     private:
-    Quad2D *quad;
+    Object3D *object3d;
 };
 
 }

@@ -161,6 +161,12 @@ bool TreeItem::setData(int column, const QVariant &value)
 //! [11]
 
 
+bool TreeItem::setSeleted(){
+    if (this->itemData == NULL)
+        return false;
+    return this->itemData->setSeleted();
+}
+
 CameraItemData::CameraItemData(ofxCamera *camera){
     this->camera = camera;
 }
@@ -184,6 +190,10 @@ void CameraItemData::setData(int column, QVariant colValue){
     if (column == 1)
         this->layer->setEnabled(colValue.toBool());
 */}
+
+bool CameraItemData::setSeleted(){
+    //activate camera
+}
 
 LayerItemData::LayerItemData(Layer2D *layer2D){
     this->layer = layer2D;
@@ -209,8 +219,42 @@ void LayerItemData::setData(int column, QVariant colValue){
         this->layer->setEnabled(colValue.toBool());
 }
 
-ObjectItemData::ObjectItemData(Quad2D *quad2D){
-    this->quad = quad2D;
+bool LayerItemData::setSeleted(){
+    //activate camera
+    return false;
+}
+
+QuadItemData::QuadItemData(Quad2D *quad2d){
+    this->quad2d = quad2d;
+}
+
+QuadItemData::~QuadItemData(){
+}
+
+QVariant QuadItemData::getData(int column){
+    //qDebug("LayerItemData::getData:: col=%d\n", column);
+    if (column == 0)
+        return QVariant(QString(this->quad2d->getId().c_str()));
+    if (column == 1)
+        return QVariant(this->quad2d->isEnabled());
+    return QVariant(QString("no data"));
+}
+
+void QuadItemData::setData(int column, QVariant colValue){
+    qDebug("QuadItemData::setData:: col=%d, value=%s\n", column, colValue.toString().toStdString().c_str());
+    if (column == 0)
+        this->quad2d->setId(colValue.toString().toStdString());
+    if (column == 1)
+        this->quad2d->setEnabled(colValue.toBool());
+}
+
+bool QuadItemData::setSeleted(){
+    //activate quad
+    return false;
+}
+
+ObjectItemData::ObjectItemData(Object3D *object3d){
+    this->object3d = object3d;
 }
 
 ObjectItemData::~ObjectItemData(){
@@ -219,17 +263,20 @@ ObjectItemData::~ObjectItemData(){
 QVariant ObjectItemData::getData(int column){
     //qDebug("LayerItemData::getData:: col=%d\n", column);
     if (column == 0)
-        return QVariant(QString(this->quad->getName().c_str()));
-    if (column == 1)
-        return QVariant(this->quad->isEnabled());
-        //return QVariant(QColor(Qt::black));
+        return QVariant(QString(this->object3d->getId().c_str()));
+    //if (column == 1)
+        //return QVariant(this->quad->isEnabled());
     return QVariant(QString("no data"));
 }
 
 void ObjectItemData::setData(int column, QVariant colValue){
-    qDebug("LayerItemData::setData:: col=%d, value=%s\n", column, colValue.toString().toStdString().c_str());
+    qDebug("ObjectItemData::setData:: col=%d, value=%s\n", column, colValue.toString().toStdString().c_str());
     if (column == 0)
-        this->quad->setName(colValue.toString().toStdString());
-    if (column == 1)
-        this->quad->setEnabled(colValue.toBool());
+        this->object3d->setId(colValue.toString().toStdString());
+    //if (column == 1)
+        //this->quad->setEnabled(colValue.toBool());
+}
+
+bool ObjectItemData::setSeleted(){
+    return false;
 }
