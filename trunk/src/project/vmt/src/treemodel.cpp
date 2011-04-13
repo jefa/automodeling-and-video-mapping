@@ -12,7 +12,7 @@ TreeModel::TreeModel(Scene *scene, QObject *parent)
     this->scene = scene;
     setupSceneModelData();
     setupLayersModelData(rootItem->child(0));
-    setupObjectsModelData(rootItem->child(1));
+    //setupObjectsModelData(rootItem->child(1));
 }
 //! [0]
 
@@ -224,13 +224,13 @@ void TreeModel::setupLayersModelData(TreeItem *parent)
 
             childItemCamera->insertChildren(positionLayer, 1, layerItem, "");
             TreeItem *childItemLayer = childItemCamera->child(positionLayer);
-            int positionQuad =0;
 
             vector<Quad2D*> quadsMap = currentLayer->getQuads2D();
+            int positionQuad =0;
             vector<Quad2D*>::iterator quadsIt;
-            for(quadsIt = quadsMap.begin(); quadsIt != quadsMap.end(); quadsIt++) {
+            for (quadsIt = quadsMap.begin(); quadsIt != quadsMap.end(); quadsIt++) {
 
-                Quad2D* currentQuad = (*quadsIt);
+                Quad2D *currentQuad = (*quadsIt);
                 QuadItemData *quadItem = new QuadItemData(currentQuad);
                 childItemLayer->insertChildren(positionQuad, 1, quadItem, "dummyquadstr");
                 positionQuad++;

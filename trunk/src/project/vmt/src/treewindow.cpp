@@ -160,6 +160,8 @@ void TreeWindow::setupUi(QWidget *treeWindow)
     removeColumnAction->setObjectName(QString::fromUtf8("removeColumnAction"));
     insertChildAction = new QPushButton();
     insertChildAction->setObjectName(QString::fromUtf8("insertChildAction"));
+    editObjectAction = new QPushButton();
+    editObjectAction->setObjectName(QString::fromUtf8("editObjectAction"));
     treeWindow->setObjectName(QString::fromUtf8("centralwidget"));
     vboxLayout = new QVBoxLayout(treeWindow);
     vboxLayout->setSpacing(0);

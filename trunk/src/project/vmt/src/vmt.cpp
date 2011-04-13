@@ -105,7 +105,7 @@ void vmt::setup(){
     /* End Lighting */
 
     treeWindow = new TreeWindow(this->scene);
-    //treeWindow->show();
+    treeWindow->show();
 
 }
 
