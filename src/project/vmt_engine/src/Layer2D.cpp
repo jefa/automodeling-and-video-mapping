@@ -18,12 +18,17 @@ Layer2D::~Layer2D()
 Quad2D* Layer2D::addQuad2D(string id) {
     Quad2D* quad2D = new Quad2D();
     quad2D->setId(id);
-    quads2D.insert(pair<string, Quad2D*>(id, quad2D));
+    quads2D.push_back(quad2D);
     return quad2D;
 }
 
 Quad2D* Layer2D::getQuad2D(string id) {
-    return quads2D[id];
+    vector<Quad2D*>::iterator it;
+    for (it = quads2D.begin(); it != quads2D.end(); it++ ) {
+        if((*it)->getId().compare(id) == 0) {
+            return *it;
+        }
+    }
 }
 
 void Layer2D::setEnabled(bool enabled) {
@@ -42,7 +47,7 @@ string Layer2D::getName(){
     return this->name;
 }
 
-map<string, Quad2D*> Layer2D::getQuads2D() {
+vector<Quad2D*> Layer2D::getQuads2D() {
     return quads2D;
 }
 
@@ -50,8 +55,8 @@ void Layer2D::draw() {
     if(!enabled)
         return;
 
-    map<string, Quad2D*>::iterator quadsIt;
-    for(quadsIt = quads2D.begin(); quadsIt != quads2D.end(); quadsIt++) {
-        quadsIt->second->draw();
+    vector<Quad2D*>::iterator it;
+    for(it = quads2D.begin(); it != quads2D.end(); it++) {
+        (*it)->draw();
     }
 }
