@@ -1,9 +1,9 @@
 #ifndef TREEITEM_H
 #define TREEITEM_H
 
+#include "Scene.h"
 #include "Layer2D.h"
 #include "Quad2D.h"
-#include "Object3D.h"
 #include "ofxCamera.h"
 
 #include <QList>
@@ -35,7 +35,7 @@ public:
     //bool removeColumns(int position, int columns);
     int childNumber() const;
     bool setData(int column, const QVariant &value);
-    bool setSeleted();
+    bool setSeleted(Scene *scene);
 
 private:
     string itemLabel;
@@ -49,7 +49,7 @@ class TreeItemData {
     public:
     virtual QVariant getData(int column)=0;
     virtual void setData(int column, QVariant colValue)=0;
-    virtual bool setSeleted()=0;
+    virtual bool setSeleted(Scene *scene)=0;
 };
 
 class CameraItemData : public TreeItemData {
@@ -60,7 +60,7 @@ class CameraItemData : public TreeItemData {
 
     QVariant getData(int column);
     void setData(int column, QVariant colValue);
-    bool setSeleted();
+    bool setSeleted(Scene *scene);
 
     private:
     ofxCamera *camera;
@@ -74,7 +74,7 @@ class LayerItemData : public TreeItemData {
 
     QVariant getData(int column);
     void setData(int column, QVariant colValue);
-    bool setSeleted();
+    bool setSeleted(Scene *scene);
 
     private:
     Layer2D *layer;
@@ -88,7 +88,7 @@ class QuadItemData : public TreeItemData {
 
     QVariant getData(int column);
     void setData(int column, QVariant colValue);
-    bool setSeleted();
+    bool setSeleted(Scene *scene);
 
     private:
     Quad2D *quad2d;
@@ -103,7 +103,7 @@ class ObjectItemData : public TreeItemData {
 
     QVariant getData(int column);
     void setData(int column, QVariant colValue);
-    bool setSeleted();
+    bool setSeleted(Scene *scene);
 
     private:
     Object3D *object3d;

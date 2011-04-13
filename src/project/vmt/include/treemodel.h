@@ -50,6 +50,7 @@ public:
     //                const QModelIndex &parent = QModelIndex());
 
     TreeItem *getItem(const QModelIndex &index) const;
+    Scene* getScene();
 
 private:
     void setupSceneModelData();

@@ -202,15 +202,7 @@ bool TreeModel::setHeaderData(int section, Qt::Orientation orientation,
 
 void TreeModel::setupLayersModelData(TreeItem *parent)
 {
-    qDebug("==== setupLayersModelData\n");
-
     int positionCamera = 0;
-
-    if (parent == NULL)
-        qDebug("=== PARENT NULL\n");
-
-    if (scene == NULL)
-        qDebug("=== SCENE NULL\n");
 
     map<string, ofxCamera*> camerasMap = this->scene->getCameras();
     map<string, ofxCamera*>::iterator camerasIt;
@@ -230,16 +222,6 @@ void TreeModel::setupLayersModelData(TreeItem *parent)
             Layer2D* currentLayer = layersIt->second;
             LayerItemData *layerItem = new LayerItemData(currentLayer);
 
-            if (currentLayer == NULL)
-                qDebug("=== currentLayer NULL\n");
-            else
-                qDebug("=== currentLayer NOOO NULL\n");
-
-            if (layerItem == NULL)
-                qDebug("=== layerItem NULL\n");
-            else
-                qDebug("=== layerItem NOOO NULL\n");
-
             childItemCamera->insertChildren(positionLayer, 1, layerItem, "");
             TreeItem *childItemLayer = childItemCamera->child(positionLayer);
             int positionQuad =0;
@@ -250,18 +232,7 @@ void TreeModel::setupLayersModelData(TreeItem *parent)
 
                 Quad2D* currentQuad = quadsIt->second;
                 QuadItemData *quadItem = new QuadItemData(currentQuad);
-                if (currentQuad == NULL)
-                    qDebug("=== currentQuad NULL\n");
-                else
-                    qDebug("=== currentQuad NOOO NULL\n");
-
-                if (quadItem == NULL)
-                    qDebug("=== quadItem NULL\n");
-                else
-                    qDebug("=== quadItem NOOO NULL\n");
-
                 childItemLayer->insertChildren(positionQuad, 1, quadItem, "dummyquadstr");
-
                 positionQuad++;
             }
             positionLayer++;
@@ -274,20 +245,18 @@ void TreeModel::setupSceneModelData()
     rootItem = new TreeItem(NULL, NULL, "Scene");
     rootItem->insertChildren(0, 1, NULL, "LAYERS");
     rootItem->insertChildren(1, 1, NULL, "OBJECTS");
+    rootItem->insertChildren(2, 1, NULL, "Background");
+
+    //int positionScene = 0;
+    //PropertyItemData *propItem = new PropertyItemData(currentQuad);
+    //childItemLayer->insertChildren(positionScene, 1, propItem, "dummyquadstr");
+    //positionScene++;
+
 }
 
 void TreeModel::setupObjectsModelData(TreeItem *parent)
 {
-    qDebug("==== setupObjectsModelData\n");
-
     int positionObject = 0;
-
-    if (parent == NULL)
-        qDebug("=== PARENT NULL\n");
-
-    if (scene == NULL)
-        qDebug("=== SCENE NULL\n");
-
     map<string, Object3D*> objectsMap = this->scene->getObjects3D();
     map<string, Object3D*>::iterator objectsIt;
     for(objectsIt = objectsMap.begin(); objectsIt != objectsMap.end(); objectsIt++) {
@@ -296,5 +265,10 @@ void TreeModel::setupObjectsModelData(TreeItem *parent)
 
         parent->insertChildren(positionObject, 1, objectItem, "");
         TreeItem *childItemObject = parent->child(positionObject);
+        positionObject++;
     }
+}
+
+Scene* TreeModel::getScene(){
+    return this->scene;
 }

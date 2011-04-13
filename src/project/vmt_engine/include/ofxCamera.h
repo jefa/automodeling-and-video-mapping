@@ -48,6 +48,9 @@ public:
 	ofxVec3f getEye();
 	ofxVec3f getUp();
 
+	void setId(string id);
+	string getId();
+
     void drawCamera();
     bool isProjector();
     void setIsProjector(bool);
@@ -74,6 +77,7 @@ protected:
 
 private:
 	bool projector;
+	string id;
     map<string, Layer2D*> layers2D;
 
 

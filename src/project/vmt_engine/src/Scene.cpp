@@ -15,6 +15,7 @@ Scene::~Scene() {
 
 ofxCamera* Scene::addCamera(string id) {
     ofxCamera* camera = new ofxCamera();
+    camera->setId(id);
     cameras.insert(pair<string, ofxCamera*>(id, camera));
     return camera;
 }

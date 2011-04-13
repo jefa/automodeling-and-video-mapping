@@ -22,6 +22,14 @@ ofxCamera::ofxCamera() {
 	up();
 }
 
+void ofxCamera::setId(string id){
+    this->id = id;
+}
+
+string ofxCamera::getId(){
+    return this->id;
+}
+
 void ofxCamera::position(float x, float y, float z) {
 	posCoord.x = x;
 	posCoord.y = y;
