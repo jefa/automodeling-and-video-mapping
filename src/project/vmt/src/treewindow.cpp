@@ -2,6 +2,7 @@
 
 #include "treewindow.h"
 #include "treemodel.h"
+#include "treeitem.h"
 
 using namespace gui;
 
@@ -12,8 +13,9 @@ TreeWindow::TreeWindow(Scene *scene)
     TreeModel *model = new TreeModel(scene, NULL);
 
     view->setModel(model);
-    for (int column = 0; column < model->columnCount(); ++column)
-        view->resizeColumnToContents(column);
+    //for (int column = 0; column < model->columnCount(); ++column)
+    //    view->resizeColumnToContents(column);
+    view->setColumnWidth(0, 150);
 
     connect(exitAction, SIGNAL(clicked()), this, SLOT(quit()));
 
@@ -28,6 +30,8 @@ TreeWindow::TreeWindow(Scene *scene)
     connect(removeRowAction, SIGNAL(clicked()), this, SLOT(removeRow()));
     connect(removeColumnAction, SIGNAL(clicked()), this, SLOT(removeColumn()));
     connect(insertChildAction, SIGNAL(clicked()), this, SLOT(insertChild()));
+
+    connect(view, SIGNAL(clicked(QModelIndex)), this, SLOT(clickedTree(QModelIndex)));
 
     updateActions();
 }
@@ -140,7 +144,8 @@ void TreeWindow::setupUi(QWidget *treeWindow)
 {
     if (treeWindow->objectName().isEmpty())
         treeWindow->setObjectName(QString::fromUtf8("treeWindow"));
-    treeWindow->resize(573, 468);
+    treeWindow->resize(500, 400);
+    treeWindow->move(10,10);
     exitAction = new QPushButton();
     exitAction->setObjectName(QString::fromUtf8("exitAction"));
     insertRowAction = new QPushButton();
@@ -239,4 +244,16 @@ QString TreeWindow::inputText()
         return text;
 
     return "no text";
+}
+
+void TreeWindow::clickedTree(const QModelIndex &index)
+{
+    printf("============== index: %d\n", index.row());
+
+    //QStandardItem *item = myStandardItemModel->itemFromIndex(index);
+    //TreeItem *item = view->model()->index(index.row(), index.column(), index.parent());
+    TreeModel *model = (TreeModel*) view->model();
+    TreeItem *item = model->getItem(index);
+
+    item->setSeleted();
 }

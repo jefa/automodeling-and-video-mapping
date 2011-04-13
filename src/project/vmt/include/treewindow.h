@@ -24,6 +24,8 @@ public:
 
 public slots:
     void updateActions();
+    void clickedTree(const QModelIndex &index);
+
 
 private slots:
     void insertChild();
@@ -37,20 +39,15 @@ private:
     void retranslateUi(QWidget *);
 
 public:
-    /*QAction*/QPushButton *exitAction;
-    /*QAction*/QPushButton *insertRowAction;
-    /*QAction*/QPushButton *removeRowAction;
-    /*QAction*/QPushButton *insertColumnAction;
-    /*QAction*/QPushButton *removeColumnAction;
-    /*QAction*/QPushButton *insertChildAction;
-    //QWidget *centralwidget;
+    QPushButton *exitAction;
+    QPushButton *insertRowAction;
+    QPushButton *removeRowAction;
+    QPushButton *insertColumnAction;
+    QPushButton *removeColumnAction;
+    QPushButton *insertChildAction;
     QVBoxLayout *vboxLayout;
     QGridLayout *layout;
     QTreeView *view;
-    //QMenuBar *menubar;
-    //QMenu *fileMenu;
-    //QMenu *actionsMenu;
-    //QStatusBar *statusbar;
 };
 
 }

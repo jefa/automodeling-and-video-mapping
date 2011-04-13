@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'treewindow.h'
 **
-** Created: Tue Apr 5 02:47:30 2011
+** Created: Wed Apr 13 02:14:14 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_gui__TreeWindow[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -32,23 +32,25 @@ static const uint qt_meta_data_gui__TreeWindow[] = {
 
  // slots: signature, parameters, type, tag, flags
       17,   16,   16,   16, 0x0a,
-      33,   16,   16,   16, 0x08,
-      59,   52,   47,   16, 0x08,
-      85,   16,   47,   16, 0x28,
-     100,   16,   16,   16, 0x08,
-     112,   52,   47,   16, 0x08,
-     138,   16,   47,   16, 0x28,
-     153,   16,   16,   16, 0x08,
+      39,   33,   16,   16, 0x0a,
+      64,   16,   16,   16, 0x08,
+      90,   83,   78,   16, 0x08,
+     116,   16,   78,   16, 0x28,
+     131,   16,   16,   16, 0x08,
+     143,   83,   78,   16, 0x08,
+     169,   16,   78,   16, 0x28,
+     184,   16,   16,   16, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_gui__TreeWindow[] = {
-    "gui::TreeWindow\0\0updateActions()\0"
-    "insertChild()\0bool\0parent\0"
-    "insertColumn(QModelIndex)\0insertColumn()\0"
-    "insertRow()\0removeColumn(QModelIndex)\0"
-    "removeColumn()\0removeRow()\0"
+    "gui::TreeWindow\0\0updateActions()\0index\0"
+    "clickedTree(QModelIndex)\0insertChild()\0"
+    "bool\0parent\0insertColumn(QModelIndex)\0"
+    "insertColumn()\0insertRow()\0"
+    "removeColumn(QModelIndex)\0removeColumn()\0"
+    "removeRow()\0"
 };
 
 const QMetaObject gui::TreeWindow::staticMetaObject = {
@@ -81,20 +83,21 @@ int gui::TreeWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: updateActions(); break;
-        case 1: insertChild(); break;
-        case 2: { bool _r = insertColumn((*reinterpret_cast< const QModelIndex(*)>(_a[1])));
+        case 1: clickedTree((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 2: insertChild(); break;
+        case 3: { bool _r = insertColumn((*reinterpret_cast< const QModelIndex(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 3: { bool _r = insertColumn();
+        case 4: { bool _r = insertColumn();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 4: insertRow(); break;
-        case 5: { bool _r = removeColumn((*reinterpret_cast< const QModelIndex(*)>(_a[1])));
+        case 5: insertRow(); break;
+        case 6: { bool _r = removeColumn((*reinterpret_cast< const QModelIndex(*)>(_a[1])));
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 6: { bool _r = removeColumn();
+        case 7: { bool _r = removeColumn();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
-        case 7: removeRow(); break;
+        case 8: removeRow(); break;
         default: ;
         }
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }
