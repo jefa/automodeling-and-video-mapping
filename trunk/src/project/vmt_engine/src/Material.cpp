@@ -2,9 +2,9 @@
 #include "ofMain.h"
 
 Material::Material(){
-    ambient[0] = 1.0f;//ofRandomuf();
-    ambient[1] = 1.0f;//ofRandomuf();
-    ambient[2] = 1.0f;//ofRandomuf();
+    ambient[0] = 1.0f;
+    ambient[1] = 1.0f;
+    ambient[2] = 1.0f;
     ambient[3] = 1.0f;
 
     texture_shader.loadShader("shaders/texture_ambient");

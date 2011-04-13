@@ -84,7 +84,6 @@ void Quad2D::draw() {
         return;
     }
 
-    //glColor3f(0.7, 0.8, 0.9);
     glColor4f(color.x, color.y, color.z, color.w);
 
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
