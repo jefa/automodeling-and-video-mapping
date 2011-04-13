@@ -26,13 +26,13 @@ public slots:
     void updateActions();
     void clickedTree(const QModelIndex &index);
 
-
 private slots:
     void insertChild();
     bool insertColumn(const QModelIndex &parent = QModelIndex());
     void insertRow();
     bool removeColumn(const QModelIndex &parent = QModelIndex());
     void removeRow();
+    void editObject();
 
 private:
     void setupUi(QWidget *);

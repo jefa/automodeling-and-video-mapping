@@ -1,3 +1,4 @@
+#include "ObjectEditDialog.h"
 #include "Quad2D.h"
 #include "Object3D.h"
 #include "PositionEffect.h"
@@ -142,6 +143,7 @@ void vmt::keyPressed(int key){
 
     if(key == 'a')
         scene->testEffect("ef4");
+
 }
 
 //--------------------------------------------------------------

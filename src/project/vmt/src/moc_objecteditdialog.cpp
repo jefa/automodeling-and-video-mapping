@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'objecteditdialog.h'
 **
-** Created: Wed Apr 13 12:06:28 2011
+** Created: Wed Apr 13 18:57:50 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -17,53 +17,68 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-static const uint qt_meta_data_ObjectEditorDialog[] = {
+static const uint qt_meta_data_gui__ObjectEditorDialog[] = {
 
  // content:
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       0,    0, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
+ // slots: signature, parameters, type, tag, flags
+      25,   24,   24,   24, 0x08,
+      44,   24,   24,   24, 0x08,
+      63,   24,   24,   24, 0x08,
+
        0        // eod
 };
 
-static const char qt_meta_stringdata_ObjectEditorDialog[] = {
-    "ObjectEditorDialog\0"
+static const char qt_meta_stringdata_gui__ObjectEditorDialog[] = {
+    "gui::ObjectEditorDialog\0\0xValueChanged(int)\0"
+    "yValueChanged(int)\0zValueChanged(int)\0"
 };
 
-const QMetaObject ObjectEditorDialog::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_ObjectEditorDialog,
-      qt_meta_data_ObjectEditorDialog, 0 }
+const QMetaObject gui::ObjectEditorDialog::staticMetaObject = {
+    { &QWidget::staticMetaObject, qt_meta_stringdata_gui__ObjectEditorDialog,
+      qt_meta_data_gui__ObjectEditorDialog, 0 }
 };
 
 #ifdef Q_NO_DATA_RELOCATION
-const QMetaObject &ObjectEditorDialog::getStaticMetaObject() { return staticMetaObject; }
+const QMetaObject &gui::ObjectEditorDialog::getStaticMetaObject() { return staticMetaObject; }
 #endif //Q_NO_DATA_RELOCATION
 
-const QMetaObject *ObjectEditorDialog::metaObject() const
+const QMetaObject *gui::ObjectEditorDialog::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
-void *ObjectEditorDialog::qt_metacast(const char *_clname)
+void *gui::ObjectEditorDialog::qt_metacast(const char *_clname)
 {
     if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_ObjectEditorDialog))
+    if (!strcmp(_clname, qt_meta_stringdata_gui__ObjectEditorDialog))
         return static_cast<void*>(const_cast< ObjectEditorDialog*>(this));
     return QWidget::qt_metacast(_clname);
 }
 
-int ObjectEditorDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int gui::ObjectEditorDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QWidget::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: xValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 1: yValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 2: zValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        default: ;
+        }
+        _id -= 3;
+    }
     return _id;
 }
 QT_END_MOC_NAMESPACE

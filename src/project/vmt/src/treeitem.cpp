@@ -280,5 +280,6 @@ void ObjectItemData::setData(int column, QVariant colValue){
 }
 
 bool ObjectItemData::setSeleted(Scene *scene){
-    return false;
+    scene->activateObject(this->object3d->getId());
+    return true;
 }
