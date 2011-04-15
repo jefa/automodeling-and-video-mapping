@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'objecteditdialog.h'
 **
-** Created: Thu Apr 14 02:19:30 2011
+** Created: Fri Apr 15 11:32:14 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_gui__ObjectEditorDialog[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -32,15 +32,18 @@ static const uint qt_meta_data_gui__ObjectEditorDialog[] = {
 
  // slots: signature, parameters, type, tag, flags
       25,   24,   24,   24, 0x08,
-      44,   24,   24,   24, 0x08,
-      63,   24,   24,   24, 0x08,
+      41,   24,   24,   24, 0x08,
+      57,   24,   24,   24, 0x08,
+      79,   24,   24,   24, 0x08,
+     101,   24,   24,   24, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_gui__ObjectEditorDialog[] = {
-    "gui::ObjectEditorDialog\0\0xValueChanged(int)\0"
-    "yValueChanged(int)\0zValueChanged(int)\0"
+    "gui::ObjectEditorDialog\0\0acceptPressed()\0"
+    "rejectPressed()\0xValueChanged(double)\0"
+    "yValueChanged(double)\0zValueChanged(double)\0"
 };
 
 const QMetaObject gui::ObjectEditorDialog::staticMetaObject = {
@@ -72,12 +75,14 @@ int gui::ObjectEditorDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: xValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 1: yValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 2: zValueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 0: acceptPressed(); break;
+        case 1: rejectPressed(); break;
+        case 2: xValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 3: yValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 4: zValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 3;
+        _id -= 5;
     }
     return _id;
 }

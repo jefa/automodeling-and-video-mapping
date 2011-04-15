@@ -68,10 +68,7 @@ map<string, Object3D*> Scene::getObjects3D() {
 }
 
 Object3D* Scene::activateObject(string id) {
-    printf("\tScene::activateObject::: %s\n", id.c_str());
     activeObject = objects3D[id];
-    if (activeObject == NULL)
-        printf("\tScene::activateObject::: OBJECT NULL!!!\n");
     return activeObject;
 }
 

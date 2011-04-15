@@ -259,17 +259,12 @@ QString TreeWindow::inputText()
 
 void TreeWindow::clickedTree(const QModelIndex &index)
 {
-    printf("============== index: %d\n", index.row());
-
-    //QStandardItem *item = myStandardItemModel->itemFromIndex(index);
-    //TreeItem *item = view->model()->index(index.row(), index.column(), index.parent());
     TreeModel *model = (TreeModel*) view->model();
     model->getItem(index)->setSeleted(model->getScene());
 }
 
 void TreeWindow::editObject()
 {
-//    printf("\tEDITOBJECT!!!\n");
     TreeModel *model = (TreeModel*) view->model();
     ObjectEditorDialog *d = new ObjectEditorDialog(model->getScene()->getActiveObject());
     d->show();
@@ -283,10 +278,10 @@ void TreeWindow::quit()
 void registerColorItemEditorFactory(){
     QItemEditorFactory *factory = new QItemEditorFactory;
 
-  //  QItemEditorCreatorBase *colorListCreator =
-    //    new QStandardItemEditorCreator<ColorListEditor>();
+    QItemEditorCreatorBase *colorListCreator =
+        new QStandardItemEditorCreator<ColorListEditor>();
 
-//    factory->registerEditor(QVariant::Color, colorListCreator);
+    factory->registerEditor(QVariant::Color, colorListCreator);
 
     QItemEditorFactory::setDefaultFactory(factory);
 }
