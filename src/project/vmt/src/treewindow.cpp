@@ -182,7 +182,6 @@ void TreeWindow::setupUi(QWidget *treeWindow)
     layout->setColumnStretch(1, 1);
     layout->setColumnMinimumWidth(0,200);
     layout->setColumnMinimumWidth(1, 200);
-    layout->addWidget(exitAction, 2, 1);
     layout->addWidget(insertRowAction, 0, 1);
     layout->addWidget(removeRowAction, 1, 0);
     layout->addWidget(insertColumnAction, 1, 1);
@@ -190,6 +189,7 @@ void TreeWindow::setupUi(QWidget *treeWindow)
     layout->addWidget(editObjectAction, 0, 0);
 
     vboxLayout->addLayout(layout);
+    vboxLayout->addWidget(exitAction);
 
     //treeWindow->setCentralWidget(centralwidget);
     //menubar = new QMenuBar(treeWindow);
