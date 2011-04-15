@@ -7,7 +7,7 @@
 #include <map>
 using namespace std;
 
-enum textureType {imageTexture, videoTexture};
+enum textureType {IMAGE_TEXTURE, VIDEO_TEXTURE};
 
 class TextureManager
 {

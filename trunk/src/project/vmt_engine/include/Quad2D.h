@@ -3,11 +3,10 @@
 
 #include "IPropertyManager.h"
 #include "ofxVectorMath.h"
+#include "Material.h"
 
 #include <string>
 using namespace std;
-
-enum A_PARAM_QUAD2D {COL_R, COL_G, COL_B, COL_A};
 
 class Quad2D : public IPropertyManager
 {
@@ -28,6 +27,8 @@ class Quad2D : public IPropertyManager
         bool isEnabled();
         void setId(string id);
         string getId();
+        void setMaterial(Material *mat);
+        Material* getMaterial();
     protected:
     private:
         float quadPoints[8];
@@ -35,8 +36,7 @@ class Quad2D : public IPropertyManager
         bool selected;
         bool enabled;
         string id;
-        ofxVec4f color;
-
+        Material *material;
 };
 
 #endif // QUAD2D_H

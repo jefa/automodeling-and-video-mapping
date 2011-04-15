@@ -5,6 +5,7 @@
 
 #include "../addons/ofxShader/ofxShader.h"
 #include "ofImage.h"
+#include "ofxVectorMath.h"
 
 #include <string>
 using namespace std;
@@ -23,16 +24,14 @@ class Material
         float get(int aParam);
         void Enable();
         void Disable();
-
-        void SetTextureParams(string id, textureType type, int textureUnit);
+        void SetTextureParams(string id, textureType type);
 
 	private:
-        float ambient[4];
+        ofxVec4f ambient;
         ofxShader texture_shader;
 
         string texID;
         textureType texType;
-        int textureUnit;
 
 };
 

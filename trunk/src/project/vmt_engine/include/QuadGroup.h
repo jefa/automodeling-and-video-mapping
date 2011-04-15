@@ -4,7 +4,7 @@
 #include "Quad2D.h"
 
 #include <string>
-#include <map>
+#include <vector>
 using namespace std;
 
 class QuadGroup : public IPropertyManager
@@ -18,11 +18,13 @@ class QuadGroup : public IPropertyManager
 
         virtual float get(int aParam);
         virtual void set(int aParam, float aValue);
+
+        void SetTextureParams(string key, textureType type);
     protected:
     private:
         string name;
         bool enabled;
-        map<string, Quad2D*> quads2D;
+        vector<Quad2D*> quads2D;
 };
 
 #endif // QUADGROUP_H

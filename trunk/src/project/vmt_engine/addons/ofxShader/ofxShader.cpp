@@ -16,7 +16,6 @@ void ofxShader::loadShader(string fragmentName, string vertexName){
 	fragmentName = ofToDataPath(fragmentName);
 	vertexName = ofToDataPath(vertexName);
 
-
 	bLoaded = false;
 
 	if (GLEE_ARB_shader_objects){
