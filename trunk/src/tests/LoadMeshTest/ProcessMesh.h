@@ -16,7 +16,7 @@ class ProcessMesh {
         ProcessMesh();
         virtual ~ProcessMesh();
 
-        void LoadMesh(MyMesh *m, string filename);
+        void LoadMesh(MyMesh *m, string filename,int NumberOfVertices, int NumberOfFaces);
         void LoadMesh2(MyMesh *m, string filename);
         void WriteMesh(MyMesh *m);
         void PoissonDiskSampling(MyMesh *m);

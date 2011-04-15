@@ -5,6 +5,8 @@
 #include <iostream>
 #include <fstream>
 #include <vcg/complex/trimesh/allocate.h>
+#include <vcg/complex/trimesh/create/platonic.h>
+#include <vcg/complex/trimesh/clean.h>
 #include <vcg/complex/trimesh/point_sampling.h>
 #include <vcg/complex/trimesh/update/bounding.h>
 #include <vcg/space/normal_extrapolation.h>
@@ -71,12 +73,70 @@ ProcessMesh::ProcessMesh(){
 ProcessMesh::~ProcessMesh(){
 }
 
-void ProcessMesh::LoadMesh2(MyMesh *m, string filename) {
+void ProcessMesh::LoadMesh2(MyMesh *m, string filename2) {
 
-vcg::tri::io::Importer<MyMesh>::Open((*m),"greek_helmet.obj",0);
+//vcg::tri::io::Importer<MyMesh>::Open((*m),"greek_helmet.obj",0);
+
+//static int Open( MESH_TYPE &m, const char * filename, CallBackPos *cb=0, bool triangulate=false, int lineskip=0)
+CallBackPos *cb=0;
+char* type;
+    int lineskip=0;
+    bool triangulate=false;
+    char * filename = "greek_helmet.obj";
+    FILE *fp;
+    fp = fopen(filename, "r");
+    if(fp == NULL)
+    {
+      //qDebug("Failed opening of %s",filename);
+      //return E_CANTOPEN;
+      cout<<  "File could not be opened";
+    }
+		long currentPos = ftell(fp);
+		fseek(fp,0L,SEEK_END);
+		long fileLen = ftell(fp);
+		fseek(fp,currentPos,SEEK_SET);
+
+    (*m).Clear();
+
+    Point3f pp;
+		float q;
+    int cnt=0;
+		int ret;
+		char buf[1024];
+
+		// skip the first <lineskip> lines
+		for(int i=0;i<lineskip;++i)
+				fgets(buf,1024,fp);
+
+    /* Read a single triplet of coords from an ASCII file of coords*/
+    while(!feof(fp))
+    {
+
+      if(cb && (++cnt)%1000) cb( (ftell(fp)*100)/fileLen, "ASC Mesh Loading");
+			if(feof(fp)) break;
+            bool fgetOut=fgets(buf,1024,fp);
+            if( fgetOut == 0 ) continue;
+
+            ret=sscanf(buf, "%s %f %f %f\n", type, &pp.X(), &pp.Y(), &pp.Z());
+            //ret=sscanf(buf, "%f %f %f %f\n", &pp.X(), &pp.Y(), &pp.Z(),&q);
+			//cout<< "  estoy agregando cada vertice  " << ret;
+			if(ret==1) // lets try also non comma separated values
+				ret=sscanf(buf, "%f %f %f %f\n", &pp.X(), &pp.Y(), &pp.Z(),&q);
+
+			if(ret>=3)
+				{
+
+					MyMesh::VertexIterator vi=Allocator<MyMesh>::AddVertices((*m),1);
+					(*vi).P().Import(pp);
+					if(ret==4) 	(*vi).Q()=q;
+				}
+    }
+
+    fclose(fp);
 
 
- // io::Importer::Open(m,filename,0);
+ tri::UpdateNormals<MyMesh>::PerVertexNormalizedPerFaceNormalized((*m));
+ tri::UpdateBounding<MyMesh>::Box((*m));
 
   cout << "number of vertices " <<  (*m).vert.size()  << '\n';
 
@@ -84,7 +144,7 @@ vcg::tri::io::Importer<MyMesh>::Open((*m),"greek_helmet.obj",0);
 
 
 }
-void ProcessMesh::LoadMesh(MyMesh *m, string filename) {
+void ProcessMesh::LoadMesh(MyMesh *m, string filename, int NumberOfVertices, int NumberOfFaces) {
 
 int cantEnter = 0;
 int countV;
@@ -102,7 +162,7 @@ int nIndex1 = 0, nIndex2 = 0, nIndex3 = 0;
 
 
  (*m).Clear();
-MyMesh::VertexPointer ivp[1];
+MyMesh::VertexPointer ivp[NumberOfVertices];
 MyMesh::VertexPointer ivp2[3];
 MyMesh::VertexIterator vi;
 MyMesh::FaceIterator fi;
@@ -111,6 +171,9 @@ MyMesh::FaceIterator fi;
  countVN = 0;
  countF = 0;
 
+if (NumberOfVertices > 0) Allocator<MyMesh>::AddVertices((*m),NumberOfVertices);
+if (NumberOfFaces > 0) Allocator<MyMesh>::AddFaces((*m), NumberOfFaces);
+vi=(*m).vert.begin();
 
   file.open(filename.data());
   if(file.fail() == true)
@@ -133,17 +196,18 @@ MyMesh::FaceIterator fi;
          file.get(inputx);
          // vertices coord
          if (inputx == ' '){
-             countV ++;
+            if (countV < NumberOfVertices){
              file >> coord1 >> coord2 >> coord3;
              //allocate space for a new vertice
-             Allocator<MyMesh>::AddVertices((*m),1);
+            (*vi).P()=MyMesh::CoordType(coord1, coord2, coord3 ); vi++;
 
-             vi=(*m).vert.begin();
-             ivp[0]=&*vi;(*vi).P()= MyMesh::CoordType ( coord1, coord2, coord3); ++vi;
+             countV ++;
 
+            }
              file.get(inputx);
              isTheEnd = false;
-            }
+
+        }
          else {
              // normals
              if (inputx == 'n'){
@@ -173,7 +237,7 @@ MyMesh::FaceIterator fi;
             //cout<< "Index1 " <<vIndex1<<" " << tIndex1 << " " << nIndex1 << '\n';
 
             //allocate space for a new face
-            Allocator<MyMesh>::AddFaces((*m),1);
+
             fi=(*m).face.begin();
             ivp2[0]=&(*m).vert[vIndex1];
             ivp2[1]=&(*m).vert[vIndex2];
@@ -222,14 +286,31 @@ MyMesh::FaceIterator fi;
     }
   }
 
-  cout << "number of vertices " <<  (*m).vert.size()  << '\n'; //countV << '\n';
- // cout << "number of normals " <<  countVN << '\n';
-  cout << "number of faces " << (*m).face.size()<< '\n';
 
   file.close();
 
  }
+ //tri::UpdateNormals<MyMesh>::PerVertexNormalizedPerFaceNormalized((*m));
+ //int delVertNum = vcg::tri::Clean<MyMesh>::RemoveDegenerateVertex((*m));
  tri::UpdateBounding<MyMesh>::Box((*m));
+
+
+            cout << " dato x : " << (*m).vert[0].P().X();
+            cout << " dato y : " << (*m).vert[0].P().Y();
+            cout << " dato z : " << (*m).vert[0].P().Z()<<endl;
+
+            cout << " dato x : " << (*m).vert[1].P().X();
+            cout << " dato y : " << (*m).vert[1].P().Y();
+            cout << " dato z : " << (*m).vert[1].P().Z()<<endl;
+
+            cout << " dato x : " << (*m).vert[5020].P().X();
+            cout << " dato y : " << (*m).vert[5020].P().Y();
+            cout << " dato z : " << (*m).vert[5020].P().Z()<<endl;
+
+
+  cout << "number of vertices " <<  (*m).vert.size()  << '\n'; //countV << '\n';
+ // cout << "number of normals " <<  countVN << '\n';
+  cout << "number of faces " << (*m).face.size()<< '\n';
 }
 void ProcessMesh::WriteMesh(MyMesh *m) {
 }
@@ -237,30 +318,14 @@ void ProcessMesh::PoissonDiskSampling(MyMesh *m) {
 
             //setup parameters
             BaseSampler mps(&(*m));
-/*
-MyMesh::VertexIterator vi;
-int i=0;
-for(vi = (*m).vert.begin(); vi!=(*m).vert.end(); ++vi )
-{
 
-       if(!(*vi).IsD())
-     {
-    //cout<<" looop " <<i;
-    i++;
-               mps.AddVert((*vi));
-              cout << mps.texSamplingHeight;
-     }
-}
-
-  cout<<" SALGO DE loop cargo basesampler";
-*/
 
             int sampleNum =1000;
             float radius;
             radius= tri::SurfaceSampling<MyMesh,BaseSampler>::ComputePoissonDiskRadius((*m),sampleNum);
 
-            //cout<< "radius poissondisksampling   " << radius<< '\n';
-            radius=0.246799;
+            cout<< "radius poissondisksampling   " << radius<< '\n';
+
 
             tri::SurfaceSampling<MyMesh,BaseSampler>::PoissonDiskParam pp;
 
@@ -269,12 +334,20 @@ for(vi = (*m).vert.begin(); vi!=(*m).vert.end(); ++vi )
             //perform sampling: number of samples returned can be greater or smaller of the requested amount
 
 
-            MyMesh *presampledMesh=&((*m));
+            MyMesh *presampledMesh(&(*m));
 
 
-           // cout << " adaptiveRadiusFlag "<<pp.adaptiveRadiusFlag;
-           // cout << " radiusVariance "<<pp.radiusVariance;
-           // cout << " preGenFlag "<<pp.preGenFlag;
+               /* MyMesh MontecarloMesh;
+            	BaseSampler sampler(&MontecarloMesh);
+				sampler.qualitySampling =true;
+				tri::SurfaceSampling<MyMesh,BaseSampler>::Montecarlo((*m), sampler, 5021);
+				MontecarloMesh.bbox = (*m).bbox; // we want the same bounding box
+				presampledMesh=&MontecarloMesh;*/
+
+
+            //cout << " adaptiveRadiusFlag "<<pp.adaptiveRadiusFlag;
+            //cout << " radiusVariance "<<pp.radiusVariance;
+            //cout << " preGenFlag "<<pp.preGenFlag;
 
             //tri::SurfaceSampling<MyMesh,BaseSampler>::PoissonDisk((*m),mps, (*presampledMesh), radius, pp);
             tri::SurfaceSampling<MyMesh,BaseSampler>::PoissonDiskPruning((*m),mps, (*presampledMesh), radius, pp);
