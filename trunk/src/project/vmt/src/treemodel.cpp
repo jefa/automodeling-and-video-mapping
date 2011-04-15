@@ -243,7 +243,7 @@ void TreeModel::setupLayersModelData(TreeItem *parent)
 void TreeModel::setupSceneModelData()
 {
     rootItem = new TreeItem(NULL, NULL, "Scene");
-    rootItem->insertChildren(0, 1, NULL, "LAYERS");
+    rootItem->insertChildren(0, 1, NULL, "CAMERAS");
     rootItem->insertChildren(1, 1, NULL, "OBJECTS");
     rootItem->insertChildren(2, 1, NULL, "Background");
 
