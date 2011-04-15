@@ -33,6 +33,7 @@ private slots:
     bool removeColumn(const QModelIndex &parent = QModelIndex());
     void removeRow();
     void editObject();
+    void quit();
 
 private:
     void setupUi(QWidget *);

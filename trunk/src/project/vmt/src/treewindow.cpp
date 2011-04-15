@@ -147,8 +147,8 @@ void TreeWindow::setupUi(QWidget *treeWindow)
 {
     if (treeWindow->objectName().isEmpty())
         treeWindow->setObjectName(QString::fromUtf8("treeWindow"));
-    treeWindow->resize(500, 400);
-    treeWindow->move(10,10);
+    treeWindow->resize(400, 400);
+    treeWindow->move(20,20);
     exitAction = new QPushButton();
     exitAction->setObjectName(QString::fromUtf8("exitAction"));
     insertRowAction = new QPushButton();
@@ -180,13 +180,14 @@ void TreeWindow::setupUi(QWidget *treeWindow)
 
     layout = new QGridLayout;
     layout->setColumnStretch(1, 1);
-    //layout->setColumnMinimumWidth(1, 250);
-    layout->addWidget(exitAction, 0, 0);
+    layout->setColumnMinimumWidth(0,200);
+    layout->setColumnMinimumWidth(1, 200);
+    layout->addWidget(exitAction, 2, 1);
     layout->addWidget(insertRowAction, 0, 1);
     layout->addWidget(removeRowAction, 1, 0);
     layout->addWidget(insertColumnAction, 1, 1);
     layout->addWidget(insertChildAction, 2, 0);
-    layout->addWidget(editObjectAction, 2, 1);
+    layout->addWidget(editObjectAction, 0, 0);
 
     vboxLayout->addLayout(layout);
 
@@ -266,11 +267,17 @@ void TreeWindow::clickedTree(const QModelIndex &index)
     model->getItem(index)->setSeleted(model->getScene());
 }
 
-void TreeWindow::editObject(){
-    printf("\tEDITOBJECT!!!\n");
+void TreeWindow::editObject()
+{
+//    printf("\tEDITOBJECT!!!\n");
     TreeModel *model = (TreeModel*) view->model();
     ObjectEditorDialog *d = new ObjectEditorDialog(model->getScene()->getActiveObject());
     d->show();
+}
+
+void TreeWindow::quit()
+{
+    this->quit();
 }
 
 void registerColorItemEditorFactory(){

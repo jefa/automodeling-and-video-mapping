@@ -13,11 +13,8 @@ ObjectEditorDialog::ObjectEditorDialog(Object3D *obj3d)
     xCoordSpinBox = new QSpinBox();
     yCoordSpinBox = new QSpinBox();
     zCoordSpinBox = new QSpinBox();
-
-    if (object3d != NULL){
-        //printf("\tOBJECT POSITION:: %f, %f, %f\n", object3d->get(POS_X), object3d->get(POS_Y), object3d->get(POS_Z));
-        //xCoordSpinBox->value = object3d->get(POS_X);
-    }
+    idLineEdit = new QLineEdit();
+    textureComboBox = new QComboBox();
 
     //createMenu();
     //createHorizontalGroupBox();
@@ -65,8 +62,8 @@ void ObjectEditorDialog::createFormGroupBox()
 {
     formGroupBox = new QGroupBox(tr("Object properties"));
     QFormLayout *layout = new QFormLayout;
-    layout->addRow(new QLabel(tr("Id/Name:")), new QLineEdit);
-    layout->addRow(new QLabel(tr("Texture:")), new QComboBox);
+    layout->addRow(new QLabel(tr("Id/Name:")), idLineEdit);
+    layout->addRow(new QLabel(tr("Texture:")), textureComboBox);
     layout->addRow(new QLabel(tr("Coord. X:")), xCoordSpinBox);
     layout->addRow(new QLabel(tr("Coord. Y:")), yCoordSpinBox);
     layout->addRow(new QLabel(tr("Coord. Z:")), zCoordSpinBox);
