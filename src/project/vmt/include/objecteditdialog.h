@@ -13,20 +13,8 @@
 #include <QMenu>
 #include <QMenuBar>
 #include <QPushButton>
-#include <QSpinBox>
+#include <QDoubleSpinBox>
 #include <QTextEdit>
-
-/*QT_BEGIN_NAMESPACE
-class QAction;
-class QDialogButtonBox;
-class QGroupBox;
-class QLabel;
-class QLineEdit;
-class QMenu;
-class QMenuBar;
-class QPushButton;
-class QTextEdit;
-QT_END_NAMESPACE*/
 
 namespace gui {
 
@@ -39,39 +27,33 @@ public:
     ObjectEditorDialog(Object3D *obj3d);
 
 private slots:
-    void xValueChanged(int);
-    void yValueChanged(int);
-    void zValueChanged(int);
+    void acceptPressed();
+    void rejectPressed();
+    void xValueChanged(double);
+    void yValueChanged(double);
+    void zValueChanged(double);
 
 private:
-    //void createMenu();
-    //void createHorizontalGroupBox();
-    //void createGridGroupBox();
     void createFormGroupBox();
+    void loadData();
+    void undoChanges();
 
     enum { NumGridRows = 3, NumButtons = 4 };
 
-    //QMenuBar *menuBar;
-    //QGroupBox *horizontalGroupBox;
-    //QGroupBox *gridGroupBox;
     QGroupBox *formGroupBox;
-    //QTextEdit *smallEditor;
-    //QTextEdit *bigEditor;
     QLabel *labels[NumGridRows];
     QLineEdit *lineEdits[NumGridRows];
     QPushButton *buttons[NumButtons];
     QDialogButtonBox *buttonBox;
 
-    //QMenu *fileMenu;
-    //QAction *exitAction;
-
-    QSpinBox *xCoordSpinBox;
-    QSpinBox *yCoordSpinBox;
-    QSpinBox *zCoordSpinBox;
+    QDoubleSpinBox *xCoordSpinBox;
+    QDoubleSpinBox *yCoordSpinBox;
+    QDoubleSpinBox *zCoordSpinBox;
     QLineEdit *idLineEdit;
-    QComboBox *textureComboBox;
 
     Object3D *object3d;
+    string previousId;
+    float previousX, previousY, previousZ;
 
 };
 //! [0]
