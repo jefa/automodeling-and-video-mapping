@@ -90,6 +90,7 @@ void Scene::testEffect(string id) {
 
 void Scene::update() {
     AnimationManager::Update();
+    TextureManager::Update();
 }
 
 void Scene::draw() {

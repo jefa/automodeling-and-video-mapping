@@ -2,10 +2,7 @@
 #include "ofMain.h"
 
 Material::Material(){
-    ambient[0] = 1.0f;
-    ambient[1] = 1.0f;
-    ambient[2] = 1.0f;
-    ambient[3] = 1.0f;
+    ambient = ofxVec4f(0.7f, 0.8f, 0.9f, 1.0f);
 
     texture_shader.loadShader("shaders/texture_ambient");
 
@@ -15,18 +12,16 @@ Material::Material(){
 Material::~Material(){
 }
 
-void Material::SetTextureParams(string id, textureType type, int textureUnit) {
+void Material::SetTextureParams(string id, textureType type) {
     this->texID = id;
     this->texType = type;
-    this->textureUnit = textureUnit;
 }
 
 void Material::Enable(){
-    if(texID.empty())
-    {
+    if(texID.empty()) {
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        glColor4fv(ambient);
+        glColor4f(ambient.x, ambient.y, ambient.z, ambient.w);
     }
     else {
         try {
@@ -36,15 +31,14 @@ void Material::Enable(){
             glEnable(GL_BLEND);
             glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-            glActiveTexture(GL_TEXTURE0 + textureUnit);
+            glActiveTexture(GL_TEXTURE0);
             glBindTexture(texData.textureTarget, (GLuint)texData.textureID);
 
             texture_shader.setShaderActive(true);
 
             texture_shader.setUniformVariable2f("texCorrection", texData.width / texData.tex_w, texData.height / texData.tex_h);
             texture_shader.setUniformVariable4f("color", ambient[0], ambient[1], ambient[2], ambient[3]);
-            //texture_shader.setUniformVariable1i("tex", GL_TEXTURE0 + textureUnit);
-            texture_shader.setUniformVariable1i("tex", textureUnit);
+            texture_shader.setUniformVariable1i("tex", 0);
         } catch (exception& e) {
             ofLog(OF_LOG_ERROR, "Error al obtener textura: %s", e.what());
         }
@@ -59,13 +53,13 @@ void Material::Disable() {
 float Material::get(int aParam) {
     switch(aParam) {
         case AMBIENT_R:
-            return ambient[0];
+            return ambient.x;
         case AMBIENT_G:
-            return ambient[1];
+            return ambient.y;
         case AMBIENT_B:
-            return ambient[2];
+            return ambient.z;
         case AMBIENT_A:
-            return ambient[3];
+            return ambient.w;
     }
 	return 0;
 }
@@ -74,16 +68,16 @@ void Material::set(int aParam, float value) {
     switch(aParam)
     {
         case AMBIENT_R:
-            ambient[0] = value;
+            ambient.x = value;
             break;
         case AMBIENT_G:
-            ambient[1] = value;
+            ambient.y = value;
             break;
         case AMBIENT_B:
-            ambient[2] = value;
+            ambient.z = value;
             break;
         case AMBIENT_A:
-            ambient[3] = value;
+            ambient.w = value;
             break;
     }
 }

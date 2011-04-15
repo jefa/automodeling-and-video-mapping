@@ -20,7 +20,7 @@ Quad2D::Quad2D(float x1, float y1, float x2, float y2,
     quadTextCoords[4] = 1;quadTextCoords[5] = 1;
     quadTextCoords[6] = 0;quadTextCoords[7] = 1;
 
-    color = ofxVec4f(0.7f, 0.8f, 0.9f, 1.0f);
+    this->material = new Material();
 }
 
 Quad2D::~Quad2D() {
@@ -33,6 +33,14 @@ void Quad2D::setEnabled(bool enabled) {
 
 bool Quad2D::isEnabled() {
     return this->enabled;
+}
+
+void Quad2D::setMaterial(Material *mat) {
+    this->material = mat;
+}
+
+Material* Quad2D::getMaterial() {
+    return this->material;
 }
 
 void Quad2D::setPoint(int i, float x, float y) {
@@ -84,7 +92,12 @@ void Quad2D::draw() {
         return;
     }
 
-    glColor4f(color.x, color.y, color.z, color.w);
+    if(this->material != NULL){
+        this->material->Enable();
+    }
+    else {
+        glColor4f(0.7f, 0.8f, 0.9f, 1.0f);
+    }
 
     glEnableClientState(GL_TEXTURE_COORD_ARRAY);
     glTexCoordPointer(2, GL_FLOAT, 0, &quadTextCoords);
@@ -96,6 +109,10 @@ void Quad2D::draw() {
 
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 	glDisableClientState(GL_VERTEX_ARRAY);
+
+    if(this->material != NULL){
+        this->material->Disable();
+    }
 
     #ifdef CONSOLE
     //Modo consola, dibuja solo alrededor.
@@ -130,24 +147,24 @@ string Quad2D::getId(){
     return this->id;
 }
 
-
 void Quad2D::set(int aParam, float value) {
     switch(aParam) {
-        case COL_R:
-            color.x = value;
-            break;
-        case COL_G:
-            color.y = value;
-            break;
-        case COL_B:
-            color.z = value;
-            break;
-        case COL_A:
-            color.w = value;
+        case AMBIENT_R:
+        case AMBIENT_G:
+        case AMBIENT_B:
+        case AMBIENT_A:
+            material->set(aParam, value);
             break;
     }
 }
 
 float Quad2D::get(int aParam) {
-    return 0;
+    switch(aParam) {
+        case AMBIENT_R:
+        case AMBIENT_G:
+        case AMBIENT_B:
+        case AMBIENT_A:
+            return material->get(aParam);
+            break;
+    }
 }
