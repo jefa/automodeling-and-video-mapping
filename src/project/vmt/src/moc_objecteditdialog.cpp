@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'objecteditdialog.h'
 **
-** Created: Wed Apr 13 18:57:50 2011
+** Created: Thu Apr 14 02:19:30 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!

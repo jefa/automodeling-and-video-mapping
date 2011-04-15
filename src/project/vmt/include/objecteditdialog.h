@@ -7,6 +7,7 @@
 #include <QAction>
 #include <QDialogButtonBox>
 #include <QGroupBox>
+#include <QComboBox>
 #include <QLabel>
 #include <QLineEdit>
 #include <QMenu>
@@ -67,6 +68,8 @@ private:
     QSpinBox *xCoordSpinBox;
     QSpinBox *yCoordSpinBox;
     QSpinBox *zCoordSpinBox;
+    QLineEdit *idLineEdit;
+    QComboBox *textureComboBox;
 
     Object3D *object3d;
 

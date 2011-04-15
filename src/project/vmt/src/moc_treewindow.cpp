@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'treewindow.h'
 **
-** Created: Wed Apr 13 18:57:49 2011
+** Created: Thu Apr 14 02:19:30 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_gui__TreeWindow[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-      10,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -41,6 +41,7 @@ static const uint qt_meta_data_gui__TreeWindow[] = {
      169,   16,   78,   16, 0x28,
      184,   16,   16,   16, 0x08,
      196,   16,   16,   16, 0x08,
+     209,   16,   16,   16, 0x08,
 
        0        // eod
 };
@@ -51,7 +52,7 @@ static const char qt_meta_stringdata_gui__TreeWindow[] = {
     "bool\0parent\0insertColumn(QModelIndex)\0"
     "insertColumn()\0insertRow()\0"
     "removeColumn(QModelIndex)\0removeColumn()\0"
-    "removeRow()\0editObject()\0"
+    "removeRow()\0editObject()\0quit()\0"
 };
 
 const QMetaObject gui::TreeWindow::staticMetaObject = {
@@ -97,9 +98,10 @@ int gui::TreeWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = _r; }  break;
         case 8: removeRow(); break;
         case 9: editObject(); break;
+        case 10: quit(); break;
         default: ;
         }
-        _id -= 10;
+        _id -= 11;
     }
     return _id;
 }
