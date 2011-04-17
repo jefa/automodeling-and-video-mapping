@@ -1,5 +1,5 @@
-#ifndef _TEST_APP
-#define _TEST_APP
+#ifndef _VMT
+#define _VMT
 
 #include "ofMain.h"
 
