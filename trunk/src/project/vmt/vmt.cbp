@@ -118,12 +118,14 @@
 			<Add after='cmd /c if not exist &quot;$(PROJECT_DIR)bin/data&quot; mkdir &quot;$(PROJECT_DIR)bin/data&quot;' />
 			<Mode after="always" />
 		</ExtraCommands>
+		<Unit filename="include\OscManager.h" />
 		<Unit filename="include\colorlisteditor.h" />
 		<Unit filename="include\objecteditdialog.h" />
 		<Unit filename="include\treeitem.h" />
 		<Unit filename="include\treemodel.h" />
 		<Unit filename="include\treewindow.h" />
 		<Unit filename="include\vmt.h" />
+		<Unit filename="src\OscManager.cpp" />
 		<Unit filename="src\colorlisteditor.cpp" />
 		<Unit filename="src\main.cpp" />
 		<Unit filename="src\moc_colorlisteditor.cpp" />
