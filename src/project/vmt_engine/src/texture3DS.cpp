@@ -9,7 +9,7 @@
 #include "texture3DS.h"
 
 texture3DS::texture3DS(string filename, const int textureId){
-	
+
     ofImage img;
     if( !img.loadImage(filename) ){
 		ofLog(OF_LOG_ERROR, "texture3DS ERROR:  Could not open %s", filename.c_str());
@@ -21,10 +21,9 @@ texture3DS::texture3DS(string filename, const int textureId){
 
     if( m_width <= 0 || m_height <= 0){
 		ofLog(OF_LOG_ERROR, "texture3DS ERROR: Something wrong with %s - dimensions less than 0", filename.c_str());
-
     }
 
-    if(m_bpp != 32 && m_bpp != 24){		
+    if(m_bpp != 32 && m_bpp != 24){
 		ofLog(OF_LOG_ERROR, "texture3DS ERROR: Invalid texture color depth %s  must be uncompressed 24/32bpp png, jpg, bmp, tga", filename.c_str());
         return;
     }
@@ -40,7 +39,6 @@ texture3DS::texture3DS(string filename, const int textureId){
 			return;
             break;
     }
-
 
     // FLIP THE PIXELS
     //we need to flip the image vertically

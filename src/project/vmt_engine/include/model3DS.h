@@ -12,6 +12,8 @@
 #include "ofMain.h"
 #include "texture3DS.h"
 
+#include "Material.h"
+
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -179,6 +181,7 @@ private:
 	std::string m_filepath;
     std::vector<mesh3DS> m_meshes;
     std::map<std::string, material3DS> m_materials;
+    std::map<std::string, Material*> vmt_materials;
 	unsigned int m_drawMode;
 	boundingBox3DS m_boundingBox;
 	float m_scale;
@@ -206,6 +209,10 @@ public:
 
     std::string getFilename(){return m_filename;}
 	const material3DS& getMaterial(const std::string &matName){return m_materials[matName];}
+
+	Material* getVMTMaterial(const std::string &matName){return vmt_materials[matName];}
+
+	void SetTextureParamsForMaterial(string facesID, string key, textureType type);
 
 	bool hasTexture;
 };

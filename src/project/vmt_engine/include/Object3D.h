@@ -29,6 +29,8 @@ class Object3D : public IPropertyManager
         virtual float get(int aParam);
         virtual void set(int aParam, float aValue);
 
+        void SetTextureParamsForMaterial(string facesID, string key, textureType type);
+
     protected:
     private:
         vector <float> rotAngle;

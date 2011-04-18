@@ -1,4 +1,5 @@
 #include "QuadGroup.h"
+#include <limits>
 
 QuadGroup::QuadGroup(string name) {
     this->name = name;
@@ -10,19 +11,51 @@ QuadGroup::~QuadGroup() {
 
 void QuadGroup::addQuad2D(Quad2D* quad) {
     quads2D.push_back(quad);
+    CalculateBounds();
+}
 
-    //Expandir si corresponde el contenedor
+void QuadGroup::CalculateBounds() {
+    float minX = numeric_limits<float>::max();
+    float minY = numeric_limits<float>::max();
+    float maxX = numeric_limits<float>::min();
+    float maxY = numeric_limits<float>::min();
+
+    vector<Quad2D*>::iterator quadsIt;
+    for(quadsIt = quads2D.begin(); quadsIt != quads2D.end(); quadsIt++) {
+        for(int i = 0; i < 4; i++) {
+            ofxVec2f p = (*quadsIt)->getPoint(i);
+            if (p.x < minX) minX = p.x;
+            if (p.x > maxX) maxX = p.x;
+            if (p.y < minY) minY = p.y;
+            if (p.y > maxY) maxY = p.y;
+        }
+    }
+
+    bounds.set(minX, minY, maxX - minX, maxY - minY);
+    genUVWCoords();
 }
 
 void QuadGroup::genUVWCoords() {
     vector<Quad2D*>::iterator quadsIt;
+
     //Case FaceMap
-    for(quadsIt = quads2D.begin(); quadsIt != quads2D.end(); quadsIt++) {
+    /*for(quadsIt = quads2D.begin(); quadsIt != quads2D.end(); quadsIt++) {
         (*quadsIt)->setUVCoordinate(0, 0,0);
         (*quadsIt)->setUVCoordinate(1, 1,0);
         (*quadsIt)->setUVCoordinate(2, 1,1);
         (*quadsIt)->setUVCoordinate(3, 0,1);
+    }*/
+
+    //Case PlanarMap
+    for(quadsIt = quads2D.begin(); quadsIt != quads2D.end(); quadsIt++) {
+        for(int i = 0; i < 4; i++) {
+            ofxVec2f p = (*quadsIt)->getPoint(i);
+            float uCoord = (p.x - bounds.x) / (bounds.width);
+            float vCoord = (p.y - bounds.y) / (bounds.height);
+            (*quadsIt)->setUVCoordinate(i, uCoord,vCoord);
+        }
     }
+
 }
 
 float QuadGroup::get(int aParam) {
