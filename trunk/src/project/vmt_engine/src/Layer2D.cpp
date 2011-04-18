@@ -18,17 +18,18 @@ Layer2D::~Layer2D()
 Quad2D* Layer2D::addQuad2D(string id) {
     Quad2D* quad2D = new Quad2D();
     quad2D->setId(id);
-    quads2D.push_back(quad2D);
+    quads2D_map.insert(pair<string, Quad2D*>(id, quad2D));
+
     return quad2D;
 }
 
 Quad2D* Layer2D::getQuad2D(string id) {
-    vector<Quad2D*>::iterator it;
-    for (it = quads2D.begin(); it != quads2D.end(); it++ ) {
-        if((*it)->getId().compare(id) == 0) {
-            return *it;
-        }
+    map<string, Quad2D*>::const_iterator iter;
+    for (iter=quads2D_map.begin(); iter != quads2D_map.end(); ++iter) {
+        if(iter->first.compare(id) == 0)
+            return iter->second;
     }
+    return NULL;
 }
 
 void Layer2D::setEnabled(bool enabled) {
@@ -47,16 +48,17 @@ string Layer2D::getName(){
     return this->name;
 }
 
-vector<Quad2D*> Layer2D::getQuads2D() {
-    return quads2D;
+map<string, Quad2D*> Layer2D::getQuads2D() {
+    return quads2D_map;
 }
 
 void Layer2D::draw() {
     if(!enabled)
         return;
 
-    vector<Quad2D*>::iterator it;
-    for(it = quads2D.begin(); it != quads2D.end(); it++) {
-        (*it)->draw();
+    map<string, Quad2D*>::const_iterator iter;
+    for (iter=quads2D_map.begin(); iter != quads2D_map.end(); ++iter) {
+        iter->second->draw();
     }
+
 }

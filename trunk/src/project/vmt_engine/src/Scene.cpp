@@ -10,7 +10,7 @@ Scene::Scene() {
 }
 
 Scene::~Scene() {
-    //dtor
+    activeCamera = NULL;
 }
 
 ofxCamera* Scene::addCamera(string id) {
@@ -51,6 +51,10 @@ QuadGroup* Scene::addGroup(string id) {
     QuadGroup *group = new QuadGroup(id);
     quadGroups.insert(pair<string, QuadGroup*>(id, group));
     return group;
+}
+
+QuadGroup* Scene::getGroup(string id) {
+    return quadGroups[id];
 }
 
 Object3D* Scene::addObject3D(string id, string path) {

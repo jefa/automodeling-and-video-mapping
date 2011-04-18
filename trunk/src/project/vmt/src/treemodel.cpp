@@ -225,12 +225,15 @@ void TreeModel::setupLayersModelData(TreeItem *parent)
             childItemCamera->insertChildren(positionLayer, 1, layerItem, "");
             TreeItem *childItemLayer = childItemCamera->child(positionLayer);
 
-            vector<Quad2D*> quadsMap = currentLayer->getQuads2D();
+            //vector<Quad2D*> quadsMap = currentLayer->getQuads2D();
+            map<string, Quad2D*> quadsMap = currentLayer->getQuads2D();
             int positionQuad =0;
-            vector<Quad2D*>::iterator quadsIt;
+            //vector<Quad2D*>::iterator quadsIt;
+            map<string, Quad2D*>::const_iterator quadsIt;
             for (quadsIt = quadsMap.begin(); quadsIt != quadsMap.end(); quadsIt++) {
 
-                Quad2D *currentQuad = (*quadsIt);
+                //Quad2D *currentQuad = (*quadsIt);
+                Quad2D *currentQuad = quadsIt->second;
                 QuadItemData *quadItem = new QuadItemData(currentQuad);
                 childItemLayer->insertChildren(positionQuad, 1, quadItem, "dummyquadstr");
                 positionQuad++;

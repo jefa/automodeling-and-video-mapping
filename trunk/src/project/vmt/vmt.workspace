@@ -2,7 +2,7 @@
 <CodeBlocks_workspace_file>
 	<Workspace title="Workspace">
 		<Project filename="../vmt_engine/vmt_engine.cbp" />
-		<Project filename="vmt.cbp" active="1" />
-		<Project filename="../vmt_node/vmt_node.cbp" />
+		<Project filename="../vmt_node/vmt_node.cbp" active="1" />
+		<Project filename="vmt.cbp" />
 	</Workspace>
 </CodeBlocks_workspace_file>

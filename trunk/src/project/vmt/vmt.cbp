@@ -157,6 +157,7 @@
 		<Unit filename="include\treemodel.h" />
 		<Unit filename="include\treewindow.h" />
 		<Unit filename="include\vmt.h" />
+		<Unit filename="include\vmtmodel.h" />
 		<Unit filename="src\OscManager.cpp" />
 		<Unit filename="src\colorlisteditor.cpp" />
 		<Unit filename="src\main.cpp" />
@@ -169,6 +170,7 @@
 		<Unit filename="src\treemodel.cpp" />
 		<Unit filename="src\treewindow.cpp" />
 		<Unit filename="src\vmt.cpp" />
+		<Unit filename="src\vmtmodel.cpp" />
 		<Extensions>
 			<code_completion />
 			<debugger />
