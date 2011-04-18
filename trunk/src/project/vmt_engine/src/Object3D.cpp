@@ -36,6 +36,10 @@ Object3D::~Object3D(){
     if( model != NULL )delete model;
 }
 
+void Object3D::SetTextureParamsForMaterial(string facesID, string key, textureType type) {
+    model->SetTextureParamsForMaterial(facesID, key, type);
+}
+
 void Object3D::draw() {
     glPushMatrix();
         glTranslatef(pos.x, pos.y, pos.z);

@@ -18,8 +18,9 @@ class Quad2D : public IPropertyManager
         virtual void set(int aParam, float value);
         virtual float get(int aParam);
         void draw();
+        void setPoint(int i, ofxVec2f p);
         void setPoint(int i, float x, float y);
-        void getPoint(int i, float &x, float &y);
+        ofxVec2f getPoint(int i);
         void setUVCoordinate(int i, float u, float v);
         int getControlPointAt(int x, int y);
         void setSelected(bool selected);

@@ -43,6 +43,13 @@ Material* Quad2D::getMaterial() {
     return this->material;
 }
 
+void Quad2D::setPoint(int i, ofxVec2f p) {
+    if(i >= 0 && i <= 3) {
+        quadPoints[i * 2] = p.x;
+        quadPoints[1 + (i * 2)] = p.y;
+    }
+}
+
 void Quad2D::setPoint(int i, float x, float y) {
     if(i >= 0 && i <= 3) {
         quadPoints[i * 2] = x;
@@ -50,10 +57,9 @@ void Quad2D::setPoint(int i, float x, float y) {
     }
 }
 
-void Quad2D::getPoint(int i, float &x, float &y) {
+ofxVec2f Quad2D::getPoint(int i) {
     if(i >= 0 && i <= 3) {
-        x = quadPoints[i * 2];
-        y = quadPoints[1 + (i * 2)];
+        return ofxVec2f(quadPoints[i * 2], quadPoints[1 + (i * 2)]);
     }
 }
 

@@ -4,18 +4,7 @@
 
 map<string, Layer2D*>::iterator layersIt;
 
-float Rad2Deg (float Angle) {
-  static float ratio = 180.0 / 3.141592653589793238;
-  return Angle * ratio;
-}
-
-float Deg2Rad (float Angle) {
-  static float ratio = 3.141592653589793238 / 180.0 ;
-  return Angle * ratio;
-}
-
 ofxCamera::ofxCamera() {
-    setOrigin(OF_ORIGIN);
 	perspective();
 	position();
 	eye();
@@ -41,37 +30,11 @@ void ofxCamera::position(ofxVec3f _pos) {
 }
 
 void ofxCamera::position() {
-    if(origin == OF_ORIGIN) {
-        posCoord.x = (float)w/2.0f;
-        posCoord.y = (float)h/2.0f;
-    }
-    else {
-        posCoord.x = 0.0f;
-        posCoord.y = 0.0f;
-    }
+    posCoord.x = 0.0f;
+    posCoord.y = 0.0f;
 	float halfFov = PI * fieldOfView / 360.0f;
 	float theTan = tanf(halfFov);
 	posCoord.z = posCoord.y/theTan;
-}
-
-void ofxCamera::lerpPosition(float _targetX, float _targetY, float _targetZ, float _step) {
-	posCoord.x += (_targetX - posCoord.x) * _step;
-	posCoord.y += (_targetY - posCoord.y) * _step;
-	posCoord.z += (_targetZ - posCoord.z) * _step;
-}
-
-void ofxCamera::lerpPosition(ofxVec3f target, float step) {
-	lerpPosition(target.x, target.y, target.z, step);
-}
-
-void ofxCamera::lerpEye(float _targetX, float _targetY, float _targetZ, float _step) {
-	eyeCoord.x += (_targetX - eyeCoord.x) * _step;
-	eyeCoord.y += (_targetY - eyeCoord.y) * _step;
-	eyeCoord.z += (_targetZ - eyeCoord.z) * _step;
-}
-
-void ofxCamera::lerpEye(ofxVec3f target, float step) {
-	lerpEye(target.x, target.y, target.z, step);
 }
 
 void ofxCamera::eye(float x, float y, float z) {
@@ -85,14 +48,8 @@ void ofxCamera::eye(ofxVec3f _pos) {
 }
 
 void ofxCamera::eye() {
-    if(origin == OF_ORIGIN) {
-        eyeCoord.x = (float)w/2.0f;
-        eyeCoord.y = (float)h/2.0f;
-    }
-    else {
-        eyeCoord.x = 0;
-        eyeCoord.y = 0;
-    }
+    eyeCoord.x = 0;
+    eyeCoord.y = 0;
 	eyeCoord.z = 0;
 }
 
@@ -129,13 +86,6 @@ void ofxCamera::perspective() {
 	zFar = 10000.0f;
 }
 
-// This sets the camera origin to either OF coordinates or zero (for OF_ORIGIN_ZERO)
-void ofxCamera::setOrigin(cameraOrigin org) {
-    origin = org;
-	position();
-	eye();
-}
-
 void ofxCamera::place() {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -150,10 +100,6 @@ void ofxCamera::place() {
 	// out of screen = +z
 	// this is a bit different from the usual 3d coordinate systems,
 	// where +y is up instead of down
-	if(origin == OF_ORIGIN) {
-        glScalef(1, -1, 1);
-        glTranslatef(0, -h, 0);
-	}
 }
 
 //Removes the camera, so it returns as if there was no camera
@@ -274,7 +220,7 @@ void ofxCamera::drawCamera(){
     glColor3f(1.0, 1.0, 0.0);
 
     float length = lVec.length();
-    float fovRadians = Deg2Rad(this->fieldOfView);
+    float fovRadians = ofDegToRad(this->fieldOfView);
     float apHf = 2 * length * tan ( fovRadians / 2 );
     float apVf = apHf / aspectRatio;
     //printf("================= Vector FOV: %f, %f\n", this->fieldOfView, fovRadians);

@@ -3,13 +3,14 @@
 
 #include "Effect.h"
 #include "QuadGroup.h"
-//#include "AnimationManager.h"
+#include "Object3D.h"
 //#include "LinearAnimation.h"
 
 class TextureEffect : public Effect
 {
     public:
-        TextureEffect(QuadGroup *qg, string textureKey, string texturePath, textureType type);
+        TextureEffect(QuadGroup *qg, string texturePath, textureType type);
+        TextureEffect(Object3D *obj3d, string facesID, string texturePath, textureType type);
         virtual ~TextureEffect();
 
         virtual void play();
@@ -17,8 +18,13 @@ class TextureEffect : public Effect
     protected:
     private:
         QuadGroup* group;
+        Object3D* object3d;
+        string facesID;
+
         string textureKey;
         textureType type;
+
+        bool isGroup;
 };
 
 #endif // TEXTUREEFFECT_H

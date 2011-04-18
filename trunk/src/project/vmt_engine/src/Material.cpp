@@ -3,9 +3,7 @@
 
 Material::Material(){
     ambient = ofxVec4f(0.7f, 0.8f, 0.9f, 1.0f);
-
     texture_shader.loadShader("shaders/texture_ambient");
-
     this->texID = "";
 }
 
@@ -47,7 +45,7 @@ void Material::Enable(){
 
 void Material::Disable() {
 	texture_shader.setShaderActive(false);
-	//glDisable(GL_TEXTURE_2D);
+	glDisable(GL_TEXTURE_2D);
 }
 
 float Material::get(int aParam) {

@@ -268,6 +268,11 @@ void model3DS::readChunk(std::ifstream *modelFile, const int objectStart, const 
                 readChunk(modelFile, modelFile->tellg(), chunkLength - (long(modelFile->tellg()) - offset));
 
 				m_materials[m_currentMaterial->getName()] = *m_currentMaterial;
+
+				vmt_materials[m_currentMaterial->getName()] = new Material();
+
+				ofLog(OF_LOG_VERBOSE, "matID = %s", m_currentMaterial->getName().c_str());
+
 				delete m_currentMaterial;
                 break;
 
@@ -480,7 +485,15 @@ void mesh3DS::draw(){
 
 	std::map<std::string, std::vector<ushort> >::iterator materialsIter;
 	for(materialsIter=m_materialFaces.begin(); materialsIter!=m_materialFaces.end(); ++materialsIter){
-		const material3DS& currentMaterial = m_parentModel->getMaterial(materialsIter->first);
+
+        Material* vmt_mat = m_parentModel->getVMTMaterial(materialsIter->first);
+
+        bool hasTextureMap = true;
+
+        vmt_mat->Enable();
+
+/*
+        const material3DS& currentMaterial = m_parentModel->getMaterial(materialsIter->first);
 
 		// Bind texture map (if any)
 		bool hasTextureMap = currentMaterial.hasTextureMap();
@@ -514,6 +527,7 @@ void mesh3DS::draw(){
 			glMaterialf(materialFaces, GL_SHININESS, 128.f * currentMaterial.getSpecularExponent());
 		}
 		else glColor3fv(currentMaterial.getDiffuseColor());
+*/
 
 		const std::vector<ushort> *currentMatFaces = &(materialsIter->second);
 		numFaces = (int)currentMatFaces->size(); //number of faces in this material
@@ -552,7 +566,6 @@ void mesh3DS::draw(){
 				break;
 
 			case DRAW_VERTEX_ARRAY:
-
 				glEnableClientState( GL_VERTEX_ARRAY );
 				glEnableClientState( GL_NORMAL_ARRAY );
 
@@ -563,6 +576,7 @@ void mesh3DS::draw(){
 
 				glVertexPointer( 3, GL_FLOAT, 0, &m_vertices[0] );
 				glNormalPointer(GL_FLOAT, 0, &m_normals[0] );
+
 				glDrawElements(GL_TRIANGLES, numFaces, GL_UNSIGNED_SHORT, &(materialsIter->second[0]));
 
 				glDisableClientState( GL_VERTEX_ARRAY );
@@ -582,6 +596,8 @@ void mesh3DS::draw(){
 				break;
 		}
 
+        vmt_mat->Disable();
+
 		glPopAttrib(); // GL_LIGHTING_BIT
 	}
 }
@@ -596,5 +612,18 @@ void model3DS::draw(){
 			meshIter->draw();
 		}
 	glPopMatrix();
+}
+
+void model3DS::SetTextureParamsForMaterial(string facesID, string key, textureType type) {
+    std::map<string, Material*>::iterator iter;
+    for(iter = vmt_materials.begin(); iter != vmt_materials.end(); iter++){
+        string iterFirst = (iter->first).substr(0, (iter->first).length() - 1);
+        if( iterFirst.compare(facesID) == 0) {
+            vmt_materials[iter->first]->SetTextureParams(key, type);
+            break;
+        }
+    }
+
+    //vmt_materials[facesID]->SetTextureParams(key, type);
 }
 
