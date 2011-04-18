@@ -37,6 +37,7 @@ class Scene
         void deActivateObject();
 
         QuadGroup* addGroup(string id);
+        QuadGroup* getGroup(string id);
 
         Effect* addEffect(string id, Effect* effect);
         void testEffect(string id);

@@ -5,6 +5,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 using namespace std;
 
 class Layer2D
@@ -16,7 +17,7 @@ class Layer2D
 
         Quad2D* addQuad2D(string id);
         Quad2D* getQuad2D(string id);
-        vector<Quad2D*> getQuads2D();
+        map<string, Quad2D*> getQuads2D();
 
         void draw();
         void setEnabled(bool enabled);
@@ -27,7 +28,7 @@ class Layer2D
     private:
         string name;
         bool enabled;
-        vector<Quad2D*> quads2D;
+        map<string, Quad2D*> quads2D_map;
 
 };
 

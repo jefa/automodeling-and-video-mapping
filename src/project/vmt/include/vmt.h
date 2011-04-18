@@ -3,18 +3,18 @@
 
 #include "ofMain.h"
 
+#include "vmtmodel.h"
 #include "ofxCamera.h"
 #include "ofxLight.h"
-
-#include "Scene.h"
+#include "OscManager.h"
 #include "treewindow.h"
 
 using namespace gui;
 
-class vmt : public ofBaseApp {
+class Vmt : public ofBaseApp {
 
 	public:
-        vmt();
+        Vmt();
 
 		void setup();
 		void update();
@@ -31,7 +31,8 @@ class vmt : public ofBaseApp {
         float camX, camY, camZ;
 
     private:
-        Scene *scene;
+        VmtModel *vmtModel;
+        OscManager *oscManager;
         TreeWindow *treeWindow;
 
 };
