@@ -101,7 +101,6 @@ void Scene::draw() {
 
     if(activeCamera == NULL) {
         ofLog(OF_LOG_ERROR, "There is no active camera.");
-        printf("There is no active camera.\n");
         return;
     }
     activeCamera->place();

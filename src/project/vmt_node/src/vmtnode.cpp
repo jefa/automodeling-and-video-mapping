@@ -1,9 +1,11 @@
 #include "vmtnode.h"
 
+#include "OscUtil.h"
+
 //--------------------------------------------------------------
 void VmtNode::setup(){
 
-    ofSetLogLevel(OF_LOG_VERBOSE);
+    //ofSetLogLevel(OF_LOG_VERBOSE);
 
     //for smooth animation, set vertical sync if we can
 	ofSetVerticalSync(true);
@@ -31,12 +33,23 @@ void VmtNode::update(){
 		ofxOscMessage m;
 		receiver.getNextMessage( &m );
 
-		if ( m.getAddress() == "/mouse/position" )
-		{
-		}
-		else if ( m.getAddress() == "/mouse/button" )
-		{
-		}
+        if ( m.getAddress() == "/camera/add" ) {
+            OscUtil::processAddCameraMsg(m, this);
+        } else if ( m.getAddress() == "/camera/setpos" ) {
+            OscUtil::processSetCameraPosMsg(m, this);
+        } else if ( m.getAddress() == "/camera/seteye" ) {
+            OscUtil::processSetCameraEyeMsg(m, this);
+        } else if ( m.getAddress() == "/quad/add") {
+            OscUtil::processAddQuadMsg(m, this);
+        } else if ( m.getAddress() == "/quad/setpoint" ) {
+            OscUtil::processSetQuadPointMsg(m, this);
+        } else if ( m.getAddress() == "/layer/add" ) {
+            OscUtil::processAddLayerMsg(m, this);
+        } else if ( m.getAddress() == "/camera/activate" ) {
+            OscUtil::processActivateCameraMsg(m, this);
+        } else if ( m.getAddress() == "/quad/enable" ) {
+            OscUtil::processEnableQuadMsg(m, this);
+        }
 		else
 		{
 			// unrecognized message: display on the bottom of the screen
