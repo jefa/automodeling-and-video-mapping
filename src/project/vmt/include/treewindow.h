@@ -8,6 +8,8 @@
 #include <QMenuBar>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include <QString>
+
 
 class QAction;
 class QTreeView;
@@ -20,11 +22,13 @@ class TreeWindow : public QWidget
 
 public:
     TreeWindow(Scene *scene);
+    ~TreeWindow();
     QString inputText();
 
 public slots:
-    void updateActions();
+    void updateActions(const QModelIndex &index = QModelIndex());
     void clickedTree(const QModelIndex &index);
+    string ObtType(const QModelIndex &index);
 
 private slots:
     void insertChild();
