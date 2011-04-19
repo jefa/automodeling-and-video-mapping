@@ -103,7 +103,7 @@ QModelIndex TreeModel::index(int row, int column, const QModelIndex &parent) con
     return success;
 }*/
 
-bool TreeModel::insertRows(int position, int rows, const QModelIndex &parent)
+bool TreeModel::addElement(int position, int rows, const QModelIndex &parent)
 {
     TreeItem *parentItem = getItem(parent);
     bool success;

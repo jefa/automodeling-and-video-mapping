@@ -148,6 +148,7 @@ bool TreeItem::removeChildren(int position, int count)
 //! [11]
 bool TreeItem::setData(int column, const QVariant &value)
 {
+    //cout<< " set data: "<<column << &value ;
     if (column < 0 || column >= /*itemData.size()*/2)
         return false;
 
@@ -162,12 +163,21 @@ bool TreeItem::setData(int column, const QVariant &value)
 
 
 bool TreeItem::setSeleted(Scene *scene){
-    if (this->itemData == NULL)
+
+    if (this->itemData == NULL){
         return false;
+    }
+
     return this->itemData->setSeleted(scene);
+
+}
+
+TreeItemData* TreeItem::getItemData(){
+    return this->itemData;
 }
 
 CameraItemData::CameraItemData(ofxCamera *camera){
+    this->itemId = 0;
     this->camera = camera;
 }
 
@@ -179,7 +189,7 @@ QVariant CameraItemData::getData(int column){
     if (column == 0)
         return QVariant(QString(this->camera->getId().c_str()));
     //if (column == 1)
-    //    return QVariant(this->layer->isEnabled());
+    //    return QVariant(this->layer->isEnabled());  // poner llamado a la lista de layers
     return QVariant(QString("no data"));
 }
 
@@ -198,6 +208,7 @@ bool CameraItemData::setSeleted(Scene *scene){
 }
 
 LayerItemData::LayerItemData(Layer2D *layer2D){
+    this->itemId = 1;
     this->layer = layer2D;
 }
 
@@ -227,6 +238,7 @@ bool LayerItemData::setSeleted(Scene *scene){
 }
 
 QuadItemData::QuadItemData(Quad2D *quad2d){
+    this->itemId = 2;
     this->quad2d = quad2d;
 }
 
@@ -256,6 +268,7 @@ bool QuadItemData::setSeleted(Scene *scene){
 }
 
 ObjectItemData::ObjectItemData(Object3D *object3d){
+    this->itemId = 3;
     this->object3d = object3d;
 }
 
