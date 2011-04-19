@@ -36,6 +36,7 @@ public:
     int childNumber() const;
     bool setData(int column, const QVariant &value);
     bool setSeleted(Scene *scene);
+    TreeItemData* getItemData();
 
 private:
     string itemLabel;
@@ -50,6 +51,12 @@ class TreeItemData {
     virtual QVariant getData(int column)=0;
     virtual void setData(int column, QVariant colValue)=0;
     virtual bool setSeleted(Scene *scene)=0;
+
+    //int getItemID();
+
+    //protected:
+    int itemId;
+
 };
 
 class CameraItemData : public TreeItemData {
