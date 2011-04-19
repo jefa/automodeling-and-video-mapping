@@ -10,7 +10,7 @@ void OscManager::Init(map<string, Node> network)
     {
         string nName = iter->first;
         Node n = iter->second;
-        //ofLog(OF_LOG_VERBOSE, "OscManager:: Detected node %s:%d", n.address, n.port);
+        ofLog(OF_LOG_VERBOSE, "OscManager:: Detected node %s:%d", n.address.c_str(), n.port);
 
         ofxOscSender *sender = new ofxOscSender();
         sender->setup(n.address, n.port);
@@ -18,7 +18,7 @@ void OscManager::Init(map<string, Node> network)
 
         iter++;
     }
-    receiver.setup( 12345 );
+    //receiver.setup( 12345 );
     ofLog(OF_LOG_VERBOSE, "OscManager:: Configured!");
 
 }

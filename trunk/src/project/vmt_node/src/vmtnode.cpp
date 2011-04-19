@@ -3,30 +3,26 @@
 //--------------------------------------------------------------
 void VmtNode::setup(){
 
+    ofSetLogLevel(OF_LOG_VERBOSE);
+
+    //for smooth animation, set vertical sync if we can
+	ofSetVerticalSync(true);
+	// also, frame rate:
+	ofSetFrameRate(60);
+
+	ofSetVerticalSync(true);
+	glEnable(GL_DEPTH_TEST); //lights look weird if depth test is not enabled
+
     scene = new Scene();
 
 	// listen on the given port
 	cout << "listening for osc messages on port " << PORT << "\n";
 	receiver.setup( PORT );
 
-	current_msg_string = 0;
-	mouseX = 0;
-	mouseY = 0;
-	mouseButtonState = "";
-
-	ofBackground( 30, 30, 130 );
-
 }
 
 //--------------------------------------------------------------
 void VmtNode::update(){
-
-	// hide old messages
-	for ( int i=0; i<NUM_MSG_STRINGS; i++ )
-	{
-		if ( timers[i] < ofGetElapsedTimef() )
-			msg_strings[i] = "";
-	}
 
 	// check for waiting messages
 	while( receiver.hasWaitingMessages() )
@@ -35,18 +31,11 @@ void VmtNode::update(){
 		ofxOscMessage m;
 		receiver.getNextMessage( &m );
 
-		// check for mouse moved message
 		if ( m.getAddress() == "/mouse/position" )
 		{
-			// both the arguments are int32's
-			mouseX = m.getArgAsInt32( 0 );
-			mouseY = m.getArgAsInt32( 1 );
 		}
-		// check for mouse button message
 		else if ( m.getAddress() == "/mouse/button" )
 		{
-			// the single argument is a string
-			mouseButtonState = m.getArgAsString( 0 ) ;
 		}
 		else
 		{
@@ -70,36 +59,24 @@ void VmtNode::update(){
 					msg_string += "unknown";
 			}
 			// add to the list of strings to display
-			msg_strings[current_msg_string] = msg_string;
-			timers[current_msg_string] = ofGetElapsedTimef() + 5.0f;
-			current_msg_string = ( current_msg_string + 1 ) % NUM_MSG_STRINGS;
+			//msg_strings[current_msg_string] = msg_string;
+			printf("LLEGO MENSAJE: %s\n", msg_string.c_str());
+			//timers[current_msg_string] = ofGetElapsedTimef() + 5.0f;
+			//current_msg_string = ( current_msg_string + 1 ) % NUM_MSG_STRINGS;
 			// clear the next line
-			msg_strings[current_msg_string] = "";
+			//msg_strings[current_msg_string] = "";
 		}
 
 	}
+
+	scene->update();
 }
 
 
 //--------------------------------------------------------------
 void VmtNode::draw(){
 
-	string buf;
-	buf = "listening for osc messages on port" + ofToString( PORT );
-	ofDrawBitmapString( buf, 10, 20 );
-
-	// draw mouse state
-	buf = "mouse: " + ofToString( mouseX, 4) +  " " + ofToString( mouseY, 4 );
-	ofDrawBitmapString( buf, 430, 20 );
-	ofDrawBitmapString( mouseButtonState, 580, 20 );
-
-	for ( int i=0; i<NUM_MSG_STRINGS; i++ )
-	{
-		ofDrawBitmapString( msg_strings[i], 10, 40+15*i );
-	}
-
-
-
+	scene->draw();
 }
 
 
@@ -132,3 +109,139 @@ void VmtNode::windowResized(int w, int h){
 
 }
 
+// ISceneHandler interface implementation
+void VmtNode::setBackground(int r, int g, int b){
+    scene->setBackground(r,g,b);
+}
+
+void VmtNode::addCamera(string id){
+    scene->addCamera(id);
+}
+
+void VmtNode::setCameraPos(string camId, float x, float y, float z){
+    ofxCamera *camera = scene->getCamera(camId);
+    if (camera != NULL)
+        camera->position(x, y, z);
+}
+
+void VmtNode::setCameraEye(string camId, float x, float y, float z){
+    ofxCamera *camera = scene->getCamera(camId);
+    if (camera != NULL)
+        camera->eye(x, y, z);
+}
+
+void VmtNode::activateCamera(string camId){
+    scene->activateCamera(camId);
+}
+
+ofxCamera* VmtNode::getActiveCamera(){
+    return scene->getActiveCamera();
+}
+
+void VmtNode::addGroup(string groupId){
+    scene->addGroup(groupId);
+}
+
+QuadGroup* VmtNode::getGroup(string groupId){
+    return scene->getGroup(groupId);
+}
+
+void VmtNode::addLayer(string camId, string layerId){
+    if (scene->getCamera(camId) != NULL)
+        scene->getCamera(camId)->addLayer2D(layerId);
+}
+
+void VmtNode::addQuad(string camId, string layerId, string quadId){
+    if (scene->getCamera(camId) != NULL) {
+        ofxCamera *camera = scene->getCamera(camId);
+        if (camera->getLayer2D(layerId) != NULL)
+            camera->getLayer2D(layerId)->addQuad2D(quadId);
+    }
+}
+
+void VmtNode::addQuadToGroup(string groupId, string camId, string layerId, string quadId){
+    QuadGroup *group = scene->getGroup(groupId);
+    if (group != NULL) {
+        ofxCamera *camera = scene->getCamera(camId);
+        if (camera != NULL) {
+            Layer2D *layer = camera->getLayer2D(layerId);
+            if (layer != NULL){
+                Quad2D *quad = layer->getQuad2D(quadId);
+                if (quad != NULL)
+                    group->addQuad2D(quad);
+            }
+        }
+    }
+}
+
+void VmtNode::enableQuad(string camId, string layerId, string quadId, bool enabled){
+    ofxCamera *camera = scene->getCamera(camId);
+    if (camera != NULL) {
+        Layer2D *layer = camera->getLayer2D(layerId);
+        if (layer != NULL){
+            Quad2D *quad = layer->getQuad2D(quadId);
+            if (quad != NULL)
+                quad->setEnabled(enabled);
+        }
+    }
+}
+
+void VmtNode::setQuadPoint(string camId, string layerId, string quadId,
+            int point, float coordX, float coordY){
+    ofxCamera *camera = scene->getCamera(camId);
+    if (camera != NULL) {
+        Layer2D *layer = camera->getLayer2D(layerId);
+        if (layer != NULL){
+            Quad2D *quad = layer->getQuad2D(quadId);
+            if (quad != NULL)
+                quad->setPoint(point, coordX, coordY);
+        }
+    }
+}
+
+void VmtNode::addObject3D(string objId, string path){
+    scene->addObject3D(objId, path);
+}
+
+Object3D* VmtNode::getObject3D(string objId){
+    return scene->getObject3D(objId);
+}
+
+void VmtNode::addEffect(string effectId, Effect *ef){
+    scene->addEffect(effectId, ef);
+}
+
+void VmtNode::testEffect(string id){
+    this->scene->testEffect(id);
+}
+
+void VmtNode::addLight(string lightId){
+    scene->addLight(lightId);
+}
+
+void VmtNode::setLightSpecular(string lightId, float r, float g, float b){
+    if (scene->getLight(lightId) != NULL)
+        scene->getLight(lightId)->specular(r, g, b);
+}
+
+void VmtNode::setLightDirectional(string lightId, float r, float g, float b,
+                                   float nx, float ny, float nz){
+    if (scene->getLight(lightId) != NULL)
+        scene->getLight(lightId)->directionalLight(r, g, b, nx, ny, nz);
+}
+
+void VmtNode::setLightSpot(string lightId, float r, float g, float b,
+                                   float x, float y, float z,
+                                   float nx, float ny, float nz,
+                                   float angle, float concentration){
+    if (scene->getLight(lightId) != NULL)
+        scene->getLight(lightId)->spotLight(r, g, b, x, y, z, nx, ny, nz, angle, concentration);
+}
+
+void VmtNode::setLightPoint(string lightId, float r, float g, float b,
+                                   float x, float y, float z){
+    if (scene->getLight(lightId) != NULL)
+        scene->getLight(lightId)->pointLight(r, g, b, x, y, z);
+}
+
+// End

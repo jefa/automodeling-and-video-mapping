@@ -2,8 +2,10 @@
 #define VMTMODEL_H
 
 #include "Scene.h"
+#include "OscManager.h"
+#include "ISceneHandler.h"
 
-class VmtModel
+class VmtModel : public ISceneHandler
 {
     public:
         VmtModel();
@@ -52,7 +54,7 @@ class VmtModel
 
     private:
         Scene *scene;
-
+        OscManager *oscManager;
 };
 
 #endif // VMTMODEL_H

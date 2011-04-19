@@ -1,8 +1,22 @@
 #include "vmtmodel.h"
 
+#include "OscUtil.h"
+
 VmtModel::VmtModel()
 {
     scene = new Scene();
+    oscManager = new OscManager();
+
+    Node nd;
+    nd.address = "localhost";
+    nd.port = 54321;
+    nd.isActive = true;
+
+    map<string, Node> net;
+    net.insert(pair<string, Node>("nodo1", nd));
+
+    oscManager->Init(net);
+
 }
 
 VmtModel::~VmtModel()
@@ -27,6 +41,7 @@ void VmtModel::setBackground(int r, int g, int b){
 }
 
 void VmtModel::addCamera(string id){
+    oscManager->SendMessage(OscUtil::createAddCameraMsg(id));
     scene->addCamera(id);
 }
 
@@ -59,11 +74,13 @@ QuadGroup* VmtModel::getGroup(string groupId){
 }
 
 void VmtModel::addLayer(string camId, string layerId){
+    oscManager->SendMessage(OscUtil::createAddLayerMsg(camId, layerId));
     if (scene->getCamera(camId) != NULL)
         scene->getCamera(camId)->addLayer2D(layerId);
 }
 
 void VmtModel::addQuad(string camId, string layerId, string quadId){
+    oscManager->SendMessage(OscUtil::createAddQuadMsg(camId, layerId, quadId));
     if (scene->getCamera(camId) != NULL) {
         ofxCamera *camera = scene->getCamera(camId);
         if (camera->getLayer2D(layerId) != NULL)

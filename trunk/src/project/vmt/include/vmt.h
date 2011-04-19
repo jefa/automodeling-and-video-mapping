@@ -6,7 +6,6 @@
 #include "vmtmodel.h"
 #include "ofxCamera.h"
 #include "ofxLight.h"
-#include "OscManager.h"
 #include "treewindow.h"
 
 using namespace gui;
@@ -32,7 +31,6 @@ class Vmt : public ofBaseApp {
 
     private:
         VmtModel *vmtModel;
-        OscManager *oscManager;
         TreeWindow *treeWindow;
 
 };
