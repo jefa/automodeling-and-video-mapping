@@ -5,7 +5,7 @@
 		<Option title="vmt" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="addons\;addons\ofxOsc\src\;" />
+		<Option virtualFolders="addons\;addons\ofxOsc\src\;common\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin\$(PROJECT_NAME)_DEBUG" prefix_auto="1" extension_auto="1" />
@@ -84,6 +84,7 @@
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxVectorMath\src" />
 			<Add directory="..\vmt_engine\include" />
 			<Add directory="include" />
+			<Add directory="..\common" />
 		</Compiler>
 		<Linker>
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/FreeImage/lib/win_cb/FreeImage.lib" />
@@ -149,6 +150,15 @@
 		</Unit>
 		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscSender.h">
 			<Option virtualFolder="addons\ofxOsc\src" />
+		</Unit>
+		<Unit filename="..\common\ISceneHandler.h">
+			<Option virtualFolder="common" />
+		</Unit>
+		<Unit filename="..\common\OscUtil.cpp">
+			<Option virtualFolder="common" />
+		</Unit>
+		<Unit filename="..\common\OscUtil.h">
+			<Option virtualFolder="common" />
 		</Unit>
 		<Unit filename="include\OscManager.h" />
 		<Unit filename="include\colorlisteditor.h" />

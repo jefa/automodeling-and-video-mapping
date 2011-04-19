@@ -25,7 +25,7 @@ class OscManager
         ofxOscSender* getSender(string nodeName);
 
     private:
-		ofxOscReceiver	receiver;
+		//ofxOscReceiver receiver;
         map<string, ofxOscSender*> senders;
 };
 
