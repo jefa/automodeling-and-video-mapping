@@ -22,23 +22,30 @@ class OscUtil
         virtual ~OscUtil();
 
         static ofxOscMessage createAddCameraMsg(string id);
+        static void processAddCameraMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
         static ofxOscMessage createSetCameraPosMsg(string id, ofxVec3f position);
+        static void processSetCameraPosMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
         static ofxOscMessage createSetCameraEyeMsg(string id, ofxVec3f eye);
-
-        static void processAddCameraMsg(ofxOscMessage msg, ISceneHandler* sceneHandler);
+        static void processSetCameraEyeMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+        static ofxOscMessage createActivateCameraMsg(string id);
+        static ofxOscMessage processActivateCameraMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
         static ofxOscMessage createAddQuadMsg(string camId, string layerId, string quadId);
+        static void processAddQuadMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
         static ofxOscMessage createSetQuadPointMsg(string camId, string layerId, string quadId,
                                                    int point, float coordX, float coordY);
+        static void processSetQuadPointMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+        static ofxOscMessage createEnableQuadMsg(string camId, string layerId, string quadId, bool enabled);
+        static void processEnableQuadMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
         static ofxOscMessage createAddLayerMsg(string camId, string layerId);
+        static void processAddLayerMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
         //static void parseMessage();
-        int getMessageAction(ofxOscMessage);
+        static int getMessageAction(ofxOscMessage);
 
     protected:
     private:
 };
 
 #endif // OSCUTIL_H
-

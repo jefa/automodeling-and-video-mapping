@@ -75,6 +75,7 @@
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs" />
 			<Add directory="..\vmt_engine\include" />
 			<Add directory="include" />
+			<Add directory="..\common" />
 		</Compiler>
 		<Linker>
 			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/FreeImage/lib/win_cb/FreeImage.lib" />
@@ -113,6 +114,15 @@
 			<Add after='cmd /c if not exist &quot;$(PROJECT_DIR)bin/data&quot; mkdir &quot;$(PROJECT_DIR)bin/data&quot;' />
 			<Mode after="always" />
 		</ExtraCommands>
+		<Unit filename="..\common\ISceneHandler.h">
+			<Option virtualFolder="common" />
+		</Unit>
+		<Unit filename="..\common\OscUtil.cpp">
+			<Option virtualFolder="common" />
+		</Unit>
+		<Unit filename="..\common\OscUtil.h">
+			<Option virtualFolder="common" />
+		</Unit>
 		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOsc.h">
 			<Option virtualFolder="addons\ofxOsc\src" />
 		</Unit>
@@ -142,15 +152,6 @@
 		</Unit>
 		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscSender.h">
 			<Option virtualFolder="addons\ofxOsc\src" />
-		</Unit>
-		<Unit filename="..\common\ISceneHandler.h">
-			<Option virtualFolder="common" />
-		</Unit>
-		<Unit filename="..\common\OscUtil.cpp">
-			<Option virtualFolder="common" />
-		</Unit>
-		<Unit filename="..\common\OscUtil.h">
-			<Option virtualFolder="common" />
 		</Unit>
 		<Unit filename="include\vmtnode.h" />
 		<Unit filename="src\main.cpp" />

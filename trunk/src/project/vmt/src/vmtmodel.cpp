@@ -46,18 +46,21 @@ void VmtModel::addCamera(string id){
 }
 
 void VmtModel::setCameraPos(string camId, float x, float y, float z){
+    oscManager->SendMessage(OscUtil::createSetCameraPosMsg(camId, ofxVec3f(x, y, z)));
     ofxCamera *camera = scene->getCamera(camId);
     if (camera != NULL)
         camera->position(x, y, z);
 }
 
 void VmtModel::setCameraEye(string camId, float x, float y, float z){
+    oscManager->SendMessage(OscUtil::createSetCameraEyeMsg(camId, ofxVec3f(x, y, z)));
     ofxCamera *camera = scene->getCamera(camId);
     if (camera != NULL)
         camera->eye(x, y, z);
 }
 
 void VmtModel::activateCamera(string camId){
+    oscManager->SendMessage(OscUtil::createActivateCameraMsg(camId));
     scene->activateCamera(camId);
 }
 
@@ -104,6 +107,7 @@ void VmtModel::addQuadToGroup(string groupId, string camId, string layerId, stri
 }
 
 void VmtModel::enableQuad(string camId, string layerId, string quadId, bool enabled){
+    oscManager->SendMessage(OscUtil::createEnableQuadMsg(camId, layerId, quadId, enabled));
     ofxCamera *camera = scene->getCamera(camId);
     if (camera != NULL) {
         Layer2D *layer = camera->getLayer2D(layerId);
@@ -117,6 +121,7 @@ void VmtModel::enableQuad(string camId, string layerId, string quadId, bool enab
 
 void VmtModel::setQuadPoint(string camId, string layerId, string quadId,
             int point, float coordX, float coordY){
+    oscManager->SendMessage(OscUtil::createSetQuadPointMsg(camId, layerId, quadId, point, coordX, coordY));
     ofxCamera *camera = scene->getCamera(camId);
     if (camera != NULL) {
         Layer2D *layer = camera->getLayer2D(layerId);
