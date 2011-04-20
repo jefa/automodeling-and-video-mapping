@@ -21,6 +21,9 @@ class OscUtil
         OscUtil();
         virtual ~OscUtil();
 
+        static ofxOscMessage createSetBackgroundMsg(int r, int g, int b);
+        static void processSetBackgroundMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+
         static ofxOscMessage createAddCameraMsg(string id);
         static void processAddCameraMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
         static ofxOscMessage createSetCameraPosMsg(string id, ofxVec3f position);
