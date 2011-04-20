@@ -78,6 +78,7 @@ ofxCamera* VmtModel::getActiveCamera(){
 }
 
 void VmtModel::addGroup(string groupId){
+    oscManager->SendMessage(OscUtil::createAddGroupMsg(groupId));
     scene->addGroup(groupId);
 }
 
@@ -101,6 +102,7 @@ void VmtModel::addQuad(string camId, string layerId, string quadId){
 }
 
 void VmtModel::addQuadToGroup(string groupId, string camId, string layerId, string quadId){
+    oscManager->SendMessage(OscUtil::createAddQuadToGroupMsg(groupId, camId, layerId, quadId));
     QuadGroup *group = scene->getGroup(groupId);
     if (group != NULL) {
         ofxCamera *camera = scene->getCamera(camId);
@@ -143,6 +145,7 @@ void VmtModel::setQuadPoint(string camId, string layerId, string quadId,
 }
 
 void VmtModel::addObject3D(string objId, string path){
+    //oscManager->SendMessage(OscUtil::createAddObject3dMsg(objId, path));
     scene->addObject3D(objId, path);
 }
 
@@ -151,10 +154,12 @@ Object3D* VmtModel::getObject3D(string objId){
 }
 
 void VmtModel::addEffect(string effectId, Effect *ef){
+    //oscManager->SendMessage(OscUtil::createAddEffectMsg(effectId));
     scene->addEffect(effectId, ef);
 }
 
 void VmtModel::testEffect(string id){
+    //oscManager->SendMessage(OscUtil::createTestEffectMsg(id));
     this->scene->testEffect(id);
 }
 

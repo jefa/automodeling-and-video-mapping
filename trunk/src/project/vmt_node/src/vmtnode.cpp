@@ -33,26 +33,7 @@ void VmtNode::update(){
 		ofxOscMessage m;
 		receiver.getNextMessage( &m );
 
-        if ( m.getAddress() == "/camera/add" ) {
-            OscUtil::processAddCameraMsg(m, this);
-        } else if ( m.getAddress() == "/camera/setpos" ) {
-            OscUtil::processSetCameraPosMsg(m, this);
-        } else if ( m.getAddress() == "/camera/seteye" ) {
-            OscUtil::processSetCameraEyeMsg(m, this);
-        } else if ( m.getAddress() == "/quad/add") {
-            OscUtil::processAddQuadMsg(m, this);
-        } else if ( m.getAddress() == "/quad/setpoint" ) {
-            OscUtil::processSetQuadPointMsg(m, this);
-        } else if ( m.getAddress() == "/layer/add" ) {
-            OscUtil::processAddLayerMsg(m, this);
-        } else if ( m.getAddress() == "/camera/activate" ) {
-            OscUtil::processActivateCameraMsg(m, this);
-        } else if ( m.getAddress() == "/quad/enable" ) {
-            OscUtil::processEnableQuadMsg(m, this);
-        } else if ( m.getAddress() == "/scene/setbackground" ) {
-            OscUtil::processSetBackgroundMsg(m, this);
-        }
-		else
+        if ( !OscUtil::processMessageAction(m, this) )
 		{
 			// unrecognized message: display on the bottom of the screen
 			string msg_string;
@@ -73,17 +54,9 @@ void VmtNode::update(){
 				else
 					msg_string += "unknown";
 			}
-			// add to the list of strings to display
-			//msg_strings[current_msg_string] = msg_string;
-			printf("LLEGO MENSAJE: %s\n", msg_string.c_str());
-			//timers[current_msg_string] = ofGetElapsedTimef() + 5.0f;
-			//current_msg_string = ( current_msg_string + 1 ) % NUM_MSG_STRINGS;
-			// clear the next line
-			//msg_strings[current_msg_string] = "";
+			printf("MENSAJE INVALIDO: %s\n", msg_string.c_str());
 		}
-
 	}
-
 	scene->update();
 }
 
