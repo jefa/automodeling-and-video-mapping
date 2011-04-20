@@ -5,7 +5,8 @@
 			<Depends filename="../vmt_engine/vmt_engine.cbp" />
 		</Project>
 		<Project filename="../vmt_engine/vmt_engine.cbp" />
-		<Project filename="../vmt_node/vmt_node.cbp" active="1" />
-		<Project filename="vmt.cbp" />
+		<Project filename="../vmt_node/vmt_node.cbp">
+			<Depends filename="../vmt_engine/vmt_engine.cbp" />
+		</Project>
 	</Workspace>
 </CodeBlocks_workspace_file>
