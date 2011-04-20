@@ -28,7 +28,7 @@ class OscUtil
         static ofxOscMessage createSetCameraEyeMsg(string id, ofxVec3f eye);
         static void processSetCameraEyeMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
         static ofxOscMessage createActivateCameraMsg(string id);
-        static ofxOscMessage processActivateCameraMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+        static void processActivateCameraMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
         static ofxOscMessage createAddQuadMsg(string camId, string layerId, string quadId);
         static void processAddQuadMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);

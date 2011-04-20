@@ -68,7 +68,7 @@ ofxOscMessage OscUtil::createActivateCameraMsg(string id){
     return oscMessage;
 }
 
-ofxOscMessage OscUtil::processActivateCameraMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
+void OscUtil::processActivateCameraMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
     string camId = msg.getArgAsString(0);
     sceneHandler->activateCamera(camId);
 }
