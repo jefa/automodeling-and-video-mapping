@@ -48,15 +48,23 @@ void VmtModel::addCamera(string id){
 void VmtModel::setCameraPos(string camId, float x, float y, float z){
     oscManager->SendMessage(OscUtil::createSetCameraPosMsg(camId, ofxVec3f(x, y, z)));
     ofxCamera *camera = scene->getCamera(camId);
-    if (camera != NULL)
+    if (camera != NULL) {
         camera->position(x, y, z);
+    }
+    else {
+        ofLog(OF_LOG_ERROR, "VmtModel::setCameraPos camera %s is NULL", camId.c_str());
+    }
 }
 
 void VmtModel::setCameraEye(string camId, float x, float y, float z){
     oscManager->SendMessage(OscUtil::createSetCameraEyeMsg(camId, ofxVec3f(x, y, z)));
     ofxCamera *camera = scene->getCamera(camId);
-    if (camera != NULL)
+    if (camera != NULL) {
         camera->eye(x, y, z);
+    }
+    else {
+        ofLog(OF_LOG_ERROR, "VmtModel::setCameraEye camera %s is NULL", camId.c_str());
+    }
 }
 
 void VmtModel::activateCamera(string camId){
