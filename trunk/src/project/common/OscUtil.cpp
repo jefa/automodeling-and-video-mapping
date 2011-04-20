@@ -10,6 +10,22 @@ OscUtil::~OscUtil()
     //dtor
 }
 
+ofxOscMessage OscUtil::createSetBackgroundMsg(int r, int g, int b){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress("/scene/setbackground");
+    oscMessage.addIntArg(r);
+    oscMessage.addIntArg(g);
+    oscMessage.addIntArg(b);
+    return oscMessage;
+}
+
+void OscUtil::processSetBackgroundMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
+    int r = msg.getArgAsInt32(0);
+    int g = msg.getArgAsInt32(1);
+    int b = msg.getArgAsInt32(2);
+    sceneHandler->setBackground(r,g,b);
+}
+
 ofxOscMessage OscUtil::createAddCameraMsg(string id)
 {
     ofxOscMessage oscMessage;

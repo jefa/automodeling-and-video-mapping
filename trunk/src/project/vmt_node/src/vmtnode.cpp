@@ -49,6 +49,8 @@ void VmtNode::update(){
             OscUtil::processActivateCameraMsg(m, this);
         } else if ( m.getAddress() == "/quad/enable" ) {
             OscUtil::processEnableQuadMsg(m, this);
+        } else if ( m.getAddress() == "/scene/setbackground" ) {
+            OscUtil::processSetBackgroundMsg(m, this);
         }
 		else
 		{

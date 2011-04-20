@@ -37,6 +37,7 @@ void VmtModel::update(){
 }
 
 void VmtModel::setBackground(int r, int g, int b){
+    oscManager->SendMessage(OscUtil::createSetBackgroundMsg(r, g, b));
     scene->setBackground(r,g,b);
 }
 
