@@ -31,7 +31,7 @@ void QuadGroup::CalculateBounds() {
         }
     }
 
-    //bounds.set(minX, minY, maxX - minX, maxY - minY);
+    bounds.set(minX, minY, maxX - minX, maxY - minY);
     genUVWCoords();
 }
 
