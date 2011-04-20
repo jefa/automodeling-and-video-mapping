@@ -160,19 +160,61 @@ void OscUtil::processAddLayerMsg(ofxOscMessage msg, ISceneHandler *sceneHandler)
     sceneHandler->addLayer(camId, layerId);
 }
 
-int OscUtil::getMessageAction(ofxOscMessage msg) {
-    if ( msg.getAddress() == "/camera/add" ) {
+ofxOscMessage OscUtil::createAddGroupMsg(string groupId){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress("/group/add");
+    oscMessage.addStringArg(groupId);
+    return oscMessage;
+}
 
-    } else if ( msg.getAddress() == "/camera/setpos" ) {
+void OscUtil::processAddGroupMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
+    string groupId = msg.getArgAsString(0);
+    sceneHandler->addGroup(groupId);
+}
 
-    } else if ( msg.getAddress() == "/camera/seteye" ) {
+ofxOscMessage OscUtil::createAddQuadToGroupMsg(string groupId, string camId, string layerId, string quadId){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress("/group/addquad");
+    oscMessage.addStringArg(groupId);
+    oscMessage.addStringArg(camId);
+    oscMessage.addStringArg(layerId);
+    oscMessage.addStringArg(quadId);
+    return oscMessage;
+}
 
-    } else if ( msg.getAddress() == "/quad/add") {
+void OscUtil::processAddQuadToGroupMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
+    string groupId = msg.getArgAsString(0);
+    string camId = msg.getArgAsString(0);
+    string layerId = msg.getArgAsString(0);
+    string quadId = msg.getArgAsString(0);
+    sceneHandler->addQuadToGroup(groupId, camId, layerId, quadId);
+}
 
-    } else if ( msg.getAddress() == "/quad/setpoint" ) {
-
-    } else if ( msg.getAddress() == "/layer/add" ) {
-
-    } else
+int OscUtil::processMessageAction(ofxOscMessage m, ISceneHandler *sceneHandler) {
+    if ( m.getAddress() == "/camera/add" ) {
+        OscUtil::processAddCameraMsg(m, sceneHandler);
+    } else if ( m.getAddress() == "/camera/setpos" ) {
+        OscUtil::processSetCameraPosMsg(m, sceneHandler);
+    } else if ( m.getAddress() == "/camera/seteye" ) {
+        OscUtil::processSetCameraEyeMsg(m, sceneHandler);
+    } else if ( m.getAddress() == "/quad/add") {
+        OscUtil::processAddQuadMsg(m, sceneHandler);
+    } else if ( m.getAddress() == "/quad/setpoint" ) {
+        OscUtil::processSetQuadPointMsg(m, sceneHandler);
+    } else if ( m.getAddress() == "/layer/add" ) {
+        OscUtil::processAddLayerMsg(m, sceneHandler);
+    } else if ( m.getAddress() == "/camera/activate" ) {
+        OscUtil::processActivateCameraMsg(m, sceneHandler);
+    } else if ( m.getAddress() == "/quad/enable" ) {
+        OscUtil::processEnableQuadMsg(m, sceneHandler);
+    } else if ( m.getAddress() == "/scene/setbackground" ) {
+        OscUtil::processSetBackgroundMsg(m, sceneHandler);
+    } else if ( m.getAddress() == "/group/add" ) {
+        OscUtil::processAddGroupMsg(m, sceneHandler);
+    } else if ( m.getAddress() == "/group/addquad" ) {
+        OscUtil::processAddQuadToGroupMsg(m, sceneHandler);
+    } else {
         return -1;
+    }
+    return 1;
 }

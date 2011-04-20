@@ -44,8 +44,12 @@ class OscUtil
         static ofxOscMessage createAddLayerMsg(string camId, string layerId);
         static void processAddLayerMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
-        //static void parseMessage();
-        static int getMessageAction(ofxOscMessage);
+        static ofxOscMessage createAddGroupMsg(string groupId);
+        static void processAddGroupMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+        static ofxOscMessage createAddQuadToGroupMsg(string groupId, string camId, string layerId, string quadId);
+        static void processAddQuadToGroupMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+
+        static int processMessageAction(ofxOscMessage, ISceneHandler *);
 
     protected:
     private:
