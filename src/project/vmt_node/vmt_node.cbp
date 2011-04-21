@@ -42,7 +42,7 @@
 			</Target>
 		</Build>
 		<Compiler>
-			<Add option="-Wno-multichar" />
+			<Add option="-Wno-multichar -Werror=return-type" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\glu\include" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\freetype\include" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\freetype\include\freetype2" />
