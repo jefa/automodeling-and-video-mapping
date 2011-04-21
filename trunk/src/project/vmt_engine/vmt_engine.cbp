@@ -37,7 +37,7 @@
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
-			<Add option="-Wno-multichar" />
+			<Add option="-Wno-multichar -Werror=return-type" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\app" />
 			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\communication" />
