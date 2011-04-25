@@ -130,6 +130,18 @@
 		<Unit filename="..\common\OscUtil.h">
 			<Option virtualFolder="common" />
 		</Unit>
+		<Unit filename="..\common\base64.h">
+			<Option virtualFolder="common" />
+		</Unit>
+		<Unit filename="..\common\base64.cpp">
+			<Option virtualFolder="common" />
+		</Unit>
+		<Unit filename="..\common\FileUtil.h">
+			<Option virtualFolder="common" />
+		</Unit>
+		<Unit filename="..\common\FileUtil.cpp">
+			<Option virtualFolder="common" />
+		</Unit>
 		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOsc.h">
 			<Option virtualFolder="addons\ofxOsc\src" />
 		</Unit>

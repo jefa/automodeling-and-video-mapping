@@ -1,4 +1,10 @@
 #include "OscUtil.h"
+#include "FileUtil.h"
+#include "base64.h"
+
+#include "FadeEffect.h"
+#include "PositionEffect.h"
+#include "TextureEffect.h"
 
 OscUtil::OscUtil()
 {
@@ -53,8 +59,8 @@ ofxOscMessage OscUtil::createSetCameraPosMsg(string id, ofxVec3f position)
 void OscUtil::processSetCameraPosMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
     string id = msg.getArgAsString(0);
     float x = msg.getArgAsFloat(1);
-    float y = msg.getArgAsFloat(1);
-    float z = msg.getArgAsFloat(1);
+    float y = msg.getArgAsFloat(2);
+    float z = msg.getArgAsFloat(3);
     sceneHandler->setCameraPos(id, x, y, z);
 }
 
@@ -72,8 +78,8 @@ ofxOscMessage OscUtil::createSetCameraEyeMsg(string id, ofxVec3f eye)
 void OscUtil::processSetCameraEyeMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
     string id = msg.getArgAsString(0);
     float x = msg.getArgAsFloat(1);
-    float y = msg.getArgAsFloat(1);
-    float z = msg.getArgAsFloat(1);
+    float y = msg.getArgAsFloat(2);
+    float z = msg.getArgAsFloat(3);
     sceneHandler->setCameraEye(id, x, y, z);
 }
 
@@ -184,10 +190,58 @@ ofxOscMessage OscUtil::createAddQuadToGroupMsg(string groupId, string camId, str
 
 void OscUtil::processAddQuadToGroupMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
     string groupId = msg.getArgAsString(0);
-    string camId = msg.getArgAsString(0);
-    string layerId = msg.getArgAsString(0);
-    string quadId = msg.getArgAsString(0);
+    string camId = msg.getArgAsString(1);
+    string layerId = msg.getArgAsString(2);
+    string quadId = msg.getArgAsString(3);
     sceneHandler->addQuadToGroup(groupId, camId, layerId, quadId);
+}
+
+ofxOscMessage OscUtil::createAddObject3dMsg(string objId, string base64data){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress("/object/add");
+    oscMessage.addStringArg(objId);
+
+    cout << "\tbase64data.size==== " << base64data.size() << endl;
+
+    int chunks = base64data.size() / 2000;
+    int rest = base64data.size() % 2000;
+    oscMessage.addIntArg(chunks);
+    for (int i=0; i<(chunks-1); i++){
+        cout << "\tchunk: " << i << " de " << chunks << endl;
+        cout << "\tpos: " << i*2000 << endl;
+        //if ( i = (chunks-1))
+            //oscMessage.addStringArg(base64data.substr(i * 2000, rest));
+        //else
+            oscMessage.addStringArg(base64data.substr(i * 2000, 2000));
+    }
+    oscMessage.addStringArg(base64data.substr((chunks-1) * 2000, rest));
+
+    /*try {
+        oscMessage.addStringArg(base64data.substr(0,3000));
+    } catch (exception& e)
+    {
+        cout << "\tEXCEPCIONNNNN!!!!! " << e.what() << endl;
+    }*/
+    return oscMessage;
+}
+
+void OscUtil::processAddObject3dMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
+    string objId = msg.getArgAsString(0);
+    int chunks = msg.getArgAsInt32(1);
+    //string base64data = msg.getArgAsString(2);
+    string base64data;
+    for (int i=0; i<chunks; i++){
+        base64data += msg.getArgAsString(i+2);
+    }
+    printf("\tBASE64.DATA=%s\n", base64data.c_str());
+
+    string path = "data/transferred/" + objId + ".3ds";
+
+    string base64strDecoded = base64_decode(base64data);
+
+    bool saved = FileUtil::writeBinaryFile(path, base64strDecoded);
+
+    sceneHandler->addObject3D(objId, path);
 }
 
 int OscUtil::processMessageAction(ofxOscMessage m, ISceneHandler *sceneHandler) {
@@ -213,8 +267,47 @@ int OscUtil::processMessageAction(ofxOscMessage m, ISceneHandler *sceneHandler) 
         OscUtil::processAddGroupMsg(m, sceneHandler);
     } else if ( m.getAddress() == "/group/addquad" ) {
         OscUtil::processAddQuadToGroupMsg(m, sceneHandler);
+    } else if ( m.getAddress() == "/object/add" ) {
+        OscUtil::processAddObject3dMsg(m, sceneHandler);
     } else {
         return -1;
     }
     return 1;
 }
+
+ofxOscMessage OscUtil::serializeEffect(Effect *ef){
+    ofxOscMessage m;
+    if (ef->getType() == FADE_EFFECT){
+        FadeEffect *feff = (FadeEffect*) ef;
+    } else if (ef->getType() == POSITION_EFFECT){
+        PositionEffect *peff = (PositionEffect*) ef;
+        //new PositionEffect(obj3d, ofxVec3f(0,3,0), ofxVec3f(0,-3,0), 0.5f)
+    } else if (ef->getType() == TEXTURE_EFFECT){
+        TextureEffect *teff = (TextureEffect*) ef;
+    }
+    return m;
+}
+
+Effect* OscUtil::deserializeEffect(ofxOscMessage m){
+    int effType = m.getArgAsInt32(0);
+    Effect *eff;
+    if (effType == FADE_EFFECT){
+        string groupId = m.getArgAsString(1);
+        float colIniR = m.getArgAsFloat(2);
+        float colIniG = m.getArgAsFloat(3);
+        float colIniB = m.getArgAsFloat(4);
+        float colIniA = m.getArgAsFloat(5);
+        float colFinR = m.getArgAsFloat(6);
+        float colFinG = m.getArgAsFloat(7);
+        float colFinB = m.getArgAsFloat(8);
+        float colFinA = m.getArgAsFloat(9);
+        float delay = m.getArgAsFloat(10);
+        //eff = new FadeEffect(new FadeEffect(groupId, ofxVec4f(colIniR,colIniG,colIniB,colIniA), ofxVec4f(colFinR,colFinG,colFinB,colFinA), delay));
+    } else if (effType == POSITION_EFFECT){
+        //eff = new PositionEffect(/*obj3d, ofxVec3f(0,3,0), ofxVec3f(0,-3,0), 0.5f*/);
+    } else if (effType == TEXTURE_EFFECT){
+        //eff = new TextureEffect();
+    }
+    return eff;
+}
+

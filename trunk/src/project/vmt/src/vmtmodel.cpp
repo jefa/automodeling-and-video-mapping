@@ -1,6 +1,7 @@
 #include "vmtmodel.h"
-
 #include "OscUtil.h"
+#include "FileUtil.h"
+#include "base64.h"
 
 VmtModel::VmtModel()
 {
@@ -145,7 +146,38 @@ void VmtModel::setQuadPoint(string camId, string layerId, string quadId,
 }
 
 void VmtModel::addObject3D(string objId, string path){
-    //oscManager->SendMessage(OscUtil::createAddObject3dMsg(objId, path));
+
+    FILE * pFile;
+    long lSize;
+    size_t result;
+
+    pFile = fopen ( path.c_str() , "rb" );
+    if (pFile==NULL) {
+        fputs ("File error",stderr);
+        return;
+    }
+
+    fseek (pFile , 0 , SEEK_END);
+    lSize = ftell (pFile);
+    rewind (pFile);
+
+    char* buffer = (char*) malloc (sizeof(char)*lSize);
+    if (buffer == NULL) {
+        fputs ("Memory error",stderr);
+        return ;
+    }
+
+    result = fread (buffer, 1, lSize, pFile);
+    if (result != lSize) {
+        fputs ("Reading error",stderr);
+        return ;
+    }
+
+    fclose (pFile);
+
+    string base64strEncoded = base64_encode((unsigned char*)buffer , lSize);
+
+    //oscManager->SendMessage(OscUtil::createAddObject3dMsg(objId, base64strEncoded));
     scene->addObject3D(objId, path);
 }
 

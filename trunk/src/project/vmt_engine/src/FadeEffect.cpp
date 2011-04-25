@@ -33,3 +33,23 @@ void FadeEffect::test() {
     AnimationManager::PlayAnimation(new LinearAnimation(this->group, AMBIENT_B, this->delay, this->colorFin.z));
     AnimationManager::PlayAnimation(new LinearAnimation(this->group, AMBIENT_A, this->delay, this->colorFin.w));
 }
+
+int FadeEffect::getType(){
+    return FADE_EFFECT;
+}
+
+QuadGroup* FadeEffect::getQuadGroup(){
+    return this->group;
+}
+
+ofxVec4f FadeEffect::getColorIni(){
+    return this->colorIni;
+}
+
+ofxVec4f FadeEffect::getColorFin(){
+    return this->colorFin;
+}
+
+float FadeEffect::getDelay(){
+    return this->delay;
+}

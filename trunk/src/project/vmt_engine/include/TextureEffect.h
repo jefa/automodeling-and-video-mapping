@@ -15,6 +15,15 @@ class TextureEffect : public Effect
 
         virtual void play();
         virtual void test();
+        virtual int getType();
+
+        QuadGroup* getGroup();
+        Object3D* getObject3D();
+        string getFacesID();
+        string getTextureKey();
+        textureType getTextureType();
+        bool getIsGroup();
+
     protected:
     private:
         QuadGroup* group;

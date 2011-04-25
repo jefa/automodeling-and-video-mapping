@@ -86,6 +86,7 @@ void Scene::deActivateObject() {
 
 Effect* Scene::addEffect(string id, Effect* effect) {
     effects.insert(pair<string, Effect*>(id, effect));
+    return effect;
 }
 
 void Scene::testEffect(string id) {
