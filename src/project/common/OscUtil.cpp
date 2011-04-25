@@ -244,6 +244,82 @@ void OscUtil::processAddObject3dMsg(ofxOscMessage msg, ISceneHandler *sceneHandl
     sceneHandler->addObject3D(objId, path);
 }
 
+ofxOscMessage OscUtil::createAddPositionEffectMsg(string effectId, string objId, ofxVec3f posIni,
+                                                ofxVec3f posFin, float delay){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress("/effect/add_position");
+    oscMessage.addStringArg(effectId);
+    oscMessage.addStringArg(objId);
+    oscMessage.addFloatArg(posIni[0]);
+    oscMessage.addFloatArg(posIni[1]);
+    oscMessage.addFloatArg(posIni[2]);
+    oscMessage.addFloatArg(posFin[0]);
+    oscMessage.addFloatArg(posFin[1]);
+    oscMessage.addFloatArg(posFin[2]);
+    oscMessage.addFloatArg(delay);
+    return oscMessage;
+}
+
+void OscUtil::processAddPositionEffectMsg(ofxOscMessage m, ISceneHandler *sceneHandler){
+    string effId = m.getArgAsString(0);
+    string objId = m.getArgAsString(1);
+    float posIniX = m.getArgAsFloat(2);
+    float posIniY = m.getArgAsFloat(3);
+    float posIniZ = m.getArgAsFloat(4);
+    float posFinX = m.getArgAsFloat(5);
+    float posFinY = m.getArgAsFloat(6);
+    float posFinZ = m.getArgAsFloat(7);
+    float delay = m.getArgAsFloat(8);
+    sceneHandler->addPositionEffect(effId, objId, ofxVec3f(posIniX,posIniY,posIniZ),
+                                    ofxVec3f(posFinX,posFinY,posFinZ), delay);
+}
+
+ofxOscMessage OscUtil::createAddFadeEffectMsg(string effectId, string groupId, ofxVec4f colorIni,
+                                            ofxVec4f colorFin, float delay){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress("/effect/add_fade");
+    oscMessage.addStringArg(effectId);
+    oscMessage.addStringArg(groupId);
+    oscMessage.addFloatArg(colorIni[0]);
+    oscMessage.addFloatArg(colorIni[1]);
+    oscMessage.addFloatArg(colorIni[2]);
+    oscMessage.addFloatArg(colorIni[3]);
+    oscMessage.addFloatArg(colorFin[0]);
+    oscMessage.addFloatArg(colorFin[1]);
+    oscMessage.addFloatArg(colorFin[2]);
+    oscMessage.addFloatArg(colorFin[3]);
+    oscMessage.addFloatArg(delay);
+    return oscMessage;
+}
+
+void OscUtil::processAddFadeEffectMsg(ofxOscMessage m, ISceneHandler *sceneHandler){
+    string effId = m.getArgAsString(0);
+    string groupId = m.getArgAsString(1);
+    float colIniR = m.getArgAsFloat(2);
+    float colIniG = m.getArgAsFloat(3);
+    float colIniB = m.getArgAsFloat(4);
+    float colIniA = m.getArgAsFloat(5);
+    float colFinR = m.getArgAsFloat(6);
+    float colFinG = m.getArgAsFloat(7);
+    float colFinB = m.getArgAsFloat(8);
+    float colFinA = m.getArgAsFloat(9);
+    float delay = m.getArgAsFloat(10);
+    sceneHandler->addFadeEffect(effId, groupId, ofxVec4f(colIniR,colIniG,colIniB,colIniA),
+                     ofxVec4f(colFinR,colFinG,colFinB,colFinA), delay);
+}
+
+ofxOscMessage OscUtil::createTestEffectMsg(string effectId){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress("/effect/test");
+    oscMessage.addStringArg(effectId);
+    return oscMessage;
+}
+
+void OscUtil::processTestEffectMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
+    string effId = msg.getArgAsString(0);
+    sceneHandler->testEffect(effId);
+}
+
 int OscUtil::processMessageAction(ofxOscMessage m, ISceneHandler *sceneHandler) {
     if ( m.getAddress() == "/camera/add" ) {
         OscUtil::processAddCameraMsg(m, sceneHandler);
@@ -269,6 +345,12 @@ int OscUtil::processMessageAction(ofxOscMessage m, ISceneHandler *sceneHandler) 
         OscUtil::processAddQuadToGroupMsg(m, sceneHandler);
     } else if ( m.getAddress() == "/object/add" ) {
         OscUtil::processAddObject3dMsg(m, sceneHandler);
+    } else if ( m.getAddress() == "/effect/add_fade" ) {
+        OscUtil::processAddFadeEffectMsg(m, sceneHandler);
+    } else if ( m.getAddress() == "/effect/add_position" ) {
+        OscUtil::processAddPositionEffectMsg(m, sceneHandler);
+    } else if ( m.getAddress() == "/effect/test" ) {
+        OscUtil::processTestEffectMsg(m, sceneHandler);
     } else {
         return -1;
     }
@@ -292,17 +374,6 @@ Effect* OscUtil::deserializeEffect(ofxOscMessage m){
     int effType = m.getArgAsInt32(0);
     Effect *eff;
     if (effType == FADE_EFFECT){
-        string groupId = m.getArgAsString(1);
-        float colIniR = m.getArgAsFloat(2);
-        float colIniG = m.getArgAsFloat(3);
-        float colIniB = m.getArgAsFloat(4);
-        float colIniA = m.getArgAsFloat(5);
-        float colFinR = m.getArgAsFloat(6);
-        float colFinG = m.getArgAsFloat(7);
-        float colFinB = m.getArgAsFloat(8);
-        float colFinA = m.getArgAsFloat(9);
-        float delay = m.getArgAsFloat(10);
-        //eff = new FadeEffect(new FadeEffect(groupId, ofxVec4f(colIniR,colIniG,colIniB,colIniA), ofxVec4f(colFinR,colFinG,colFinB,colFinA), delay));
     } else if (effType == POSITION_EFFECT){
         //eff = new PositionEffect(/*obj3d, ofxVec3f(0,3,0), ofxVec3f(0,-3,0), 0.5f*/);
     } else if (effType == TEXTURE_EFFECT){

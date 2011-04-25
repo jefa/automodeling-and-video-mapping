@@ -192,6 +192,7 @@ void VmtModel::addPositionEffect(string effectId, string objId, ofxVec3f posIni,
         printf("VmtModel::addPositionEffect: object does not exists(%s)\n", objId.c_str());
         return;
     }
+    oscManager->SendMessage(OscUtil::createAddPositionEffectMsg(effectId, objId, posIni, posFin, delay));
     scene->addEffect(effectId, new PositionEffect(scene->getObject3D(objId), posIni, posFin, delay));
 }
 
@@ -200,6 +201,7 @@ void VmtModel::addFadeEffect(string effectId, string groupId, ofxVec4f colorIni,
         printf("VmtModel::addFadeEffect: group does not exists(%s)\n", groupId.c_str());
         return;
     }
+    oscManager->SendMessage(OscUtil::createAddFadeEffectMsg(effectId, groupId, colorIni, colorFin, delay));
     scene->addEffect(effectId, new FadeEffect(scene->getGroup(groupId), colorIni, colorFin, delay));
 }
 
@@ -208,7 +210,7 @@ void VmtModel::addTextureEffect(string effectId){
 }
 
 void VmtModel::testEffect(string id){
-    //oscManager->SendMessage(OscUtil::createTestEffectMsg(id));
+    oscManager->SendMessage(OscUtil::createTestEffectMsg(id));
     this->scene->testEffect(id);
 }
 
