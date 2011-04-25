@@ -1,6 +1,8 @@
 #include "vmtnode.h"
 
 #include "OscUtil.h"
+#include "FadeEffect.h"
+#include "PositionEffect.h"
 
 //--------------------------------------------------------------
 void VmtNode::setup(){
@@ -195,8 +197,24 @@ Object3D* VmtNode::getObject3D(string objId){
     return scene->getObject3D(objId);
 }
 
-void VmtNode::addEffect(string effectId, Effect *ef){
-    scene->addEffect(effectId, ef);
+void VmtNode::addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay){
+    if (scene->getObject3D(objId) == NULL){
+        printf("VmtNode::addPositionEffect: object does not exists(%s)\n", objId.c_str());
+        return;
+    }
+    scene->addEffect(effectId, new PositionEffect(scene->getObject3D(objId), posIni, posFin, delay));
+}
+
+void VmtNode::addFadeEffect(string effectId, string groupId, ofxVec4f colorIni, ofxVec4f colorFin, float delay){
+    if (scene->getGroup(groupId) == NULL){
+        printf("VmtNode::addFadeEffect: group does not exists(%s)\n", groupId.c_str());
+        return;
+    }
+    scene->addEffect(effectId, new FadeEffect(scene->getGroup(groupId), colorIni, colorFin, delay));
+}
+
+void VmtNode::addTextureEffect(string effectId){
+    throw exception();
 }
 
 void VmtNode::testEffect(string id){

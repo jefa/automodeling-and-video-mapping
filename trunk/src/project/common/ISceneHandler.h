@@ -26,7 +26,9 @@ class ISceneHandler
         virtual void addObject3D(string objId, string path) =0;
         virtual Object3D* getObject3D(string objId) =0;
 
-        virtual void addEffect(string effectId, Effect *ef) =0;
+        virtual void addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay) =0;
+        virtual void addFadeEffect(string effectId, string groupId, ofxVec4f colorIni, ofxVec4f colorFin, float delay) =0;
+        virtual void addTextureEffect(string effectId) =0;
         virtual void testEffect(string id) =0;
 
         virtual void addLight(string lightId) =0;

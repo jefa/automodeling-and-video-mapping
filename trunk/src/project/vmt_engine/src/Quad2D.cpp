@@ -61,6 +61,7 @@ ofxVec2f Quad2D::getPoint(int i) {
     if(i >= 0 && i <= 3) {
         return ofxVec2f(quadPoints[i * 2], quadPoints[1 + (i * 2)]);
     }
+    return ofxVec2f(-1, -1);
 }
 
 void Quad2D::setUVCoordinate(int i, float u, float v) {
@@ -173,4 +174,5 @@ float Quad2D::get(int aParam) {
             return material->get(aParam);
             break;
     }
+    return -1.0f;
 }

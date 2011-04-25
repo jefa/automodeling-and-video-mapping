@@ -62,12 +62,16 @@ void Vmt::setup(){
     vmtModel->addObject3D("squirrel", "data/NewSquirrel.3DS");
     Object3D *obj3d = vmtModel->getObject3D("squirrel");
 
-    vmtModel->addEffect("ef1", new PositionEffect(obj3d, ofxVec3f(0,3,0), ofxVec3f(0,-3,0), 0.5f));
-    vmtModel->addEffect("ef2", new PositionEffect(obj3d, ofxVec3f(3,0,0), ofxVec3f(-3,0,0), 0.5f));
-    vmtModel->addEffect("ef3", new PositionEffect(obj3d, ofxVec3f(0,0,3), ofxVec3f(0,0,-3), 0.5f));
+    //vmtModel->addEffect("ef1", new PositionEffect(obj3d, ofxVec3f(0,3,0), ofxVec3f(0,-3,0), 0.5f));
+    vmtModel->addPositionEffect("ef1", obj3d->getId(), ofxVec3f(0,3,0), ofxVec3f(0,-3,0), 0.5f);
+    //vmtModel->addEffect("ef2", new PositionEffect(obj3d, ofxVec3f(3,0,0), ofxVec3f(-3,0,0), 0.5f));
+    vmtModel->addPositionEffect("ef2", obj3d->getId(), ofxVec3f(3,0,0), ofxVec3f(-3,0,0), 0.5f);
+    //vmtModel->addEffect("ef3", new PositionEffect(obj3d, ofxVec3f(0,0,3), ofxVec3f(0,0,-3), 0.5f));
+    vmtModel->addPositionEffect("ef3", obj3d->getId(), ofxVec3f(0,0,3), ofxVec3f(0,0,-3), 0.5f);
 
     QuadGroup *group1 = vmtModel->getGroup("group1");
-    vmtModel->addEffect("ef4", new FadeEffect(group1, ofxVec4f(0,0,0,0), ofxVec4f(1,1,1,1), 0.5f));
+    //vmtModel->addEffect("ef4", new FadeEffect(group1, ofxVec4f(0,0,0,0), ofxVec4f(1,1,1,1), 0.5f));
+    vmtModel->addFadeEffect("ef4", "group1", ofxVec4f(0,0,0,0), ofxVec4f(1,1,1,1), 0.5f);
 
     /*Lighting*/
 

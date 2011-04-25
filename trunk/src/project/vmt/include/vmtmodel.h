@@ -36,7 +36,10 @@ class VmtModel : public ISceneHandler
         void addObject3D(string objId, string path);
         Object3D* getObject3D(string objId);
 
-        void addEffect(string effectId, Effect *ef);
+        void addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay);
+        void addFadeEffect(string effectId, string groupId, ofxVec4f colorIni, ofxVec4f colorFin, float delay);
+        void addTextureEffect(string effectId);
+
         void testEffect(string id);
 
         void addLight(string lightId);
