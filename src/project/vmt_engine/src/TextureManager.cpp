@@ -86,6 +86,7 @@ ofTexture& TextureManager::GetTextureReference(string key, textureType type) {
         vid->draw(0,0,0,0); //HACK: la textura se actualiza con este draw
         return vid->getTextureReference();
     }
+    throw exception();
 }
 
 ofxAlphaVideoPlayer* TextureManager::GetVideoTexture(string key){
