@@ -53,10 +53,21 @@ class OscUtil
         static ofxOscMessage createAddObject3dMsg(string objId, string base64data);
         static void processAddObject3dMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
-        static int processMessageAction(ofxOscMessage, ISceneHandler *);
+        static ofxOscMessage createAddPositionEffectMsg(string effectId, string objId, ofxVec3f posIni,
+                                                        ofxVec3f posFin, float delay);
+        static void processAddPositionEffectMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+        static ofxOscMessage createAddFadeEffectMsg(string effectId, string groupId, ofxVec4f colorIni,
+                                                    ofxVec4f colorFin, float delay);
+        static void processAddFadeEffectMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+
+        static ofxOscMessage createTestEffectMsg(string effectId);
+        static void processTestEffectMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
         static ofxOscMessage serializeEffect(Effect *ef);
         static Effect* deserializeEffect(ofxOscMessage);
+
+        static int processMessageAction(ofxOscMessage, ISceneHandler *);
+
     protected:
     private:
 };

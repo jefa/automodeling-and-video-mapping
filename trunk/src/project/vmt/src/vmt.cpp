@@ -1,9 +1,7 @@
+#include "vmt.h"
 #include "ObjectEditDialog.h"
 #include "Quad2D.h"
 #include "Object3D.h"
-#include "PositionEffect.h"
-#include "FadeEffect.h"
-#include "vmt.h"
 #include <map>
 //--------------------------------------------------------------
 
