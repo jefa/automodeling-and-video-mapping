@@ -28,3 +28,24 @@ void PositionEffect::test() {
     AnimationManager::PlayAnimation(new LinearAnimation(this->object3d, POS_Y, this->delay, this->posFin.y));
     AnimationManager::PlayAnimation(new LinearAnimation(this->object3d, POS_Z, this->delay, this->posFin.z));
 }
+
+int PositionEffect::getType(){
+    return POSITION_EFFECT;
+}
+
+Object3D* PositionEffect::getObject3D(){
+    return this->object3d;
+}
+
+ofxVec3f PositionEffect::getPosIni(){
+    return this->posIni;
+}
+
+ofxVec3f PositionEffect::getPosFin(){
+    return this->posFin;
+}
+
+float PositionEffect::getDelay(){
+    return this->delay;
+}
+

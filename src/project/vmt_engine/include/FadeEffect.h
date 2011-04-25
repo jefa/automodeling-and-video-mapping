@@ -14,6 +14,13 @@ class FadeEffect : public Effect
 
         virtual void play();
         virtual void test();
+        virtual int getType();
+
+        QuadGroup* getQuadGroup();
+        ofxVec4f getColorIni();
+        ofxVec4f getColorFin();
+        float getDelay();
+
     protected:
     private:
         QuadGroup *group;

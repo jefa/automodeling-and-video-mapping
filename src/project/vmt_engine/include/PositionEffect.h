@@ -13,6 +13,13 @@ class PositionEffect : public Effect
 
         virtual void play();
         virtual void test();
+        virtual int getType();
+
+        Object3D* getObject3D();
+        ofxVec3f getPosIni();
+        ofxVec3f getPosFin();
+        float getDelay();
+
     protected:
     private:
         Object3D *object3d;

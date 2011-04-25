@@ -5,6 +5,7 @@
 #include "ofxVec3f.h"
 
 #include "ISceneHandler.h"
+#include "Effect.h"
 
 enum OSC_MESSAGES {
 	ADD_LAYER,
@@ -49,8 +50,13 @@ class OscUtil
         static ofxOscMessage createAddQuadToGroupMsg(string groupId, string camId, string layerId, string quadId);
         static void processAddQuadToGroupMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
+        static ofxOscMessage createAddObject3dMsg(string objId, string base64data);
+        static void processAddObject3dMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+
         static int processMessageAction(ofxOscMessage, ISceneHandler *);
 
+        static ofxOscMessage serializeEffect(Effect *ef);
+        static Effect* deserializeEffect(ofxOscMessage);
     protected:
     private:
 };

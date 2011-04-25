@@ -50,3 +50,31 @@ void TextureEffect::test() {
         this->object3d->SetTextureParamsForMaterial(this->facesID, this->textureKey, this->type);
     }
 }
+
+int TextureEffect::getType(){
+    return TEXTURE_EFFECT;
+}
+
+QuadGroup* TextureEffect::getGroup(){
+    return this->group;
+}
+
+Object3D* TextureEffect::getObject3D(){
+    return this->object3d;
+}
+
+string TextureEffect::getFacesID(){
+    return this->facesID;
+}
+
+string TextureEffect::getTextureKey(){
+    return this->textureKey;
+}
+
+textureType TextureEffect::getTextureType(){
+    return this->type;
+}
+
+bool TextureEffect::getIsGroup(){
+    return this->isGroup;
+}
