@@ -67,7 +67,7 @@ void Vmt::setup(){
     //vmtModel->addEffect("ef3", new PositionEffect(obj3d, ofxVec3f(0,0,3), ofxVec3f(0,0,-3), 0.5f));
     vmtModel->addPositionEffect("ef3", obj3d->getId(), ofxVec3f(0,0,3), ofxVec3f(0,0,-3), 0.5f);
 
-    QuadGroup *group1 = vmtModel->getGroup("group1");
+    //QuadGroup *group1 = vmtModel->getGroup("group1");
     //vmtModel->addEffect("ef4", new FadeEffect(group1, ofxVec4f(0,0,0,0), ofxVec4f(1,1,1,1), 0.5f));
     vmtModel->addFadeEffect("ef4", "group1", ofxVec4f(0,0,0,0), ofxVec4f(1,1,1,1), 0.5f);
 

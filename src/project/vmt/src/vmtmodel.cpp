@@ -149,7 +149,7 @@ void VmtModel::setQuadPoint(string camId, string layerId, string quadId,
 
 void VmtModel::addObject3D(string objId, string path){
 
-    FILE * pFile;
+/*    FILE * pFile;
     long lSize;
     size_t result;
 
@@ -178,8 +178,8 @@ void VmtModel::addObject3D(string objId, string path){
     fclose (pFile);
 
     string base64strEncoded = base64_encode((unsigned char*)buffer , lSize);
-
-    //oscManager->SendMessage(OscUtil::createAddObject3dMsg(objId, base64strEncoded));
+*/
+    oscManager->SendMessage(OscUtil::createAddObject3dMsg(objId, path /*base64strEncoded*/));
     scene->addObject3D(objId, path);
 }
 
