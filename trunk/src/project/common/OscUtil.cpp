@@ -200,8 +200,9 @@ ofxOscMessage OscUtil::createAddObject3dMsg(string objId, string base64data){
     ofxOscMessage oscMessage;
     oscMessage.setAddress("/object/add");
     oscMessage.addStringArg(objId);
+    oscMessage.addStringArg(base64data);
 
-    cout << "\tbase64data.size==== " << base64data.size() << endl;
+/*    cout << "\tbase64data.size==== " << base64data.size() << endl;
 
     int chunks = base64data.size() / 2000;
     int rest = base64data.size() % 2000;
@@ -216,7 +217,7 @@ ofxOscMessage OscUtil::createAddObject3dMsg(string objId, string base64data){
     }
     oscMessage.addStringArg(base64data.substr((chunks-1) * 2000, rest));
 
-    /*try {
+    /try {
         oscMessage.addStringArg(base64data.substr(0,3000));
     } catch (exception& e)
     {
@@ -227,8 +228,8 @@ ofxOscMessage OscUtil::createAddObject3dMsg(string objId, string base64data){
 
 void OscUtil::processAddObject3dMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
     string objId = msg.getArgAsString(0);
-    int chunks = msg.getArgAsInt32(1);
-    //string base64data = msg.getArgAsString(2);
+    string path = msg.getArgAsString(1);
+    /*int chunks = msg.getArgAsInt32(1);
     string base64data;
     for (int i=0; i<chunks; i++){
         base64data += msg.getArgAsString(i+2);
@@ -240,7 +241,7 @@ void OscUtil::processAddObject3dMsg(ofxOscMessage msg, ISceneHandler *sceneHandl
     string base64strDecoded = base64_decode(base64data);
 
     bool saved = FileUtil::writeBinaryFile(path, base64strDecoded);
-
+*/
     sceneHandler->addObject3D(objId, path);
 }
 
