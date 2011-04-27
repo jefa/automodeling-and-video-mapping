@@ -34,13 +34,19 @@ void OscManager::SendMessage(ofxOscMessage oscMessage, string destNode)
     ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message: type=%s", oscMessage.getAddress().c_str());
 
     if (!destNode.empty()){
+        ofLog(OF_LOG_VERBOSE, "OscManager:: sending to specific node '%s'", destNode.c_str());
         getSender(destNode.c_str())->sendMessage( oscMessage );
     } else {
-        map<string, ofxOscSender*>::iterator iter = senders.begin();
-        while (iter != senders.end()) {
-            iter->second->sendMessage( oscMessage );
-            iter++;
-        }
+        ofLog(OF_LOG_VERBOSE, "OscManager:: node empty!");
+    }
+}
+
+void OscManager::SendMessageAll(ofxOscMessage oscMessage)
+{
+    map<string, ofxOscSender*>::iterator iter = senders.begin();
+    while (iter != senders.end()) {
+        iter->second->sendMessage( oscMessage );
+        iter++;
     }
 }
 
@@ -73,5 +79,4 @@ ofxOscSender* OscManager::getSender(string nodeName){
         ofLog(OF_LOG_WARNING, "OscManager:: In getSender cannot find node for name '"+nodeName+"'");
     return NULL;
 }
-
 

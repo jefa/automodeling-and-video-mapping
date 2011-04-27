@@ -21,7 +21,7 @@ void Vmt::setup(){
 	glEnable(GL_DEPTH_TEST); //lights look weird if depth test is not enabled
 
     vmtModel = new VmtModel();
-    vmtModel->addNetNode("node1", "localhost", 54321, true, "cam1");
+    vmtModel->addNetNode("node1", "localhost", 54321, true, "cam2");
 
     vmtModel->setBackground(150, 250, 250);
 
@@ -61,15 +61,10 @@ void Vmt::setup(){
     vmtModel->addObject3D("squirrel", "data/NewSquirrel.3DS");
     Object3D *obj3d = vmtModel->getObject3D("squirrel");
 
-    //vmtModel->addEffect("ef1", new PositionEffect(obj3d, ofxVec3f(0,3,0), ofxVec3f(0,-3,0), 0.5f));
     vmtModel->addPositionEffect("ef1", obj3d->getId(), ofxVec3f(0,3,0), ofxVec3f(0,-3,0), 0.5f);
-    //vmtModel->addEffect("ef2", new PositionEffect(obj3d, ofxVec3f(3,0,0), ofxVec3f(-3,0,0), 0.5f));
     vmtModel->addPositionEffect("ef2", obj3d->getId(), ofxVec3f(3,0,0), ofxVec3f(-3,0,0), 0.5f);
-    //vmtModel->addEffect("ef3", new PositionEffect(obj3d, ofxVec3f(0,0,3), ofxVec3f(0,0,-3), 0.5f));
     vmtModel->addPositionEffect("ef3", obj3d->getId(), ofxVec3f(0,0,3), ofxVec3f(0,0,-3), 0.5f);
 
-    //QuadGroup *group1 = vmtModel->getGroup("group1");
-    //vmtModel->addEffect("ef4", new FadeEffect(group1, ofxVec4f(0,0,0,0), ofxVec4f(1,1,1,1), 0.5f));
     vmtModel->addFadeEffect("ef4", "group1", ofxVec4f(0,0,0,0), ofxVec4f(1,1,1,1), 0.5f);
 
     /*Lighting*/
@@ -176,7 +171,8 @@ void Vmt::mouseDragged(int x, int y, int button){
 
     ofxVec3f eye = cam->getEye();
 
-    cam->position(eye + dir);
+    vmtModel->setCameraPos(cam->getId(), (eye+dir)[0], (eye+dir)[1], (eye+dir)[2]);
+    //cam->position(eye + dir);
 
     xMouseDown = x;
     yMouseDown = y;

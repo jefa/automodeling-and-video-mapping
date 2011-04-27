@@ -56,6 +56,7 @@ class VmtModel : public ISceneHandler
                                            float x, float y, float z);
 
     protected:
+        string getNodeForCamera(string camId);
 
     private:
         map<string, Node> network;

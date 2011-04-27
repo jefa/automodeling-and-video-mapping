@@ -19,7 +19,8 @@ class OscManager
         OscManager();
         ~OscManager();
         void Init(map<string, Node> network);
-        void SendMessage(ofxOscMessage oscMessage, string destNode = "");
+        void SendMessage(ofxOscMessage oscMessage, string destNode);
+        void SendMessageAll(ofxOscMessage oscMessage);
         void checkForMessages();
 
     protected:
