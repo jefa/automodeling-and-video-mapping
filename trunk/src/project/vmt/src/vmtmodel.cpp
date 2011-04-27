@@ -9,22 +9,14 @@ VmtModel::VmtModel()
 {
     scene = new Scene();
     oscManager = new OscManager();
-
-    Node nd;
-    nd.address = "localhost";
-    nd.port = 54321;
-    nd.isActive = true;
-
-    map<string, Node> net;
-    net.insert(pair<string, Node>("nodo1", nd));
-
-    oscManager->Init(net);
-
+    //won't do anything at construct time...
+    oscManager->Init(network);
 }
 
 VmtModel::~VmtModel()
 {
     delete scene;
+    delete oscManager;
 }
 
 Scene* VmtModel::getScene(){
@@ -37,6 +29,19 @@ void VmtModel::draw(){
 
 void VmtModel::update(){
     this->scene->update();
+}
+
+void VmtModel::addNetNode(string nodeId, string address, int port, bool isActive, string camId){
+    Node nd;
+    nd.address = address;
+    nd.port = port;
+    nd.isActive = isActive;
+    nd.cameraId = camId;
+
+    network.insert(pair<string, Node>(nodeId, nd));
+
+    //re-init OscManager
+    this->oscManager->Init(this->network);
 }
 
 void VmtModel::setBackground(int r, int g, int b){

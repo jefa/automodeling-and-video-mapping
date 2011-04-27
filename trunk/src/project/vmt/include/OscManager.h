@@ -10,6 +10,7 @@ struct Node  {
     string address;
     int port;
     bool isActive;
+    string cameraId;
 };
 
 class OscManager

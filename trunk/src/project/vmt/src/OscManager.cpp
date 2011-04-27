@@ -5,6 +5,8 @@ OscManager::OscManager() {
 
 void OscManager::Init(map<string, Node> network)
 {
+    senders.clear();
+
     map<string, Node>::iterator iter = network.begin();
     while (iter != network.end() )
     {
@@ -20,7 +22,6 @@ void OscManager::Init(map<string, Node> network)
     }
     //receiver.setup( 12345 );
     ofLog(OF_LOG_VERBOSE, "OscManager:: Configured!");
-
 }
 
 OscManager::~OscManager()
