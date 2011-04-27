@@ -26,7 +26,8 @@ TreeModel::~TreeModel()
 //! [2]
 int TreeModel::columnCount(const QModelIndex & parent ) const
 {
-    return 2; //rootItem->columnCount();
+    //return 2;
+    return rootItem->columnCount();
 }
 //! [2]
 
@@ -92,17 +93,97 @@ QModelIndex TreeModel::index(int row, int column, const QModelIndex &parent) con
 }
 //! [6]
 
-/*bool TreeModel::insertColumns(int position, int columns, const QModelIndex &parent)
+ bool TreeModel::insertColumns(int position, int columns, const QModelIndex &parent)
+ {
+     bool success;
+
+     beginInsertColumns(parent, position, position + columns - 1);
+     success = rootItem->insertColumns(position, columns);
+     endInsertColumns();
+
+     return success;
+ }
+
+string TreeModel::ObtType(const QModelIndex &index)
 {
-    bool success;
+    string TypeNodo;
 
-    beginInsertColumns(parent, position, position + columns - 1);
-    success = rootItem->insertColumns(position, columns);
-    endInsertColumns();
+    TreeItemData *itemData = getItem(index)->getItemData();
+    if (itemData == NULL) {
+           //cout<< "child number: "<<model->getItem(index)->childNumber();
+           //0 CAMERAS  1 OBJECTS   2  Backgraund
+           	switch(getItem(index)->childNumber())
+                {
+                case 0:TypeNodo = "CAMERAS";		 break;
+                case 1:TypeNodo = "OBJECTS";		 break;
+                case 2:TypeNodo = "BACKGRAUND";		 break;
 
-    return success;
-}*/
+                }
+    }
+    else{
+      //  "CAMERA","LAYER", "QUAD","OBJECT"
 
+           	switch(itemData->itemId)
+                {
+                case 0:TypeNodo = "CAMERA";		 break;
+                case 1:TypeNodo = "LAYER";		 break;
+                case 2:TypeNodo = "QUAD";		 break;
+                case 3:TypeNodo = "OBJECT";		 break;
+
+                }
+        }
+    return TypeNodo;
+}
+
+ bool TreeModel::insertRows(int position, int rows, const QModelIndex &index)
+ {
+     QModelIndex parent;
+     parent = index.parent();
+     TreeItem *parentItem = getItem(parent);
+     bool success;
+
+    string TypeNodo;
+    TypeNodo = ObtType(index);
+
+    beginInsertRows(parent, position, position + rows - 1);
+
+    if (TypeNodo == "CAMERAS" || TypeNodo == "CAMERA" ){
+        // add  Camera
+
+
+    }
+    if (TypeNodo == "OBJECTS" || TypeNodo == "OBJECT" ){
+        // add  Object
+
+    }
+    if (TypeNodo == "LAYER" ){
+        // add a Layer
+
+        Layer2D *newLayer = this->scene->getActiveCamera()->addLayer2D("New Layer");
+        newLayer->setEnabled(false);
+        LayerItemData *layerItemData = new LayerItemData(newLayer);
+
+        success = parentItem->insertChildren(position, rows, layerItemData,"New Layer");
+    }
+    if (TypeNodo == "QUAD" ){
+        // add a quad
+
+                string actualLayer;
+                actualLayer =index.internalId();
+//                Quad2D *newQuad = this->scene->getActiveCamera().getLayer2D(actualLayer).addQuad2D("New Quad");
+
+//                QuadItemData *quadItem = new QuadItemData(newQuad);
+//                success = parentItem->insertChildren(position, rows, QuadItemData,"New Quad");
+
+
+    }
+
+     endInsertRows();
+
+     return success;
+ }
+
+/*
 bool TreeModel::addElement(int position, int rows, const QModelIndex &parent)
 {
     TreeItem *parentItem = getItem(parent);
@@ -114,11 +195,11 @@ bool TreeModel::addElement(int position, int rows, const QModelIndex &parent)
     newLayer->setEnabled(false);
     LayerItemData *layerItemData = new LayerItemData(newLayer);
 
-    success = parentItem->insertChildren(position, rows, /*rootItem->columnCount()*/ layerItemData);
+    success = parentItem->insertChildren(position, rows, /*rootItem->columnCount()*//* layerItemData);
     endInsertRows();
 
     return success;
-}
+}*/
 
 //! [7]
 QModelIndex TreeModel::parent(const QModelIndex &index) const
@@ -136,7 +217,7 @@ QModelIndex TreeModel::parent(const QModelIndex &index) const
 }
 //! [7]
 
-/*bool TreeModel::removeColumns(int position, int columns, const QModelIndex &parent)
+bool TreeModel::removeColumns(int position, int columns, const QModelIndex &parent)
 {
     bool success;
 
@@ -160,7 +241,7 @@ bool TreeModel::removeRows(int position, int rows, const QModelIndex &parent)
     endRemoveRows();
 
     return success;
-}*/
+}
 
 //! [8]
 int TreeModel::rowCount(const QModelIndex &parent) const
@@ -225,15 +306,15 @@ void TreeModel::setupLayersModelData(TreeItem *parent)
             childItemCamera->insertChildren(positionLayer, 1, layerItem, "");
             TreeItem *childItemLayer = childItemCamera->child(positionLayer);
 
-            //vector<Quad2D*> quadsMap = currentLayer->getQuads2D();
-            map<string, Quad2D*> quadsMap = currentLayer->getQuads2D();
+            vector<Quad2D*> quadsMap = currentLayer->getQuads2D();
+            //map<string, Quad2D*> quadsMap = currentLayer->getQuads2D();
             int positionQuad =0;
-            //vector<Quad2D*>::iterator quadsIt;
-            map<string, Quad2D*>::const_iterator quadsIt;
+            vector<Quad2D*>::iterator quadsIt;
+            //map<string, Quad2D*>::const_iterator quadsIt;
             for (quadsIt = quadsMap.begin(); quadsIt != quadsMap.end(); quadsIt++) {
 
-                //Quad2D *currentQuad = (*quadsIt);
-                Quad2D *currentQuad = quadsIt->second;
+                Quad2D *currentQuad = (*quadsIt);
+                //Quad2D *currentQuad = quadsIt->second;
                 QuadItemData *quadItem = new QuadItemData(currentQuad);
                 childItemLayer->insertChildren(positionQuad, 1, quadItem, "dummyquadstr");
                 positionQuad++;

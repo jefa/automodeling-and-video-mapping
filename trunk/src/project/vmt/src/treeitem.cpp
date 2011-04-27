@@ -50,10 +50,11 @@ int TreeItem::childNumber() const
 //! [4]
 
 //! [5]
-/*int TreeItem::columnCount() const
+int TreeItem::columnCount() const
 {
-    return 2;//itemData.count();
-}*/
+    return 2;
+    //return itemData.count();
+}
 //! [5]
 
 //! [6]
@@ -96,9 +97,9 @@ bool TreeItem::insertChildren(int position, int count, /*int columns*/TreeItemDa
 //! [7]
 
 //! [8]
-/*bool TreeItem::insertColumns(int position, int columns)
+bool TreeItem::insertColumns(int position, int columns)
 {
-    if (position < 0 || position > itemData.size())
+/*    if (position < 0 || position > itemData.size())
         return false;
 
     for (int column = 0; column < columns; ++column)
@@ -106,9 +107,9 @@ bool TreeItem::insertChildren(int position, int count, /*int columns*/TreeItemDa
 
     foreach (TreeItem *child, childItems)
         child->insertColumns(position, columns);
-
+*/
     return true;
-}*/
+}
 //! [8]
 
 //! [9]
@@ -131,9 +132,9 @@ bool TreeItem::removeChildren(int position, int count)
 }
 //! [10]
 
-/*bool TreeItem::removeColumns(int position, int columns)
+bool TreeItem::removeColumns(int position, int columns)
 {
-    if (position < 0 || position + columns > itemData.size())
+/*    if (position < 0 || position + columns > itemData.size())
         return false;
 
     for (int column = 0; column < columns; ++column)
@@ -141,9 +142,9 @@ bool TreeItem::removeChildren(int position, int count)
 
     foreach (TreeItem *child, childItems)
         child->removeColumns(position, columns);
-
+*/
     return true;
-}*/
+}
 
 //! [11]
 bool TreeItem::setData(int column, const QVariant &value)
