@@ -26,13 +26,13 @@ public:
 
     TreeItem *child(int number);
     int childCount() const;
-    //int columnCount() const;
+    int columnCount() const;
     QVariant data(int column) /*const*/;
     bool insertChildren(int position, int count, /*int columns*/ TreeItemData *itemData, string label = 0 );
-    //bool insertColumns(int position, int columns);
+    bool insertColumns(int position, int columns);
     TreeItem *parent();
     bool removeChildren(int position, int count);
-    //bool removeColumns(int position, int columns);
+    bool removeColumns(int position, int columns);
     int childNumber() const;
     bool setData(int column, const QVariant &value);
     bool setSeleted(Scene *scene);

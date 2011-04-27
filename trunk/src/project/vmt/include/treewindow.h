@@ -30,6 +30,7 @@ public slots:
     void clickedTree(const QModelIndex &index);
     string ObtType(const QModelIndex &index);
 
+
 private slots:
     void insertChild();
     bool insertColumn(const QModelIndex &parent = QModelIndex());
