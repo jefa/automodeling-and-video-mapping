@@ -16,6 +16,8 @@ class VmtModel : public ISceneHandler
         void draw();
         void update();
 
+        void addNetNode(string nodeId, string address, int port, bool isActive, string camId);
+
         void setBackground(int, int, int);
 
         void addCamera(string id);
@@ -56,6 +58,7 @@ class VmtModel : public ISceneHandler
     protected:
 
     private:
+        map<string, Node> network;
         Scene *scene;
         OscManager *oscManager;
 };

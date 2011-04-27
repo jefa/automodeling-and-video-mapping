@@ -21,6 +21,7 @@ void Vmt::setup(){
 	glEnable(GL_DEPTH_TEST); //lights look weird if depth test is not enabled
 
     vmtModel = new VmtModel();
+    vmtModel->addNetNode("node1", "localhost", 54321, true, "cam1");
 
     vmtModel->setBackground(150, 250, 250);
 
