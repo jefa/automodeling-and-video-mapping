@@ -18,7 +18,7 @@ OscUtil::~OscUtil()
 
 ofxOscMessage OscUtil::createSetBackgroundMsg(int r, int g, int b){
     ofxOscMessage oscMessage;
-    oscMessage.setAddress("/scene/setbackground");
+    oscMessage.setAddress(SCENE_BACKGROUND_ADDR);
     oscMessage.addIntArg(r);
     oscMessage.addIntArg(g);
     oscMessage.addIntArg(b);
@@ -35,7 +35,7 @@ void OscUtil::processSetBackgroundMsg(ofxOscMessage msg, ISceneHandler *sceneHan
 ofxOscMessage OscUtil::createAddCameraMsg(string id)
 {
     ofxOscMessage oscMessage;
-    oscMessage.setAddress("/camera/add");
+    oscMessage.setAddress(CAMERA_ADD_ADDR);
     oscMessage.addStringArg(id);
     return oscMessage;
 }
@@ -48,7 +48,7 @@ void OscUtil::processAddCameraMsg(ofxOscMessage msg, ISceneHandler *sceneHandler
 ofxOscMessage OscUtil::createSetCameraPosMsg(string id, ofxVec3f position)
 {
     ofxOscMessage oscMessage;
-    oscMessage.setAddress("/camera/setpos");
+    oscMessage.setAddress(CAMERA_SETPOS_ADDR);
     oscMessage.addStringArg(id);
     oscMessage.addFloatArg(position[0]);
     oscMessage.addFloatArg(position[1]);
@@ -67,7 +67,7 @@ void OscUtil::processSetCameraPosMsg(ofxOscMessage msg, ISceneHandler *sceneHand
 ofxOscMessage OscUtil::createSetCameraEyeMsg(string id, ofxVec3f eye)
 {
     ofxOscMessage oscMessage;
-    oscMessage.setAddress("/camera/seteye");
+    oscMessage.setAddress(CAMERA_SETEYE_ADDR);
     oscMessage.addStringArg(id);
     oscMessage.addFloatArg(eye[0]);
     oscMessage.addFloatArg(eye[1]);
@@ -85,7 +85,7 @@ void OscUtil::processSetCameraEyeMsg(ofxOscMessage msg, ISceneHandler *sceneHand
 
 ofxOscMessage OscUtil::createActivateCameraMsg(string id){
     ofxOscMessage oscMessage;
-    oscMessage.setAddress("/camera/activate");
+    oscMessage.setAddress(CAMERA_ACTIVATE_ADDR);
     oscMessage.addStringArg(id);
     return oscMessage;
 }
@@ -97,7 +97,7 @@ void OscUtil::processActivateCameraMsg(ofxOscMessage msg, ISceneHandler *sceneHa
 
 ofxOscMessage OscUtil::createAddQuadMsg(string camId, string layerId, string quadId) {
     ofxOscMessage oscMessage;
-    oscMessage.setAddress("/quad/add");
+    oscMessage.setAddress(QUAD_ADD_ADDR);
     oscMessage.addStringArg(camId);
     oscMessage.addStringArg(layerId);
     oscMessage.addStringArg(quadId);
@@ -114,7 +114,7 @@ void OscUtil::processAddQuadMsg(ofxOscMessage msg, ISceneHandler *sceneHandler) 
 ofxOscMessage OscUtil::createSetQuadPointMsg(string camId, string layerId, string quadId,
                                            int point, float coordX, float coordY){
     ofxOscMessage oscMessage;
-    oscMessage.setAddress("/quad/setpoint");
+    oscMessage.setAddress(QUAD_SETPOINT_ADDR);
     oscMessage.addStringArg(camId);
     oscMessage.addStringArg(layerId);
     oscMessage.addStringArg(quadId);
@@ -136,7 +136,7 @@ void OscUtil::processSetQuadPointMsg(ofxOscMessage msg, ISceneHandler *sceneHand
 
 ofxOscMessage OscUtil::createEnableQuadMsg(string camId, string layerId, string quadId, bool enabled){
     ofxOscMessage oscMessage;
-    oscMessage.setAddress("/quad/enable");
+    oscMessage.setAddress(QUAD_ENABLE_ADDR);
     oscMessage.addStringArg(camId);
     oscMessage.addStringArg(layerId);
     oscMessage.addStringArg(quadId);
@@ -154,7 +154,7 @@ void OscUtil::processEnableQuadMsg(ofxOscMessage msg, ISceneHandler *sceneHandle
 
 ofxOscMessage OscUtil::createAddLayerMsg(string camId, string layerId) {
     ofxOscMessage oscMessage;
-    oscMessage.setAddress("/layer/add");
+    oscMessage.setAddress(LAYER_ADD_ADDR);
     oscMessage.addStringArg(camId);
     oscMessage.addStringArg(layerId);
     return oscMessage;
@@ -168,7 +168,7 @@ void OscUtil::processAddLayerMsg(ofxOscMessage msg, ISceneHandler *sceneHandler)
 
 ofxOscMessage OscUtil::createAddGroupMsg(string groupId){
     ofxOscMessage oscMessage;
-    oscMessage.setAddress("/group/add");
+    oscMessage.setAddress(GROUP_ADD_ADDR);
     oscMessage.addStringArg(groupId);
     return oscMessage;
 }
@@ -180,7 +180,7 @@ void OscUtil::processAddGroupMsg(ofxOscMessage msg, ISceneHandler *sceneHandler)
 
 ofxOscMessage OscUtil::createAddQuadToGroupMsg(string groupId, string camId, string layerId, string quadId){
     ofxOscMessage oscMessage;
-    oscMessage.setAddress("/group/addquad");
+    oscMessage.setAddress(GROUP_ADDQUAD_ADDR);
     oscMessage.addStringArg(groupId);
     oscMessage.addStringArg(camId);
     oscMessage.addStringArg(layerId);
@@ -198,7 +198,7 @@ void OscUtil::processAddQuadToGroupMsg(ofxOscMessage msg, ISceneHandler *sceneHa
 
 ofxOscMessage OscUtil::createAddObject3dMsg(string objId, string base64data){
     ofxOscMessage oscMessage;
-    oscMessage.setAddress("/object/add");
+    oscMessage.setAddress(OBJECT_ADD_ADDR);
     oscMessage.addStringArg(objId);
     oscMessage.addStringArg(base64data);
 
@@ -248,7 +248,7 @@ void OscUtil::processAddObject3dMsg(ofxOscMessage msg, ISceneHandler *sceneHandl
 ofxOscMessage OscUtil::createAddPositionEffectMsg(string effectId, string objId, ofxVec3f posIni,
                                                 ofxVec3f posFin, float delay){
     ofxOscMessage oscMessage;
-    oscMessage.setAddress("/effect/add_position");
+    oscMessage.setAddress(EFFECT_ADD_POSITION_ADDR);
     oscMessage.addStringArg(effectId);
     oscMessage.addStringArg(objId);
     oscMessage.addFloatArg(posIni[0]);
@@ -278,7 +278,7 @@ void OscUtil::processAddPositionEffectMsg(ofxOscMessage m, ISceneHandler *sceneH
 ofxOscMessage OscUtil::createAddFadeEffectMsg(string effectId, string groupId, ofxVec4f colorIni,
                                             ofxVec4f colorFin, float delay){
     ofxOscMessage oscMessage;
-    oscMessage.setAddress("/effect/add_fade");
+    oscMessage.setAddress(EFFECT_ADD_FADE_ADDR);
     oscMessage.addStringArg(effectId);
     oscMessage.addStringArg(groupId);
     oscMessage.addFloatArg(colorIni[0]);
@@ -311,7 +311,7 @@ void OscUtil::processAddFadeEffectMsg(ofxOscMessage m, ISceneHandler *sceneHandl
 
 ofxOscMessage OscUtil::createTestEffectMsg(string effectId){
     ofxOscMessage oscMessage;
-    oscMessage.setAddress("/effect/test");
+    oscMessage.setAddress(EFFECT_TEST_ADDR);
     oscMessage.addStringArg(effectId);
     return oscMessage;
 }
@@ -321,65 +321,162 @@ void OscUtil::processTestEffectMsg(ofxOscMessage msg, ISceneHandler *sceneHandle
     sceneHandler->testEffect(effId);
 }
 
+ofxOscMessage OscUtil::createAddLightMsg(string lightId){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(LIGHT_ADD_ADDR);
+    oscMessage.addStringArg(lightId);
+    return oscMessage;
+}
+
+void OscUtil::processAddLightMsg(ofxOscMessage m, ISceneHandler *sceneHandler){
+    string lightId = m.getArgAsString(0);
+    sceneHandler->addLight(lightId);
+}
+
+ofxOscMessage OscUtil::createLightSpecularMsg(string lightId, float r, float g, float b){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(LIGHT_SPECULAR_ADDR);
+    oscMessage.addStringArg(lightId);
+    oscMessage.addFloatArg(r);
+    oscMessage.addFloatArg(g);
+    oscMessage.addFloatArg(b);
+    return oscMessage;
+}
+
+void OscUtil::processLightSpecularMsg(ofxOscMessage m, ISceneHandler *sceneHandler){
+    string lightId = m.getArgAsString(0);
+    float r = m.getArgAsFloat(1);
+    float g = m.getArgAsFloat(2);
+    float b = m.getArgAsFloat(3);
+    sceneHandler->setLightSpecular(lightId, r, g, b);
+}
+
+ofxOscMessage OscUtil::createLightDirectionalMsg(string lightId, float r, float g, float b, float nx, float ny, float nz){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(LIGHT_DIRECTIONAL_ADDR);
+    oscMessage.addStringArg(lightId);
+    oscMessage.addFloatArg(r);
+    oscMessage.addFloatArg(g);
+    oscMessage.addFloatArg(b);
+    oscMessage.addFloatArg(nx);
+    oscMessage.addFloatArg(ny);
+    oscMessage.addFloatArg(nz);
+    return oscMessage;
+}
+
+void OscUtil::processLightDirectionalMsg(ofxOscMessage m, ISceneHandler *sceneHandler){
+    string lightId = m.getArgAsString(0);
+    float r = m.getArgAsFloat(1);
+    float g = m.getArgAsFloat(2);
+    float b = m.getArgAsFloat(3);
+    float nx = m.getArgAsFloat(4);
+    float ny = m.getArgAsFloat(5);
+    float nz = m.getArgAsFloat(6);
+    sceneHandler->setLightDirectional(lightId, r, g, b, nx, ny, nz);
+}
+
+ofxOscMessage OscUtil::createLightSpotMsg(string lightId, float r, float g, float b, float x, float y, float z, float nx,
+                   float ny, float nz, float angle, float concentration){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(LIGHT_SPOT_ADDR);
+    oscMessage.addStringArg(lightId);
+    oscMessage.addFloatArg(r);
+    oscMessage.addFloatArg(g);
+    oscMessage.addFloatArg(b);
+    oscMessage.addFloatArg(x);
+    oscMessage.addFloatArg(y);
+    oscMessage.addFloatArg(z);
+    oscMessage.addFloatArg(nx);
+    oscMessage.addFloatArg(ny);
+    oscMessage.addFloatArg(nz);
+    oscMessage.addFloatArg(angle);
+    oscMessage.addFloatArg(concentration);
+    return oscMessage;
+}
+
+void OscUtil::processLightSpotMsg(ofxOscMessage m, ISceneHandler *sceneHandler){
+    string lightId = m.getArgAsString(0);
+    float r = m.getArgAsFloat(1);
+    float g = m.getArgAsFloat(2);
+    float b = m.getArgAsFloat(3);
+    float x = m.getArgAsFloat(4);
+    float y = m.getArgAsFloat(5);
+    float z = m.getArgAsFloat(6);
+    float nx = m.getArgAsFloat(7);
+    float ny = m.getArgAsFloat(8);
+    float nz = m.getArgAsFloat(9);
+    float angle = m.getArgAsFloat(10);
+    float concentr = m.getArgAsFloat(11);
+    sceneHandler->setLightSpot(lightId, r, g, b, x, y, z, nx, ny, nz, angle, concentr);
+}
+
+ofxOscMessage OscUtil::createLightPointMsg(string lightId, float r, float g, float b, float x, float y, float z){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(LIGHT_POINT_ADDR);
+    oscMessage.addStringArg(lightId);
+    oscMessage.addFloatArg(r);
+    oscMessage.addFloatArg(g);
+    oscMessage.addFloatArg(b);
+    oscMessage.addFloatArg(x);
+    oscMessage.addFloatArg(y);
+    oscMessage.addFloatArg(z);
+    return oscMessage;
+}
+
+void OscUtil::processLightPointMsg(ofxOscMessage m, ISceneHandler *sceneHandler){
+    string lightId = m.getArgAsString(0);
+    float r = m.getArgAsFloat(1);
+    float g = m.getArgAsFloat(2);
+    float b = m.getArgAsFloat(3);
+    float x = m.getArgAsFloat(4);
+    float y = m.getArgAsFloat(5);
+    float z = m.getArgAsFloat(6);
+    sceneHandler->setLightPoint(lightId, r, g, b, x, y, z);
+}
+
 int OscUtil::processMessageAction(ofxOscMessage m, ISceneHandler *sceneHandler) {
-    if ( m.getAddress() == "/camera/add" ) {
+    if ( m.getAddress() == CAMERA_ADD_ADDR) {
         OscUtil::processAddCameraMsg(m, sceneHandler);
-    } else if ( m.getAddress() == "/camera/setpos" ) {
+    } else if ( m.getAddress() == CAMERA_SETPOS_ADDR) {
         OscUtil::processSetCameraPosMsg(m, sceneHandler);
-    } else if ( m.getAddress() == "/camera/seteye" ) {
+    } else if ( m.getAddress() == CAMERA_SETEYE_ADDR) {
         OscUtil::processSetCameraEyeMsg(m, sceneHandler);
-    } else if ( m.getAddress() == "/quad/add") {
+    } else if ( m.getAddress() == QUAD_ADD_ADDR) {
         OscUtil::processAddQuadMsg(m, sceneHandler);
-    } else if ( m.getAddress() == "/quad/setpoint" ) {
+    } else if ( m.getAddress() == QUAD_SETPOINT_ADDR) {
         OscUtil::processSetQuadPointMsg(m, sceneHandler);
-    } else if ( m.getAddress() == "/layer/add" ) {
+    } else if ( m.getAddress() == LAYER_ADD_ADDR) {
         OscUtil::processAddLayerMsg(m, sceneHandler);
-    } else if ( m.getAddress() == "/camera/activate" ) {
+    } else if ( m.getAddress() == CAMERA_ACTIVATE_ADDR) {
         OscUtil::processActivateCameraMsg(m, sceneHandler);
-    } else if ( m.getAddress() == "/quad/enable" ) {
+    } else if ( m.getAddress() == QUAD_ENABLE_ADDR) {
         OscUtil::processEnableQuadMsg(m, sceneHandler);
-    } else if ( m.getAddress() == "/scene/setbackground" ) {
+    } else if ( m.getAddress() == SCENE_BACKGROUND_ADDR) {
         OscUtil::processSetBackgroundMsg(m, sceneHandler);
-    } else if ( m.getAddress() == "/group/add" ) {
+    } else if ( m.getAddress() == GROUP_ADD_ADDR) {
         OscUtil::processAddGroupMsg(m, sceneHandler);
-    } else if ( m.getAddress() == "/group/addquad" ) {
+    } else if ( m.getAddress() == GROUP_ADDQUAD_ADDR) {
         OscUtil::processAddQuadToGroupMsg(m, sceneHandler);
-    } else if ( m.getAddress() == "/object/add" ) {
+    } else if ( m.getAddress() == OBJECT_ADD_ADDR) {
         OscUtil::processAddObject3dMsg(m, sceneHandler);
-    } else if ( m.getAddress() == "/effect/add_fade" ) {
+    } else if ( m.getAddress() == EFFECT_ADD_FADE_ADDR) {
         OscUtil::processAddFadeEffectMsg(m, sceneHandler);
-    } else if ( m.getAddress() == "/effect/add_position" ) {
+    } else if ( m.getAddress() == EFFECT_ADD_POSITION_ADDR) {
         OscUtil::processAddPositionEffectMsg(m, sceneHandler);
-    } else if ( m.getAddress() == "/effect/test" ) {
+    } else if ( m.getAddress() == EFFECT_TEST_ADDR) {
         OscUtil::processTestEffectMsg(m, sceneHandler);
+    } else if ( m.getAddress() == LIGHT_ADD_ADDR) {
+        OscUtil::processAddLightMsg(m, sceneHandler);
+    } else if ( m.getAddress() == LIGHT_SPECULAR_ADDR) {
+        OscUtil::processLightSpecularMsg(m, sceneHandler);
+    } else if ( m.getAddress() == LIGHT_DIRECTIONAL_ADDR) {
+        OscUtil::processLightDirectionalMsg(m, sceneHandler);
+    } else if ( m.getAddress() == LIGHT_SPOT_ADDR) {
+        OscUtil::processLightSpotMsg(m, sceneHandler);
+    } else if ( m.getAddress() == LIGHT_POINT_ADDR) {
+        OscUtil::processLightPointMsg(m, sceneHandler);
     } else {
         return -1;
     }
     return 1;
 }
-
-ofxOscMessage OscUtil::serializeEffect(Effect *ef){
-    ofxOscMessage m;
-    if (ef->getType() == FADE_EFFECT){
-        FadeEffect *feff = (FadeEffect*) ef;
-    } else if (ef->getType() == POSITION_EFFECT){
-        PositionEffect *peff = (PositionEffect*) ef;
-        //new PositionEffect(obj3d, ofxVec3f(0,3,0), ofxVec3f(0,-3,0), 0.5f)
-    } else if (ef->getType() == TEXTURE_EFFECT){
-        TextureEffect *teff = (TextureEffect*) ef;
-    }
-    return m;
-}
-
-Effect* OscUtil::deserializeEffect(ofxOscMessage m){
-    int effType = m.getArgAsInt32(0);
-    Effect *eff;
-    if (effType == FADE_EFFECT){
-    } else if (effType == POSITION_EFFECT){
-        //eff = new PositionEffect(/*obj3d, ofxVec3f(0,3,0), ofxVec3f(0,-3,0), 0.5f*/);
-    } else if (effType == TEXTURE_EFFECT){
-        //eff = new TextureEffect();
-    }
-    return eff;
-}
-

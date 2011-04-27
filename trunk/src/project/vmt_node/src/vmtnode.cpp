@@ -226,28 +226,40 @@ void VmtNode::addLight(string lightId){
 }
 
 void VmtNode::setLightSpecular(string lightId, float r, float g, float b){
-    if (scene->getLight(lightId) != NULL)
-        scene->getLight(lightId)->specular(r, g, b);
+    if (scene->getLight(lightId) == NULL){
+        printf("VmtNode::setLightSpecular: light does not exists(%s)\n", lightId.c_str());
+        return;
+    }
+    scene->getLight(lightId)->specular(r, g, b);
 }
 
 void VmtNode::setLightDirectional(string lightId, float r, float g, float b,
                                    float nx, float ny, float nz){
-    if (scene->getLight(lightId) != NULL)
-        scene->getLight(lightId)->directionalLight(r, g, b, nx, ny, nz);
+    if (scene->getLight(lightId) == NULL){
+        printf("VmtNode::setLightSpecular: light does not exists(%s)\n", lightId.c_str());
+        return;
+    }
+    scene->getLight(lightId)->directionalLight(r, g, b, nx, ny, nz);
 }
 
 void VmtNode::setLightSpot(string lightId, float r, float g, float b,
                                    float x, float y, float z,
                                    float nx, float ny, float nz,
                                    float angle, float concentration){
-    if (scene->getLight(lightId) != NULL)
-        scene->getLight(lightId)->spotLight(r, g, b, x, y, z, nx, ny, nz, angle, concentration);
+    if (scene->getLight(lightId) == NULL){
+        printf("VmtNode::setLightSpecular: light does not exists(%s)\n", lightId.c_str());
+        return;
+    }
+    scene->getLight(lightId)->spotLight(r, g, b, x, y, z, nx, ny, nz, angle, concentration);
 }
 
 void VmtNode::setLightPoint(string lightId, float r, float g, float b,
                                    float x, float y, float z){
-    if (scene->getLight(lightId) != NULL)
-        scene->getLight(lightId)->pointLight(r, g, b, x, y, z);
+    if (scene->getLight(lightId) == NULL){
+        printf("VmtNode::setLightSpecular: light does not exists(%s)\n", lightId.c_str());
+        return;
+    }
+    scene->getLight(lightId)->pointLight(r, g, b, x, y, z);
 }
 
 // End

@@ -215,30 +215,47 @@ void VmtModel::testEffect(string id){
 }
 
 void VmtModel::addLight(string lightId){
+    oscManager->SendMessage(OscUtil::createAddLightMsg(lightId));
     scene->addLight(lightId);
 }
 
 void VmtModel::setLightSpecular(string lightId, float r, float g, float b){
-    if (scene->getLight(lightId) != NULL)
-        scene->getLight(lightId)->specular(r, g, b);
+    if (scene->getLight(lightId) == NULL){
+        printf("VmtModel::setLightSpecular: light does not exists(%s)\n", lightId.c_str());
+        return;
+    }
+    oscManager->SendMessage(OscUtil::createLightSpecularMsg(lightId, r, g, b));
+    scene->getLight(lightId)->specular(r, g, b);
 }
 
 void VmtModel::setLightDirectional(string lightId, float r, float g, float b,
                                    float nx, float ny, float nz){
-    if (scene->getLight(lightId) != NULL)
-        scene->getLight(lightId)->directionalLight(r, g, b, nx, ny, nz);
+    if (scene->getLight(lightId) == NULL){
+        printf("VmtModel::setLightSpecular: light does not exists(%s)\n", lightId.c_str());
+        return;
+    }
+    oscManager->SendMessage(OscUtil::createLightDirectionalMsg(lightId, r, g, b, nx, ny, nz));
+    scene->getLight(lightId)->directionalLight(r, g, b, nx, ny, nz);
 }
 
 void VmtModel::setLightSpot(string lightId, float r, float g, float b,
                                    float x, float y, float z,
                                    float nx, float ny, float nz,
                                    float angle, float concentration){
-    if (scene->getLight(lightId) != NULL)
-        scene->getLight(lightId)->spotLight(r, g, b, x, y, z, nx, ny, nz, angle, concentration);
+    if (scene->getLight(lightId) == NULL){
+        printf("VmtModel::setLightSpecular: light does not exists(%s)\n", lightId.c_str());
+        return;
+    }
+    oscManager->SendMessage(OscUtil::createLightSpotMsg(lightId, r, g, b, x, y, z, nx, ny, nz, angle, concentration));
+    scene->getLight(lightId)->spotLight(r, g, b, x, y, z, nx, ny, nz, angle, concentration);
 }
 
 void VmtModel::setLightPoint(string lightId, float r, float g, float b,
                                    float x, float y, float z){
-    if (scene->getLight(lightId) != NULL)
-        scene->getLight(lightId)->pointLight(r, g, b, x, y, z);
+    if (scene->getLight(lightId) == NULL){
+        printf("VmtModel::setLightSpecular: light does not exists(%s)\n", lightId.c_str());
+        return;
+    }
+    oscManager->SendMessage(OscUtil::createLightPointMsg(lightId, r, g, b, x, y, z));
+    scene->getLight(lightId)->pointLight(r, g, b, x, y, z);
 }
