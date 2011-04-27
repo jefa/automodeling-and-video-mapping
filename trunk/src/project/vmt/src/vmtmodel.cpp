@@ -44,18 +44,31 @@ void VmtModel::addNetNode(string nodeId, string address, int port, bool isActive
     this->oscManager->Init(this->network);
 }
 
+string VmtModel::getNodeForCamera(string camId){
+    map<string, Node>::iterator iter = network.begin();
+    while (iter != network.end()) {
+        //printf("VmtModel.getNodeForCamera:: nodeId=%s, nodeCameraId=%s, reqCamId=%s\n", iter->first.c_str(), iter->second.cameraId.c_str(), camId.c_str());
+        if (iter->second.cameraId == camId){
+            return iter->first;
+        }
+        iter++;
+    }
+    //printf("VmtModel.getNodeForCamera:: Can't find node for camera %s\n", camId.c_str());
+    return "";
+}
+
 void VmtModel::setBackground(int r, int g, int b){
-    oscManager->SendMessage(OscUtil::createSetBackgroundMsg(r, g, b));
+    oscManager->SendMessageAll(OscUtil::createSetBackgroundMsg(r, g, b));
     scene->setBackground(r,g,b);
 }
 
 void VmtModel::addCamera(string id){
-    oscManager->SendMessage(OscUtil::createAddCameraMsg(id));
+    oscManager->SendMessage(OscUtil::createAddCameraMsg(id), getNodeForCamera(id));
     scene->addCamera(id);
 }
 
 void VmtModel::setCameraPos(string camId, float x, float y, float z){
-    oscManager->SendMessage(OscUtil::createSetCameraPosMsg(camId, ofxVec3f(x, y, z)));
+    oscManager->SendMessage(OscUtil::createSetCameraPosMsg(camId, ofxVec3f(x, y, z)), getNodeForCamera(camId));
     ofxCamera *camera = scene->getCamera(camId);
     if (camera != NULL) {
         camera->position(x, y, z);
@@ -66,7 +79,7 @@ void VmtModel::setCameraPos(string camId, float x, float y, float z){
 }
 
 void VmtModel::setCameraEye(string camId, float x, float y, float z){
-    oscManager->SendMessage(OscUtil::createSetCameraEyeMsg(camId, ofxVec3f(x, y, z)));
+    oscManager->SendMessage(OscUtil::createSetCameraEyeMsg(camId, ofxVec3f(x, y, z)), getNodeForCamera(camId));
     ofxCamera *camera = scene->getCamera(camId);
     if (camera != NULL) {
         camera->eye(x, y, z);
@@ -77,7 +90,7 @@ void VmtModel::setCameraEye(string camId, float x, float y, float z){
 }
 
 void VmtModel::activateCamera(string camId){
-    oscManager->SendMessage(OscUtil::createActivateCameraMsg(camId));
+    oscManager->SendMessage(OscUtil::createActivateCameraMsg(camId), getNodeForCamera(camId));
     scene->activateCamera(camId);
 }
 
@@ -86,7 +99,7 @@ ofxCamera* VmtModel::getActiveCamera(){
 }
 
 void VmtModel::addGroup(string groupId){
-    oscManager->SendMessage(OscUtil::createAddGroupMsg(groupId));
+    oscManager->SendMessageAll(OscUtil::createAddGroupMsg(groupId));
     scene->addGroup(groupId);
 }
 
@@ -95,13 +108,13 @@ QuadGroup* VmtModel::getGroup(string groupId){
 }
 
 void VmtModel::addLayer(string camId, string layerId){
-    oscManager->SendMessage(OscUtil::createAddLayerMsg(camId, layerId));
+    oscManager->SendMessage(OscUtil::createAddLayerMsg(camId, layerId), getNodeForCamera(camId));
     if (scene->getCamera(camId) != NULL)
         scene->getCamera(camId)->addLayer2D(layerId);
 }
 
 void VmtModel::addQuad(string camId, string layerId, string quadId){
-    oscManager->SendMessage(OscUtil::createAddQuadMsg(camId, layerId, quadId));
+    oscManager->SendMessage(OscUtil::createAddQuadMsg(camId, layerId, quadId), getNodeForCamera(camId));
     if (scene->getCamera(camId) != NULL) {
         ofxCamera *camera = scene->getCamera(camId);
         if (camera->getLayer2D(layerId) != NULL)
@@ -110,7 +123,7 @@ void VmtModel::addQuad(string camId, string layerId, string quadId){
 }
 
 void VmtModel::addQuadToGroup(string groupId, string camId, string layerId, string quadId){
-    oscManager->SendMessage(OscUtil::createAddQuadToGroupMsg(groupId, camId, layerId, quadId));
+    oscManager->SendMessage(OscUtil::createAddQuadToGroupMsg(groupId, camId, layerId, quadId), getNodeForCamera(camId));
     QuadGroup *group = scene->getGroup(groupId);
     if (group != NULL) {
         ofxCamera *camera = scene->getCamera(camId);
@@ -126,7 +139,7 @@ void VmtModel::addQuadToGroup(string groupId, string camId, string layerId, stri
 }
 
 void VmtModel::enableQuad(string camId, string layerId, string quadId, bool enabled){
-    oscManager->SendMessage(OscUtil::createEnableQuadMsg(camId, layerId, quadId, enabled));
+    oscManager->SendMessage(OscUtil::createEnableQuadMsg(camId, layerId, quadId, enabled), getNodeForCamera(camId));
     ofxCamera *camera = scene->getCamera(camId);
     if (camera != NULL) {
         Layer2D *layer = camera->getLayer2D(layerId);
@@ -140,7 +153,7 @@ void VmtModel::enableQuad(string camId, string layerId, string quadId, bool enab
 
 void VmtModel::setQuadPoint(string camId, string layerId, string quadId,
             int point, float coordX, float coordY){
-    oscManager->SendMessage(OscUtil::createSetQuadPointMsg(camId, layerId, quadId, point, coordX, coordY));
+    oscManager->SendMessage(OscUtil::createSetQuadPointMsg(camId, layerId, quadId, point, coordX, coordY), getNodeForCamera(camId));
     ofxCamera *camera = scene->getCamera(camId);
     if (camera != NULL) {
         Layer2D *layer = camera->getLayer2D(layerId);
@@ -184,7 +197,7 @@ void VmtModel::addObject3D(string objId, string path){
 
     string base64strEncoded = base64_encode((unsigned char*)buffer , lSize);
 */
-    oscManager->SendMessage(OscUtil::createAddObject3dMsg(objId, path /*base64strEncoded*/));
+    oscManager->SendMessageAll(OscUtil::createAddObject3dMsg(objId, path /*base64strEncoded*/));
     scene->addObject3D(objId, path);
 }
 
@@ -197,7 +210,7 @@ void VmtModel::addPositionEffect(string effectId, string objId, ofxVec3f posIni,
         printf("VmtModel::addPositionEffect: object does not exists(%s)\n", objId.c_str());
         return;
     }
-    oscManager->SendMessage(OscUtil::createAddPositionEffectMsg(effectId, objId, posIni, posFin, delay));
+    oscManager->SendMessageAll(OscUtil::createAddPositionEffectMsg(effectId, objId, posIni, posFin, delay));
     scene->addEffect(effectId, new PositionEffect(scene->getObject3D(objId), posIni, posFin, delay));
 }
 
@@ -206,7 +219,7 @@ void VmtModel::addFadeEffect(string effectId, string groupId, ofxVec4f colorIni,
         printf("VmtModel::addFadeEffect: group does not exists(%s)\n", groupId.c_str());
         return;
     }
-    oscManager->SendMessage(OscUtil::createAddFadeEffectMsg(effectId, groupId, colorIni, colorFin, delay));
+    oscManager->SendMessageAll(OscUtil::createAddFadeEffectMsg(effectId, groupId, colorIni, colorFin, delay));
     scene->addEffect(effectId, new FadeEffect(scene->getGroup(groupId), colorIni, colorFin, delay));
 }
 
@@ -215,12 +228,12 @@ void VmtModel::addTextureEffect(string effectId){
 }
 
 void VmtModel::testEffect(string id){
-    oscManager->SendMessage(OscUtil::createTestEffectMsg(id));
+    oscManager->SendMessageAll(OscUtil::createTestEffectMsg(id));
     this->scene->testEffect(id);
 }
 
 void VmtModel::addLight(string lightId){
-    oscManager->SendMessage(OscUtil::createAddLightMsg(lightId));
+    oscManager->SendMessageAll(OscUtil::createAddLightMsg(lightId));
     scene->addLight(lightId);
 }
 
@@ -229,7 +242,7 @@ void VmtModel::setLightSpecular(string lightId, float r, float g, float b){
         printf("VmtModel::setLightSpecular: light does not exists(%s)\n", lightId.c_str());
         return;
     }
-    oscManager->SendMessage(OscUtil::createLightSpecularMsg(lightId, r, g, b));
+    oscManager->SendMessageAll(OscUtil::createLightSpecularMsg(lightId, r, g, b));
     scene->getLight(lightId)->specular(r, g, b);
 }
 
@@ -239,7 +252,7 @@ void VmtModel::setLightDirectional(string lightId, float r, float g, float b,
         printf("VmtModel::setLightSpecular: light does not exists(%s)\n", lightId.c_str());
         return;
     }
-    oscManager->SendMessage(OscUtil::createLightDirectionalMsg(lightId, r, g, b, nx, ny, nz));
+    oscManager->SendMessageAll(OscUtil::createLightDirectionalMsg(lightId, r, g, b, nx, ny, nz));
     scene->getLight(lightId)->directionalLight(r, g, b, nx, ny, nz);
 }
 
@@ -251,7 +264,7 @@ void VmtModel::setLightSpot(string lightId, float r, float g, float b,
         printf("VmtModel::setLightSpecular: light does not exists(%s)\n", lightId.c_str());
         return;
     }
-    oscManager->SendMessage(OscUtil::createLightSpotMsg(lightId, r, g, b, x, y, z, nx, ny, nz, angle, concentration));
+    oscManager->SendMessageAll(OscUtil::createLightSpotMsg(lightId, r, g, b, x, y, z, nx, ny, nz, angle, concentration));
     scene->getLight(lightId)->spotLight(r, g, b, x, y, z, nx, ny, nz, angle, concentration);
 }
 
@@ -261,6 +274,6 @@ void VmtModel::setLightPoint(string lightId, float r, float g, float b,
         printf("VmtModel::setLightSpecular: light does not exists(%s)\n", lightId.c_str());
         return;
     }
-    oscManager->SendMessage(OscUtil::createLightPointMsg(lightId, r, g, b, x, y, z));
+    oscManager->SendMessageAll(OscUtil::createLightPointMsg(lightId, r, g, b, x, y, z));
     scene->getLight(lightId)->pointLight(r, g, b, x, y, z);
 }
