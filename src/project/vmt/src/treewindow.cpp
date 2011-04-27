@@ -45,28 +45,30 @@ TreeWindow::~TreeWindow()
 }
 void TreeWindow::insertChild()
 {
-    QModelIndex index = view->selectionModel()->currentIndex();
-    QAbstractItemModel *model = view->model();
+     QModelIndex index = view->selectionModel()->currentIndex();
+     QAbstractItemModel *model = view->model();
 
-    if (model->columnCount(index) == 0) {
-        if (!model->insertColumn(0, index))
-            return;
-    }
-/*
-    if (!model->addElement(0, index))
-        return;
-*/
-    for (int column = 0; column < model->columnCount(index); ++column) {
-        QModelIndex child = model->index(0, column, index);
-        model->setData(child, QVariant("[No data]"), Qt::EditRole);
-        if (!model->headerData(column, Qt::Horizontal).isValid())
-            model->setHeaderData(column, Qt::Horizontal, QVariant("[No header]"),
-                                 Qt::EditRole);
-    }
+     if (model->columnCount(index) == 0) {
+         if (!model->insertColumn(0, index))
+             return;
+     }
 
-    view->selectionModel()->setCurrentIndex(model->index(0, 0, index),
-                                            QItemSelectionModel::ClearAndSelect);
-//    updateActions();
+     if (!model->insertRow(0, index))
+         return;
+
+     for (int column = 0; column < model->columnCount(index); ++column) {
+         QModelIndex child = model->index(0, column, index);
+         model->setData(child, QVariant("[No data]"), Qt::EditRole);
+         if (!model->headerData(column, Qt::Horizontal).isValid())
+             model->setHeaderData(column, Qt::Horizontal, QVariant("[No header]"),
+                                  Qt::EditRole);
+     }
+
+     view->selectionModel()->setCurrentIndex(model->index(0, 0, index),
+                                             QItemSelectionModel::ClearAndSelect);
+     updateActions();
+
+
 }
 
 bool TreeWindow::insertColumn(const QModelIndex &parent)
@@ -87,36 +89,30 @@ bool TreeWindow::insertColumn(const QModelIndex &parent)
 
 void TreeWindow::insertRow()
 {
-    QModelIndex index = view->selectionModel()->currentIndex();
-    QAbstractItemModel *model = view->model();
 
-    string TypeNodo;
-    TypeNodo = ObtType(index);
-    cout  << " TypeNodo : "<< TypeNodo;
+     QModelIndex index = view->selectionModel()->currentIndex();
+     QAbstractItemModel *model = view->model();
+     string TypeNodo;
+     TypeNodo =ObtType(index);
 
-    if (TypeNodo == "CAMERAS" || TypeNodo == "CAMERA" ){
-        // add  Camera
-    }
-    if (TypeNodo == "OBJECTS" || TypeNodo == "OBJECT" ){
-        // add  Object
-    }
-    if (TypeNodo == "LAYER" ){
-        // add a Layer
-    }
-    if (TypeNodo == "QUAD" ){
-        // add a Layer
-    }
+     if (!model->insertRow(index.row()+1, index))
+         return;
+
+     updateActions();
+
     QString name = inputText();
 
-    if (!model->insertRow(index.row()+1, index.parent()))
-        return;
+     for (int column = 0; column < model->columnCount(index.parent()); ++column) {
+         QModelIndex child = model->index(index.row()+1, column, index.parent());
+         model->setData(child, name /*QVariant("[No data]")*/, Qt::EditRole);
+     }
 
-//    updateActions();
 
-    for (int column = 0; column < model->columnCount(index.parent()); ++column) {
-        QModelIndex child = model->index(index.row()+1, column, index.parent());
-        model->setData(child, /*QVariant("[No data]")*/name, Qt::EditRole);
-    }
+
+
+
+
+
 }
 
 bool TreeWindow::removeColumn(const QModelIndex &parent)
@@ -135,12 +131,12 @@ bool TreeWindow::removeColumn(const QModelIndex &parent)
 
 void TreeWindow::removeRow()
 {
-    QModelIndex index = view->selectionModel()->currentIndex();
-    QAbstractItemModel *model = view->model();
- //   if (model->removeRow(index.row(), index.parent()))
-//        updateActions();
-}
+     QModelIndex index = view->selectionModel()->currentIndex();
+     QAbstractItemModel *model = view->model();
+     if (model->removeRow(index.row(), index.parent()))
+         updateActions();
 
+}
 string TreeWindow::ObtType(const QModelIndex &index)
 {
     string TypeNodo;
@@ -160,7 +156,7 @@ string TreeWindow::ObtType(const QModelIndex &index)
     }
     else{
       //  "CAMERA","LAYER", "QUAD","OBJECT"
-       TreeItemData *itemData = model->getItem(index)->getItemData();
+
            	switch(itemData->itemId)
                 {
                 case 0:TypeNodo = "CAMERA";		 break;
@@ -299,7 +295,7 @@ void TreeWindow::setupUi(QWidget *treeWindow)
     layout->addWidget(insertRowAction, 0, 1);
     layout->addWidget(removeRowAction, 1, 1);
     //layout->addWidget(insertColumnAction, 1, 0);
-    //layout->addWidget(insertChildAction, 2, 0);
+    //layout->addWidget(insertChildAction, 0, 1);
     layout->addWidget(editObjectAction, 0, 0);
 
     vboxLayout->addLayout(layout);
@@ -347,7 +343,7 @@ void TreeWindow::retranslateUi(QWidget *treeWindow)
     insertColumnAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+I, C", 0, QApplication::UnicodeUTF8));
     removeColumnAction->setText(QApplication::translate("treeWindow", "Remove Column", 0, QApplication::UnicodeUTF8));
     removeColumnAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+R, C", 0, QApplication::UnicodeUTF8));
-    insertChildAction->setText(QApplication::translate("treeWindow", "Insert Child", 0, QApplication::UnicodeUTF8));
+    insertChildAction->setText(QApplication::translate("treeWindow", "Add", 0, QApplication::UnicodeUTF8));
     insertChildAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+N", 0, QApplication::UnicodeUTF8));
 
     editObjectAction->setText(QApplication::translate("treeWindow", "Edit", 0, QApplication::UnicodeUTF8));
