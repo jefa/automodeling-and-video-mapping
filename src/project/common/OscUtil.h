@@ -7,14 +7,26 @@
 #include "ISceneHandler.h"
 #include "Effect.h"
 
-enum OSC_MESSAGES {
-	ADD_LAYER,
-	ADD_QUAD,
-	REMOVE_LAYER,
-	REMOVE_QUAD,
-	ADD_CAMERA,
-	REMOVE_CAMERA
-};
+const string LAYER_ADD_ADDR             = "/layer/add";
+const string CAMERA_ADD_ADDR            = "/camera/add";
+const string CAMERA_SETPOS_ADDR         = "/camera/setpos";
+const string CAMERA_SETEYE_ADDR         = "/camera/seteye";
+const string CAMERA_ACTIVATE_ADDR       = "/camera/activate";
+const string QUAD_ADD_ADDR              = "/quad/add";
+const string QUAD_SETPOINT_ADDR         = "/quad/setpoint";
+const string QUAD_ENABLE_ADDR           = "/quad/enable";
+const string SCENE_BACKGROUND_ADDR      = "/scene/setbackground";
+const string GROUP_ADD_ADDR             = "/group/add";
+const string GROUP_ADDQUAD_ADDR         = "/group/addquad";
+const string OBJECT_ADD_ADDR            = "/object/add";
+const string EFFECT_ADD_FADE_ADDR       = "/effect/add_fade";
+const string EFFECT_ADD_POSITION_ADDR   = "/effect/add_position";
+const string EFFECT_TEST_ADDR           = "/effect/test";
+const string LIGHT_ADD_ADDR             = "/light/add";
+const string LIGHT_SPECULAR_ADDR        = "/light/specular";
+const string LIGHT_DIRECTIONAL_ADDR     = "/light/directional";
+const string LIGHT_SPOT_ADDR            = "/light/spot";
+const string LIGHT_POINT_ADDR           = "/light/point";
 
 class OscUtil
 {
@@ -63,8 +75,17 @@ class OscUtil
         static ofxOscMessage createTestEffectMsg(string effectId);
         static void processTestEffectMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
-        static ofxOscMessage serializeEffect(Effect *ef);
-        static Effect* deserializeEffect(ofxOscMessage);
+        static ofxOscMessage createAddLightMsg(string lightId);
+        static void processAddLightMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+        static ofxOscMessage createLightSpecularMsg(string lightId, float r, float g, float b);
+        static void processLightSpecularMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+        static ofxOscMessage createLightDirectionalMsg(string lightId, float r, float g, float b, float nx, float ny, float nz);
+        static void processLightDirectionalMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+        static ofxOscMessage createLightSpotMsg(string lightId, float r, float g, float b, float x, float y, float z, float nx,
+                           float ny, float nz, float angle, float concentration);
+        static void processLightSpotMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+        static ofxOscMessage createLightPointMsg(string lightId, float r, float g, float b, float x, float y, float z);
+        static void processLightPointMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
         static int processMessageAction(ofxOscMessage, ISceneHandler *);
 
