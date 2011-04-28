@@ -4,6 +4,7 @@
 #include "Scene.h"
 #include "OscManager.h"
 #include "ISceneHandler.h"
+#include "ofxXmlSettings.h"
 
 class VmtModel : public ISceneHandler
 {
@@ -55,6 +56,8 @@ class VmtModel : public ISceneHandler
         void setLightPoint(string lightId, float r, float g, float b,
                                            float x, float y, float z);
 
+        void saveShow(string filepath);
+
     protected:
         string getNodeForCamera(string camId);
 
@@ -62,6 +65,8 @@ class VmtModel : public ISceneHandler
         map<string, Node> network;
         Scene *scene;
         OscManager *oscManager;
+
+        ofxXmlSettings showXML;
 };
 
 #endif // VMTMODEL_H
