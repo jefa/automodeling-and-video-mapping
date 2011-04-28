@@ -5,7 +5,7 @@
 		<Option title="vmt" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="addons\;addons\ofxOsc\src\;common\;" />
+		<Option virtualFolders="addons\;addons\ofxOsc\src\;common\;addons\ofxXmlSettings\;addons\ofxXmlSettings\src\;addons\ofxXmlSettings\libs\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin\$(PROJECT_NAME)_DEBUG" prefix_auto="1" extension_auto="1" />
@@ -121,6 +121,12 @@
 			<Add after='cmd /c if not exist &quot;$(PROJECT_DIR)bin/data&quot; mkdir &quot;$(PROJECT_DIR)bin/data&quot;' />
 			<Mode after="always" />
 		</ExtraCommands>
+		<Unit filename="..\common\FileUtil.cpp">
+			<Option virtualFolder="common" />
+		</Unit>
+		<Unit filename="..\common\FileUtil.h">
+			<Option virtualFolder="common" />
+		</Unit>
 		<Unit filename="..\common\ISceneHandler.h">
 			<Option virtualFolder="common" />
 		</Unit>
@@ -130,16 +136,10 @@
 		<Unit filename="..\common\OscUtil.h">
 			<Option virtualFolder="common" />
 		</Unit>
-		<Unit filename="..\common\base64.h">
-			<Option virtualFolder="common" />
-		</Unit>
 		<Unit filename="..\common\base64.cpp">
 			<Option virtualFolder="common" />
 		</Unit>
-		<Unit filename="..\common\FileUtil.h">
-			<Option virtualFolder="common" />
-		</Unit>
-		<Unit filename="..\common\FileUtil.cpp">
+		<Unit filename="..\common\base64.h">
 			<Option virtualFolder="common" />
 		</Unit>
 		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOsc.h">
@@ -171,6 +171,24 @@
 		</Unit>
 		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscSender.h">
 			<Option virtualFolder="addons\ofxOsc\src" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs\tinyxml.cpp">
+			<Option virtualFolder="addons\ofxXmlSettings\libs\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs\tinyxml.h">
+			<Option virtualFolder="addons\ofxXmlSettings\libs\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs\tinyxmlerror.cpp">
+			<Option virtualFolder="addons\ofxXmlSettings\libs\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
+			<Option virtualFolder="addons\ofxXmlSettings\libs\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\src\ofxXmlSettings.cpp">
+			<Option virtualFolder="addons\ofxXmlSettings\src\" />
+		</Unit>
+		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\src\ofxXmlSettings.h">
+			<Option virtualFolder="addons\ofxXmlSettings\src\" />
 		</Unit>
 		<Unit filename="include\OscManager.h" />
 		<Unit filename="include\colorlisteditor.h" />

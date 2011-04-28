@@ -190,7 +190,7 @@ map<string, Layer2D*> ofxCamera::getLayers2D() {
 
 void ofxCamera::drawLayers() {
     for(layersIt = layers2D.begin(); layersIt != layers2D.end(); layersIt++) {
-            layersIt->second->draw();
+        layersIt->second->draw();
     }
 }
 

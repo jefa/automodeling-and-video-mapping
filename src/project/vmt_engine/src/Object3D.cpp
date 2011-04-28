@@ -13,6 +13,10 @@ static string getExtension( string filename ){
 	}
 }
 
+string Object3D::getPath() {
+    return path;
+}
+
 //-------------------------------------------
 Object3D::Object3D(string id, string path){
     this->id = id;
@@ -28,6 +32,7 @@ Object3D::Object3D(string id, string path){
 	string ext = getExtension( path );
 	if( ext == "3ds" || ext == "3DS" ){
 		model = new model3DS(path.c_str(), 3);
+		this->path = path;
 	}
 }
 
@@ -54,6 +59,14 @@ void Object3D::draw() {
             model->draw();
         if( model->hasTexture)glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
+}
+
+ofxVec3f Object3D::getPosition() {
+    return pos;
+}
+
+ofxVec3f Object3D::getScale() {
+    return scale;
 }
 
 //-------------------------------------------

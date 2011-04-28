@@ -26,21 +26,27 @@ class Object3D : public IPropertyManager
         void setScale(float x, float y, float z);
         void setRotation(int which, float angle, float rot_x, float rot_y, float r_z);
 
+        ofxVec3f getPosition();
+        ofxVec3f getScale();
+
         virtual float get(int aParam);
         virtual void set(int aParam, float aValue);
 
         void SetTextureParamsForMaterial(string facesID, string key, textureType type);
+
+        string getPath();
 
     protected:
     private:
         vector <float> rotAngle;
         vector <ofPoint> rotAxis;
         ofPoint scale;
-        ofPoint pos;
+        ofxVec3f pos;
 
         int numRotations;
         model3DS * model;
         string id;
+        string path;
 };
 
 #endif // MESH3D_H
