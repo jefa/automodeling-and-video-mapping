@@ -1,5 +1,5 @@
 #include <QtGui>
-
+#include <QVariant>
 #include "treeitem.h"
 #include "treemodel.h"
 
@@ -136,7 +136,7 @@ string TreeModel::ObtType(const QModelIndex &index)
 }
 
  bool TreeModel::insertRows(int position, int rows, const QModelIndex &index)
-  {
+ {
      QModelIndex parent;
      parent = index.parent();
      TreeItem *parentItem = getItem(parent);
@@ -163,7 +163,7 @@ string TreeModel::ObtType(const QModelIndex &index)
 
         QString path = "C:\ADRIANA\Proyecto\SVN_Proyecto\src\project\vmt\bin\data";
         this->vmtModel->addObject3D("New Object", path.toStdString());
-        Object3D *newObject = this->vmtModel->getObject3D("New Object");
+        Object3D *newObject = this->vmtModel->getObject3D("NewCamera");
         //newObject->set....;
         ObjectItemData *objectItem = new ObjectItemData(newObject);
 
@@ -224,7 +224,6 @@ string TreeModel::ObtType(const QModelIndex &index)
      endInsertRows();
 
      return success;
-
  }
 
 /*
@@ -396,3 +395,13 @@ void TreeModel::setupObjectsModelData(TreeItem *parent)
         positionObject++;
     }
 }
+
+VmtModel * TreeModel::getVmtModel(){
+return this->vmtModel;
+}
+
+
+
+
+
+

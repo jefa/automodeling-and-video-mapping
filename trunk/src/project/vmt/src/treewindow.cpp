@@ -66,6 +66,7 @@ void TreeWindow::insertChild()
 
      view->selectionModel()->setCurrentIndex(model->index(0, 0, index),
                                              QItemSelectionModel::ClearAndSelect);
+
      updateActions();
 
 
@@ -106,12 +107,6 @@ void TreeWindow::insertRow()
          QModelIndex child = model->index(index.row()+1, column, index.parent());
          model->setData(child, name /*QVariant("[No data]")*/, Qt::EditRole);
      }
-
-
-
-
-
-
 
 }
 
@@ -369,8 +364,7 @@ QString TreeWindow::inputText()
 
 void TreeWindow::clickedTree(const QModelIndex &index)
 {
-    //TreeModel *model = (TreeModel*) view->model();
-    //model->getItem(index)->setSeleted(model->getScene());
+
     updateActions(index);
     /*
     TreeItemData *itemData = model->getItem(index)->getItemData();
@@ -388,8 +382,8 @@ void TreeWindow::clickedTree(const QModelIndex &index)
 void TreeWindow::editObject()
 {
     TreeModel *model = (TreeModel*) view->model();
-    //ObjectEditorDialog *d = new ObjectEditorDialog(model->getScene()->getActiveObject());
-    //d->show();
+    ObjectEditorDialog *d = new ObjectEditorDialog(model->getVmtModel()->getObject3D("squirrel"));
+    d->show();
 }
 
 void TreeWindow::quit()
