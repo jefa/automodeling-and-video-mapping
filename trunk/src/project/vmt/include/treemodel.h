@@ -53,7 +53,7 @@ public:
                     const QModelIndex &parent = QModelIndex());
 
     TreeItem *getItem(const QModelIndex &index) const;
-
+    VmtModel *getVmtModel();
 private:
     void setupSceneModelData();
     void setupLayersModelData(TreeItem *parent);
