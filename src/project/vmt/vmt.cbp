@@ -19,6 +19,7 @@
 					<Add directory="C:\Qt\2010.05\qt\include" />
 					<Add directory="C:\Qt\2010.05\qt\include\QtGui" />
 					<Add directory="C:\Qt\2010.05\qt\include\QtCore" />
+					<Add directory="C:\Qt\2010.05\qt\bin" />
 				</Compiler>
 				<Linker>
 					<Add option="../of_preRelease_v0061_win_cb_FAT/libs/openFrameworksCompiled/lib/win_cb/openFrameworksDebug.lib" />
@@ -26,6 +27,7 @@
 					<Add library="QtCore4" />
 					<Add library="QtGui4" />
 					<Add directory="C:\Qt\2010.05\qt\lib" />
+					<Add directory="C:\Qt\2010.05\qt\bin" />
 				</Linker>
 			</Target>
 			<Target title="Release">

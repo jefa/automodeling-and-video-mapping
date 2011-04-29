@@ -136,44 +136,87 @@ string TreeModel::ObtType(const QModelIndex &index)
 }
 
  bool TreeModel::insertRows(int position, int rows, const QModelIndex &index)
- {
+  {
      QModelIndex parent;
      parent = index.parent();
      TreeItem *parentItem = getItem(parent);
+     TreeItem *currentItem = getItem(index);
      bool success;
 
     string TypeNodo;
     TypeNodo = ObtType(index);
-
+    cout << " TypeNodo: "<< TypeNodo;
     beginInsertRows(parent, position, position + rows - 1);
 
-    if (TypeNodo == "CAMERAS" || TypeNodo == "CAMERA" ){
+    if (TypeNodo == "CAMERAS" ){
         // add  Camera
+        this->vmtModel->addCamera("NewCamera");
+        ofxCamera *newCamera = this->vmtModel->getCameras()["NewCamera"];
+        //newCamera->set... ;
+        CameraItemData *cameraItem = new CameraItemData(newCamera);
 
+        success = currentItem->insertChildren(position, rows, cameraItem,"New Camera");
 
     }
     if (TypeNodo == "OBJECTS" || TypeNodo == "OBJECT" ){
         // add  Object
 
+        QString path = "C:\ADRIANA\Proyecto\SVN_Proyecto\src\project\vmt\bin\data";
+        this->vmtModel->addObject3D("New Object", path.toStdString());
+        Object3D *newObject = this->vmtModel->getObject3D("New Object");
+        //newObject->set....;
+        ObjectItemData *objectItem = new ObjectItemData(newObject);
+
+        success = currentItem->insertChildren(position, rows, objectItem,"New Object");
     }
-    if (TypeNodo == "LAYER" ){
+    if (TypeNodo == "CAMERA"){
         // add a Layer
 
         Layer2D *newLayer = this->vmtModel->getActiveCamera()->addLayer2D("New Layer");
         newLayer->setEnabled(false);
-        LayerItemData *layerItemData = new LayerItemData(newLayer);
-
-        success = parentItem->insertChildren(position, rows, layerItemData,"New Layer");
+        LayerItemData *layerItem = new LayerItemData(newLayer);
+        cout<< " position  "<< position <<"   row " <<rows;
+        success = currentItem->insertChildren(position, rows, layerItem,"New Layer");
     }
-    if (TypeNodo == "QUAD" ){
+    if ( TypeNodo == "LAYER"  || TypeNodo == "QUAD" ){
         // add a quad
+        QVariant camId;
+        QVariant layerId;
+        string layerId2;
+        string camId2;
 
-                string actualLayer;
-                actualLayer =index.internalId();
-//                Quad2D *newQuad = this->scene->getActiveCamera().getLayer2D(actualLayer).addQuad2D("New Quad");
+            if (TypeNodo == "LAYER"){
+                layerId = getItem(index)->getItemData()->getData(0);
+                layerId2= layerId.toString().toStdString();
 
-//                QuadItemData *quadItem = new QuadItemData(newQuad);
-//                success = parentItem->insertChildren(position, rows, QuadItemData,"New Quad");
+                camId = getItem(index.parent())->getItemData()->getData(0);
+                camId2= camId.toString().toStdString();
+                //cout << "camara: "<<camId.toString().data() << "  camara: "<<camId2;
+                //cout << " layer: "<< layerId.toString().data() << "  layer: "<<layerId2;
+
+            }
+            else{
+                layerId = getItem(index.parent())->getItemData()->getData(0);
+                layerId2= layerId.toString().toStdString();
+
+                camId = getItem(index.parent().parent())->getItemData()->getData(0);
+                camId2= camId.toString().toStdString();
+
+
+            }
+
+
+                string quadId = "New Quad";
+                Quad2D *newQuad = this->vmtModel->getCameras()[camId2]->getLayer2D(layerId2)->addQuad2D(quadId);
+                newQuad->setEnabled(false);
+                QuadItemData *quadItem = new QuadItemData(newQuad);
+                cout<< " position  "<< position <<"   row " <<rows;
+                if (TypeNodo == "QUAD"){
+                    success = parentItem->insertChildren(position, rows, quadItem,"New Quad");
+                }
+                else{
+                    success = currentItem->insertChildren(position, rows, quadItem,"New Quad");
+                }
 
 
     }
@@ -181,6 +224,7 @@ string TreeModel::ObtType(const QModelIndex &index)
      endInsertRows();
 
      return success;
+
  }
 
 /*
