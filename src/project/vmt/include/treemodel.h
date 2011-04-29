@@ -1,7 +1,7 @@
 #ifndef TREEMODEL_H
 #define TREEMODEL_H
 
-#include "Scene.h"
+#include "VmtModel.h"
 
 #include <QAbstractItemModel>
 #include <QModelIndex>
@@ -17,7 +17,7 @@ class TreeModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
-    TreeModel(Scene *scene, QObject *parent = 0);
+    TreeModel(VmtModel *vmtModel, QObject *parent = 0);
     ~TreeModel();
 //! [0] //! [1]
 
@@ -53,7 +53,6 @@ public:
                     const QModelIndex &parent = QModelIndex());
 
     TreeItem *getItem(const QModelIndex &index) const;
-    Scene* getScene();
 
 private:
     void setupSceneModelData();
@@ -61,7 +60,7 @@ private:
     void setupObjectsModelData(TreeItem *parent);
 
     TreeItem *rootItem;
-    Scene *scene;
+    VmtModel *vmtModel;
 };
 //! [2]
 

@@ -394,3 +394,11 @@ void VmtModel::saveShow(string filepath) {
 
     showXML.saveFile(filepath);
 }
+
+map<string, ofxCamera*> VmtModel::getCameras() {
+    return this->scene->getCameras();
+}
+
+map<string, Object3D*> VmtModel::getObjects3D() {
+    return this->scene->getObjects3D();
+}

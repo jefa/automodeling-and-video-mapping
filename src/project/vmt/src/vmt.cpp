@@ -100,7 +100,7 @@ void Vmt::setup(){
 
     /* End Lighting */
 
-    treeWindow = new TreeWindow(this->vmtModel->getScene());
+    treeWindow = new TreeWindow(this->vmtModel);
     treeWindow->show();
 
     vmtModel->saveShow("show1.xml");

@@ -58,6 +58,9 @@ class VmtModel : public ISceneHandler
 
         void saveShow(string filepath);
 
+        map<string, ofxCamera*> getCameras();
+        map<string, Object3D*> getObjects3D();
+
     protected:
         string getNodeForCamera(string camId);
 

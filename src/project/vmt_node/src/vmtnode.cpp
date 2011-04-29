@@ -106,6 +106,7 @@ void VmtNode::setBackground(int r, int g, int b){
 
 void VmtNode::addCamera(string id){
     scene->addCamera(id);
+    scene->activateCamera(id);
 }
 
 void VmtNode::setCameraPos(string camId, float x, float y, float z){

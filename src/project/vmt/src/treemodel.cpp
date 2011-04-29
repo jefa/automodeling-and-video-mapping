@@ -6,10 +6,10 @@
 using namespace gui;
 
 //! [0]
-TreeModel::TreeModel(Scene *scene, QObject *parent)
+TreeModel::TreeModel(VmtModel *vmtModel, QObject *parent)
     : QAbstractItemModel(parent)
 {
-    this->scene = scene;
+    this->vmtModel = vmtModel;
     setupSceneModelData();
     setupLayersModelData(rootItem->child(0));
     setupObjectsModelData(rootItem->child(1));
@@ -159,7 +159,7 @@ string TreeModel::ObtType(const QModelIndex &index)
     if (TypeNodo == "LAYER" ){
         // add a Layer
 
-        Layer2D *newLayer = this->scene->getActiveCamera()->addLayer2D("New Layer");
+        Layer2D *newLayer = this->vmtModel->getActiveCamera()->addLayer2D("New Layer");
         newLayer->setEnabled(false);
         LayerItemData *layerItemData = new LayerItemData(newLayer);
 
@@ -285,7 +285,7 @@ void TreeModel::setupLayersModelData(TreeItem *parent)
 {
     int positionCamera = 0;
 
-    map<string, ofxCamera*> camerasMap = this->scene->getCameras();
+    map<string, ofxCamera*> camerasMap = this->vmtModel->getCameras();
     map<string, ofxCamera*>::iterator camerasIt;
     for(camerasIt = camerasMap.begin(); camerasIt != camerasMap.end(); camerasIt++) {
         ofxCamera* camera = camerasIt->second;
@@ -341,7 +341,7 @@ void TreeModel::setupSceneModelData()
 void TreeModel::setupObjectsModelData(TreeItem *parent)
 {
     int positionObject = 0;
-    map<string, Object3D*> objectsMap = this->scene->getObjects3D();
+    map<string, Object3D*> objectsMap = this->vmtModel->getObjects3D();
     map<string, Object3D*>::iterator objectsIt;
     for(objectsIt = objectsMap.begin(); objectsIt != objectsMap.end(); objectsIt++) {
         Object3D* object = objectsIt->second;
@@ -351,8 +351,4 @@ void TreeModel::setupObjectsModelData(TreeItem *parent)
         TreeItem *childItemObject = parent->child(positionObject);
         positionObject++;
     }
-}
-
-Scene* TreeModel::getScene(){
-    return this->scene;
 }

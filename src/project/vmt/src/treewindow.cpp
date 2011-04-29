@@ -10,11 +10,11 @@
 using namespace gui;
 
 
-TreeWindow::TreeWindow(Scene *scene)
+TreeWindow::TreeWindow(VmtModel *vmtModel)
 {
     setupUi(this);
 
-    TreeModel *model = new TreeModel(scene, NULL);
+    TreeModel *model = new TreeModel(vmtModel, NULL);
     view->setModel(model);
     //for (int column = 0; column < model->columnCount(); ++column)
     //    view->resizeColumnToContents(column);
@@ -369,8 +369,8 @@ QString TreeWindow::inputText()
 
 void TreeWindow::clickedTree(const QModelIndex &index)
 {
-    TreeModel *model = (TreeModel*) view->model();
-    model->getItem(index)->setSeleted(model->getScene());
+    //TreeModel *model = (TreeModel*) view->model();
+    //model->getItem(index)->setSeleted(model->getScene());
     updateActions(index);
     /*
     TreeItemData *itemData = model->getItem(index)->getItemData();
@@ -388,8 +388,8 @@ void TreeWindow::clickedTree(const QModelIndex &index)
 void TreeWindow::editObject()
 {
     TreeModel *model = (TreeModel*) view->model();
-    ObjectEditorDialog *d = new ObjectEditorDialog(model->getScene()->getActiveObject());
-    d->show();
+    //ObjectEditorDialog *d = new ObjectEditorDialog(model->getScene()->getActiveObject());
+    //d->show();
 }
 
 void TreeWindow::quit()
