@@ -20,6 +20,7 @@ int main( int argc, char** argv ) {
 	ofSetupOpenGL(&window, resWidth, resHeight, OF_WINDOW);			// <-------- setup the GL context
 
     ofSetWindowPosition(posWinX, posWinY);
+    window.setWindowTitle("VMT");
 
 	// this kicks off the running of my app
 	// can be OF_WINDOW or OF_FULLSCREEN
