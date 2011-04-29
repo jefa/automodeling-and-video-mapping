@@ -1,7 +1,7 @@
 #ifndef TREEWINDOW_H
 #define TREEWINDOW_H
 
-#include "Scene.h"
+#include "VmtModel.h"
 
 #include <QModelIndex>
 #include <QWidget>
@@ -21,7 +21,7 @@ class TreeWindow : public QWidget
     Q_OBJECT
 
 public:
-    TreeWindow(Scene *scene);
+    TreeWindow(VmtModel *vmtModel);
     ~TreeWindow();
     QString inputText();
 
