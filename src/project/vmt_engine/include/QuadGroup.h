@@ -7,11 +7,13 @@
 #include <vector>
 using namespace std;
 
-class QuadGroup : public IPropertyManager
+class QuadGroup : public IPropertyManager, ISerializable
 {
     public:
         QuadGroup(string name);
         virtual ~QuadGroup();
+
+        string getName();
 
         void addQuad2D(Quad2D* quad);
         void genUVWCoords();
@@ -21,7 +23,11 @@ class QuadGroup : public IPropertyManager
 
         void CalculateBounds();
 
+        vector<Quad2D*> getQuads();
+
         void SetTextureParams(string key, textureType type);
+
+        virtual SerializedNode* Serialize();
     protected:
     private:
         string name;

@@ -82,6 +82,7 @@
 		<Unit filename="include\Effect.h" />
 		<Unit filename="include\FadeEffect.h" />
 		<Unit filename="include\IPropertyManager.h" />
+		<Unit filename="include\ISerializable.h" />
 		<Unit filename="include\Layer2D.h" />
 		<Unit filename="include\LinearAnimation.h" />
 		<Unit filename="include\Material.h" />
@@ -90,6 +91,7 @@
 		<Unit filename="include\Quad2D.h" />
 		<Unit filename="include\QuadGroup.h" />
 		<Unit filename="include\Scene.h" />
+		<Unit filename="include\SerializedNode.h" />
 		<Unit filename="include\TextureEffect.h" />
 		<Unit filename="include\TextureManager.h" />
 		<Unit filename="include\model3DS.h" />
@@ -108,6 +110,7 @@
 		<Unit filename="src\Quad2D.cpp" />
 		<Unit filename="src\QuadGroup.cpp" />
 		<Unit filename="src\Scene.cpp" />
+		<Unit filename="src\SerializedNode.cpp" />
 		<Unit filename="src\TextureEffect.cpp" />
 		<Unit filename="src\TextureManager.cpp" />
 		<Unit filename="src\model3DS.cpp" />

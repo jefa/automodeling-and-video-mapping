@@ -1,6 +1,6 @@
 #include "TextureEffect.h"
 
-TextureEffect::TextureEffect(QuadGroup *qg, string texturePath, textureType type) {
+TextureEffect::TextureEffect(string id, QuadGroup *qg, string texturePath, textureType type) {
     switch(type) {
         case VIDEO_TEXTURE:
             TextureManager::LoadVideoTexture(texturePath, texturePath);
@@ -10,6 +10,7 @@ TextureEffect::TextureEffect(QuadGroup *qg, string texturePath, textureType type
             TextureManager::LoadImageTexture(texturePath, texturePath);
             break;
     }
+    this->id = id;
     this->group = qg;
     this->textureKey = texturePath;
     this->type = type;
@@ -77,4 +78,24 @@ textureType TextureEffect::getTextureType(){
 
 bool TextureEffect::getIsGroup(){
     return this->isGroup;
+}
+
+SerializedNode* TextureEffect::Serialize() {
+    SerializedNode *node = new SerializedNode("effect");
+    node->addAttribute("id", this->id);
+
+    node->addAttribute("texturename", this->textureKey);
+
+    if(this->isGroup) {
+        node->addAttribute("type", "grouptexture");
+        node->addAttribute("groupid", this->group->getName());
+    }
+    else {
+        node->addAttribute("type", "object3dtexture");
+        node->addAttribute("objid", this->object3d->getId());
+        node->addAttribute("facesid", this->facesID);
+        node->addAttribute("texturename", this->textureKey);
+    }
+
+    return node;
 }

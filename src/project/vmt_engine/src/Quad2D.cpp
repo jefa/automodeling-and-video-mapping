@@ -176,3 +176,16 @@ float Quad2D::get(int aParam) {
     }
     return -1.0f;
 }
+
+SerializedNode* Quad2D::Serialize() {
+    SerializedNode *node = new SerializedNode("quad");
+
+    node->addAttribute("id", this->id);
+    node->addAttribute("enabled", this->enabled);
+    node->addAttribute("p0", this->getPoint(0));
+    node->addAttribute("p1", this->getPoint(1));
+    node->addAttribute("p2", this->getPoint(2));
+    node->addAttribute("p3", this->getPoint(3));
+
+    return node;
+}

@@ -1,6 +1,7 @@
 #include "FadeEffect.h"
 
-FadeEffect::FadeEffect(QuadGroup *qg, ofxVec4f colorIni, ofxVec4f colorFin, float delay) {
+FadeEffect::FadeEffect(string id, QuadGroup *qg, ofxVec4f colorIni, ofxVec4f colorFin, float delay) {
+    this->id = id;
     this->group = qg;
     this->colorIni = colorIni;
     this->colorFin = colorFin;
@@ -52,4 +53,17 @@ ofxVec4f FadeEffect::getColorFin(){
 
 float FadeEffect::getDelay(){
     return this->delay;
+}
+
+SerializedNode* FadeEffect::Serialize() {
+    SerializedNode *node = new SerializedNode("effect");
+    node->addAttribute("id", this->id);
+    node->addAttribute("type", "fade");
+    node->addAttribute("groupid", this->group->getName());
+
+    node->addAttribute("col1", this->colorIni);
+    node->addAttribute("col2", this->colorFin);
+
+    node->addAttribute("delay", this->delay);
+    return node;
 }

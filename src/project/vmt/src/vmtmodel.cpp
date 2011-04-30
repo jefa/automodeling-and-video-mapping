@@ -211,7 +211,7 @@ void VmtModel::addPositionEffect(string effectId, string objId, ofxVec3f posIni,
         return;
     }
     oscManager->SendMessageAll(OscUtil::createAddPositionEffectMsg(effectId, objId, posIni, posFin, delay));
-    scene->addEffect(effectId, new PositionEffect(scene->getObject3D(objId), posIni, posFin, delay));
+    scene->addEffect(effectId, new PositionEffect(effectId, scene->getObject3D(objId), posIni, posFin, delay));
 }
 
 void VmtModel::addFadeEffect(string effectId, string groupId, ofxVec4f colorIni, ofxVec4f colorFin, float delay){
@@ -220,7 +220,7 @@ void VmtModel::addFadeEffect(string effectId, string groupId, ofxVec4f colorIni,
         return;
     }
     oscManager->SendMessageAll(OscUtil::createAddFadeEffectMsg(effectId, groupId, colorIni, colorFin, delay));
-    scene->addEffect(effectId, new FadeEffect(scene->getGroup(groupId), colorIni, colorFin, delay));
+    scene->addEffect(effectId, new FadeEffect(effectId, scene->getGroup(groupId), colorIni, colorFin, delay));
 }
 
 void VmtModel::addTextureEffect(string effectId){
@@ -278,6 +278,25 @@ void VmtModel::setLightPoint(string lightId, float r, float g, float b,
     scene->getLight(lightId)->pointLight(r, g, b, x, y, z);
 }
 
+void addXMLNode(ofxXmlSettings &xml, SerializedNode* node) {
+    int tagI = xml.addTag(node->getTagId());
+
+    vector<pair<string, string> > attributes = node->getAttributes();
+    vector<pair<string, string> >::iterator attributesIt;
+    for(attributesIt = attributes.begin(); attributesIt != attributes.end(); attributesIt++) {
+        xml.addAttribute(node->getTagId(), attributesIt->first, attributesIt->second, tagI);
+    }
+
+    xml.pushTag(node->getTagId(), tagI);
+
+    vector<SerializedNode*> childNodes = node->getChildNodes();
+    vector<SerializedNode*>::iterator childNodesIt;
+    for(childNodesIt = childNodes.begin(); childNodesIt != childNodes.end(); childNodesIt++) {
+        addXMLNode(xml, *childNodesIt);
+    }
+    xml.popTag();
+}
+
 void VmtModel::saveShow(string filepath) {
     showXML.clear();
     std::stringstream sstr;
@@ -287,108 +306,8 @@ void VmtModel::saveShow(string filepath) {
 
     showXML.pushTag("vmtshow", 0);
 
-    showXML.addTag("cameras");
-    showXML.pushTag("cameras",0);
-
-    map<string, ofxCamera*> camerasMap = scene->getCameras();
-    map<string, ofxCamera*>::iterator camerasIt;
-    for(camerasIt = camerasMap.begin(); camerasIt != camerasMap.end(); camerasIt++) {
-
-        int camI = showXML.addTag("camera");
-        showXML.addAttribute("camera", "id", camerasIt->first, camI);
-        showXML.addAttribute("camera", "type", camerasIt->second->isProjector() ? "projector" : "camera", camI);
-
-        showXML.pushTag("camera", camI);
-
-        showXML.addTag("view");
-
-        ofxVec3f pos = camerasIt->second->getPosition();
-        sstr.str("");
-        sstr << pos.x << " " << pos.y << " " << pos.z;
-        showXML.addAttribute("view", "pos", sstr.str(), 0);
-
-        ofxVec3f eye = camerasIt->second->getEye();
-
-        sstr.str("");
-        sstr << eye.x << " " << eye.y << " " << eye.z;
-        showXML.addAttribute("view", "eye", sstr.str(), 0);
-
-        showXML.addAttribute("view", "up", "0", 0);
-
-        showXML.addTag("projection");
-        //TODO: Agregar valores de proyeccion.
-        //<projection fov="45" aspect="1.33" resx="1024" resy="768"/>
-
-        showXML.addTag("layers");
-        showXML.pushTag("layers", 0);
-
-        map<string, Layer2D*> layers2D = camerasIt->second->getLayers2D();
-        map<string, Layer2D*>::iterator layersIt;
-        for(layersIt = layers2D.begin(); layersIt != layers2D.end(); layersIt++) {
-            int layerI = showXML.addTag("layer");
-            showXML.addAttribute("layer", "id", layersIt->first, layerI);
-            showXML.pushTag("layer");
-
-            map<string, Quad2D*> quads2D = layersIt->second->getQuads2D();
-            map<string, Quad2D*>::iterator quadsIter;
-            for (quadsIter=quads2D.begin(); quadsIter != quads2D.end(); quadsIter++) {
-                int quadI = showXML.addTag("quad");
-                showXML.addAttribute("quad", "id", quadsIter->first, quadI);
-                showXML.addAttribute("quad", "enabled", quadsIter->second->isEnabled() ? "true" : "false", quadI);
-
-                ofxVec2f p0 = quadsIter->second->getPoint(0);
-                ofxVec2f p1 = quadsIter->second->getPoint(1);
-                ofxVec2f p2 = quadsIter->second->getPoint(2);
-                ofxVec2f p3 = quadsIter->second->getPoint(3);
-
-                sstr.str("");
-                sstr << p0.x << " " << p0.y;
-                showXML.addAttribute("quad", "p0", sstr.str() , quadI);
-                sstr.str("");
-                sstr << p1.x << " " << p1.y;
-                showXML.addAttribute("quad", "p1", sstr.str() , quadI);
-                sstr.str("");
-                sstr << p2.x << " " << p2.y;
-                showXML.addAttribute("quad", "p2", sstr.str() , quadI);
-                sstr.str("");
-                sstr << p3.x << " " << p3.y;
-                showXML.addAttribute("quad", "p3", sstr.str() , quadI);
-            }
-
-            showXML.popTag();
-        }
-
-        showXML.popTag();//layers
-        showXML.popTag();//camera
-    }
-    showXML.popTag();//cameras
-
-    showXML.addTag("objects3d");
-    showXML.pushTag("objects3d", 0);
-
-    map<string, Object3D*> objects3D = scene->getObjects3D();
-    map<string, Object3D*>::iterator objects3DIt;
-    for(objects3DIt = objects3D.begin(); objects3DIt != objects3D.end(); objects3DIt++) {
-        int object3DI = showXML.addTag("object3d");
-        showXML.addAttribute("object3d", "id", objects3DIt->first, object3DI);
-
-        showXML.addAttribute("object3d", "filename", objects3DIt->second->getPath(), object3DI);
-
-        ofxVec3f pos = objects3DIt->second->getPosition();
-        ofxVec3f scale = objects3DIt->second->getScale();
-
-        sstr.str("");
-        sstr << pos.x << " " << pos.y << " " << pos.z;
-        showXML.addAttribute("object3d", "pos", sstr.str(), object3DI);
-
-        sstr.str("");
-        sstr << scale.x << " " << scale.y << " " << scale.z;
-        showXML.addAttribute("object3d", "scale", sstr.str(), object3DI);
-
-        //TODO: Falta la rotacion, es mas complicado que 3 angulos
-        //<object3d id="squirrel" filename="data/squirrel.3ds" pos="1.22 2.33 3.44" ang="20 10 30" scale="10 20 30"/>
-    }
-    showXML.popTag(); //objects3d
+    SerializedNode* node = scene->Serialize();
+    addXMLNode(showXML, node);
 
     showXML.popTag();//vmtshow
 

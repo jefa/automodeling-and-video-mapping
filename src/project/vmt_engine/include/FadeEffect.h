@@ -9,7 +9,7 @@
 class FadeEffect : public Effect
 {
     public:
-        FadeEffect(QuadGroup *qg, ofxVec4f colorIni, ofxVec4f colorFin, float delay);
+        FadeEffect(string id, QuadGroup *qg, ofxVec4f colorIni, ofxVec4f colorFin, float delay);
         virtual ~FadeEffect();
 
         virtual void play();
@@ -21,6 +21,7 @@ class FadeEffect : public Effect
         ofxVec4f getColorFin();
         float getDelay();
 
+        virtual SerializedNode* Serialize();
     protected:
     private:
         QuadGroup *group;
