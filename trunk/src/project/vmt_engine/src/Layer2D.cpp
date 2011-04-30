@@ -62,3 +62,16 @@ void Layer2D::draw() {
     }
 
 }
+
+SerializedNode* Layer2D::Serialize() {
+    SerializedNode *node = new SerializedNode("layer");
+
+    node->addAttribute("id", this->name);
+
+    map<string, Quad2D*>::const_iterator iter;
+    for (iter=quads2D_map.begin(); iter != quads2D_map.end(); ++iter) {
+        node->addChildNode(iter->second->Serialize());
+    }
+
+    return node;
+}

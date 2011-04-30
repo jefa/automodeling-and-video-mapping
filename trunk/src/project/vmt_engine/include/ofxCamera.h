@@ -1,10 +1,11 @@
 #pragma once
 
+#include "ISerializable.h"
 #include "ofMain.h"
 #include "ofxVectorMath.h"
 #include "Layer2D.h"
 
-class ofxCamera{
+class ofxCamera: public ISerializable {
 public:
 	ofxCamera();
 
@@ -51,7 +52,7 @@ public:
     Layer2D* getLayer2D(string id);
     map<string, Layer2D*> getLayers2D();
 
-
+    SerializedNode* Serialize();
 protected:
 	ofxVec3f posCoord;
 	ofxVec3f eyeCoord;

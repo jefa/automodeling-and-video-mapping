@@ -9,7 +9,7 @@
 class TextureEffect : public Effect
 {
     public:
-        TextureEffect(QuadGroup *qg, string texturePath, textureType type);
+        TextureEffect(string id, QuadGroup *qg, string texturePath, textureType type);
         TextureEffect(Object3D *obj3d, string facesID, string texturePath, textureType type);
         virtual ~TextureEffect();
 
@@ -24,6 +24,7 @@ class TextureEffect : public Effect
         textureType getTextureType();
         bool getIsGroup();
 
+        virtual SerializedNode* Serialize();
     protected:
     private:
         QuadGroup* group;

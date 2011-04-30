@@ -3,7 +3,8 @@
 #include "LinearAnimation.h"
 #include "IPropertyManager.h"
 
-PositionEffect::PositionEffect(Object3D *obj, ofxVec3f posIni, ofxVec3f posFin, float delay) {
+PositionEffect::PositionEffect(string id, Object3D *obj, ofxVec3f posIni, ofxVec3f posFin, float delay) {
+    this->id = id;
     this->object3d = obj;
     this->posIni = posIni;
     this->posFin = posFin;
@@ -49,3 +50,15 @@ float PositionEffect::getDelay(){
     return this->delay;
 }
 
+SerializedNode* PositionEffect::Serialize() {
+    SerializedNode *node = new SerializedNode("effect");
+    node->addAttribute("id", this->id);
+    node->addAttribute("type", "position");
+    node->addAttribute("objid", this->object3d->getId());
+
+    node->addAttribute("pos1", this->posIni);
+    node->addAttribute("pos2", this->posFin);
+
+    node->addAttribute("delay", this->delay);
+    return node;
+}

@@ -9,9 +9,17 @@ QuadGroup::~QuadGroup() {
     //dtor
 }
 
+string QuadGroup::getName() {
+    return name;
+}
+
 void QuadGroup::addQuad2D(Quad2D* quad) {
     quads2D.push_back(quad);
     CalculateBounds();
+}
+
+vector<Quad2D*> QuadGroup::getQuads() {
+    return quads2D;
 }
 
 void QuadGroup::CalculateBounds() {
@@ -84,4 +92,18 @@ void QuadGroup::set(int aParam, float aValue) {
             }
             break;
     }
+}
+
+SerializedNode* QuadGroup::Serialize() {
+    SerializedNode *node = new SerializedNode("group");
+    node->addAttribute("id", this->name);
+
+    vector<Quad2D*>::iterator quadsIt;
+    for(quadsIt = quads2D.begin(); quadsIt != quads2D.end(); quadsIt++) {
+        SerializedNode *quadNode = new SerializedNode("quad");
+        quadNode->addAttribute("id", (*quadsIt)->getId());
+        node->addChildNode(quadNode);
+    }
+
+    return node;
 }

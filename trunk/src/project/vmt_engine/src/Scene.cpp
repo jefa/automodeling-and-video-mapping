@@ -57,6 +57,10 @@ QuadGroup* Scene::getGroup(string id) {
     return quadGroups[id];
 }
 
+map<string, QuadGroup*> Scene::getGroups() {
+    return quadGroups;
+}
+
 Object3D* Scene::addObject3D(string id, string path) {
     Object3D *obj3D = new Object3D(id, path);
     objects3D.insert(pair<string, Object3D*>(id, obj3D));
@@ -91,6 +95,10 @@ Effect* Scene::addEffect(string id, Effect* effect) {
 
 void Scene::testEffect(string id) {
     effects[id]->test();
+}
+
+map<string, Effect*> Scene::getEffects() {
+    return effects;
 }
 
 void Scene::update() {
@@ -136,4 +144,36 @@ void Scene::draw() {
 
 void Scene::setBackground(int r, int g, int b) {
     ofBackground(r,g,b);
+}
+
+SerializedNode* Scene::Serialize() {
+    SerializedNode *node = new SerializedNode("scene");
+
+    SerializedNode *camerasNode = new SerializedNode("cameras");
+    for(camerasIt = cameras.begin(); camerasIt != cameras.end(); camerasIt++) {
+        camerasNode->addChildNode(camerasIt->second->Serialize());
+    }
+    node->addChildNode(camerasNode);
+
+    SerializedNode *groupsNode = new SerializedNode("groups");
+    map<string, QuadGroup*>::iterator groupsIt;
+    for(groupsIt = quadGroups.begin(); groupsIt != quadGroups.end(); groupsIt++) {
+        groupsNode->addChildNode(groupsIt->second->Serialize());
+    }
+    node->addChildNode(groupsNode);
+
+    SerializedNode *objects3dNode = new SerializedNode("objects3d");
+    for(objects3DIt = objects3D.begin(); objects3DIt != objects3D.end(); objects3DIt++) {
+        objects3dNode->addChildNode(objects3DIt->second->Serialize());
+    }
+    node->addChildNode(objects3dNode);
+
+    SerializedNode *effectsNode = new SerializedNode("effects");
+    map<string, Effect*>::iterator effectsIt;
+    for(effectsIt = effects.begin(); effectsIt != effects.end(); effectsIt++) {
+        effectsNode->addChildNode(effectsIt->second->Serialize());
+    }
+    node->addChildNode(effectsNode);
+
+    return node;
 }

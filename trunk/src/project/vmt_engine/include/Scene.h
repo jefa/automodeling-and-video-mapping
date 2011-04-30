@@ -1,6 +1,7 @@
 #ifndef SCENE_H
 #define SCENE_H
 
+#include "ISerializable.h"
 #include "ofxCamera.h"
 #include "ofxLight.h"
 #include "Object3D.h"
@@ -11,7 +12,7 @@
 #include <map>
 using namespace std;
 
-class Scene
+class Scene : public ISerializable
 {
     public:
         Scene();
@@ -39,11 +40,14 @@ class Scene
         QuadGroup* addGroup(string id);
         QuadGroup* getGroup(string id);
 
+        map<string, QuadGroup*> getGroups();
+
         Effect* addEffect(string id, Effect* effect);
         void testEffect(string id);
 
+        map<string, Effect*> getEffects();
 
-
+        SerializedNode* Serialize();
     private:
         map<string, ofxCamera*> cameras;
         ofxCamera* activeCamera;

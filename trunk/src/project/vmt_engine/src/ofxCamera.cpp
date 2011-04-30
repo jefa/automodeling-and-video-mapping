@@ -259,3 +259,33 @@ void ofxCamera::drawCamera(){
 
     //printf("\n");
 }
+
+SerializedNode* ofxCamera::Serialize() {
+    SerializedNode* node = new SerializedNode("camera");
+
+    node->addAttribute("id", this->id);
+    node->addAttribute("type", this->projector);
+
+    SerializedNode* viewNode = new SerializedNode("view");
+    viewNode->addAttribute("pos", posCoord);
+    viewNode->addAttribute("eye", eyeCoord);
+    viewNode->addAttribute("up", upVec);
+
+    node->addChildNode(viewNode);
+
+    SerializedNode* projectionNode = new SerializedNode("projection");
+    projectionNode->addAttribute("fov", fieldOfView);
+    projectionNode->addAttribute("aspect", aspectRatio);
+    projectionNode->addAttribute("resx", w);
+    projectionNode->addAttribute("resy", h);
+
+    node->addChildNode(projectionNode);
+
+    SerializedNode* layersNode = new SerializedNode("layers");
+    for(layersIt = layers2D.begin(); layersIt != layers2D.end(); layersIt++) {
+        layersNode->addChildNode(layersIt->second->Serialize());
+    }
+    node->addChildNode(layersNode);
+
+    return node;
+}

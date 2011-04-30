@@ -133,3 +133,14 @@ void Object3D::setId(string id){
 string Object3D::getId(){
     return this->id;
 }
+
+SerializedNode* Object3D::Serialize() {
+    SerializedNode *node = new SerializedNode("object3d");
+
+    node->addAttribute("id", this->id);
+    node->addAttribute("filename", this->path);
+    node->addAttribute("pos", this->pos);
+    node->addAttribute("scale", this->scale);
+
+    return node;
+}

@@ -2,13 +2,14 @@
 #define QUAD2D_H
 
 #include "IPropertyManager.h"
+#include "ISerializable.h"
 #include "ofxVectorMath.h"
 #include "Material.h"
 
 #include <string>
 using namespace std;
 
-class Quad2D : public IPropertyManager
+class Quad2D : public IPropertyManager, ISerializable
 {
     public:
         Quad2D(float x1 = 100.0f, float y1 = 100.0f, float x2 = 300.0f, float y2 = 100.0f,
@@ -30,6 +31,8 @@ class Quad2D : public IPropertyManager
         string getId();
         void setMaterial(Material *mat);
         Material* getMaterial();
+
+        virtual SerializedNode* Serialize();
     protected:
     private:
         float quadPoints[8];

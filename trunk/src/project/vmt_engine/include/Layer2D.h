@@ -8,7 +8,7 @@
 #include <map>
 using namespace std;
 
-class Layer2D
+class Layer2D : public ISerializable
 {
     public:
         Layer2D();
@@ -24,6 +24,8 @@ class Layer2D
         void setName(string name);
         bool isEnabled();
         string getName();
+
+        virtual SerializedNode* Serialize();
 
     private:
         string name;

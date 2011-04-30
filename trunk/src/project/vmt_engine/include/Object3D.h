@@ -1,6 +1,7 @@
 #ifndef OBJECT3D_H
 #define OBJECT3D_H
 
+#include "ISerializable.h"
 #include "ofMain.h"
 #include "model3DS.h"
 #include "IPropertyManager.h"
@@ -11,7 +12,7 @@ using namespace std;
 
 enum A_PARAM_OBJECT3D {POS_X, POS_Y, POS_Z};
 
-class Object3D : public IPropertyManager
+class Object3D : public IPropertyManager, ISerializable
 {
     public:
         Object3D(string id, string path);
@@ -35,12 +36,12 @@ class Object3D : public IPropertyManager
         void SetTextureParamsForMaterial(string facesID, string key, textureType type);
 
         string getPath();
-
+        virtual SerializedNode* Serialize();
     protected:
     private:
         vector <float> rotAngle;
         vector <ofPoint> rotAxis;
-        ofPoint scale;
+        ofxVec3f scale;
         ofxVec3f pos;
 
         int numRotations;
