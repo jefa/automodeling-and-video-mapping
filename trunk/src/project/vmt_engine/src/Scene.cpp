@@ -93,6 +93,10 @@ Effect* Scene::addEffect(string id, Effect* effect) {
     return effect;
 }
 
+map<string, Effect*> Scene::getEffects() {
+    return effects;
+}
+
 void Scene::testEffect(string id) {
     effects[id]->test();
 }

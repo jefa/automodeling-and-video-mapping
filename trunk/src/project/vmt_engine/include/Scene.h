@@ -43,6 +43,7 @@ class Scene : public ISerializable
         map<string, QuadGroup*> getGroups();
 
         Effect* addEffect(string id, Effect* effect);
+        map<string, Effect*> getEffects();
         void testEffect(string id);
 
         map<string, Effect*> getEffects();

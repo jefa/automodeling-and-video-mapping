@@ -80,6 +80,17 @@ bool TextureEffect::getIsGroup(){
     return this->isGroup;
 }
 
+
+const char* TextureEffect::toString(){
+    string txt = "TextureEffect::";//+facesID+"::"+textureKey+"::"+isGroup+"::";
+    if (isGroup){
+        //txt = txt+ group->getId();
+    } else {
+        txt = txt+ object3d->getId();
+    }
+    return txt.c_str();
+}
+
 SerializedNode* TextureEffect::Serialize() {
     SerializedNode *node = new SerializedNode("effect");
     node->addAttribute("id", this->id);

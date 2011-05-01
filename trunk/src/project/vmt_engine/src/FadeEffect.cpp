@@ -55,6 +55,12 @@ float FadeEffect::getDelay(){
     return this->delay;
 }
 
+const char* FadeEffect::toString(){
+    string txt = "FadeEffect::";//'+colorIni+"::"+colorFin+"::"+delay;
+    return txt.c_str();
+}
+
+
 SerializedNode* FadeEffect::Serialize() {
     SerializedNode *node = new SerializedNode("effect");
     node->addAttribute("id", this->id);

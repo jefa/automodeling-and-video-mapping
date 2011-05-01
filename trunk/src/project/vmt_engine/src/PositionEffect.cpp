@@ -50,6 +50,11 @@ float PositionEffect::getDelay(){
     return this->delay;
 }
 
+const char* PositionEffect::toString(){
+    string txt = "PositionEffect::"+object3d->getId();//+"::"+posIni+"::"+posFin+"::"+delay;
+    return txt.c_str();
+}
+
 SerializedNode* PositionEffect::Serialize() {
     SerializedNode *node = new SerializedNode("effect");
     node->addAttribute("id", this->id);

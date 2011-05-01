@@ -20,6 +20,8 @@ class Effect : public ISerializable
         virtual int getType() = 0;
 
         virtual SerializedNode* Serialize() = 0;
+        virtual const char* toString() = 0;
+
     protected:
         string id;
     private:
