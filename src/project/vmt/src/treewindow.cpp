@@ -327,7 +327,7 @@ void TreeWindow::setupUi(QWidget *treeWindow)
 
 void TreeWindow::retranslateUi(QWidget *treeWindow)
 {
-    treeWindow->setWindowTitle(QApplication::translate("treeWindow", "ToolBar", 0, QApplication::UnicodeUTF8));
+    treeWindow->setWindowTitle(QApplication::translate("treeWindow", "Scene", 0, QApplication::UnicodeUTF8));
     exitAction->setText(QApplication::translate("treeWindow", "E&xit", 0, QApplication::UnicodeUTF8));
     exitAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+Q", 0, QApplication::UnicodeUTF8));
     insertRowAction->setText(QApplication::translate("treeWindow", "Add", 0, QApplication::UnicodeUTF8));
