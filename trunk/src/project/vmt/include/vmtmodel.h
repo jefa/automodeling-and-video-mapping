@@ -60,6 +60,7 @@ class VmtModel : public ISceneHandler
 
         map<string, ofxCamera*> getCameras();
         map<string, Object3D*> getObjects3D();
+        map<string, Effect*> getEffects();
 
     protected:
         string getNodeForCamera(string camId);

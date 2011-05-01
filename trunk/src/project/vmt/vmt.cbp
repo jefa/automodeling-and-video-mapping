@@ -194,6 +194,9 @@
 		</Unit>
 		<Unit filename="include\OscManager.h" />
 		<Unit filename="include\colorlisteditor.h" />
+		<Unit filename="include\effectitem.h" />
+		<Unit filename="include\effectsmodel.h" />
+		<Unit filename="include\effectswindow.h" />
 		<Unit filename="include\objecteditdialog.h" />
 		<Unit filename="include\treeitem.h" />
 		<Unit filename="include\treemodel.h" />
@@ -202,8 +205,13 @@
 		<Unit filename="include\vmtmodel.h" />
 		<Unit filename="src\OscManager.cpp" />
 		<Unit filename="src\colorlisteditor.cpp" />
+		<Unit filename="src\effectitem.cpp" />
+		<Unit filename="src\effectmodel.cpp" />
+		<Unit filename="src\effectwindow.cpp" />
 		<Unit filename="src\main.cpp" />
 		<Unit filename="src\moc_colorlisteditor.cpp" />
+		<Unit filename="src\moc_effectsmodel.cpp" />
+		<Unit filename="src\moc_effectswindow.cpp" />
 		<Unit filename="src\moc_objecteditdialog.cpp" />
 		<Unit filename="src\moc_treemodel.cpp" />
 		<Unit filename="src\moc_treewindow.cpp" />

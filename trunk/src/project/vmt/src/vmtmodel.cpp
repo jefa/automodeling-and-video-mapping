@@ -321,3 +321,7 @@ map<string, ofxCamera*> VmtModel::getCameras() {
 map<string, Object3D*> VmtModel::getObjects3D() {
     return this->scene->getObjects3D();
 }
+
+map<string, Effect*> VmtModel::getEffects() {
+    return this->scene->getEffects();
+}
