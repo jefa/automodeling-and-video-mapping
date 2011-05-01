@@ -1,7 +1,7 @@
-#ifndef TREEMODEL_H
-#define TREEMODEL_H
+#ifndef EFFECTSLISTMODEL_H
+#define EFFECTSLISTMODEL_H
 
-#include "listitem.h"
+#include "effectitem.h"
 #include "VmtModel.h"
 
 #include <QAbstractItemModel>
@@ -13,13 +13,13 @@
 namespace gui {
 
 //! [0]
-class ListModel : public QAbstractItemModel
+class EffectsListModel : public QAbstractItemModel
 {
     Q_OBJECT
 
 public:
-    ListModel(VmtModel *vmtModel, QObject *parent = 0);
-    ~ListModel();
+    EffectsListModel(VmtModel *vmtModel, QObject *parent = 0);
+    ~EffectsListModel();
 
     QModelIndex index(int row, int column,
                               const QModelIndex &parent = QModelIndex()) const;
@@ -29,14 +29,14 @@ public:
     int columnCount(const QModelIndex &parent = QModelIndex()) const ;
 
 
-    ListItem *getItem(const QModelIndex &index) const;
+    EffectItem *getItem(const QModelIndex &index) const;
     VmtModel *getVmtModel();
 
 private:
     void setupSceneModelData();
 
     VmtModel *vmtModel;
-    vector<ListItem*> listItems;
+    vector<EffectItem*> listItems;
 };
 //! [2]
 

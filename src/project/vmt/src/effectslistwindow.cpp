@@ -1,28 +1,27 @@
 #include <QtGui>
 #include <QCoreApplication>
 
-#include "listwindow.h"
-#include "listmodel.h"
-//#include "treeitem.h"
+#include "effectslistwindow.h"
+#include "effectslistmodel.h"
 
 using namespace gui;
 
-ListWindow::ListWindow(VmtModel *vmtModel)
+EffectsListWindow::EffectsListWindow(VmtModel *vmtModel)
 {
     setupUi(this);
 
-    ListModel *model = new ListModel(vmtModel, NULL);
+    EffectsListModel *model = new EffectsListModel(vmtModel, NULL);
     view->setModel(model);
 
     connect(view, SIGNAL(clicked(QModelIndex)), this, SLOT(clickedList(QModelIndex)));
 }
 
-ListWindow::~ListWindow()
+EffectsListWindow::~EffectsListWindow()
 {
 
 }
 
-void ListWindow::setupUi(QWidget *listWindow)
+void EffectsListWindow::setupUi(QWidget *listWindow)
 {
     if (listWindow->objectName().isEmpty())
         listWindow->setObjectName(QString::fromUtf8("listWindow"));
@@ -51,13 +50,13 @@ void ListWindow::setupUi(QWidget *listWindow)
 
 } // setupUi
 
-void ListWindow::retranslateUi(QWidget *listWindow)
+void EffectsListWindow::retranslateUi(QWidget *listWindow)
 {
     listWindow->setWindowTitle(QApplication::translate("listWindow", "Effects", 0, QApplication::UnicodeUTF8));
 } // retranslateUi
 
 
-void ListWindow::clickedList(const QModelIndex &index)
+void EffectsListWindow::clickedList(const QModelIndex &index)
 {
 
 }

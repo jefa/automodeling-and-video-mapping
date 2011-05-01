@@ -1,5 +1,5 @@
-#ifndef LISTWINDOW_H
-#define LISTWINDOW_H
+#ifndef EFFECTSLISTWINDOW_H
+#define EFFECTSLISTWINDOW_H
 
 #include "VmtModel.h"
 
@@ -10,19 +10,18 @@
 #include <QPushButton>
 #include <QString>
 
-
 class QAction;
 class QListView;
 
 namespace gui {
 
-class ListWindow : public QWidget
+class EffectsListWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    ListWindow(VmtModel *vmtModel);
-    ~ListWindow();
+    EffectsListWindow(VmtModel *vmtModel);
+    ~EffectsListWindow();
 
 public slots:
     void clickedList(const QModelIndex &index);
