@@ -16,6 +16,7 @@ class TextureEffect : public Effect
         virtual void play();
         virtual void test();
         virtual int getType();
+        virtual const char* toString();
 
         QuadGroup* getGroup();
         Object3D* getObject3D();

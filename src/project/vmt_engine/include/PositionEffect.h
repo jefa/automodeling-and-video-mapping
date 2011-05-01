@@ -14,6 +14,7 @@ class PositionEffect : public Effect
         virtual void play();
         virtual void test();
         virtual int getType();
+        virtual const char* toString();
 
         Object3D* getObject3D();
         ofxVec3f getPosIni();

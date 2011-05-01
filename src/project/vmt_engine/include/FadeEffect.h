@@ -15,6 +15,7 @@ class FadeEffect : public Effect
         virtual void play();
         virtual void test();
         virtual int getType();
+        virtual const char* toString();
 
         QuadGroup* getQuadGroup();
         ofxVec4f getColorIni();
