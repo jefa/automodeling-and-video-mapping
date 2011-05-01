@@ -1,11 +1,11 @@
-#include "listitem.h"
+#include "effectitem.h"
 
 #include <QColor>
 
 using namespace gui;
 
 //! [0]
-ListItem::ListItem(Effect *data, string label)
+EffectItem::EffectItem(Effect *data, string label)
 {
     itemData = data;
     itemLabel = label;
@@ -13,13 +13,13 @@ ListItem::ListItem(Effect *data, string label)
 //! [0]
 
 //! [1]
-ListItem::~ListItem()
+EffectItem::~EffectItem()
 {
 }
 //! [1]
 
 //! [6]
-QVariant ListItem::data(int column) //const
+QVariant EffectItem::data(int column) //const
 {
     if (itemData != NULL) { //is root
         if (column == 0)
@@ -33,7 +33,7 @@ QVariant ListItem::data(int column) //const
 
 
 //! [11]
-bool ListItem::setData(int column, const QVariant &value)
+bool EffectItem::setData(int column, const QVariant &value)
 {
     //cout<< " set data: "<<column << &value ;
     if (column < 0 || column >= /*itemData.size()*/2)
@@ -48,6 +48,6 @@ bool ListItem::setData(int column, const QVariant &value)
 }
 //! [11]
 
-Effect* ListItem::getItemData(){
+Effect* EffectItem::getItemData(){
     return this->itemData;
 }

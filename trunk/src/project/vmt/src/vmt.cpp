@@ -103,8 +103,8 @@ void Vmt::setup(){
     treeWindow = new TreeWindow(this->vmtModel);
     treeWindow->show();
 
-    listWindow = new ListWindow(this->vmtModel);
-    listWindow->show();
+    effectsWindow = new EffectsListWindow(this->vmtModel);
+    effectsWindow->show();
 
     vmtModel->saveShow("show1.xml");
 

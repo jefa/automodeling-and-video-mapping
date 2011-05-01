@@ -1,11 +1,11 @@
 #include <QtGui>
 #include <QVariant>
-#include "listmodel.h"
+#include "effectslistmodel.h"
 
 using namespace gui;
 
 //! [0]
-ListModel::ListModel(VmtModel *vmtModel, QObject *parent)
+EffectsListModel::EffectsListModel(VmtModel *vmtModel, QObject *parent)
     : QAbstractItemModel(parent)
 {
     this->vmtModel = vmtModel;
@@ -14,28 +14,28 @@ ListModel::ListModel(VmtModel *vmtModel, QObject *parent)
 //! [0]
 
 //! [1]
-ListModel::~ListModel()
+EffectsListModel::~EffectsListModel()
 {
     //delete rootItem;
 }
 //! [1]
 
 //! [2]
-void ListModel::setupSceneModelData()
+void EffectsListModel::setupSceneModelData()
 {
     map<string, Effect*>::iterator effectsIt;
     map<string, Effect*> effectsMap = this->vmtModel->getEffects();
     for(effectsIt = effectsMap.begin(); effectsIt != effectsMap.end(); effectsIt++) {
-        ListItem *lItem = new ListItem(effectsIt->second, effectsIt->first);
+        EffectItem *lItem = new EffectItem(effectsIt->second, effectsIt->first);
         this->listItems.push_back(lItem);
     }
 }
 
-VmtModel * ListModel::getVmtModel(){
+VmtModel * EffectsListModel::getVmtModel(){
     return this->vmtModel;
 }
 
-QModelIndex ListModel::index(int row, int column, const QModelIndex &parent) const
+QModelIndex EffectsListModel::index(int row, int column, const QModelIndex &parent) const
 {
     if (parent.isValid() && parent.column() != 0)
         return QModelIndex();
@@ -43,12 +43,12 @@ QModelIndex ListModel::index(int row, int column, const QModelIndex &parent) con
     return createIndex(row, column);
 }
 
-QModelIndex ListModel::parent(const QModelIndex &index) const
+QModelIndex EffectsListModel::parent(const QModelIndex &index) const
 {
     return QModelIndex();
 }
 
-QVariant ListModel::data(const QModelIndex &index, int role) const
+QVariant EffectsListModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
         return QVariant();
@@ -56,27 +56,27 @@ QVariant ListModel::data(const QModelIndex &index, int role) const
     if (role != Qt::DisplayRole && role != Qt::EditRole)
         return QVariant();
 
-    ListItem *item = getItem(index);
+    EffectItem *item = getItem(index);
 
     return item->data(index.column());
 }
 
-ListItem *ListModel::getItem(const QModelIndex &index) const
+EffectItem *EffectsListModel::getItem(const QModelIndex &index) const
 {
     if (index.isValid()) {
         //ListItem *item = static_cast<ListItem*>(index.internalPointer());
-        ListItem *item = this->listItems[index.row()];
+        EffectItem *item = this->listItems[index.row()];
         if (item) return item;
     }
     return getItem(QModelIndex());
 }
 
-int ListModel::rowCount(const QModelIndex &parent) const
+int EffectsListModel::rowCount(const QModelIndex &parent) const
 {
     return this->vmtModel->getEffects().size();
 }
 
-int ListModel::columnCount(const QModelIndex & parent ) const
+int EffectsListModel::columnCount(const QModelIndex & parent ) const
 {
     return 1;
 }

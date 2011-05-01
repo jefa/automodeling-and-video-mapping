@@ -279,7 +279,7 @@ void VmtModel::setLightPoint(string lightId, float r, float g, float b,
 }
 
 void addXMLNode(ofxXmlSettings &xml, SerializedNode* node) {
-    int tagI = xml.addTag(node->getTagId());
+/*    int tagI = xml.addTag(node->getTagId());
 
     vector<pair<string, string> > attributes = node->getAttributes();
     vector<pair<string, string> >::iterator attributesIt;
@@ -294,7 +294,7 @@ void addXMLNode(ofxXmlSettings &xml, SerializedNode* node) {
     for(childNodesIt = childNodes.begin(); childNodesIt != childNodes.end(); childNodesIt++) {
         addXMLNode(xml, *childNodesIt);
     }
-    xml.popTag();
+    xml.popTag();*/
 }
 
 void VmtModel::saveShow(string filepath) {
@@ -306,8 +306,8 @@ void VmtModel::saveShow(string filepath) {
 
     showXML.pushTag("vmtshow", 0);
 
-    SerializedNode* node = scene->Serialize();
-    addXMLNode(showXML, node);
+    //SerializedNode* node = scene->Serialize();
+    //addXMLNode(showXML, node);
 
     showXML.popTag();//vmtshow
 

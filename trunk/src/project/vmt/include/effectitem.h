@@ -1,5 +1,5 @@
-#ifndef LISTITEM_H
-#define LISTITEM_H
+#ifndef EFFECTITEM_H
+#define EFFECTITEM_H
 
 #include "Effect.h"
 
@@ -12,11 +12,11 @@ using namespace std;
 namespace gui {
 
 //! [0]
-class ListItem
+class EffectItem
 {
 public:
-    ListItem(Effect *data = 0, string label = 0);
-    ~ListItem();
+    EffectItem(Effect *data = 0, string label = 0);
+    ~EffectItem();
 
     QVariant data(int column) /*const*/;
     bool setData(int column, const QVariant &value);
