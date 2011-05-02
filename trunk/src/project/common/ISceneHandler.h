@@ -28,7 +28,10 @@ class ISceneHandler
 
         virtual void addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay) =0;
         virtual void addFadeEffect(string effectId, string groupId, ofxVec4f colorIni, ofxVec4f colorFin, float delay) =0;
-        virtual void addTextureEffect(string effectId) =0;
+
+        virtual void addTextureObjectEffect(string effectId, string objId, string facesId, string texturePath, textureType type) =0;
+        virtual void addTextureGroupEffect(string effectId, string groupId, string texturePath, textureType type) =0;
+
         virtual void testEffect(string id) =0;
 
         virtual void addLight(string lightId) =0;

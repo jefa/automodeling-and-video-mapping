@@ -17,7 +17,7 @@ TextureEffect::TextureEffect(string id, QuadGroup *qg, string texturePath, textu
     this->isGroup = true;
 }
 
-TextureEffect::TextureEffect(Object3D *obj3d, string facesID, string texturePath, textureType type) {
+TextureEffect::TextureEffect(string id, Object3D *obj3d, string facesID, string texturePath, textureType type) {
     switch(type) {
         case VIDEO_TEXTURE:
             TextureManager::LoadVideoTexture(texturePath, texturePath);
@@ -28,9 +28,9 @@ TextureEffect::TextureEffect(Object3D *obj3d, string facesID, string texturePath
             break;
     }
 
+    this->id = id;
     this->object3d = obj3d;
     this->facesID = facesID;
-
     this->textureKey = texturePath;
     this->type = type;
     this->isGroup = false;

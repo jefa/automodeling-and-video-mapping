@@ -309,6 +309,44 @@ void OscUtil::processAddFadeEffectMsg(ofxOscMessage m, ISceneHandler *sceneHandl
                      ofxVec4f(colFinR,colFinG,colFinB,colFinA), delay);
 }
 
+ofxOscMessage OscUtil::createAddTextureGroupEffectMsg(string effectId, string groupId, string texturePath, textureType type) {
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(EFFECT_ADD_TEXTURE_GROUP_ADDR);
+    oscMessage.addStringArg(effectId);
+    oscMessage.addStringArg(groupId);
+    oscMessage.addStringArg(texturePath);
+    oscMessage.addIntArg(type);
+    return oscMessage;
+}
+
+void OscUtil::processAddTextureGroupEffectMsg(ofxOscMessage m, ISceneHandler *sceneHandler) {
+    string effId = m.getArgAsString(0);
+    string groupId = m.getArgAsString(1);
+    string texturePath = m.getArgAsString(2);
+    textureType type = (textureType)(m.getArgAsInt32(3));
+    sceneHandler->addTextureGroupEffect(effId, groupId, texturePath, type);
+}
+
+ofxOscMessage OscUtil::createAddTextureObjectEffectMsg(string effectId, string objectId, string facesId, string texturePath, textureType type) {
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(EFFECT_ADD_TEXTURE_OBJECT_ADDR);
+    oscMessage.addStringArg(effectId);
+    oscMessage.addStringArg(objectId);
+    oscMessage.addStringArg(facesId);
+    oscMessage.addStringArg(texturePath);
+    oscMessage.addIntArg(type);
+    return oscMessage;
+}
+
+void OscUtil::processAddTextureObjectEffectMsg(ofxOscMessage m, ISceneHandler *sceneHandler) {
+    string effId = m.getArgAsString(0);
+    string objectId = m.getArgAsString(1);
+    string facesId = m.getArgAsString(2);
+    string texturePath = m.getArgAsString(3);
+    textureType type = (textureType)(m.getArgAsInt32(4));
+    sceneHandler->addTextureObjectEffect(effId, objectId, facesId, texturePath, type);
+}
+
 ofxOscMessage OscUtil::createTestEffectMsg(string effectId){
     ofxOscMessage oscMessage;
     oscMessage.setAddress(EFFECT_TEST_ADDR);

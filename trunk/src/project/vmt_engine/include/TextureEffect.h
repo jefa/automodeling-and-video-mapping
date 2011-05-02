@@ -10,7 +10,7 @@ class TextureEffect : public Effect
 {
     public:
         TextureEffect(string id, QuadGroup *qg, string texturePath, textureType type);
-        TextureEffect(Object3D *obj3d, string facesID, string texturePath, textureType type);
+        TextureEffect(string id, Object3D *obj3d, string facesID, string texturePath, textureType type);
         virtual ~TextureEffect();
 
         virtual void play();

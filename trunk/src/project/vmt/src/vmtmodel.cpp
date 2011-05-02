@@ -3,6 +3,7 @@
 #include "FileUtil.h"
 #include "base64.h"
 #include "FadeEffect.h"
+#include "TextureEffect.h"
 #include "PositionEffect.h"
 
 VmtModel::VmtModel()
@@ -208,6 +209,7 @@ Object3D* VmtModel::getObject3D(string objId){
 Layer2D* VmtModel::getLayer2D(string layId){
     return scene->getActiveCamera()->getLayer2D(layId);
 }
+
 void VmtModel::addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay){
     if (scene->getObject3D(objId) == NULL){
         printf("VmtModel::addPositionEffect: object does not exists(%s)\n", objId.c_str());
@@ -226,8 +228,22 @@ void VmtModel::addFadeEffect(string effectId, string groupId, ofxVec4f colorIni,
     scene->addEffect(effectId, new FadeEffect(effectId, scene->getGroup(groupId), colorIni, colorFin, delay));
 }
 
-void VmtModel::addTextureEffect(string effectId){
-    throw exception();
+void VmtModel::addTextureGroupEffect(string effectId, string groupId, string texturePath, textureType type){
+    if (scene->getGroup(groupId) == NULL){
+        printf("VmtModel::addTextureGroupEffect: group does not exists(%s)\n", groupId.c_str());
+        return;
+    }
+    oscManager->SendMessageAll(OscUtil::createAddTextureGroupEffectMsg(effectId, groupId, texturePath, type));
+    scene->addEffect(effectId, new TextureEffect(effectId, scene->getGroup(groupId), texturePath, type));
+}
+
+void VmtModel::addTextureObjectEffect(string effectId, string objId, string facesId, string texturePath, textureType type) {
+    if (scene->getObject3D(objId) == NULL){
+        printf("VmtModel::addTextureObjectEffect: object does not exists(%s)\n", objId.c_str());
+        return;
+    }
+    oscManager->SendMessageAll(OscUtil::createAddTextureObjectEffectMsg(effectId, objId, facesId, texturePath, type));
+    scene->addEffect(effectId, new TextureEffect(effectId, scene->getObject3D(objId), facesId, texturePath, type));
 }
 
 void VmtModel::testEffect(string id){
