@@ -101,10 +101,6 @@ void Scene::testEffect(string id) {
     effects[id]->test();
 }
 
-map<string, Effect*> Scene::getEffects() {
-    return effects;
-}
-
 void Scene::update() {
     AnimationManager::Update();
     TextureManager::Update();
