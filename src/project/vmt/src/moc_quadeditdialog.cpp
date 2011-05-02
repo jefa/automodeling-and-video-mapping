@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'quadeditdialog.h'
 **
-** Created: Mon 2. May 02:00:17 2011
+** Created: Mon 2. May 11:00:14 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_gui__QuadEditorDialog[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+      12,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -38,7 +38,11 @@ static const uint qt_meta_data_gui__QuadEditorDialog[] = {
      101,   22,   22,   22, 0x08,
      124,   22,   22,   22, 0x08,
      147,   22,   22,   22, 0x08,
-     168,   22,   22,   22, 0x08,
+     170,   22,   22,   22, 0x08,
+     193,   22,   22,   22, 0x08,
+     216,   22,   22,   22, 0x08,
+     239,   22,   22,   22, 0x08,
+     260,   22,   22,   22, 0x08,
 
        0        // eod
 };
@@ -47,7 +51,9 @@ static const char qt_meta_stringdata_gui__QuadEditorDialog[] = {
     "gui::QuadEditorDialog\0\0acceptPressed()\0"
     "rejectPressed()\0x0ValueChanged(double)\0"
     "y0ValueChanged(double)\0x1ValueChanged(double)\0"
-    "y1ValueChanged(double)\0enabledChanged(bool)\0"
+    "y1ValueChanged(double)\0x2ValueChanged(double)\0"
+    "y2ValueChanged(double)\0x3ValueChanged(double)\0"
+    "y3ValueChanged(double)\0enabledChanged(bool)\0"
     "selectedChanged(bool)\0"
 };
 
@@ -86,11 +92,15 @@ int gui::QuadEditorDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 3: y0ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 4: x1ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 5: y1ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
-        case 6: enabledChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 7: selectedChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 6: x2ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 7: y2ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 8: x3ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 9: y3ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 10: enabledChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 11: selectedChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 8;
+        _id -= 12;
     }
     return _id;
 }
