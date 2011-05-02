@@ -37,6 +37,12 @@ private slots:
     void x1ValueChanged(double);
     void y1ValueChanged(double);
 
+    void x2ValueChanged(double);
+    void y2ValueChanged(double);
+
+    void x3ValueChanged(double);
+    void y3ValueChanged(double);
+
     void enabledChanged(bool);
     void selectedChanged(bool);
 
@@ -45,7 +51,7 @@ private:
     void loadData();
     void undoChanges();
 
-    enum { NumGridRows = 3, NumButtons = 8 };
+    enum { NumGridRows = 3, NumButtons = 11 };
 
     QGroupBox *formGroupBox;
     QLabel *labels[NumGridRows];
@@ -57,6 +63,10 @@ private:
     QDoubleSpinBox *y0CoordSpinBox;
     QDoubleSpinBox *x1CoordSpinBox;
     QDoubleSpinBox *y1CoordSpinBox;
+    QDoubleSpinBox *x2CoordSpinBox;
+    QDoubleSpinBox *y2CoordSpinBox;
+    QDoubleSpinBox *x3CoordSpinBox;
+    QDoubleSpinBox *y3CoordSpinBox;
 
     QLineEdit *idLineEdit;
     QCheckBox *enabledBox;
@@ -64,7 +74,7 @@ private:
 
     Quad2D *object2d;
     string previousId;
-    float previous0X, previous0Y, previous1X, previous1Y;
+    float previous0X, previous0Y, previous1X, previous1Y, previous2X, previous2Y, previous3X, previous3Y;
     bool previousSelected,previousEnabled;
 
 };
