@@ -1,6 +1,7 @@
 #include <QtGui>
 #include <QCoreApplication>
 
+#include "effecteditdialog.h"
 #include "effectslistwindow.h"
 #include "effectslistmodel.h"
 
@@ -98,6 +99,9 @@ void EffectsListWindow::doubleClickedList(const QModelIndex &index)
     EffectsListModel *model = (EffectsListModel*) view->model();
     EffectItem *item = model->getItem(index);
     model->getVmtModel()->testEffect(item->getItemData()->getId());
+
+    EffectEditDialog *d = new EffectEditDialog();
+    d->show();
 }
 
 void EffectsListWindow::newEffect(){
