@@ -82,9 +82,9 @@ bool TextureEffect::getIsGroup(){
 
 
 const char* TextureEffect::toString(){
-    string txt = "TextureEffect::";//+facesID+"::"+textureKey+"::"+isGroup+"::";
+    string txt = this->id + " : TextureEffect : ";//+facesID+"::"+textureKey+"::"+isGroup+"::";
     if (isGroup){
-        //txt = txt+ group->getId();
+        txt = txt+ group->getName();
     } else {
         txt = txt+ object3d->getId();
     }

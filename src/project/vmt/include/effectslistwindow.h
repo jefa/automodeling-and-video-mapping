@@ -25,6 +25,7 @@ public:
 
 public slots:
     void clickedList(const QModelIndex &index);
+    void doubleClickedList(const QModelIndex &index);
 
 private slots:
 

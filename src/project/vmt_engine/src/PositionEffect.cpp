@@ -51,7 +51,7 @@ float PositionEffect::getDelay(){
 }
 
 const char* PositionEffect::toString(){
-    string txt = "PositionEffect::"+object3d->getId();//+"::"+posIni+"::"+posFin+"::"+delay;
+    string txt = this->id + " : PositionEffect : " + object3d->getId();//+"::"+posIni+"::"+posFin+"::"+delay;
     return txt.c_str();
 }
 

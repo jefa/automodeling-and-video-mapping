@@ -56,7 +56,7 @@ float FadeEffect::getDelay(){
 }
 
 const char* FadeEffect::toString(){
-    string txt = "FadeEffect::";//'+colorIni+"::"+colorFin+"::"+delay;
+    string txt = this->id + " : FadeEffect ";//'+colorIni+"::"+colorFin+"::"+delay;
     return txt.c_str();
 }
 

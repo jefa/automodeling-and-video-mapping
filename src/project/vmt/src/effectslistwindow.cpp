@@ -14,6 +14,7 @@ EffectsListWindow::EffectsListWindow(VmtModel *vmtModel)
     view->setModel(model);
 
     connect(view, SIGNAL(clicked(QModelIndex)), this, SLOT(clickedList(QModelIndex)));
+	connect(view, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(doubleClickedList(QModelIndex)));
 }
 
 EffectsListWindow::~EffectsListWindow()
@@ -58,5 +59,22 @@ void EffectsListWindow::retranslateUi(QWidget *listWindow)
 
 void EffectsListWindow::clickedList(const QModelIndex &index)
 {
+/*    EffectsListModel *model = (EffectsListModel*) view->model();
+    EffectItem *item = model->getItem(index);
+    printf("CLICKED LIST:: %d, %d. EVENTTYPE=%d, EVENTID=%s\n", index.column(), index.row(),
+           item->getItemData()->getType(), item->getItemData()->getId().c_str());
+*/
+}
+
+void EffectsListWindow::doubleClickedList(const QModelIndex &index)
+{
+    EffectsListModel *model = (EffectsListModel*) view->model();
+    EffectItem *item = model->getItem(index);
+
+    //printf("\t DOUBLE CLICKED LIST::%d, %d. EVENTTYPE=%d, EVENTID=%s\n", index.column(), index.row(),
+    //       item->getItemData()->getType(), item->getItemData()->getId().c_str());
+
+    model->getVmtModel()->testEffect(item->getItemData()->getId());
+
 
 }
