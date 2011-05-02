@@ -6,6 +6,7 @@
 #include <QAbstractItemModel>
 #include <QModelIndex>
 #include <QVariant>
+#include <QString>
 
 namespace gui {
 
@@ -47,6 +48,7 @@ public:
     //bool addElement(int position, int rows,
     //                const QModelIndex &parent = QModelIndex());
     string ObtType(const QModelIndex &parent);
+
     bool insertRows(int position, int rows,
                     const QModelIndex &index = QModelIndex() );
     bool removeRows(int position, int rows,

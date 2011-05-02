@@ -104,6 +104,8 @@ void ObjectEditorDialog::zValueChanged(double newVal){
 }
 
 void ObjectEditorDialog::acceptPressed(){
+    if (this->object3d != NULL)
+        this->object3d->setId((idLineEdit->text()).toStdString());
     hide();
 }
 

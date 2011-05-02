@@ -205,6 +205,9 @@ Object3D* VmtModel::getObject3D(string objId){
     return scene->getObject3D(objId);
 }
 
+Layer2D* VmtModel::getLayer2D(string layId){
+    return scene->getActiveCamera()->getLayer2D(layId);
+}
 void VmtModel::addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay){
     if (scene->getObject3D(objId) == NULL){
         printf("VmtModel::addPositionEffect: object does not exists(%s)\n", objId.c_str());
