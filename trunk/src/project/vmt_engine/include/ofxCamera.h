@@ -20,6 +20,11 @@ public:
 	void up(ofxVec3f _up);
 	void up(); //reset up vector to initial values
 
+	float getfieldOfView();
+	float getaspectRatio();
+	float getzNear();
+	float getzFar();
+
 	void perspective(float _fov, float _aspect, float _zNear, float _zFar);
 	void perspective();//reset perspective to initial values
 
