@@ -6,6 +6,9 @@
 #include "treeitem.h"
 #include "colorlisteditor.h"
 #include "objecteditdialog.h"
+#include "layereditdialog.h"
+#include "cameraeditdialog.h"
+#include "quadeditdialog.h"
 
 using namespace gui;
 
@@ -99,15 +102,15 @@ void TreeWindow::insertRow()
      if (!model->insertRow(index.row()+1, index))
          return;
 
-     updateActions();
+     updateActions(index);
 
-    QString name = inputText();
+    /*
 
-     for (int column = 0; column < model->columnCount(index.parent()); ++column) {
+     for (int column = 0; column < model->columnCount(index); ++column) {
          QModelIndex child = model->index(index.row()+1, column, index.parent());
-         model->setData(child, name /*QVariant("[No data]")*/, Qt::EditRole);
+         model->setData(child, name /*QVariant("[No data]")*//*, Qt::EditRole);
      }
-
+*/
 }
 
 bool TreeWindow::removeColumn(const QModelIndex &parent)
@@ -129,7 +132,7 @@ void TreeWindow::removeRow()
      QModelIndex index = view->selectionModel()->currentIndex();
      QAbstractItemModel *model = view->model();
      if (model->removeRow(index.row(), index.parent()))
-         updateActions();
+         updateActions(index);
 
 }
 string TreeWindow::ObtType(const QModelIndex &index)
@@ -218,25 +221,6 @@ string TypeNodo;
         }
 
 
-
-/*    bool hasSelection = !view->selectionModel()->selection().isEmpty();
-    removeRowAction->setEnabled(hasSelection);
-    removeColumnAction->setEnabled(hasSelection);
-
-    bool hasCurrent = view->selectionModel()->currentIndex().isValid();
-    insertRowAction->setEnabled(hasCurrent);
-    insertColumnAction->setEnabled(hasCurrent);
-
-    if (hasCurrent) {
-        view->closePersistentEditor(view->selectionModel()->currentIndex());
-
-        int row = view->selectionModel()->currentIndex().row();
-        int column = view->selectionModel()->currentIndex().column();
-        if (view->selectionModel()->currentIndex().parent().isValid())
-            statusBar()->showMessage(tr("Position: (%1,%2)").arg(row).arg(column));
-        else
-            statusBar()->showMessage(tr("Position: (%1,%2) in top level").arg(row).arg(column));
-    }*/
 
 
 
@@ -382,8 +366,34 @@ void TreeWindow::clickedTree(const QModelIndex &index)
 void TreeWindow::editObject()
 {
     TreeModel *model = (TreeModel*) view->model();
-    ObjectEditorDialog *d = new ObjectEditorDialog(model->getVmtModel()->getObject3D("squirrel"));
-    d->show();
+    QModelIndex index = view->selectionModel()->currentIndex();
+    TreeItemData *itemData = model->getItem(index)->getItemData();
+    TreeItemData *parentitemData = model->getItem(index.parent())->getItemData();
+
+    string TypeNodo;
+    TypeNodo =ObtType(index);
+    if (TypeNodo == "CAMERA"){
+        //cout<< " id camera : "<<itemData->getData(0).toString().toStdString();
+        CameraEditorDialog *d = new CameraEditorDialog(model->getVmtModel()->getCameras()[itemData->getData(0).toString().toStdString()]);
+        d->show();
+    }
+
+    if (TypeNodo == "OBJECT"){
+        //cout<<  "id OBJECT  "<<itemData->getData(0).toString().toStdString();
+        ObjectEditorDialog *d = new ObjectEditorDialog(model->getVmtModel()->getObject3D(itemData->getData(0).toString().toStdString()));
+        d->show();
+    }
+    if (TypeNodo == "LAYER"){
+        //cout<<  "id LAYER  "<<itemData->getData(0).toString().toStdString();
+        LayerEditorDialog *d = new LayerEditorDialog(model->getVmtModel()->getLayer2D(itemData->getData(0).toString().toStdString()));
+        d->show();
+    }
+    if (TypeNodo == "QUAD"){
+        //cout<< " id camera : "<<itemData->getData(0).toString().toStdString();
+        QuadEditorDialog *d = new QuadEditorDialog((model->getVmtModel()->getLayer2D(parentitemData->getData(0).toString().toStdString()))->getQuad2D(itemData->getData(0).toString().toStdString()));
+        d->show();
+    }
+
 }
 
 void TreeWindow::quit()

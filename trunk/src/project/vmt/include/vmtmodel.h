@@ -38,7 +38,7 @@ class VmtModel : public ISceneHandler
                   int point, float coordX, float coordY);
         void addObject3D(string objId, string path);
         Object3D* getObject3D(string objId);
-
+        Layer2D* getLayer2D(string layId);
         void addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay);
         void addFadeEffect(string effectId, string groupId, ofxVec4f colorIni, ofxVec4f colorFin, float delay);
         void addTextureEffect(string effectId);
