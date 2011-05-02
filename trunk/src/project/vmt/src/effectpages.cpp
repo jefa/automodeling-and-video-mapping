@@ -1,19 +1,74 @@
+#include "effectpages.h"
+#include "Object3D.h"
+#include "ofxVectorMath.h"
+#include "uiutils.h"
+#include <map>
 #include <QtGui>
 
-#include "effectpages.h"
-
-PositionEffectPage::PositionEffectPage(QWidget *parent)
+PositionEffectPage::PositionEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *parent)
     : QWidget(parent)
 {
-    QGroupBox *configGroup = new QGroupBox(tr("Server configuration"));
+    QGroupBox *configGroup = new QGroupBox(tr("Apply to Object"));
 
-    QLabel *serverLabel = new QLabel(tr("Server:"));
+    QLabel *serverLabel = new QLabel(tr("Id:"));
     QComboBox *serverCombo = new QComboBox;
-    serverCombo->addItem(tr("Qt (Australia)"));
-    serverCombo->addItem(tr("Qt (Germany)"));
-    serverCombo->addItem(tr("Qt (Norway)"));
-    serverCombo->addItem(tr("Qt (People's Republic of China)"));
-    serverCombo->addItem(tr("Qt (USA)"));
+
+    map<string, Object3D*>::iterator objects3DIt;
+    map<string, Object3D*> objsMap = vmtModel->getObjects3D();
+    for(objects3DIt = objsMap.begin(); objects3DIt != objsMap.end(); objects3DIt++) {
+        Object3D *obj = (Object3D*) objects3DIt->second;
+        serverCombo->addItem(tr(obj->getId().c_str()));
+    }
+
+    //Coordiantes panel
+    QLabel *xLabel1 = new QLabel(tr("X:"));
+    QLabel *xLabel2 = new QLabel(tr("X:"));
+    QLabel *yLabel1 = new QLabel(tr("Y:"));
+    QLabel *yLabel2 = new QLabel(tr("Y:"));
+    QLabel *zLabel1 = new QLabel(tr("Z:"));
+    QLabel *zLabel2 = new QLabel(tr("Z:"));
+    QLabel *posIniLabel = new QLabel(tr("Ini:"));
+    QDoubleSpinBox *xIniSpinBox = UiUtils::createCoordinateSpinBox();
+    QDoubleSpinBox *yIniSpinBox = UiUtils::createCoordinateSpinBox();
+    QDoubleSpinBox *zIniSpinBox = UiUtils::createCoordinateSpinBox();
+    QLabel *posFinLabel = new QLabel(tr("Fin:"));
+    QDoubleSpinBox *xFinSpinBox = UiUtils::createCoordinateSpinBox();
+    QDoubleSpinBox *yFinSpinBox = UiUtils::createCoordinateSpinBox();
+    QDoubleSpinBox *zFinSpinBox = UiUtils::createCoordinateSpinBox();
+
+
+    QGroupBox *coordinatesGroup = new QGroupBox(tr("Coordinates"));
+    QGridLayout *coordinatesLayout = new QGridLayout;
+    coordinatesLayout->addWidget(posIniLabel, 0, 0);
+    coordinatesLayout->addWidget(xLabel1, 0, 1);
+    coordinatesLayout->addWidget(xIniSpinBox, 0, 2);
+    coordinatesLayout->addWidget(yLabel1, 0, 3);
+    coordinatesLayout->addWidget(yIniSpinBox, 0, 4);
+    coordinatesLayout->addWidget(zLabel1, 0, 5);
+    coordinatesLayout->addWidget(zIniSpinBox, 0, 6);
+    coordinatesLayout->addWidget(posFinLabel, 1, 0);
+    coordinatesLayout->addWidget(xLabel2, 1, 1);
+    coordinatesLayout->addWidget(xFinSpinBox, 1, 2);
+    coordinatesLayout->addWidget(yLabel2, 1, 3);
+    coordinatesLayout->addWidget(yFinSpinBox, 1, 4);
+    coordinatesLayout->addWidget(zLabel2, 1, 5);
+    coordinatesLayout->addWidget(zFinSpinBox, 1, 6);
+
+    coordinatesGroup->setLayout(coordinatesLayout);
+
+    //Delay panel
+    QGroupBox *delayGroup = new QGroupBox(tr("Delay"));
+    QSpinBox *delaySpinBox = new QSpinBox;
+    delaySpinBox->setPrefix(tr("Start after "));
+    delaySpinBox->setSuffix(tr(" milliseconds"));
+    delaySpinBox->setSpecialValueText(tr("Start immediatelly"));
+    delaySpinBox->setMinimum(1);
+    delaySpinBox->setMaximum(10000);
+    delaySpinBox->setSingleStep(1);
+
+    QVBoxLayout *delayLayout = new QVBoxLayout;
+    delayLayout->addWidget(delaySpinBox);
+    delayGroup->setLayout(delayLayout);
 
     QHBoxLayout *serverLayout = new QHBoxLayout;
     serverLayout->addWidget(serverLabel);
@@ -25,11 +80,13 @@ PositionEffectPage::PositionEffectPage(QWidget *parent)
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addWidget(configGroup);
+    mainLayout->addWidget(coordinatesGroup);
+    mainLayout->addWidget(delayGroup);
     mainLayout->addStretch(1);
     setLayout(mainLayout);
 }
 
-FadeEffectPage::FadeEffectPage(QWidget *parent)
+FadeEffectPage::FadeEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *parent)
     : QWidget(parent)
 {
     QGroupBox *updateGroup = new QGroupBox(tr("Package selection"));
@@ -68,7 +125,7 @@ FadeEffectPage::FadeEffectPage(QWidget *parent)
     setLayout(mainLayout);
 }
 
-TextureEffectPage::TextureEffectPage(QWidget *parent)
+TextureEffectPage::TextureEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *parent)
     : QWidget(parent)
 {
     QGroupBox *packagesGroup = new QGroupBox(tr("Look for packages"));
