@@ -35,6 +35,9 @@ bool Quad2D::isEnabled() {
     return this->enabled;
 }
 
+bool Quad2D::isSelected() {
+    return this->selected;
+}
 void Quad2D::setMaterial(Material *mat) {
     this->material = mat;
 }

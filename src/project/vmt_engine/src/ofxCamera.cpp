@@ -76,7 +76,18 @@ void ofxCamera::perspective(float _fov, float _aspect, float _zNear, float _zFar
 	zNear = _zNear;
 	zFar = _zFar;
 }
-
+float ofxCamera::getfieldOfView(){
+    return this->fieldOfView;
+}
+float ofxCamera::getaspectRatio(){
+    return this->aspectRatio;
+}
+float ofxCamera::getzNear(){
+    return this->zNear;
+}
+float ofxCamera::getzFar(){
+    return this->zFar;
+}
 void ofxCamera::perspective() {
 	fieldOfView = 65.0f;
 	w = glutGet(GLUT_WINDOW_WIDTH);
