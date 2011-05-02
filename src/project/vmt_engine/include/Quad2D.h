@@ -27,6 +27,7 @@ class Quad2D : public IPropertyManager, ISerializable
         void setSelected(bool selected);
         void setEnabled(bool enabled);
         bool isEnabled();
+        bool isSelected();
         void setId(string id);
         string getId();
         void setMaterial(Material *mat);
