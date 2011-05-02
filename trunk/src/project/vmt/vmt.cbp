@@ -194,7 +194,9 @@
 		</Unit>
 		<Unit filename="include\OscManager.h" />
 		<Unit filename="include\colorlisteditor.h" />
+		<Unit filename="include\effecteditdialog.h" />
 		<Unit filename="include\effectitem.h" />
+		<Unit filename="include\effectpages.h" />
 		<Unit filename="include\effectslistmodel.h" />
 		<Unit filename="include\effectslistwindow.h" />
 		<Unit filename="include\objecteditdialog.h" />
@@ -205,11 +207,14 @@
 		<Unit filename="include\vmtmodel.h" />
 		<Unit filename="src\OscManager.cpp" />
 		<Unit filename="src\colorlisteditor.cpp" />
+		<Unit filename="src\effecteditdialog.cpp" />
 		<Unit filename="src\effectitem.cpp" />
+		<Unit filename="src\effectpages.cpp" />
 		<Unit filename="src\effectslistmodel.cpp" />
 		<Unit filename="src\effectslistwindow.cpp" />
 		<Unit filename="src\main.cpp" />
 		<Unit filename="src\moc_colorlisteditor.cpp" />
+		<Unit filename="src\moc_effecteditdialog.cpp" />
 		<Unit filename="src\moc_effectslistmodel.cpp" />
 		<Unit filename="src\moc_effectslistwindow.cpp" />
 		<Unit filename="src\moc_objecteditdialog.cpp" />
