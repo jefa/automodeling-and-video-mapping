@@ -203,7 +203,7 @@ void VmtNode::addPositionEffect(string effectId, string objId, ofxVec3f posIni, 
         printf("VmtNode::addPositionEffect: object does not exists(%s)\n", objId.c_str());
         return;
     }
-    scene->addEffect(effectId, new PositionEffect(scene->getObject3D(objId), posIni, posFin, delay));
+    scene->addEffect(effectId, new PositionEffect(effectId, scene->getObject3D(objId), posIni, posFin, delay));
 }
 
 void VmtNode::addFadeEffect(string effectId, string groupId, ofxVec4f colorIni, ofxVec4f colorFin, float delay){
@@ -211,7 +211,7 @@ void VmtNode::addFadeEffect(string effectId, string groupId, ofxVec4f colorIni, 
         printf("VmtNode::addFadeEffect: group does not exists(%s)\n", groupId.c_str());
         return;
     }
-    scene->addEffect(effectId, new FadeEffect(scene->getGroup(groupId), colorIni, colorFin, delay));
+    scene->addEffect(effectId, new FadeEffect(effectId, scene->getGroup(groupId), colorIni, colorFin, delay));
 }
 
 void VmtNode::addTextureEffect(string effectId){

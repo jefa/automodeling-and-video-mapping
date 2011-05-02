@@ -9,3 +9,7 @@ Effect::~Effect()
 {
     //dtor
 }
+
+string Effect::getId(){
+    return this->id;
+}
