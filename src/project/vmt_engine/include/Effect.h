@@ -4,8 +4,8 @@
 #include "ISerializable.h"
 
 enum EFFECT_TYPES {
-	FADE_EFFECT,
 	POSITION_EFFECT,
+	FADE_EFFECT,
 	TEXTURE_EFFECT
 };
 
