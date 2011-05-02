@@ -46,8 +46,6 @@ class Scene : public ISerializable
         map<string, Effect*> getEffects();
         void testEffect(string id);
 
-        map<string, Effect*> getEffects();
-
         SerializedNode* Serialize();
     private:
         map<string, ofxCamera*> cameras;
