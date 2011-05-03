@@ -13,3 +13,7 @@ Effect::~Effect()
 string Effect::getId(){
     return this->id;
 }
+
+void Effect::setId(string id){
+    this->id = id;
+}

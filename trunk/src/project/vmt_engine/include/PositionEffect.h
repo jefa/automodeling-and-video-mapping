@@ -17,9 +17,13 @@ class PositionEffect : public Effect
         virtual const char* toString();
 
         Object3D* getObject3D();
+        void setObject3D(Object3D*);
         ofxVec3f getPosIni();
+        void setPosIni(ofxVec3f);
         ofxVec3f getPosFin();
+        void setPosFin(ofxVec3f);
         float getDelay();
+        void setDelay(float);
 
         virtual SerializedNode* Serialize();
 
