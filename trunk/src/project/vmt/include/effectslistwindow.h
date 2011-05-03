@@ -4,6 +4,7 @@
 #include "VmtModel.h"
 #include "effectitem.h"
 #include "effectslistmodel.h"
+#include "effecteditdialog.h"
 
 #include <QModelIndex>
 #include <QWidget>
@@ -26,6 +27,7 @@ public:
     ~EffectsListWindow();
 
 public slots:
+    void effectsChanged();
     void clickedList(const QModelIndex &index);
     void doubleClickedList(const QModelIndex &index);
     void newEffect();
@@ -50,6 +52,8 @@ public:
     QPushButton *testEffectAction;
 
     QListView *view;
+
+    EffectEditDialog *effectEditDialog;
 
     EffectItem *selectedItem;
 };

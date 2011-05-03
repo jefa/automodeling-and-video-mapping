@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'effecteditdialog.h'
 **
-** Created: Mon May 2 12:39:48 2011
+** Created: Tue May 3 12:55:05 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,22 +23,26 @@ static const uint qt_meta_data_EffectEditDialog[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: signature, parameters, type, tag, flags
+      18,   17,   17,   17, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      35,   18,   17,   17, 0x0a,
-      81,   17,   17,   17, 0x0a,
+      49,   32,   17,   17, 0x0a,
+      95,   17,   17,   17, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_EffectEditDialog[] = {
-    "EffectEditDialog\0\0current,previous\0"
+    "EffectEditDialog\0\0dataChanged()\0"
+    "current,previous\0"
     "changePage(QListWidgetItem*,QListWidgetItem*)\0"
     "save()\0"
 };
@@ -72,12 +76,19 @@ int EffectEditDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: changePage((*reinterpret_cast< QListWidgetItem*(*)>(_a[1])),(*reinterpret_cast< QListWidgetItem*(*)>(_a[2]))); break;
-        case 1: save(); break;
+        case 0: dataChanged(); break;
+        case 1: changePage((*reinterpret_cast< QListWidgetItem*(*)>(_a[1])),(*reinterpret_cast< QListWidgetItem*(*)>(_a[2]))); break;
+        case 2: save(); break;
         default: ;
         }
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
+}
+
+// SIGNAL 0
+void EffectEditDialog::dataChanged()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, 0);
 }
 QT_END_MOC_NAMESPACE
