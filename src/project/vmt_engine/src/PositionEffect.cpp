@@ -38,16 +38,32 @@ Object3D* PositionEffect::getObject3D(){
     return this->object3d;
 }
 
+void PositionEffect::setObject3D(Object3D* obj3d){
+    this->object3d = obj3d;
+}
+
 ofxVec3f PositionEffect::getPosIni(){
     return this->posIni;
+}
+
+void PositionEffect::setPosIni(ofxVec3f pIni){
+    this->posIni = pIni;
 }
 
 ofxVec3f PositionEffect::getPosFin(){
     return this->posFin;
 }
 
+void PositionEffect::setPosFin(ofxVec3f pFin){
+    this->posFin = pFin;
+}
+
 float PositionEffect::getDelay(){
     return this->delay;
+}
+
+void PositionEffect::setDelay(float f){
+    this->delay = f;
 }
 
 const char* PositionEffect::toString(){

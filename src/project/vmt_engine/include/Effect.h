@@ -15,6 +15,7 @@ class Effect : public ISerializable
         Effect();
         virtual ~Effect();
         string getId();
+        void setId(string);
 
         virtual void play() = 0;
         virtual void test() = 0;
