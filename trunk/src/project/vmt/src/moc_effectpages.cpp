@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'effectpages.h'
 **
-** Created: Tue May 3 15:48:32 2011
+** Created: Tue May 3 19:20:32 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -76,6 +76,65 @@ int FadeEffectPage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         default: ;
         }
         _id -= 2;
+    }
+    return _id;
+}
+static const uint qt_meta_data_TextureEffectPage[] = {
+
+ // content:
+       5,       // revision
+       0,       // classname
+       0,    0, // classinfo
+       1,   14, // methods
+       0,    0, // properties
+       0,    0, // enums/sets
+       0,    0, // constructors
+       0,       // flags
+       0,       // signalCount
+
+ // slots: signature, parameters, type, tag, flags
+      19,   18,   18,   18, 0x0a,
+
+       0        // eod
+};
+
+static const char qt_meta_stringdata_TextureEffectPage[] = {
+    "TextureEffectPage\0\0setOpenFileName()\0"
+};
+
+const QMetaObject TextureEffectPage::staticMetaObject = {
+    { &QWidget::staticMetaObject, qt_meta_stringdata_TextureEffectPage,
+      qt_meta_data_TextureEffectPage, 0 }
+};
+
+#ifdef Q_NO_DATA_RELOCATION
+const QMetaObject &TextureEffectPage::getStaticMetaObject() { return staticMetaObject; }
+#endif //Q_NO_DATA_RELOCATION
+
+const QMetaObject *TextureEffectPage::metaObject() const
+{
+    return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
+}
+
+void *TextureEffectPage::qt_metacast(const char *_clname)
+{
+    if (!_clname) return 0;
+    if (!strcmp(_clname, qt_meta_stringdata_TextureEffectPage))
+        return static_cast<void*>(const_cast< TextureEffectPage*>(this));
+    return QWidget::qt_metacast(_clname);
+}
+
+int TextureEffectPage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+{
+    _id = QWidget::qt_metacall(_c, _id, _a);
+    if (_id < 0)
+        return _id;
+    if (_c == QMetaObject::InvokeMetaMethod) {
+        switch (_id) {
+        case 0: setOpenFileName(); break;
+        default: ;
+        }
+        _id -= 1;
     }
     return _id;
 }

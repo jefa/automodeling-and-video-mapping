@@ -22,12 +22,7 @@ PositionEffectPage::PositionEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *
     QLabel *objectIdLabel = new QLabel(tr("Object Id:"));
     objectCombo = new QComboBox;
 
-    map<string, Object3D*>::iterator objects3DIt;
-    map<string, Object3D*> objsMap = vmtModel->getObjects3D();
-    for(objects3DIt = objsMap.begin(); objects3DIt != objsMap.end(); objects3DIt++) {
-        Object3D *obj = (Object3D*) objects3DIt->second;
-        objectCombo->addItem(tr(obj->getId().c_str()));
-    }
+    loadObjectsCombo(objectCombo, vmtModel);
 
     //Coordiantes panel
     QLabel *xLabel1 = new QLabel(tr("X:"));
@@ -70,8 +65,6 @@ PositionEffectPage::PositionEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *
     delaySpinBox->setPrefix(tr("Start after "));
     delaySpinBox->setSuffix(tr(" milliseconds"));
     delaySpinBox->setSpecialValueText(tr("Start immediatelly"));
-    //delaySpinBox->setMinimum(1);
-    //delaySpinBox->setMaximum(10000);
     delaySpinBox->setSingleStep(.5);
 
     QVBoxLayout *delayLayout = new QVBoxLayout;
@@ -129,12 +122,6 @@ void PositionEffectPage::saveEffect(){
     if (this->effect == NULL){
         QString objId = objectCombo->currentText();
 
-        /*printf("PositionEffectPage::saveEffect ADDING EFFECT. %s, %s, %f, %f, %f, %f, %f, %f, %f\n",
-               effectIdTxt->text().toStdString().c_str(), objId.toStdString().c_str(),
-               xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value(),
-               xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value(),
-               delaySpinBox->value());*/
-
         this->vmtModel->addPositionEffect(effectIdTxt->text().toStdString(), objId.toStdString(),
                                           ofxVec3f(xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value()),
                                           ofxVec3f(xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value()),
@@ -158,12 +145,7 @@ FadeEffectPage::FadeEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *parent)
     QLabel *groupIdLabel = new QLabel(tr("Group Id:"));
     groupsCombo = new QComboBox;
 
-    map<string, QuadGroup*>::iterator it;
-    map<string, QuadGroup*> qMap = vmtModel->getGroups();
-    for(it = qMap.begin(); it != qMap.end(); it++) {
-        QuadGroup* gr = (QuadGroup*) it->second;
-        groupsCombo->addItem(tr(gr->getName().c_str()));
-    }
+    loadGroupsCombo(groupsCombo, vmtModel);
 
     //Colors panel
     QLabel *rLabel1 = new QLabel(tr("R:"));
@@ -216,8 +198,6 @@ FadeEffectPage::FadeEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *parent)
     delaySpinBox->setPrefix(tr("Start after "));
     delaySpinBox->setSuffix(tr(" milliseconds"));
     delaySpinBox->setSpecialValueText(tr("Start immediatelly"));
-    //delaySpinBox->setMinimum(1);
-    //delaySpinBox->setMaximum(10000);
     delaySpinBox->setSingleStep(.5);
 
     QVBoxLayout *delayLayout = new QVBoxLayout;
@@ -259,8 +239,12 @@ FadeEffectPage::FadeEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *parent)
 void FadeEffectPage::setColorIni()
 {
     QColor color;
+    QColor color2 = QColor(rIniSpinBox->value(),
+                   gIniSpinBox->value(),
+                   bIniSpinBox->value());
     //if (native->isChecked())
         color = QColorDialog::getColor(Qt::green, this);
+        //color = QColorDialog::getColor(color2, this);
     //else
         //color = QColorDialog::getColor(Qt::green, this, "Select Color", QColorDialog::DontUseNativeDialog);
 
@@ -274,8 +258,12 @@ void FadeEffectPage::setColorIni()
 void FadeEffectPage::setColorFin()
 {
     QColor color;
+    QColor color2 = QColor(rFinSpinBox->value(),
+                   gFinSpinBox->value(),
+                   bFinSpinBox->value());
     //if (native->isChecked())
         color = QColorDialog::getColor(Qt::green, this);
+        //color = QColorDialog::getColor(color2, this);
     //else
         //color = QColorDialog::getColor(Qt::green, this, "Select Color", QColorDialog::DontUseNativeDialog);
 
@@ -307,67 +295,102 @@ void FadeEffectPage::loadEffect(){
 
 void FadeEffectPage::saveEffect(){
     if (this->effect == NULL){
-/*        QString objId = objectCombo->currentText();
+        QString grpId = groupsCombo->currentText();
 
-        /*printf("PositionEffectPage::saveEffect ADDING EFFECT. %s, %s, %f, %f, %f, %f, %f, %f, %f\n",
-               effectIdTxt->text().toStdString().c_str(), objId.toStdString().c_str(),
-               xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value(),
-               xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value(),
-               delaySpinBox->value());/
-
-        this->vmtModel->addFadeEffect(effectIdTxt->text().toStdString(), objId.toStdString(),
-                                          ofxVec3f(xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value()),
-                                          ofxVec3f(xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value()),
+        this->vmtModel->addFadeEffect(effectIdTxt->text().toStdString(), grpId.toStdString(),
+                                          ofxVec4f(rIniSpinBox->value(), gIniSpinBox->value(), bIniSpinBox->value(), 255),
+                                          ofxVec4f(rFinSpinBox->value(), gFinSpinBox->value(), bFinSpinBox->value(), 255),
                                           delaySpinBox->value());
     } else {
-        QString objId = objectCombo->currentText();
+        QString grpId = groupsCombo->currentText();
         this->effect->setId(effectIdTxt->text().toStdString());
-        this->effect->setPosIni(ofxVec3f(xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value()));
-        this->effect->setPosFin(ofxVec3f(xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value()));
+        this->effect->setQuadGroup(this->vmtModel->getGroup(grpId.toStdString()));
+        this->effect->setColorIni(ofxVec4f(rIniSpinBox->value(), gIniSpinBox->value(), bIniSpinBox->value(), 255));
+        this->effect->setColorFin(ofxVec4f(rFinSpinBox->value(), gFinSpinBox->value(), bFinSpinBox->value(), 255));
         this->effect->setDelay(delaySpinBox->value());
-*/    }
+    }
 }
 
 TextureEffectPage::TextureEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *parent)
     : QWidget(parent)
 {
-    QGroupBox *packagesGroup = new QGroupBox(tr("Look for packages"));
+    QGroupBox *configGroup = new QGroupBox(tr("Configuration"));
+    QLabel *effectIdLabel = new QLabel(tr("Effect Id:"));
+    effectIdTxt = new QLineEdit;
 
-    QLabel *nameLabel = new QLabel(tr("Name:"));
-    QLineEdit *nameEdit = new QLineEdit;
+    QLabel *groupIdLabel = new QLabel(tr("Group Id:"));
+    groupsCombo = new QComboBox;
+    loadGroupsCombo(groupsCombo, vmtModel);
 
-    QLabel *dateLabel = new QLabel(tr("Released after:"));
-    QDateTimeEdit *dateEdit = new QDateTimeEdit(QDate::currentDate());
+    QLabel *objectIdLabel = new QLabel(tr("Object Id:"));
+    objectCombo = new QComboBox;
+    loadObjectsCombo(objectCombo, vmtModel);
 
-    QCheckBox *releasesCheckBox = new QCheckBox(tr("Releases"));
-    QCheckBox *upgradesCheckBox = new QCheckBox(tr("Upgrades"));
+    isGroupCheckBox = new QCheckBox(tr("Use Group?"));
 
-    QSpinBox *hitsSpinBox = new QSpinBox;
-    hitsSpinBox->setPrefix(tr("Return up to "));
-    hitsSpinBox->setSuffix(tr(" results"));
-    hitsSpinBox->setSpecialValueText(tr("Return only the first result"));
-    hitsSpinBox->setMinimum(1);
-    hitsSpinBox->setMaximum(100);
-    hitsSpinBox->setSingleStep(10);
+    isVideoCheckBox = new QCheckBox(tr("Is Video?"));
 
-    QPushButton *startQueryButton = new QPushButton(tr("Start query"));
+    //Texture panel
+    QLabel *keyLabel = new QLabel(tr("Texture key"));
+    keyEdit = new QLineEdit();
 
-    QGridLayout *packagesLayout = new QGridLayout;
-    packagesLayout->addWidget(nameLabel, 0, 0);
-    packagesLayout->addWidget(nameEdit, 0, 1);
-    packagesLayout->addWidget(dateLabel, 1, 0);
-    packagesLayout->addWidget(dateEdit, 1, 1);
-    packagesLayout->addWidget(releasesCheckBox, 2, 0);
-    packagesLayout->addWidget(upgradesCheckBox, 3, 0);
-    packagesLayout->addWidget(hitsSpinBox, 4, 0, 1, 2);
-    packagesGroup->setLayout(packagesLayout);
+    QGroupBox *textureGroup = new QGroupBox(tr("Texture"));
+    QGridLayout *textureLayout = new QGridLayout;
+    searchButton = new QPushButton(tr("Browse"));
+    textureLayout->addWidget(keyLabel, 0, 0);
+    textureLayout->addWidget(keyEdit, 0, 1);
+    textureLayout->addWidget(searchButton, 0, 2);
+    textureLayout->addWidget(isVideoCheckBox, 1, 0);
+
+    textureGroup->setLayout(textureLayout);
+
+    //Delay panel
+    QGroupBox *delayGroup = new QGroupBox(tr("Delay"));
+    delaySpinBox = new QDoubleSpinBox;
+    delaySpinBox->setPrefix(tr("Start after "));
+    delaySpinBox->setSuffix(tr(" milliseconds"));
+    delaySpinBox->setSpecialValueText(tr("Start immediatelly"));
+    delaySpinBox->setSingleStep(.5);
+
+    QVBoxLayout *delayLayout = new QVBoxLayout;
+    delayLayout->addWidget(delaySpinBox);
+    delayGroup->setLayout(delayLayout);
+
+    QHBoxLayout *effectLayout = new QHBoxLayout;
+    effectLayout->addWidget(effectIdLabel);
+    effectLayout->addWidget(effectIdTxt);
+
+    QHBoxLayout *objectLayout = new QHBoxLayout;
+    objectLayout->addWidget(objectIdLabel);
+    objectLayout->addWidget(objectCombo);
+
+    QHBoxLayout *groupLayout = new QHBoxLayout;
+    groupLayout->addWidget(groupIdLabel);
+    groupLayout->addWidget(groupsCombo);
+
+    QVBoxLayout *configLayout = new QVBoxLayout;
+    configLayout->addLayout(effectLayout);
+    configLayout->addWidget(isGroupCheckBox);
+    configLayout->addLayout(objectLayout);
+    configLayout->addLayout(groupLayout);
+    configGroup->setLayout(configLayout);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
-    mainLayout->addWidget(packagesGroup);
-    mainLayout->addSpacing(12);
-    mainLayout->addWidget(startQueryButton);
+    mainLayout->addWidget(configGroup);
+    mainLayout->addWidget(textureGroup);
+    mainLayout->addWidget(delayGroup);
     mainLayout->addStretch(1);
     setLayout(mainLayout);
+
+    connect(searchButton, SIGNAL(clicked()), this, SLOT(setOpenFileName()));
+
+    this->vmtModel = vmtModel;
+    if (ef != NULL && ef->getType() == TEXTURE_EFFECT)
+        this->effect = (TextureEffect*) ef;
+    else
+        this->effect = NULL;
+
+    loadEffect();
 }
 
 void TextureEffectPage::loadEffect(){
@@ -391,23 +414,60 @@ void TextureEffectPage::loadEffect(){
 void TextureEffectPage::saveEffect(){
     if (this->effect == NULL){
 /*        QString objId = objectCombo->currentText();
+        QString grpId = groupsCombo->currentText();
+        bool isGroup = (isGroupCheckBox->checkState() == Checked);
+        bool isVideoTexture = (isVideoCheckBox->checkState() == Checked);
 
-        /*printf("PositionEffectPage::saveEffect ADDING EFFECT. %s, %s, %f, %f, %f, %f, %f, %f, %f\n",
-               effectIdTxt->text().toStdString().c_str(), objId.toStdString().c_str(),
-               xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value(),
-               xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value(),
-               delaySpinBox->value());/
+        if (isGroup){
+            this->vmtModel->addTextureGroupEffect(effectIdTxt->text().toStdString(), grpId.toStdString(),
+                                                  keyEdit->value(), (isVideoTexture ? VIDEO_TEXTURE : IMAGE_TEXTURE),
+                                                  delaySpinBox->value());
+        } else {
+            this->vmtModel->addTextureObjectEffect(effectIdTxt->text().toStdString(), objId.toStdString(),
+                                                  keyEdit->value(), (isVideoTexture ? VIDEO_TEXTURE : IMAGE_TEXTURE),
+                                                  delaySpinBox->value());
+        }
 
-        this->vmtModel->addPositionEffect(effectIdTxt->text().toStdString(), objId.toStdString(),
-                                          ofxVec3f(xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value()),
-                                          ofxVec3f(xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value()),
-                                          delaySpinBox->value());
     } else {
-        QString objId = objectCombo->currentText();
+        /*QString objId = objectCombo->currentText();
         this->effect->setId(effectIdTxt->text().toStdString());
         this->effect->setPosIni(ofxVec3f(xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value()));
         this->effect->setPosFin(ofxVec3f(xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value()));
-        this->effect->setDelay(delaySpinBox->value());
-*/    }
+        this->effect->setDelay(delaySpinBox->value());*/
+    }
+}
+
+void loadGroupsCombo(QComboBox *combo, VmtModel *vmtModel){
+    map<string, QuadGroup*>::iterator it;
+    map<string, QuadGroup*> qMap = vmtModel->getGroups();
+    for(it = qMap.begin(); it != qMap.end(); it++) {
+        QuadGroup* gr = (QuadGroup*) it->second;
+        combo->addItem(gr->getName().c_str());
+    }
+}
+
+void loadObjectsCombo(QComboBox *combo, VmtModel *vmtModel){
+    map<string, Object3D*>::iterator objects3DIt;
+    map<string, Object3D*> objsMap = vmtModel->getObjects3D();
+    for(objects3DIt = objsMap.begin(); objects3DIt != objsMap.end(); objects3DIt++) {
+        Object3D *obj = (Object3D*) objects3DIt->second;
+        combo->addItem(obj->getId().c_str());
+    }
+}
+
+void TextureEffectPage::setOpenFileName()
+{
+    QFileDialog::Options options;
+    //if (!native->isChecked())
+    //    options |= QFileDialog::DontUseNativeDialog;
+    QString selectedFilter;
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                tr("QFileDialog::getOpenFileName()"),
+                                keyEdit->text(),
+                                tr("All Files (*);;Text Files (*.txt)"),
+                                &selectedFilter,
+                                options);
+    if (!fileName.isEmpty())
+        keyEdit->setText(fileName);
 }
 
