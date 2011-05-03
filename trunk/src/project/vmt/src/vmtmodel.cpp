@@ -108,6 +108,10 @@ QuadGroup* VmtModel::getGroup(string groupId){
     return scene->getGroup(groupId);
 }
 
+map<string, QuadGroup*> VmtModel::getGroups(){
+    return scene->getGroups();
+}
+
 void VmtModel::addLayer(string camId, string layerId){
     oscManager->SendMessage(OscUtil::createAddLayerMsg(camId, layerId), getNodeForCamera(camId));
     if (scene->getCamera(camId) != NULL)
@@ -317,7 +321,7 @@ void addXMLNode(ofxXmlSettings &xml, SerializedNode* node) {
 }
 
 void getNodeFromXML(ofxXmlSettings &xml, SerializedNode *node) {
-    xml.get
+    //xml.get
 }
 
 void VmtModel::saveShow(string filepath) {
@@ -334,18 +338,6 @@ void VmtModel::saveShow(string filepath) {
     showXML.popTag();//vmtshow
 
     showXML.saveFile(filepath);
-}
-
-void VmtModel::loadShow(strin filepath) {
-    showXML.loadFile(filepath);
-
-    string showName = showXML.getAttribute("vmtshow", "name", "show", 0);
-    showXML.pushTag("vmtshow");
-
-    SerializedNode* node = new SerializedNode("vmtshow");
-    getNodeFromXML(showXML, node);
-
-    showXML.popTag();//vmtshow
 }
 
 map<string, ofxCamera*> VmtModel::getCameras() {

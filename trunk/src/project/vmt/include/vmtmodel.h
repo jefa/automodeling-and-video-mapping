@@ -29,6 +29,7 @@ class VmtModel : public ISceneHandler
 
         void addGroup(string groupId);
         QuadGroup* getGroup(string groupId);
+        map<string, QuadGroup*> getGroups();
 
         void addLayer(string camId, string layerId);
         void addQuad(string camId, string layerId, string quadId);
