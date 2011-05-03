@@ -133,7 +133,6 @@ EffectsListModel* EffectsListWindow::getListViewModel(){
 }
 
 void EffectsListWindow::effectsChanged(){
-//    printf("EffectsListWindow::effectsChanged()\n");
     EffectsListModel *model = (EffectsListModel*) view->model();
     model->setupModelData();
     view->update();

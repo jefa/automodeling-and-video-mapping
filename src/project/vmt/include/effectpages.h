@@ -10,6 +10,8 @@
 #include <QtGui>
 
 void setComboIndexForText(QComboBox *combo, string txt);
+void loadGroupsCombo(QComboBox *combo, VmtModel *vmtModel);
+void loadObjectsCombo(QComboBox *combo, VmtModel *vmtModel);
 
 class PositionEffectPage : public QWidget
 {
@@ -68,9 +70,14 @@ private:
 
 class TextureEffectPage : public QWidget
 {
+    Q_OBJECT
+
 public:
     TextureEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *parent = 0);
     void saveEffect();
+
+public slots:
+    void setOpenFileName();
 
 private:
     void loadEffect();
@@ -78,14 +85,13 @@ private:
     TextureEffect *effect;
     VmtModel *vmtModel;
 
+    QPushButton *searchButton;
     QLineEdit *effectIdTxt;
     QComboBox *objectCombo;
-    QDoubleSpinBox *xIniSpinBox;
-    QDoubleSpinBox *yIniSpinBox;
-    QDoubleSpinBox *zIniSpinBox;
-    QDoubleSpinBox *xFinSpinBox;
-    QDoubleSpinBox *yFinSpinBox;
-    QDoubleSpinBox *zFinSpinBox;
+    QComboBox *groupsCombo;
+    QCheckBox *isGroupCheckBox;
+    QCheckBox *isVideoCheckBox;
+    QLineEdit *keyEdit;
     QDoubleSpinBox *delaySpinBox;
 };
 
