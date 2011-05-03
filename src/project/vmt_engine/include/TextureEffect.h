@@ -19,10 +19,15 @@ class TextureEffect : public Effect
         virtual const char* toString();
 
         QuadGroup* getGroup();
+        void setGroup(QuadGroup*);
         Object3D* getObject3D();
+        void setObject3D(Object3D*);
         string getFacesID();
+        void setFacesID(string);
         string getTextureKey();
+        void setTextureKey(string);
         textureType getTextureType();
+        void setTextureType(textureType);
         bool getIsGroup();
 
         virtual SerializedNode* Serialize();

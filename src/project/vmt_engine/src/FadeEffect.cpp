@@ -43,16 +43,32 @@ QuadGroup* FadeEffect::getQuadGroup(){
     return this->group;
 }
 
+void FadeEffect::setQuadGroup(QuadGroup* grp){
+    this->group = grp;
+}
+
 ofxVec4f FadeEffect::getColorIni(){
     return this->colorIni;
+}
+
+void FadeEffect::setColorIni(ofxVec4f color){
+    this->colorIni = color;
 }
 
 ofxVec4f FadeEffect::getColorFin(){
     return this->colorFin;
 }
 
+void FadeEffect::setColorFin(ofxVec4f color){
+    this->colorFin = color;
+}
+
 float FadeEffect::getDelay(){
     return this->delay;
+}
+
+void FadeEffect::setDelay(float f){
+    this->delay = f;
 }
 
 const char* FadeEffect::toString(){

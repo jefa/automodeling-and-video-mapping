@@ -60,20 +60,40 @@ QuadGroup* TextureEffect::getGroup(){
     return this->group;
 }
 
+void TextureEffect::setGroup(QuadGroup* grp){
+    this->group = grp;
+}
+
 Object3D* TextureEffect::getObject3D(){
     return this->object3d;
+}
+
+void TextureEffect::setObject3D(Object3D* obj){
+    this->object3d = obj;
 }
 
 string TextureEffect::getFacesID(){
     return this->facesID;
 }
 
+void TextureEffect::setFacesID(string faces){
+    this->facesID = faces;
+}
+
 string TextureEffect::getTextureKey(){
     return this->textureKey;
 }
 
+void TextureEffect::setTextureKey(string key){
+    this->textureKey = key;
+}
+
 textureType TextureEffect::getTextureType(){
     return this->type;
+}
+
+void TextureEffect::setTextureType(textureType type){
+    this->type = type;
 }
 
 bool TextureEffect::getIsGroup(){
