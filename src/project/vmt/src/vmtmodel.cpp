@@ -316,9 +316,12 @@ void addXMLNode(ofxXmlSettings &xml, SerializedNode* node) {
     xml.popTag();
 }
 
+void getNodeFromXML(ofxXmlSettings &xml, SerializedNode *node) {
+    xml.get
+}
+
 void VmtModel::saveShow(string filepath) {
     showXML.clear();
-    std::stringstream sstr;
 
     showXML.addTag("vmtshow");
     showXML.addAttribute("vmtshow", "name", "showname1", 0);
@@ -331,6 +334,18 @@ void VmtModel::saveShow(string filepath) {
     showXML.popTag();//vmtshow
 
     showXML.saveFile(filepath);
+}
+
+void VmtModel::loadShow(strin filepath) {
+    showXML.loadFile(filepath);
+
+    string showName = showXML.getAttribute("vmtshow", "name", "show", 0);
+    showXML.pushTag("vmtshow");
+
+    SerializedNode* node = new SerializedNode("vmtshow");
+    getNodeFromXML(showXML, node);
+
+    showXML.popTag();//vmtshow
 }
 
 map<string, ofxCamera*> VmtModel::getCameras() {

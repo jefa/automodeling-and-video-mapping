@@ -1,6 +1,6 @@
 #include "ofxLight.h"
 
-ofxLight::ofxLight(){
+ofxLight::ofxLight(string id){
 	bool anyLight = false;
 	for(int i=0; i<8; i++){
 		if(!(bool)glIsEnabled(GL_LIGHT0 +i)){
@@ -15,6 +15,8 @@ ofxLight::ofxLight(){
 		std::cout << "error creating light, maybe you're exceding the maximum 8 lights allowed?" << std::endl;
 		return;
 	}
+
+	this->id = id;
 
 	ambient(0, 0, 0);
 	diffuse(0, 0, 0);
@@ -197,4 +199,10 @@ void ofxCalcNormal(float x1, float y1, float z1, float x2, float y2, float z2, f
 	float dist = sqrt(crossX*crossX + crossY*crossY + crossZ*crossZ);
 
 	glNormal3f(crossX/dist, crossY/dist, crossZ/dist);
+}
+
+SerializedNode* ofxLight::Serialize() {
+    SerializedNode* node = new SerializedNode("light");
+    node->addAttribute("id", this->id);
+    return node;
 }

@@ -38,7 +38,7 @@ map<string, ofxCamera*> Scene::getCameras() {
 }
 
 ofxLight* Scene::addLight(string id) {
-    ofxLight* light = new ofxLight();
+    ofxLight* light = new ofxLight(id);
     lights.insert(pair<string, ofxLight*>(id, light));
     return light;
 }
@@ -154,6 +154,13 @@ SerializedNode* Scene::Serialize() {
         camerasNode->addChildNode(camerasIt->second->Serialize());
     }
     node->addChildNode(camerasNode);
+
+    SerializedNode *lightsNode = new SerializedNode("lights");
+    map<string, ofxLight*>::iterator lightsIt;
+    for(lightsIt = lights.begin(); lightsIt != lights.end(); lightsIt++) {
+        lightsNode->addChildNode(lightsIt->second->Serialize());
+    }
+    node->addChildNode(lightsNode);
 
     SerializedNode *groupsNode = new SerializedNode("groups");
     map<string, QuadGroup*>::iterator groupsIt;

@@ -1,13 +1,14 @@
 #pragma once
 
 #include "ofMain.h"
+#include "ISerializable.h"
 
-class ofxLight{
+class ofxLight: public ISerializable {
 
 public:
 	int lightNum;
 
-	ofxLight();
+	ofxLight(string id);
 
 	void on();
 	void off();
@@ -45,6 +46,7 @@ public:
 	// the formula to calculate this is attenuation = 1/(constant + linear*d + quadratic*d²), where d is the distance to the vertice.
 	// values must be between 0 and 1.
 
+    SerializedNode* Serialize();
 protected:
 	GLenum lightEnum;
 	bool isSpot;
@@ -52,6 +54,9 @@ protected:
 	void spotDirection(float _nx, float _ny, float _nz);
 	void spotCutOff(float _angle);
 	void spotConcentration(float _concentration);
+
+private:
+    string id;
 
 };
 
