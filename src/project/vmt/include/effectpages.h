@@ -3,6 +3,8 @@
 
 #include "Effect.h"
 #include "PositionEffect.h"
+#include "FadeEffect.h"
+#include "TextureEffect.h"
 #include "VmtModel.h"
 
 #include <QtGui>
@@ -35,14 +37,56 @@ private:
 
 class FadeEffectPage : public QWidget
 {
+    Q_OBJECT
+
 public:
     FadeEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *parent = 0);
+    void saveEffect();
+
+public slots:
+    void setColorIni();
+    void setColorFin();
+
+private:
+    void loadEffect();
+
+    FadeEffect *effect;
+    VmtModel *vmtModel;
+
+    QPushButton *colorIniButton;
+    QPushButton *colorFinButton;
+    QLineEdit *effectIdTxt;
+    QComboBox *groupsCombo;
+    QSpinBox *rIniSpinBox;
+    QSpinBox *gIniSpinBox;
+    QSpinBox *bIniSpinBox;
+    QSpinBox *rFinSpinBox;
+    QSpinBox *gFinSpinBox;
+    QSpinBox *bFinSpinBox;
+    QDoubleSpinBox *delaySpinBox;
 };
 
 class TextureEffectPage : public QWidget
 {
 public:
     TextureEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *parent = 0);
+    void saveEffect();
+
+private:
+    void loadEffect();
+
+    TextureEffect *effect;
+    VmtModel *vmtModel;
+
+    QLineEdit *effectIdTxt;
+    QComboBox *objectCombo;
+    QDoubleSpinBox *xIniSpinBox;
+    QDoubleSpinBox *yIniSpinBox;
+    QDoubleSpinBox *zIniSpinBox;
+    QDoubleSpinBox *xFinSpinBox;
+    QDoubleSpinBox *yFinSpinBox;
+    QDoubleSpinBox *zFinSpinBox;
+    QDoubleSpinBox *delaySpinBox;
 };
 
 #endif

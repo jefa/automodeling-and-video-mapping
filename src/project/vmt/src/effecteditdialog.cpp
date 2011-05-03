@@ -104,6 +104,10 @@ void EffectEditDialog::save()
 {
     if (contentsWidget->currentRow() == POSITION_EFFECT){
         this->positionPage->saveEffect();
+    } else if (contentsWidget->currentRow() == FADE_EFFECT){
+        this->fadePage->saveEffect();
+    } else if (contentsWidget->currentRow() == TEXTURE_EFFECT){
+        this->texturePage->saveEffect();
     }
     emit dataChanged();
     close();
