@@ -18,9 +18,13 @@ class FadeEffect : public Effect
         virtual const char* toString();
 
         QuadGroup* getQuadGroup();
+        void setQuadGroup(QuadGroup*);
         ofxVec4f getColorIni();
+        void setColorIni(ofxVec4f);
         ofxVec4f getColorFin();
+        void setColorFin(ofxVec4f);
         float getDelay();
+        void setDelay(float);
 
         virtual SerializedNode* Serialize();
     protected:
