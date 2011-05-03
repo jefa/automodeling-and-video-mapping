@@ -23,7 +23,7 @@ QVariant EffectItem::data(int column) //const
 {
     if (itemData != NULL) { //is root
         if (column == 0)
-            return QVariant(itemData->toString());
+            return QVariant(QString(itemData->toString()));
         if (column == 1)
             return QVariant(QString(""));
     }

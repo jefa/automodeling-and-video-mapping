@@ -2,6 +2,7 @@
 #define EFFECTEDITDIALOG_H
 
 #include "Effect.h"
+#include "effectpages.h"
 #include "VmtModel.h"
 
 #include <QDialog>
@@ -17,20 +18,26 @@ class EffectEditDialog : public QDialog
     Q_OBJECT
 
 public:
-    EffectEditDialog(VmtModel *vmtModel, Effect *ef);
+    EffectEditDialog();
+    void Init(VmtModel *vmtModel, Effect *ef);
 
 public slots:
     void changePage(QListWidgetItem *current, QListWidgetItem *previous);
     void save();
 
+Q_SIGNALS:
+    void dataChanged();
+
 private:
-    void createIcons();
+    void createIcons(Effect *ef);
 
     QListWidget *contentsWidget;
     QStackedWidget *pagesWidget;
 
-    VmtModel *vmtModel;
-    Effect *effect;
+    PositionEffectPage* positionPage;
+    FadeEffectPage* fadePage;
+    TextureEffectPage* texturePage;
+
 };
 
 #endif

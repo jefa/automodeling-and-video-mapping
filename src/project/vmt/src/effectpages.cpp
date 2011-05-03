@@ -3,21 +3,21 @@
 #include "ofxVectorMath.h"
 #include "uiutils.h"
 #include <map>
-#include <QtGui>
 
 PositionEffectPage::PositionEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *parent)
     : QWidget(parent)
 {
-    QGroupBox *configGroup = new QGroupBox(tr("Apply to Object"));
-
-    QLabel *serverLabel = new QLabel(tr("Id:"));
-    QComboBox *serverCombo = new QComboBox;
+    QGroupBox *configGroup = new QGroupBox(tr("Configuration"));
+    QLabel *effectIdLabel = new QLabel(tr("Effect Id:"));
+    effectIdTxt = new QLineEdit;
+    QLabel *objectIdLabel = new QLabel(tr("Object Id:"));
+    objectCombo = new QComboBox;
 
     map<string, Object3D*>::iterator objects3DIt;
     map<string, Object3D*> objsMap = vmtModel->getObjects3D();
     for(objects3DIt = objsMap.begin(); objects3DIt != objsMap.end(); objects3DIt++) {
         Object3D *obj = (Object3D*) objects3DIt->second;
-        serverCombo->addItem(tr(obj->getId().c_str()));
+        objectCombo->addItem(tr(obj->getId().c_str()));
     }
 
     //Coordiantes panel
@@ -28,14 +28,13 @@ PositionEffectPage::PositionEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *
     QLabel *zLabel1 = new QLabel(tr("Z:"));
     QLabel *zLabel2 = new QLabel(tr("Z:"));
     QLabel *posIniLabel = new QLabel(tr("Ini:"));
-    QDoubleSpinBox *xIniSpinBox = UiUtils::createCoordinateSpinBox();
-    QDoubleSpinBox *yIniSpinBox = UiUtils::createCoordinateSpinBox();
-    QDoubleSpinBox *zIniSpinBox = UiUtils::createCoordinateSpinBox();
+    xIniSpinBox = UiUtils::createCoordinateSpinBox();
+    yIniSpinBox = UiUtils::createCoordinateSpinBox();
+    zIniSpinBox = UiUtils::createCoordinateSpinBox();
     QLabel *posFinLabel = new QLabel(tr("Fin:"));
-    QDoubleSpinBox *xFinSpinBox = UiUtils::createCoordinateSpinBox();
-    QDoubleSpinBox *yFinSpinBox = UiUtils::createCoordinateSpinBox();
-    QDoubleSpinBox *zFinSpinBox = UiUtils::createCoordinateSpinBox();
-
+    xFinSpinBox = UiUtils::createCoordinateSpinBox();
+    yFinSpinBox = UiUtils::createCoordinateSpinBox();
+    zFinSpinBox = UiUtils::createCoordinateSpinBox();
 
     QGroupBox *coordinatesGroup = new QGroupBox(tr("Coordinates"));
     QGridLayout *coordinatesLayout = new QGridLayout;
@@ -58,24 +57,29 @@ PositionEffectPage::PositionEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *
 
     //Delay panel
     QGroupBox *delayGroup = new QGroupBox(tr("Delay"));
-    QSpinBox *delaySpinBox = new QSpinBox;
+    delaySpinBox = new QDoubleSpinBox;
     delaySpinBox->setPrefix(tr("Start after "));
     delaySpinBox->setSuffix(tr(" milliseconds"));
     delaySpinBox->setSpecialValueText(tr("Start immediatelly"));
-    delaySpinBox->setMinimum(1);
-    delaySpinBox->setMaximum(10000);
-    delaySpinBox->setSingleStep(1);
+    //delaySpinBox->setMinimum(1);
+    //delaySpinBox->setMaximum(10000);
+    delaySpinBox->setSingleStep(.5);
 
     QVBoxLayout *delayLayout = new QVBoxLayout;
     delayLayout->addWidget(delaySpinBox);
     delayGroup->setLayout(delayLayout);
 
-    QHBoxLayout *serverLayout = new QHBoxLayout;
-    serverLayout->addWidget(serverLabel);
-    serverLayout->addWidget(serverCombo);
+    QHBoxLayout *effectLayout = new QHBoxLayout;
+    effectLayout->addWidget(effectIdLabel);
+    effectLayout->addWidget(effectIdTxt);
+
+    QHBoxLayout *objectLayout = new QHBoxLayout;
+    objectLayout->addWidget(objectIdLabel);
+    objectLayout->addWidget(objectCombo);
 
     QVBoxLayout *configLayout = new QVBoxLayout;
-    configLayout->addLayout(serverLayout);
+    configLayout->addLayout(effectLayout);
+    configLayout->addLayout(objectLayout);
     configGroup->setLayout(configLayout);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
@@ -84,6 +88,63 @@ PositionEffectPage::PositionEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *
     mainLayout->addWidget(delayGroup);
     mainLayout->addStretch(1);
     setLayout(mainLayout);
+
+    this->vmtModel = vmtModel;
+    if (ef != NULL && ef->getType() == POSITION_EFFECT)
+        this->effect = (PositionEffect*) ef;
+    else
+        this->effect = NULL;
+
+    loadEffect();
+}
+
+void PositionEffectPage::loadEffect(){
+    if (this->effect != NULL){
+
+        effectIdTxt->setText(QString(effect->getId().c_str()));
+
+        setComboIndexForText(objectCombo, effect->getObject3D()->getId());
+
+        xIniSpinBox->setValue(effect->getPosIni()[0]);
+        yIniSpinBox->setValue(effect->getPosIni()[1]);
+        zIniSpinBox->setValue(effect->getPosIni()[2]);
+        xFinSpinBox->setValue(effect->getPosFin()[0]);
+        yFinSpinBox->setValue(effect->getPosFin()[1]);
+        zFinSpinBox->setValue(effect->getPosFin()[2]);
+
+        delaySpinBox->setValue(effect->getDelay());
+    }
+}
+
+void setComboIndexForText(QComboBox *combo, string txt){
+    for (int i=0; i < combo->count(); i++){
+        if (combo->itemText(i).toStdString().compare(txt) == 0){
+            combo->setCurrentIndex(i);
+            break;
+        }
+    }
+}
+
+void PositionEffectPage::saveEffect(){
+    if (this->effect == NULL){
+        QString objId = objectCombo->currentText();
+
+        /*printf("PositionEffectPage::saveEffect ADDING EFFECT. %s, %s, %f, %f, %f, %f, %f, %f, %f\n",
+               effectIdTxt->text().toStdString().c_str(), objId.toStdString().c_str(),
+               xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value(),
+               xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value(),
+               delaySpinBox->value());*/
+
+        this->vmtModel->addPositionEffect(effectIdTxt->text().toStdString(), objId.toStdString(),
+                                          ofxVec3f(xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value()),
+                                          ofxVec3f(xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value()),
+                                          delaySpinBox->value());
+    } else {
+        this->effect->setId(effectIdTxt->text().toStdString());
+        this->effect->setPosIni(ofxVec3f(xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value()));
+        this->effect->setPosFin(ofxVec3f(xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value()));
+        this->effect->setDelay(delaySpinBox->value());
+    }
 }
 
 FadeEffectPage::FadeEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *parent)

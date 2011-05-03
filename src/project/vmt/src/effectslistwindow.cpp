@@ -1,15 +1,14 @@
+#include "effectslistwindow.h"
+
 #include <QtGui>
 #include <QCoreApplication>
-
-#include "effecteditdialog.h"
-#include "effectslistwindow.h"
-#include "effectslistmodel.h"
 
 using namespace gui;
 
 EffectsListWindow::EffectsListWindow(VmtModel *vmtModel)
 {
     this->selectedItem = NULL;
+    this->effectEditDialog = new EffectEditDialog();
 
     setupUi(this);
 
@@ -18,6 +17,8 @@ EffectsListWindow::EffectsListWindow(VmtModel *vmtModel)
 
     connect(view, SIGNAL(clicked(QModelIndex)), this, SLOT(clickedList(QModelIndex)));
 	connect(view, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(doubleClickedList(QModelIndex)));
+
+	connect(effectEditDialog, SIGNAL(dataChanged()), this, SLOT(effectsChanged()));
 
     connect(newEffectAction, SIGNAL(clicked()), this, SLOT(newEffect()));
     connect(editEffectAction, SIGNAL(clicked()), this, SLOT(editEffect()));
@@ -99,20 +100,20 @@ void EffectsListWindow::doubleClickedList(const QModelIndex &index)
     EffectItem *item = this->getListViewModel()->getItem(index);
     this->getListViewModel()->getVmtModel()->testEffect(item->getItemData()->getId());
 
-    EffectEditDialog *d = new EffectEditDialog(this->getListViewModel()->getVmtModel(), item->getItemData());
-    d->show();
+    effectEditDialog->Init(this->getListViewModel()->getVmtModel(), item->getItemData());
+    effectEditDialog->show();
 }
 
 void EffectsListWindow::newEffect(){
-    EffectEditDialog *d = new EffectEditDialog(this->getListViewModel()->getVmtModel(), NULL);
-    d->show();
+    effectEditDialog->Init(this->getListViewModel()->getVmtModel(), NULL);
+    effectEditDialog->show();
 }
 
 void EffectsListWindow::editEffect(){
     if (this->selectedItem == NULL)
         return;
-    EffectEditDialog *d = new EffectEditDialog(getListViewModel()->getVmtModel(), this->selectedItem->getItemData());
-    d->show();
+    effectEditDialog->Init(getListViewModel()->getVmtModel(), this->selectedItem->getItemData());
+    effectEditDialog->show();
 }
 
 void EffectsListWindow::removeEffect(){
@@ -129,4 +130,12 @@ void EffectsListWindow::testEffect(){
 
 EffectsListModel* EffectsListWindow::getListViewModel(){
     return (EffectsListModel*) view->model();
+}
+
+void EffectsListWindow::effectsChanged(){
+//    printf("EffectsListWindow::effectsChanged()\n");
+    EffectsListModel *model = (EffectsListModel*) view->model();
+    model->setupModelData();
+    view->update();
+    this->repaint();
 }

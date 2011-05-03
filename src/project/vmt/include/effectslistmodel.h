@@ -28,13 +28,12 @@ public:
     int rowCount(const QModelIndex &parent = QModelIndex()) const ;
     int columnCount(const QModelIndex &parent = QModelIndex()) const ;
 
-
     EffectItem *getItem(const QModelIndex &index) const;
     VmtModel *getVmtModel();
 
-private:
-    void setupSceneModelData();
+    void setupModelData();
 
+private:
     VmtModel *vmtModel;
     vector<EffectItem*> listItems;
 };

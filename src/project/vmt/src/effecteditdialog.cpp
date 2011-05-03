@@ -1,11 +1,14 @@
 #include "effecteditdialog.h"
-#include "effectpages.h"
 #include <QtGui>
 
-EffectEditDialog::EffectEditDialog(VmtModel *vmtModel, Effect *ef)
+EffectEditDialog::EffectEditDialog(){
+}
+
+void EffectEditDialog::Init(VmtModel *vmtModel, Effect *ef)
 {
-    this->vmtModel = vmtModel;
-    this->effect = ef;
+    this->positionPage = new PositionEffectPage(vmtModel, ef);
+    this->fadePage = new FadeEffectPage(vmtModel, ef);
+    this->texturePage = new TextureEffectPage(vmtModel, ef);
 
     contentsWidget = new QListWidget;
     contentsWidget->setViewMode(QListView::IconMode);
@@ -15,18 +18,18 @@ EffectEditDialog::EffectEditDialog(VmtModel *vmtModel, Effect *ef)
     contentsWidget->setSpacing(12);
 
     pagesWidget = new QStackedWidget;
-    pagesWidget->addWidget(new PositionEffectPage(vmtModel, ef));
-    pagesWidget->addWidget(new FadeEffectPage(vmtModel, ef));
-    pagesWidget->addWidget(new TextureEffectPage(vmtModel, ef));
+    pagesWidget->addWidget(positionPage);
+    pagesWidget->addWidget(fadePage);
+    pagesWidget->addWidget(texturePage);
 
     QPushButton *closeButton = new QPushButton(tr("Close"));
     QPushButton *saveButton = new QPushButton(tr("Save"));
 
-    createIcons();
-    if (effect == NULL)
+    createIcons(ef);
+    if (ef == NULL)
         contentsWidget->setCurrentRow(0);
     else {
-        contentsWidget->setCurrentRow(effect->getType());
+        contentsWidget->setCurrentRow(ef->getType());
     }
 
     connect(closeButton, SIGNAL(clicked()), this, SLOT(close()));
@@ -48,19 +51,19 @@ EffectEditDialog::EffectEditDialog(VmtModel *vmtModel, Effect *ef)
     mainLayout->addLayout(buttonsLayout);
     setLayout(mainLayout);
 
-    setWindowTitle(tr("Config Dialog"));
+    setWindowTitle(tr("Effect Dialog"));
 }
 
-void EffectEditDialog::createIcons()
+void EffectEditDialog::createIcons(Effect *ef)
 {
     QListWidgetItem *configButton = new QListWidgetItem(contentsWidget);
     //configButton->setIcon(QIcon(":/images/config.png"));
     configButton->setIcon(QIcon("/images/config.png"));
     configButton->setText(tr("Position"));
     configButton->setTextAlignment(Qt::AlignHCenter);
-    if (this->effect == NULL){
+    if (ef == NULL){
         configButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-    } else if (this->effect->getType() != POSITION_EFFECT){
+    } else if (ef->getType() != POSITION_EFFECT){
         configButton->setFlags(Qt::ItemIsSelectable);
     }
 
@@ -68,9 +71,9 @@ void EffectEditDialog::createIcons()
     updateButton->setIcon(QIcon(":/images/update.png"));
     updateButton->setText(tr("Fade"));
     updateButton->setTextAlignment(Qt::AlignHCenter);
-    if (this->effect == NULL){
+    if (ef == NULL){
         updateButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-    } else if (this->effect->getType() != FADE_EFFECT){
+    } else if (ef->getType() != FADE_EFFECT){
         updateButton->setFlags(Qt::ItemIsSelectable);
     }
 
@@ -78,9 +81,9 @@ void EffectEditDialog::createIcons()
     queryButton->setIcon(QIcon(":/images/query.png"));
     queryButton->setText(tr("Texture"));
     queryButton->setTextAlignment(Qt::AlignHCenter);
-    if (this->effect == NULL){
+    if (ef == NULL){
         queryButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-    } else if (this->effect->getType() != TEXTURE_EFFECT){
+    } else if (ef->getType() != TEXTURE_EFFECT){
         queryButton->setFlags(Qt::ItemIsSelectable);
     }
 
@@ -99,4 +102,9 @@ void EffectEditDialog::changePage(QListWidgetItem *current, QListWidgetItem *pre
 
 void EffectEditDialog::save()
 {
+    if (contentsWidget->currentRow() == POSITION_EFFECT){
+        this->positionPage->saveEffect();
+    }
+    emit dataChanged();
+    close();
 }

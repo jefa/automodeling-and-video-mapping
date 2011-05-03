@@ -9,7 +9,7 @@ EffectsListModel::EffectsListModel(VmtModel *vmtModel, QObject *parent)
     : QAbstractItemModel(parent)
 {
     this->vmtModel = vmtModel;
-    setupSceneModelData();
+    setupModelData();
 }
 //! [0]
 
@@ -21,14 +21,20 @@ EffectsListModel::~EffectsListModel()
 //! [1]
 
 //! [2]
-void EffectsListModel::setupSceneModelData()
+void EffectsListModel::setupModelData()
 {
+    //beginInsertRows();
+
+    this->listItems.clear();
     map<string, Effect*>::iterator effectsIt;
     map<string, Effect*> effectsMap = this->vmtModel->getEffects();
     for(effectsIt = effectsMap.begin(); effectsIt != effectsMap.end(); effectsIt++) {
         EffectItem *lItem = new EffectItem(effectsIt->second, effectsIt->first);
         this->listItems.push_back(lItem);
     }
+
+    emit layoutChanged();
+    //endInsertRows();
 }
 
 VmtModel * EffectsListModel::getVmtModel(){
