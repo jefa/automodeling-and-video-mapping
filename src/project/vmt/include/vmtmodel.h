@@ -3,6 +3,7 @@
 
 #include "Scene.h"
 #include "OscManager.h"
+#include "TimeManager.h"
 #include "ISceneHandler.h"
 #include "ofxXmlSettings.h"
 
@@ -47,6 +48,9 @@ class VmtModel : public ISceneHandler
 
         void testEffect(string id);
 
+        void scheduleEvent(float time, string effectId);
+        void startTimeManager();
+
         void addLight(string lightId);
         void setLightSpecular(string lightId, float r, float g, float b);
         void setLightDirectional(string lightId, float r, float g, float b,
@@ -71,6 +75,7 @@ class VmtModel : public ISceneHandler
         map<string, Node> network;
         Scene *scene;
         OscManager *oscManager;
+        TimeManager* timeManager;
 
         ofxXmlSettings showXML;
 };

@@ -100,6 +100,23 @@ void Vmt::setup(){
 
     /* End Lighting */
 
+    vmtModel->scheduleEvent(5.0f, "ef1");
+    vmtModel->scheduleEvent(7.0f, "ef2");
+    vmtModel->scheduleEvent(9.0f, "ef3");
+    vmtModel->scheduleEvent(11.0f, "ef1");
+
+    vmtModel->scheduleEvent(1.0f, "ef4");
+    vmtModel->scheduleEvent(2.0f, "ef4");
+    vmtModel->scheduleEvent(3.0f, "ef4");
+    vmtModel->scheduleEvent(4.0f, "ef4");
+    vmtModel->scheduleEvent(5.0f, "ef4");
+    vmtModel->scheduleEvent(6.0f, "ef4");
+    vmtModel->scheduleEvent(7.0f, "ef4");
+    vmtModel->scheduleEvent(8.0f, "ef4");
+    vmtModel->scheduleEvent(9.0f, "ef4");
+
+    vmtModel->startTimeManager();
+
     treeWindow = new TreeWindow(this->vmtModel);
     treeWindow->show();
 
@@ -112,7 +129,6 @@ void Vmt::setup(){
 
 //--------------------------------------------------------------
 void Vmt::update(){
-	//camera.lerpPosition(centerX, centerY, 500, 0.05); //interpolate the camera into a closer position
     this->vmtModel->update();
 }
 
