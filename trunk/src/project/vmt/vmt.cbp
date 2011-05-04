@@ -193,6 +193,7 @@
 			<Option virtualFolder="addons\ofxXmlSettings\src\" />
 		</Unit>
 		<Unit filename="include\OscManager.h" />
+		<Unit filename="include\TimeManager.h" />
 		<Unit filename="include\cameraeditdialog.h" />
 		<Unit filename="include\colorlisteditor.h" />
 		<Unit filename="include\effecteditdialog.h" />
@@ -210,6 +211,7 @@
 		<Unit filename="include\vmt.h" />
 		<Unit filename="include\vmtmodel.h" />
 		<Unit filename="src\OscManager.cpp" />
+		<Unit filename="src\TimeManager.cpp" />
 		<Unit filename="src\cameraeditdialog.cpp" />
 		<Unit filename="src\colorlisteditor.cpp" />
 		<Unit filename="src\effecteditdialog.cpp" />

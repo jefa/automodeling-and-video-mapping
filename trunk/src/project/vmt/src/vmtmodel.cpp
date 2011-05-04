@@ -337,8 +337,11 @@ void VmtModel::saveShow(string filepath) {
 
     showXML.pushTag("vmtshow", 0);
 
-    SerializedNode* node = scene->Serialize();
-    addXMLNode(showXML, node);
+    SerializedNode* sceneNode = scene->Serialize();
+    addXMLNode(showXML, sceneNode);
+
+    SerializedNode* timedEventsNode = timeManager->Serialize();
+    addXMLNode(showXML, timedEventsNode);
 
     showXML.popTag();//vmtshow
 
