@@ -6,16 +6,16 @@
 #include "TextureEffect.h"
 #include "PositionEffect.h"
 
-VmtModel::VmtModel()
-{
+VmtModel::VmtModel() {
     scene = new Scene();
     oscManager = new OscManager();
     //won't do anything at construct time...
     oscManager->Init(network);
+
+    timeManager = new TimeManager();
 }
 
-VmtModel::~VmtModel()
-{
+VmtModel::~VmtModel() {
     delete scene;
     delete oscManager;
 }
@@ -30,6 +30,11 @@ void VmtModel::draw(){
 
 void VmtModel::update(){
     this->scene->update();
+
+    string effId = timeManager->Update();
+    if(!effId.empty()) {
+        testEffect(effId);
+    }
 }
 
 void VmtModel::addNetNode(string nodeId, string address, int port, bool isActive, string camId){
@@ -350,4 +355,12 @@ map<string, Object3D*> VmtModel::getObjects3D() {
 
 map<string, Effect*> VmtModel::getEffects() {
     return this->scene->getEffects();
+}
+
+void VmtModel::scheduleEvent(float time, string effectId) {
+    timeManager->ScheduleEvent(time, effectId);
+}
+
+void VmtModel::startTimeManager() {
+    timeManager->Start();
 }
