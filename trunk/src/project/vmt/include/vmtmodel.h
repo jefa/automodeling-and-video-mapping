@@ -64,6 +64,7 @@ class VmtModel : public ISceneHandler
                                            float x, float y, float z);
 
         void saveShow(string filepath);
+        void loadShow(string filepath);
 
         map<string, ofxCamera*> getCameras();
         map<string, Object3D*> getObjects3D();
