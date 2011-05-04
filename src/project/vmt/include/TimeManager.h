@@ -1,11 +1,13 @@
 #ifndef TIMEMANAGER_H
 #define TIMEMANAGER_H
 
+#include "ISerializable.h"
+
 #include <map>
 #include <string>
 using namespace std;
 
-class TimeManager
+class TimeManager : public ISerializable
 {
     public:
         TimeManager();
@@ -13,6 +15,8 @@ class TimeManager
         void Start();
         string Update();
         void ScheduleEvent(float time, string effectId);
+
+        virtual SerializedNode* Serialize();
     protected:
     private:
         map<float, string> events;

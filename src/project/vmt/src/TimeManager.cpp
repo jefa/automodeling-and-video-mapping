@@ -10,7 +10,6 @@ TimeManager::~TimeManager() {
 
 void TimeManager::Start() {
     totalAnimTime = 0;
-    timeOffset = 0;
 
     if(events.size() > 0) {
         it = events.begin();
@@ -39,7 +38,7 @@ string TimeManager::Update() {
     if(!started)
         return effectId;
 
-    totalAnimTime = ofGetElapsedTimef() - deltaStartTime + timeOffset;
+    totalAnimTime = ofGetElapsedTimef() - deltaStartTime;
 
     if(moreEvents && events.size() > 0 && totalAnimTime > nextTimeEvent) {
         effectId = it->second;
@@ -53,4 +52,18 @@ string TimeManager::Update() {
     }
 
     return effectId;
+}
+
+SerializedNode* TimeManager::Serialize() {
+    SerializedNode *node = new SerializedNode("timedevents");
+
+    map<float, string>::iterator eventsIt;
+    for(eventsIt = events.begin(); eventsIt != events.end(); eventsIt++) {
+        SerializedNode *eventNode = new SerializedNode("timedevent");
+        eventNode->addAttribute("t", eventsIt->first);
+        eventNode->addAttribute("effect", eventsIt->second);
+        node->addChildNode(eventNode);
+    }
+
+    return node;
 }
