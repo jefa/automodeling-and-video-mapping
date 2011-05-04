@@ -299,14 +299,14 @@ void FadeEffectPage::saveEffect(){
     QString grpId = groupsCombo->currentText();
     if (this->effect == NULL){
         this->vmtModel->addFadeEffect(effectIdTxt->text().toStdString(), grpId.toStdString(),
-                                          ofxVec4f(rIniSpinBox->value(), gIniSpinBox->value(), bIniSpinBox->value(), 255),
-                                          ofxVec4f(rFinSpinBox->value(), gFinSpinBox->value(), bFinSpinBox->value(), 255),
+                                          ofxVec4f(rIniSpinBox->value()/255.0f, gIniSpinBox->value()/255.0f, bIniSpinBox->value()/255.0f, 0),
+                                          ofxVec4f(rFinSpinBox->value()/255.0f, gFinSpinBox->value()/255.0f, bFinSpinBox->value()/255.0f, 1),
                                           delaySpinBox->value());
     } else {
         this->effect->setId(effectIdTxt->text().toStdString());
         this->effect->setQuadGroup(this->vmtModel->getGroup(grpId.toStdString()));
-        this->effect->setColorIni(ofxVec4f(rIniSpinBox->value(), gIniSpinBox->value(), bIniSpinBox->value(), 255));
-        this->effect->setColorFin(ofxVec4f(rFinSpinBox->value(), gFinSpinBox->value(), bFinSpinBox->value(), 255));
+        this->effect->setColorIni(ofxVec4f(rIniSpinBox->value()/255.0f, gIniSpinBox->value()/255.0f, bIniSpinBox->value()/255.0f, 0));
+        this->effect->setColorFin(ofxVec4f(rFinSpinBox->value()/255.0f, gFinSpinBox->value()/255.0f, bFinSpinBox->value()/255.0f, 1));
         this->effect->setDelay(delaySpinBox->value());
     }
 }
