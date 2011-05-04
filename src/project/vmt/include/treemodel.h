@@ -60,6 +60,7 @@ private:
     void setupSceneModelData();
     void setupLayersModelData(TreeItem *parent);
     void setupObjectsModelData(TreeItem *parent);
+    void setupLightsModelData(TreeItem *parent);
 
     TreeItem *rootItem;
     VmtModel *vmtModel;
