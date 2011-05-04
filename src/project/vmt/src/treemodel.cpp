@@ -13,6 +13,7 @@ TreeModel::TreeModel(VmtModel *vmtModel, QObject *parent)
     setupSceneModelData();
     setupLayersModelData(rootItem->child(0));
     setupObjectsModelData(rootItem->child(1));
+    setupLightsModelData(rootItem->child(2));
 }
 //! [0]
 
@@ -116,7 +117,9 @@ string TreeModel::ObtType(const QModelIndex &index)
                 {
                 case 0:TypeNodo = "CAMERAS";		 break;
                 case 1:TypeNodo = "OBJECTS";		 break;
-                case 2:TypeNodo = "BACKGRAUND";		 break;
+                case 2:TypeNodo = "LIGHTS";		     break;
+                case 3:TypeNodo = "BACKGRAUND";		 break;
+
 
                 }
     }
@@ -129,6 +132,7 @@ string TreeModel::ObtType(const QModelIndex &index)
                 case 1:TypeNodo = "LAYER";		 break;
                 case 2:TypeNodo = "QUAD";		 break;
                 case 3:TypeNodo = "OBJECT";		 break;
+                case 4:TypeNodo = "LIGHT";		 break;
 
                 }
         }
@@ -158,6 +162,15 @@ string TreeModel::ObtType(const QModelIndex &index)
         CameraItemData *cameraItem = new CameraItemData(newCamera);
 
         success = currentItem->insertChildren(position, rows, cameraItem,"NewCamera");
+
+    }
+    if (TypeNodo == "LIGHTS" ){
+        // add  light
+        this->vmtModel->addLight("NewLight");
+        ofxLight *newLight = this->vmtModel->getLight("NewLight");
+        LightItemData *lightItem = new LightItemData(newLight);
+
+        success = currentItem->insertChildren(position, rows, lightItem,"NewLight");
 
     }
     if (TypeNodo == "OBJECTS" || TypeNodo == "OBJECT" ){
@@ -370,7 +383,8 @@ void TreeModel::setupSceneModelData()
     rootItem = new TreeItem(NULL, NULL, "Scene");
     rootItem->insertChildren(0, 1, NULL, "CAMERAS");
     rootItem->insertChildren(1, 1, NULL, "OBJECTS");
-    rootItem->insertChildren(2, 1, NULL, "Background");
+    rootItem->insertChildren(2, 1, NULL, "LIGHTS");
+    rootItem->insertChildren(3, 1, NULL, "Background");
 
     //int positionScene = 0;
     //PropertyItemData *propItem = new PropertyItemData(currentQuad);
@@ -393,6 +407,23 @@ void TreeModel::setupObjectsModelData(TreeItem *parent)
         positionObject++;
     }
 }
+
+
+void TreeModel::setupLightsModelData(TreeItem *parent)
+{
+    int positionLight = 0;
+    map<string, ofxLight*> lightsMap = this->vmtModel->getScene()->getLights();
+    map<string, ofxLight*>::iterator lightsIt;
+    for(lightsIt = lightsMap.begin(); lightsIt != lightsMap.end(); lightsIt++) {
+        ofxLight* light = lightsIt->second;
+        LightItemData *lightItem = new LightItemData(light);
+
+        parent->insertChildren(positionLight, 1, lightItem, "");
+        TreeItem *childItemLight = parent->child(positionLight);
+        positionLight++;
+    }
+}
+
 
 VmtModel * TreeModel::getVmtModel(){
 return this->vmtModel;
