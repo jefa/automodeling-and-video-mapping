@@ -4,15 +4,6 @@
 #include "uiutils.h"
 #include <map>
 
-void setComboIndexForText(QComboBox *combo, string txt){
-    for (int i=0; i < combo->count(); i++){
-        if (combo->itemText(i).toStdString().compare(txt) == 0){
-            combo->setCurrentIndex(i);
-            break;
-        }
-    }
-}
-
 PositionEffectPage::PositionEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *parent)
     : QWidget(parent)
 {
@@ -102,11 +93,8 @@ PositionEffectPage::PositionEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *
 
 void PositionEffectPage::loadEffect(){
     if (this->effect != NULL){
-
         effectIdTxt->setText(QString(effect->getId().c_str()));
-
         setComboIndexForText(objectCombo, effect->getObject3D()->getId());
-
         xIniSpinBox->setValue(effect->getPosIni()[0]);
         yIniSpinBox->setValue(effect->getPosIni()[1]);
         zIniSpinBox->setValue(effect->getPosIni()[2]);
@@ -115,20 +103,28 @@ void PositionEffectPage::loadEffect(){
         zFinSpinBox->setValue(effect->getPosFin()[2]);
 
         delaySpinBox->setValue(effect->getDelay());
+    } else {
+        effectIdTxt->setText(QString(""));
+        objectCombo->setCurrentIndex(-1);
+        xIniSpinBox->setValue(0);
+        yIniSpinBox->setValue(0);
+        zIniSpinBox->setValue(0);
+        xFinSpinBox->setValue(0);
+        yFinSpinBox->setValue(0);
+        zFinSpinBox->setValue(0);
+        delaySpinBox->setValue(0);
     }
 }
 
 void PositionEffectPage::saveEffect(){
+    QString objId = objectCombo->currentText();
     if (this->effect == NULL){
-        QString objId = objectCombo->currentText();
-
         this->vmtModel->addPositionEffect(effectIdTxt->text().toStdString(), objId.toStdString(),
                                           ofxVec3f(xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value()),
                                           ofxVec3f(xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value()),
                                           delaySpinBox->value());
     } else {
         this->effect->setId(effectIdTxt->text().toStdString());
-        QString objId = objectCombo->currentText();
         this->effect->setObject3D(this->vmtModel->getObject3D(objId.toStdString()));
         this->effect->setPosIni(ofxVec3f(xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value()));
         this->effect->setPosFin(ofxVec3f(xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value()));
@@ -277,32 +273,36 @@ void FadeEffectPage::setColorFin()
 
 void FadeEffectPage::loadEffect(){
     if (this->effect != NULL){
-
         effectIdTxt->setText(QString(effect->getId().c_str()));
-
         setComboIndexForText(groupsCombo, effect->getQuadGroup()->getName());
-
         rIniSpinBox->setValue(effect->getColorIni()[0]);
         gIniSpinBox->setValue(effect->getColorIni()[1]);
         bIniSpinBox->setValue(effect->getColorIni()[2]);
         rFinSpinBox->setValue(effect->getColorFin()[0]);
         gFinSpinBox->setValue(effect->getColorFin()[1]);
         bFinSpinBox->setValue(effect->getColorFin()[2]);
-
         delaySpinBox->setValue(effect->getDelay());
+    } else {
+        effectIdTxt->setText(QString(""));
+        groupsCombo->setCurrentIndex(-1);
+        rIniSpinBox->setValue(0);
+        gIniSpinBox->setValue(0);
+        bIniSpinBox->setValue(0);
+        rFinSpinBox->setValue(0);
+        gFinSpinBox->setValue(0);
+        bFinSpinBox->setValue(0);
+        delaySpinBox->setValue(0);
     }
 }
 
 void FadeEffectPage::saveEffect(){
+    QString grpId = groupsCombo->currentText();
     if (this->effect == NULL){
-        QString grpId = groupsCombo->currentText();
-
         this->vmtModel->addFadeEffect(effectIdTxt->text().toStdString(), grpId.toStdString(),
                                           ofxVec4f(rIniSpinBox->value(), gIniSpinBox->value(), bIniSpinBox->value(), 255),
                                           ofxVec4f(rFinSpinBox->value(), gFinSpinBox->value(), bFinSpinBox->value(), 255),
                                           delaySpinBox->value());
     } else {
-        QString grpId = groupsCombo->currentText();
         this->effect->setId(effectIdTxt->text().toStdString());
         this->effect->setQuadGroup(this->vmtModel->getGroup(grpId.toStdString()));
         this->effect->setColorIni(ofxVec4f(rIniSpinBox->value(), gIniSpinBox->value(), bIniSpinBox->value(), 255));
@@ -344,17 +344,13 @@ TextureEffectPage::TextureEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *pa
 
     textureGroup->setLayout(textureLayout);
 
-    //Delay panel
-    QGroupBox *delayGroup = new QGroupBox(tr("Delay"));
-    delaySpinBox = new QDoubleSpinBox;
-    delaySpinBox->setPrefix(tr("Start after "));
-    delaySpinBox->setSuffix(tr(" milliseconds"));
-    delaySpinBox->setSpecialValueText(tr("Start immediatelly"));
-    delaySpinBox->setSingleStep(.5);
+    //Faces panel
+    QGroupBox *facesGroup = new QGroupBox(tr("Faces"));
+    facesEdit = new QLineEdit;
 
-    QVBoxLayout *delayLayout = new QVBoxLayout;
-    delayLayout->addWidget(delaySpinBox);
-    delayGroup->setLayout(delayLayout);
+    QVBoxLayout *facesLayout = new QVBoxLayout;
+    facesLayout->addWidget(facesEdit);
+    facesGroup->setLayout(facesLayout);
 
     QHBoxLayout *effectLayout = new QHBoxLayout;
     effectLayout->addWidget(effectIdLabel);
@@ -378,7 +374,7 @@ TextureEffectPage::TextureEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *pa
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addWidget(configGroup);
     mainLayout->addWidget(textureGroup);
-    mainLayout->addWidget(delayGroup);
+    mainLayout->addWidget(facesGroup);
     mainLayout->addStretch(1);
     setLayout(mainLayout);
 
@@ -395,46 +391,87 @@ TextureEffectPage::TextureEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *pa
 
 void TextureEffectPage::loadEffect(){
     if (this->effect != NULL){
-/*
+
         effectIdTxt->setText(QString(effect->getId().c_str()));
 
-        setComboIndexForText(objectCombo, effect->getObject3D()->getId());
+        isGroupCheckBox->setChecked(effect->getIsGroup());
+        if (effect->getIsGroup()){
+            setComboIndexForText(groupsCombo, effect->getGroup()->getName());
+        } else {
+            setComboIndexForText(objectCombo, effect->getObject3D()->getId());
+            facesEdit->setText(QString(this->effect->getFacesID().c_str()));
+        }
+        keyEdit->setText(QString(effect->getTextureKey().c_str()));
 
-        xIniSpinBox->setValue(effect->getPosIni()[0]);
-        yIniSpinBox->setValue(effect->getPosIni()[1]);
-        zIniSpinBox->setValue(effect->getPosIni()[2]);
-        xFinSpinBox->setValue(effect->getPosFin()[0]);
-        yFinSpinBox->setValue(effect->getPosFin()[1]);
-        zFinSpinBox->setValue(effect->getPosFin()[2]);
-
-        delaySpinBox->setValue(effect->getDelay());
-*/    }
+        if (effect->getTextureType() == VIDEO_TEXTURE){
+            isVideoCheckBox->setChecked(true);
+        } else { //tType = IMAGE_TEXTURE;
+            isVideoCheckBox->setChecked(false);
+        }
+    } else {
+        effectIdTxt->setText(QString(""));
+        isGroupCheckBox->setChecked(false);
+        groupsCombo->setCurrentIndex(-1);
+        objectCombo->setCurrentIndex(-1);
+        facesEdit->setText(QString(""));
+        keyEdit->setText(QString(""));
+        isVideoCheckBox->setChecked(false);
+    }
 }
 
 void TextureEffectPage::saveEffect(){
+    QString objId = objectCombo->currentText();
+    QString grpId = groupsCombo->currentText();
+
+    bool isGroup = isGroupCheckBox->isChecked();
+    bool isVideoTexture = isVideoCheckBox->isChecked();
+
+    textureType tType;
+    if (isVideoTexture){
+        tType = VIDEO_TEXTURE;
+    } else {
+        tType = IMAGE_TEXTURE;
+    }
+
     if (this->effect == NULL){
-/*        QString objId = objectCombo->currentText();
-        QString grpId = groupsCombo->currentText();
-        bool isGroup = (isGroupCheckBox->checkState() == Checked);
-        bool isVideoTexture = (isVideoCheckBox->checkState() == Checked);
 
         if (isGroup){
             this->vmtModel->addTextureGroupEffect(effectIdTxt->text().toStdString(), grpId.toStdString(),
-                                                  keyEdit->value(), (isVideoTexture ? VIDEO_TEXTURE : IMAGE_TEXTURE),
-                                                  delaySpinBox->value());
+                                                  keyEdit->text().toStdString(),
+                                                  tType);
         } else {
             this->vmtModel->addTextureObjectEffect(effectIdTxt->text().toStdString(), objId.toStdString(),
-                                                  keyEdit->value(), (isVideoTexture ? VIDEO_TEXTURE : IMAGE_TEXTURE),
-                                                  delaySpinBox->value());
+                                                  facesEdit->text().toStdString(), keyEdit->text().toStdString(),
+                                                   tType);
         }
 
     } else {
-        /*QString objId = objectCombo->currentText();
         this->effect->setId(effectIdTxt->text().toStdString());
-        this->effect->setPosIni(ofxVec3f(xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value()));
-        this->effect->setPosFin(ofxVec3f(xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value()));
-        this->effect->setDelay(delaySpinBox->value());*/
+        if (isGroup){
+            this->effect->setGroup(this->vmtModel->getGroup(grpId.toStdString()));
+        } else {
+            this->effect->setObject3D(this->vmtModel->getObject3D(objId.toStdString()));
+            this->effect->setFacesID(facesEdit->text().toStdString());
+        }
+        this->effect->setTextureKey(keyEdit->text().toStdString());
+        this->effect->setTextureType(tType);
     }
+}
+
+void TextureEffectPage::setOpenFileName()
+{
+    QFileDialog::Options options;
+    //if (!native->isChecked())
+    //    options |= QFileDialog::DontUseNativeDialog;
+    QString selectedFilter;
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                tr("QFileDialog::getOpenFileName()"),
+                                keyEdit->text(),
+                                tr("All Files (*);;Text Files (*.txt)"),
+                                &selectedFilter,
+                                options);
+    if (!fileName.isEmpty())
+        keyEdit->setText(fileName);
 }
 
 void loadGroupsCombo(QComboBox *combo, VmtModel *vmtModel){
@@ -455,19 +492,12 @@ void loadObjectsCombo(QComboBox *combo, VmtModel *vmtModel){
     }
 }
 
-void TextureEffectPage::setOpenFileName()
-{
-    QFileDialog::Options options;
-    //if (!native->isChecked())
-    //    options |= QFileDialog::DontUseNativeDialog;
-    QString selectedFilter;
-    QString fileName = QFileDialog::getOpenFileName(this,
-                                tr("QFileDialog::getOpenFileName()"),
-                                keyEdit->text(),
-                                tr("All Files (*);;Text Files (*.txt)"),
-                                &selectedFilter,
-                                options);
-    if (!fileName.isEmpty())
-        keyEdit->setText(fileName);
+void setComboIndexForText(QComboBox *combo, string txt){
+    for (int i=0; i < combo->count(); i++){
+        if (combo->itemText(i).toStdString().compare(txt) == 0){
+            combo->setCurrentIndex(i);
+            break;
+        }
+    }
 }
 

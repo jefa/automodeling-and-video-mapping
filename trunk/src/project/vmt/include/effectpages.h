@@ -92,7 +92,7 @@ private:
     QCheckBox *isGroupCheckBox;
     QCheckBox *isVideoCheckBox;
     QLineEdit *keyEdit;
-    QDoubleSpinBox *delaySpinBox;
+    QLineEdit *facesEdit;
 };
 
 #endif
