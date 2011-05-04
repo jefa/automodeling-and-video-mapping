@@ -97,10 +97,10 @@ void EffectsListWindow::clickedList(const QModelIndex &index)
 
 void EffectsListWindow::doubleClickedList(const QModelIndex &index)
 {
-    EffectItem *item = this->getListViewModel()->getItem(index);
-    this->getListViewModel()->getVmtModel()->testEffect(item->getItemData()->getId());
+    //EffectItem *item = this->getListViewModel()->getItem(index);
+    //this->getListViewModel()->getVmtModel()->testEffect(item->getItemData()->getId());
 
-    effectEditDialog->Init(this->getListViewModel()->getVmtModel(), item->getItemData());
+    effectEditDialog->Init(this->getListViewModel()->getVmtModel(), selectedItem->getItemData());
     effectEditDialog->show();
 }
 
@@ -112,7 +112,7 @@ void EffectsListWindow::newEffect(){
 void EffectsListWindow::editEffect(){
     if (this->selectedItem == NULL)
         return;
-    effectEditDialog->Init(getListViewModel()->getVmtModel(), this->selectedItem->getItemData());
+    effectEditDialog->Init(getListViewModel()->getVmtModel(), selectedItem->getItemData());
     effectEditDialog->show();
 }
 
