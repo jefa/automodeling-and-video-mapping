@@ -5,6 +5,7 @@
 #include "Layer2D.h"
 #include "Quad2D.h"
 #include "ofxCamera.h"
+#include "ofxLight.h"
 
 #include <QList>
 #include <QVariant>
@@ -71,6 +72,19 @@ class CameraItemData : public TreeItemData {
 
     private:
     ofxCamera *camera;
+};
+class LightItemData : public TreeItemData {
+
+    public:
+    LightItemData(ofxLight *light);
+    ~LightItemData();
+
+    QVariant getData(int column);
+    void setData(int column, QVariant colValue);
+    bool setSeleted(Scene *scene);
+
+    private:
+    ofxLight *light;
 };
 
 class LayerItemData : public TreeItemData {
