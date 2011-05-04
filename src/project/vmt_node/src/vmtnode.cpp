@@ -216,6 +216,7 @@ void VmtNode::addFadeEffect(string effectId, string groupId, ofxVec4f colorIni, 
 }
 
 void VmtNode::addTextureGroupEffect(string effectId, string groupId, string texturePath, textureType type){
+    printf("VmtNode::addTextureGroupEffect: effId=%s, grpId=%s, path=%s\n", effectId.c_str(), groupId.c_str(), texturePath.c_str());
     if (scene->getGroup(groupId) == NULL){
         printf("VmtNode::addTextureGroupEffect: group does not exists(%s)\n", groupId.c_str());
         return;
@@ -232,6 +233,11 @@ void VmtNode::addTextureObjectEffect(string effectId, string objId, string faces
 }
 
 void VmtNode::testEffect(string id){
+    printf("VmtNode::testEffect: effId=%s\n", id.c_str());
+    if (scene->getEffects()[id] == NULL){
+        printf("VmtNode::testEffect: efect does not exists(%s)\n", id.c_str());
+        return;
+    }
     this->scene->testEffect(id);
 }
 

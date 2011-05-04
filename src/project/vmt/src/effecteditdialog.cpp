@@ -64,7 +64,6 @@ void EffectEditDialog::Init(VmtModel *vmtModel, Effect *ef)
         fadeButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
         textureButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
     } else {
-        printf("\tEFFECT TYPE: %d\n", ef->getType());
         if (ef->getType() == POSITION_EFFECT) {
             positionButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
             fadeButton->setFlags(Qt::ItemIsSelectable);

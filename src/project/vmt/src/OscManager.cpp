@@ -43,6 +43,7 @@ void OscManager::SendMessage(ofxOscMessage oscMessage, string destNode)
 
 void OscManager::SendMessageAll(ofxOscMessage oscMessage)
 {
+    ofLog(OF_LOG_VERBOSE, "OscManager:: Sending message to ALL: type=%s", oscMessage.getAddress().c_str());
     map<string, ofxOscSender*>::iterator iter = senders.begin();
     while (iter != senders.end()) {
         iter->second->sendMessage( oscMessage );

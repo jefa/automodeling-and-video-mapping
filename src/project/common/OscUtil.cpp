@@ -501,6 +501,10 @@ int OscUtil::processMessageAction(ofxOscMessage m, ISceneHandler *sceneHandler) 
         OscUtil::processAddFadeEffectMsg(m, sceneHandler);
     } else if ( m.getAddress() == EFFECT_ADD_POSITION_ADDR) {
         OscUtil::processAddPositionEffectMsg(m, sceneHandler);
+    } else if ( m.getAddress() == EFFECT_ADD_TEXTURE_GROUP_ADDR) {
+        OscUtil::processAddTextureGroupEffectMsg(m, sceneHandler);
+    } else if ( m.getAddress() == EFFECT_ADD_TEXTURE_OBJECT_ADDR) {
+        OscUtil::processAddTextureObjectEffectMsg(m, sceneHandler);
     } else if ( m.getAddress() == EFFECT_TEST_ADDR) {
         OscUtil::processTestEffectMsg(m, sceneHandler);
     } else if ( m.getAddress() == LIGHT_ADD_ADDR) {
