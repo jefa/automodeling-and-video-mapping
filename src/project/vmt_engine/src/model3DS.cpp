@@ -627,3 +627,12 @@ void model3DS::SetTextureParamsForMaterial(string facesID, string key, textureTy
     //vmt_materials[facesID]->SetTextureParams(key, type);
 }
 
+vector<string> model3DS::getMaterialNames() {
+    vector<string> names;
+    std::map<string, Material*>::iterator iter;
+    for(iter = vmt_materials.begin(); iter != vmt_materials.end(); iter++){
+        string iterFirst = (iter->first).substr(0, (iter->first).length() - 1);
+        names.push_back(iterFirst);
+    }
+    return names;
+}

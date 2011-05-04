@@ -134,6 +134,10 @@ string Object3D::getId(){
     return this->id;
 }
 
+vector<string> Object3D::getMaterialNames() {
+    return model->getMaterialNames();
+}
+
 SerializedNode* Object3D::Serialize() {
     SerializedNode *node = new SerializedNode("object3d");
 

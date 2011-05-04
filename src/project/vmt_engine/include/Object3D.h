@@ -44,6 +44,8 @@ class Object3D : public IPropertyManager, ISerializable
         ofxVec3f scale;
         ofxVec3f pos;
 
+        vector<string> getMaterialNames();
+
         int numRotations;
         model3DS * model;
         string id;

@@ -211,6 +211,7 @@ public:
 	const material3DS& getMaterial(const std::string &matName){return m_materials[matName];}
 
 	Material* getVMTMaterial(const std::string &matName){return vmt_materials[matName];}
+	vector<string> getMaterialNames();
 
 	void SetTextureParamsForMaterial(string facesID, string key, textureType type);
 
