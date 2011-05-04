@@ -49,7 +49,8 @@ class VmtNode : public ofBaseApp, public ISceneHandler {
 
         void addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay);
         void addFadeEffect(string effectId, string groupId, ofxVec4f colorIni, ofxVec4f colorFin, float delay);
-        void addTextureEffect(string effectId);
+        void addTextureGroupEffect(string effectId, string groupId, string texturePath, textureType type);
+        void addTextureObjectEffect(string effectId, string objId, string facesId, string texturePath, textureType type);
 
         void testEffect(string id);
 

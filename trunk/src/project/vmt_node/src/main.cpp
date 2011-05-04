@@ -8,7 +8,7 @@ int main( ){
     ofAppGlutWindow window;
 	ofSetupOpenGL(&window, 640,480, OF_WINDOW);			// <-------- setup the GL context
 
-    window.setWindowTitle("VMT NODE");
+    window.setWindowTitle("Vmt Node");
 
 	// this kicks off the running of my app
 	// can be OF_WINDOW or OF_FULLSCREEN
