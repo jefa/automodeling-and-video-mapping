@@ -29,7 +29,8 @@ EffectsListWindow::EffectsListWindow(VmtModel *vmtModel)
 
 EffectsListWindow::~EffectsListWindow()
 {
-
+    delete(selectedItem);
+    delete(effectEditDialog);
 }
 
 void EffectsListWindow::setupUi(QWidget *listWindow)
@@ -89,17 +90,11 @@ void EffectsListWindow::retranslateUi(QWidget *listWindow)
 void EffectsListWindow::clickedList(const QModelIndex &index)
 {
     EffectsListModel *model = (EffectsListModel*) view->model();
-    EffectItem *item = model->getItem(index);
-    //printf("CLICKED LIST:: %d, %d. EVENTTYPE=%d, EVENTID=%s\n", index.column(), index.row(),
-    //       item->getItemData()->getType(), item->getItemData()->getId().c_str());
-    this->selectedItem = item;
+    this->selectedItem = model->getItem(index);
 }
 
 void EffectsListWindow::doubleClickedList(const QModelIndex &index)
 {
-    //EffectItem *item = this->getListViewModel()->getItem(index);
-    //this->getListViewModel()->getVmtModel()->testEffect(item->getItemData()->getId());
-
     effectEditDialog->Init(this->getListViewModel()->getVmtModel(), selectedItem->getItemData());
     effectEditDialog->show();
 }
@@ -124,7 +119,6 @@ void EffectsListWindow::removeEffect(){
 void EffectsListWindow::testEffect(){
     if (this->selectedItem == NULL)
         return;
-
     getListViewModel()->getVmtModel()->testEffect(this->selectedItem->getItemData()->getId());
 }
 

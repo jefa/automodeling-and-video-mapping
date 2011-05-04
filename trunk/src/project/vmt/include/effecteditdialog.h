@@ -29,10 +29,14 @@ Q_SIGNALS:
     void dataChanged();
 
 private:
-    void createIcons(Effect *ef);
+    void createIcons();
 
     QListWidget *contentsWidget;
     QStackedWidget *pagesWidget;
+
+    QListWidgetItem *positionButton;
+    QListWidgetItem *fadeButton;
+    QListWidgetItem *textureButton;
 
     PositionEffectPage* positionPage;
     FadeEffectPage* fadePage;
