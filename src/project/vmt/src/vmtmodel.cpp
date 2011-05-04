@@ -349,8 +349,11 @@ void VmtModel::saveShow(string filepath) {
     showXML.saveFile(filepath);
 }
 
+void VmtModel::loadShow(string filepath) {
+}
+
 void getNodeFromXML(ofxXmlSettings &xml, SerializedNode *node) {
-    //xml.get
+
 }
 
 map<string, ofxCamera*> VmtModel::getCameras() {
