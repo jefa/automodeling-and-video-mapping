@@ -67,6 +67,8 @@ void Vmt::setup(){
 
     vmtModel->addFadeEffect("ef4", "group1", ofxVec4f(0,0,0,0), ofxVec4f(1,1,1,1), 0.5f);
 
+    //vmtModel->addTextureGroupEffect("ef5", "group1", "data/videos/cubo_azul.mov", VIDEO_TEXTURE);
+
     /*Lighting*/
 
     //each light will emit white reflexions
@@ -100,11 +102,11 @@ void Vmt::setup(){
 
     /* End Lighting */
 
-    vmtModel->scheduleEvent(5.0f, "ef1");
-    vmtModel->scheduleEvent(7.0f, "ef2");
-    vmtModel->scheduleEvent(9.0f, "ef3");
-    vmtModel->scheduleEvent(11.0f, "ef1");
+    vmtModel->scheduleEvent(1.0f, "ef1");
+    vmtModel->scheduleEvent(2.0f, "ef2");
+    vmtModel->scheduleEvent(3.0f, "ef3");
 
+    /*vmtModel->scheduleEvent(11.0f, "ef1");
     vmtModel->scheduleEvent(1.0f, "ef4");
     vmtModel->scheduleEvent(2.0f, "ef4");
     vmtModel->scheduleEvent(3.0f, "ef4");
@@ -113,9 +115,9 @@ void Vmt::setup(){
     vmtModel->scheduleEvent(6.0f, "ef4");
     vmtModel->scheduleEvent(7.0f, "ef4");
     vmtModel->scheduleEvent(8.0f, "ef4");
-    vmtModel->scheduleEvent(9.0f, "ef4");
+    vmtModel->scheduleEvent(9.0f, "ef4");*/
 
-    vmtModel->startTimeManager();
+    //vmtModel->startTimeManager(LOOP);
 
     treeWindow = new TreeWindow(this->vmtModel);
     treeWindow->show();
@@ -159,6 +161,9 @@ void Vmt::keyPressed(int key){
 
     if(key == 'a')
         vmtModel->testEffect("ef4");
+
+    if(key == 's')
+        vmtModel->testEffect("ef5");
 
 }
 

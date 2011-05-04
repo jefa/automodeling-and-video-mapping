@@ -330,10 +330,6 @@ void addXMLNode(ofxXmlSettings &xml, SerializedNode* node) {
     xml.popTag();
 }
 
-void getNodeFromXML(ofxXmlSettings &xml, SerializedNode *node) {
-    //xml.get
-}
-
 void VmtModel::saveShow(string filepath) {
     showXML.clear();
 
@@ -353,6 +349,10 @@ void VmtModel::saveShow(string filepath) {
     showXML.saveFile(filepath);
 }
 
+void getNodeFromXML(ofxXmlSettings &xml, SerializedNode *node) {
+    //xml.get
+}
+
 map<string, ofxCamera*> VmtModel::getCameras() {
     return this->scene->getCameras();
 }
@@ -369,6 +369,6 @@ void VmtModel::scheduleEvent(float time, string effectId) {
     timeManager->ScheduleEvent(time, effectId);
 }
 
-void VmtModel::startTimeManager() {
-    timeManager->Start();
+void VmtModel::startTimeManager(TIMER_MODE mode) {
+    timeManager->Start(mode);
 }

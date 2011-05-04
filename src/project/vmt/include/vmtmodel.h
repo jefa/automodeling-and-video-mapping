@@ -49,7 +49,7 @@ class VmtModel : public ISceneHandler
         void testEffect(string id);
 
         void scheduleEvent(float time, string effectId);
-        void startTimeManager();
+        void startTimeManager(TIMER_MODE mode);
 
         void addLight(string lightId);
         ofxLight* getLight(string lightId);

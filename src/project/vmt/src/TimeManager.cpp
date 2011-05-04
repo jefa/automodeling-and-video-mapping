@@ -8,7 +8,8 @@ TimeManager::TimeManager() {
 TimeManager::~TimeManager() {
 }
 
-void TimeManager::Start() {
+void TimeManager::Start(TIMER_MODE mode) {
+    playmode = mode;
     totalAnimTime = 0;
 
     if(events.size() > 0) {
@@ -45,6 +46,13 @@ string TimeManager::Update() {
         ++it;
         if(it == events.end()) {
             moreEvents = false;
+            if(playmode == LOOP) {
+                deltaStartTime = ofGetElapsedTimef();
+                it = events.begin();
+                nextTimeEvent = it->first;
+                if(events.size() > 0)
+                    moreEvents = true;
+            }
         }
         else {
             nextTimeEvent = it->first;
