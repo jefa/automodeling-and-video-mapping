@@ -219,6 +219,11 @@ Layer2D* VmtModel::getLayer2D(string layId){
     return scene->getActiveCamera()->getLayer2D(layId);
 }
 
+ofxLight* VmtModel::getLight(string lightId){
+    return scene->getLight(lightId);
+}
+
+
 void VmtModel::addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay){
     if (scene->getObject3D(objId) == NULL){
         printf("VmtModel::addPositionEffect: object does not exists(%s)\n", objId.c_str());

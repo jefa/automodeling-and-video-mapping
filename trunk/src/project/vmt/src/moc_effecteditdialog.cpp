@@ -1,6 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'effecteditdialog.h'
 **
+** Created: Wed 4. May 00:57:53 2011
 ** Created: Tue May 3 15:38:25 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **

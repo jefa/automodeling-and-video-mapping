@@ -9,6 +9,8 @@
 #include "layereditdialog.h"
 #include "cameraeditdialog.h"
 #include "quadeditdialog.h"
+#include "backgraundeditdialog.h"
+#include "lighteditdialog.h"
 
 using namespace gui;
 
@@ -148,7 +150,8 @@ string TreeWindow::ObtType(const QModelIndex &index)
                 {
                 case 0:TypeNodo = "CAMERAS";		 break;
                 case 1:TypeNodo = "OBJECTS";		 break;
-                case 2:TypeNodo = "BACKGRAUND";		 break;
+                case 2:TypeNodo = "LIGHTS";		     break;
+                case 3:TypeNodo = "BACKGRAUND";		 break;
 
                 }
     }
@@ -161,6 +164,7 @@ string TreeWindow::ObtType(const QModelIndex &index)
                 case 1:TypeNodo = "LAYER";		 break;
                 case 2:TypeNodo = "QUAD";		 break;
                 case 3:TypeNodo = "OBJECT";		 break;
+                case 4:TypeNodo = "LIGHT";		 break;
 
                 }
         }
@@ -206,6 +210,18 @@ string TypeNodo;
             editObjectAction->setEnabled(true);
             insertRowAction->setEnabled(false);
             removeRowAction->setEnabled(false);
+        }
+        if (TypeNodo == "LIGHTS" )
+        {
+            editObjectAction->setEnabled(false);
+            insertRowAction->setEnabled(true);
+            removeRowAction->setEnabled(false);
+        }
+        if (TypeNodo == "LIGHT")
+        {
+            editObjectAction->setEnabled(true);
+            insertRowAction->setEnabled(true);
+            removeRowAction->setEnabled(true);
         }
         if (TypeNodo == "LAYER" )
         {
@@ -372,6 +388,10 @@ void TreeWindow::editObject()
 
     string TypeNodo;
     TypeNodo =ObtType(index);
+    if (TypeNodo == "LIGHT"){
+       LightEditorDialog *d = new LightEditorDialog(model->getVmtModel()->getLight(itemData->getData(0).toString().toStdString()));
+        d->show();
+    }
     if (TypeNodo == "CAMERA"){
         //cout<< " id camera : "<<itemData->getData(0).toString().toStdString();
         CameraEditorDialog *d = new CameraEditorDialog(model->getVmtModel()->getCameras()[itemData->getData(0).toString().toStdString()]);
@@ -391,6 +411,11 @@ void TreeWindow::editObject()
     if (TypeNodo == "QUAD"){
         //cout<< " id camera : "<<itemData->getData(0).toString().toStdString();
         QuadEditorDialog *d = new QuadEditorDialog((model->getVmtModel()->getLayer2D(parentitemData->getData(0).toString().toStdString()))->getQuad2D(itemData->getData(0).toString().toStdString()));
+        d->show();
+    }
+    if (TypeNodo == "BACKGRAUND" )
+    {
+        BackgraundEditorDialog *d = new BackgraundEditorDialog(model->getVmtModel());
         d->show();
     }
 

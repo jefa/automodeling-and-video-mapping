@@ -88,8 +88,10 @@ bool TreeItem::insertChildren(int position, int count, /*int columns*/TreeItemDa
 
         if (item  == NULL)
             qDebug("=== item  NULL\n");
-
-        childItems.insert(position, item);
+        else {
+            //if (item->getItemData() != NULL)  cout<< "datos item data -  itemid: " <<item->getItemData()->getData(0) <<"   " ;
+            childItems.insert(position, item);
+        }
     }
 
     return true;
@@ -189,8 +191,6 @@ QVariant CameraItemData::getData(int column){
     //qDebug("CameraItemData::getData:: col=%d\n", column);
     if (column == 0)
         return QVariant(QString(this->camera->getId().c_str()));
-    //if (column == 1)
-    //    return QVariant(this->layer->isEnabled());  // poner llamado a la lista de layers
     return QVariant(QString("no data"));
 }
 
@@ -207,6 +207,34 @@ bool CameraItemData::setSeleted(Scene *scene){
     ofxCamera *tmpCamera = scene->activateCamera(this->camera->getId());
     return (tmpCamera != NULL);
 }
+
+//
+LightItemData::LightItemData(ofxLight *light){
+    this->itemId = 4;
+    this->light = light;
+}
+
+LightItemData::~LightItemData(){
+}
+
+QVariant LightItemData::getData(int column){
+    //qDebug("LightItemData::getData:: col=%d\n", column);
+    if (column == 0)
+        return QVariant(QString(this->light->getId().c_str()));
+    return QVariant(QString("no data"));
+}
+
+void LightItemData::setData(int column, QVariant colValue){
+}
+
+bool LightItemData::setSeleted(Scene *scene){
+    //activate light
+    ofxLight *tmpLight = scene->getLight(this->light->getId());
+    return (tmpLight != NULL);
+}
+
+
+
 
 LayerItemData::LayerItemData(Layer2D *layer2D){
     this->itemId = 1;
