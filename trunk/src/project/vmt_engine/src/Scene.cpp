@@ -36,6 +36,9 @@ ofxCamera* Scene::getActiveCamera() {
 map<string, ofxCamera*> Scene::getCameras() {
     return this->cameras;
 }
+map<string, ofxLight*> Scene::getLights() {
+    return this->lights;
+}
 
 ofxLight* Scene::addLight(string id) {
     ofxLight* light = new ofxLight(id);

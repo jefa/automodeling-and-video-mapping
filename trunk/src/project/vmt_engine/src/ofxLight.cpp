@@ -30,11 +30,20 @@ ofxLight::ofxLight(string id){
 	isSpot = false;
 }
 
+
+string ofxLight::getId(){
+    return this->id;
+}
+void ofxLight::setId(string id){
+    this->id = id;
+}
 //on/off
 void ofxLight::on(){
 	glEnable(lightEnum);
 }
-
+bool ofxLight::ison(){
+    return glIsEnabled(lightEnum);
+}
 void ofxLight::off(){
 	glDisable(lightEnum);
 }
