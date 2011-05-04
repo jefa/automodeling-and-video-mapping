@@ -7,12 +7,17 @@
 #include <string>
 using namespace std;
 
+enum TIMER_MODE {
+	ONE_TIME,
+	LOOP
+};
+
 class TimeManager : public ISerializable
 {
     public:
         TimeManager();
         virtual ~TimeManager();
-        void Start();
+        void Start(TIMER_MODE mode);
         string Update();
         void ScheduleEvent(float time, string effectId);
 
@@ -29,6 +34,7 @@ class TimeManager : public ISerializable
         float timeOffset;
         bool moreEvents;
         bool started;
+        TIMER_MODE playmode;
 };
 
 #endif // TIMEMANAGER_H
