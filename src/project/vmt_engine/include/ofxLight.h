@@ -10,9 +10,11 @@ public:
 
 	ofxLight(string id);
 
+    string getId();
+    void setId(string id);
 	void on();
 	void off();
-
+	bool ison();
 
 	////////////////////////////////types of light
 	//these can be used to make simple lights.

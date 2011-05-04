@@ -26,6 +26,7 @@ class Scene : public ISerializable
         ofxCamera* activateCamera(string id);
         ofxCamera* getActiveCamera();
         map<string, ofxCamera*> getCameras();
+        map<string, ofxLight*> getLights();
 
         ofxLight* addLight(string id);
         ofxLight* getLight(string id);
