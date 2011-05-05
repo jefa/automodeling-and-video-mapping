@@ -16,19 +16,19 @@ OscUtil::~OscUtil()
     //dtor
 }
 
-ofxOscMessage OscUtil::createSetBackgroundMsg(int r, int g, int b){
+ofxOscMessage OscUtil::createSetBackgroundMsg(float r, float g, float b){
     ofxOscMessage oscMessage;
     oscMessage.setAddress(SCENE_BACKGROUND_ADDR);
-    oscMessage.addIntArg(r);
-    oscMessage.addIntArg(g);
-    oscMessage.addIntArg(b);
+    oscMessage.addFloatArg(r);
+    oscMessage.addFloatArg(g);
+    oscMessage.addFloatArg(b);
     return oscMessage;
 }
 
 void OscUtil::processSetBackgroundMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
-    int r = msg.getArgAsInt32(0);
-    int g = msg.getArgAsInt32(1);
-    int b = msg.getArgAsInt32(2);
+    int r = msg.getArgAsFloat(0);
+    int g = msg.getArgAsFloat(1);
+    int b = msg.getArgAsFloat(2);
     sceneHandler->setBackground(r,g,b);
 }
 

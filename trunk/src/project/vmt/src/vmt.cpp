@@ -23,11 +23,11 @@ void Vmt::setup(){
     vmtModel = new VmtModel();
     vmtModel->addNetNode("node1", "localhost", 54321, true, "cam2");
 
-    vmtModel->setBackground(150, 250, 250);
+    vmtModel->setBackground(0.6f, 1.0f, 1.0f);
 
     vmtModel->addCamera("cam1");
 	vmtModel->setCameraPos("cam1", 0,0,0);
-	vmtModel->setCameraEye("cam1", 1, 0, 0);
+	vmtModel->setCameraEye("cam1", 1,0,0);
 
     vmtModel->addCamera("cam2");
 	vmtModel->setCameraPos("cam2", 0, 0, -30);
@@ -127,6 +127,8 @@ void Vmt::setup(){
 
     //vmtModel->saveShow("show1.xml");
 
+    //vmtModel->loadShow("show1.xml");
+
 }
 
 //--------------------------------------------------------------
@@ -161,9 +163,6 @@ void Vmt::keyPressed(int key){
 
     if(key == 'a')
         vmtModel->testEffect("ef4");
-
-    if(key == 's')
-        vmtModel->testEffect("ef5");
 
 }
 

@@ -34,6 +34,7 @@ class Quad2D : public IPropertyManager, ISerializable
         Material* getMaterial();
 
         virtual SerializedNode* Serialize();
+
     protected:
     private:
         float quadPoints[8];

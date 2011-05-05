@@ -275,7 +275,7 @@ SerializedNode* ofxCamera::Serialize() {
     SerializedNode* node = new SerializedNode("camera");
 
     node->addAttribute("id", this->id);
-    node->addAttribute("type", this->projector);
+    node->addAttribute("projector", this->projector);
 
     SerializedNode* viewNode = new SerializedNode("view");
     viewNode->addAttribute("pos", posCoord);

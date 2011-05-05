@@ -20,7 +20,7 @@ class Scene : public ISerializable
 
         void draw();
         void update();
-        void setBackground(int r, int g, int b);
+        void setBackground(float r, float g, float b);
         ofxCamera* addCamera(string id);
         ofxCamera* getCamera(string id);
         ofxCamera* activateCamera(string id);
@@ -56,6 +56,7 @@ class Scene : public ISerializable
         map<string, Object3D*> objects3D;
         map<string, QuadGroup*> quadGroups;
         map<string, Effect*> effects;
+        ofxVec3f bgColor;
 };
 
 #endif // SCENE_H
