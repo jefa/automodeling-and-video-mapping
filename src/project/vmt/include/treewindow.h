@@ -23,7 +23,7 @@ class TreeWindow : public QWidget
 public:
     TreeWindow(VmtModel *vmtModel);
     ~TreeWindow();
-    QString inputText();
+    QString inputText(string defaultValue);
 
 public slots:
     void updateActions(const QModelIndex &index = QModelIndex());
@@ -38,6 +38,7 @@ private slots:
     bool removeColumn(const QModelIndex &parent = QModelIndex());
     void removeRow();
     void editObject();
+    void saveShow();
     void quit();
 
 private:
@@ -45,6 +46,7 @@ private:
     void retranslateUi(QWidget *);
 
 public:
+    QPushButton *saveShowAction;
     QPushButton *exitAction;
     QPushButton *insertRowAction;
     QPushButton *removeRowAction;

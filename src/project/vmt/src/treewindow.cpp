@@ -1,5 +1,5 @@
 #include <QtGui>
-#include <QCoreApplication>
+#include <QString>
 
 #include "treewindow.h"
 #include "treemodel.h"
@@ -39,6 +39,7 @@ TreeWindow::TreeWindow(VmtModel *vmtModel)
     connect(removeColumnAction, SIGNAL(clicked()), this, SLOT(removeColumn()));
     connect(insertChildAction, SIGNAL(clicked()), this, SLOT(insertChild()));
     connect(editObjectAction, SIGNAL(clicked()), this, SLOT(editObject()));
+    connect(saveShowAction, SIGNAL(clicked()), this, SLOT(saveShow()));
 
     connect(view, SIGNAL(clicked(QModelIndex)), this, SLOT(clickedTree(QModelIndex)));
 
@@ -268,6 +269,9 @@ void TreeWindow::setupUi(QWidget *treeWindow)
     editObjectAction = new QPushButton();
     editObjectAction->setObjectName(QString::fromUtf8("editObjectAction"));
     editObjectAction->setEnabled(false);
+    saveShowAction = new QPushButton();
+    saveShowAction->setObjectName(QString::fromUtf8("saveShowAction"));
+    saveShowAction->setEnabled(true);
     treeWindow->setObjectName(QString::fromUtf8("centralwidget"));
     vboxLayout = new QVBoxLayout(treeWindow);
     vboxLayout->setSpacing(0);
@@ -289,7 +293,7 @@ void TreeWindow::setupUi(QWidget *treeWindow)
     layout->setColumnMinimumWidth(1, 200);
     layout->addWidget(insertRowAction, 0, 1);
     layout->addWidget(removeRowAction, 1, 1);
-    //layout->addWidget(insertColumnAction, 1, 0);
+    layout->addWidget(saveShowAction, 1, 0);
     //layout->addWidget(insertChildAction, 0, 1);
     layout->addWidget(editObjectAction, 0, 0);
 
@@ -343,23 +347,23 @@ void TreeWindow::retranslateUi(QWidget *treeWindow)
 
     editObjectAction->setText(QApplication::translate("treeWindow", "Edit", 0, QApplication::UnicodeUTF8));
     editObjectAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+O", 0, QApplication::UnicodeUTF8));
+    saveShowAction->setText(QApplication::translate("treeWindow", "Save", 0, QApplication::UnicodeUTF8));
+    saveShowAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+S", 0, QApplication::UnicodeUTF8));
 
     //fileMenu->setTitle(QApplication::translate("treeWindow", "&File", 0, QApplication::UnicodeUTF8));
     //actionsMenu->setTitle(QApplication::translate("treeWindow", "&Actions", 0, QApplication::UnicodeUTF8));
 } // retranslateUi
 
-QString TreeWindow::inputText()
+QString TreeWindow::inputText(string defaultValue)
 {
-    qDebug("---- en input text...");
     bool ok;
     QString text = QInputDialog::getText(this, tr("QInputDialog::getText()"),
                                          tr("Name:"), QLineEdit::Normal,
-                                         QDir::home().dirName(), &ok);
-    qDebug("---- en input text SALIDA=%s\n", text.toStdString().c_str());
+                                         QString(defaultValue.c_str()), &ok);
     if (ok && !text.isEmpty())
         return text;
 
-    return "no text";
+    throw exception();
 }
 
 void TreeWindow::clickedTree(const QModelIndex &index)
@@ -425,6 +429,13 @@ void TreeWindow::quit()
 {
 
 
+}
+
+void TreeWindow::saveShow()
+{
+    QString fileName = inputText("show2.xml");
+    TreeModel *model = (TreeModel*) view->model();
+    model->getVmtModel()->saveShow(fileName.toStdString());
 }
 
 void registerColorItemEditorFactory(){
