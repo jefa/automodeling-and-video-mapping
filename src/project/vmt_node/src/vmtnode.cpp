@@ -101,7 +101,7 @@ void VmtNode::windowResized(int w, int h){
 }
 
 // ISceneHandler interface implementation
-void VmtNode::setBackground(int r, int g, int b){
+void VmtNode::setBackground(float r, float g, float b){
     scene->setBackground(r,g,b);
 }
 

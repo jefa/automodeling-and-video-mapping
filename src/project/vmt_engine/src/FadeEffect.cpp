@@ -76,7 +76,6 @@ const char* FadeEffect::toString(){
     return txt.c_str();
 }
 
-
 SerializedNode* FadeEffect::Serialize() {
     SerializedNode *node = new SerializedNode("effect");
     node->addAttribute("id", this->id);

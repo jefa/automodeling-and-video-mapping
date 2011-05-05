@@ -20,7 +20,7 @@ class VmtModel : public ISceneHandler
 
         void addNetNode(string nodeId, string address, int port, bool isActive, string camId);
 
-        void setBackground(int, int, int);
+        void setBackground(float, float, float);
 
         void addCamera(string id);
         void setCameraPos(string camId, float x, float y, float z);

@@ -145,12 +145,14 @@ void Scene::draw() {
     glEnable(GL_DEPTH_TEST);
 }
 
-void Scene::setBackground(int r, int g, int b) {
-    ofBackground(r,g,b);
+void Scene::setBackground(float r, float g, float b) {
+    ofBackground(r * 255, g * 255, b * 255);
+    bgColor = ofxVec3f(r, g, b);
 }
 
 SerializedNode* Scene::Serialize() {
     SerializedNode *node = new SerializedNode("scene");
+    node->addAttribute("backgroundcolor", bgColor);
 
     SerializedNode *camerasNode = new SerializedNode("cameras");
     for(camerasIt = cameras.begin(); camerasIt != cameras.end(); camerasIt++) {

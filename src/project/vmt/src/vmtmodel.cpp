@@ -63,7 +63,7 @@ string VmtModel::getNodeForCamera(string camId){
     return "";
 }
 
-void VmtModel::setBackground(int r, int g, int b){
+void VmtModel::setBackground(float r, float g, float b){
     oscManager->SendMessageAll(OscUtil::createSetBackgroundMsg(r, g, b));
     scene->setBackground(r,g,b);
 }
@@ -349,7 +349,114 @@ void VmtModel::saveShow(string filepath) {
     showXML.saveFile(filepath);
 }
 
+ofxVec2f parseVector2f(string str) {
+    std::stringstream sstr(str);
+    float x, y;
+    sstr >> x >> y;
+    return ofxVec2f(x,y);
+}
+
+ofxVec3f parseVector3f(string str) {
+    std::stringstream sstr(str);
+    float x,y,z;
+    sstr >> x >> y >> z;
+    return ofxVec3f(x,y,z);
+}
+
+bool parseBool(string str) {
+    return str.compare("true") == 0;
+}
+
 void VmtModel::loadShow(string filepath) {
+    showXML.loadFile(filepath);
+
+    showXML.pushTag("vmtshow");
+
+        ofxVec3f bgColor = parseVector3f(showXML.getAttribute("scene", "backgroundcolor", "0 0 0", 0));
+        this->setBackground(bgColor.x, bgColor.y, bgColor.y);
+
+    showXML.pushTag("scene");
+
+    showXML.pushTag("cameras");
+        for(int camI = 0; camI < showXML.getNumTags("camera"); camI++) {
+            string camId = showXML.getAttribute("camera", "id", "", camI);
+            this->addCamera(camId);
+            this->activateCamera(camId);
+
+            showXML.pushTag("camera", camI);
+
+                ofxVec3f camPos = parseVector3f(showXML.getAttribute("view", "pos", "0 0 0", 0));
+                this->setCameraPos(camId, camPos.x, camPos.y, camPos.z);
+
+                ofxVec3f camEye = parseVector3f(showXML.getAttribute("view", "eye", "0 0 0", 0));
+                this->setCameraEye(camId, camEye.x, camEye.y, camEye.z);
+
+                showXML.pushTag("layers", 0);
+                for(int layerI = 0; layerI < showXML.getNumTags("layer"); layerI++) {
+                    string layerId = showXML.getAttribute("layer", "id", "", layerI);
+                    this->addLayer(camId, layerId);
+                    showXML.pushTag("layer", layerI);
+                    for(int quadI = 0; quadI < showXML.getNumTags("quad"); quadI++) {
+                        string quadId = showXML.getAttribute("quad", "id", "", quadI);
+                        bool quadEnabled = parseBool(showXML.getAttribute("quad", "enabled", "true", quadI));
+                        ofxVec2f quadP0 = parseVector2f(showXML.getAttribute("quad", "p0", "0 0", quadI));
+                        ofxVec2f quadP1 = parseVector2f(showXML.getAttribute("quad", "p1", "0 1", quadI));
+                        ofxVec2f quadP2 = parseVector2f(showXML.getAttribute("quad", "p2", "1 1", quadI));
+                        ofxVec2f quadP3 = parseVector2f(showXML.getAttribute("quad", "p3", "1 0", quadI));
+                        this->addQuad(camId, layerId, quadId);
+                        this->enableQuad(camId, layerId, quadId, quadEnabled);
+                        this->setQuadPoint(camId, layerId, quadId, 0, quadP0.x, quadP0.y);
+                        this->setQuadPoint(camId, layerId, quadId, 1, quadP1.x, quadP1.y);
+                        this->setQuadPoint(camId, layerId, quadId, 2, quadP2.x, quadP2.y);
+                        this->setQuadPoint(camId, layerId, quadId, 3, quadP3.x, quadP3.y);
+                    }
+                    showXML.popTag();//layer
+                }
+                showXML.popTag();//layers
+            showXML.popTag();//camera
+        }
+    showXML.popTag();//cameras
+
+    showXML.pushTag("lights");
+    for(int lightI = 0; lightI < showXML.getNumTags("light"); lightI++) {
+        string lightId = showXML.getAttribute("light", "id", "", lightI);
+        this->addLight(lightId);
+    }
+    showXML.popTag();//lights
+
+    showXML.pushTag("groups");
+    for(int groupI = 0; groupI < showXML.getNumTags("group"); groupI++) {
+        string groupId = showXML.getAttribute("group", "id", "", groupI);
+        this->addGroup(groupId);
+        showXML.pushTag("group", groupI);
+        for(int quadI = 0; quadI < showXML.getNumTags("quad"); quadI++) {
+            string quadId = showXML.getAttribute("quad", "id", "", quadI);
+            //TODO: Agregar el quad al grupo, para esto preciso la camara y layer del quad
+            //Es mas sencillo tener un mapa global en la escena con los quads y que no se precise cam y layer.
+        }
+        showXML.popTag();//group
+    }
+    showXML.popTag();//groups
+
+    showXML.pushTag("objects3d");
+    for(int object3dI = 0; object3dI < showXML.getNumTags("object3d") ; object3dI++) {
+        string object3dId = showXML.getAttribute("object3d", "id", "", object3dI);
+        string obj3dfilename = showXML.getAttribute("object3d", "filename", "", object3dI);
+        ofxVec3f obj3dPos = parseVector3f(showXML.getAttribute("object3d", "pos", "", object3dI));
+        ofxVec3f obj3dScale = parseVector3f(showXML.getAttribute("object3d", "scale", "", object3dI));
+        this->addObject3D(object3dId, obj3dfilename);
+    }
+    showXML.popTag();//objects3d;
+
+    showXML.pushTag("effects");
+    for(int effectI = 0; effectI < showXML.getNumTags("effect"); effectI++) {
+        string effectId = showXML.getAttribute("effect", "id", "", effectI);
+        //FALTA parsear el tipo de efecto que se está guardando mal y el resto de los params.
+    }
+    showXML.popTag();//effects
+
+    showXML.popTag();//scene
+    showXML.popTag();//vmtshow
 }
 
 void getNodeFromXML(ofxXmlSettings &xml, SerializedNode *node) {
