@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'effectpages.h'
 **
-** Created: Tue May 3 19:20:32 2011
+** Created: Fri May 6 01:48:01 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -85,7 +85,7 @@ static const uint qt_meta_data_TextureEffectPage[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -94,12 +94,18 @@ static const uint qt_meta_data_TextureEffectPage[] = {
 
  // slots: signature, parameters, type, tag, flags
       19,   18,   18,   18, 0x0a,
+      37,   18,   18,   18, 0x0a,
+      68,   18,   18,   18, 0x0a,
+      99,   18,   18,   18, 0x0a,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_TextureEffectPage[] = {
     "TextureEffectPage\0\0setOpenFileName()\0"
+    "checkboxGroupStateChanged(int)\0"
+    "checkboxVideoStateChanged(int)\0"
+    "comboObjectsChanged(int)\0"
 };
 
 const QMetaObject TextureEffectPage::staticMetaObject = {
@@ -132,9 +138,12 @@ int TextureEffectPage::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: setOpenFileName(); break;
+        case 1: checkboxGroupStateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 2: checkboxVideoStateChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 3: comboObjectsChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 1;
+        _id -= 4;
     }
     return _id;
 }

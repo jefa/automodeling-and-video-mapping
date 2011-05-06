@@ -78,6 +78,9 @@ public:
 
 public slots:
     void setOpenFileName();
+    void checkboxGroupStateChanged(int);
+    void checkboxVideoStateChanged(int);
+    void comboObjectsChanged(int);
 
 private:
     void loadEffect();
@@ -92,7 +95,7 @@ private:
     QCheckBox *isGroupCheckBox;
     QCheckBox *isVideoCheckBox;
     QLineEdit *keyEdit;
-    QLineEdit *facesEdit;
+    QComboBox *facesCombo;
 };
 
 #endif

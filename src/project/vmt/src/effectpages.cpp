@@ -94,7 +94,7 @@ PositionEffectPage::PositionEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *
 void PositionEffectPage::loadEffect(){
     if (this->effect != NULL){
         effectIdTxt->setText(QString(effect->getId().c_str()));
-        setComboIndexForText(objectCombo, effect->getObject3D()->getId());
+        UiUtils::setComboIndexForText(objectCombo, effect->getObject3D()->getId());
         xIniSpinBox->setValue(effect->getPosIni()[0]);
         yIniSpinBox->setValue(effect->getPosIni()[1]);
         zIniSpinBox->setValue(effect->getPosIni()[2]);
@@ -274,7 +274,7 @@ void FadeEffectPage::setColorFin()
 void FadeEffectPage::loadEffect(){
     if (this->effect != NULL){
         effectIdTxt->setText(QString(effect->getId().c_str()));
-        setComboIndexForText(groupsCombo, effect->getQuadGroup()->getName());
+        UiUtils::setComboIndexForText(groupsCombo, effect->getQuadGroup()->getName());
         rIniSpinBox->setValue(effect->getColorIni()[0]);
         gIniSpinBox->setValue(effect->getColorIni()[1]);
         bIniSpinBox->setValue(effect->getColorIni()[2]);
@@ -327,7 +327,6 @@ TextureEffectPage::TextureEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *pa
     loadObjectsCombo(objectCombo, vmtModel);
 
     isGroupCheckBox = new QCheckBox(tr("Use Group?"));
-
     isVideoCheckBox = new QCheckBox(tr("Is Video?"));
 
     //Texture panel
@@ -346,10 +345,10 @@ TextureEffectPage::TextureEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *pa
 
     //Faces panel
     QGroupBox *facesGroup = new QGroupBox(tr("Faces"));
-    facesEdit = new QLineEdit;
+    facesCombo = new QComboBox;
 
     QVBoxLayout *facesLayout = new QVBoxLayout;
-    facesLayout->addWidget(facesEdit);
+    facesLayout->addWidget(facesCombo);
     facesGroup->setLayout(facesLayout);
 
     QHBoxLayout *effectLayout = new QHBoxLayout;
@@ -379,6 +378,9 @@ TextureEffectPage::TextureEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *pa
     setLayout(mainLayout);
 
     connect(searchButton, SIGNAL(clicked()), this, SLOT(setOpenFileName()));
+    connect(objectCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(comboObjectsChanged(int)));
+    connect(isGroupCheckBox, SIGNAL(stateChanged(int)), this, SLOT(checkboxGroupStateChanged(int)));
+    connect(isVideoCheckBox, SIGNAL(stateChanged(int)), this, SLOT(checkboxVideoStateChanged(int)));
 
     this->vmtModel = vmtModel;
     if (ef != NULL && ef->getType() == TEXTURE_EFFECT)
@@ -396,10 +398,11 @@ void TextureEffectPage::loadEffect(){
 
         isGroupCheckBox->setChecked(effect->getIsGroup());
         if (effect->getIsGroup()){
-            setComboIndexForText(groupsCombo, effect->getGroup()->getName());
+            UiUtils::setComboIndexForText(groupsCombo, effect->getGroup()->getName());
         } else {
-            setComboIndexForText(objectCombo, effect->getObject3D()->getId());
-            facesEdit->setText(QString(this->effect->getFacesID().c_str()));
+            UiUtils::setComboIndexForText(objectCombo, effect->getObject3D()->getId());
+            //facesEdit->setText(QString(effect->getFacesID().c_str()));
+            UiUtils::setComboIndexForText(facesCombo, effect->getFacesID());
         }
         keyEdit->setText(QString(effect->getTextureKey().c_str()));
 
@@ -411,9 +414,10 @@ void TextureEffectPage::loadEffect(){
     } else {
         effectIdTxt->setText(QString(""));
         isGroupCheckBox->setChecked(false);
+        checkboxGroupStateChanged(Qt::Unchecked);
         groupsCombo->setCurrentIndex(-1);
         objectCombo->setCurrentIndex(-1);
-        facesEdit->setText(QString(""));
+        facesCombo->setCurrentIndex(-1);
         keyEdit->setText(QString(""));
         isVideoCheckBox->setChecked(false);
     }
@@ -440,8 +444,9 @@ void TextureEffectPage::saveEffect(){
                                                   keyEdit->text().toStdString(),
                                                   tType);
         } else {
+            QString facesId = facesCombo->currentText();
             this->vmtModel->addTextureObjectEffect(effectIdTxt->text().toStdString(), objId.toStdString(),
-                                                  facesEdit->text().toStdString(), keyEdit->text().toStdString(),
+                                                  facesId.toStdString(), keyEdit->text().toStdString(),
                                                    tType);
         }
 
@@ -450,8 +455,9 @@ void TextureEffectPage::saveEffect(){
         if (isGroup){
             this->effect->setGroup(this->vmtModel->getGroup(grpId.toStdString()));
         } else {
+            QString facesId = facesCombo->currentText();
             this->effect->setObject3D(this->vmtModel->getObject3D(objId.toStdString()));
-            this->effect->setFacesID(facesEdit->text().toStdString());
+            this->effect->setFacesID(facesId.toStdString());
         }
         this->effect->setTextureKey(keyEdit->text().toStdString());
         this->effect->setTextureType(tType);
@@ -474,6 +480,36 @@ void TextureEffectPage::setOpenFileName()
         keyEdit->setText(fileName);
 }
 
+void TextureEffectPage::checkboxGroupStateChanged(int changeState){
+    if (changeState == Qt::Unchecked) { //Qt::Unchecked	0
+        groupsCombo->setCurrentIndex(-1);
+        objectCombo->setDisabled(false);
+        facesCombo->setDisabled(false);
+        groupsCombo->setDisabled(true);
+    //} else if (changeState == Qt::PartiallyChecked) { //Qt::PartiallyChecked	1
+    } else if (changeState == Qt::Checked) { //Qt::Checked	2
+        objectCombo->setCurrentIndex(-1);
+        objectCombo->setDisabled(true);
+        facesCombo->setDisabled(true);
+        groupsCombo->setDisabled(false);
+    }
+}
+
+void TextureEffectPage::checkboxVideoStateChanged(int changeState){
+}
+
+void TextureEffectPage::comboObjectsChanged(int index){
+    UiUtils::clearCombo(facesCombo);
+    if (index != -1){
+        QString objId = objectCombo->currentText();
+        vector<string> mats = this->vmtModel->getObject3D(objId.toStdString())->getMaterialNames();
+        vector<string>::iterator matsIt;
+        for(matsIt = mats.begin(); matsIt != mats.end(); matsIt++) {
+            facesCombo->addItem((*matsIt).c_str());
+        }
+    }
+}
+
 void loadGroupsCombo(QComboBox *combo, VmtModel *vmtModel){
     map<string, QuadGroup*>::iterator it;
     map<string, QuadGroup*> qMap = vmtModel->getGroups();
@@ -491,13 +527,3 @@ void loadObjectsCombo(QComboBox *combo, VmtModel *vmtModel){
         combo->addItem(obj->getId().c_str());
     }
 }
-
-void setComboIndexForText(QComboBox *combo, string txt){
-    for (int i=0; i < combo->count(); i++){
-        if (combo->itemText(i).toStdString().compare(txt) == 0){
-            combo->setCurrentIndex(i);
-            break;
-        }
-    }
-}
-
