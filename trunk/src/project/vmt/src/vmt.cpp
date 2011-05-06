@@ -125,10 +125,6 @@ void Vmt::setup(){
     effectsWindow = new EffectsListWindow(this->vmtModel);
     effectsWindow->show();
 
-    //vmtModel->saveShow("show1.xml");
-
-    //vmtModel->loadShow("show1.xml");
-
 }
 
 //--------------------------------------------------------------

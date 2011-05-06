@@ -37,14 +37,15 @@ class Object3D : public IPropertyManager, ISerializable
 
         string getPath();
         virtual SerializedNode* Serialize();
+
+        vector<string> getMaterialNames();
+
     protected:
     private:
         vector <float> rotAngle;
         vector <ofPoint> rotAxis;
         ofxVec3f scale;
         ofxVec3f pos;
-
-        vector<string> getMaterialNames();
 
         int numRotations;
         model3DS * model;

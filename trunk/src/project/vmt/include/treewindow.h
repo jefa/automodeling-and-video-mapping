@@ -39,6 +39,7 @@ private slots:
     void removeRow();
     void editObject();
     void saveShow();
+    void loadShow();
     void quit();
 
 private:
@@ -46,6 +47,7 @@ private:
     void retranslateUi(QWidget *);
 
 public:
+    QPushButton *loadShowAction;
     QPushButton *saveShowAction;
     QPushButton *exitAction;
     QPushButton *insertRowAction;

@@ -40,6 +40,7 @@ TreeWindow::TreeWindow(VmtModel *vmtModel)
     connect(insertChildAction, SIGNAL(clicked()), this, SLOT(insertChild()));
     connect(editObjectAction, SIGNAL(clicked()), this, SLOT(editObject()));
     connect(saveShowAction, SIGNAL(clicked()), this, SLOT(saveShow()));
+    connect(loadShowAction, SIGNAL(clicked()), this, SLOT(loadShow()));
 
     connect(view, SIGNAL(clicked(QModelIndex)), this, SLOT(clickedTree(QModelIndex)));
 
@@ -272,6 +273,9 @@ void TreeWindow::setupUi(QWidget *treeWindow)
     saveShowAction = new QPushButton();
     saveShowAction->setObjectName(QString::fromUtf8("saveShowAction"));
     saveShowAction->setEnabled(true);
+    loadShowAction = new QPushButton();
+    loadShowAction->setObjectName(QString::fromUtf8("loadShowAction"));
+    loadShowAction->setEnabled(true);
     treeWindow->setObjectName(QString::fromUtf8("centralwidget"));
     vboxLayout = new QVBoxLayout(treeWindow);
     vboxLayout->setSpacing(0);
@@ -294,6 +298,7 @@ void TreeWindow::setupUi(QWidget *treeWindow)
     layout->addWidget(insertRowAction, 0, 1);
     layout->addWidget(removeRowAction, 1, 1);
     layout->addWidget(saveShowAction, 1, 0);
+    layout->addWidget(loadShowAction, 2, 0);
     //layout->addWidget(insertChildAction, 0, 1);
     layout->addWidget(editObjectAction, 0, 0);
 
@@ -349,6 +354,8 @@ void TreeWindow::retranslateUi(QWidget *treeWindow)
     editObjectAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+O", 0, QApplication::UnicodeUTF8));
     saveShowAction->setText(QApplication::translate("treeWindow", "Save", 0, QApplication::UnicodeUTF8));
     saveShowAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+S", 0, QApplication::UnicodeUTF8));
+    loadShowAction->setText(QApplication::translate("treeWindow", "Load", 0, QApplication::UnicodeUTF8));
+    loadShowAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+L", 0, QApplication::UnicodeUTF8));
 
     //fileMenu->setTitle(QApplication::translate("treeWindow", "&File", 0, QApplication::UnicodeUTF8));
     //actionsMenu->setTitle(QApplication::translate("treeWindow", "&Actions", 0, QApplication::UnicodeUTF8));
@@ -431,6 +438,24 @@ void TreeWindow::quit()
 
 }
 
+void TreeWindow::loadShow()
+{
+    QFileDialog::Options options;
+    //if (!native->isChecked())
+    //    options |= QFileDialog::DontUseNativeDialog;
+    QString selectedFilter;
+    QString fileName = QFileDialog::getOpenFileName(this,
+                                tr("Load show..."),
+                                QString("show1.xml"),
+                                tr("All Files (*);;Text Files (*.txt)"),
+                                &selectedFilter,
+                                options);
+    if (!fileName.isEmpty()) {
+        TreeModel *model = (TreeModel*) view->model();
+        model->getVmtModel()->loadShow(fileName.toStdString());
+    }
+}
+
 void TreeWindow::saveShow()
 {
     QString fileName = inputText("show2.xml");
@@ -448,4 +473,3 @@ void registerColorItemEditorFactory(){
 
     QItemEditorFactory::setDefaultFactory(factory);
 }
-
