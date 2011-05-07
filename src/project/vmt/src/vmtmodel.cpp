@@ -311,6 +311,14 @@ void VmtModel::setLightPoint(string lightId, float r, float g, float b,
     scene->getLight(lightId)->pointLight(r, g, b, x, y, z);
 }
 
+void VmtModel::setControlMode(CAM_CONTROL_MODE mode) {
+    control_mode = mode;
+}
+
+CAM_CONTROL_MODE VmtModel::getControlMode() {
+    return control_mode;
+}
+
 void VmtModel::OrbitActiveCamera(int dx, int dy) {
     ofxCamera *cam = scene->getActiveCamera();
     if(cam == NULL)

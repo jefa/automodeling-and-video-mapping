@@ -7,6 +7,13 @@
 #include "ISceneHandler.h"
 #include "ofxXmlSettings.h"
 
+enum CAM_CONTROL_MODE {
+	ORBIT_MODE,
+	PAN_MODE,
+	ROLL_MODE,
+	DOLLY_MODE
+};
+
 class VmtModel : public ISceneHandler
 {
     public:
@@ -68,6 +75,10 @@ class VmtModel : public ISceneHandler
         void DollyActiveCamera(int dy);
         void PanActiveCamera(int dx, int dy);
 
+        void setControlMode(CAM_CONTROL_MODE mode);
+        CAM_CONTROL_MODE getControlMode();
+
+
         void saveShow(string filepath);
         void loadShow(string filepath);
 
@@ -85,6 +96,7 @@ class VmtModel : public ISceneHandler
         TimeManager* timeManager;
 
         ofxXmlSettings showXML;
+        CAM_CONTROL_MODE control_mode;
 };
 
 #endif // VMTMODEL_H
