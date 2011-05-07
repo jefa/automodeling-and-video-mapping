@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'quadeditdialog.h'
 **
-** Created: Wed 4. May 00:57:53 2011
+** Created: Sat 7. May 18:58:52 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_gui__QuadEditorDialog[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-      12,   14, // methods
+      11,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -42,7 +42,6 @@ static const uint qt_meta_data_gui__QuadEditorDialog[] = {
      193,   22,   22,   22, 0x08,
      216,   22,   22,   22, 0x08,
      239,   22,   22,   22, 0x08,
-     260,   22,   22,   22, 0x08,
 
        0        // eod
 };
@@ -54,7 +53,6 @@ static const char qt_meta_stringdata_gui__QuadEditorDialog[] = {
     "y1ValueChanged(double)\0x2ValueChanged(double)\0"
     "y2ValueChanged(double)\0x3ValueChanged(double)\0"
     "y3ValueChanged(double)\0enabledChanged(bool)\0"
-    "selectedChanged(bool)\0"
 };
 
 const QMetaObject gui::QuadEditorDialog::staticMetaObject = {
@@ -97,10 +95,9 @@ int gui::QuadEditorDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 8: x3ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 9: y3ValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         case 10: enabledChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 11: selectedChanged((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 12;
+        _id -= 11;
     }
     return _id;
 }
