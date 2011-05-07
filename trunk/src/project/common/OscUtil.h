@@ -11,6 +11,7 @@ const string LAYER_ADD_ADDR                 = "/layer/add";
 const string CAMERA_ADD_ADDR                = "/camera/add";
 const string CAMERA_SETPOS_ADDR             = "/camera/setpos";
 const string CAMERA_SETEYE_ADDR             = "/camera/seteye";
+const string CAMERA_SETUP_ADDR             = "/camera/setup";
 const string CAMERA_ACTIVATE_ADDR           = "/camera/activate";
 const string QUAD_ADD_ADDR                  = "/quad/add";
 const string QUAD_SETPOINT_ADDR             = "/quad/setpoint";
@@ -45,6 +46,9 @@ class OscUtil
         static void processSetCameraPosMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
         static ofxOscMessage createSetCameraEyeMsg(string id, ofxVec3f eye);
         static void processSetCameraEyeMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+        static ofxOscMessage createSetCameraUpMsg(string id, ofxVec3f up);
+        static void processSetCameraUpMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+
         static ofxOscMessage createActivateCameraMsg(string id);
         static void processActivateCameraMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 

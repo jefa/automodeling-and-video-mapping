@@ -95,6 +95,17 @@ void VmtModel::setCameraEye(string camId, float x, float y, float z){
     }
 }
 
+void VmtModel::setCameraUp(string camId, float x, float y, float z){
+    oscManager->SendMessage(OscUtil::createSetCameraEyeMsg(camId, ofxVec3f(x, y, z)), getNodeForCamera(camId));
+    ofxCamera *camera = scene->getCamera(camId);
+    if (camera != NULL) {
+        camera->up(x, y, z);
+    }
+    else {
+        ofLog(OF_LOG_ERROR, "VmtModel::setCameraUp camera %s is NULL", camId.c_str());
+    }
+}
+
 void VmtModel::activateCamera(string camId){
     oscManager->SendMessage(OscUtil::createActivateCameraMsg(camId), getNodeForCamera(camId));
     scene->activateCamera(camId);
@@ -358,11 +369,13 @@ void VmtModel::setLightPoint(string lightId, float r, float g, float b,
 }
 
 void VmtModel::setClientResolution(string camId, int resx, int resy) {
+    //Esta operacion no manda mensajes porque es solo del editor.
     ofxCamera *cam = scene->getCamera(camId);
     cam->setClientResolution(resx, resy);
 }
 
 void VmtModel::setControlMode(CAM_CONTROL_MODE mode) {
+    //Esta operacion no manda mensajes porque es solo del editor.
     control_mode = mode;
 }
 
@@ -385,6 +398,10 @@ void VmtModel::OrbitActiveCamera(int dx, int dy) {
     axis2.normalize();
 
     cam->orbitAround(cam->getEye(), axis2, angleY);
+
+    string camId = cam->getId();
+    oscManager->SendMessage(OscUtil::createSetCameraPosMsg(camId, cam->getPosition()), getNodeForCamera(camId));
+    oscManager->SendMessage(OscUtil::createSetCameraEyeMsg(camId, cam->getEye()), getNodeForCamera(camId));
 }
 
 void VmtModel::RollActiveCamera(int dx) {
@@ -398,6 +415,9 @@ void VmtModel::RollActiveCamera(int dx) {
     ofxVec3f up = cam->getUp();
     up.rotate(angleX, dir);
     cam->up(up);
+
+    string camId = cam->getId();
+    oscManager->SendMessage(OscUtil::createSetCameraUpMsg(camId, cam->getUp()), getNodeForCamera(camId));
 }
 
 void VmtModel::DollyActiveCamera(int dy) {
@@ -414,6 +434,9 @@ void VmtModel::DollyActiveCamera(int dy) {
     pos += dir * dy;
 
     cam->position(pos);
+
+    string camId = cam->getId();
+    oscManager->SendMessage(OscUtil::createSetCameraPosMsg(camId, cam->getPosition()), getNodeForCamera(camId));
 }
 
 void VmtModel::PanActiveCamera(int dx, int dy) {
@@ -432,6 +455,10 @@ void VmtModel::PanActiveCamera(int dx, int dy) {
     ofxVec3f move = left * moveX + up * moveY;
 
     cam->moveGlobal(move);
+
+    string camId = cam->getId();
+    oscManager->SendMessage(OscUtil::createSetCameraPosMsg(camId, cam->getPosition()), getNodeForCamera(camId));
+    oscManager->SendMessage(OscUtil::createSetCameraEyeMsg(camId, cam->getEye()), getNodeForCamera(camId));
 }
 
 void addXMLNode(ofxXmlSettings &xml, SerializedNode* node) {

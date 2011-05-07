@@ -32,6 +32,7 @@ class VmtModel : public ISceneHandler
         void addCamera(string id);
         void setCameraPos(string camId, float x, float y, float z);
         void setCameraEye(string camId, float x, float y, float z);
+        void setCameraUp(string camId, float x, float y, float z);
         void activateCamera(string camId);
         ofxCamera* getActiveCamera();
 

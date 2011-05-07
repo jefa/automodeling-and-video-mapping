@@ -122,6 +122,12 @@ void VmtNode::setCameraEye(string camId, float x, float y, float z){
         camera->eye(x, y, z);
 }
 
+void VmtNode::setCameraUp(string camId, float x, float y, float z){
+    ofxCamera *camera = scene->getCamera(camId);
+    if (camera != NULL)
+        camera->up(x, y, z);
+}
+
 void VmtNode::activateCamera(string camId){
     scene->activateCamera(camId);
 }
