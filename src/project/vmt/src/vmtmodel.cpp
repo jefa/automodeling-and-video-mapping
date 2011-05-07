@@ -367,12 +367,9 @@ void VmtModel::PanActiveCamera(int dx, int dy) {
 
     ofxVec3f dir = -(cam->getDir());
     dir.normalize();
-
     ofxVec3f up = cam->getUp();
     up.normalize();
-
     ofxVec3f left = up.crossed(dir);
-
     ofxVec3f move = left * moveX + up * moveY;
 
     cam->moveGlobal(move);
