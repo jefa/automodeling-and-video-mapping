@@ -175,6 +175,52 @@ void VmtModel::setQuadPoint(string camId, string layerId, string quadId,
     }
 }
 
+void VmtModel::setActiveCamDisplayHelpers(bool display) {
+    ofxCamera *cam = scene->getActiveCamera();
+    if(cam == NULL)
+        return;
+
+    cam->setDisplayHelpers(display);
+}
+
+ofxVec2f VmtModel::getActiveCamHelperCoord(bool isSrc, int i) {
+    ofxCamera *cam = scene->getActiveCamera();
+    if(cam == NULL)
+        return ofxVec2f(0,0);
+
+    if(isSrc)
+        return cam->getSrcHelperCoord(i);
+    else
+        return cam->getDstHelperCoord(i);
+}
+
+void VmtModel::setActiveCamHelperCoord(bool isSrc, int i, ofxVec2f coord) {
+    ofxCamera *cam = scene->getActiveCamera();
+    if(cam == NULL)
+        return;
+
+    if(isSrc)
+        cam->setSrcHelperCoord(i, coord);
+    else
+        cam->setDstHelperCoord(i, coord);
+}
+
+void VmtModel::calibrateActiveCam() {
+    ofxCamera *cam = scene->getActiveCamera();
+    if(cam == NULL)
+        return;
+
+    cam->calculateHomography();
+}
+
+void VmtModel::resetActiveCamCalibraton() {
+    ofxCamera *cam = scene->getActiveCamera();
+    if(cam == NULL)
+        return;
+
+    cam->resetHomography();
+}
+
 void VmtModel::addObject3D(string objId, string path){
 
 /*    FILE * pFile;
@@ -309,6 +355,11 @@ void VmtModel::setLightPoint(string lightId, float r, float g, float b,
     }
     oscManager->SendMessageAll(OscUtil::createLightPointMsg(lightId, r, g, b, x, y, z));
     scene->getLight(lightId)->pointLight(r, g, b, x, y, z);
+}
+
+void VmtModel::setClientResolution(string camId, int resx, int resy) {
+    ofxCamera *cam = scene->getCamera(camId);
+    cam->setClientResolution(resx, resy);
 }
 
 void VmtModel::setControlMode(CAM_CONTROL_MODE mode) {

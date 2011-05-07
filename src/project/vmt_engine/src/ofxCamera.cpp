@@ -1,4 +1,5 @@
 #include "ofxCamera.h"
+#include "homography.h"
 
 #include <cmath>
 
@@ -9,6 +10,29 @@ ofxCamera::ofxCamera() {
 	position();
 	eye();
 	up();
+
+	clientX = glutGet(GLUT_WINDOW_WIDTH);
+	clientY = glutGet(GLUT_WINDOW_HEIGHT);
+
+	resetHomography();
+	displayHelpers = false;
+
+    helpersRadius = 5.0f;
+
+    helperSrc[0]=ofxVec2f(20,20);
+    helperSrc[1]=ofxVec2f(40,20);
+    helperSrc[2]=ofxVec2f(40,40);
+    helperSrc[3]=ofxVec2f(20,40);
+
+    helperDst[0]=ofxVec2f(0,0);
+    helperDst[1]=ofxVec2f(60,0);
+    helperDst[2]=ofxVec2f(60,60);
+    helperDst[3]=ofxVec2f(0,60);
+}
+
+void ofxCamera::setClientResolution(int resx, int resy) {
+    clientX = resx;
+    clientY = resy;
 }
 
 void ofxCamera::setId(string id){
@@ -113,9 +137,42 @@ void ofxCamera::place() {
 	// where +y is up instead of down
 }
 
+//Similar a ofSetupScreen pero utilizando la resolucion del cliente.
+void ofxCamera::SetupScreen_ext(){
+	int w, h;
+
+	//w = ofGetWidth();
+	//h = ofGetHeight();
+	w = clientX;
+	h = clientY;
+
+	float halfFov, theTan, screenFov, aspect;
+	screenFov 		= 60.0f;
+
+	float eyeX 		= (float)w / 2.0;
+	float eyeY 		= (float)h / 2.0;
+	halfFov 		= PI * screenFov / 360.0;
+	theTan 			= tanf(halfFov);
+	float dist 		= eyeY / theTan;
+	float nearDist 	= dist / 10.0;	// near / far clip plane
+	float farDist 	= dist * 10.0;
+	aspect 			= (float)w/(float)h;
+
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluPerspective(screenFov, aspect, nearDist, farDist);
+
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	gluLookAt(eyeX, eyeY, dist, eyeX, eyeY, 0.0, 0.0, 1.0, 0.0);
+
+	glScalef(1, -1, 1);           // invert Y axis so increasing Y goes down.
+  	glTranslatef(0, -h, 0);       // shift origin up to upper-left corner.
+}
+
 //Removes the camera, so it returns as if there was no camera
 void ofxCamera::remove() {
-	ofSetupScreen();
+	SetupScreen_ext();
 }
 
 void ofxCamera::moveLocal(float _x, float _y, float _z) {
@@ -199,9 +256,80 @@ map<string, Layer2D*> ofxCamera::getLayers2D() {
     return layers2D;
 }
 
+void ofxCamera::setDisplayHelpers(bool display) {
+    displayHelpers = display;
+}
+
+void ofxCamera::setSrcHelperCoord(int i, ofxVec2f coord) {
+    if(i >= 0 || i <= 3) {
+        helperSrc[i] = coord;
+    }
+    else {
+        ofLog(OF_LOG_ERROR, "ofxCamera::setSrcHelperCoord: index %i outside [0,3] range.", i);
+    }
+}
+
+void ofxCamera::setDstHelperCoord(int i, ofxVec2f coord) {
+    if(i >= 0 || i <= 3) {
+        helperDst[i] = coord;
+    }
+    else {
+        ofLog(OF_LOG_ERROR, "ofxCamera::setDstHelperCoord: index %i outside [0,3] range.", i);
+    }
+}
+
+ofxVec2f ofxCamera::getSrcHelperCoord(int i) {
+    if(i >= 0 || i <= 3) {
+        return helperSrc[i];
+    }
+    else {
+        ofLog(OF_LOG_ERROR, "ofxCamera::getSrcHelperCoord: index %i outside [0,3] range.", i);
+        return ofxVec2f(0,0);
+    }
+}
+
+ofxVec2f ofxCamera::getDstHelperCoord(int i) {
+    if(i >= 0 || i <= 3) {
+        return helperDst[i];
+    }
+    else {
+        ofLog(OF_LOG_ERROR, "ofxCamera::getDstHelperCoord: index %i outside [0,3] range.", i);
+        return ofxVec2f(0,0);
+    }
+}
+
+void ofxCamera::calculateHomography() {
+    findHomography(helperSrc,helperDst,homographyMatrix);
+}
+
+void ofxCamera::resetHomography() {
+    homographyMatrix = {1,0,0,0, 0,1,0,0, 0,0,1,0, 0,0,0,1};
+}
+
 void ofxCamera::drawLayers() {
+    glPushMatrix();
+    glMultMatrixf(homographyMatrix);
+    glPushMatrix();
+
     for(layersIt = layers2D.begin(); layersIt != layers2D.end(); layersIt++) {
         layersIt->second->draw();
+    }
+
+    glPopMatrix();
+    glPopMatrix();
+
+    displayHelpers = true;
+    if(displayHelpers) {
+        for(int i = 0; i < 4; i++) {
+
+            glColor4f(1.0f, 0.3f, 0.3f, 1.0f);
+            ofCircle(helperSrc[i].x, helperSrc[i].y, helpersRadius);
+
+            glColor4f(0.3f, 0.3f, 1.0f, 1.0f);
+            ofCircle(helperDst[i].x, helperDst[i].y, helpersRadius);
+
+            ofLine(helperSrc[i].x, helperSrc[i].y, helperDst[i].x, helperDst[i].y);
+        }
     }
 }
 

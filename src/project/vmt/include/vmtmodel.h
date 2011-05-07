@@ -70,6 +70,8 @@ class VmtModel : public ISceneHandler
         void setLightPoint(string lightId, float r, float g, float b,
                                            float x, float y, float z);
 
+        void setClientResolution(string camId, int resx, int resy);
+
         void OrbitActiveCamera(int dx, int dy);
         void RollActiveCamera(int dx);
         void DollyActiveCamera(int dy);
@@ -78,6 +80,11 @@ class VmtModel : public ISceneHandler
         void setControlMode(CAM_CONTROL_MODE mode);
         CAM_CONTROL_MODE getControlMode();
 
+        void setActiveCamDisplayHelpers(bool display);
+        ofxVec2f getActiveCamHelperCoord(bool isSrc, int i);
+        void setActiveCamHelperCoord(bool isSrc, int i, ofxVec2f coord);
+        void calibrateActiveCam();
+        void resetActiveCamCalibraton();
 
         void saveShow(string filepath);
         void loadShow(string filepath);

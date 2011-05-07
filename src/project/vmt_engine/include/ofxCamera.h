@@ -53,11 +53,24 @@ public:
 
     void drawLayers();
 
+    //resolucion de la ventana en el nodo.
+    void setClientResolution(int resx, int resy);
+
     Layer2D* addLayer2D(string id);
     Layer2D* getLayer2D(string id);
     map<string, Layer2D*> getLayers2D();
 
     SerializedNode* Serialize();
+
+    void calculateHomography();
+    void resetHomography();
+
+    void setDisplayHelpers(bool);
+    void setSrcHelperCoord(int i, ofxVec2f coord);
+    void setDstHelperCoord(int i, ofxVec2f coord);
+    ofxVec2f getSrcHelperCoord(int i);
+    ofxVec2f getDstHelperCoord(int i);
+
 protected:
 	ofxVec3f posCoord;
 	ofxVec3f eyeCoord;
@@ -74,7 +87,18 @@ private:
 	bool projector;
 	string id;
     map<string, Layer2D*> layers2D;
+    int clientX, clientY;
 
+    void SetupScreen_ext();
+
+    GLfloat homographyMatrix[16];
+
+    bool displayHelpers;
+
+    ofxVec2f helperSrc[4];
+    ofxVec2f helperDst[4];
+
+    float helpersRadius;
 
 };
 

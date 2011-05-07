@@ -60,7 +60,6 @@ void Layer2D::draw() {
     for (iter=quads2D_map.begin(); iter != quads2D_map.end(); ++iter) {
         iter->second->draw();
     }
-
 }
 
 SerializedNode* Layer2D::Serialize() {

@@ -50,6 +50,8 @@ void Vmt::setup(){
     vmtModel->setQuadPoint("cam2", "layer1", "quad2", 3, 30, 10);
     vmtModel->enableQuad("cam2", "layer1", "quad2", true);
 
+    vmtModel->setClientResolution("cam2", 1024, 768);
+
     vmtModel->addLayer("cam1", "layer2");
     vmtModel->addQuad("cam1", "layer2", "q3");
     vmtModel->enableQuad("cam1", "layer2", "q3", true);
