@@ -140,16 +140,6 @@ void Vmt::draw(){
 
 //--------------------------------------------------------------
 
-void Vmt::setControlMode(CAM_CONTROL_MODE mode) {
-    control_mode = mode;
-}
-
-CAM_CONTROL_MODE Vmt::getControlMode() {
-    return control_mode;
-}
-
-//--------------------------------------------------------------
-
 void Vmt::keyPressed(int key){
 
     if(key == '1')
@@ -171,16 +161,16 @@ void Vmt::keyPressed(int key){
         vmtModel->testEffect("ef4");
 
     if(key == '5')
-        setControlMode(ORBIT_MODE);
+        vmtModel->setControlMode(ORBIT_MODE);
 
     if(key == '6')
-        setControlMode(DOLLY_MODE);
+        vmtModel->setControlMode(DOLLY_MODE);
 
     if(key == '7')
-        setControlMode(PAN_MODE);
+        vmtModel->setControlMode(PAN_MODE);
 
     if(key == '8')
-        setControlMode(ROLL_MODE);
+        vmtModel->setControlMode(ROLL_MODE);
 
 }
 
@@ -204,17 +194,21 @@ void Vmt::mouseDragged(int x, int y, int button){
     xMouseDown = x;
     yMouseDown = y;
 
-    if(control_mode == ORBIT_MODE)
-        vmtModel->OrbitActiveCamera(dx,dy);
+    switch(vmtModel->getControlMode()) {
+        case ORBIT_MODE:
+            vmtModel->OrbitActiveCamera(dx,dy);
+            break;
+        case ROLL_MODE:
+            vmtModel->RollActiveCamera(dx);
+            break;
+        case DOLLY_MODE:
+            vmtModel->DollyActiveCamera(dy);
+            break;
+        case PAN_MODE:
+            vmtModel->PanActiveCamera(dx, dy);
+            break;
+    }
 
-    if(control_mode == ROLL_MODE)
-        vmtModel->RollActiveCamera(dx);
-
-    if(control_mode == DOLLY_MODE)
-        vmtModel->DollyActiveCamera(dy);
-
-    if(control_mode == PAN_MODE)
-        vmtModel->PanActiveCamera(dx, dy);
 }
 
 //--------------------------------------------------------------
