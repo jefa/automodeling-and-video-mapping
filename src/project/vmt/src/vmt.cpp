@@ -140,6 +140,16 @@ void Vmt::draw(){
 
 //--------------------------------------------------------------
 
+void Vmt::setControlMode(CAM_CONTROL_MODE mode) {
+    control_mode = mode;
+}
+
+CAM_CONTROL_MODE Vmt::getControlMode() {
+    return control_mode;
+}
+
+//--------------------------------------------------------------
+
 void Vmt::keyPressed(int key){
 
     if(key == '1')
@@ -160,6 +170,18 @@ void Vmt::keyPressed(int key){
     if(key == 'a')
         vmtModel->testEffect("ef4");
 
+    if(key == '5')
+        setControlMode(ORBIT_MODE);
+
+    if(key == '6')
+        setControlMode(DOLLY_MODE);
+
+    if(key == '7')
+        setControlMode(PAN_MODE);
+
+    if(key == '8')
+        setControlMode(ROLL_MODE);
+
 }
 
 //--------------------------------------------------------------
@@ -172,31 +194,27 @@ void Vmt::mouseMoved(int x, int y ){
 
 int xMouseDown, yMouseDown;
 
+
+
 //--------------------------------------------------------------
 void Vmt::mouseDragged(int x, int y, int button){
     int dx = x - xMouseDown;
     int dy = y - yMouseDown;
 
-    ofxCamera *cam = vmtModel->getActiveCamera();
-
-    ofxVec3f dir = -(cam->getDir());
-
-    float rotScale = 0.3f;
-
-    dir.rotate(dx * rotScale, ofxVec3f(0,-1,0));
-
-    ofxVec3f axis2 = dir.getCrossed(ofxVec3f(0,1,0));
-    axis2.normalize();
-
-    dir.rotate(dy * rotScale, axis2);
-
-    ofxVec3f eye = cam->getEye();
-
-    vmtModel->setCameraPos(cam->getId(), (eye+dir)[0], (eye+dir)[1], (eye+dir)[2]);
-    //cam->position(eye + dir);
-
     xMouseDown = x;
     yMouseDown = y;
+
+    if(control_mode == ORBIT_MODE)
+        vmtModel->OrbitActiveCamera(dx,dy);
+
+    if(control_mode == ROLL_MODE)
+        vmtModel->RollActiveCamera(dx);
+
+    if(control_mode == DOLLY_MODE)
+        vmtModel->DollyActiveCamera(dy);
+
+    if(control_mode == PAN_MODE)
+        vmtModel->PanActiveCamera(dx, dy);
 }
 
 //--------------------------------------------------------------

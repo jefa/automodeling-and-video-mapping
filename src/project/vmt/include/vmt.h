@@ -11,6 +11,13 @@
 
 using namespace gui;
 
+enum CAM_CONTROL_MODE {
+	ORBIT_MODE,
+	PAN_MODE,
+	ROLL_MODE,
+	DOLLY_MODE
+};
+
 class Vmt : public ofBaseApp {
 
 	public:
@@ -30,11 +37,14 @@ class Vmt : public ofBaseApp {
         float centerX, centerY, centerZ;
         float camX, camY, camZ;
 
+        void setControlMode(CAM_CONTROL_MODE mode);
+        CAM_CONTROL_MODE getControlMode();
+
     private:
         VmtModel *vmtModel;
         TreeWindow *treeWindow;
         EffectsListWindow *effectsWindow;
-
+        CAM_CONTROL_MODE control_mode;
 };
 
 #endif

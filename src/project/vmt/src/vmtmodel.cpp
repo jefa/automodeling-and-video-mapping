@@ -311,6 +311,73 @@ void VmtModel::setLightPoint(string lightId, float r, float g, float b,
     scene->getLight(lightId)->pointLight(r, g, b, x, y, z);
 }
 
+void VmtModel::OrbitActiveCamera(int dx, int dy) {
+    ofxCamera *cam = scene->getActiveCamera();
+    if(cam == NULL)
+        return;
+
+    float angleX = -dx * 0.5f;
+    float angleY = dy * 0.5f;
+
+    cam->orbitAround(cam->getEye(), ofxVec3f(0,1,0), angleX);
+
+    ofxVec3f dir = -(cam->getDir());
+    ofxVec3f axis2 = dir.getCrossed(ofxVec3f(0,1,0));
+    axis2.normalize();
+
+    cam->orbitAround(cam->getEye(), axis2, angleY);
+}
+
+void VmtModel::RollActiveCamera(int dx) {
+    ofxCamera *cam = scene->getActiveCamera();
+    if(cam == NULL)
+        return;
+
+    float angleX = -dx * 0.5f;
+
+    ofxVec3f dir = -(cam->getDir());
+    ofxVec3f up = cam->getUp();
+    up.rotate(angleX, dir);
+    cam->up(up);
+}
+
+void VmtModel::DollyActiveCamera(int dy) {
+    ofxCamera *cam = scene->getActiveCamera();
+    if(cam == NULL)
+        return;
+
+    float delta = dy * 0.5f;
+
+    ofxVec3f dir = -(cam->getDir());
+    dir.normalize();
+
+    ofxVec3f pos = cam->getPosition();
+    pos += dir * dy;
+
+    cam->position(pos);
+}
+
+void VmtModel::PanActiveCamera(int dx, int dy) {
+    ofxCamera *cam = scene->getActiveCamera();
+    if(cam == NULL)
+        return;
+
+    float moveX = -dx * 0.25f;
+    float moveY = dy * 0.25f;
+
+    ofxVec3f dir = -(cam->getDir());
+    dir.normalize();
+
+    ofxVec3f up = cam->getUp();
+    up.normalize();
+
+    ofxVec3f left = up.crossed(dir);
+
+    ofxVec3f move = left * moveX + up * moveY;
+
+    cam->moveGlobal(move);
+}
+
 void addXMLNode(ofxXmlSettings &xml, SerializedNode* node) {
     int tagI = xml.addTag(node->getTagId());
 
