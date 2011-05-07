@@ -41,6 +41,10 @@ TreeWindow::TreeWindow(VmtModel *vmtModel)
     connect(editObjectAction, SIGNAL(clicked()), this, SLOT(editObject()));
     connect(saveShowAction, SIGNAL(clicked()), this, SLOT(saveShow()));
     connect(loadShowAction, SIGNAL(clicked()), this, SLOT(loadShow()));
+    connect(modeOrbitAction, SIGNAL(clicked()), this, SLOT(setOrbitmode()));
+    connect(modeRollAction, SIGNAL(clicked()), this, SLOT(setRollmode()));
+    connect(modeDollyAction, SIGNAL(clicked()), this, SLOT(setDollymode()));
+    connect(modePanyAction, SIGNAL(clicked()), this, SLOT(setPanymode()));
 
     connect(view, SIGNAL(clicked(QModelIndex)), this, SLOT(clickedTree(QModelIndex)));
 
@@ -276,6 +280,21 @@ void TreeWindow::setupUi(QWidget *treeWindow)
     loadShowAction = new QPushButton();
     loadShowAction->setObjectName(QString::fromUtf8("loadShowAction"));
     loadShowAction->setEnabled(true);
+
+    modeOrbitAction = new QPushButton();
+    modeOrbitAction->setObjectName(QString::fromUtf8("modeOrbitAction"));
+    modeOrbitAction->setEnabled(true);
+    modeRollAction = new QPushButton();
+    modeRollAction->setObjectName(QString::fromUtf8("modeRollAction"));
+    modeRollAction->setEnabled(true);
+    modeDollyAction = new QPushButton();
+    modeDollyAction->setObjectName(QString::fromUtf8("modeDollyAction"));
+    modeDollyAction->setEnabled(true);
+    modePanyAction = new QPushButton();
+    modePanyAction->setObjectName(QString::fromUtf8("modePanyAction"));
+    modePanyAction->setEnabled(true);
+
+
     treeWindow->setObjectName(QString::fromUtf8("centralwidget"));
     vboxLayout = new QVBoxLayout(treeWindow);
     vboxLayout->setSpacing(0);
@@ -295,12 +314,20 @@ void TreeWindow::setupUi(QWidget *treeWindow)
     layout->setColumnStretch(1, 1);
     layout->setColumnMinimumWidth(0,200);
     layout->setColumnMinimumWidth(1, 200);
+    layout->addWidget(editObjectAction, 0, 0);
     layout->addWidget(insertRowAction, 0, 1);
     layout->addWidget(removeRowAction, 1, 1);
     layout->addWidget(saveShowAction, 1, 0);
     layout->addWidget(loadShowAction, 2, 0);
+
+    layout->addWidget(modeOrbitAction, 3,1);
+    layout->addWidget(modeRollAction,  3,0);
+    layout->addWidget(modeDollyAction, 4,1);
+    layout->addWidget(modePanyAction,4,0);
+
+
     //layout->addWidget(insertChildAction, 0, 1);
-    layout->addWidget(editObjectAction, 0, 0);
+
 
     vboxLayout->addLayout(layout);
     vboxLayout->addWidget(exitAction);
@@ -356,6 +383,21 @@ void TreeWindow::retranslateUi(QWidget *treeWindow)
     saveShowAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+S", 0, QApplication::UnicodeUTF8));
     loadShowAction->setText(QApplication::translate("treeWindow", "Load", 0, QApplication::UnicodeUTF8));
     loadShowAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+L", 0, QApplication::UnicodeUTF8));
+
+    modeOrbitAction->setText(QApplication::translate("treeWindow", "ORBIT Mode", 0, QApplication::UnicodeUTF8));
+    modeOrbitAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+L", 0, QApplication::UnicodeUTF8));
+
+    modeRollAction->setText(QApplication::translate("treeWindow", "ROLL Mode", 0, QApplication::UnicodeUTF8));
+    modeRollAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+L", 0, QApplication::UnicodeUTF8));
+
+    modeDollyAction->setText(QApplication::translate("treeWindow", "DOLLY Mode", 0, QApplication::UnicodeUTF8));
+    modeDollyAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+L", 0, QApplication::UnicodeUTF8));
+
+    modePanyAction->setText(QApplication::translate("treeWindow", "PANY Mode", 0, QApplication::UnicodeUTF8));
+    modePanyAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+L", 0, QApplication::UnicodeUTF8));
+
+
+
 
     //fileMenu->setTitle(QApplication::translate("treeWindow", "&File", 0, QApplication::UnicodeUTF8));
     //actionsMenu->setTitle(QApplication::translate("treeWindow", "&Actions", 0, QApplication::UnicodeUTF8));
@@ -421,7 +463,10 @@ void TreeWindow::editObject()
     }
     if (TypeNodo == "QUAD"){
         //cout<< " id camera : "<<itemData->getData(0).toString().toStdString();
-        QuadEditorDialog *d = new QuadEditorDialog((model->getVmtModel()->getLayer2D(parentitemData->getData(0).toString().toStdString()))->getQuad2D(itemData->getData(0).toString().toStdString()));
+        //cout <<" camera: "<< model->getVmtModel()->getActiveCamera()->getId() ;
+        //cout << "layer : "<< parentitemData->getData(0).toString().toStdString();
+        //cout << " quadid: "<< itemData->getData(0).toString().toStdString();
+        QuadEditorDialog *d = new QuadEditorDialog(model->getVmtModel(), model->getVmtModel()->getActiveCamera()->getId(),  parentitemData->getData(0).toString().toStdString(), itemData->getData(0).toString().toStdString());
         d->show();
     }
     if (TypeNodo == "BACKGRAUND" )
@@ -454,6 +499,27 @@ void TreeWindow::loadShow()
         TreeModel *model = (TreeModel*) view->model();
         model->getVmtModel()->loadShow(fileName.toStdString());
     }
+}
+
+void TreeWindow::setOrbitmode(){
+    TreeModel *model = (TreeModel*) view->model();
+    model->getVmtModel()->setControlMode(ORBIT_MODE);
+
+}
+
+void TreeWindow::setRollmode(){
+    TreeModel *model = (TreeModel*) view->model();
+    model->getVmtModel()->setControlMode(ROLL_MODE);
+}
+
+void TreeWindow::setDollymode(){
+    TreeModel *model = (TreeModel*) view->model();
+    model->getVmtModel()->setControlMode(DOLLY_MODE);
+}
+
+void TreeWindow::setPanymode(){
+    TreeModel *model = (TreeModel*) view->model();
+    model->getVmtModel()->setControlMode(PAN_MODE);
 }
 
 void TreeWindow::saveShow()

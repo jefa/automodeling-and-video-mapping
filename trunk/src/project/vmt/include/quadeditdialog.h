@@ -1,6 +1,7 @@
 #ifndef QUADEDITORDIALOG_H
 #define QUADEDITORDIALOG_H
 
+#include "vmtmodel.h"
 #include "Quad2D.h"
 
 #include <QDialog>
@@ -26,7 +27,7 @@ class QuadEditorDialog : public QWidget
     Q_OBJECT
 
 public:
-    QuadEditorDialog(Quad2D *obj2d);
+    QuadEditorDialog(VmtModel *model, string Camera, string Layer, string Quad);
 
 private slots:
     void acceptPressed();
@@ -44,7 +45,7 @@ private slots:
     void y3ValueChanged(double);
 
     void enabledChanged(bool);
-    void selectedChanged(bool);
+
 
 private:
     void createFormGroupBox();
@@ -70,12 +71,14 @@ private:
 
     QLineEdit *idLineEdit;
     QCheckBox *enabledBox;
-    QCheckBox *selectedBox;
 
+    string idCamera, idLayer, idQuad;
+    VmtModel *model;
     Quad2D *object2d;
     string previousId;
     float previous0X, previous0Y, previous1X, previous1Y, previous2X, previous2Y, previous3X, previous3Y;
-    bool previousSelected,previousEnabled;
+    float aux0X, aux0Y, aux1X, aux1Y, aux2X, aux2Y, aux3X, aux3Y;
+    bool previousEnabled;
 
 };
 //! [0]

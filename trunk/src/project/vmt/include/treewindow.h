@@ -40,6 +40,10 @@ private slots:
     void editObject();
     void saveShow();
     void loadShow();
+    void setOrbitmode();
+    void setRollmode();
+    void setDollymode();
+    void setPanymode();
     void quit();
 
 private:
@@ -56,6 +60,10 @@ public:
     QPushButton *removeColumnAction;
     QPushButton *insertChildAction;
     QPushButton *editObjectAction;
+    QPushButton *modeOrbitAction;
+    QPushButton *modeRollAction;
+    QPushButton *modeDollyAction;
+    QPushButton *modePanyAction;
     QVBoxLayout *vboxLayout;
     QGridLayout *layout;
     QTreeView *view;
