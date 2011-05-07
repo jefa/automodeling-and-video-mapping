@@ -63,6 +63,11 @@ class VmtModel : public ISceneHandler
         void setLightPoint(string lightId, float r, float g, float b,
                                            float x, float y, float z);
 
+        void OrbitActiveCamera(int dx, int dy);
+        void RollActiveCamera(int dx);
+        void DollyActiveCamera(int dy);
+        void PanActiveCamera(int dx, int dy);
+
         void saveShow(string filepath);
         void loadShow(string filepath);
 
