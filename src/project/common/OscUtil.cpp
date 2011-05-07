@@ -83,6 +83,24 @@ void OscUtil::processSetCameraEyeMsg(ofxOscMessage msg, ISceneHandler *sceneHand
     sceneHandler->setCameraEye(id, x, y, z);
 }
 
+ofxOscMessage OscUtil::createSetCameraUpMsg(string id, ofxVec3f up) {
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(CAMERA_SETUP_ADDR);
+    oscMessage.addStringArg(id);
+    oscMessage.addFloatArg(up[0]);
+    oscMessage.addFloatArg(up[1]);
+    oscMessage.addFloatArg(up[2]);
+    return oscMessage;
+}
+
+void OscUtil::processSetCameraUpMsg(ofxOscMessage msg, ISceneHandler *sceneHandler) {
+    string id = msg.getArgAsString(0);
+    float x = msg.getArgAsFloat(1);
+    float y = msg.getArgAsFloat(2);
+    float z = msg.getArgAsFloat(3);
+    sceneHandler->setCameraUp(id, x, y, z);
+}
+
 ofxOscMessage OscUtil::createActivateCameraMsg(string id){
     ofxOscMessage oscMessage;
     oscMessage.setAddress(CAMERA_ACTIVATE_ADDR);
@@ -479,6 +497,8 @@ int OscUtil::processMessageAction(ofxOscMessage m, ISceneHandler *sceneHandler) 
         OscUtil::processSetCameraPosMsg(m, sceneHandler);
     } else if ( m.getAddress() == CAMERA_SETEYE_ADDR) {
         OscUtil::processSetCameraEyeMsg(m, sceneHandler);
+    } else if ( m.getAddress() == CAMERA_SETUP_ADDR) {
+        OscUtil::processSetCameraUpMsg(m, sceneHandler);
     } else if ( m.getAddress() == QUAD_ADD_ADDR) {
         OscUtil::processAddQuadMsg(m, sceneHandler);
     } else if ( m.getAddress() == QUAD_SETPOINT_ADDR) {

@@ -11,6 +11,7 @@ class ISceneHandler
         virtual void addCamera(string id) =0;
         virtual void setCameraPos(string camId, float x, float y, float z) =0;
         virtual void setCameraEye(string camId, float x, float y, float z) =0;
+        virtual void setCameraUp(string camId, float x, float y, float z) =0;
         virtual void activateCamera(string camId) =0;
         virtual ofxCamera* getActiveCamera() =0;
 
