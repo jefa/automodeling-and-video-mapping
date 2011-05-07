@@ -94,6 +94,7 @@
 		<Unit filename="include\SerializedNode.h" />
 		<Unit filename="include\TextureEffect.h" />
 		<Unit filename="include\TextureManager.h" />
+		<Unit filename="include\homography.h" />
 		<Unit filename="include\model3DS.h" />
 		<Unit filename="include\ofxCamera.h" />
 		<Unit filename="include\ofxLight.h" />
