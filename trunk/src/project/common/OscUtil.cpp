@@ -162,6 +162,8 @@ ofxOscMessage OscUtil::createEnableQuadMsg(string camId, string layerId, string 
     return oscMessage;
 }
 
+
+
 void OscUtil::processEnableQuadMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
     string camId = msg.getArgAsString(0);
     string layerId = msg.getArgAsString(1);
@@ -182,6 +184,22 @@ void OscUtil::processAddLayerMsg(ofxOscMessage msg, ISceneHandler *sceneHandler)
     string camId = msg.getArgAsString(0);
     string layerId = msg.getArgAsString(1);
     sceneHandler->addLayer(camId, layerId);
+}
+
+ofxOscMessage OscUtil::createEnableLayerMsg(string camId, string layerId, bool enabled){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(LAYER_ENABLE_ADDR);
+    oscMessage.addStringArg(camId);
+    oscMessage.addStringArg(layerId);
+    oscMessage.addIntArg(enabled);
+    return oscMessage;
+}
+
+void OscUtil::processEnableLayerMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
+    string camId = msg.getArgAsString(0);
+    string layerId = msg.getArgAsString(1);
+    bool enabled = msg.getArgAsInt32(2);
+    sceneHandler->enableLayer(camId, layerId, enabled);
 }
 
 ofxOscMessage OscUtil::createAddGroupMsg(string groupId){
@@ -505,6 +523,8 @@ int OscUtil::processMessageAction(ofxOscMessage m, ISceneHandler *sceneHandler) 
         OscUtil::processSetQuadPointMsg(m, sceneHandler);
     } else if ( m.getAddress() == LAYER_ADD_ADDR) {
         OscUtil::processAddLayerMsg(m, sceneHandler);
+    } else if ( m.getAddress() == LAYER_ENABLE_ADDR) {
+        OscUtil::processEnableLayerMsg(m, sceneHandler);
     } else if ( m.getAddress() == CAMERA_ACTIVATE_ADDR) {
         OscUtil::processActivateCameraMsg(m, sceneHandler);
     } else if ( m.getAddress() == QUAD_ENABLE_ADDR) {
