@@ -22,6 +22,7 @@ class ISceneHandler
         virtual void addQuad(string camId, string layerId, string quadId) =0;
         virtual void addQuadToGroup(string groupId, string camId, string layerId, string quadId) =0;
         virtual void enableQuad(string camId, string layerId, string quadId, bool enabled) =0;
+        virtual void enableLayer(string camId, string layerId, bool enabled) =0;
         virtual void setQuadPoint(string camId, string layerId, string quadId,
                   int point, float coordX, float coordY) =0;
         virtual void addObject3D(string objId, string path) =0;

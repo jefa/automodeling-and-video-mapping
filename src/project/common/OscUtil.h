@@ -16,6 +16,7 @@ const string CAMERA_ACTIVATE_ADDR           = "/camera/activate";
 const string QUAD_ADD_ADDR                  = "/quad/add";
 const string QUAD_SETPOINT_ADDR             = "/quad/setpoint";
 const string QUAD_ENABLE_ADDR               = "/quad/enable";
+const string LAYER_ENABLE_ADDR               = "/layer/enable";
 const string SCENE_BACKGROUND_ADDR          = "/scene/setbackground";
 const string GROUP_ADD_ADDR                 = "/group/add";
 const string GROUP_ADDQUAD_ADDR             = "/group/addquad";
@@ -62,6 +63,9 @@ class OscUtil
 
         static ofxOscMessage createAddLayerMsg(string camId, string layerId);
         static void processAddLayerMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+
+        static ofxOscMessage createEnableLayerMsg(string camId, string layerId, bool enabled);
+        static void processEnableLayerMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
         static ofxOscMessage createAddGroupMsg(string groupId);
         static void processAddGroupMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
