@@ -43,6 +43,7 @@ class VmtNode : public ofBaseApp, public ISceneHandler {
         void addQuad(string camId, string layerId, string quadId);
         void addQuadToGroup(string groupId, string camId, string layerId, string quadId);
         void enableQuad(string camId, string layerId, string quadId, bool enabled);
+        void enableLayer(string camId, string layerId, bool enabled);
         void setQuadPoint(string camId, string layerId, string quadId,
                   int point, float coordX, float coordY);
         void addObject3D(string objId, string path);
