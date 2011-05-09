@@ -44,6 +44,7 @@ private slots:
     void setRollmode();
     void setDollymode();
     void setPanymode();
+    void setCalibration();
     void quit();
 
 private:
@@ -64,6 +65,7 @@ public:
     QPushButton *modeRollAction;
     QPushButton *modeDollyAction;
     QPushButton *modePanyAction;
+    QPushButton *calibrateAction;
     QVBoxLayout *vboxLayout;
     QGridLayout *layout;
     QTreeView *view;

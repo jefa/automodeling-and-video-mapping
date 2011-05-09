@@ -1,10 +1,9 @@
-#ifndef LAYEREDITORDIALOG_H
-#define LAYEREDITORDIALOG_H
+#ifndef ADDITEMDIALOG_H
+#define ADDITEMDIALOG_H
 
-#include "Layer2D.h"
-#include "vmtmodel.h"
 
-#include <QDialog>
+
+#include <QDoubleSpinBox>
 #include <QAction>
 #include <QDialogButtonBox>
 #include <QGroupBox>
@@ -16,21 +15,23 @@
 #include <QPushButton>
 #include <QCheckBox>
 #include <QTextEdit>
+#include <string>
+using namespace std;
 
 namespace gui {
 
 //! [0]
-class LayerEditorDialog : public QWidget
+class addItemDialog : public QWidget
 {
     Q_OBJECT
 
 public:
-    LayerEditorDialog(VmtModel* modelobj, string Camera, string Layer);
+    addItemDialog(string typeNodo);
 
 private slots:
     void acceptPressed();
     void rejectPressed();
-    void enabledChange(bool state);
+
 
 private:
     void createFormGroupBox();
@@ -45,13 +46,13 @@ private:
     QPushButton *buttons[NumButtons];
     QDialogButtonBox *buttonBox;
 
-    QCheckBox *layerEnabledBox;
+    QLineEdit *pathdata;
     QLineEdit *idLineEdit;
 
-    VmtModel *model;
-    Layer2D *layer2D;
-    string idCamera, idLayer;
-    bool previousValueEnabled;
+
+    string typeNodo;
+
+
 
 };
 //! [0]

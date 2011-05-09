@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'quadeditdialog.h'
 **
-** Created: Sat 7. May 18:58:52 2011
+** Created: Mon 9. May 13:38:55 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!

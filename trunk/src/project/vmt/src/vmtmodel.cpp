@@ -172,6 +172,18 @@ void VmtModel::enableQuad(string camId, string layerId, string quadId, bool enab
     }
 }
 
+void VmtModel::enableLayer(string camId, string layerId, bool enabled){
+    oscManager->SendMessage(OscUtil::createEnableLayerMsg(camId, layerId, enabled), getNodeForCamera(camId));
+    ofxCamera *camera = scene->getCamera(camId);
+    if (camera != NULL) {
+        Layer2D *layer = camera->getLayer2D(layerId);
+        if (layer != NULL){
+            layer->setEnabled(enabled);
+        }
+    }
+}
+
+
 void VmtModel::setQuadPoint(string camId, string layerId, string quadId,
             int point, float coordX, float coordY){
     oscManager->SendMessage(OscUtil::createSetQuadPointMsg(camId, layerId, quadId, point, coordX, coordY), getNodeForCamera(camId));
@@ -613,6 +625,9 @@ void getNodeFromXML(ofxXmlSettings &xml, SerializedNode *node) {
 
 }
 
+map<string, Node> VmtModel::getNodes() {
+    return this->network;
+}
 map<string, ofxCamera*> VmtModel::getCameras() {
     return this->scene->getCameras();
 }

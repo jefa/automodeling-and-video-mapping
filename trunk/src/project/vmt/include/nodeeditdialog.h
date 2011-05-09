@@ -1,7 +1,7 @@
-#ifndef LAYEREDITORDIALOG_H
-#define LAYEREDITORDIALOG_H
+#ifndef NODEEDITORDIALOG_H
+#define NODEEDITORDIALOG_H
 
-#include "Layer2D.h"
+
 #include "vmtmodel.h"
 
 #include <QDialog>
@@ -20,12 +20,12 @@
 namespace gui {
 
 //! [0]
-class LayerEditorDialog : public QWidget
+class NodeEditorDialog : public QWidget
 {
     Q_OBJECT
 
 public:
-    LayerEditorDialog(VmtModel* modelobj, string Camera, string Layer);
+    NodeEditorDialog(VmtModel* modelobj);
 
 private slots:
     void acceptPressed();
@@ -49,9 +49,7 @@ private:
     QLineEdit *idLineEdit;
 
     VmtModel *model;
-    Layer2D *layer2D;
-    string idCamera, idLayer;
-    bool previousValueEnabled;
+
 
 };
 //! [0]
