@@ -2,6 +2,7 @@
 #include <QVariant>
 #include "treeitem.h"
 #include "treemodel.h"
+#include "addItemdialog.h"
 
 using namespace gui;
 
@@ -14,6 +15,7 @@ TreeModel::TreeModel(VmtModel *vmtModel, QObject *parent)
     setupLayersModelData(rootItem->child(0));
     setupObjectsModelData(rootItem->child(1));
     setupLightsModelData(rootItem->child(2));
+    setupNodesModelData(rootItem->child(3));
 }
 //! [0]
 
@@ -118,7 +120,9 @@ string TreeModel::ObtType(const QModelIndex &index)
                 case 0:TypeNodo = "CAMERAS";		 break;
                 case 1:TypeNodo = "OBJECTS";		 break;
                 case 2:TypeNodo = "LIGHTS";		     break;
-                case 3:TypeNodo = "BACKGRAUND";		 break;
+                case 3:TypeNodo = "NODES";		     break;
+                case 4:TypeNodo = "BACKGRAUND";		 break;
+
 
 
                 }
@@ -133,6 +137,7 @@ string TreeModel::ObtType(const QModelIndex &index)
                 case 2:TypeNodo = "QUAD";		 break;
                 case 3:TypeNodo = "OBJECT";		 break;
                 case 4:TypeNodo = "LIGHT";		 break;
+                case 5:TypeNodo = "NODE";		 break;
 
                 }
         }
@@ -153,9 +158,13 @@ string TreeModel::ObtType(const QModelIndex &index)
     cout << " TypeNodo: "<< TypeNodo;
     beginInsertRows(parent, position, position + rows - 1);
 
+    addItemDialog *d = new addItemDialog(TypeNodo);
+    d->show();
+
 
     if (TypeNodo == "CAMERAS" ){
         // add  Camera
+
         this->vmtModel->addCamera("NewCamera");
         ofxCamera *newCamera = this->vmtModel->getCameras()["NewCamera"];
         //newCamera->set... ;
@@ -176,7 +185,7 @@ string TreeModel::ObtType(const QModelIndex &index)
     if (TypeNodo == "OBJECTS" || TypeNodo == "OBJECT" ){
         // add  Object
 
-        QString path = "C:\ADRIANA\Proyecto\SVN_Proyecto\src\project\vmt\bin\data";
+        QString path = "C:\ADRIANA\Proyecto\SVN_Proyecto\src\project\vmt\bin\data\NewSquirrel.3ds";
         this->vmtModel->addObject3D("NewObject", path.toStdString());
         Object3D *newObject = this->vmtModel->getObject3D("NewCamera");
         //newObject->set....;
@@ -384,7 +393,8 @@ void TreeModel::setupSceneModelData()
     rootItem->insertChildren(0, 1, NULL, "CAMERAS");
     rootItem->insertChildren(1, 1, NULL, "OBJECTS");
     rootItem->insertChildren(2, 1, NULL, "LIGHTS");
-    rootItem->insertChildren(3, 1, NULL, "Background");
+    rootItem->insertChildren(3, 1, NULL, "NODES");
+    rootItem->insertChildren(4, 1, NULL, "Background");
 
     //int positionScene = 0;
     //PropertyItemData *propItem = new PropertyItemData(currentQuad);
@@ -422,6 +432,20 @@ void TreeModel::setupLightsModelData(TreeItem *parent)
         TreeItem *childItemLight = parent->child(positionLight);
         positionLight++;
     }
+}
+void TreeModel::setupNodesModelData(TreeItem *parent)
+{
+/*    int positionNode = 0;
+    map<string, Node> nodesMap = this->vmtModel->getNodes();
+    map<string, Node>::iterator nodesIt;
+    for(nodesIt = nodesMap.begin(); nodesIt != nodesMap.end(); nodesIt++) {
+        Node node = nodesIt->second;
+        NodeItemData nodeItem = new NodeItemData(node);
+
+        parent->insertChildren(positionNode, 1, nodeItem, "");
+        TreeItem *childItemNode = parent->child(positionNode);
+        positionNode++;
+    }*/
 }
 
 

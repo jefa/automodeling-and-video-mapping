@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'treewindow.h'
 **
-** Created: Sat 7. May 18:58:52 2011
+** Created: Mon 9. May 13:38:55 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_gui__TreeWindow[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-      19,   14, // methods
+      20,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -50,6 +50,7 @@ static const uint qt_meta_data_gui__TreeWindow[] = {
      315,   16,   16,   16, 0x08,
      330,   16,   16,   16, 0x08,
      344,   16,   16,   16, 0x08,
+     361,   16,   16,   16, 0x08,
 
        0        // eod
 };
@@ -64,7 +65,8 @@ static const char qt_meta_stringdata_gui__TreeWindow[] = {
     "removeColumn(QModelIndex)\0removeColumn()\0"
     "removeRow()\0editObject()\0saveShow()\0"
     "loadShow()\0setOrbitmode()\0setRollmode()\0"
-    "setDollymode()\0setPanymode()\0quit()\0"
+    "setDollymode()\0setPanymode()\0"
+    "setCalibration()\0quit()\0"
 };
 
 const QMetaObject gui::TreeWindow::staticMetaObject = {
@@ -119,10 +121,11 @@ int gui::TreeWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 15: setRollmode(); break;
         case 16: setDollymode(); break;
         case 17: setPanymode(); break;
-        case 18: quit(); break;
+        case 18: setCalibration(); break;
+        case 19: quit(); break;
         default: ;
         }
-        _id -= 19;
+        _id -= 20;
     }
     return _id;
 }

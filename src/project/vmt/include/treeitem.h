@@ -6,12 +6,15 @@
 #include "Quad2D.h"
 #include "ofxCamera.h"
 #include "ofxLight.h"
+#include "OscManager.h"
+
 
 #include <QList>
 #include <QVariant>
 #include <QVector>
 
 using namespace std;
+
 
 namespace gui {
 
@@ -128,6 +131,20 @@ class ObjectItemData : public TreeItemData {
 
     private:
     Object3D *object3d;
+};
+
+
+class NodeItemData : public TreeItemData {
+
+    public:
+    NodeItemData(Node nodeobj);
+    ~NodeItemData();
+
+    QVariant getData(int column);
+    void setData(int column, QVariant colValue);
+
+    private:
+    Node node;
 };
 
 }

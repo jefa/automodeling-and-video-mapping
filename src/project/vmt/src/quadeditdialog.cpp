@@ -101,6 +101,7 @@ void QuadEditorDialog::loadData(){
     if (this->object2d != NULL) {
         previousId = this->object2d->getId();
         idLineEdit->setText(QString(previousId.c_str()));
+        idLineEdit->setReadOnly(true);
 
         previousEnabled = this->object2d->isEnabled();
         if (previousEnabled) {  state=Qt::Checked;}

@@ -11,6 +11,7 @@
 #include "quadeditdialog.h"
 #include "backgraundeditdialog.h"
 #include "lighteditdialog.h"
+#include "calibratedialog.h"
 
 using namespace gui;
 
@@ -45,6 +46,7 @@ TreeWindow::TreeWindow(VmtModel *vmtModel)
     connect(modeRollAction, SIGNAL(clicked()), this, SLOT(setRollmode()));
     connect(modeDollyAction, SIGNAL(clicked()), this, SLOT(setDollymode()));
     connect(modePanyAction, SIGNAL(clicked()), this, SLOT(setPanymode()));
+    connect(calibrateAction, SIGNAL(clicked()), this, SLOT(setCalibration()));
 
     connect(view, SIGNAL(clicked(QModelIndex)), this, SLOT(clickedTree(QModelIndex)));
 
@@ -157,7 +159,8 @@ string TreeWindow::ObtType(const QModelIndex &index)
                 case 0:TypeNodo = "CAMERAS";		 break;
                 case 1:TypeNodo = "OBJECTS";		 break;
                 case 2:TypeNodo = "LIGHTS";		     break;
-                case 3:TypeNodo = "BACKGRAUND";		 break;
+                case 3:TypeNodo = "NODES";		     break;
+                case 4:TypeNodo = "BACKGRAUND";		 break;
 
                 }
     }
@@ -171,6 +174,7 @@ string TreeWindow::ObtType(const QModelIndex &index)
                 case 2:TypeNodo = "QUAD";		 break;
                 case 3:TypeNodo = "OBJECT";		 break;
                 case 4:TypeNodo = "LIGHT";		 break;
+                case 5:TypeNodo = "NODE";		 break;
 
                 }
         }
@@ -224,6 +228,18 @@ string TypeNodo;
             removeRowAction->setEnabled(false);
         }
         if (TypeNodo == "LIGHT")
+        {
+            editObjectAction->setEnabled(true);
+            insertRowAction->setEnabled(true);
+            removeRowAction->setEnabled(true);
+        }
+        if (TypeNodo == "NODES" )
+        {
+            editObjectAction->setEnabled(false);
+            insertRowAction->setEnabled(true);
+            removeRowAction->setEnabled(false);
+        }
+        if (TypeNodo == "NODE")
         {
             editObjectAction->setEnabled(true);
             insertRowAction->setEnabled(true);
@@ -294,6 +310,10 @@ void TreeWindow::setupUi(QWidget *treeWindow)
     modePanyAction->setObjectName(QString::fromUtf8("modePanyAction"));
     modePanyAction->setEnabled(true);
 
+    calibrateAction = new QPushButton();
+    calibrateAction->setObjectName(QString::fromUtf8("calibrateAction"));
+    calibrateAction->setEnabled(true);
+
 
     treeWindow->setObjectName(QString::fromUtf8("centralwidget"));
     vboxLayout = new QVBoxLayout(treeWindow);
@@ -324,7 +344,7 @@ void TreeWindow::setupUi(QWidget *treeWindow)
     layout->addWidget(modeRollAction,  3,0);
     layout->addWidget(modeDollyAction, 4,1);
     layout->addWidget(modePanyAction,4,0);
-
+    layout->addWidget(calibrateAction,5,0);
 
     //layout->addWidget(insertChildAction, 0, 1);
 
@@ -393,9 +413,12 @@ void TreeWindow::retranslateUi(QWidget *treeWindow)
     modeDollyAction->setText(QApplication::translate("treeWindow", "DOLLY Mode", 0, QApplication::UnicodeUTF8));
     modeDollyAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+L", 0, QApplication::UnicodeUTF8));
 
-    modePanyAction->setText(QApplication::translate("treeWindow", "PANY Mode", 0, QApplication::UnicodeUTF8));
+    modePanyAction->setText(QApplication::translate("treeWindow", "PAN Mode", 0, QApplication::UnicodeUTF8));
     modePanyAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+L", 0, QApplication::UnicodeUTF8));
 
+
+    calibrateAction->setText(QApplication::translate("treeWindow", "Calibrate", 0, QApplication::UnicodeUTF8));
+    calibrateAction->setShortcut(QApplication::translate("treeWindow", "Ctrl+L", 0, QApplication::UnicodeUTF8));
 
 
 
@@ -438,6 +461,10 @@ void TreeWindow::editObject()
     QModelIndex index = view->selectionModel()->currentIndex();
     TreeItemData *itemData = model->getItem(index)->getItemData();
     TreeItemData *parentitemData = model->getItem(index.parent())->getItemData();
+    TreeItemData *parentitemData0;
+    if (index.parent().parent().isValid()) {
+        parentitemData0 = model->getItem(index.parent().parent())->getItemData();
+    }
 
     string TypeNodo;
     TypeNodo =ObtType(index);
@@ -446,27 +473,23 @@ void TreeWindow::editObject()
         d->show();
     }
     if (TypeNodo == "CAMERA"){
-        //cout<< " id camera : "<<itemData->getData(0).toString().toStdString();
         CameraEditorDialog *d = new CameraEditorDialog(model->getVmtModel()->getCameras()[itemData->getData(0).toString().toStdString()]);
         d->show();
     }
 
     if (TypeNodo == "OBJECT"){
-        //cout<<  "id OBJECT  "<<itemData->getData(0).toString().toStdString();
         ObjectEditorDialog *d = new ObjectEditorDialog(model->getVmtModel()->getObject3D(itemData->getData(0).toString().toStdString()));
         d->show();
     }
     if (TypeNodo == "LAYER"){
-        //cout<<  "id LAYER  "<<itemData->getData(0).toString().toStdString();
-        LayerEditorDialog *d = new LayerEditorDialog(model->getVmtModel()->getLayer2D(itemData->getData(0).toString().toStdString()));
+        model->getVmtModel()->activateCamera(parentitemData->getData(0).toString().toStdString());
+        LayerEditorDialog *d = new LayerEditorDialog(model->getVmtModel(), parentitemData->getData(0).toString().toStdString() , itemData->getData(0).toString().toStdString() );
         d->show();
     }
     if (TypeNodo == "QUAD"){
-        //cout<< " id camera : "<<itemData->getData(0).toString().toStdString();
-        //cout <<" camera: "<< model->getVmtModel()->getActiveCamera()->getId() ;
-        //cout << "layer : "<< parentitemData->getData(0).toString().toStdString();
-        //cout << " quadid: "<< itemData->getData(0).toString().toStdString();
-        QuadEditorDialog *d = new QuadEditorDialog(model->getVmtModel(), model->getVmtModel()->getActiveCamera()->getId(),  parentitemData->getData(0).toString().toStdString(), itemData->getData(0).toString().toStdString());
+
+        model->getVmtModel()->activateCamera(parentitemData0->getData(0).toString().toStdString());
+        QuadEditorDialog *d = new QuadEditorDialog(model->getVmtModel(), parentitemData0->getData(0).toString().toStdString(),  parentitemData->getData(0).toString().toStdString(), itemData->getData(0).toString().toStdString());
         d->show();
     }
     if (TypeNodo == "BACKGRAUND" )
@@ -520,6 +543,11 @@ void TreeWindow::setDollymode(){
 void TreeWindow::setPanymode(){
     TreeModel *model = (TreeModel*) view->model();
     model->getVmtModel()->setControlMode(PAN_MODE);
+}
+void TreeWindow::setCalibration(){
+    TreeModel *model = (TreeModel*) view->model();
+    CalibrateDialog *d = new CalibrateDialog(model->getVmtModel());
+    d->show();
 }
 
 void TreeWindow::saveShow()

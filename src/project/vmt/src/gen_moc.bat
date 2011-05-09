@@ -11,3 +11,6 @@ moc ..\include\effecteditdialog.h -o moc_effecteditdialog.cpp
 moc ..\include\backgraundeditdialog.h -o moc_backgraundeditdialog.cpp
 moc ..\include\lighteditdialog.h -o moc_lighteditdialog.cpp
 moc ..\include\effectpages.h -o moc_effectpages.cpp
+moc ..\include\addItemdialog.h -o moc_addItemdialog.cpp
+moc ..\include\calibratedialog.h -o moc_calibratedialog.cpp
+moc ..\include\nodeeditdialog.h -o moc_nodeeditdialog.cpp

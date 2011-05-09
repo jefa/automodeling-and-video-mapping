@@ -44,6 +44,7 @@ class VmtModel : public ISceneHandler
         void addQuad(string camId, string layerId, string quadId);
         void addQuadToGroup(string groupId, string camId, string layerId, string quadId);
         void enableQuad(string camId, string layerId, string quadId, bool enabled);
+        void enableLayer(string camId, string layerId, bool enabled);
         void setQuadPoint(string camId, string layerId, string quadId,
                   int point, float coordX, float coordY);
         void addObject3D(string objId, string path);
@@ -93,6 +94,7 @@ class VmtModel : public ISceneHandler
         map<string, ofxCamera*> getCameras();
         map<string, Object3D*> getObjects3D();
         map<string, Effect*> getEffects();
+        map<string, Node> getNodes();
 
     protected:
         string getNodeForCamera(string camId);

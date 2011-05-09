@@ -1,18 +1,15 @@
 #include <QtGui>
 
-#include "layereditdialog.h"
+#include "nodeeditdialog.h"
 #include <limits>
 
 using namespace gui;
 
 //! [0]
-LayerEditorDialog::LayerEditorDialog(VmtModel *modelobj, string Camera, string Layer)
+NodeEditorDialog::NodeEditorDialog(VmtModel *modelobj)
 {
     this->model = modelobj;
-    idCamera= Camera;
-    idLayer = Layer;
-    //cout<< idCamera<<"  -  " <<idLayer;
-    layer2D = this->model->getLayer2D(idLayer);
+
     layerEnabledBox = new  QCheckBox();
     idLineEdit = new QLineEdit();
 
@@ -44,15 +41,15 @@ LayerEditorDialog::LayerEditorDialog(VmtModel *modelobj, string Camera, string L
 //! [4] //! [5]
     setLayout(mainLayout);
 
-    setWindowTitle(tr("Layer Properties"));
+    setWindowTitle(tr("Node Properties"));
 
 }
 //! [5]
 
 //! [12]
-void LayerEditorDialog::createFormGroupBox()
+void NodeEditorDialog::createFormGroupBox()
 {
-    formGroupBox = new QGroupBox(tr("Layer properties"));
+    formGroupBox = new QGroupBox(tr("Node properties"));
     QFormLayout *layout = new QFormLayout;
     layout->addRow(new QLabel(tr("Id/Name:")), idLineEdit);
     layout->addRow(new QLabel(tr("Is Enabled:")), layerEnabledBox);
@@ -60,8 +57,8 @@ void LayerEditorDialog::createFormGroupBox()
 }
 //! [12]
 
-void LayerEditorDialog::loadData(){
-    Qt::CheckState state;
+void NodeEditorDialog::loadData(){
+  /*  Qt::CheckState state;
     state= Qt::Unchecked;
     if (this->model != NULL) {
         previousValueEnabled = this->model->getLayer2D(idLayer)->isEnabled();
@@ -71,28 +68,24 @@ void LayerEditorDialog::loadData(){
 
         layerEnabledBox->setCheckState(state);
 
-    }
+    }*/
 }
 
-void LayerEditorDialog::enabledChange(bool newVal){
-    if (this->model != NULL)
-        this->model->enableLayer(idCamera, idLayer, newVal);
+void NodeEditorDialog::enabledChange(bool newVal){
+ /*   if (this->model != NULL)
+        this->model->enableLayer(idCamera, idLayer, newVal);  */
 }
 
-void LayerEditorDialog::acceptPressed(){
-    if (this->model != NULL)
-        this->model->enableLayer(idCamera, idLayer, layerEnabledBox->isChecked());
+void NodeEditorDialog::acceptPressed(){
+
     hide();
 }
 
-void LayerEditorDialog::rejectPressed(){
+void NodeEditorDialog::rejectPressed(){
     undoChanges();
     hide();
 }
 
-void LayerEditorDialog::undoChanges(){
-    if (this->model != NULL) {
-        this->model->enableLayer(idCamera, idLayer, previousValueEnabled);
+void NodeEditorDialog::undoChanges(){
 
-    }
 }
