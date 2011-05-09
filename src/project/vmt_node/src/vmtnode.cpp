@@ -149,6 +149,16 @@ void VmtNode::addLayer(string camId, string layerId){
         scene->getCamera(camId)->addLayer2D(layerId);
 }
 
+void VmtNode::enableLayer(string camId, string layerId, bool enabled){
+    ofxCamera *camera = scene->getCamera(camId);
+    if (camera != NULL) {
+        Layer2D *layer = camera->getLayer2D(layerId);
+        if (layer != NULL){
+            layer->setEnabled(enabled);
+        }
+    }
+}
+
 void VmtNode::addQuad(string camId, string layerId, string quadId){
     if (scene->getCamera(camId) != NULL) {
         ofxCamera *camera = scene->getCamera(camId);
