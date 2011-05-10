@@ -318,7 +318,6 @@ void ofxCamera::drawLayers() {
     glPopMatrix();
     glPopMatrix();
 
-    displayHelpers = true;
     if(displayHelpers) {
         for(int i = 0; i < 4; i++) {
 

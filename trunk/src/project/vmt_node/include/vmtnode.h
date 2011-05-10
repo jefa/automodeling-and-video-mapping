@@ -56,6 +56,7 @@ class VmtNode : public ofBaseApp, public ISceneHandler {
 
         void testEffect(string id);
 
+        void setActiveCamDisplayHelpers(bool display);
         void setActiveCamHelperCoord(bool isSrc, int pointI, ofxVec2f coord);
         void calibrateActiveCam();
         void resetActiveCamCalibraton();

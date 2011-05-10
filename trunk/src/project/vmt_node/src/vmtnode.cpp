@@ -255,6 +255,14 @@ void VmtNode::testEffect(string id){
     this->scene->testEffect(id);
 }
 
+void VmtNode::setActiveCamDisplayHelpers(bool display) {
+    ofxCamera *cam = scene->getActiveCamera();
+    if(cam == NULL)
+        return;
+
+    cam->setDisplayHelpers(display);
+}
+
 void VmtNode::setActiveCamHelperCoord(bool isSrc, int pointI, ofxVec2f coord) {
     ofxCamera *cam = scene->getActiveCamera();
     if(cam == NULL)

@@ -36,6 +36,7 @@ class ISceneHandler
 
         virtual void testEffect(string id) =0;
 
+        virtual void setActiveCamDisplayHelpers(bool display) =0;
         virtual void setActiveCamHelperCoord(bool isSrc, int pointI, ofxVec2f coord) =0;
         virtual void calibrateActiveCam() =0;
         virtual void resetActiveCamCalibraton() =0;
