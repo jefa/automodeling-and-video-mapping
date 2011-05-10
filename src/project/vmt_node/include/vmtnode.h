@@ -56,6 +56,10 @@ class VmtNode : public ofBaseApp, public ISceneHandler {
 
         void testEffect(string id);
 
+        void setActiveCamHelperCoord(bool isSrc, int pointI, ofxVec2f coord);
+        void calibrateActiveCam();
+        void resetActiveCamCalibraton();
+
         void addLight(string lightId);
         void setLightSpecular(string lightId, float r, float g, float b);
         void setLightDirectional(string lightId, float r, float g, float b,

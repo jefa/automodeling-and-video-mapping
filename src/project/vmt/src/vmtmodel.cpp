@@ -207,6 +207,7 @@ void VmtModel::setActiveCamDisplayHelpers(bool display) {
 }
 
 ofxVec2f VmtModel::getActiveCamHelperCoord(bool isSrc, int i) {
+    //No manda mensaje por ser getter
     ofxCamera *cam = scene->getActiveCamera();
     if(cam == NULL)
         return ofxVec2f(0,0);
@@ -222,6 +223,9 @@ void VmtModel::setActiveCamHelperCoord(bool isSrc, int i, ofxVec2f coord) {
     if(cam == NULL)
         return;
 
+    string camId = cam->getId();
+    oscManager->SendMessage(OscUtil::createSetActiveCamHelperCoordMsg(isSrc,i,coord), getNodeForCamera(camId));
+
     if(isSrc)
         cam->setSrcHelperCoord(i, coord);
     else
@@ -233,6 +237,9 @@ void VmtModel::calibrateActiveCam() {
     if(cam == NULL)
         return;
 
+    string camId = cam->getId();
+    oscManager->SendMessage(OscUtil::createCalibrateMsg(), getNodeForCamera(camId));
+
     cam->calculateHomography();
 }
 
@@ -240,6 +247,9 @@ void VmtModel::resetActiveCamCalibraton() {
     ofxCamera *cam = scene->getActiveCamera();
     if(cam == NULL)
         return;
+
+    string camId = cam->getId();
+    oscManager->SendMessage(OscUtil::createResetCalibrationMsg(), getNodeForCamera(camId));
 
     cam->resetHomography();
 }
