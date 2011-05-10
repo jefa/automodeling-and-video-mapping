@@ -395,6 +395,44 @@ void OscUtil::processTestEffectMsg(ofxOscMessage msg, ISceneHandler *sceneHandle
     sceneHandler->testEffect(effId);
 }
 
+ofxOscMessage OscUtil::createSetActiveCamHelperCoordMsg(bool isSrc, int pointI, ofxVec2f coord) {
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(CAMERA_SET_HELPER_COORD);
+    oscMessage.addIntArg(isSrc);
+    oscMessage.addIntArg(pointI);
+    oscMessage.addFloatArg(coord[0]);
+    oscMessage.addFloatArg(coord[1]);
+    return oscMessage;
+}
+
+void OscUtil::processSetActiveCamHelperCoordMsg(ofxOscMessage msg, ISceneHandler *sceneHandler) {
+    bool isSrc = msg.getArgAsInt32(0);
+    int pointI = msg.getArgAsInt32(1);
+    ofxVec2f coord = ofxVec2f(msg.getArgAsFloat(2), msg.getArgAsFloat(3));
+
+    sceneHandler->setActiveCamHelperCoord(isSrc, pointI, coord);
+}
+
+ofxOscMessage OscUtil::createCalibrateMsg() {
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(CAMERA_CALIBRATE);
+    return oscMessage;
+}
+
+void OscUtil::processCalibrateMsg(ofxOscMessage msg, ISceneHandler *sceneHandler) {
+    sceneHandler->calibrateActiveCam();
+}
+
+ofxOscMessage OscUtil::createResetCalibrationMsg() {
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(CAMERA_RESETCALIBRATION);
+    return oscMessage;
+}
+
+void OscUtil::processResetCalibrationMsg(ofxOscMessage msg, ISceneHandler *sceneHandler) {
+    sceneHandler->resetActiveCamCalibraton();
+}
+
 ofxOscMessage OscUtil::createAddLightMsg(string lightId){
     ofxOscMessage oscMessage;
     oscMessage.setAddress(LIGHT_ADD_ADDR);

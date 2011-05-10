@@ -255,6 +255,33 @@ void VmtNode::testEffect(string id){
     this->scene->testEffect(id);
 }
 
+void VmtNode::setActiveCamHelperCoord(bool isSrc, int pointI, ofxVec2f coord) {
+    ofxCamera *cam = scene->getActiveCamera();
+    if(cam == NULL)
+        return;
+
+    if(isSrc)
+        cam->setSrcHelperCoord(pointI, coord);
+    else
+        cam->setDstHelperCoord(pointI, coord);
+}
+
+void VmtNode::calibrateActiveCam() {
+    ofxCamera *cam = scene->getActiveCamera();
+    if(cam == NULL)
+        return;
+
+    cam->calculateHomography();
+}
+
+void VmtNode::resetActiveCamCalibraton() {
+    ofxCamera *cam = scene->getActiveCamera();
+    if(cam == NULL)
+        return;
+
+    cam->resetHomography();
+}
+
 void VmtNode::addLight(string lightId){
     scene->addLight(lightId);
 }

@@ -60,6 +60,8 @@ class VmtModel : public ISceneHandler
         void scheduleEvent(float time, string effectId);
         void startTimeManager(TIMER_MODE mode);
 
+
+
         void addLight(string lightId);
         ofxLight* getLight(string lightId);
         void setLightSpecular(string lightId, float r, float g, float b);

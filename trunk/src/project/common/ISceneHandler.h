@@ -36,6 +36,10 @@ class ISceneHandler
 
         virtual void testEffect(string id) =0;
 
+        virtual void setActiveCamHelperCoord(bool isSrc, int pointI, ofxVec2f coord) =0;
+        virtual void calibrateActiveCam() =0;
+        virtual void resetActiveCamCalibraton() =0;
+
         virtual void addLight(string lightId) =0;
         virtual void setLightSpecular(string lightId, float r, float g, float b) =0;
         virtual void setLightDirectional(string lightId, float r, float g, float b,

@@ -11,8 +11,11 @@ const string LAYER_ADD_ADDR                 = "/layer/add";
 const string CAMERA_ADD_ADDR                = "/camera/add";
 const string CAMERA_SETPOS_ADDR             = "/camera/setpos";
 const string CAMERA_SETEYE_ADDR             = "/camera/seteye";
-const string CAMERA_SETUP_ADDR             = "/camera/setup";
+const string CAMERA_SETUP_ADDR              = "/camera/setup";
 const string CAMERA_ACTIVATE_ADDR           = "/camera/activate";
+const string CAMERA_SET_HELPER_COORD        = "/camera/sethelpercoord";
+const string CAMERA_CALIBRATE               = "/camera/calibrate";
+const string CAMERA_RESETCALIBRATION        = "/camera/resetcalibration";
 const string QUAD_ADD_ADDR                  = "/quad/add";
 const string QUAD_SETPOINT_ADDR             = "/quad/setpoint";
 const string QUAD_ENABLE_ADDR               = "/quad/enable";
@@ -90,6 +93,13 @@ class OscUtil
 
         static ofxOscMessage createTestEffectMsg(string effectId);
         static void processTestEffectMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+
+        static ofxOscMessage createSetActiveCamHelperCoordMsg(bool isSrc, int pointI, ofxVec2f coord);
+        static void processSetActiveCamHelperCoordMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+        static ofxOscMessage createCalibrateMsg();
+        static void processCalibrateMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+        static ofxOscMessage createResetCalibrationMsg();
+        static void processResetCalibrationMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
         static ofxOscMessage createAddLightMsg(string lightId);
         static void processAddLightMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
