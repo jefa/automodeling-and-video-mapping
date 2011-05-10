@@ -13,6 +13,7 @@ const string CAMERA_SETPOS_ADDR             = "/camera/setpos";
 const string CAMERA_SETEYE_ADDR             = "/camera/seteye";
 const string CAMERA_SETUP_ADDR              = "/camera/setup";
 const string CAMERA_ACTIVATE_ADDR           = "/camera/activate";
+const string CAMERA_SET_DISPLAY_HELPERS     = "/camera/setdisplayhelpers";
 const string CAMERA_SET_HELPER_COORD        = "/camera/sethelpercoord";
 const string CAMERA_CALIBRATE               = "/camera/calibrate";
 const string CAMERA_RESETCALIBRATION        = "/camera/resetcalibration";
@@ -94,6 +95,8 @@ class OscUtil
         static ofxOscMessage createTestEffectMsg(string effectId);
         static void processTestEffectMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
+        static ofxOscMessage createSetActiveCamDisplayHelpersMsg(bool display);
+        static void processSetActiveCamDisplayHelpersMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
         static ofxOscMessage createSetActiveCamHelperCoordMsg(bool isSrc, int pointI, ofxVec2f coord);
         static void processSetActiveCamHelperCoordMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
         static ofxOscMessage createCalibrateMsg();

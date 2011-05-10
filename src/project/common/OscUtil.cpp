@@ -395,6 +395,18 @@ void OscUtil::processTestEffectMsg(ofxOscMessage msg, ISceneHandler *sceneHandle
     sceneHandler->testEffect(effId);
 }
 
+ofxOscMessage OscUtil::createSetActiveCamDisplayHelpersMsg(bool display) {
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(CAMERA_SET_DISPLAY_HELPERS);
+    oscMessage.addIntArg(display);
+    return oscMessage;
+}
+
+void OscUtil::processSetActiveCamDisplayHelpersMsg(ofxOscMessage msg, ISceneHandler *sceneHandler) {
+    bool display = msg.getArgAsInt32(0);
+    sceneHandler->setActiveCamDisplayHelpers(display);
+}
+
 ofxOscMessage OscUtil::createSetActiveCamHelperCoordMsg(bool isSrc, int pointI, ofxVec2f coord) {
     ofxOscMessage oscMessage;
     oscMessage.setAddress(CAMERA_SET_HELPER_COORD);

@@ -203,6 +203,9 @@ void VmtModel::setActiveCamDisplayHelpers(bool display) {
     if(cam == NULL)
         return;
 
+    string camId = cam->getId();
+    oscManager->SendMessage(OscUtil::createSetActiveCamDisplayHelpersMsg(display), getNodeForCamera(camId));
+
     cam->setDisplayHelpers(display);
 }
 
