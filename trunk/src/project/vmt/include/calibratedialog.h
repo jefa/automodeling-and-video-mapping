@@ -35,6 +35,24 @@ private slots:
     void enabledChange(bool state);
     void reCalibration();
 
+    void x0IniValueChanged(double newval);
+    void x1IniValueChanged(double newval);
+    void x2IniValueChanged(double newval);
+    void x3IniValueChanged(double newval);
+    void y0IniValueChanged(double newval);
+    void y1IniValueChanged(double newval);
+    void y2IniValueChanged(double newval);
+    void y3IniValueChanged(double newval);
+
+    void x0FinValueChanged(double newval);
+    void x1FinValueChanged(double newval);
+    void x2FinValueChanged(double newval);
+    void x3FinValueChanged(double newval);
+    void y0FinValueChanged(double newval);
+    void y1FinValueChanged(double newval);
+    void y2FinValueChanged(double newval);
+    void y3FinValueChanged(double newval);
+
 
 private:
     void createFormGroupBox();

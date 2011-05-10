@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'calibratedialog.h'
 **
-** Created: Mon 9. May 13:38:55 2011
+** Created: Tue 10. May 00:55:42 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_gui__CalibrateDialog[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+      20,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -35,6 +35,22 @@ static const uint qt_meta_data_gui__CalibrateDialog[] = {
       38,   21,   21,   21, 0x08,
       60,   54,   21,   21, 0x08,
       80,   21,   21,   21, 0x08,
+     103,   96,   21,   21, 0x08,
+     129,   96,   21,   21, 0x08,
+     155,   96,   21,   21, 0x08,
+     181,   96,   21,   21, 0x08,
+     207,   96,   21,   21, 0x08,
+     233,   96,   21,   21, 0x08,
+     259,   96,   21,   21, 0x08,
+     285,   96,   21,   21, 0x08,
+     311,   96,   21,   21, 0x08,
+     337,   96,   21,   21, 0x08,
+     363,   96,   21,   21, 0x08,
+     389,   96,   21,   21, 0x08,
+     415,   96,   21,   21, 0x08,
+     441,   96,   21,   21, 0x08,
+     467,   96,   21,   21, 0x08,
+     493,   96,   21,   21, 0x08,
 
        0        // eod
 };
@@ -42,7 +58,22 @@ static const uint qt_meta_data_gui__CalibrateDialog[] = {
 static const char qt_meta_stringdata_gui__CalibrateDialog[] = {
     "gui::CalibrateDialog\0\0acceptPressed()\0"
     "rejectPressed()\0state\0enabledChange(bool)\0"
-    "reCalibration()\0"
+    "reCalibration()\0newval\0x0IniValueChanged(double)\0"
+    "x1IniValueChanged(double)\0"
+    "x2IniValueChanged(double)\0"
+    "x3IniValueChanged(double)\0"
+    "y0IniValueChanged(double)\0"
+    "y1IniValueChanged(double)\0"
+    "y2IniValueChanged(double)\0"
+    "y3IniValueChanged(double)\0"
+    "x0FinValueChanged(double)\0"
+    "x1FinValueChanged(double)\0"
+    "x2FinValueChanged(double)\0"
+    "x3FinValueChanged(double)\0"
+    "y0FinValueChanged(double)\0"
+    "y1FinValueChanged(double)\0"
+    "y2FinValueChanged(double)\0"
+    "y3FinValueChanged(double)\0"
 };
 
 const QMetaObject gui::CalibrateDialog::staticMetaObject = {
@@ -78,9 +109,25 @@ int gui::CalibrateDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 1: rejectPressed(); break;
         case 2: enabledChange((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 3: reCalibration(); break;
+        case 4: x0IniValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 5: x1IniValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 6: x2IniValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 7: x3IniValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 8: y0IniValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 9: y1IniValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 10: y2IniValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 11: y3IniValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 12: x0FinValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 13: x1FinValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 14: x2FinValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 15: x3FinValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 16: y0FinValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 17: y1FinValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 18: y2FinValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
+        case 19: y3FinValueChanged((*reinterpret_cast< double(*)>(_a[1]))); break;
         default: ;
         }
-        _id -= 4;
+        _id -= 20;
     }
     return _id;
 }
