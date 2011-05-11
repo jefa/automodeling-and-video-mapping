@@ -4,6 +4,7 @@
 #include "Scene.h"
 #include "OscManager.h"
 #include "TimeManager.h"
+#include "KeyEventsManager.h"
 #include "ISceneHandler.h"
 #include "ofxXmlSettings.h"
 
@@ -57,10 +58,16 @@ class VmtModel : public ISceneHandler
 
         void testEffect(string id);
 
+        /* Events */
+
         void scheduleEvent(float time, string effectId);
         void startTimeManager(TIMER_MODE mode);
 
+        void addKeyEvent(char keyId, string effectId);
+        bool hasKeyEvent(char keyId);
+        string getEffectIdForKeyEvent(char keyId);
 
+        /* End events */
 
         void addLight(string lightId);
         ofxLight* getLight(string lightId);
@@ -105,7 +112,9 @@ class VmtModel : public ISceneHandler
         map<string, Node> network;
         Scene *scene;
         OscManager *oscManager;
+
         TimeManager* timeManager;
+        KeyEventsManager* keyEventsManager;
 
         ofxXmlSettings showXML;
         CAM_CONTROL_MODE control_mode;
