@@ -122,6 +122,8 @@ void Vmt::setup(){
 
     //vmtModel->startTimeManager(LOOP);
 
+    vmtModel->saveShow("showXXX.xml");
+
     treeWindow = new TreeWindow(this->vmtModel);
     treeWindow->show();
 

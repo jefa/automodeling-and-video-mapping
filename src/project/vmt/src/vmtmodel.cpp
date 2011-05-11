@@ -519,6 +519,9 @@ void VmtModel::saveShow(string filepath) {
     SerializedNode* timedEventsNode = timeManager->Serialize();
     addXMLNode(showXML, timedEventsNode);
 
+    SerializedNode* networkNode = oscManager->Serialize();
+    addXMLNode(showXML, networkNode);
+
     showXML.popTag();//vmtshow
 
     showXML.saveFile(filepath);
