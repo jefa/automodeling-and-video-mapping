@@ -1,0 +1,87 @@
+Alcance
+
+Scanning
+	Structured Light
+		3-Phase (Kyle)
+		filtrado de malla y creacion de objeto
+		documentar restricciones
+	Kinect???
+		poner lo que haya por ahi
+		desmotivo continuar con la utilizacion 
+
+Mapping
+	Editor 3D
+		Interfaz de usuario
+			Menues y toolbars estandard
+			Load/Save de estructura de proyecto e informacion relacionada
+			Agregar objetos 3D standard (cilindros, cirulos, macacos, etc)
+			
+			Modos
+				Live
+					se permite 
+						editar geometrias 
+							solo tamanio y ubicacion
+						agregar/remover efectos
+						alterar musica, timing
+						etc
+					
+					se permite alterar el timing (velociodad del show)
+					es una especie de preview del show 
+					poder seleccionar triangulos de la malla (submesh) para aplicar efectos sobre ella como si fuera un Quad
+					
+				Edicion
+					mismas prestaicones que en modo Live pero:
+						se tiene visualizacion de TODO lo que esta configruado en el show
+						estado de objetos es el del correspondiente al timpo dado
+					scale: ajustar resolucion del proyector a la de la pantalla del cliente (en caso que el proyector sea de mayor resoluc.)
+					seleccionar cara o conjunto de caras 3d o 2d y los efectos se aplican sobre esas selecciones
+			
+			Efectos
+				Crear/Eliminar
+				Reutilizar
+					si scripting:	pensar un API antes de hablar dar a Tomas
+				Dar un set de efectos a incluir en alcance
+				Animar
+					posicion - puede ser una o varias componentes de la posicion
+					dimensiones - puede ser una o varias componentes de la dimension
+					color - puede ser una o varias componentes de color
+				efectos solo se aplican sobre selecciones
+					
+			Contemplar multi-monitores
+				Tener vista previa de todos los monitores (clientes)
+				Posibilidad de ver full-screen alguno de ellos
+			
+			Vista 3D
+				vista con TODOS los objetos y los puntos de vista de cada proyector
+				se mantiene la posibilidad de editar los objetos
+				tambien poder elegirl caras del obj para mapear
+				
+			Sonido y sincronizacion
+			
+		Soporte 2D
+			posibilidad de agregar layers 2D
+			ver de reusar lo que tenemos hoy (demuestra)
+			
+		Renderer
+			stack de cambios como en 3DS?
+			
+		Distribucion
+			Definicion de escena - manejo centralizado
+			XML solo en servidor
+			Agregar operaciones de LoadQuad, LoadVideo, etc, para enviar a los clientes.
+			Validaciones
+				En GUI de Consola tener una ventanita de LOG con warnings del estilo "hay un SetVideo al cliente Cli1 al cual no se le envio un LoadVideo"
+				En Clientes, cargar todos los videos al principio y fallar en caso de no existir alguno.
+		
+javier
+	seguir documentacion (adriana mandar lo ultimo de mesh reconstruction)
+	todo lo de distribucion (OSC)
+	diseniar GUI (alto nivel): toolbars, button bars, pantallas de preview, work area, etc.
+	
+daniel
+	refactoring de lo que hay
+	definir API y crear objeto XXXXXModel.cpp que contenga la fujncionalidad de la misma
+	diseniar GUI (alto nivel): toolbars, button bars, pantallas de preview, work area, etc.
+	
+adriana
+	mesh recosntruction

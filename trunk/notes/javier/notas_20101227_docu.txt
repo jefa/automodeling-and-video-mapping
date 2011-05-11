@@ -1,0 +1,59 @@
+
+Método de triangulación
+
+Se utiliza la geometría de triángulos para determinar posiciones de puntos, medidas de distancias o áreas de figuras.
+
+Sabiendo los ángulos A y C y la distancia b se puede calcular D. 
+
+
+
+Técnicas para obtención de geometrías:
+
+Structured Light
+
+Structured Light es el proceso de proyección de un patrón (o serie de patrones) conocido de píxeles en una escena, el desplazamiento de las rayas permite una recuperación exacta de las coordenadas 3D de todos los detalles de la superficie del objeto utilizando método de triangulación. Es un método activo porque utiliza una fuente de luz artificial. 
+
+
+
+Clasificación de distintas técnicas de structured light basada en las distintas estrategias de codificación de patrones
+
+Cada píxel tiene su palabra de código, así que hay una mapeo directo de las palabras código a las correspondientes coordenadas de los píxeles en el modelo. Las palabras de código son números, que se asignan en el modelo mediante el uso de niveles de gris, el color o las representaciones geométricas. 
+
+Se distinguen tres grupos de técnicas de proyección de patrones según estrategia de codificación: 
+
+1- Time-multiplexing Se generan las palabras de código mediante la proyección de una secuencia de patrones en el tiempo, por lo que la estructura de cada modelo puede ser muy simple. Un conjunto de patrones se proyectan sobre la superficie de medición, la palabra código para un píxel dado, está formado por la secuencia de valores de iluminación de ese píxel a través de los patrones proyectados. La codificación se llama temporal porque los bits de las palabras código son multiplexadas en el tiempo. Este tipo de modelo puede alcanzar una alta precisión en las mediciones. 
+
+Esto se debe a dos factores: 
+
+1)como múltiples patrones son proyectados, la palabra código tiende a ser pequeña (normalmente binario) y por lo tanto es utilizado un pequeño conjunto de primitivas, siendo fácilmente distinguibles entre sí. 
+
+2)un paradigma de grueso-a-fino es seguido, ya que la posición de un píxel se está codificando con mayor precisión, mientras que los patrones son sucesivamente proyectados. 
+
+Dentro del grupo de time-multiplexing se pueden clasificar distintas técnicas: 
+
+a) Basada en código binario: se utiliza una secuencia de patrones binarios en orden para generar las palabras código. 
+
+b) Basada en código n-ario: se utiliza una base de n primitivas para generar las palabras código. 
+
+c) Códigos de Grises combinado con desplazamiento de fases (phase shifting): el mismo patrón es projectado sucesivas veces con un desplazamiento de fase en una dirección con el objetivo de incrementar la resolución. 
+
+d) Técnicas hibridas: son una combinación de time-multiplexing y estrategias de neighborhood.
+
+2- Neighborhood codification Representa las palabras código en un único patrón. 
+
+Clasificación de técnicas: 
+
+a) Estrategias basadas en codificación no formal: los vecinos son generados intuitivamente. 
+
+b) Estrategias basadas en secuencias de Bruijn: los vecinos son definidos usando secuencias seudo-randomicas. 
+
+c) Estrategias basadas en M-arrays: es una extensión de la teoría de seudo-randomica generación a caso 2D .
+
+3- Direct codification Define una palabra de código para cada píxel, lo que es igual a su nivel de gris o color, para lograrlo es necesario utilizar una amplia gama de valores de color o introducir periodicidad. En teoría, una alta resolución en 3D de la información puede ser obtenida. La sensibilidad al ruido es muy alta debido a la "distancia" entre "palabras de código", es decir, los colores utilizados son casi cero. Por otra parte, los colores reflejados no sólo dependen de los colores proyectados, sino también en el color intrínseco de la superficie de medición. 
+
+Clasificación de técnicas: 
+
+a) Codificación basada en niveles de gris: un espectro de niveles de gris es usado para codificar los puntos del patrón. 
+
+b) Codificación basada en color: estas técnicas aprovechan un amplio espectro de colores.
+
