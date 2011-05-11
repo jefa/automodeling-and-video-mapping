@@ -192,6 +192,7 @@
 		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\src\ofxXmlSettings.h">
 			<Option virtualFolder="addons\ofxXmlSettings\src\" />
 		</Unit>
+		<Unit filename="include\KeyEventsManager.h" />
 		<Unit filename="include\OscManager.h" />
 		<Unit filename="include\TimeManager.h" />
 		<Unit filename="include\additemdialog.h" />
@@ -215,6 +216,7 @@
 		<Unit filename="include\uiutils.h" />
 		<Unit filename="include\vmt.h" />
 		<Unit filename="include\vmtmodel.h" />
+		<Unit filename="src\KeyEventsManager.cpp" />
 		<Unit filename="src\OscManager.cpp" />
 		<Unit filename="src\TimeManager.cpp" />
 		<Unit filename="src\additemdialog.cpp" />

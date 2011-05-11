@@ -62,11 +62,10 @@ void Vmt::setup(){
     vmtModel->setQuadPoint("cam1", "layer2", "q3", 3, 30+20, 10+20);
 
     vmtModel->addObject3D("squirrel", "data/NewSquirrel.3DS");
-    Object3D *obj3d = vmtModel->getObject3D("squirrel");
 
-    vmtModel->addPositionEffect("ef1", obj3d->getId(), ofxVec3f(0,3,0), ofxVec3f(0,-3,0), 0.5f);
-    vmtModel->addPositionEffect("ef2", obj3d->getId(), ofxVec3f(3,0,0), ofxVec3f(-3,0,0), 0.5f);
-    vmtModel->addPositionEffect("ef3", obj3d->getId(), ofxVec3f(0,0,3), ofxVec3f(0,0,-3), 0.5f);
+    vmtModel->addPositionEffect("ef1", "squirrel", ofxVec3f(0,3,0), ofxVec3f(0,-3,0), 0.5f);
+    vmtModel->addPositionEffect("ef2", "squirrel", ofxVec3f(3,0,0), ofxVec3f(-3,0,0), 0.5f);
+    vmtModel->addPositionEffect("ef3", "squirrel", ofxVec3f(0,0,3), ofxVec3f(0,0,-3), 0.5f);
 
     vmtModel->addFadeEffect("ef4", "group1", ofxVec4f(0,0,0,0), ofxVec4f(1,1,1,1), 0.5f);
 
@@ -104,6 +103,9 @@ void Vmt::setup(){
     vmtModel->setLightPoint("light3", 0, 0, 255, L3PosX, L3PosY, L3PosZ);
 
     /* End Lighting */
+
+    vmtModel->addKeyEvent('a', "ef1");
+    vmtModel->addKeyEvent('s', "ef2");
 
     vmtModel->scheduleEvent(1.0f, "ef1");
     vmtModel->scheduleEvent(2.0f, "ef2");
@@ -147,36 +149,15 @@ void Vmt::draw(){
 
 void Vmt::keyPressed(int key){
 
+    if (vmtModel->hasKeyEvent(key)) {
+        vmtModel->testEffect(vmtModel->getEffectIdForKeyEvent(key));
+    }
+
     if(key == '1')
         vmtModel->activateCamera("cam1");
 
     if(key == '2')
         vmtModel->activateCamera("cam2");
-
-    if(key == 'z')
-        vmtModel->testEffect("ef1");
-
-    if(key == 'x')
-        vmtModel->testEffect("ef2");
-
-    if(key == 'c')
-        vmtModel->testEffect("ef3");
-
-    if(key == 'a')
-        vmtModel->testEffect("ef4");
-
-    if(key == '5')
-        vmtModel->setControlMode(ORBIT_MODE);
-
-    if(key == '6')
-        vmtModel->setControlMode(DOLLY_MODE);
-
-    if(key == '7')
-        vmtModel->setControlMode(PAN_MODE);
-
-    if(key == '8')
-        vmtModel->setControlMode(ROLL_MODE);
-
 }
 
 //--------------------------------------------------------------

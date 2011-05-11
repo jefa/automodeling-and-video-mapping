@@ -13,6 +13,7 @@ VmtModel::VmtModel() {
     oscManager->Init(network);
 
     timeManager = new TimeManager();
+    keyEventsManager = new KeyEventsManager();
 }
 
 VmtModel::~VmtModel() {
@@ -305,7 +306,6 @@ ofxLight* VmtModel::getLight(string lightId){
     return scene->getLight(lightId);
 }
 
-
 void VmtModel::addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay){
     if (scene->getObject3D(objId) == NULL){
         printf("VmtModel::addPositionEffect: object does not exists(%s)\n", objId.c_str());
@@ -519,6 +519,9 @@ void VmtModel::saveShow(string filepath) {
     SerializedNode* timedEventsNode = timeManager->Serialize();
     addXMLNode(showXML, timedEventsNode);
 
+    SerializedNode* keyEventsNode = keyEventsManager->Serialize();
+    addXMLNode(showXML, keyEventsNode);
+
     SerializedNode* networkNode = oscManager->Serialize();
     addXMLNode(showXML, networkNode);
 
@@ -637,10 +640,6 @@ void VmtModel::loadShow(string filepath) {
     showXML.popTag();//vmtshow
 }
 
-void getNodeFromXML(ofxXmlSettings &xml, SerializedNode *node) {
-
-}
-
 map<string, Node> VmtModel::getNodes() {
     return this->network;
 }
@@ -658,6 +657,18 @@ map<string, Effect*> VmtModel::getEffects() {
 
 void VmtModel::scheduleEvent(float time, string effectId) {
     timeManager->ScheduleEvent(time, effectId);
+}
+
+void VmtModel::addKeyEvent(char keyId, string effectId) {
+    keyEventsManager->addKeyEvent(keyId, effectId);
+}
+
+bool VmtModel::hasKeyEvent(char keyId) {
+    return keyEventsManager->hasKeyEvent(keyId);
+}
+
+string VmtModel::getEffectIdForKeyEvent(char keyId) {
+    return keyEventsManager->getEffectId(keyId);
 }
 
 void VmtModel::startTimeManager(TIMER_MODE mode) {
