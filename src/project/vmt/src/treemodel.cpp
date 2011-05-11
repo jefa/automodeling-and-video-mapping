@@ -1,5 +1,7 @@
 #include <QtGui>
 #include <QVariant>
+#include <QString>
+#include <QInputDialog>
 #include "treeitem.h"
 #include "treemodel.h"
 #include "addItemdialog.h"
@@ -155,12 +157,17 @@ string TreeModel::ObtType(const QModelIndex &index)
 
     string TypeNodo;
     TypeNodo = ObtType(index);
-    cout << " TypeNodo: "<< TypeNodo;
+    //cout << " TypeNodo: "<< TypeNodo;
     beginInsertRows(parent, position, position + rows - 1);
+    if (TypeNodo == "NODES" ){
+        // add  Node
 
-    addItemDialog *d = new addItemDialog(TypeNodo);
-    d->show();
+        this->vmtModel->addNetNode("NewNode","address",0,true,this->vmtModel->getActiveCamera()->getId());
+        Node newNode = this->vmtModel->getNodes()["NewNode"];
+        NodeItemData *nodeItem = new NodeItemData(&newNode);
 
+        success = currentItem->insertChildren(position, rows, nodeItem ,"NewNode");
+    }
 
     if (TypeNodo == "CAMERAS" ){
         // add  Camera
@@ -257,7 +264,7 @@ bool TreeModel::addElement(int position, int rows, const QModelIndex &parent)
     newLayer->setEnabled(false);
     LayerItemData *layerItemData = new LayerItemData(newLayer);
 
-    success = parentItem->insertChildren(position, rows, /*rootItem->columnCount()*//* layerItemData);
+    success = parentItem->insertChildren(position, rows, rootItem->columnCount() layerItemData);
     endInsertRows();
 
     return success;
@@ -435,17 +442,17 @@ void TreeModel::setupLightsModelData(TreeItem *parent)
 }
 void TreeModel::setupNodesModelData(TreeItem *parent)
 {
-/*    int positionNode = 0;
+    int positionNode = 0;
     map<string, Node> nodesMap = this->vmtModel->getNodes();
     map<string, Node>::iterator nodesIt;
     for(nodesIt = nodesMap.begin(); nodesIt != nodesMap.end(); nodesIt++) {
         Node node = nodesIt->second;
-        NodeItemData nodeItem = new NodeItemData(node);
+        NodeItemData *nodeItem = new NodeItemData(&node);
 
-        parent->insertChildren(positionNode, 1, nodeItem, "");
+        parent->insertChildren(positionNode, 1, nodeItem, nodesIt->first);
         TreeItem *childItemNode = parent->child(positionNode);
         positionNode++;
-    }*/
+    }
 }
 
 

@@ -48,9 +48,9 @@ public:
     //bool addElement(int position, int rows,
     //                const QModelIndex &parent = QModelIndex());
     string ObtType(const QModelIndex &parent);
-
+    QString inputText(string defaultValue);
     bool insertRows(int position, int rows,
-                    const QModelIndex &index = QModelIndex() );
+                    const QModelIndex &index = QModelIndex());
     bool removeRows(int position, int rows,
                     const QModelIndex &parent = QModelIndex());
 

@@ -30,7 +30,7 @@ public:
 private slots:
     void acceptPressed();
     void rejectPressed();
-    void enabledChange(bool state);
+    void isActive(bool state);
 
 private:
     void createFormGroupBox();
@@ -45,9 +45,11 @@ private:
     QPushButton *buttons[NumButtons];
     QDialogButtonBox *buttonBox;
 
-    QCheckBox *layerEnabledBox;
+    QCheckBox *isActiveBox;
     QLineEdit *idLineEdit;
-
+    QLineEdit *addressEdit;
+    QLineEdit *cameraIdEdit;
+    QLineEdit *portEdit;
     VmtModel *model;
 
 

@@ -181,6 +181,31 @@ void CalibrateDialog::createFormGroupBox()
 void CalibrateDialog::loadData(){
     if (this->model != NULL){
         this->model->setActiveCamDisplayHelpers(true);
+         ofxVec2f coord = this->model->getActiveCamHelperCoord(true,0);
+         x0IniSpinBox->setValue(coord.x);
+         y0IniSpinBox->setValue(coord.y);
+        coord = this->model->getActiveCamHelperCoord(true,1);
+         x1IniSpinBox->setValue(coord.x);
+         y1IniSpinBox->setValue(coord.y);
+        coord = this->model->getActiveCamHelperCoord(true,2);
+         x2IniSpinBox->setValue(coord.x);
+         y2IniSpinBox->setValue(coord.y);
+        coord = this->model->getActiveCamHelperCoord(true,3);
+         x3IniSpinBox->setValue(coord.x);
+         y3IniSpinBox->setValue(coord.y);
+
+        coord = this->model->getActiveCamHelperCoord(false,0);
+         x0FinSpinBox->setValue(coord.x);
+         y0FinSpinBox->setValue(coord.y);
+        coord = this->model->getActiveCamHelperCoord(false,1);
+         x1FinSpinBox->setValue(coord.x);
+         y1FinSpinBox->setValue(coord.y);
+        coord = this->model->getActiveCamHelperCoord(false,2);
+         x2FinSpinBox->setValue(coord.x);
+         y2FinSpinBox->setValue(coord.y);
+        coord = this->model->getActiveCamHelperCoord(false,3);
+         x3FinSpinBox->setValue(coord.x);
+         y3FinSpinBox->setValue(coord.y);
     }
 }
 void CalibrateDialog::x0IniValueChanged(double newVal){

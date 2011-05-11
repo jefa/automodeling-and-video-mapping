@@ -12,6 +12,7 @@
 #include "backgraundeditdialog.h"
 #include "lighteditdialog.h"
 #include "calibratedialog.h"
+#include "nodeeditdialog.h"
 
 using namespace gui;
 
@@ -105,9 +106,11 @@ void TreeWindow::insertRow()
 {
 
      QModelIndex index = view->selectionModel()->currentIndex();
-     QAbstractItemModel *model = view->model();
+    // TreeModel *model = view->model();
+     TreeModel *model = (TreeModel*) view->model();
      string TypeNodo;
      TypeNodo =ObtType(index);
+     QString Name= inputText("New");
 
      if (!model->insertRow(index.row()+1, index))
          return;
@@ -442,17 +445,19 @@ void TreeWindow::clickedTree(const QModelIndex &index)
 {
 
     updateActions(index);
-    /*
+    TreeModel *model = (TreeModel*) view->model();
     TreeItemData *itemData = model->getItem(index)->getItemData();
     if (itemData != NULL) {
-        cout<<"index "<< itemData->itemId;
+        //cout<<"index "<< itemData->itemId;
         if (itemData->itemId == 0){ //es camara
             CameraItemData *cid = (CameraItemData*)itemData;
             string str = cid->getData(0).toString().toStdString();
+            //cout<<" activa camera " << str;
+            model->getVmtModel()->activateCamera(str);
             cout<<"\tcamaraID "<< str;
 
         }
-    }*/
+    }
 }
 
 void TreeWindow::editObject()
@@ -468,6 +473,13 @@ void TreeWindow::editObject()
 
     string TypeNodo;
     TypeNodo =ObtType(index);
+    if (TypeNodo == "NODE"){
+        cout << "nodo  "<<itemData->getData(0).toString().toStdString();
+        cout <<  "id camera del node"<< (model->getVmtModel()->getNodes()[itemData->getData(0).toString().toStdString()]).cameraId;
+       model->getVmtModel()->activateCamera((model->getVmtModel()->getNodes()[itemData->getData(0).toString().toStdString()]).cameraId);
+       NodeEditorDialog *d = new NodeEditorDialog(model->getVmtModel());
+        d->show();
+    }
     if (TypeNodo == "LIGHT"){
        LightEditorDialog *d = new LightEditorDialog(model->getVmtModel()->getLight(itemData->getData(0).toString().toStdString()));
         d->show();

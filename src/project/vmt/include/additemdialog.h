@@ -16,6 +16,8 @@
 #include <QCheckBox>
 #include <QTextEdit>
 #include <string>
+#include <QModelIndex>
+
 using namespace std;
 
 namespace gui {
@@ -51,8 +53,6 @@ private:
 
 
     string typeNodo;
-
-
 
 };
 //! [0]

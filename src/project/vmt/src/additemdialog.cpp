@@ -1,6 +1,8 @@
 #include <QtGui>
 
 #include "additemdialog.h"
+#include "treeitem.h"
+#include "treemodel.h"
 #include <limits>
 
 
@@ -11,10 +13,8 @@ addItemDialog::addItemDialog(string typeNodo)
 {
 
     typeNodo = typeNodo;
-
     pathdata = new  QLineEdit();
     idLineEdit = new QLineEdit();
-
 
 
     loadData();
@@ -94,8 +94,6 @@ void addItemDialog::loadData(){
 
 
 void addItemDialog::acceptPressed(){
-
-
 
     hide();
 }
