@@ -184,6 +184,7 @@ void CameraEditorDialog::loadData(){
         state= Qt::Unchecked;
         previousId = this->camera->getId();
         idLineEdit->setText(QString(previousId.c_str()));
+        idLineEdit->setReadOnly(true);
 
         previousprojector = this->camera->isProjector();
         if (previousprojector) {  state=Qt::Checked;}

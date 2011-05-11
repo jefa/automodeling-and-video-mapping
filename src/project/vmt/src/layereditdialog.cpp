@@ -68,6 +68,7 @@ void LayerEditorDialog::loadData(){
         if (previousValueEnabled) {  state=Qt::Checked;}
 
         idLineEdit->setText(QString((this->layer2D->getName()).c_str()));
+        idLineEdit->setReadOnly(true);
 
         layerEnabledBox->setCheckState(state);
 

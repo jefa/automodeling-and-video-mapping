@@ -50,7 +50,7 @@ public:
     string ObtType(const QModelIndex &parent);
     QString inputText(string defaultValue);
     bool insertRows(int position, int rows,
-                    const QModelIndex &index = QModelIndex());
+                    const QModelIndex &index = QModelIndex(), string Name = "");
     bool removeRows(int position, int rows,
                     const QModelIndex &parent = QModelIndex());
 
