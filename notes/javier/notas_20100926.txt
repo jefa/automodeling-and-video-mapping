@@ -1,0 +1,30 @@
+
+* Arquitectura
+
+Proyecto o show
+		Escena (debe haber una escena por defecto)
+			objetos
+			efectos 
+			layers (layer por defecto): subconjunto de objetos y efectos en la escena
+			Transicion a escena siguiente (nil es ultima escena :) )
+Objeto
+	OBJ file
+	posicion
+	rotacion
+	texturas
+	
+Script
+	codigo generico para hacaer "algo" sobre objetos
+
+Efecto (instancias de scripts con efectos/acciones sobre los objetos de la escena)
+	ObjetoRef, ObjetoRef, ...
+	ScriptRef
+	
+
+
+	
+* Feataures
+
+seleccionar efecto de una lista y:
+	.- al pinchar con el mouse que se active en la cara seleccionara
+	.- al pasar el mouse por arriba de la escena que se active en esa area (una especie de lupa)

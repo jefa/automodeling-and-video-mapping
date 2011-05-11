@@ -81,7 +81,6 @@ Optical Flow Sample
 http://ai.stanford.edu/~dstavens/cs223b/
 
 
-
 === Structured Light
 http://en.wikipedia.org/wiki/Structured_light
 http://en.wikipedia.org/wiki/Structured-light_3D_scanner
@@ -172,7 +171,6 @@ http://kaswy.free.fr/?q=node/38#ps3
 ARToolKit 
 http://www.hitl.washington.edu/artoolkit/
 
-
 === GENERAL
 
 morethantechnical
@@ -196,6 +194,11 @@ http://codelaboratories.com/products/eye/
 Empresa con filial en Uy sobre comunicacion multimedia
 planbelow.com.uy
 
+The Official Guide to Learning OpenGL, Version 1.1 
+http://www.glprogramming.com/red/index.html
+http://www.cs.uccs.edu/~semwal/indexGLTutorial.html
+http://www.opengl.org/code/category/C22
+
 === Matlab Toolbox
 
 Camera calibration
@@ -203,4 +206,14 @@ http://www.vision.caltech.edu/bouguetj/calib_doc/
 
 ProCam Lib - Projector-Camera Calibration Toolbox v0.5
 http://code.google.com/p/procamcalib/
+
+==== Cameras
+
+http://unity3d.com/support/documentation/Components/class-Camera.html
+http://www.3dmax-tutorials.com/idh_create_cameras.html
+http://en.wikipedia.org/wiki/Frustum
+http://www.cyi.ac.cy/system/files/MeshLab%20Documentation1.pdf
+
+
+sensation (fiestas electronicas)
 
