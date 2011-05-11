@@ -326,25 +326,31 @@ bool ObjectItemData::setSeleted(Scene *scene){
     return true;
 }
 
-NodeItemData::NodeItemData(Node nodeobj){
+NodeItemData::NodeItemData(Node *nodeobj){
     this->itemId = 5;
     this->node = nodeobj;
+
 }
 
 NodeItemData::~NodeItemData(){
 }
 
 QVariant NodeItemData::getData(int column){
- //   if (column == 0)
- //       return QVariant(QString(this->node->getId().c_str()));
+    if (column == 0)
+        //cout<<"node->address  "<<(this->node->address).c_str();
+        return QVariant(QString((this->node->address).c_str()));
 
     return QVariant(QString("no data"));
 }
 
 void NodeItemData::setData(int column, QVariant colValue){
  //   qDebug("NodeItemData::setData:: col=%d, value=%s\n", column, colValue.toString().toStdString().c_str());
- //   if (column == 0)
- //       this->node->setId(colValue.toString().toStdString());
+   // if (column == 0)
+     //   this->node->setId(colValue.toString().toStdString());
 
+}
+bool NodeItemData::setSeleted(Scene *scene){
+    //scene->activateObject(this->object3d->getId());
+    return true;
 }
 

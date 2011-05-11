@@ -137,14 +137,16 @@ class ObjectItemData : public TreeItemData {
 class NodeItemData : public TreeItemData {
 
     public:
-    NodeItemData(Node nodeobj);
+    NodeItemData(Node *nodeobj);
     ~NodeItemData();
 
     QVariant getData(int column);
     void setData(int column, QVariant colValue);
+    bool setSeleted(Scene *scene);
 
     private:
-    Node node;
+    Node *node;
+
 };
 
 }

@@ -10,8 +10,11 @@ NodeEditorDialog::NodeEditorDialog(VmtModel *modelobj)
 {
     this->model = modelobj;
 
-    layerEnabledBox = new  QCheckBox();
+    isActiveBox = new  QCheckBox();
     idLineEdit = new QLineEdit();
+    addressEdit = new QLineEdit();
+    cameraIdEdit =  new QLineEdit();
+    portEdit =  new QLineEdit();
 
     loadData();
 
@@ -25,7 +28,7 @@ NodeEditorDialog::NodeEditorDialog(VmtModel *modelobj)
     connect(buttonBox, SIGNAL(accepted()), this, SLOT(acceptPressed()));
     connect(buttonBox, SIGNAL(rejected()), this, SLOT(rejectPressed()));
 
-    connect(layerEnabledBox, SIGNAL(clicked(bool)), this, SLOT(enabledChange(bool)));
+    connect(isActiveBox, SIGNAL(clicked(bool)), this, SLOT(isActive(bool)));
 
 
 //! [1]
@@ -44,6 +47,7 @@ NodeEditorDialog::NodeEditorDialog(VmtModel *modelobj)
     setWindowTitle(tr("Node Properties"));
 
 }
+
 //! [5]
 
 //! [12]
@@ -52,28 +56,20 @@ void NodeEditorDialog::createFormGroupBox()
     formGroupBox = new QGroupBox(tr("Node properties"));
     QFormLayout *layout = new QFormLayout;
     layout->addRow(new QLabel(tr("Id/Name:")), idLineEdit);
-    layout->addRow(new QLabel(tr("Is Enabled:")), layerEnabledBox);
+    layout->addRow(new QLabel(tr("Is Active:")), isActiveBox);
+    layout->addRow(new QLabel(tr("Address:")), addressEdit);
+    layout->addRow(new QLabel(tr("CameraId:")), cameraIdEdit);
+    layout->addRow(new QLabel(tr("Port:")), portEdit);
+
     formGroupBox->setLayout(layout);
 }
 //! [12]
 
 void NodeEditorDialog::loadData(){
-  /*  Qt::CheckState state;
-    state= Qt::Unchecked;
-    if (this->model != NULL) {
-        previousValueEnabled = this->model->getLayer2D(idLayer)->isEnabled();
-        if (previousValueEnabled) {  state=Qt::Checked;}
 
-        idLineEdit->setText(QString((this->layer2D->getName()).c_str()));
-
-        layerEnabledBox->setCheckState(state);
-
-    }*/
 }
 
-void NodeEditorDialog::enabledChange(bool newVal){
- /*   if (this->model != NULL)
-        this->model->enableLayer(idCamera, idLayer, newVal);  */
+void NodeEditorDialog::isActive(bool newVal){
 }
 
 void NodeEditorDialog::acceptPressed(){
