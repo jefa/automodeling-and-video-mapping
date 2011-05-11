@@ -147,7 +147,7 @@ string TreeModel::ObtType(const QModelIndex &index)
 }
 
 
- bool TreeModel::insertRows(int position, int rows, const QModelIndex &index)
+ bool TreeModel::insertRows(int position, int rows, const QModelIndex &index, string Name)
  {
      QModelIndex parent;
      parent = index.parent();
@@ -158,56 +158,57 @@ string TreeModel::ObtType(const QModelIndex &index)
     string TypeNodo;
     TypeNodo = ObtType(index);
     //cout << " TypeNodo: "<< TypeNodo;
+    //cout<<" nombre nuevo: "<<Name;
     beginInsertRows(parent, position, position + rows - 1);
     if (TypeNodo == "NODES" ){
         // add  Node
 
-        this->vmtModel->addNetNode("NewNode","address",0,true,this->vmtModel->getActiveCamera()->getId());
-        Node newNode = this->vmtModel->getNodes()["NewNode"];
+        this->vmtModel->addNetNode(Name,"address",0,true,this->vmtModel->getActiveCamera()->getId());
+        Node newNode = this->vmtModel->getNodes()[Name];
         NodeItemData *nodeItem = new NodeItemData(&newNode);
 
-        success = currentItem->insertChildren(position, rows, nodeItem ,"NewNode");
+        success = currentItem->insertChildren(position, rows, nodeItem ,Name);
     }
 
     if (TypeNodo == "CAMERAS" ){
         // add  Camera
 
-        this->vmtModel->addCamera("NewCamera");
-        ofxCamera *newCamera = this->vmtModel->getCameras()["NewCamera"];
+        this->vmtModel->addCamera(Name);
+        ofxCamera *newCamera = this->vmtModel->getCameras()[Name];
         //newCamera->set... ;
         CameraItemData *cameraItem = new CameraItemData(newCamera);
 
-        success = currentItem->insertChildren(position, rows, cameraItem,"NewCamera");
+        success = currentItem->insertChildren(position, rows, cameraItem,Name);
 
     }
     if (TypeNodo == "LIGHTS" ){
         // add  light
-        this->vmtModel->addLight("NewLight");
-        ofxLight *newLight = this->vmtModel->getLight("NewLight");
+        this->vmtModel->addLight(Name);
+        ofxLight *newLight = this->vmtModel->getLight(Name);
         LightItemData *lightItem = new LightItemData(newLight);
 
-        success = currentItem->insertChildren(position, rows, lightItem,"NewLight");
+        success = currentItem->insertChildren(position, rows, lightItem,Name);
 
     }
     if (TypeNodo == "OBJECTS" || TypeNodo == "OBJECT" ){
         // add  Object
 
         QString path = "C:\ADRIANA\Proyecto\SVN_Proyecto\src\project\vmt\bin\data\NewSquirrel.3ds";
-        this->vmtModel->addObject3D("NewObject", path.toStdString());
-        Object3D *newObject = this->vmtModel->getObject3D("NewCamera");
+        this->vmtModel->addObject3D(Name, path.toStdString());
+        Object3D *newObject = this->vmtModel->getObject3D(Name);
         //newObject->set....;
         ObjectItemData *objectItem = new ObjectItemData(newObject);
 
-        success = currentItem->insertChildren(position, rows, objectItem,"NewObject");
+        success = currentItem->insertChildren(position, rows, objectItem,Name);
     }
     if (TypeNodo == "CAMERA"){
         // add a Layer
 
-        Layer2D *newLayer = this->vmtModel->getActiveCamera()->addLayer2D("NewLayer");
+        Layer2D *newLayer = this->vmtModel->getActiveCamera()->addLayer2D(Name);
         newLayer->setEnabled(false);
         LayerItemData *layerItem = new LayerItemData(newLayer);
         //cout<< " position  "<< position <<"   row " <<rows;
-        success = currentItem->insertChildren(position, rows, layerItem,"NewLayer");
+        success = currentItem->insertChildren(position, rows, layerItem,Name);
     }
     if ( TypeNodo == "LAYER"  || TypeNodo == "QUAD" ){
         // add a quad
@@ -232,16 +233,16 @@ string TreeModel::ObtType(const QModelIndex &index)
                 camId2= camId.toString().toStdString();
 
             }
-                string quadId = "NewQuad";
+                string quadId = Name;
                 Quad2D *newQuad = this->vmtModel->getCameras()[camId2]->getLayer2D(layerId2)->addQuad2D(quadId);
                 newQuad->setEnabled(false);
                 QuadItemData *quadItem = new QuadItemData(newQuad);
                 //cout<< " position  "<< position <<"   row " <<rows;
                 if (TypeNodo == "QUAD"){
-                    success = parentItem->insertChildren(position, rows, quadItem,"NewQuad");
+                    success = parentItem->insertChildren(position, rows, quadItem,Name);
                 }
                 else{
-                    success = currentItem->insertChildren(position, rows, quadItem,"NewQuad");
+                    success = currentItem->insertChildren(position, rows, quadItem,Name);
                 }
 
 

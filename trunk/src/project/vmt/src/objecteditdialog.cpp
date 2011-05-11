@@ -81,6 +81,7 @@ void ObjectEditorDialog::loadData(){
         previousZ = this->object3d->get(POS_Z);
 
         idLineEdit->setText(QString(previousId.c_str()));
+        idLineEdit->setReadOnly(true);
         xCoordSpinBox->setValue(previousX);
         yCoordSpinBox->setValue(previousY);
         zCoordSpinBox->setValue(previousZ);

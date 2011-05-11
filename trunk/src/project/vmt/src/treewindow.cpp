@@ -110,9 +110,9 @@ void TreeWindow::insertRow()
      TreeModel *model = (TreeModel*) view->model();
      string TypeNodo;
      TypeNodo =ObtType(index);
-     QString Name= inputText("New");
+     string Name= (inputText("New")).toStdString();
 
-     if (!model->insertRow(index.row()+1, index))
+     if (!model->insertRows(0,index.row()+1, index, Name))
          return;
 
      updateActions(index);

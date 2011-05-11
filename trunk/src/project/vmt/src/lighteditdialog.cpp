@@ -65,6 +65,7 @@ void LightEditorDialog::loadData(){
         if (previousValueON) {  state=Qt::Checked;}
 
         idLineEdit->setText(QString(previousId.c_str()));
+        idLineEdit->setReadOnly(true);
         onBox->setCheckState(state);
 
     }
