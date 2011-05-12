@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'nodeeditdialog.h'
 **
-** Created: Wed 11. May 02:47:19 2011
+** Created: Thu 12. May 11:23:49 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -40,7 +40,7 @@ static const uint qt_meta_data_gui__NodeEditorDialog[] = {
 
 static const char qt_meta_stringdata_gui__NodeEditorDialog[] = {
     "gui::NodeEditorDialog\0\0acceptPressed()\0"
-    "rejectPressed()\0state\0enabledChange(bool)\0"
+    "rejectPressed()\0state\0isActive(bool)\0"
 };
 
 const QMetaObject gui::NodeEditorDialog::staticMetaObject = {
@@ -74,7 +74,7 @@ int gui::NodeEditorDialog::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         switch (_id) {
         case 0: acceptPressed(); break;
         case 1: rejectPressed(); break;
-        case 2: enabledChange((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 2: isActive((*reinterpret_cast< bool(*)>(_a[1]))); break;
         default: ;
         }
         _id -= 3;

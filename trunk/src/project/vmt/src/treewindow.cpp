@@ -476,8 +476,8 @@ void TreeWindow::editObject()
     if (TypeNodo == "NODE"){
         cout << "nodo  "<<itemData->getData(0).toString().toStdString();
         cout <<  "id camera del node"<< (model->getVmtModel()->getNodes()[itemData->getData(0).toString().toStdString()]).cameraId;
-       model->getVmtModel()->activateCamera((model->getVmtModel()->getNodes()[itemData->getData(0).toString().toStdString()]).cameraId);
-       NodeEditorDialog *d = new NodeEditorDialog(model->getVmtModel());
+       //model->getVmtModel()->activateCamera((model->getVmtModel()->getNodes()[itemData->getData(0).toString().toStdString()]).cameraId);
+       NodeEditorDialog *d = new NodeEditorDialog(model->getVmtModel(),itemData->getData(0).toString().toStdString());
         d->show();
     }
     if (TypeNodo == "LIGHT"){

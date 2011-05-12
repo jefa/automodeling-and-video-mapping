@@ -9,6 +9,7 @@
 using namespace std;
 
 struct Node  {
+    string id;
     string address;
     int port;
     bool isActive;

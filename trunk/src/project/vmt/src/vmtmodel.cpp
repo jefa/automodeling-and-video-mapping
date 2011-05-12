@@ -40,6 +40,7 @@ void VmtModel::update(){
 
 void VmtModel::addNetNode(string nodeId, string address, int port, bool isActive, string camId){
     Node nd;
+    nd.id = nodeId;
     nd.address = address;
     nd.port = port;
     nd.isActive = isActive;
@@ -51,6 +52,12 @@ void VmtModel::addNetNode(string nodeId, string address, int port, bool isActive
     this->oscManager->Init(this->network);
 }
 
+Node VmtModel::getNode(string nodeId){
+    Node node;
+    node = this->network[nodeId];
+
+    return node;
+}
 string VmtModel::getNodeForCamera(string camId){
     map<string, Node>::iterator iter = network.begin();
     while (iter != network.end()) {
