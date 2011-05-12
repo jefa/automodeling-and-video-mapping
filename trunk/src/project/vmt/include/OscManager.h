@@ -8,7 +8,9 @@
 
 using namespace std;
 
-struct Node  {
+class Node  {
+
+public:
     string id;
     string address;
     int port;
@@ -21,7 +23,7 @@ class OscManager : public ISerializable
     public:
         OscManager();
         ~OscManager();
-        void Init(map<string, Node> network);
+        void Init(map<string, Node*> network);
         void SendMessage(ofxOscMessage oscMessage, string destNode);
         void SendMessageAll(ofxOscMessage oscMessage);
         void checkForMessages();

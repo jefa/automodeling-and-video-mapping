@@ -67,11 +67,9 @@ void NodeEditorDialog::createFormGroupBox()
 //! [12]
 
 void NodeEditorDialog::loadData(){
-        Node node;
-        node = this->model->getNode(idNode);
-
-        idLineEdit->setText(QString(idNode.c_str()));
-        idLineEdit->setReadOnly(true);
+    Node *node = this->model->getNode(idNode);
+    idLineEdit->setText(QString(node->id.c_str()));
+    idLineEdit->setReadOnly(true);
 }
 
 void NodeEditorDialog::isActive(bool newVal){

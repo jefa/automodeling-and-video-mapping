@@ -329,8 +329,6 @@ bool ObjectItemData::setSeleted(Scene *scene){
 NodeItemData::NodeItemData(Node *nodeobj){
     this->itemId = 5;
     this->node = nodeobj;
-    //cout<<"  dato de nodo agregado a itemdata "<< (*nodeobj).id;
-
 }
 
 NodeItemData::~NodeItemData(){
@@ -338,8 +336,8 @@ NodeItemData::~NodeItemData(){
 
 QVariant NodeItemData::getData(int column){
     if (column == 0){
-    cout << "dato nodo obtiene "<< ((*this->node).id).c_str();
-    return QVariant(QString(((*this->node).id).c_str()));
+        cout << "dato nodo obtiene "<< this->node->id.c_str() << endl;
+        return QVariant(QString(this->node->id.c_str()));
     }
 
     return QVariant(QString("no data"));
@@ -355,4 +353,3 @@ bool NodeItemData::setSeleted(Scene *scene){
     //scene->activateObject(this->object3d->getId());
     return true;
 }
-
