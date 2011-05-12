@@ -450,7 +450,7 @@ void TreeModel::setupNodesModelData(TreeItem *parent)
         Node node = nodesIt->second;
         NodeItemData *nodeItem = new NodeItemData(&node);
 
-        parent->insertChildren(positionNode, 1, nodeItem, nodesIt->first);
+        parent->insertChildren(positionNode, 1, nodeItem, "");
         TreeItem *childItemNode = parent->child(positionNode);
         positionNode++;
     }

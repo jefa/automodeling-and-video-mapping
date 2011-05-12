@@ -25,7 +25,7 @@ class NodeEditorDialog : public QWidget
     Q_OBJECT
 
 public:
-    NodeEditorDialog(VmtModel* modelobj);
+    NodeEditorDialog(VmtModel* modelobj, string idNode);
 
 private slots:
     void acceptPressed();
@@ -50,7 +50,10 @@ private:
     QLineEdit *addressEdit;
     QLineEdit *cameraIdEdit;
     QLineEdit *portEdit;
+
     VmtModel *model;
+    string idNode;
+
 
 
 };
