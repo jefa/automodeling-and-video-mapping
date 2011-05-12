@@ -3,23 +3,23 @@
 OscManager::OscManager() {
 }
 
-void OscManager::Init(map<string, Node> network)
+void OscManager::Init(map<string, Node*> network)
 {
     senders.clear();
     network_copy.clear();
 
-    map<string, Node>::iterator iter = network.begin();
+    map<string, Node*>::iterator iter = network.begin();
     while (iter != network.end() )
     {
         string nName = iter->first;
-        Node n = iter->second;
-        ofLog(OF_LOG_VERBOSE, "OscManager:: Detected node %s:%d", n.address.c_str(), n.port);
+        Node *n = (Node*)iter->second;
+        ofLog(OF_LOG_VERBOSE, "OscManager:: Detected node %s:%d", n->address.c_str(), n->port);
 
         ofxOscSender *sender = new ofxOscSender();
-        sender->setup(n.address, n.port);
+        sender->setup(n->address, n->port);
         senders.insert (pair<string, ofxOscSender*>(nName, sender));
 
-        network_copy.insert(pair<string, Node>(nName, n));
+        //network_copy.insert(pair<string, Node*>(nName, n);
 
         iter++;
     }

@@ -164,8 +164,8 @@ string TreeModel::ObtType(const QModelIndex &index)
         // add  Node
 
         this->vmtModel->addNetNode(Name,"address",0,true,this->vmtModel->getActiveCamera()->getId());
-        Node newNode = this->vmtModel->getNodes()[Name];
-        NodeItemData *nodeItem = new NodeItemData(&newNode);
+        Node *newNode = this->vmtModel->getNode(Name);
+        NodeItemData *nodeItem = new NodeItemData(newNode);
 
         success = currentItem->insertChildren(position, rows, nodeItem ,Name);
     }
@@ -444,11 +444,11 @@ void TreeModel::setupLightsModelData(TreeItem *parent)
 void TreeModel::setupNodesModelData(TreeItem *parent)
 {
     int positionNode = 0;
-    map<string, Node> nodesMap = this->vmtModel->getNodes();
-    map<string, Node>::iterator nodesIt;
+    map<string, Node*> nodesMap = this->vmtModel->getNodes();
+    map<string, Node*>::iterator nodesIt;
     for(nodesIt = nodesMap.begin(); nodesIt != nodesMap.end(); nodesIt++) {
-        Node node = nodesIt->second;
-        NodeItemData *nodeItem = new NodeItemData(&node);
+        Node *node = nodesIt->second;
+        NodeItemData *nodeItem = new NodeItemData(node);
 
         parent->insertChildren(positionNode, 1, nodeItem, "");
         TreeItem *childItemNode = parent->child(positionNode);
@@ -460,9 +460,3 @@ void TreeModel::setupNodesModelData(TreeItem *parent)
 VmtModel * TreeModel::getVmtModel(){
 return this->vmtModel;
 }
-
-
-
-
-
-

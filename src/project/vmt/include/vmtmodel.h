@@ -27,7 +27,7 @@ class VmtModel : public ISceneHandler
         void update();
 
         void addNetNode(string nodeId, string address, int port, bool isActive, string camId);
-        Node getNode(string nodeId);
+        Node* getNode(string nodeId);
         void setBackground(float, float, float);
 
         void addCamera(string id);
@@ -103,13 +103,13 @@ class VmtModel : public ISceneHandler
         map<string, ofxCamera*> getCameras();
         map<string, Object3D*> getObjects3D();
         map<string, Effect*> getEffects();
-        map<string, Node> getNodes();
+        map<string, Node*> getNodes();
 
     protected:
         string getNodeForCamera(string camId);
 
     private:
-        map<string, Node> network;
+        map<string, Node*> network;
         Scene *scene;
         OscManager *oscManager;
 

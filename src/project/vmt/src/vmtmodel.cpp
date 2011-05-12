@@ -39,30 +39,27 @@ void VmtModel::update(){
 }
 
 void VmtModel::addNetNode(string nodeId, string address, int port, bool isActive, string camId){
-    Node nd;
-    nd.id = nodeId;
-    nd.address = address;
-    nd.port = port;
-    nd.isActive = isActive;
-    nd.cameraId = camId;
+    Node *nd = new Node();
+    nd->id = nodeId;
+    nd->address = address;
+    nd->port = port;
+    nd->isActive = isActive;
+    nd->cameraId = camId;
 
-    network.insert(pair<string, Node>(nodeId, nd));
+    network.insert(pair<string, Node*>(nodeId, nd));
 
     //re-init OscManager
     this->oscManager->Init(this->network);
 }
 
-Node VmtModel::getNode(string nodeId){
-    Node node;
-    node = this->network[nodeId];
-
-    return node;
+Node* VmtModel::getNode(string nodeId){
+    return this->network[nodeId];
 }
 string VmtModel::getNodeForCamera(string camId){
-    map<string, Node>::iterator iter = network.begin();
+    map<string, Node*>::iterator iter = network.begin();
     while (iter != network.end()) {
         //printf("VmtModel.getNodeForCamera:: nodeId=%s, nodeCameraId=%s, reqCamId=%s\n", iter->first.c_str(), iter->second.cameraId.c_str(), camId.c_str());
-        if (iter->second.cameraId == camId){
+        if (iter->second->cameraId == camId){
             return iter->first;
         }
         iter++;
@@ -647,7 +644,7 @@ void VmtModel::loadShow(string filepath) {
     showXML.popTag();//vmtshow
 }
 
-map<string, Node> VmtModel::getNodes() {
+map<string, Node*> VmtModel::getNodes() {
     return this->network;
 }
 map<string, ofxCamera*> VmtModel::getCameras() {
