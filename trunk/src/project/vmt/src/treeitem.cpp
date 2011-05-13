@@ -336,7 +336,7 @@ NodeItemData::~NodeItemData(){
 
 QVariant NodeItemData::getData(int column){
     if (column == 0){
-        cout << "dato nodo obtiene "<< this->node->id.c_str() << endl;
+        //cout << "dato nodo obtiene "<< this->node->id.c_str() << endl;
         return QVariant(QString(this->node->id.c_str()));
     }
 

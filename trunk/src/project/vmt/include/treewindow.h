@@ -24,6 +24,7 @@ public:
     TreeWindow(VmtModel *vmtModel);
     ~TreeWindow();
     QString inputText(string defaultValue);
+    QString inputTextPath(string defaultValue);
 
 public slots:
     void updateActions(const QModelIndex &index = QModelIndex());

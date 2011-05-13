@@ -2,6 +2,7 @@
 #define OBJECTEDITORDIALOG_H
 
 #include "Object3D.h"
+#include "vmtmodel.h"
 
 #include <QDialog>
 #include <QAction>
@@ -24,7 +25,7 @@ class ObjectEditorDialog : public QWidget
     Q_OBJECT
 
 public:
-    ObjectEditorDialog(Object3D *obj3d);
+    ObjectEditorDialog(VmtModel *modelobj, string idobj);
 
 private slots:
     void acceptPressed();
@@ -51,6 +52,8 @@ private:
     QDoubleSpinBox *zCoordSpinBox;
     QLineEdit *idLineEdit;
 
+    string idobj;
+    VmtModel *model;
     Object3D *object3d;
     string previousId;
     float previousX, previousY, previousZ;

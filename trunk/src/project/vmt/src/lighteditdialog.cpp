@@ -6,9 +6,11 @@
 using namespace gui;
 
 //! [0]
-LightEditorDialog::LightEditorDialog(ofxLight *lightobj)
+LightEditorDialog::LightEditorDialog(VmtModel *modelobj, string id)
 {
-    light = lightobj;
+    this->model = modelobj;
+    idlight = id;
+
     onBox = new  QCheckBox();
     idLineEdit = new QLineEdit();
 
@@ -59,12 +61,11 @@ void LightEditorDialog::createFormGroupBox()
 void LightEditorDialog::loadData(){
     Qt::CheckState state;
     state= Qt::Unchecked;
-    if (this->light != NULL) {
-        previousId = this->light->getId();
-        previousValueON = this->light->ison();
+    if (this->model != NULL) {
+        previousValueON =  (this->model->getLight(idlight))->ison();
         if (previousValueON) {  state=Qt::Checked;}
 
-        idLineEdit->setText(QString(previousId.c_str()));
+        idLineEdit->setText(QString(( (this->model->getLight(idlight))->getId() ).c_str()));
         idLineEdit->setReadOnly(true);
         onBox->setCheckState(state);
 
@@ -72,18 +73,13 @@ void LightEditorDialog::loadData(){
 }
 
 void LightEditorDialog::enabledChange(bool newVal){
-    if (this->light != NULL)
-        if (newVal)   this->light->on();
-        else this->light->off();
+    if (this->model != NULL)
+        if (newVal)   this->model->setLightOn( (this->model->getLight(idlight))->getId() );
+        else this->model->setLightOff((this->model->getLight(idlight))->getId());
 
 }
 
 void LightEditorDialog::acceptPressed(){
-    if (this->light != NULL)
-        this->light->setId((idLineEdit->text()).toStdString());
-        //if (onBox->isChecked()) this->light->on();
-        //else this->light->off();
-
     hide();
 }
 
@@ -93,10 +89,11 @@ void LightEditorDialog::rejectPressed(){
 }
 
 void LightEditorDialog::undoChanges(){
-    if (this->light != NULL) {
-        this->light->setId(previousId);
-        if (previousValueON)   this->light->on();
-        else this->light->off();
+    if (this->model != NULL) {
+
+        if (previousValueON)    this->model->getScene()->setLightOn((this->model->getLight(idlight))->getId());
+        else this->model->getScene()->setLightOff((this->model->getLight(idlight))->getId());
+
 
     }
 }

@@ -309,6 +309,23 @@ Layer2D* VmtModel::getLayer2D(string layId){
 ofxLight* VmtModel::getLight(string lightId){
     return scene->getLight(lightId);
 }
+void VmtModel::setLightOn(string lightId){
+    if (scene->getLight(lightId) == NULL){
+        printf("VmtModel::setLightOn: object does not exists(%s)\n", lightId.c_str());
+        return;
+    }
+    oscManager->SendMessageAll(OscUtil::createSetOnLightMsg(lightId));
+
+    scene->setLightOn(lightId);
+}
+void VmtModel::setLightOff(string lightId){
+    if (scene->getLight(lightId) == NULL){
+        printf("VmtModel::setLightOff: object does not exists(%s)\n", lightId.c_str());
+        return;
+    }
+    oscManager->SendMessageAll(OscUtil::createSetOffLightMsg(lightId));
+    scene->setLightOff(lightId);
+}
 
 void VmtModel::addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay){
     if (scene->getObject3D(objId) == NULL){

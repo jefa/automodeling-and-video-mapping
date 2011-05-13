@@ -9,7 +9,8 @@ using namespace gui;
 NodeEditorDialog::NodeEditorDialog(VmtModel *modelobj, string idNode)
 {
     this->model = modelobj;
-    idNode = idNode;
+    this->idNode = idNode;
+    cout<< " id nodo al crear el objeto "<<idNode;
 
     isActiveBox = new  QCheckBox();
     idLineEdit = new QLineEdit();
@@ -67,8 +68,9 @@ void NodeEditorDialog::createFormGroupBox()
 //! [12]
 
 void NodeEditorDialog::loadData(){
+    cout << "id node  "<<idNode;
     Node *node = this->model->getNode(idNode);
-    idLineEdit->setText(QString(node->id.c_str()));
+    idLineEdit->setText(QString(idNode.c_str()));
     idLineEdit->setReadOnly(true);
 }
 
