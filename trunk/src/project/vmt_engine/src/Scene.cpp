@@ -50,6 +50,12 @@ ofxLight* Scene::getLight(string id) {
     return lights[id];
 }
 
+void Scene::setLightOn(string lightId){
+    lights[lightId]->on();
+}
+void Scene::setLightOff(string lightId){
+    lights[lightId]->off();
+}
 QuadGroup* Scene::addGroup(string id) {
     QuadGroup *group = new QuadGroup(id);
     quadGroups.insert(pair<string, QuadGroup*>(id, group));
