@@ -1,4 +1,5 @@
 #include "ProcessMesh.h"
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -17,6 +18,8 @@
 #include <wrap/io_trimesh/export_dxf.h>
 #include <wrap/io_trimesh/export_vmi.h>
 #include <wrap/io_trimesh/export.h>
+
+//#include <lib3ds/node.h>
 //#include <wrap/io_trimesh/export_3ds.h>
 
 //PARA POISSON RECONSTRUCTION

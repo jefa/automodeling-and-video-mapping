@@ -38,6 +38,9 @@
 			<Add directory="\home\javier55\Downloads\MeshLabSRC\vcglib\" />
 			<Add directory="C:\tmp\meshlab\src\external\lib3ds-1.3.0" />
 			<Add directory="\home\javier55\Downloads\MeshLabSRC\meshlab\src\external\lib3ds-1.3.0" />
+			<Add directory="C:\Qt\2010.05\qt\include" />
+			<Add directory="C:\Qt\2010.05\qt\include\QtGui" />
+			<Add directory="C:\Qt\2010.05\qt\include\QtCore" />
 		</Compiler>
 		<Linker>
 			<Add option="-fpermissive" />
@@ -45,6 +48,9 @@
 			<Add directory="\home\javier55\Downloads\MeshLabSRC\vcglib\vcg" />
 			<Add directory="C:\tmp\meshlab\src\external\lib3ds-1.3.0" />
 			<Add directory="\home\javier55\Downloads\MeshLabSRC\meshlab\src\external\lib3ds-1.3.0" />
+			<Add library="QtCore4" />
+			<Add library="QtGui4" />
+			<Add directory="C:\Qt\2010.05\qt\lib" />
 		</Linker>
 		<Unit filename="src\ProcessMesh.cpp" />
 		<Unit filename="src\ProcessMesh.h" />
