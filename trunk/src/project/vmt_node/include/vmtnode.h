@@ -62,6 +62,8 @@ class VmtNode : public ofBaseApp, public ISceneHandler {
         void resetActiveCamCalibraton();
 
         void addLight(string lightId);
+        void setLightOn(string lightId);
+        void setLightOff(string lightId);
         void setLightSpecular(string lightId, float r, float g, float b);
         void setLightDirectional(string lightId, float r, float g, float b,
                                            float nx, float ny, float nz);
