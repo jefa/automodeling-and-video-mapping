@@ -290,6 +290,12 @@ void VmtNode::resetActiveCamCalibraton() {
     cam->resetHomography();
 }
 
+void VmtNode::setLightOff(string lightId){
+    scene->setLightOff(lightId);
+}
+void VmtNode::setLightOn(string lightId){
+    scene->setLightOn(lightId);
+}
 void VmtNode::addLight(string lightId){
     scene->addLight(lightId);
 }
