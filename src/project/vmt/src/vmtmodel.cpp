@@ -548,6 +548,20 @@ ofxVec3f parseVector3f(string str) {
     return ofxVec3f(x,y,z);
 }
 
+float parseFloat(string str) {
+    std::stringstream sstr(str);
+    float x;
+    sstr >> x;
+    return x;
+}
+
+int parseInt(string str) {
+    std::stringstream sstr(str);
+    int x;
+    sstr >> x;
+    return x;
+}
+
 bool parseBool(string str) {
     return str.compare("true") == 0;
 }
@@ -639,8 +653,35 @@ void VmtModel::loadShow(string filepath) {
         //FALTA parsear el tipo de efecto que se está guardando mal y el resto de los params.
     }
     showXML.popTag();//effects
-
     showXML.popTag();//scene
+
+    showXML.pushTag("timedevents");
+    for(int eventI = 0; eventI < showXML.getNumTags("timedevent"); eventI++) {
+        float eventTime = parseFloat(showXML.getAttribute("timedevent", "t", "0", eventI));
+        string effectId = showXML.getAttribute("timedevent", "effect", "", eventI);
+        this->scheduleEvent(eventTime, effectId);
+    }
+    showXML.popTag();//timedevents
+
+    showXML.pushTag("keyevents");
+    for(int eventI = 0; eventI < showXML.getNumTags("keyevent"); eventI++) {
+        int eventKey = parseInt(showXML.getAttribute("keyevent", "key", "0", eventI));
+        string effectId = showXML.getAttribute("keyevent", "effect", "", eventI);
+        this->addKeyEvent(eventKey, effectId);
+    }
+    showXML.popTag();//keyevents
+
+    showXML.pushTag("network");
+    for(int nodeI = 0; nodeI < showXML.getNumTags("node"); nodeI++) {
+        string nodeId = showXML.getAttribute("node", "id", "", nodeI);
+        string address = showXML.getAttribute("node", "address", "localhost", nodeI);
+        int port = parseInt(showXML.getAttribute("node", "port", "54321", nodeI));
+        bool isActive = parseBool(showXML.getAttribute("node", "isActive", "true", nodeI));
+        string camId = showXML.getAttribute("node", "cameraId", "", nodeI);
+        this->addNetNode(nodeId, address, port, isActive, camId);
+    }
+    showXML.popTag();//network
+
     showXML.popTag();//vmtshow
 }
 
