@@ -36,7 +36,7 @@ class OscManager : public ISerializable
 		//ofxOscReceiver receiver;
         map<string, ofxOscSender*> senders;
 
-        map<string, Node> network_copy;
+        map<string, Node*> network_copy;
 };
 
 #endif
