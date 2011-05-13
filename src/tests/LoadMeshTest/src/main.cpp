@@ -8,7 +8,7 @@ using namespace std;
 int main()
 {
     //string fileName = "../../greek_helmet.obj";
-    string fileName = "greek_helmet.obj";
+    string fileName = "data/greek_helmet.obj";
 
     CMeshO cm;
     cm.Tr.SetIdentity();
