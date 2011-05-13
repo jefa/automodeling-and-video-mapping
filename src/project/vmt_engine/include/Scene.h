@@ -30,6 +30,8 @@ class Scene : public ISerializable
 
         ofxLight* addLight(string id);
         ofxLight* getLight(string id);
+        void setLightOn(string lightId);
+        void setLightOff(string lightId);
 
         Object3D* addObject3D(string id, string path);
         Object3D* getObject3D(string id);
