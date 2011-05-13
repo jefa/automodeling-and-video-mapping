@@ -19,7 +19,13 @@ void OscManager::Init(map<string, Node*> network)
         sender->setup(n->address, n->port);
         senders.insert (pair<string, ofxOscSender*>(nName, sender));
 
-        //network_copy.insert(pair<string, Node*>(nName, n);
+        Node *n_copy = new Node();
+        n_copy->id = n->id;
+        n_copy->address = n->address;
+        n_copy->port = n->port;
+        n_copy->isActive = n->isActive;
+        n_copy->cameraId = n->cameraId;
+        network_copy.insert(pair<string, Node*>(nName, n_copy));
 
         iter++;
     }
@@ -87,14 +93,14 @@ ofxOscSender* OscManager::getSender(string nodeName){
 SerializedNode* OscManager::Serialize() {
     SerializedNode *node = new SerializedNode("network");
 
-    map<string, Node>::iterator networkIt;
+    map<string, Node*>::iterator networkIt;
     for(networkIt = network_copy.begin(); networkIt != network_copy.end(); networkIt++) {
         SerializedNode *networkNode = new SerializedNode("node");
         networkNode->addAttribute("id", networkIt->first);
-        networkNode->addAttribute("address", networkIt->second.address);
-        networkNode->addAttribute("port", networkIt->second.port);
-        networkNode->addAttribute("isActive", networkIt->second.isActive);
-        networkNode->addAttribute("cameraId", networkIt->second.cameraId);
+        networkNode->addAttribute("address", networkIt->second->address);
+        networkNode->addAttribute("port", networkIt->second->port);
+        networkNode->addAttribute("isActive", networkIt->second->isActive);
+        networkNode->addAttribute("cameraId", networkIt->second->cameraId);
         node->addChildNode(networkNode);
     }
 

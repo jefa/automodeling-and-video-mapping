@@ -567,6 +567,14 @@ int OscUtil::processMessageAction(ofxOscMessage m, ISceneHandler *sceneHandler) 
         OscUtil::processSetCameraEyeMsg(m, sceneHandler);
     } else if ( m.getAddress() == CAMERA_SETUP_ADDR) {
         OscUtil::processSetCameraUpMsg(m, sceneHandler);
+    } else if ( m.getAddress() == CAMERA_SET_DISPLAY_HELPERS) {
+        OscUtil::processSetActiveCamDisplayHelpersMsg(m, sceneHandler);
+    } else if ( m.getAddress() == CAMERA_SET_HELPER_COORD) {
+        OscUtil::processSetActiveCamHelperCoordMsg(m, sceneHandler);
+    } else if ( m.getAddress() == CAMERA_CALIBRATE) {
+        OscUtil::processCalibrateMsg(m, sceneHandler);
+    } else if ( m.getAddress() == CAMERA_RESETCALIBRATION) {
+        OscUtil::processResetCalibrationMsg(m, sceneHandler);
     } else if ( m.getAddress() == QUAD_ADD_ADDR) {
         OscUtil::processAddQuadMsg(m, sceneHandler);
     } else if ( m.getAddress() == QUAD_SETPOINT_ADDR) {

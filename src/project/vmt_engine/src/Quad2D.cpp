@@ -68,8 +68,7 @@ ofxVec2f Quad2D::getPoint(int i) {
 }
 
 void Quad2D::setUVCoordinate(int i, float u, float v) {
-    if(i >= 0 && i <= 3)
-    {
+    if(i >= 0 && i <= 3) {
         quadTextCoords[i * 2] = u;
         quadTextCoords[1 + (i * 2)] = v;
     }
@@ -80,13 +79,11 @@ int Quad2D::getControlPointAt(int x, int y) {
     if(!this->selected)
         return result;
 
-    for(int i = 0; i < 4; i++)
-    {
+    for(int i = 0; i < 4; i++) {
         float xc = quadPoints[i * 2];
         float yc = quadPoints[(i * 2) + 1];
 
-        if(ofDistSquared(xc, yc, x, y) <= pow(radius, 2))
-        {
+        if(ofDistSquared(xc, yc, x, y) <= pow(radius, 2)) {
             return i;
         }
     }
@@ -124,29 +121,26 @@ void Quad2D::draw() {
         this->material->Disable();
     }
 
-    #ifdef CONSOLE
-    //Modo consola, dibuja solo alrededor.
-
+    //Esto debería pasar solo en el editor
     if(selected) {
         glColor4f(1.0f, 0.3f, 0.3f, 1.0f);
+        glBegin(GL_LINE_LOOP);
+        for(int i = 0; i < 8; i += 2) {
+            glVertex2f(quadPoints[i], quadPoints[i+1]);
+        }
+        glEnd();
     }
-    else {
+    /*else {
         glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
-    }
-    glBegin(GL_LINE_LOOP);
-    for(int i = 0; i < 8; i += 2) {
-        glVertex2f(quadPoints[i], quadPoints[i+1]);
-    }
-    glEnd();
+    }*/
 
-    if(selected) {
+    /*if(selected) {
         ofCircle(quadPoints[0], quadPoints[1], radius);
         ofCircle(quadPoints[2], quadPoints[3], radius);
         ofCircle(quadPoints[4], quadPoints[5], radius);
         ofCircle(quadPoints[6], quadPoints[7], radius);
-    }
+    }*/
 
-	#endif
 }
 
 void Quad2D::setId(string id){
