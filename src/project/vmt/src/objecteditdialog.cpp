@@ -6,8 +6,11 @@
 using namespace gui;
 
 //! [0]
-ObjectEditorDialog::ObjectEditorDialog(Object3D *obj3d)
+ObjectEditorDialog::ObjectEditorDialog(VmtModel *modelobj, string idobj)
 {
+    this->model = modelobj;
+    idobj = idobj;
+    Object3D *obj3d = this->model->getObject3D(idobj);
     object3d = obj3d;
     xCoordSpinBox = new QDoubleSpinBox();
     yCoordSpinBox = new QDoubleSpinBox();
@@ -90,7 +93,7 @@ void ObjectEditorDialog::loadData(){
 }
 
 void ObjectEditorDialog::xValueChanged(double newVal){
-    if (this->object3d != NULL)
+    if (this->model != NULL)
         this->object3d->set(POS_X, newVal);
 }
 

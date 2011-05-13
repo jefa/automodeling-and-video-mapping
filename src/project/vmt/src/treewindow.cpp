@@ -109,8 +109,13 @@ void TreeWindow::insertRow()
     // TreeModel *model = view->model();
      TreeModel *model = (TreeModel*) view->model();
      string TypeNodo;
+     string Name, path;
      TypeNodo =ObtType(index);
-     string Name= (inputText("New")).toStdString();
+     if (TypeNodo == "OBJECTS" || TypeNodo == "OBJECT"){
+         Name= (inputText("New")).toStdString();
+         path= (inputTextPath("")).toStdString();
+     }
+     else  Name= (inputText("New")).toStdString();
 
      if (!model->insertRows(0,index.row()+1, index, Name))
          return;
@@ -441,6 +446,28 @@ QString TreeWindow::inputText(string defaultValue)
     throw exception();
 }
 
+QString TreeWindow::inputTextPath(string defaultValue)
+{
+    bool ok;
+    QFileDialog::Options options;
+    QString selectedFilter;
+    QString path = QFileDialog::getOpenFileName(this,
+                         "Select one or more files to open",
+                         "/home",
+                         "files (*.3ds)",&selectedFilter
+                         /*this,
+                                tr("Path"),
+                                QString("NewSquirrel.3ds"),
+                                tr("All Files (*);;(*.3DS)"),
+                                &selectedFilter,options*/);
+
+
+    if (ok && !path.isEmpty())
+        return path;
+
+    throw exception();
+}
+
 void TreeWindow::clickedTree(const QModelIndex &index)
 {
 
@@ -475,13 +502,14 @@ void TreeWindow::editObject()
     TypeNodo =ObtType(index);
     if (TypeNodo == "NODE"){
         cout << "nodo  "<<itemData->getData(0).toString().toStdString();
-        cout <<  "id camera del node"<< (model->getVmtModel()->getNode(itemData->getData(0).toString().toStdString()))->cameraId;
+        //cout <<  "id camera del node"<< (model->getVmtModel()->getNode(itemData->getData(0).toString().toStdString()))->cameraId;
        //model->getVmtModel()->activateCamera((model->getVmtModel()->getNodes()[itemData->getData(0).toString().toStdString()]).cameraId);
        NodeEditorDialog *d = new NodeEditorDialog(model->getVmtModel(),itemData->getData(0).toString().toStdString());
         d->show();
     }
     if (TypeNodo == "LIGHT"){
-       LightEditorDialog *d = new LightEditorDialog(model->getVmtModel()->getLight(itemData->getData(0).toString().toStdString()));
+
+       LightEditorDialog *d = new LightEditorDialog(model->getVmtModel(),(itemData->getData(0).toString().toStdString()) );
         d->show();
     }
     if (TypeNodo == "CAMERA"){
@@ -490,7 +518,7 @@ void TreeWindow::editObject()
     }
 
     if (TypeNodo == "OBJECT"){
-        ObjectEditorDialog *d = new ObjectEditorDialog(model->getVmtModel()->getObject3D(itemData->getData(0).toString().toStdString()));
+        ObjectEditorDialog *d = new ObjectEditorDialog(model->getVmtModel(),itemData->getData(0).toString().toStdString());
         d->show();
     }
     if (TypeNodo == "LAYER"){

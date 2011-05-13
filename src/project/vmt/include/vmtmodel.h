@@ -71,6 +71,8 @@ class VmtModel : public ISceneHandler
 
         void addLight(string lightId);
         ofxLight* getLight(string lightId);
+        void setLightOn(string lightId);
+        void setLightOff(string lightId);
         void setLightSpecular(string lightId, float r, float g, float b);
         void setLightDirectional(string lightId, float r, float g, float b,
                                            float nx, float ny, float nz);

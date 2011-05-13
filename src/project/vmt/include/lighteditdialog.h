@@ -2,6 +2,7 @@
 #define LIGHTEDITORDIALOG_H
 
 #include "ofxLight.h"
+#include "vmtmodel.h"
 
 #include <QDialog>
 #include <QAction>
@@ -24,7 +25,7 @@ class LightEditorDialog : public QWidget
     Q_OBJECT
 
 public:
-    LightEditorDialog(ofxLight *lightobj);
+    LightEditorDialog(VmtModel *modelobj, string idlight);
 
 private slots:
     void acceptPressed();
@@ -47,7 +48,8 @@ private:
     QCheckBox *onBox;
     QLineEdit *idLineEdit;
 
-    ofxLight *light;
+    string idlight;
+    VmtModel *model;
     string previousId;
     bool previousValueON;
 

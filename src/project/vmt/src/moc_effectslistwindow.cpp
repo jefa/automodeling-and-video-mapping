@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'effectslistwindow.h'
 **
-** Created: Thu 12. May 11:23:49 2011
+** Created: Fri 13. May 12:26:45 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
