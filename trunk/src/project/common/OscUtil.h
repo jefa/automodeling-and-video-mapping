@@ -35,6 +35,8 @@ const string LIGHT_SPECULAR_ADDR            = "/light/specular";
 const string LIGHT_DIRECTIONAL_ADDR         = "/light/directional";
 const string LIGHT_SPOT_ADDR                = "/light/spot";
 const string LIGHT_POINT_ADDR               = "/light/point";
+const string LIGHT_ON                       = "/light/on";
+const string LIGHT_OFF                      = "/light/off";
 
 class OscUtil
 {
@@ -103,6 +105,11 @@ class OscUtil
         static void processCalibrateMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
         static ofxOscMessage createResetCalibrationMsg();
         static void processResetCalibrationMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+
+        static ofxOscMessage createSetOffLightMsg(string lightId);
+        static void processSetOffLightMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+        static ofxOscMessage createSetOnLightMsg(string lightId);
+        static void processSetOnLightMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
         static ofxOscMessage createAddLightMsg(string lightId);
         static void processAddLightMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);

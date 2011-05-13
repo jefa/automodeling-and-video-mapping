@@ -451,11 +451,32 @@ ofxOscMessage OscUtil::createAddLightMsg(string lightId){
     oscMessage.addStringArg(lightId);
     return oscMessage;
 }
-
 void OscUtil::processAddLightMsg(ofxOscMessage m, ISceneHandler *sceneHandler){
     string lightId = m.getArgAsString(0);
     sceneHandler->addLight(lightId);
 }
+
+ofxOscMessage OscUtil::createSetOnLightMsg(string lightId){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(LIGHT_ON);
+    oscMessage.addStringArg(lightId);
+    return oscMessage;
+}
+void OscUtil::processSetOnLightMsg(ofxOscMessage m, ISceneHandler *sceneHandler){
+    string lightId = m.getArgAsString(0);
+    sceneHandler->setLightOn(lightId);
+}
+ofxOscMessage OscUtil::createSetOffLightMsg(string lightId){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(LIGHT_OFF);
+    oscMessage.addStringArg(lightId);
+    return oscMessage;
+}
+void OscUtil::processSetOffLightMsg(ofxOscMessage m, ISceneHandler *sceneHandler){
+    string lightId = m.getArgAsString(0);
+    sceneHandler->setLightOff(lightId);
+}
+
 
 ofxOscMessage OscUtil::createLightSpecularMsg(string lightId, float r, float g, float b){
     ofxOscMessage oscMessage;
@@ -607,7 +628,11 @@ int OscUtil::processMessageAction(ofxOscMessage m, ISceneHandler *sceneHandler) 
         OscUtil::processTestEffectMsg(m, sceneHandler);
     } else if ( m.getAddress() == LIGHT_ADD_ADDR) {
         OscUtil::processAddLightMsg(m, sceneHandler);
-    } else if ( m.getAddress() == LIGHT_SPECULAR_ADDR) {
+    } else if ( m.getAddress() == LIGHT_ON) {
+        OscUtil::processSetOnLightMsg(m, sceneHandler);
+    }else if ( m.getAddress() == LIGHT_OFF) {
+        OscUtil::processSetOffLightMsg(m, sceneHandler);
+    }else if ( m.getAddress() == LIGHT_SPECULAR_ADDR) {
         OscUtil::processLightSpecularMsg(m, sceneHandler);
     } else if ( m.getAddress() == LIGHT_DIRECTIONAL_ADDR) {
         OscUtil::processLightDirectionalMsg(m, sceneHandler);

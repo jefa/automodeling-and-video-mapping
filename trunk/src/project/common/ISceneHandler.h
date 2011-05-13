@@ -51,6 +51,8 @@ class ISceneHandler
                                            float angle, float concentration) =0;
         virtual void setLightPoint(string lightId, float r, float g, float b,
                                            float x, float y, float z) =0;
+        virtual void setLightOff(string lightId)=0;
+        virtual void setLightOn(string lightId)=0;
 };
 
 #endif // ISCENEHANDLER_H_INCLUDED
