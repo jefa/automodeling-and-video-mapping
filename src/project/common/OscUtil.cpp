@@ -444,6 +444,38 @@ ofxOscMessage OscUtil::createResetCalibrationMsg() {
 void OscUtil::processResetCalibrationMsg(ofxOscMessage msg, ISceneHandler *sceneHandler) {
     sceneHandler->resetActiveCamCalibraton();
 }
+ofxOscMessage OscUtil::createSetPerspectiveMsg(string camId, float _fov, float _aspect, float _zNear, float _zFar) {
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(CAMERA_SET_PERSPECTIVE);
+    oscMessage.addStringArg(camId);
+    oscMessage.addFloatArg(_fov);
+    oscMessage.addFloatArg(_aspect);
+    oscMessage.addFloatArg(_zNear);
+    oscMessage.addFloatArg(_zFar);
+    return oscMessage;
+}
+void OscUtil::processSetPerspectiveMsg(ofxOscMessage msg, ISceneHandler *sceneHandler) {
+    string camId = msg.getArgAsString(0);
+    float _fov = msg.getArgAsFloat(1);
+    float _aspect = msg.getArgAsFloat(2);
+    float _zNear = msg.getArgAsFloat(3);
+    float _zFar = msg.getArgAsFloat(4);
+    sceneHandler->setPerspective(camId, _fov, _aspect, _zNear, _zFar);
+}
+
+ofxOscMessage OscUtil::createSetIsProjectorMsg(string camId, bool NewVal) {
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(CAMERA_SET_ISPROJECTOR);
+    oscMessage.addStringArg(camId);
+    oscMessage.addIntArg(NewVal);
+    return oscMessage;
+}
+
+void OscUtil::processSetIsProjectorMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
+        string camId = msg.getArgAsString(0);
+        bool NewVal = msg.getArgAsInt32(1);
+        sceneHandler->setIsProjector(camId, NewVal);
+}
 
 ofxOscMessage OscUtil::createAddLightMsg(string lightId){
     ofxOscMessage oscMessage;
@@ -596,7 +628,9 @@ int OscUtil::processMessageAction(ofxOscMessage m, ISceneHandler *sceneHandler) 
         OscUtil::processCalibrateMsg(m, sceneHandler);
     } else if ( m.getAddress() == CAMERA_RESETCALIBRATION) {
         OscUtil::processResetCalibrationMsg(m, sceneHandler);
-    } else if ( m.getAddress() == QUAD_ADD_ADDR) {
+    } else if ( m.getAddress() == CAMERA_SET_PERSPECTIVE) {
+        OscUtil::processSetPerspectiveMsg(m, sceneHandler);
+    }else if ( m.getAddress() == QUAD_ADD_ADDR) {
         OscUtil::processAddQuadMsg(m, sceneHandler);
     } else if ( m.getAddress() == QUAD_SETPOINT_ADDR) {
         OscUtil::processSetQuadPointMsg(m, sceneHandler);

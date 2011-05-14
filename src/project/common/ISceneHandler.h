@@ -13,6 +13,8 @@ class ISceneHandler
         virtual void setCameraEye(string camId, float x, float y, float z) =0;
         virtual void setCameraUp(string camId, float x, float y, float z) =0;
         virtual void activateCamera(string camId) =0;
+        virtual void setPerspective(string camId, float _fov, float _aspect, float _zNear, float _zFar)=0;
+        virtual void setIsProjector(string camId, bool NewValue)=0;
         virtual ofxCamera* getActiveCamera() =0;
 
         virtual void addGroup(string groupId) =0;
