@@ -13,6 +13,8 @@ const string CAMERA_SETPOS_ADDR             = "/camera/setpos";
 const string CAMERA_SETEYE_ADDR             = "/camera/seteye";
 const string CAMERA_SETUP_ADDR              = "/camera/setup";
 const string CAMERA_ACTIVATE_ADDR           = "/camera/activate";
+const string CAMERA_SET_PERSPECTIVE         = "/camera/setperspective";
+const string CAMERA_SET_ISPROJECTOR         = "/camera/setisprojector";
 const string CAMERA_SET_DISPLAY_HELPERS     = "/camera/setdisplayhelpers";
 const string CAMERA_SET_HELPER_COORD        = "/camera/sethelpercoord";
 const string CAMERA_CALIBRATE               = "/camera/calibrate";
@@ -58,6 +60,13 @@ class OscUtil
 
         static ofxOscMessage createActivateCameraMsg(string id);
         static void processActivateCameraMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+
+
+        static ofxOscMessage createSetPerspectiveMsg(string camId, float _fov, float _aspect, float _zNear, float _zFar);
+        static void processSetPerspectiveMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+
+        static ofxOscMessage createSetIsProjectorMsg(string id, bool NewVal);
+        static void processSetIsProjectorMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
         static ofxOscMessage createAddQuadMsg(string camId, string layerId, string quadId);
         static void processAddQuadMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
