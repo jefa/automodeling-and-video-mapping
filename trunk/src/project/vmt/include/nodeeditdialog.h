@@ -51,6 +51,10 @@ private:
     QLineEdit *cameraIdEdit;
     QLineEdit *portEdit;
 
+    string previousAddress, previousCameraId;
+    int previousPort;
+    bool previousIsActive;
+
     VmtModel *model;
     string idNode;
 

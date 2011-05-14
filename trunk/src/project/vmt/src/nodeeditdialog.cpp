@@ -10,7 +10,7 @@ NodeEditorDialog::NodeEditorDialog(VmtModel *modelobj, string idNode)
 {
     this->model = modelobj;
     this->idNode = idNode;
-    cout<< " id nodo al crear el objeto "<<idNode;
+    //cout<< " id nodo al crear el objeto "<<idNode;
 
     isActiveBox = new  QCheckBox();
     idLineEdit = new QLineEdit();
@@ -68,17 +68,26 @@ void NodeEditorDialog::createFormGroupBox()
 //! [12]
 
 void NodeEditorDialog::loadData(){
-    cout << "id node  "<<idNode;
+    //cout << "id node  "<<idNode;
     Node *node = this->model->getNode(idNode);
+    previousAddress = node->address;
+    previousCameraId = node->cameraId;
+    previousPort = node->port;
+    previousIsActive = node->isActive;
     idLineEdit->setText(QString(idNode.c_str()));
     idLineEdit->setReadOnly(true);
+    isActiveBox->setChecked(node->isActive);
+    addressEdit->setText(QString((node->address).c_str()));
+    cameraIdEdit->setText(QString((node->cameraId).c_str()));
+    portEdit->setText(QString(node->port));
 }
 
 void NodeEditorDialog::isActive(bool newVal){
+    this->model->getNode(idNode)->isActive = newVal;
 }
 
 void NodeEditorDialog::acceptPressed(){
-
+    this->model->setNodeAtributes(idNode,addressEdit->text().toStdString(), portEdit->text().toInt(), isActiveBox->isChecked(),cameraIdEdit->text().toStdString());
     hide();
 }
 
@@ -88,5 +97,6 @@ void NodeEditorDialog::rejectPressed(){
 }
 
 void NodeEditorDialog::undoChanges(){
+        this->model->setNodeAtributes(idNode, previousAddress , previousPort, previousIsActive, previousCameraId);
 
 }

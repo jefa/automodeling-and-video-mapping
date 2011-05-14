@@ -513,7 +513,7 @@ void TreeWindow::editObject()
         d->show();
     }
     if (TypeNodo == "CAMERA"){
-        CameraEditorDialog *d = new CameraEditorDialog(model->getVmtModel()->getCameras()[itemData->getData(0).toString().toStdString()]);
+        CameraEditorDialog *d = new CameraEditorDialog(model->getVmtModel(),itemData->getData(0).toString().toStdString());
         d->show();
     }
 
