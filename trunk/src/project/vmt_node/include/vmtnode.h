@@ -34,6 +34,8 @@ class VmtNode : public ofBaseApp, public ISceneHandler {
         void setCameraEye(string camId, float x, float y, float z);
         void setCameraUp(string camId, float x, float y, float z);
         void activateCamera(string camId);
+        void setPerspective(string camId, float _fov, float _aspect, float _zNear, float _zFar);
+        void setIsProjector(string camId, bool NewValue);
         ofxCamera* getActiveCamera();
 
         void addGroup(string groupId);

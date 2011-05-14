@@ -131,6 +131,17 @@ void VmtNode::setCameraUp(string camId, float x, float y, float z){
 void VmtNode::activateCamera(string camId){
     scene->activateCamera(camId);
 }
+void VmtNode::setPerspective(string camId, float _fov, float _aspect, float _zNear, float _zFar){
+    ofxCamera *camera = scene->getCamera(camId);
+    if (camera != NULL)
+        camera->perspective(_fov, _aspect, _zNear, _zFar);
+}
+void VmtNode::setIsProjector(string camId, bool NewValue){
+        ofxCamera *camera = scene->getCamera(camId);
+    if (camera != NULL)
+        camera->setIsProjector(NewValue);
+
+}
 
 ofxCamera* VmtNode::getActiveCamera(){
     return scene->getActiveCamera();
