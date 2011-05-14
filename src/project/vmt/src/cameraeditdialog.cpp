@@ -6,9 +6,10 @@
 using namespace gui;
 
 //! [0]
-CameraEditorDialog::CameraEditorDialog(ofxCamera *objcamera)
+CameraEditorDialog::CameraEditorDialog(VmtModel *modelobj, string id)
 {
-    camera = objcamera;
+    this->model = modelobj;
+    cameraId = id;
     xCoordSpinBox = new QDoubleSpinBox();
     yCoordSpinBox = new QDoubleSpinBox();
     zCoordSpinBox = new QDoubleSpinBox();
@@ -179,51 +180,52 @@ void CameraEditorDialog::createFormGroupBox()
 //! [12]
 
 void CameraEditorDialog::loadData(){
-    if (this->camera != NULL) {
+    if (this->model != NULL) {
         Qt::CheckState state;
         state= Qt::Unchecked;
-        previousId = this->camera->getId();
-        idLineEdit->setText(QString(previousId.c_str()));
+        ofxCamera *camera = this->model->getCameras()[cameraId];
+
+        idLineEdit->setText(QString(cameraId.c_str()));
         idLineEdit->setReadOnly(true);
 
-        previousprojector = this->camera->isProjector();
+        previousprojector = camera->isProjector();
         if (previousprojector) {  state=Qt::Checked;}
         projector->setCheckState(state);
 
-        previousX = this->camera->getPosition().x;
-        previousY = this->camera->getPosition().y;
-        previousZ = this->camera->getPosition().z;
+        previousX = camera->getPosition().x;
+        previousY = camera->getPosition().y;
+        previousZ = camera->getPosition().z;
 
         xCoordSpinBox->setValue(previousX);
         yCoordSpinBox->setValue(previousY);
         zCoordSpinBox->setValue(previousZ);
 
-        previousEyeX = this->camera->getEye().x;
-        previousEyeY = this->camera->getEye().y;
-        previousEyeZ = this->camera->getEye().z;
+        previousEyeX = camera->getEye().x;
+        previousEyeY = camera->getEye().y;
+        previousEyeZ = camera->getEye().z;
 
         xCoordSpinEyeBox->setValue(previousEyeX);
         yCoordSpinEyeBox->setValue(previousEyeY);
         zCoordSpinEyeBox->setValue(previousEyeZ);
 
-        previousUpX = this->camera->getUp().x;
-        previousUpY = this->camera->getUp().y;
-        previousUpZ = this->camera->getUp().z;
+        previousUpX = camera->getUp().x;
+        previousUpY = camera->getUp().y;
+        previousUpZ = camera->getUp().z;
 
         xCoordSpinUpBox->setValue(previousUpX);
         yCoordSpinUpBox->setValue(previousUpY);
         zCoordSpinUpBox->setValue(previousUpZ);
 
-        previousaspectRatio = this->camera->getaspectRatio();
+        previousaspectRatio = camera->getaspectRatio();
         aspectRatio->setValue(previousaspectRatio);
 
-        previousfieldOfView = this->camera->getfieldOfView();
+        previousfieldOfView = camera->getfieldOfView();
         fieldOfView->setValue(previousfieldOfView);
 
-        previouszFar = this->camera->getzFar();
+        previouszFar = camera->getzFar();
         zFar->setValue(previouszFar);
 
-        previouszNear = this->camera->getzNear();
+        previouszNear = camera->getzNear();
         zNear->setValue(previouszNear);
 
         }
@@ -231,71 +233,70 @@ void CameraEditorDialog::loadData(){
 }
 
 void CameraEditorDialog::xValueChanged(double newVal){
-     if(this->camera != NULL)
-        this->camera->position(newVal, previousY, previousZ);
+     if(this->model != NULL)
+        this->model->setCameraPos(cameraId,newVal, previousY, previousZ);
 }
 
 void CameraEditorDialog::yValueChanged(double newVal){
-     if(this->camera != NULL)
-        this->camera->position(previousX, newVal, previousZ);
+     if(this->model != NULL)
+        this->model->setCameraPos(cameraId,previousX, newVal, previousZ);
 }
 
 void CameraEditorDialog::zValueChanged(double newVal){
-     if(this->camera != NULL)
-        this->camera->position(previousX, previousY, newVal);
+     if(this->model != NULL)
+        this->model->setCameraPos(cameraId,previousX, previousY, newVal);
 }
 
 void CameraEditorDialog::xValueChangedEye(double newVal){
-     if(this->camera != NULL)
-        this->camera->eye(newVal, previousEyeY, previousEyeZ);
+     if(this->model != NULL)
+        this->model->setCameraEye(cameraId,newVal, previousEyeY, previousEyeZ);
 }
 void CameraEditorDialog::yValueChangedEye(double newVal){
-     if(this->camera != NULL)
-        this->camera->eye(previousEyeX, newVal, previousEyeZ);
+     if(this->model != NULL)
+        this->model->setCameraEye(cameraId,previousEyeX, newVal, previousEyeZ);
 }
 void CameraEditorDialog::zValueChangedEye(double newVal){
-    if(this->camera != NULL)
-        this->camera->eye(previousEyeX, previousEyeY, newVal);
+     if(this->model != NULL)
+        this->model->setCameraEye(cameraId,previousEyeX, previousEyeY, newVal);
 }
 void CameraEditorDialog::xValueChangedUp(double newVal){
-    if(this->camera != NULL)
-        this->camera->up(newVal, previousUpY, previousUpZ);
+     if(this->model != NULL)
+        this->model->setCameraUp(cameraId,newVal, previousUpY, previousUpZ);
 }
 void CameraEditorDialog::yValueChangedUp(double newVal){
-    if(this->camera != NULL)
-        this->camera->up(previousUpX, newVal, previousUpZ);
+     if(this->model != NULL)
+        this->model->setCameraUp(cameraId,previousUpX, newVal, previousUpZ);
 }
 void CameraEditorDialog::zValueChangedUp(double newVal){
-    if(this->camera != NULL)
-        this->camera->up(previousUpX, previousUpY, newVal);
+     if(this->model != NULL)
+        this->model->setCameraUp(cameraId,previousUpX, previousUpY, newVal);
 }
 
 void CameraEditorDialog::fieldOfViewValueChanged(double newVal){
-        if(this->camera != NULL)
-        this->camera->perspective(newVal, previousaspectRatio, previouszNear,previouszFar);
+        if(this->model != NULL)
+        this->model->setPerspective(cameraId, newVal, previousaspectRatio, previouszNear,previouszFar);
 }
 void CameraEditorDialog::aspectRatioValueChanged(double newVal){
-        if(this->camera != NULL)
-        this->camera->perspective(previousfieldOfView, newVal, previouszNear,previouszFar);
+        if(this->model != NULL)
+        this->model->setPerspective(cameraId, previousfieldOfView, newVal, previouszNear,previouszFar);
 }
 void CameraEditorDialog::zNearValueChanged(double newVal){
-        if(this->camera != NULL)
-        this->camera->perspective(previousfieldOfView, previousaspectRatio, newVal,previouszFar);
+        if(this->model != NULL)
+        this->model->setPerspective(cameraId, previousfieldOfView, previousaspectRatio, newVal,previouszFar);
 }
 void CameraEditorDialog::zFarValueChanged(double newVal){
-        if(this->camera != NULL)
-        this->camera->perspective(previousfieldOfView, previousaspectRatio, previouszNear,newVal);
+        if(this->model != NULL)
+        this->model->setPerspective(cameraId, previousfieldOfView, previousaspectRatio, previouszNear,newVal);
 }
 void CameraEditorDialog::proyectorChange(bool newVal){
-        if(this->camera != NULL)
-        this->camera->setIsProjector(newVal);
+        if(this->model != NULL)
+        this->model->setIsProjector(cameraId,newVal);
 }
 
 
 void CameraEditorDialog::acceptPressed(){
-    if (this->camera != NULL)
-    this->camera->setId((idLineEdit->text()).toStdString());
-    this->camera->setIsProjector(projector->isChecked());
+    if (this->model != NULL)
+    this->model->setIsProjector(cameraId, projector->isChecked());
     hide();
 }
 
@@ -305,13 +306,12 @@ void CameraEditorDialog::rejectPressed(){
 }
 
 void CameraEditorDialog::undoChanges(){
-    if (this->camera != NULL) {
-        this->camera->setId(previousId);
-        this->camera->setIsProjector(previousprojector);
-        this->camera->perspective(previousfieldOfView, previousaspectRatio, previouszNear,previouszFar);
-        this->camera->up(previousUpX, previousUpY, previousUpZ);
-        this->camera->eye(previousEyeX, previousEyeY, previousEyeZ);
-        this->camera->position(previousX, previousY, previousZ);
-       // this->object3d->set(POS_Z, previousZ);
+    if (this->model != NULL) {
+        this->model->setIsProjector(cameraId, previousprojector);
+        this->model->setPerspective(cameraId, previousfieldOfView, previousaspectRatio, previouszNear,previouszFar);
+        this->model->setCameraUp(cameraId,previousUpX, previousUpY, previousUpZ);
+        this->model->setCameraEye(cameraId,previousEyeX, previousEyeY, previousEyeZ);
+        this->model->setCameraPos(cameraId,previousX, previousY, previousZ);
+
     }
 }

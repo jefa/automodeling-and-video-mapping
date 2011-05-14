@@ -28,12 +28,15 @@ class VmtModel : public ISceneHandler
 
         void addNetNode(string nodeId, string address, int port, bool isActive, string camId);
         Node* getNode(string nodeId);
+        void setNodeAtributes(string nodeId, string address, int port, bool isActive, string camId);
         void setBackground(float, float, float);
 
         void addCamera(string id);
         void setCameraPos(string camId, float x, float y, float z);
         void setCameraEye(string camId, float x, float y, float z);
         void setCameraUp(string camId, float x, float y, float z);
+        void setPerspective(string camId, float _fov, float _aspect, float _zNear, float _zFar);
+        void setIsProjector(string camId, bool NewValue);
         void activateCamera(string camId);
         ofxCamera* getActiveCamera();
 

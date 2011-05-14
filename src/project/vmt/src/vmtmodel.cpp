@@ -54,7 +54,15 @@ void VmtModel::addNetNode(string nodeId, string address, int port, bool isActive
 
 Node* VmtModel::getNode(string nodeId){
     return this->network[nodeId];
+
 }
+void VmtModel::setNodeAtributes(string nodeId, string address, int port, bool isActive, string camId){
+    this->network[nodeId]->address = address;
+    this->network[nodeId]->port = port;
+    this->network[nodeId]->isActive = isActive;
+    this->network[nodeId]->cameraId = camId;
+}
+
 string VmtModel::getNodeForCamera(string camId){
     map<string, Node*>::iterator iter = network.begin();
     while (iter != network.end()) {
@@ -114,6 +122,26 @@ void VmtModel::setCameraUp(string camId, float x, float y, float z){
 void VmtModel::activateCamera(string camId){
     oscManager->SendMessage(OscUtil::createActivateCameraMsg(camId), getNodeForCamera(camId));
     scene->activateCamera(camId);
+}
+void VmtModel::setPerspective(string camId, float _fov, float _aspect, float _zNear, float _zFar){
+    oscManager->SendMessage(OscUtil::createSetPerspectiveMsg(camId, _fov, _aspect, _zNear, _zFar), getNodeForCamera(camId));
+    ofxCamera *camera = scene->getCamera(camId);
+    if (camera != NULL) {
+        camera->perspective(_fov, _aspect, _zNear, _zFar);
+    }
+    else {
+        ofLog(OF_LOG_ERROR, "VmtModel::setPerspective camera %s is NULL", camId.c_str());
+    }
+}
+void VmtModel::setIsProjector(string camId, bool NewVal){
+    oscManager->SendMessage(OscUtil::createSetIsProjectorMsg(camId,NewVal), getNodeForCamera(camId));;
+    ofxCamera *camera = scene->getCamera(camId);
+    if (camera != NULL) {
+        camera->setIsProjector(NewVal);
+    }
+    else {
+        ofLog(OF_LOG_ERROR, "VmtModel::setIsProjector camera %s is NULL", camId.c_str());
+    }
 }
 
 ofxCamera* VmtModel::getActiveCamera(){

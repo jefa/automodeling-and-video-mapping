@@ -2,6 +2,7 @@
 #define CAMERAEDITORDIALOG_H
 
 #include "ofxCamera.h"
+#include "vmtmodel.h"
 
 #include <QDialog>
 #include <QAction>
@@ -25,7 +26,7 @@ class CameraEditorDialog : public QWidget
     Q_OBJECT
 
 public:
-    CameraEditorDialog(ofxCamera *camera);
+    CameraEditorDialog(VmtModel *modelobj, string id);
 
 private slots:
     void acceptPressed();
@@ -83,9 +84,9 @@ private:
 
     QLineEdit *idLineEdit;
 
-    ofxCamera *camera;
+    VmtModel *model;
+    string cameraId;
 
-    string previousId;
     float previousX, previousY, previousZ,previousEyeX, previousEyeY, previousEyeZ,previousUpX, previousUpY, previousUpZ;
 	float previousfieldOfView, previousaspectRatio, previouszNear, previouszFar;
 	bool previousprojector;
