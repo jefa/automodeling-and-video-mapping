@@ -195,7 +195,6 @@
 		<Unit filename="include\KeyEventsManager.h" />
 		<Unit filename="include\OscManager.h" />
 		<Unit filename="include\TimeManager.h" />
-		<Unit filename="include\additemdialog.h" />
 		<Unit filename="include\backgraundeditdialog.h" />
 		<Unit filename="include\calibratedialog.h" />
 		<Unit filename="include\cameraeditdialog.h" />
@@ -205,6 +204,10 @@
 		<Unit filename="include\effectpages.h" />
 		<Unit filename="include\effectslistmodel.h" />
 		<Unit filename="include\effectslistwindow.h" />
+		<Unit filename="include\evteffecteditdialog.h" />
+		<Unit filename="include\evteffectitem.h" />
+		<Unit filename="include\evteffectslistmodel.h" />
+		<Unit filename="include\evteffectslistwindow.h" />
 		<Unit filename="include\layereditdialog.h" />
 		<Unit filename="include\lighteditdialog.h" />
 		<Unit filename="include\nodeeditdialog.h" />
@@ -219,7 +222,6 @@
 		<Unit filename="src\KeyEventsManager.cpp" />
 		<Unit filename="src\OscManager.cpp" />
 		<Unit filename="src\TimeManager.cpp" />
-		<Unit filename="src\additemdialog.cpp" />
 		<Unit filename="src\backgraundeditdialog.cpp" />
 		<Unit filename="src\calibratedialog.cpp" />
 		<Unit filename="src\cameraeditdialog.cpp" />
@@ -229,10 +231,13 @@
 		<Unit filename="src\effectpages.cpp" />
 		<Unit filename="src\effectslistmodel.cpp" />
 		<Unit filename="src\effectslistwindow.cpp" />
+		<Unit filename="src\evteffecteditdialog.cpp" />
+		<Unit filename="src\evteffectitem.cpp" />
+		<Unit filename="src\evteffectslistmodel.cpp" />
+		<Unit filename="src\evteffectslistwindow.cpp" />
 		<Unit filename="src\layereditdialog.cpp" />
 		<Unit filename="src\lighteditdialog.cpp" />
 		<Unit filename="src\main.cpp" />
-		<Unit filename="src\moc_additemdialog.cpp" />
 		<Unit filename="src\moc_backgraundeditdialog.cpp" />
 		<Unit filename="src\moc_calibratedialog.cpp" />
 		<Unit filename="src\moc_cameraeditdialog.cpp" />
@@ -241,6 +246,9 @@
 		<Unit filename="src\moc_effectpages.cpp" />
 		<Unit filename="src\moc_effectslistmodel.cpp" />
 		<Unit filename="src\moc_effectslistwindow.cpp" />
+		<Unit filename="src\moc_evteffecteditdialog.cpp" />
+		<Unit filename="src\moc_evteffectslistmodel.cpp" />
+		<Unit filename="src\moc_evteffectslistwindow.cpp" />
 		<Unit filename="src\moc_layereditdialog.cpp" />
 		<Unit filename="src\moc_lighteditdialog.cpp" />
 		<Unit filename="src\moc_nodeeditdialog.cpp" />

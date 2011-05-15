@@ -110,6 +110,7 @@ class VmtModel : public ISceneHandler
         map<string, ofxCamera*> getCameras();
         map<string, Object3D*> getObjects3D();
         map<string, Effect*> getEffects();
+        map<string, string> getEvtEffects();
         map<string, Node*> getNodes();
 
     protected:
