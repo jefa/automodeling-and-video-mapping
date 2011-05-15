@@ -33,6 +33,7 @@ class Scene : public ISerializable
         void setLightOff(string lightId);
 
         Object3D* addObject3D(string id, string path);
+        void setObject3D(string id,int aParam, float aValue);
         Object3D* getObject3D(string id);
         map<string, Object3D*> getObjects3D();
         Object3D* activateObject(string id);
