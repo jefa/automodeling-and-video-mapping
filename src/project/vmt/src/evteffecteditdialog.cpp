@@ -10,7 +10,7 @@ using namespace gui;
 evtEffecteditdialog::evtEffecteditdialog()
 {
 
-    TimeBox = new  QLineEdit();
+    TimeBox = new  QTimeEdit();
     idLineEdit = new QLineEdit();
 
 

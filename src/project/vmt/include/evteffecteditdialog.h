@@ -15,6 +15,7 @@
 #include <QPushButton>
 #include <QCheckBox>
 #include <QTextEdit>
+#include <QTimeEdit>
 #include <string>
 #include <QModelIndex>
 
@@ -48,7 +49,7 @@ private:
     QPushButton *buttons[NumButtons];
     QDialogButtonBox *buttonBox;
 
-    QLineEdit *TimeBox;
+    QTimeEdit *TimeBox;
     QLineEdit *idLineEdit;
 
 
