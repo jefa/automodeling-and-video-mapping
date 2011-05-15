@@ -27,6 +27,7 @@ class VmtNode : public ofBaseApp, public ISceneHandler {
 
 		// ISceneHandler
 
+        void resetScene();
         void setBackground(float, float, float);
 
         void addCamera(string id);

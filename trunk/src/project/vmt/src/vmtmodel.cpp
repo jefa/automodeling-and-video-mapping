@@ -730,6 +730,11 @@ void VmtModel::loadShow(string filepath) {
     showXML.popTag();//vmtshow
 }
 
+void VmtModel::resetScene() {
+    oscManager->SendMessageAll(OscUtil::createResetSceneMsg());
+    delete this->scene;
+}
+
 map<string, Node*> VmtModel::getNodes() {
     return this->network;
 }

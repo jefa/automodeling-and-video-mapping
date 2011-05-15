@@ -16,6 +16,16 @@ OscUtil::~OscUtil()
     //dtor
 }
 
+ofxOscMessage OscUtil::createResetSceneMsg() {
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(SCENE_RESET);
+    return oscMessage;
+}
+
+void OscUtil::processResetSceneMsg(ofxOscMessage msg, ISceneHandler *sceneHandler) {
+    sceneHandler->resetScene();
+}
+
 ofxOscMessage OscUtil::createSetBackgroundMsg(float r, float g, float b){
     ofxOscMessage oscMessage;
     oscMessage.setAddress(SCENE_BACKGROUND_ADDR);
@@ -644,6 +654,8 @@ int OscUtil::processMessageAction(ofxOscMessage m, ISceneHandler *sceneHandler) 
         OscUtil::processEnableQuadMsg(m, sceneHandler);
     } else if ( m.getAddress() == SCENE_BACKGROUND_ADDR) {
         OscUtil::processSetBackgroundMsg(m, sceneHandler);
+    } else if ( m.getAddress() == SCENE_RESET) {
+        OscUtil::processResetSceneMsg(m, sceneHandler);
     } else if ( m.getAddress() == GROUP_ADD_ADDR) {
         OscUtil::processAddGroupMsg(m, sceneHandler);
     } else if ( m.getAddress() == GROUP_ADDQUAD_ADDR) {
