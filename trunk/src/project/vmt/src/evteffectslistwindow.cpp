@@ -35,8 +35,8 @@ evtEffectsListWindow::~evtEffectsListWindow()
 void evtEffectsListWindow::setupUi(QWidget *listWindow)
 {
     if (listWindow->objectName().isEmpty())
-        listWindow->setObjectName(QString::fromUtf8("listWindow"));
-    listWindow->resize(300, 450);
+        listWindow->setObjectName(QString::fromUtf8("listWindow2"));
+    listWindow->resize(200, 450);
     listWindow->move(ofGetScreenWidth()-300,40);
     vboxLayout = new QVBoxLayout(listWindow);
     vboxLayout->setSpacing(0);
@@ -75,7 +75,7 @@ void evtEffectsListWindow::setupUi(QWidget *listWindow)
 
 void evtEffectsListWindow::retranslateUi(QWidget *listWindow)
 {
-    listWindow->setWindowTitle(QApplication::translate("listWindow", "TimeEvents-Effects", 0, QApplication::UnicodeUTF8));
+    listWindow->setWindowTitle(QApplication::translate("listWindow2", "TimeEvents-Effects", 0, QApplication::UnicodeUTF8));
 
     newEffectAction->setText(QApplication::translate("treeWindow", "New", 0, QApplication::UnicodeUTF8));
     editEffectAction->setText(QApplication::translate("treeWindow", "Edit", 0, QApplication::UnicodeUTF8));

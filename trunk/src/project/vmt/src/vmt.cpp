@@ -62,13 +62,13 @@ void Vmt::setup(){
     vmtModel->setQuadPoint("cam1", "layer2", "q3", 3, 30+20, 10+20);
 
     vmtModel->addObject3D("squirrel", "data/NewSquirrel.3DS");
-
+/*
     vmtModel->addPositionEffect("ef1", "squirrel", ofxVec3f(0,3,0), ofxVec3f(0,-3,0), 0.5f);
     vmtModel->addPositionEffect("ef2", "squirrel", ofxVec3f(3,0,0), ofxVec3f(-3,0,0), 0.5f);
     vmtModel->addPositionEffect("ef3", "squirrel", ofxVec3f(0,0,3), ofxVec3f(0,0,-3), 0.5f);
 
     vmtModel->addFadeEffect("ef4", "group1", ofxVec4f(0,0,0,0), ofxVec4f(1,1,1,1), 0.5f);
-
+*/
     //vmtModel->addTextureGroupEffect("ef5", "group1", "data/videos/cubo_azul.mov", VIDEO_TEXTURE);
 
     /*Lighting*/
@@ -103,14 +103,14 @@ void Vmt::setup(){
     vmtModel->setLightPoint("light3", 0, 0, 255, L3PosX, L3PosY, L3PosZ);
 
     /* End Lighting */
-
+/*
     vmtModel->addKeyEvent('a', "ef1");
     vmtModel->addKeyEvent('s', "ef2");
 
     vmtModel->scheduleEvent(1.0f, "ef1");
     vmtModel->scheduleEvent(2.0f, "ef2");
     vmtModel->scheduleEvent(3.0f, "ef3");
-
+*/
     /*vmtModel->scheduleEvent(11.0f, "ef1");
     vmtModel->scheduleEvent(1.0f, "ef4");
     vmtModel->scheduleEvent(2.0f, "ef4");
@@ -132,8 +132,8 @@ void Vmt::setup(){
     effectsWindow = new EffectsListWindow(this->vmtModel);
     effectsWindow->show();
 
-    //evteffectsWind = new evtEffectsListWindow(this->vmtModel);
-    //evteffectsWind->show();
+    evteffectsWind = new evtEffectsListWindow(this->vmtModel);
+    evteffectsWind->show();
 
 }
 
