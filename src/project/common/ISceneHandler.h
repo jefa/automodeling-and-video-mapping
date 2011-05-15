@@ -30,6 +30,7 @@ class ISceneHandler
         virtual void setQuadPoint(string camId, string layerId, string quadId,
                   int point, float coordX, float coordY) =0;
         virtual void addObject3D(string objId, string path) =0;
+        virtual void setObject3D(string objId, int aParam, float aValue) =0;
         virtual Object3D* getObject3D(string objId) =0;
 
         virtual void addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay) =0;

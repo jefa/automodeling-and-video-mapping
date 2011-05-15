@@ -291,6 +291,22 @@ void OscUtil::processAddObject3dMsg(ofxOscMessage msg, ISceneHandler *sceneHandl
     sceneHandler->addObject3D(objId, path);
 }
 
+ofxOscMessage OscUtil::createSetObject3DPosMsg(string objId, int aParam, float aValue){
+    ofxOscMessage oscMessage;
+    oscMessage.setAddress(OBJECT_SET_POS);
+    oscMessage.addStringArg(objId);
+    oscMessage.addIntArg(aParam);
+    oscMessage.addFloatArg(aValue);
+    return oscMessage;
+}
+
+void OscUtil::processSetObject3DPosMsg(ofxOscMessage msg, ISceneHandler *sceneHandler){
+    string objId = msg.getArgAsString(0);
+    int pos = msg.getArgAsInt32(1);
+    float value = msg.getArgAsFloat(2);
+    sceneHandler->setObject3D(objId, pos, value);
+}
+
 ofxOscMessage OscUtil::createAddPositionEffectMsg(string effectId, string objId, ofxVec3f posIni,
                                                 ofxVec3f posFin, float delay){
     ofxOscMessage oscMessage;
@@ -662,6 +678,8 @@ int OscUtil::processMessageAction(ofxOscMessage m, ISceneHandler *sceneHandler) 
         OscUtil::processAddQuadToGroupMsg(m, sceneHandler);
     } else if ( m.getAddress() == OBJECT_ADD_ADDR) {
         OscUtil::processAddObject3dMsg(m, sceneHandler);
+    } else if ( m.getAddress() == OBJECT_SET_POS) {
+        OscUtil::processSetObject3DPosMsg(m, sceneHandler);
     } else if ( m.getAddress() == EFFECT_ADD_FADE_ADDR) {
         OscUtil::processAddFadeEffectMsg(m, sceneHandler);
     } else if ( m.getAddress() == EFFECT_ADD_POSITION_ADDR) {
