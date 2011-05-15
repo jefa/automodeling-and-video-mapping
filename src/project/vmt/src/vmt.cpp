@@ -153,6 +153,9 @@ void Vmt::keyPressed(int key){
         vmtModel->testEffect(vmtModel->getEffectIdForKeyEvent(key));
     }
 
+    if(key == '0')
+        vmtModel->resetScene();
+
     if(key == '1')
         vmtModel->activateCamera("cam1");
 

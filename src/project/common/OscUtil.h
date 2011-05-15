@@ -22,8 +22,9 @@ const string CAMERA_RESETCALIBRATION        = "/camera/resetcalibration";
 const string QUAD_ADD_ADDR                  = "/quad/add";
 const string QUAD_SETPOINT_ADDR             = "/quad/setpoint";
 const string QUAD_ENABLE_ADDR               = "/quad/enable";
-const string LAYER_ENABLE_ADDR               = "/layer/enable";
+const string LAYER_ENABLE_ADDR              = "/layer/enable";
 const string SCENE_BACKGROUND_ADDR          = "/scene/setbackground";
+const string SCENE_RESET                    = "/scene/reset";
 const string GROUP_ADD_ADDR                 = "/group/add";
 const string GROUP_ADDQUAD_ADDR             = "/group/addquad";
 const string OBJECT_ADD_ADDR                = "/object/add";
@@ -45,6 +46,9 @@ class OscUtil
     public:
         OscUtil();
         virtual ~OscUtil();
+
+        static ofxOscMessage createResetSceneMsg();
+        static void processResetSceneMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
         static ofxOscMessage createSetBackgroundMsg(float r, float g, float b);
         static void processSetBackgroundMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);

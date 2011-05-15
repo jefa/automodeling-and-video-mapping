@@ -6,6 +6,8 @@
 class ISceneHandler
 {
     public:
+        virtual void resetScene() =0;
+
         virtual void setBackground(float, float, float) =0;
 
         virtual void addCamera(string id) =0;

@@ -23,6 +23,8 @@ class VmtModel : public ISceneHandler
 
         Scene* getScene();
 
+        void resetScene();
+
         void draw();
         void update();
 

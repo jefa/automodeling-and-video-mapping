@@ -11,6 +11,12 @@ Scene::Scene() {
 
 Scene::~Scene() {
     activeCamera = NULL;
+    activeObject = NULL;
+    cameras.clear();
+    lights.clear();
+    objects3D.clear();
+    quadGroups.clear();
+    effects.clear();
 }
 
 ofxCamera* Scene::addCamera(string id) {

@@ -3,9 +3,9 @@
 #include "ofAppGlutWindow.h"
 
 //========================================================================
-const int minResWidth = 800;
+const int minResWidth = 640;
 const int maxResWidth = 2048;
-const int minResHeight = 300;
+const int minResHeight = 480;
 const int maxResHeight = 2048;
 const int minPosWinX = -2048;
 const int maxPosWinX = 2048;
