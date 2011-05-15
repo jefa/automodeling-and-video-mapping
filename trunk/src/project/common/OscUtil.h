@@ -28,6 +28,7 @@ const string SCENE_RESET                    = "/scene/reset";
 const string GROUP_ADD_ADDR                 = "/group/add";
 const string GROUP_ADDQUAD_ADDR             = "/group/addquad";
 const string OBJECT_ADD_ADDR                = "/object/add";
+const string OBJECT_SET_POS                = "/object/set_position";
 const string EFFECT_ADD_FADE_ADDR           = "/effect/add_fade";
 const string EFFECT_ADD_POSITION_ADDR       = "/effect/add_position";
 const string EFFECT_ADD_TEXTURE_GROUP_ADDR  = "/effect/add_texture_group";
@@ -65,7 +66,6 @@ class OscUtil
         static ofxOscMessage createActivateCameraMsg(string id);
         static void processActivateCameraMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
-
         static ofxOscMessage createSetPerspectiveMsg(string camId, float _fov, float _aspect, float _zNear, float _zFar);
         static void processSetPerspectiveMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
@@ -93,6 +93,9 @@ class OscUtil
 
         static ofxOscMessage createAddObject3dMsg(string objId, string base64data);
         static void processAddObject3dMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
+
+        static ofxOscMessage createSetObject3DPosMsg(string objId, int aParam, float aValue);
+        static void processSetObject3DPosMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
         static ofxOscMessage createAddPositionEffectMsg(string effectId, string objId, ofxVec3f posIni,
                                                         ofxVec3f posFin, float delay);
