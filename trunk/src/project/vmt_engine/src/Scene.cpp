@@ -81,6 +81,10 @@ Object3D* Scene::addObject3D(string id, string path) {
     objects3D.insert(pair<string, Object3D*>(id, obj3D));
     return obj3D;
 }
+void Scene::setObject3D(string id,int aParam, float aValue){
+    Object3D *obj3D = objects3D[id];
+    obj3D->set(aParam, aValue);
+}
 
 Object3D* Scene::getObject3D(string id) {
     return objects3D[id];
