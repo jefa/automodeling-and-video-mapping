@@ -9,7 +9,7 @@ using namespace gui;
 ObjectEditorDialog::ObjectEditorDialog(VmtModel *modelobj, string idobj)
 {
     this->model = modelobj;
-    idobj = idobj;
+    this->idobj = idobj;
     Object3D *obj3d = this->model->getObject3D(idobj);
     object3d = obj3d;
     xCoordSpinBox = new QDoubleSpinBox();
@@ -94,22 +94,20 @@ void ObjectEditorDialog::loadData(){
 
 void ObjectEditorDialog::xValueChanged(double newVal){
     if (this->model != NULL)
-        this->object3d->set(POS_X, newVal);
+        this->model->setObject3D(idobj, POS_X, newVal);
 }
 
 void ObjectEditorDialog::yValueChanged(double newVal){
-    if (this->object3d != NULL)
-        this->object3d->set(POS_Y, newVal);
+    if (this->model != NULL)
+        this->model->setObject3D(idobj,POS_Y, newVal);
 }
 
 void ObjectEditorDialog::zValueChanged(double newVal){
-    if (this->object3d != NULL)
-        this->object3d->set(POS_Z, newVal);
+    if (this->model != NULL)
+        this->model->setObject3D(idobj,POS_Z, newVal);
 }
 
 void ObjectEditorDialog::acceptPressed(){
-    if (this->object3d != NULL)
-        this->object3d->setId((idLineEdit->text()).toStdString());
     hide();
 }
 
@@ -119,10 +117,9 @@ void ObjectEditorDialog::rejectPressed(){
 }
 
 void ObjectEditorDialog::undoChanges(){
-    if (this->object3d != NULL) {
-        this->object3d->setId(previousId);
-        this->object3d->set(POS_X, previousX);
-        this->object3d->set(POS_Y, previousY);
-        this->object3d->set(POS_Z, previousZ);
+    if (this->model != NULL) {
+        this->model->setObject3D(idobj, POS_X, previousX);
+        this->model->setObject3D(idobj, POS_Y, previousY);
+        this->model->setObject3D(idobj, POS_Z, previousZ);
     }
 }

@@ -329,6 +329,14 @@ void VmtModel::addObject3D(string objId, string path){
 Object3D* VmtModel::getObject3D(string objId){
     return scene->getObject3D(objId);
 }
+void VmtModel::setObject3D(string objId, int aParam, float aValue){
+    if (scene->getObject3D(objId) == NULL){
+        printf("VmtModel::setObject3D: object does not exists(%s)\n", objId.c_str());
+        return;
+    }
+    oscManager->SendMessageAll(OscUtil::createSetObject3DPosMsg(objId, aParam, aValue));
+    scene->setObject3D(objId, aParam, aValue);
+}
 
 Layer2D* VmtModel::getLayer2D(string layId){
     return scene->getActiveCamera()->getLayer2D(layId);
