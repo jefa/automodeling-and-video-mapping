@@ -226,6 +226,9 @@ void VmtNode::setQuadPoint(string camId, string layerId, string quadId,
 void VmtNode::addObject3D(string objId, string path){
     scene->addObject3D(objId, path);
 }
+void VmtNode::setObject3D(string objId, int aParam, float aValue){
+    scene->setObject3D(objId, aParam, aValue);
+}
 
 Object3D* VmtNode::getObject3D(string objId){
     return scene->getObject3D(objId);
