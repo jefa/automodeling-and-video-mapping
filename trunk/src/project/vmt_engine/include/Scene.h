@@ -7,7 +7,6 @@
 #include "Object3D.h"
 #include "Effect.h"
 #include "QuadGroup.h"
-
 #include <string>
 #include <map>
 using namespace std;
@@ -47,6 +46,7 @@ class Scene : public ISerializable
 
         Effect* addEffect(string id, Effect* effect);
         map<string, Effect*> getEffects();
+        map<string, string> getEvtEffects();
         void testEffect(string id);
 
         SerializedNode* Serialize();
@@ -58,6 +58,7 @@ class Scene : public ISerializable
         map<string, Object3D*> objects3D;
         map<string, QuadGroup*> quadGroups;
         map<string, Effect*> effects;
+        map<string, string> evtEffects;
         ofxVec3f bgColor;
 };
 
