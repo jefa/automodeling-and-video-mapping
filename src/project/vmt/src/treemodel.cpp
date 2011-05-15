@@ -4,7 +4,7 @@
 #include <QInputDialog>
 #include "treeitem.h"
 #include "treemodel.h"
-#include "addItemdialog.h"
+
 
 using namespace gui;
 
