@@ -8,6 +8,7 @@
 #include "ofxLight.h"
 #include "treewindow.h"
 #include "effectslistwindow.h"
+#include "evteffectslistwindow.h"
 
 using namespace gui;
 
@@ -34,6 +35,7 @@ class Vmt : public ofBaseApp {
         VmtModel *vmtModel;
         TreeWindow *treeWindow;
         EffectsListWindow *effectsWindow;
+        evtEffectsListWindow *evteffectsWind;
 
 };
 

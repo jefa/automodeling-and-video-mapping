@@ -13,6 +13,7 @@
 #include "lighteditdialog.h"
 #include "calibratedialog.h"
 #include "nodeeditdialog.h"
+#include "evteffecteditdialog.h"
 
 using namespace gui;
 

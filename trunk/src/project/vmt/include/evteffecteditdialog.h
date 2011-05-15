@@ -1,5 +1,5 @@
-#ifndef ADDITEMDIALOG_H
-#define ADDITEMDIALOG_H
+#ifndef EVTEFFECTEDITDIALOG_H
+#define EVTEFFECTEDITDIALOG_H
 
 
 
@@ -23,12 +23,12 @@ using namespace std;
 namespace gui {
 
 //! [0]
-class addItemDialog : public QWidget
+class evtEffecteditdialog : public QWidget
 {
     Q_OBJECT
 
 public:
-    addItemDialog(string typeNodo);
+    evtEffecteditdialog();
 
 private slots:
     void acceptPressed();
@@ -48,11 +48,9 @@ private:
     QPushButton *buttons[NumButtons];
     QDialogButtonBox *buttonBox;
 
-    QLineEdit *pathdata;
+    QLineEdit *TimeBox;
     QLineEdit *idLineEdit;
 
-
-    string typeNodo;
 
 };
 //! [0]

@@ -132,6 +132,9 @@ void Vmt::setup(){
     effectsWindow = new EffectsListWindow(this->vmtModel);
     effectsWindow->show();
 
+    //evteffectsWind = new evtEffectsListWindow(this->vmtModel);
+    //evteffectsWind->show();
+
 }
 
 //--------------------------------------------------------------
