@@ -1,13 +1,15 @@
 #include "ProcessMesh.h"
+#include "processdialog.h"
+
 #include <iostream>
 #include <stdio.h>
 #include <string>
 
+#include <QtGui\QApplication>
+
 using namespace std;
 
-int main()
-{
-    //string fileName = "../../greek_helmet.obj";
+void pruebaJavier(){
     string fileName = "data/greek_helmet.obj";
 
     CMeshO cm;
@@ -66,6 +68,17 @@ int main()
         printf("FINAL MODEL SAVED?? ==== %d\n", modelSaved);
     } else
         printf("=== finalCmesh MESH NULL\n");
+}
 
-  return 0;
+int main(int argc, char *argv[])
+{
+
+    QApplication app(argc, argv); //Qt app
+
+    ProcessDialog dialog;
+    dialog.show();
+
+    //pruebaJavier();
+
+    return app.exec(); //Qt app
 }
