@@ -117,6 +117,8 @@ class VmtModel : public ISceneHandler
         map<char, string> getKeyEffects();
         map<string, Node*> getNodes();
 
+        double getTotalTime();
+
     protected:
         string getNodeForCamera(string camId);
 

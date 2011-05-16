@@ -20,3 +20,4 @@ moc ..\include\effectpages.h -o moc_effectpages.cpp
 moc ..\include\evteffecteditdialog.h -o moc_evteffecteditdialog.cpp
 moc ..\include\calibratedialog.h -o moc_calibratedialog.cpp
 moc ..\include\nodeeditdialog.h -o moc_nodeeditdialog.cpp
+moc ..\include\timeline.h -o moc_timeline.cpp

@@ -867,3 +867,7 @@ string VmtModel::getEffectIdForKeyEvent(char keyId) {
 void VmtModel::startTimeManager(TIMER_MODE mode) {
     timeManager->Start(mode);
 }
+
+double VmtModel::getTotalTime(){
+    return timeManager->getTotalTime();
+}

@@ -128,7 +128,7 @@ void Scene::update() {
 void Scene::draw() {
 
     if(activeCamera == NULL) {
-        ofLog(OF_LOG_ERROR, "There is no active camera.");
+        ofLog(OF_LOG_VERBOSE, "There is no active camera.");
         return;
     }
     activeCamera->place();

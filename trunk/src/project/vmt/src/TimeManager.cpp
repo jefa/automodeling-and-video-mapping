@@ -8,8 +8,14 @@ TimeManager::TimeManager() {
 TimeManager::~TimeManager() {
 }
 
+double TimeManager::getTotalTime(){
+    return this->totalAnimTime;
+}
+
 void TimeManager::Start(TIMER_MODE mode) {
+
     playmode = mode;
+    actualAnimTime = 0;
     totalAnimTime = 0;
 
     if(events.size() > 0) {
@@ -22,6 +28,7 @@ void TimeManager::Start(TIMER_MODE mode) {
 
     deltaStartTime = ofGetElapsedTimef();
     started = true;
+    timer.start();
 }
 
 void TimeManager::ScheduleEvent(float time, string effectId) {
@@ -31,6 +38,9 @@ void TimeManager::ScheduleEvent(float time, string effectId) {
         time_fixed += 0.001f;
     }
     events.insert(make_pair(time_fixed, effectId));
+
+    if (time > totalAnimTime)
+        totalAnimTime = time + 1000; //add one second to the last added event
 }
 
 map<float, string> TimeManager::getScheduleEvents() {
@@ -43,9 +53,9 @@ string TimeManager::Update() {
     if(!started)
         return effectId;
 
-    totalAnimTime = ofGetElapsedTimef() - deltaStartTime;
+    actualAnimTime = ofGetElapsedTimef() - deltaStartTime;
 
-    if(moreEvents && events.size() > 0 && totalAnimTime > nextTimeEvent) {
+    if(moreEvents && events.size() > 0 && actualAnimTime > nextTimeEvent) {
         effectId = it->second;
         ++it;
         if(it == events.end()) {

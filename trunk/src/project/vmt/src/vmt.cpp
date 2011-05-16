@@ -10,7 +10,7 @@ Vmt::Vmt() : ofBaseApp() {
 
 void Vmt::setup(){
 
-    ofSetLogLevel(OF_LOG_VERBOSE);
+    ofSetLogLevel(OF_LOG_WARNING);
 
     //for smooth animation, set vertical sync if we can
 	ofSetVerticalSync(true);
@@ -37,6 +37,8 @@ void Vmt::setup(){
     evteffectsWindkey = new keyEffectsListWindow(this->vmtModel);
     evteffectsWindkey->show();
 
+    timelineWindow = new timeline(this->vmtModel);
+    timelineWindow->show();
 }
 
 //--------------------------------------------------------------
