@@ -10,6 +10,7 @@
 #include "effectslistwindow.h"
 #include "evteffectslistwindow.h"
 #include "keyeffectslistwindow.h"
+#include "timeline.h"
 
 using namespace gui;
 
@@ -38,6 +39,8 @@ class Vmt : public ofBaseApp {
         EffectsListWindow *effectsWindow;
         evtEffectsListWindow *evteffectsWind;
         keyEffectsListWindow *evteffectsWindkey;
+
+        timeline *timelineWindow;
 
 };
 

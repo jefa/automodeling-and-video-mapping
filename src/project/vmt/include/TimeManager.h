@@ -3,8 +3,10 @@
 
 #include "ISerializable.h"
 
+#include <QTimer>
 #include <map>
 #include <string>
+
 using namespace std;
 
 enum TIMER_MODE {
@@ -21,6 +23,7 @@ class TimeManager : public ISerializable
         string Update();
         void ScheduleEvent(float time, string effectId);
         map<float, string> getScheduleEvents();
+        double getTotalTime();
 
         virtual SerializedNode* Serialize();
     protected:
@@ -29,6 +32,7 @@ class TimeManager : public ISerializable
         map<float, string>::iterator it;
 
         double totalAnimTime;
+        double actualAnimTime;
         double deltaStartTime;       //Tiempo entre que comenzó la aplicación y se hizo init a TimeManager
 
         float nextTimeEvent;
@@ -36,6 +40,8 @@ class TimeManager : public ISerializable
         bool moreEvents;
         bool started;
         TIMER_MODE playmode;
+
+        QTimer timer;
 };
 
 #endif // TIMEMANAGER_H
