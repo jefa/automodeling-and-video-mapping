@@ -10,6 +10,8 @@ evtEffectsListWindow::evtEffectsListWindow(VmtModel *vmtModel)
     this->selectedItem = NULL;
     this->evteffecteditdialog= new evtEffecteditdialog(vmtModel);
 
+    this->timeLine = new timeline(vmtModel);
+
     setupUi(this);
 
     evtEffectsListModel *model = new evtEffectsListModel(vmtModel, NULL);
@@ -38,32 +40,45 @@ void evtEffectsListWindow::setupUi(QWidget *listWindow)
     listWindow->resize(200, 450);
     listWindow->move(ofGetScreenWidth()-550,40);
     vboxLayout = new QVBoxLayout(listWindow);
-    vboxLayout->setSpacing(0);
-    vboxLayout->setContentsMargins(0, 0, 0, 0);
+    //vboxLayout->setSpacing(0);
+    //vboxLayout->setContentsMargins(0, 0, 0, 0);
     vboxLayout->setObjectName(QString::fromUtf8("vboxLayout2"));
+
+    QGroupBox *teventsGroup = new QGroupBox(tr("Timed events"));
+    QVBoxLayout *teventsLayout = new QVBoxLayout(this);
+
     view = new QListView(listWindow);
     view->setObjectName(QString::fromUtf8("view2"));
     view->setAlternatingRowColors(true);
     view->setSelectionBehavior(QAbstractItemView::SelectItems);
     view->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
 
-    vboxLayout->addWidget(view);
-
     newEffectAction = new QPushButton();
     newEffectAction->setObjectName(QString::fromUtf8("newEffectAction"));
     removeEffectAction = new QPushButton();
     removeEffectAction->setObjectName(QString::fromUtf8("removeEffectAction"));
 
+    //vboxLayout->addWidget(view);
+    teventsLayout->addWidget(view);
+    teventsLayout->addWidget(newEffectAction);
+    teventsLayout->addWidget(removeEffectAction);
+    teventsGroup->setLayout(teventsLayout);
 
     layout = new QGridLayout;
     layout->setColumnStretch(1, 1);
     layout->setColumnMinimumWidth(0, 100);
     layout->setColumnMinimumWidth(1, 100);
 
-    vboxLayout->addLayout(layout);
-    vboxLayout->addWidget(newEffectAction);
-    vboxLayout->addWidget(removeEffectAction);
+    QGroupBox *timelineGroup = new QGroupBox(tr("Scene timeline"));
+    QVBoxLayout *timelineLayout = new QVBoxLayout(this);
+    timelineLayout->addWidget(timeLine);
+    timelineGroup->setLayout(timelineLayout);
 
+    vboxLayout->addWidget(teventsGroup);
+    vboxLayout->addLayout(layout);
+    //vboxLayout->addWidget(newEffectAction);
+    //vboxLayout->addWidget(removeEffectAction);
+    vboxLayout->addWidget(timelineGroup);
 
     retranslateUi(listWindow);
 

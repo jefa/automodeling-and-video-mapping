@@ -5,6 +5,7 @@
 #include "evteffectitem.h"
 #include "evteffectslistmodel.h"
 #include "evteffecteditdialog.h"
+#include "timeline.h"
 
 #include <QModelIndex>
 #include <QWidget>
@@ -51,6 +52,7 @@ public:
     QListView *view;
 
     evtEffecteditdialog *evteffecteditdialog;
+    timeline *timeLine;
 
     evtEffectItem *selectedItem;
 };
