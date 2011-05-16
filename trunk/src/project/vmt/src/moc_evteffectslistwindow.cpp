@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'evteffectslistwindow.h'
 **
-** Created: Sun 15. May 10:03:48 2011
+** Created: Mon 16. May 02:23:13 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_gui__evtEffectsListWindow[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       5,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -36,7 +36,6 @@ static const uint qt_meta_data_gui__evtEffectsListWindow[] = {
       75,   44,   26,   26, 0x0a,
      106,   26,   26,   26, 0x0a,
      118,   26,   26,   26, 0x0a,
-     131,   26,   26,   26, 0x0a,
 
        0        // eod
 };
@@ -45,7 +44,7 @@ static const char qt_meta_stringdata_gui__evtEffectsListWindow[] = {
     "gui::evtEffectsListWindow\0\0effectsChanged()\0"
     "index\0clickedList(QModelIndex)\0"
     "doubleClickedList(QModelIndex)\0"
-    "newEffect()\0editEffect()\0removeEffect()\0"
+    "newEffect()\0removeEffect()\0"
 };
 
 const QMetaObject gui::evtEffectsListWindow::staticMetaObject = {
@@ -81,11 +80,10 @@ int gui::evtEffectsListWindow::qt_metacall(QMetaObject::Call _c, int _id, void *
         case 1: clickedList((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
         case 2: doubleClickedList((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
         case 3: newEffect(); break;
-        case 4: editEffect(); break;
-        case 5: removeEffect(); break;
+        case 4: removeEffect(); break;
         default: ;
         }
-        _id -= 6;
+        _id -= 5;
     }
     return _id;
 }

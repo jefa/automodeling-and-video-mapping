@@ -34,6 +34,9 @@ void Vmt::setup(){
     evteffectsWind = new evtEffectsListWindow(this->vmtModel);
     evteffectsWind->show();
 
+    evteffectsWindkey = new keyEffectsListWindow(this->vmtModel);
+    evteffectsWindkey->show();
+
 }
 
 //--------------------------------------------------------------

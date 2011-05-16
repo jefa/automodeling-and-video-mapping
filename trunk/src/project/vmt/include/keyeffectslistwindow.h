@@ -1,10 +1,10 @@
-#ifndef EVTEFFECTSLISTWINDOW_H
-#define EVTEFFECTSLISTWINDOW_H
+#ifndef KEYEFFECTSLISTWINDOW_H
+#define KEYEFFECTSLISTWINDOW_H
 
 #include "VmtModel.h"
-#include "evteffectitem.h"
-#include "evteffectslistmodel.h"
-#include "evteffecteditdialog.h"
+#include "keyeffectitem.h"
+#include "keyeffectslistmodel.h"
+#include "keyeffecteditdialog.h"
 
 #include <QModelIndex>
 #include <QWidget>
@@ -19,13 +19,13 @@ class QListView;
 
 namespace gui {
 
-class evtEffectsListWindow : public QWidget
+class keyEffectsListWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    evtEffectsListWindow(VmtModel *vmtModel);
-    ~evtEffectsListWindow();
+    keyEffectsListWindow(VmtModel *vmtModel);
+    ~keyEffectsListWindow();
 
 public slots:
     void effectsChanged();
@@ -39,7 +39,7 @@ private slots:
 private:
     void setupUi(QWidget *);
     void retranslateUi(QWidget *);
-    evtEffectsListModel* getListViewModel();
+    keyEffectsListModel* getListViewModel();
 
 public:
     QVBoxLayout *vboxLayout;
@@ -50,9 +50,9 @@ public:
 
     QListView *view;
 
-    evtEffecteditdialog *evteffecteditdialog;
+    keyEffecteditdialog *keyeffecteditdialog;
 
-    evtEffectItem *selectedItem;
+    keyEffectItem *selectedItem;
 };
 
 }

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'layereditdialog.h'
 **
-** Created: Sun 15. May 10:03:48 2011
+** Created: Mon 16. May 02:23:12 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!

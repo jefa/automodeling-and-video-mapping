@@ -1,48 +1,48 @@
-#include "evteffectslistwindow.h"
+#include "keyeffectslistwindow.h"
 
 #include <QtGui>
 #include <QCoreApplication>
 
 using namespace gui;
 
-evtEffectsListWindow::evtEffectsListWindow(VmtModel *vmtModel)
+keyEffectsListWindow::keyEffectsListWindow(VmtModel *vmtModel)
 {
     this->selectedItem = NULL;
-    this->evteffecteditdialog= new evtEffecteditdialog(vmtModel);
+    this->keyeffecteditdialog= new keyEffecteditdialog(vmtModel);
 
     setupUi(this);
 
-    evtEffectsListModel *model = new evtEffectsListModel(vmtModel, NULL);
+    keyEffectsListModel *model = new keyEffectsListModel(vmtModel, NULL);
     view->setModel(model);
 
     connect(view, SIGNAL(clicked(QModelIndex)), this, SLOT(clickedList(QModelIndex)));
 	connect(view, SIGNAL(doubleClicked(QModelIndex)), this, SLOT(doubleClickedList(QModelIndex)));
 
-	connect(evteffecteditdialog, SIGNAL(dataChanged()), this, SLOT(effectsChanged()));
+	connect(keyeffecteditdialog, SIGNAL(dataChanged()), this, SLOT(effectsChanged()));
 
     connect(newEffectAction, SIGNAL(clicked()), this, SLOT(newEffect()));
     connect(removeEffectAction, SIGNAL(clicked()), this, SLOT(removeEffect()));
 
 }
 
-evtEffectsListWindow::~evtEffectsListWindow()
+keyEffectsListWindow::~keyEffectsListWindow()
 {
     delete(selectedItem);
-    delete(evteffecteditdialog);
+    delete(keyeffecteditdialog);
 }
 
-void evtEffectsListWindow::setupUi(QWidget *listWindow)
+void keyEffectsListWindow::setupUi(QWidget *listWindow)
 {
     if (listWindow->objectName().isEmpty())
-        listWindow->setObjectName(QString::fromUtf8("listWindow2"));
+        listWindow->setObjectName(QString::fromUtf8("listWindow3"));
     listWindow->resize(200, 450);
-    listWindow->move(ofGetScreenWidth()-550,40);
+    listWindow->move(ofGetScreenWidth()-800,40);
     vboxLayout = new QVBoxLayout(listWindow);
     vboxLayout->setSpacing(0);
     vboxLayout->setContentsMargins(0, 0, 0, 0);
-    vboxLayout->setObjectName(QString::fromUtf8("vboxLayout2"));
+    vboxLayout->setObjectName(QString::fromUtf8("vboxLayout"));
     view = new QListView(listWindow);
-    view->setObjectName(QString::fromUtf8("view2"));
+    view->setObjectName(QString::fromUtf8("view"));
     view->setAlternatingRowColors(true);
     view->setSelectionBehavior(QAbstractItemView::SelectItems);
     view->setHorizontalScrollMode(QAbstractItemView::ScrollPerPixel);
@@ -69,9 +69,9 @@ void evtEffectsListWindow::setupUi(QWidget *listWindow)
 
 } // setupUi
 
-void evtEffectsListWindow::retranslateUi(QWidget *listWindow)
+void keyEffectsListWindow::retranslateUi(QWidget *listWindow)
 {
-    listWindow->setWindowTitle(QApplication::translate("listWindow2", "TimeEvents-Effects", 0, QApplication::UnicodeUTF8));
+    listWindow->setWindowTitle(QApplication::translate("listWindow3", "KeyEvents-Effects", 0, QApplication::UnicodeUTF8));
 
     newEffectAction->setText(QApplication::translate("treeWindow", "New", 0, QApplication::UnicodeUTF8));
     removeEffectAction->setText(QApplication::translate("treeWindow", "Remove", 0, QApplication::UnicodeUTF8));
@@ -80,37 +80,36 @@ void evtEffectsListWindow::retranslateUi(QWidget *listWindow)
 } // retranslateUi
 
 
-void evtEffectsListWindow::clickedList(const QModelIndex &index)
+void keyEffectsListWindow::clickedList(const QModelIndex &index)
 {
-    evtEffectsListModel *model = (evtEffectsListModel*) view->model();
+    keyEffectsListModel *model = (keyEffectsListModel*) view->model();
     this->selectedItem = model->getItem(index);
 }
 
-void evtEffectsListWindow::doubleClickedList(const QModelIndex &index)
+void keyEffectsListWindow::doubleClickedList(const QModelIndex &index)
 {
 
-    evteffecteditdialog->show();
+    keyeffecteditdialog->show();
 }
 
-void evtEffectsListWindow::newEffect(){
+void keyEffectsListWindow::newEffect(){
 
-    evteffecteditdialog->show();
-
-
+    keyeffecteditdialog->show();
+    effectsChanged();
 }
 
-void evtEffectsListWindow::removeEffect(){
+void keyEffectsListWindow::removeEffect(){
     if (this->selectedItem == NULL)
         return;
 }
 
 
-evtEffectsListModel* evtEffectsListWindow::getListViewModel(){
-    return (evtEffectsListModel*) view->model();
+keyEffectsListModel* keyEffectsListWindow::getListViewModel(){
+    return (keyEffectsListModel*) view->model();
 }
 
-void evtEffectsListWindow::effectsChanged(){
-    evtEffectsListModel *model = (evtEffectsListModel*) view->model();
+void keyEffectsListWindow::effectsChanged(){
+    keyEffectsListModel *model = (keyEffectsListModel*) view->model();
     model->setupModelData();
     view->update();
     this->repaint();

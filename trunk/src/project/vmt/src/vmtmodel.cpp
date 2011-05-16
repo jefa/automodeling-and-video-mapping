@@ -842,8 +842,11 @@ map<string, Object3D*> VmtModel::getObjects3D() {
 map<string, Effect*> VmtModel::getEffects() {
     return this->scene->getEffects();
 }
-map<string, string> VmtModel::getEvtEffects() {
+map<string, float> VmtModel::getEvtEffects() {
     return this->scene->getEvtEffects();
+}
+map<string, string> VmtModel::getKeyEffects() {
+    return this->scene->getKeyEffects();
 }
 void VmtModel::scheduleEvent(float time, string effectId) {
     timeManager->ScheduleEvent(time, effectId);
