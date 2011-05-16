@@ -1,32 +1,33 @@
 #include "processdialog.h"
-
 #include "ProcessMesh.h"
 
 ProcessDialog::ProcessDialog(QWidget *parent)
     : QWidget(parent)
 {
+    errorMessageDialog = new QErrorMessage(this);
+
     // POISSON DISK SAMPLING GROUP
     QGroupBox *fileGroup = new QGroupBox(tr("Source Object file"));
     QLabel *filePathLabel = new QLabel(tr("Path:"));
     filePathEdit = new QLineEdit;
+    outputNameEdit = new QLineEdit;
     searchButton = new QPushButton(tr("Browse"));
 
-    /*QGridLayout *fileLayout = new QGridLayout;
-    fileLayout->addWidget(keyLabel, 0, 0);
-    fileLayout->addWidget(sourceFileEdit, 0, 1);
-    fileLayout->addWidget(searchButton, 0, 2);
-    fileGroup->setLayout(fileLayout);*/
+    QHBoxLayout *filePathLayout = new QHBoxLayout;
+    filePathLayout->addWidget(filePathLabel);
+    filePathLayout->addWidget(filePathEdit);
+    filePathLayout->addWidget(searchButton);
 
-    QHBoxLayout *fileLayout = new QHBoxLayout;
-    fileLayout->addWidget(filePathLabel);
-    fileLayout->addWidget(filePathEdit);
-    fileLayout->addWidget(searchButton);
+    QVBoxLayout *fileLayout = new QVBoxLayout;
+    fileLayout->addLayout(filePathLayout);
+    fileLayout->addWidget(outputNameEdit);
     fileGroup->setLayout(fileLayout);
 
     // POISSON DISK SAMPLING GROUP
     QGroupBox *poissonDiskGroup = new QGroupBox(tr("Poisson Disk-Sampling"));
     QLabel *sampleNumLabel = new QLabel(tr("Sample Num:"));
     sampleNumSpinBox = new QSpinBox;
+    sampleNumSpinBox->setMaximum(50000);
 
     QLabel *radiusLabel = new QLabel(tr("Radius:"));
     radiusSpinBox = new QDoubleSpinBox;
@@ -152,6 +153,7 @@ void ProcessDialog::setOpenFileName()
 void ProcessDialog::acceptPressed(){
 
     string fileName = filePathEdit->text().toStdString();
+    string ouitFileName = outputNameEdit->text().toStdString();
 
     CMeshO cm;
     cm.Tr.SetIdentity();
@@ -164,6 +166,11 @@ void ProcessDialog::acceptPressed(){
     //int mask = 0;
     bool modelOpened = ProcessMesh::open(fileName, (&cm));
     printf("MODEL OPENED==== %d\n", modelOpened);
+    if (!modelOpened){
+        errorMessageDialog->showMessage(
+                tr("Error opening file."));
+        return;
+    }
     cout << "number of vertices " <<  cm.vert.size() << endl;
     cout << "number of faces " << cm.face.size()<< endl<< endl;
 
@@ -179,8 +186,12 @@ void ProcessDialog::acceptPressed(){
 
         bool modelSaved = ProcessMesh::save(string("CMESH"), newCmesh);
         printf("MODEL SAVED?? ==== %d\n\n", modelSaved);
-    } else
+    } else {
         printf("=== NEW MESH NULL\n\n");
+        errorMessageDialog->showMessage(
+                tr("Error performing Poisson Disk Sampling."));
+        return;
+    }
 
     printf("=== ProcessMesh::ComputeNormalsForPointSet\n");
     newCmesh = ProcessMesh::ComputeNormalsForPointSet(newCmesh, 10, false);
@@ -191,8 +202,12 @@ void ProcessDialog::acceptPressed(){
 
         bool modelSaved = ProcessMesh::save(string("CMESH"), newCmesh);
         printf("MODEL NORMALIZED SAVED?? ==== %d\n", modelSaved);
-    } else
-        printf("=== NEW MESH NULL\n");
+    } else {
+        printf("=== NEW MESH NULL\n\n");
+        errorMessageDialog->showMessage(
+                tr("Error performing normal calculation."));
+        return;
+    }
 
     printf("=== ProcessMesh::SurfaceReconstructionPoisson\n");
 	int OctDepth=octdepthSpinBox->value();
@@ -205,14 +220,16 @@ void ProcessDialog::acceptPressed(){
         cout << "number of vertices " <<  finalCmesh->vert.size() << endl;
         cout << "number of faces " << finalCmesh->face.size()<< endl<< endl;
 
-        bool modelSaved = ProcessMesh::save(string("FINALMESH"), finalCmesh);
+        bool modelSaved = ProcessMesh::save(ouitFileName, finalCmesh);
         printf("FINAL MODEL SAVED?? ==== %d\n", modelSaved);
-    } else
+    } else {
         printf("=== finalCmesh MESH NULL\n");
-
-    //hide();
+        errorMessageDialog->showMessage(
+                tr("Error performing Poisson Surface Reoncstruction ."));
+        return;
+    }
 }
 
 void ProcessDialog::rejectPressed(){
-    //hide();
+    exit(0);
 }
