@@ -570,6 +570,9 @@ void VmtModel::saveShow(string filepath) {
 
     showXML.pushTag("vmtshow", 0);
 
+    SerializedNode* networkNode = this->SerializeNetwork();
+    addXMLNode(showXML, networkNode);
+
     SerializedNode* sceneNode = scene->Serialize();
     addXMLNode(showXML, sceneNode);
 
@@ -579,12 +582,26 @@ void VmtModel::saveShow(string filepath) {
     SerializedNode* keyEventsNode = keyEventsManager->Serialize();
     addXMLNode(showXML, keyEventsNode);
 
-    SerializedNode* networkNode = oscManager->Serialize();
-    addXMLNode(showXML, networkNode);
-
     showXML.popTag();//vmtshow
 
     showXML.saveFile(filepath);
+}
+
+SerializedNode* VmtModel::SerializeNetwork() {
+    SerializedNode *node = new SerializedNode("network");
+
+    map<string, Node*>::iterator networkIt;
+    for(networkIt = network.begin(); networkIt != network.end(); networkIt++) {
+        SerializedNode *networkNode = new SerializedNode("node");
+        networkNode->addAttribute("id", networkIt->first);
+        networkNode->addAttribute("address", networkIt->second->address);
+        networkNode->addAttribute("port", networkIt->second->port);
+        networkNode->addAttribute("isActive", networkIt->second->isActive);
+        networkNode->addAttribute("cameraId", networkIt->second->cameraId);
+        node->addChildNode(networkNode);
+    }
+
+    return node;
 }
 
 ofxVec2f parseVector2f(string str) {
@@ -599,6 +616,13 @@ ofxVec3f parseVector3f(string str) {
     float x,y,z;
     sstr >> x >> y >> z;
     return ofxVec3f(x,y,z);
+}
+
+ofxVec4f parseVector4f(string str) {
+    std::stringstream sstr(str);
+    float x,y,z,w;
+    sstr >> x >> y >> z >> w;
+    return ofxVec4f(x,y,z,w);
 }
 
 float parseFloat(string str) {
@@ -620,9 +644,24 @@ bool parseBool(string str) {
 }
 
 void VmtModel::loadShow(string filepath) {
+
+    map<string, string> quadsByLayer;
+    map<string, string> quadsByCamera;
+
     showXML.loadFile(filepath);
 
     showXML.pushTag("vmtshow");
+
+    showXML.pushTag("network");
+    for(int nodeI = 0; nodeI < showXML.getNumTags("node"); nodeI++) {
+        string nodeId = showXML.getAttribute("node", "id", "", nodeI);
+        string address = showXML.getAttribute("node", "address", "localhost", nodeI);
+        int port = parseInt(showXML.getAttribute("node", "port", "54321", nodeI));
+        bool isActive = parseBool(showXML.getAttribute("node", "isActive", "true", nodeI));
+        string camId = showXML.getAttribute("node", "cameraId", "", nodeI);
+        this->addNetNode(nodeId, address, port, isActive, camId);
+    }
+    showXML.popTag();//network
 
         ofxVec3f bgColor = parseVector3f(showXML.getAttribute("scene", "backgroundcolor", "0 0 0", 0));
         this->setBackground(bgColor.x, bgColor.y, bgColor.y);
@@ -643,6 +682,11 @@ void VmtModel::loadShow(string filepath) {
                 ofxVec3f camEye = parseVector3f(showXML.getAttribute("view", "eye", "0 0 0", 0));
                 this->setCameraEye(camId, camEye.x, camEye.y, camEye.z);
 
+                int clientResX = parseInt(showXML.getAttribute("projection", "resx", "800", 0));
+                int clientResY = parseInt(showXML.getAttribute("projection", "resy", "600", 0));
+
+                this->setClientResolution(camId, clientResX, clientResY);
+
                 showXML.pushTag("layers", 0);
                 for(int layerI = 0; layerI < showXML.getNumTags("layer"); layerI++) {
                     string layerId = showXML.getAttribute("layer", "id", "", layerI);
@@ -650,6 +694,10 @@ void VmtModel::loadShow(string filepath) {
                     showXML.pushTag("layer", layerI);
                     for(int quadI = 0; quadI < showXML.getNumTags("quad"); quadI++) {
                         string quadId = showXML.getAttribute("quad", "id", "", quadI);
+
+                        quadsByCamera.insert(pair<string, string>(quadId, camId));
+                        quadsByLayer.insert(pair<string, string>(quadId, layerId));
+
                         bool quadEnabled = parseBool(showXML.getAttribute("quad", "enabled", "true", quadI));
                         ofxVec2f quadP0 = parseVector2f(showXML.getAttribute("quad", "p0", "0 0", quadI));
                         ofxVec2f quadP1 = parseVector2f(showXML.getAttribute("quad", "p1", "0 1", quadI));
@@ -672,7 +720,13 @@ void VmtModel::loadShow(string filepath) {
     showXML.pushTag("lights");
     for(int lightI = 0; lightI < showXML.getNumTags("light"); lightI++) {
         string lightId = showXML.getAttribute("light", "id", "", lightI);
+        ofxVec3f specularVec = parseVector3f(showXML.getAttribute("light", "specular", "255 255 255", lightI));
+        ofxVec3f diffuseVec = parseVector3f(showXML.getAttribute("light", "diffuse", "255 255 255", lightI));
+        ofxVec3f directionVec = parseVector3f(showXML.getAttribute("light", "direction", "0 -1 0", lightI));
+
         this->addLight(lightId);
+        this->setLightSpecular(lightId, specularVec.x, specularVec.y, specularVec.z);
+        this->setLightDirectional(lightId, diffuseVec.x, diffuseVec.y, diffuseVec.z, directionVec.x, directionVec.y, directionVec.z);
     }
     showXML.popTag();//lights
 
@@ -683,8 +737,9 @@ void VmtModel::loadShow(string filepath) {
         showXML.pushTag("group", groupI);
         for(int quadI = 0; quadI < showXML.getNumTags("quad"); quadI++) {
             string quadId = showXML.getAttribute("quad", "id", "", quadI);
-            //TODO: Agregar el quad al grupo, para esto preciso la camara y layer del quad
-            //Es mas sencillo tener un mapa global en la escena con los quads y que no se precise cam y layer.
+            string camId = quadsByCamera[quadId];
+            string layerId = quadsByLayer[quadId];
+            this->addQuadToGroup(groupId, camId, layerId, quadId);
         }
         showXML.popTag();//group
     }
@@ -703,7 +758,48 @@ void VmtModel::loadShow(string filepath) {
     showXML.pushTag("effects");
     for(int effectI = 0; effectI < showXML.getNumTags("effect"); effectI++) {
         string effectId = showXML.getAttribute("effect", "id", "", effectI);
-        //FALTA parsear el tipo de efecto que se está guardando mal y el resto de los params.
+        string effectType = showXML.getAttribute("effect", "type", "", effectI);
+
+        if(effectType.compare("position") == 0) {
+            string objId = showXML.getAttribute("effect", "objid", "", effectI);
+            ofxVec3f pos1 = parseVector3f(showXML.getAttribute("effect", "pos1", "0 0 0", effectI));
+            ofxVec3f pos2 = parseVector3f(showXML.getAttribute("effect", "pos2", "0 0 0", effectI));
+            float delay = parseFloat(showXML.getAttribute("effect", "delay", "0", effectI));
+            this->addPositionEffect(effectId, objId, pos1, pos2, delay);
+        }
+        else if(effectType.compare("fade") == 0) {
+            string groupId = showXML.getAttribute("effect", "groupid", "", effectI);
+            ofxVec4f col1 = parseVector4f(showXML.getAttribute("effect", "col1", "1 1 1 1", effectI));
+            ofxVec4f col2 = parseVector4f(showXML.getAttribute("effect", "col2", "1 1 1 1", effectI));
+            float delay = parseFloat(showXML.getAttribute("effect", "delay", "0", effectI));
+            this->addFadeEffect(effectId, groupId, col1, col2, delay);
+        }
+        else if(effectType.compare("grouptexture") == 0) {
+            string groupId = showXML.getAttribute("effect", "groupid", "", effectI);
+            string textureName = showXML.getAttribute("effect", "texturename", "", effectI);
+
+            string textureType = showXML.getAttribute("effect", "texturetype", "VIDEO_TEXTURE", effectI);
+            if(textureType.compare("VIDEO_TEXTURE") == 0) {
+                this->addTextureGroupEffect(effectId, groupId, textureName, VIDEO_TEXTURE);
+            }
+            else {
+                this->addTextureGroupEffect(effectId, groupId, textureName, IMAGE_TEXTURE);
+            }
+        }
+        else if(effectType.compare("object3dtexture") == 0) {
+            string objId = showXML.getAttribute("effect", "objid", "", effectI);
+            string textureName = showXML.getAttribute("effect", "texturename", "", effectI);
+            string facesid = showXML.getAttribute("effect", "facesid", "", effectI);
+            string textureType = showXML.getAttribute("effect", "texturetype", "VIDEO_TEXTURE", effectI);
+
+            if(textureType.compare("VIDEO_TEXTURE") == 0) {
+                this->addTextureObjectEffect(effectId, objId, facesid, textureName, VIDEO_TEXTURE);
+            }
+            else {
+                this->addTextureObjectEffect(effectId, objId, facesid, textureName, IMAGE_TEXTURE);
+            }
+            //TODO: Deshardcodear VIDEO_TEXTURE
+        }
     }
     showXML.popTag();//effects
     showXML.popTag();//scene
@@ -723,17 +819,6 @@ void VmtModel::loadShow(string filepath) {
         this->addKeyEvent(eventKey, effectId);
     }
     showXML.popTag();//keyevents
-
-    showXML.pushTag("network");
-    for(int nodeI = 0; nodeI < showXML.getNumTags("node"); nodeI++) {
-        string nodeId = showXML.getAttribute("node", "id", "", nodeI);
-        string address = showXML.getAttribute("node", "address", "localhost", nodeI);
-        int port = parseInt(showXML.getAttribute("node", "port", "54321", nodeI));
-        bool isActive = parseBool(showXML.getAttribute("node", "isActive", "true", nodeI));
-        string camId = showXML.getAttribute("node", "cameraId", "", nodeI);
-        this->addNetNode(nodeId, address, port, isActive, camId);
-    }
-    showXML.popTag();//network
 
     showXML.popTag();//vmtshow
 }

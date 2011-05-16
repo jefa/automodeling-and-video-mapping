@@ -74,7 +74,8 @@ const char* PositionEffect::toString(){
 SerializedNode* PositionEffect::Serialize() {
     SerializedNode *node = new SerializedNode("effect");
     node->addAttribute("id", this->id);
-    node->addAttribute("type", "position");
+    string positionArg = "position";
+    node->addAttribute("type", positionArg);
     node->addAttribute("objid", this->object3d->getId());
 
     node->addAttribute("pos1", this->posIni);

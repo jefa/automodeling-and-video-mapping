@@ -6,7 +6,6 @@ OscManager::OscManager() {
 void OscManager::Init(map<string, Node*> network)
 {
     senders.clear();
-    network_copy.clear();
 
     map<string, Node*>::iterator iter = network.begin();
     while (iter != network.end() )
@@ -18,15 +17,6 @@ void OscManager::Init(map<string, Node*> network)
         ofxOscSender *sender = new ofxOscSender();
         sender->setup(n->address, n->port);
         senders.insert (pair<string, ofxOscSender*>(nName, sender));
-
-        Node *n_copy = new Node();
-        n_copy->id = n->id;
-        n_copy->address = n->address;
-        n_copy->port = n->port;
-        n_copy->isActive = n->isActive;
-        n_copy->cameraId = n->cameraId;
-        network_copy.insert(pair<string, Node*>(nName, n_copy));
-
         iter++;
     }
     //receiver.setup( 12345 );
@@ -88,21 +78,4 @@ ofxOscSender* OscManager::getSender(string nodeName){
     else
         ofLog(OF_LOG_WARNING, "OscManager:: In getSender cannot find node for name '"+nodeName+"'");
     return NULL;
-}
-
-SerializedNode* OscManager::Serialize() {
-    SerializedNode *node = new SerializedNode("network");
-
-    map<string, Node*>::iterator networkIt;
-    for(networkIt = network_copy.begin(); networkIt != network_copy.end(); networkIt++) {
-        SerializedNode *networkNode = new SerializedNode("node");
-        networkNode->addAttribute("id", networkIt->first);
-        networkNode->addAttribute("address", networkIt->second->address);
-        networkNode->addAttribute("port", networkIt->second->port);
-        networkNode->addAttribute("isActive", networkIt->second->isActive);
-        networkNode->addAttribute("cameraId", networkIt->second->cameraId);
-        node->addChildNode(networkNode);
-    }
-
-    return node;
 }
