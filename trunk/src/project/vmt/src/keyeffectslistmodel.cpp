@@ -24,15 +24,13 @@ keyEffectsListModel::~keyEffectsListModel()
 void keyEffectsListModel::setupModelData()
 {
     //beginInsertRows();
-
     this->listItems.clear();
-    map<string, string>::iterator keyeffectsIt;
-    map<string, string> keyeffectsMap = this->vmtModel->getKeyEffects();
+    map<char, string>::iterator keyeffectsIt;
+    map<char, string> keyeffectsMap = this->vmtModel->getKeyEffects();
     for(keyeffectsIt = keyeffectsMap.begin(); keyeffectsIt != keyeffectsMap.end(); keyeffectsIt++) {
-        keyEffectItem *lItem = new keyEffectItem(keyeffectsIt->first, keyeffectsIt->second );
+        keyEffectItem *lItem = new keyEffectItem(keyeffectsIt->second, keyeffectsIt->first);
         this->listItems.push_back(lItem);
     }
-
     emit layoutChanged();
     //endInsertRows();
 }

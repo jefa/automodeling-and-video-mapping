@@ -5,7 +5,7 @@
 using namespace gui;
 
 //! [0]
-keyEffectItem::keyEffectItem(string idEffect , string keyid)
+keyEffectItem::keyEffectItem(string idEffect , char keyid)
 {
     this->key = keyid;
     this->idEffect = idEffect;
@@ -49,6 +49,6 @@ bool keyEffectItem::setData(int column, const QVariant &value)
 }
 //! [11]
 
-string keyEffectItem::getItemData(){
+char keyEffectItem::getItemData(){
     return this->key;
 }

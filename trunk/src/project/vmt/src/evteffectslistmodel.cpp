@@ -24,15 +24,13 @@ evtEffectsListModel::~evtEffectsListModel()
 void evtEffectsListModel::setupModelData()
 {
     //beginInsertRows();
-
     this->listItems.clear();
-    map<string, float>::iterator evteffectsIt;
-    map<string, float> evteffectsMap = this->vmtModel->getEvtEffects();
+    map<float, string>::iterator evteffectsIt;
+    map<float, string> evteffectsMap = this->vmtModel->getEvtEffects();
     for(evteffectsIt = evteffectsMap.begin(); evteffectsIt != evteffectsMap.end(); evteffectsIt++) {
-        evtEffectItem *lItem = new evtEffectItem(evteffectsIt->first, evteffectsIt->second );
+        evtEffectItem *lItem = new evtEffectItem(evteffectsIt->second, evteffectsIt->first);
         this->listItems.push_back(lItem);
     }
-
     emit layoutChanged();
     //endInsertRows();
 }

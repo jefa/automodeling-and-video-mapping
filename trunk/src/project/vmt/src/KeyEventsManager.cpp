@@ -35,3 +35,7 @@ SerializedNode* KeyEventsManager::Serialize() {
 
     return node;
 }
+
+map<char, string> KeyEventsManager::getKeyEvents(){
+    return events;
+}

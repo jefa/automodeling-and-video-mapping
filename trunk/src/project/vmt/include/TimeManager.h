@@ -20,6 +20,7 @@ class TimeManager : public ISerializable
         void Start(TIMER_MODE mode);
         string Update();
         void ScheduleEvent(float time, string effectId);
+        map<float, string> getScheduleEvents();
 
         virtual SerializedNode* Serialize();
     protected:

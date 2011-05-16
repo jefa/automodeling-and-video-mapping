@@ -15,15 +15,15 @@ namespace gui {
 class keyEffectItem
 {
 public:
-    keyEffectItem(string idEffect = "", string key ="");
+    keyEffectItem(string idEffect = "", char key ='a');
     ~keyEffectItem();
 
     QVariant data(int column) /*const*/;
     bool setData(int column, const QVariant &value);
-    string getItemData();
+    char getItemData();
 
 private:
-    string key;
+    char key;
     string idEffect;
 };
 //! [0]

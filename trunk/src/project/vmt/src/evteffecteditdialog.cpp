@@ -76,6 +76,8 @@ void evtEffecteditdialog::acceptPressed(){
     timeShedule = TimeBox->value();
     this->vmtModel->scheduleEvent(timeShedule, (idLineEdit->text()).toStdString());
 
+    emit dataChanged();
+
     hide();
 }
 

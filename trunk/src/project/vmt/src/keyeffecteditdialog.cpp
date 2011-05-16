@@ -66,8 +66,9 @@ void keyEffecteditdialog::loadData(){
 
 
 void keyEffecteditdialog::acceptPressed(){
-    char key ;//(idKeyEdit->text()).toStdString();
+    char key;// =((idKeyEdit->text()).toStdString()).c_ctr()[0];
     this->vmtModel->addKeyEvent(key, (idLineEdit->text()).toStdString());
+    emit dataChanged();
     hide();
 }
 
