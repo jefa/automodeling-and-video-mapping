@@ -47,7 +47,8 @@ class Scene : public ISerializable
 
         Effect* addEffect(string id, Effect* effect);
         map<string, Effect*> getEffects();
-        map<string, string> getEvtEffects();
+        map<string, float> getEvtEffects();
+        map<string, string> getKeyEffects();
         void testEffect(string id);
 
         SerializedNode* Serialize();
@@ -59,7 +60,8 @@ class Scene : public ISerializable
         map<string, Object3D*> objects3D;
         map<string, QuadGroup*> quadGroups;
         map<string, Effect*> effects;
-        map<string, string> evtEffects;
+        map<string, float> evtEffects;
+        map<string, string> keyEffects;
         ofxVec3f bgColor;
 };
 
