@@ -115,11 +115,11 @@ void TreeWindow::insertRow()
      if (TypeNodo == "OBJECTS" || TypeNodo == "OBJECT"){
          Name= (inputText("New")).toStdString();
          path= (inputTextPath("")).toStdString();
+         model->addObject3D(0,index.row()+1, index, Name, path);
+     } else {
+         Name = (inputText("New")).toStdString();
+         model->insertRows(0,index.row()+1, index, Name);
      }
-     else  Name= (inputText("New")).toStdString();
-
-     if (!model->insertRows(0,index.row()+1, index, Name))
-         return;
 
      updateActions(index);
 
@@ -449,7 +449,6 @@ QString TreeWindow::inputText(string defaultValue)
 
 QString TreeWindow::inputTextPath(string defaultValue)
 {
-    bool ok;
     QFileDialog::Options options;
     QString selectedFilter;
     QString path = QFileDialog::getOpenFileName(this,
@@ -461,12 +460,16 @@ QString TreeWindow::inputTextPath(string defaultValue)
                                 QString("NewSquirrel.3ds"),
                                 tr("All Files (*);;(*.3DS)"),
                                 &selectedFilter,options*/);
-
-
-    if (ok && !path.isEmpty())
+    if (!path.isEmpty())
         return path;
 
-    throw exception();
+    int ret = QMessageBox::warning(this, tr("VMT"),
+                                tr("Error opening file.\n"
+                                   "Either file or path are invalid."),
+                                /*QMessageBox::Save | QMessageBox::Discard*/QMessageBox::Ok,
+                                QMessageBox::Ok);
+
+    return "";
 }
 
 void TreeWindow::clickedTree(const QModelIndex &index)

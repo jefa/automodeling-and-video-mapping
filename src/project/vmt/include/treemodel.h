@@ -55,7 +55,9 @@ public:
                     const QModelIndex &parent = QModelIndex());
 
     TreeItem *getItem(const QModelIndex &index) const;
+    bool addObject3D(int position, int rows, const QModelIndex &index, string name, string path);
     VmtModel *getVmtModel();
+
 private:
     void setupSceneModelData();
     void setupLayersModelData(TreeItem *parent);
