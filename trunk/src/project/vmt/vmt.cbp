@@ -217,6 +217,7 @@
 		<Unit filename="include\nodeeditdialog.h" />
 		<Unit filename="include\objecteditdialog.h" />
 		<Unit filename="include\quadeditdialog.h" />
+		<Unit filename="include\timeline.h" />
 		<Unit filename="include\treeitem.h" />
 		<Unit filename="include\treemodel.h" />
 		<Unit filename="include\treewindow.h" />
@@ -265,11 +266,13 @@
 		<Unit filename="src\moc_nodeeditdialog.cpp" />
 		<Unit filename="src\moc_objecteditdialog.cpp" />
 		<Unit filename="src\moc_quadeditdialog.cpp" />
+		<Unit filename="src\moc_timeline.cpp" />
 		<Unit filename="src\moc_treemodel.cpp" />
 		<Unit filename="src\moc_treewindow.cpp" />
 		<Unit filename="src\nodeeditdialog.cpp" />
 		<Unit filename="src\objecteditdialog.cpp" />
 		<Unit filename="src\quadeditdialog.cpp" />
+		<Unit filename="src\timeline.cpp" />
 		<Unit filename="src\treeitem.cpp" />
 		<Unit filename="src\treemodel.cpp" />
 		<Unit filename="src\treewindow.cpp" />
