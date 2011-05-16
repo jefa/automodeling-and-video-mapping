@@ -79,7 +79,8 @@ const char* FadeEffect::toString(){
 SerializedNode* FadeEffect::Serialize() {
     SerializedNode *node = new SerializedNode("effect");
     node->addAttribute("id", this->id);
-    node->addAttribute("type", "fade");
+    string fadeArg = "fade";
+    node->addAttribute("type", fadeArg);
     node->addAttribute("groupid", this->group->getName());
 
     node->addAttribute("col1", this->colorIni);

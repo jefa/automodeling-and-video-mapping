@@ -108,6 +108,8 @@ class VmtModel : public ISceneHandler
         void saveShow(string filepath);
         void loadShow(string filepath);
 
+        SerializedNode* SerializeNetwork();
+
         map<string, ofxCamera*> getCameras();
         map<string, Object3D*> getObjects3D();
         map<string, Effect*> getEffects();

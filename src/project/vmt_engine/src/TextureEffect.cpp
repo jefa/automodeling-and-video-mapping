@@ -115,18 +115,30 @@ SerializedNode* TextureEffect::Serialize() {
     SerializedNode *node = new SerializedNode("effect");
     node->addAttribute("id", this->id);
 
-    node->addAttribute("texturename", this->textureKey);
-
     if(this->isGroup) {
-        node->addAttribute("type", "grouptexture");
+        string groupTextureArg = "grouptexture";
+        node->addAttribute("type", groupTextureArg);
         node->addAttribute("groupid", this->group->getName());
+        node->addAttribute("texturename", this->textureKey);
     }
     else {
-        node->addAttribute("type", "object3dtexture");
+        string object3dtextureArg = "object3dtexture";
+        node->addAttribute("type", object3dtextureArg);
         node->addAttribute("objid", this->object3d->getId());
+        node->addAttribute("texturename", this->textureKey);
         node->addAttribute("facesid", this->facesID);
         node->addAttribute("texturename", this->textureKey);
     }
+
+    if(this->type == VIDEO_TEXTURE) {
+        string videotextureArg = "VIDEO_TEXTURE";
+        node->addAttribute("texturetype", videotextureArg);
+    }
+    else {
+        string imagetextureArg = "IMAGE_TEXTURE";
+        node->addAttribute("texturetype", imagetextureArg);
+    }
+
 
     return node;
 }

@@ -1,8 +1,6 @@
 #ifndef OSCMANAGER_H
 #define OSCMANAGER_H
 
-#include "ISerializable.h"
-
 #include "ofxOsc.h"
 #include <vector>
 
@@ -18,7 +16,7 @@ public:
     string cameraId;
 };
 
-class OscManager : public ISerializable
+class OscManager
 {
     public:
         OscManager();
@@ -28,15 +26,12 @@ class OscManager : public ISerializable
         void SendMessageAll(ofxOscMessage oscMessage);
         void checkForMessages();
 
-        virtual SerializedNode* Serialize();
     protected:
         ofxOscSender* getSender(string nodeName);
 
     private:
 		//ofxOscReceiver receiver;
         map<string, ofxOscSender*> senders;
-
-        map<string, Node*> network_copy;
 };
 
 #endif

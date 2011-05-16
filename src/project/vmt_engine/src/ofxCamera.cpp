@@ -414,8 +414,8 @@ SerializedNode* ofxCamera::Serialize() {
     SerializedNode* projectionNode = new SerializedNode("projection");
     projectionNode->addAttribute("fov", fieldOfView);
     projectionNode->addAttribute("aspect", aspectRatio);
-    projectionNode->addAttribute("resx", w);
-    projectionNode->addAttribute("resy", h);
+    projectionNode->addAttribute("resx", clientX);
+    projectionNode->addAttribute("resy", clientY);
 
     node->addChildNode(projectionNode);
 
