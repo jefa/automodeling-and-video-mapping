@@ -115,10 +115,12 @@ Effect* Scene::addEffect(string id, Effect* effect) {
 map<string, Effect*> Scene::getEffects() {
     return effects;
 }
-map<string, string> Scene::getEvtEffects(){
+map<string, float> Scene::getEvtEffects(){
      return evtEffects;
 }
-
+map<string, string> Scene::getKeyEffects(){
+     return keyEffects;
+}
 void Scene::testEffect(string id) {
     effects[id]->test();
 }
