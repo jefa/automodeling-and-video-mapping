@@ -23,7 +23,7 @@ void Vmt::setup(){
     vmtModel = new VmtModel();
     vmtModel->loadShow("showXXX.XML");
 
-    vmtModel->saveShow("showYYY.XML");
+    //vmtModel->saveShow("showYYY.XML");
 
     treeWindow = new TreeWindow(this->vmtModel);
     treeWindow->show();
@@ -59,6 +59,9 @@ void Vmt::keyPressed(int key){
     if (vmtModel->hasKeyEvent(key)) {
         vmtModel->testEffect(vmtModel->getEffectIdForKeyEvent(key));
     }
+
+    if(key == 'p')
+        vmtModel->startTimeManager(ONE_TIME);
 
     if(key == '0')
         vmtModel->resetScene();
