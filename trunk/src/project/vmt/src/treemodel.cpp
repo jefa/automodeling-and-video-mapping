@@ -126,7 +126,6 @@ string TreeModel::ObtType(const QModelIndex &index)
                 case 4:TypeNodo = "BACKGRAUND";		 break;
 
 
-
                 }
     }
     else{
@@ -456,7 +455,16 @@ void TreeModel::setupNodesModelData(TreeItem *parent)
     }
 }
 
+bool TreeModel::addObject3D(int position, int rows, const QModelIndex &index, string name, string path){
+    TreeItem *parentItem = getItem(index.parent());
+    TreeItem *currentItem = getItem(index);
+
+    this->vmtModel->addObject3D(name, path);
+    Object3D *newObject = this->vmtModel->getObject3D(name);
+    ObjectItemData *objectItem = new ObjectItemData(newObject);
+    return currentItem->insertChildren(position, rows, objectItem, name);
+}
 
 VmtModel * TreeModel::getVmtModel(){
-return this->vmtModel;
+    return this->vmtModel;
 }
