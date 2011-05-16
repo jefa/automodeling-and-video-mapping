@@ -19,9 +19,12 @@ public slots:
 private:
     void init();
 
+    QErrorMessage *errorMessageDialog;
+
     QDialogButtonBox *buttonBox;
 
     QLineEdit *filePathEdit;
+    QLineEdit *outputNameEdit;
 
     QPushButton *searchButton;
     QSpinBox *sampleNumSpinBox;
