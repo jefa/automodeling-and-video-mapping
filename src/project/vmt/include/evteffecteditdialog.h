@@ -35,6 +35,8 @@ private slots:
     void acceptPressed();
     void rejectPressed();
 
+Q_SIGNALS:
+    void dataChanged();
 
 private:
     void createFormGroupBox();

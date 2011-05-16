@@ -33,6 +33,10 @@ void TimeManager::ScheduleEvent(float time, string effectId) {
     events.insert(make_pair(time_fixed, effectId));
 }
 
+map<float, string> TimeManager::getScheduleEvents() {
+    return events;
+}
+
 string TimeManager::Update() {
     string effectId = "";
 

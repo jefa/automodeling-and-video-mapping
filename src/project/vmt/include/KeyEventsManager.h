@@ -16,6 +16,7 @@ class KeyEventsManager : public ISerializable
         void addKeyEvent(char key, string effectId);
         bool hasKeyEvent(char key);
         string getEffectId(char key);
+        map<char, string> getKeyEvents();
 
         virtual SerializedNode* Serialize();
 

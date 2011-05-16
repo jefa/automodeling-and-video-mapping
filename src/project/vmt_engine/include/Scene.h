@@ -60,8 +60,6 @@ class Scene : public ISerializable
         map<string, Object3D*> objects3D;
         map<string, QuadGroup*> quadGroups;
         map<string, Effect*> effects;
-        map<string, float> evtEffects;
-        map<string, string> keyEffects;
         ofxVec3f bgColor;
 };
 

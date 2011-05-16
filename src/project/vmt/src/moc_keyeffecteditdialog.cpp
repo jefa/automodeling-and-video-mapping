@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'keyeffecteditdialog.h'
 **
-** Created: Mon 16. May 02:23:13 2011
+** Created: Mon 16. May 11:03:03 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,23 +23,26 @@ static const uint qt_meta_data_gui__keyEffecteditdialog[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       0,       // signalCount
+       1,       // signalCount
+
+ // signals: signature, parameters, type, tag, flags
+      26,   25,   25,   25, 0x05,
 
  // slots: signature, parameters, type, tag, flags
-      26,   25,   25,   25, 0x08,
-      42,   25,   25,   25, 0x08,
+      40,   25,   25,   25, 0x08,
+      56,   25,   25,   25, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_gui__keyEffecteditdialog[] = {
-    "gui::keyEffecteditdialog\0\0acceptPressed()\0"
-    "rejectPressed()\0"
+    "gui::keyEffecteditdialog\0\0dataChanged()\0"
+    "acceptPressed()\0rejectPressed()\0"
 };
 
 const QMetaObject gui::keyEffecteditdialog::staticMetaObject = {
@@ -71,12 +74,19 @@ int gui::keyEffecteditdialog::qt_metacall(QMetaObject::Call _c, int _id, void **
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
-        case 0: acceptPressed(); break;
-        case 1: rejectPressed(); break;
+        case 0: dataChanged(); break;
+        case 1: acceptPressed(); break;
+        case 2: rejectPressed(); break;
         default: ;
         }
-        _id -= 2;
+        _id -= 3;
     }
     return _id;
+}
+
+// SIGNAL 0
+void gui::keyEffecteditdialog::dataChanged()
+{
+    QMetaObject::activate(this, &staticMetaObject, 0, 0);
 }
 QT_END_MOC_NAMESPACE
