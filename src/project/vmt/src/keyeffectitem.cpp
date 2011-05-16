@@ -1,26 +1,26 @@
-#include "evteffectitem.h"
+#include "keyeffectitem.h"
 
 #include <QColor>
 
 using namespace gui;
 
 //! [0]
-evtEffectItem::evtEffectItem(string idEffect , float Time )
+keyEffectItem::keyEffectItem(string idEffect , string keyid)
 {
-    this->evtTime = Time;
+    this->key = keyid;
     this->idEffect = idEffect;
 
 }
 //! [0]
 
 //! [1]
-evtEffectItem::~evtEffectItem()
+keyEffectItem::~keyEffectItem()
 {
 }
 //! [1]
 
 //! [6]
-QVariant evtEffectItem::data(int column) //const
+QVariant keyEffectItem::data(int column) //const
 {
     if (idEffect != "") { //is root
         if (column == 0)
@@ -34,7 +34,7 @@ QVariant evtEffectItem::data(int column) //const
 
 
 //! [11]
-bool evtEffectItem::setData(int column, const QVariant &value)
+bool keyEffectItem::setData(int column, const QVariant &value)
 {
     //cout<< " set data: "<<column << &value ;
     if (column < 0 || column >= /*itemData.size()*/2)
@@ -49,6 +49,6 @@ bool evtEffectItem::setData(int column, const QVariant &value)
 }
 //! [11]
 
-float evtEffectItem::getItemData(){
-    return this->evtTime;
+string keyEffectItem::getItemData(){
+    return this->key;
 }

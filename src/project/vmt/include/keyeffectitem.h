@@ -1,5 +1,5 @@
-#ifndef EVTEFFECTITEM_H
-#define EVTEFFECTITEM_H
+#ifndef KEYEFFECTITEM_H
+#define KEYEFFECTITEM_H
 
 
 #include <QList>
@@ -12,18 +12,18 @@ using namespace std;
 namespace gui {
 
 //! [0]
-class evtEffectItem
+class keyEffectItem
 {
 public:
-    evtEffectItem(string idEffect = "", float Time = 0 );
-    ~evtEffectItem();
+    keyEffectItem(string idEffect = "", string key ="");
+    ~keyEffectItem();
 
     QVariant data(int column) /*const*/;
     bool setData(int column, const QVariant &value);
-    float getItemData();
+    string getItemData();
 
 private:
-    float evtTime;
+    string key;
     string idEffect;
 };
 //! [0]

@@ -9,6 +9,7 @@
 #include "treewindow.h"
 #include "effectslistwindow.h"
 #include "evteffectslistwindow.h"
+#include "keyeffectslistwindow.h"
 
 using namespace gui;
 
@@ -36,6 +37,7 @@ class Vmt : public ofBaseApp {
         TreeWindow *treeWindow;
         EffectsListWindow *effectsWindow;
         evtEffectsListWindow *evteffectsWind;
+        keyEffectsListWindow *evteffectsWindkey;
 
 };
 

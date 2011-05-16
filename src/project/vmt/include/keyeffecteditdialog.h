@@ -1,5 +1,5 @@
-#ifndef EVTEFFECTEDITDIALOG_H
-#define EVTEFFECTEDITDIALOG_H
+#ifndef KEYEFFECTEDITDIALOG_H
+#define KEYEFFECTEDITDIALOG_H
 
 #include <vmtmodel.h>
 
@@ -24,12 +24,12 @@ using namespace std;
 namespace gui {
 
 //! [0]
-class evtEffecteditdialog : public QWidget
+class keyEffecteditdialog : public QWidget
 {
     Q_OBJECT
 
 public:
-    evtEffecteditdialog(VmtModel *vmtModel);
+    keyEffecteditdialog(VmtModel *vmtModel);
 
 private slots:
     void acceptPressed();
@@ -50,7 +50,7 @@ private:
     QDialogButtonBox *buttonBox;
 
     VmtModel *vmtModel;
-    QDoubleSpinBox *TimeBox;
+    QLineEdit *idKeyEdit;
     QLineEdit *idLineEdit;
 
 

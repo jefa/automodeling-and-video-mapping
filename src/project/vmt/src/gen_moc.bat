@@ -10,6 +10,10 @@ moc ..\include\effectslistwindow.h -o moc_effectslistwindow.cpp
 moc ..\include\effecteditdialog.h -o moc_effecteditdialog.cpp
 moc ..\include\evteffectslistmodel.h -o moc_evteffectslistmodel.cpp
 moc ..\include\evteffectslistwindow.h -o moc_evteffectslistwindow.cpp
+moc ..\include\evteffecteditdialog.h -o moc_evteffecteditdialog.cpp
+moc ..\include\keyeffectslistmodel.h -o moc_keyeffectslistmodel.cpp
+moc ..\include\keyeffectslistwindow.h -o moc_keyeffectslistwindow.cpp
+moc ..\include\keyeffecteditdialog.h -o moc_keyeffecteditdialog.cpp
 moc ..\include\backgraundeditdialog.h -o moc_backgraundeditdialog.cpp
 moc ..\include\lighteditdialog.h -o moc_lighteditdialog.cpp
 moc ..\include\effectpages.h -o moc_effectpages.cpp

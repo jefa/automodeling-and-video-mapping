@@ -1,5 +1,5 @@
 /****************************************************************************
-** Meta object code from reading C++ file 'evteffectslistmodel.h'
+** Meta object code from reading C++ file 'keyeffectslistmodel.h'
 **
 ** Created: Mon 16. May 02:23:13 2011
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.0)
@@ -7,9 +7,9 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../include/evteffectslistmodel.h"
+#include "../include/keyeffectslistmodel.h"
 #if !defined(Q_MOC_OUTPUT_REVISION)
-#error "The header file 'evteffectslistmodel.h' doesn't include <QObject>."
+#error "The header file 'keyeffectslistmodel.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 62
 #error "This file was generated using the moc from 4.7.0. It"
 #error "cannot be used with the include files from this version of Qt."
@@ -17,7 +17,7 @@
 #endif
 
 QT_BEGIN_MOC_NAMESPACE
-static const uint qt_meta_data_gui__evtEffectsListModel[] = {
+static const uint qt_meta_data_gui__keyEffectsListModel[] = {
 
  // content:
        5,       // revision
@@ -33,33 +33,33 @@ static const uint qt_meta_data_gui__evtEffectsListModel[] = {
        0        // eod
 };
 
-static const char qt_meta_stringdata_gui__evtEffectsListModel[] = {
-    "gui::evtEffectsListModel\0"
+static const char qt_meta_stringdata_gui__keyEffectsListModel[] = {
+    "gui::keyEffectsListModel\0"
 };
 
-const QMetaObject gui::evtEffectsListModel::staticMetaObject = {
-    { &QAbstractItemModel::staticMetaObject, qt_meta_stringdata_gui__evtEffectsListModel,
-      qt_meta_data_gui__evtEffectsListModel, 0 }
+const QMetaObject gui::keyEffectsListModel::staticMetaObject = {
+    { &QAbstractItemModel::staticMetaObject, qt_meta_stringdata_gui__keyEffectsListModel,
+      qt_meta_data_gui__keyEffectsListModel, 0 }
 };
 
 #ifdef Q_NO_DATA_RELOCATION
-const QMetaObject &gui::evtEffectsListModel::getStaticMetaObject() { return staticMetaObject; }
+const QMetaObject &gui::keyEffectsListModel::getStaticMetaObject() { return staticMetaObject; }
 #endif //Q_NO_DATA_RELOCATION
 
-const QMetaObject *gui::evtEffectsListModel::metaObject() const
+const QMetaObject *gui::keyEffectsListModel::metaObject() const
 {
     return QObject::d_ptr->metaObject ? QObject::d_ptr->metaObject : &staticMetaObject;
 }
 
-void *gui::evtEffectsListModel::qt_metacast(const char *_clname)
+void *gui::keyEffectsListModel::qt_metacast(const char *_clname)
 {
     if (!_clname) return 0;
-    if (!strcmp(_clname, qt_meta_stringdata_gui__evtEffectsListModel))
-        return static_cast<void*>(const_cast< evtEffectsListModel*>(this));
+    if (!strcmp(_clname, qt_meta_stringdata_gui__keyEffectsListModel))
+        return static_cast<void*>(const_cast< keyEffectsListModel*>(this));
     return QAbstractItemModel::qt_metacast(_clname);
 }
 
-int gui::evtEffectsListModel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
+int gui::keyEffectsListModel::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
     _id = QAbstractItemModel::qt_metacall(_c, _id, _a);
     if (_id < 0)

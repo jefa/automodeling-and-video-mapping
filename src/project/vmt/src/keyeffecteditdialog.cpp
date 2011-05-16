@@ -1,6 +1,6 @@
 #include <QtGui>
 
-#include "evteffecteditdialog.h"
+#include "keyeffecteditdialog.h"
 #include "uiutils.h"
 #include <limits>
 
@@ -8,18 +8,12 @@
 using namespace gui;
 
 //! [0]
-evtEffecteditdialog::evtEffecteditdialog(VmtModel *vmtModel)
+keyEffecteditdialog::keyEffecteditdialog(VmtModel *vmtModel)
 {
     this->vmtModel = vmtModel;
-    TimeBox = new QDoubleSpinBox();
-    TimeBox->setMouseTracking(true);
-    TimeBox->setMaximum(numeric_limits<double>::max());
-    TimeBox->setMinimum((numeric_limits<double>::max())*(0));
-    TimeBox->setSingleStep(1);
-    TimeBox->setMaximumWidth(70);
 
     idLineEdit = new QLineEdit();
-
+    idKeyEdit = new QLineEdit();
 
 
     loadData();
@@ -55,34 +49,32 @@ evtEffecteditdialog::evtEffecteditdialog(VmtModel *vmtModel)
 //! [5]
 
 //! [12]
-void evtEffecteditdialog::createFormGroupBox()
+void keyEffecteditdialog::createFormGroupBox()
 {
     formGroupBox = new QGroupBox(tr("Add"));
     QFormLayout *layout = new QFormLayout;
     layout->addRow(new QLabel(tr("Id/Efect:")), idLineEdit);
-    layout->addRow(new QLabel(tr("Time:")), TimeBox);
+    layout->addRow(new QLabel(tr("Id Key:")), idKeyEdit);
 
     formGroupBox->setLayout(layout);
 }
 //! [12]
 
-void evtEffecteditdialog::loadData(){
+void keyEffecteditdialog::loadData(){
 
 }
 
 
-void evtEffecteditdialog::acceptPressed(){
-    float timeShedule;
-    timeShedule = TimeBox->value();
-    this->vmtModel->scheduleEvent(timeShedule, (idLineEdit->text()).toStdString());
-
+void keyEffecteditdialog::acceptPressed(){
+    char key ;//(idKeyEdit->text()).toStdString();
+    this->vmtModel->addKeyEvent(key, (idLineEdit->text()).toStdString());
     hide();
 }
 
-void evtEffecteditdialog::rejectPressed(){
+void keyEffecteditdialog::rejectPressed(){
     undoChanges();
     hide();
 }
 
-void evtEffecteditdialog::undoChanges(){
+void keyEffecteditdialog::undoChanges(){
 }

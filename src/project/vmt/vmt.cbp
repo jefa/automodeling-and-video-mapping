@@ -208,6 +208,10 @@
 		<Unit filename="include\evteffectitem.h" />
 		<Unit filename="include\evteffectslistmodel.h" />
 		<Unit filename="include\evteffectslistwindow.h" />
+		<Unit filename="include\keyeffecteditdialog.h" />
+		<Unit filename="include\keyeffectitem.h" />
+		<Unit filename="include\keyeffectslistmodel.h" />
+		<Unit filename="include\keyeffectslistwindow.h" />
 		<Unit filename="include\layereditdialog.h" />
 		<Unit filename="include\lighteditdialog.h" />
 		<Unit filename="include\nodeeditdialog.h" />
@@ -235,6 +239,10 @@
 		<Unit filename="src\evteffectitem.cpp" />
 		<Unit filename="src\evteffectslistmodel.cpp" />
 		<Unit filename="src\evteffectslistwindow.cpp" />
+		<Unit filename="src\keyeffecteditdialog.cpp" />
+		<Unit filename="src\keyeffectitem.cpp" />
+		<Unit filename="src\keyeffectslistmodel.cpp" />
+		<Unit filename="src\keyeffectslistwindow.cpp" />
 		<Unit filename="src\layereditdialog.cpp" />
 		<Unit filename="src\lighteditdialog.cpp" />
 		<Unit filename="src\main.cpp" />
@@ -249,6 +257,9 @@
 		<Unit filename="src\moc_evteffecteditdialog.cpp" />
 		<Unit filename="src\moc_evteffectslistmodel.cpp" />
 		<Unit filename="src\moc_evteffectslistwindow.cpp" />
+		<Unit filename="src\moc_keyeffecteditdialog.cpp" />
+		<Unit filename="src\moc_keyeffectslistmodel.cpp" />
+		<Unit filename="src\moc_keyeffectslistwindow.cpp" />
 		<Unit filename="src\moc_layereditdialog.cpp" />
 		<Unit filename="src\moc_lighteditdialog.cpp" />
 		<Unit filename="src\moc_nodeeditdialog.cpp" />
