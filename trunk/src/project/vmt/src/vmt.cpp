@@ -21,7 +21,7 @@ void Vmt::setup(){
 	glEnable(GL_DEPTH_TEST); //lights look weird if depth test is not enabled
 
     vmtModel = new VmtModel();
-    vmtModel->loadShow("showXXX.XML");
+    vmtModel->loadShow("showCubos.XML");
 
     //vmtModel->saveShow("showYYY.XML");
 
