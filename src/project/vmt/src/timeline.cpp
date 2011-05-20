@@ -20,7 +20,8 @@ timeline::timeline(VmtModel *vmtModel, QWidget *parent)
     timerLabel->setText("0");
 
 	//  Construct a 5-second timeline with a frame range of 0 - 100
-	timeLine = new QTimeLine(/*5000*/vmtModel->getTotalTime(), this);
+	//timeLine = new QTimeLine(vmtModel->getTotalTime(), this);
+	timeLine = new QTimeLine(5000, this);
 	timeLine->setFrameRange(0, 100);
 	connect(timeLine, SIGNAL(frameChanged(int)), progressBar, SLOT(setValue(int)));
 	connect(timeLine, SIGNAL(frameChanged(int)), slider, SLOT(setValue(int)));
@@ -51,11 +52,12 @@ timeline::~timeline()
 void timeline::valueChanged(qreal x){
     //printf("=== valueChanged: %f\n", x);
     //printf("\t=== valueChanged: %s\n", QString::number(x).toStdString().c_str());
-    timerLabel->setText(QString::number(x));
+    //timerLabel->setText(QString::number(x));
 }
 
 void timeline::frameChangedTimeline(int frameCount){
-    printf("=== frameChangedTimeline: %d\n", frameCount);
+    //printf("=== frameChangedTimeline: %d\n", frameCount);
+    timerLabel->setText(QString::number(frameCount));
 }
 
 void timeline::stateChanged(QTimeLine::State newState){
