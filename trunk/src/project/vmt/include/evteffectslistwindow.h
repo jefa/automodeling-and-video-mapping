@@ -5,6 +5,7 @@
 #include "evteffectitem.h"
 #include "evteffectslistmodel.h"
 #include "evteffecteditdialog.h"
+#include "keyeffectslistwindow.h"
 #include "timeline.h"
 
 #include <QModelIndex>
@@ -43,8 +44,7 @@ private:
     evtEffectsListModel* getListViewModel();
 
 public:
-    QVBoxLayout *vboxLayout;
-    QGridLayout *layout;
+    //QVBoxLayout *vboxLayout;
 
     QPushButton *newEffectAction;
     QPushButton *removeEffectAction;
@@ -53,6 +53,7 @@ public:
 
     evtEffecteditdialog *evteffecteditdialog;
     timeline *timeLine;
+    keyEffectsListWindow *evteffectsWindkey;
 
     evtEffectItem *selectedItem;
 };

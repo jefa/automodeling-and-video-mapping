@@ -6,26 +6,27 @@ timeline::timeline(VmtModel *vmtModel, QWidget *parent)
 {
 
     this->vmtModel = vmtModel;
+    float totalTimeMs = vmtModel->getTotalTime()*1000;
 
 	layout= new QVBoxLayout(this);
 
 	progressBar = new QProgressBar(this);
-	progressBar->setRange(0, 100);
+	progressBar->setRange(0, totalTimeMs);
 
     slider = new QSlider(Qt::Horizontal);
-    slider->setMaximum(100);
+    slider->setMaximum(totalTimeMs);
     connect(slider, SIGNAL(sliderMoved(int)), this, SLOT(changePositionSlider(int)));
 
     timerLabel = new QLabel();
     timerLabel->setText("0");
 
 	//  Construct a 5-second timeline with a frame range of 0 - 100
-	//timeLine = new QTimeLine(vmtModel->getTotalTime(), this);
-	timeLine = new QTimeLine(5000, this);
-	timeLine->setFrameRange(0, 100);
+	timeLine = new QTimeLine(totalTimeMs, this);
+	timeLine->setFrameRange(0, totalTimeMs);
+	timeLine->setCurveShape(QTimeLine::LinearCurve); //enum CurveShape {EaseInCurve,EaseOutCurve,EaseInOutCurve,LinearCurve,SineCurve,CosineCurve};
+
 	connect(timeLine, SIGNAL(frameChanged(int)), progressBar, SLOT(setValue(int)));
 	connect(timeLine, SIGNAL(frameChanged(int)), slider, SLOT(setValue(int)));
-
 
 	// Clicking the push button will start the progress bar animation
 	pushButton = new QPushButton(tr("Start"), this);
@@ -57,7 +58,7 @@ void timeline::valueChanged(qreal x){
 
 void timeline::frameChangedTimeline(int frameCount){
     //printf("=== frameChangedTimeline: %d\n", frameCount);
-    timerLabel->setText(QString::number(frameCount));
+    timerLabel->setText(QString::number(frameCount/1000.0f));
 }
 
 void timeline::stateChanged(QTimeLine::State newState){
@@ -69,7 +70,6 @@ void timeline::changePositionSlider(int pos){
 }
 
 void timeline::start(){
-    //printf("=== START!!!\n");
     this->vmtModel->startTimeManager(ONE_TIME);
 }
 

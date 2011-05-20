@@ -42,8 +42,7 @@ private:
     keyEffectsListModel* getListViewModel();
 
 public:
-    QVBoxLayout *vboxLayout;
-    QGridLayout *layout;
+    //QVBoxLayout *vboxLayout;
 
     QPushButton *newEffectAction;
     QPushButton *removeEffectAction;
