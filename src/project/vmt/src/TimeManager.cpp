@@ -15,7 +15,7 @@ double TimeManager::getTotalTime(){
 void TimeManager::Start(TIMER_MODE mode) {
     playmode = mode;
     actualAnimTime = 0;
-    totalAnimTime = 0;
+    //totalAnimTime = 0;
 
     if(events.size() > 0) {
         it = events.begin();
@@ -39,7 +39,7 @@ void TimeManager::ScheduleEvent(float time, string effectId) {
     events.insert(make_pair(time_fixed, effectId));
 
     if (time > totalAnimTime)
-        totalAnimTime = time + 1000; //add one second to the last added event
+        totalAnimTime = time + 1; //add one second to the last added event
 }
 
 map<float, string> TimeManager::getScheduleEvents() {

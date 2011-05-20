@@ -35,12 +35,12 @@ void keyEffectsListWindow::setupUi(QWidget *listWindow)
 {
     if (listWindow->objectName().isEmpty())
         listWindow->setObjectName(QString::fromUtf8("listWindow3"));
-    listWindow->resize(200, 450);
-    listWindow->move(ofGetScreenWidth()-800,40);
-    vboxLayout = new QVBoxLayout(listWindow);
-    vboxLayout->setSpacing(0);
-    vboxLayout->setContentsMargins(0, 0, 0, 0);
-    vboxLayout->setObjectName(QString::fromUtf8("vboxLayout"));
+    //listWindow->resize(200, 450);
+    //listWindow->move(ofGetScreenWidth()-800,40);
+    QVBoxLayout *vboxLayout = new QVBoxLayout(listWindow);
+    //vboxLayout->setSpacing(0);
+    //vboxLayout->setContentsMargins(0, 0, 0, 0);
+    //vboxLayout->setObjectName(QString::fromUtf8("vboxLayout"));
     view = new QListView(listWindow);
     view->setObjectName(QString::fromUtf8("view"));
     view->setAlternatingRowColors(true);
@@ -54,16 +54,8 @@ void keyEffectsListWindow::setupUi(QWidget *listWindow)
     removeEffectAction = new QPushButton();
     removeEffectAction->setObjectName(QString::fromUtf8("removeEffectAction"));
 
-
-    layout = new QGridLayout;
-    layout->setColumnStretch(1, 1);
-    layout->setColumnMinimumWidth(0, 100);
-    layout->setColumnMinimumWidth(1, 100);
-
-    vboxLayout->addLayout(layout);
     vboxLayout->addWidget(newEffectAction);
     vboxLayout->addWidget(removeEffectAction);
-
 
     retranslateUi(listWindow);
 

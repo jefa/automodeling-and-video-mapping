@@ -10,6 +10,8 @@ evtEffectsListWindow::evtEffectsListWindow(VmtModel *vmtModel)
     this->selectedItem = NULL;
     this->evteffecteditdialog= new evtEffecteditdialog(vmtModel);
 
+    evteffectsWindkey = new keyEffectsListWindow(vmtModel);
+
     this->timeLine = new timeline(vmtModel);
 
     setupUi(this);
@@ -37,9 +39,10 @@ void evtEffectsListWindow::setupUi(QWidget *listWindow)
 {
     if (listWindow->objectName().isEmpty())
         listWindow->setObjectName(QString::fromUtf8("listWindow2"));
-    listWindow->resize(200, 450);
-    listWindow->move(ofGetScreenWidth()-550,40);
-    vboxLayout = new QVBoxLayout(listWindow);
+    //listWindow->resize(200, 450);
+    listWindow->resize(300, 430);
+    listWindow->move(50, 500);
+    QVBoxLayout *vboxLayout = new QVBoxLayout(listWindow);
     //vboxLayout->setSpacing(0);
     //vboxLayout->setContentsMargins(0, 0, 0, 0);
     vboxLayout->setObjectName(QString::fromUtf8("vboxLayout2"));
@@ -64,18 +67,22 @@ void evtEffectsListWindow::setupUi(QWidget *listWindow)
     teventsLayout->addWidget(removeEffectAction);
     teventsGroup->setLayout(teventsLayout);
 
-    layout = new QGridLayout;
-    layout->setColumnStretch(1, 1);
-    layout->setColumnMinimumWidth(0, 100);
-    layout->setColumnMinimumWidth(1, 100);
+    QGroupBox *keventsGroup = new QGroupBox(tr("Key events"));
+    QVBoxLayout *keventsLayout = new QVBoxLayout(this);
+    keventsLayout->addWidget(evteffectsWindkey);
+    keventsGroup->setLayout(keventsLayout);
+
+    QHBoxLayout *eventsLayout = new QHBoxLayout(this);
+    eventsLayout->addWidget(teventsGroup);
+    eventsLayout->addWidget(keventsGroup);
 
     QGroupBox *timelineGroup = new QGroupBox(tr("Scene timeline"));
     QVBoxLayout *timelineLayout = new QVBoxLayout(this);
     timelineLayout->addWidget(timeLine);
     timelineGroup->setLayout(timelineLayout);
 
-    vboxLayout->addWidget(teventsGroup);
-    vboxLayout->addLayout(layout);
+    //vboxLayout->addWidget(teventsGroup);
+    vboxLayout->addLayout(eventsLayout);
     //vboxLayout->addWidget(newEffectAction);
     //vboxLayout->addWidget(removeEffectAction);
     vboxLayout->addWidget(timelineGroup);

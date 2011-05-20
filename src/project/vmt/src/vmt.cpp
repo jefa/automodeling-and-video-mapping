@@ -34,8 +34,8 @@ void Vmt::setup(){
     evteffectsWind = new evtEffectsListWindow(this->vmtModel);
     evteffectsWind->show();
 
-    evteffectsWindkey = new keyEffectsListWindow(this->vmtModel);
-    evteffectsWindkey->show();
+    //evteffectsWindkey = new keyEffectsListWindow(this->vmtModel);
+    //evteffectsWindkey->show();
 
     //timelineWindow = new timeline(this->vmtModel);
     //timelineWindow->show();
@@ -61,7 +61,7 @@ void Vmt::keyPressed(int key){
     }
 
     if(key == 'p')
-        vmtModel->startTimeManager(LOOP);
+        vmtModel->startTimeManager(ONE_TIME);
 
     if(key == '0')
         vmtModel->resetScene();
