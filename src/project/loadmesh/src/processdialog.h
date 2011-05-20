@@ -1,7 +1,10 @@
 #ifndef EFFECTPAGES_H
 #define EFFECTPAGES_H
 
+#include <string>
 #include <QtGui>
+
+using namespace std;
 
 class ProcessDialog : public QWidget
 {
@@ -18,6 +21,8 @@ public slots:
 
 private:
     void init();
+    void informationMessage(string , string );
+    void criticalMessage(string , string );
 
     QErrorMessage *errorMessageDialog;
 
