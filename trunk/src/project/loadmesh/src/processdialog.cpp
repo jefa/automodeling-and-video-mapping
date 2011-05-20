@@ -7,9 +7,10 @@ ProcessDialog::ProcessDialog(QWidget *parent)
     errorMessageDialog = new QErrorMessage(this);
 
     // POISSON DISK SAMPLING GROUP
-    QGroupBox *fileGroup = new QGroupBox(tr("Source Object file"));
-    QLabel *filePathLabel = new QLabel(tr("Path:"));
+    QGroupBox *fileGroup = new QGroupBox(tr("Object files"));
+    QLabel *filePathLabel = new QLabel(tr("Source:"));
     filePathEdit = new QLineEdit;
+    QLabel *outputNameLabel = new QLabel(tr("Destination:"));
     outputNameEdit = new QLineEdit;
     searchButton = new QPushButton(tr("Browse"));
 
@@ -18,9 +19,13 @@ ProcessDialog::ProcessDialog(QWidget *parent)
     filePathLayout->addWidget(filePathEdit);
     filePathLayout->addWidget(searchButton);
 
+    QHBoxLayout *outfilePathLayout = new QHBoxLayout;
+    outfilePathLayout->addWidget(outputNameLabel);
+    outfilePathLayout->addWidget(outputNameEdit);
+
     QVBoxLayout *fileLayout = new QVBoxLayout;
     fileLayout->addLayout(filePathLayout);
-    fileLayout->addWidget(outputNameEdit);
+    fileLayout->addLayout(outfilePathLayout);
     fileGroup->setLayout(fileLayout);
 
     // POISSON DISK SAMPLING GROUP
@@ -228,8 +233,27 @@ void ProcessDialog::acceptPressed(){
                 tr("Error performing Poisson Surface Reoncstruction ."));
         return;
     }
+    informationMessage("ProcessMesh", "New mesh created and saved successfully!");
 }
 
 void ProcessDialog::rejectPressed(){
     exit(0);
+}
+
+void ProcessDialog::informationMessage(string title, string msg)
+{
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::information(this, tr(title.c_str()), msg.c_str());
+    if (reply == QMessageBox::Ok)
+        exit(0);
+}
+
+void ProcessDialog::criticalMessage(string title, string msg)
+{
+    QMessageBox::StandardButton reply;
+    reply = QMessageBox::critical(this, tr(title.c_str()),
+                                    msg.c_str(),
+                                    QMessageBox::Ok/* | QMessageBox::Retry | QMessageBox::Ignore*/);
+    //if (reply == QMessageBox::Ok)
+    //    criticalLabel->setText(tr("Abort"));
 }
