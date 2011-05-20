@@ -41,7 +41,6 @@ class TimeManager : public ISerializable
         bool started;
         TIMER_MODE playmode;
 
-        QTimer timer;
 };
 
 #endif // TIMEMANAGER_H

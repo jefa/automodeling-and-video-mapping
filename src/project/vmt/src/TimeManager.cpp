@@ -13,7 +13,6 @@ double TimeManager::getTotalTime(){
 }
 
 void TimeManager::Start(TIMER_MODE mode) {
-
     playmode = mode;
     actualAnimTime = 0;
     totalAnimTime = 0;
@@ -21,6 +20,7 @@ void TimeManager::Start(TIMER_MODE mode) {
     if(events.size() > 0) {
         it = events.begin();
         nextTimeEvent = it->first;
+        moreEvents = true;
     }
     else {
         moreEvents = false;
@@ -28,7 +28,6 @@ void TimeManager::Start(TIMER_MODE mode) {
 
     deltaStartTime = ofGetElapsedTimef();
     started = true;
-    timer.start();
 }
 
 void TimeManager::ScheduleEvent(float time, string effectId) {
