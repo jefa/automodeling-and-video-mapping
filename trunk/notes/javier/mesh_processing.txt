@@ -1,0 +1,76 @@
+1-Filters -> Sampling ->Poisson -Disk Sampling
+2-Filters —–>Normals, Curvatures and Orientation —> Compute Normals for Point Set
+3-Filters —>  Points—>Surface Reconstruction Poisson
+
+
+los pasos que se realizan son:
+1- aplicar   Filters->Sampling->Poison-disk Sampling										- Subsampling
+2- Filters->Remeshing, Simplification and Reconstruction->Surface Reconstruction: Poison	- Normal Reconstruction
+3- Filters->Remeshing, Simplification and Reconstruction->Quadric edge collapse Decimation	- Surface reconstruction
+4- Filters->Sampling->Vertex attribute Transfer												- Cleaning up and assessing
+
+
+
+
+// Step 1: identify the tangent planes used to locally approximate the surface
+	// for each vertex *iter, compute the centroid as avarege of the k-nearest vertices of *iter
+	// then, identity the normal associated to the centroid
+// Step 2: build the Riemannian graph, i.e. the graph where each point is connected to the k-nearest neigbours.
+
+// Step 3: compute the minimum spanning tree (MST) over the Riemannian graph (we use the Kruskal algorithm)
+// compute for each plane the list of sorting edges
+// Traverse the incident_edges vector and build the MST
+
+
+
+
+
+	
+----- LINKS
+
+* Pasos para procesamiento
+http://meshlabstuff.blogspot.com/2009/09/meshing-point-clouds.html
+http://davidleonardtv.wordpress.com/2011/02/02/turn-kinect-into-3d-scanner-explained-full-tutorial-with-code/
+
+
+http://kesen.realtimerendering.com/egsr2009Papers.htm
+http://peterwonka.net/
+http://www.cg.tuwien.ac.at/research/vr/urbanviz/
+
+* Poisson Disk Sample
+http://devmag.org.za/2009/05/03/poisson-disk-sampling/
+
+http://www.cs.virginia.edu/~gfx/pubs/antimony/antimony.pdf
+
+* Parallel Poisson Disk Sampling
+http://research.microsoft.com/apps/pubs/default.aspx?id=70563
+http://research.microsoft.com/pubs/70563/tr-2008-46.pdf
+
+
+
+A.1.4 VcgLib
+VcgLib " Visual computer graphics Library "[33]is a portable C++ templated library
+for manipulation, processing and displaying with OpenGl of triangle and
+tetrahedral meshes.
+The library, released under the GPL license is the result of the collaborative efforts
+of the Visual Computing Lab " VCGLab " [38] of the ISTI " Institute of the Italian
+National Research Council " [39]
+In the following will be explained the procedure to install the VcgLib:
+
+[39] VcgIsti. URL:http://www.isti.cnr.it.
+[33] VcgLib. URL:http://vcg.sourceforge.net/tiki-index.php.
+
+
+* Normal Extrapolation
+
+http://en.wikipedia.org/wiki/Surface_normal
+http://mathworld.wolfram.com/NormalVector.html
+
+PCA
+http://en.wikipedia.org/wiki/Principal_component_analysis
+http://users.ics.tkk.fi/jhollmen/dippa/node30.html
+
+Riemannian
+
+Riemannian Graph
+The Riemannian graph contains for each data point the edges to the k nearest neighbors, where we chose k between 10 and 16. For our purposes we could compute a sufficient approximation to the Riemannian graph with the approximate nearest neighbor library ANN [4]. For the brain dataset the Riemannian graph was computed in 7 to 10 seconds for k = 10 to 16. The advantage of the Riemannian Graph is that it can handle noisy data and consumes much less time than the Delaunay filtering approach.
