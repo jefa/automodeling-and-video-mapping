@@ -2,6 +2,7 @@
 
 http://code.google.com/p/automodeling-and-video-mapping/
 http://automodellingandvideomapping.blogspot.com/
+http://www.fing.edu.uy/~laurenzo/proygr/
 
 === Video Mapping
 
