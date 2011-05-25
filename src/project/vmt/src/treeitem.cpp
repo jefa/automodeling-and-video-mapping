@@ -74,11 +74,6 @@ QVariant TreeItem::data(int column) //const
 bool TreeItem::insertChildren(int position, int count, /*int columns*/TreeItemData *itemData, string label )
 {
 
-    //qDebug("=== position:: %d\n", position);
-
-    if (itemData == NULL)
-        qDebug("=== itemData NULL\n");
-
     if (position < 0 || position > childItems.size())
         return false;
 
@@ -86,12 +81,8 @@ bool TreeItem::insertChildren(int position, int count, /*int columns*/TreeItemDa
         //QVector<QVariant> data(columns);
         TreeItem *item = new TreeItem(itemData, this, label);
 
-        if (item  == NULL)
-            qDebug("=== item  NULL\n");
-        else {
-            //if (item->getItemData() != NULL)  cout<< "datos item data -  itemid: " <<item->getItemData()->getData(0) <<"   " ;
+        if (item  != NULL)
             childItems.insert(position, item);
-        }
     }
 
     return true;
