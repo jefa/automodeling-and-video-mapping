@@ -39,7 +39,6 @@ void evtEffectsListWindow::setupUi(QWidget *listWindow)
 {
     if (listWindow->objectName().isEmpty())
         listWindow->setObjectName(QString::fromUtf8("listWindow2"));
-    //listWindow->resize(200, 450);
     listWindow->resize(300, 430);
     listWindow->move(50, 500);
     QVBoxLayout *vboxLayout = new QVBoxLayout(listWindow);
@@ -48,7 +47,7 @@ void evtEffectsListWindow::setupUi(QWidget *listWindow)
     vboxLayout->setObjectName(QString::fromUtf8("vboxLayout2"));
 
     QGroupBox *teventsGroup = new QGroupBox(tr("Timed events"));
-    QVBoxLayout *teventsLayout = new QVBoxLayout(this);
+    QVBoxLayout *teventsLayout = new QVBoxLayout();
 
     view = new QListView(listWindow);
     view->setObjectName(QString::fromUtf8("view2"));
@@ -68,16 +67,16 @@ void evtEffectsListWindow::setupUi(QWidget *listWindow)
     teventsGroup->setLayout(teventsLayout);
 
     QGroupBox *keventsGroup = new QGroupBox(tr("Key events"));
-    QVBoxLayout *keventsLayout = new QVBoxLayout(this);
+    QVBoxLayout *keventsLayout = new QVBoxLayout();
     keventsLayout->addWidget(evteffectsWindkey);
     keventsGroup->setLayout(keventsLayout);
 
-    QHBoxLayout *eventsLayout = new QHBoxLayout(this);
+    QHBoxLayout *eventsLayout = new QHBoxLayout();
     eventsLayout->addWidget(teventsGroup);
     eventsLayout->addWidget(keventsGroup);
 
     QGroupBox *timelineGroup = new QGroupBox(tr("Scene timeline"));
-    QVBoxLayout *timelineLayout = new QVBoxLayout(this);
+    QVBoxLayout *timelineLayout = new QVBoxLayout();
     timelineLayout->addWidget(timeLine);
     timelineGroup->setLayout(timelineLayout);
 
