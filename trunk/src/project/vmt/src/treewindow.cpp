@@ -115,7 +115,8 @@ void TreeWindow::insertRow()
      if (TypeNodo == "OBJECTS" || TypeNodo == "OBJECT"){
          Name= (inputText("New")).toStdString();
          path= (inputTextPath("")).toStdString();
-         model->addObject3D(0,index.row()+1, index, Name, path);
+         int pos = model->getVmtModel()->getObjects3D().size();
+         model->addObject3D(pos, index.row()+1, index, Name, path);
      } else {
          Name = (inputText("New")).toStdString();
          model->insertRows(0,index.row()+1, index, Name);

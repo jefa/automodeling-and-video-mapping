@@ -10,8 +10,8 @@ timeline::timeline(VmtModel *vmtModel, QWidget *parent)
 
 	layout= new QVBoxLayout(this);
 
-	progressBar = new QProgressBar(this);
-	progressBar->setRange(0, totalTimeMs);
+	//progressBar = new QProgressBar(this);
+	//progressBar->setRange(0, totalTimeMs);
 
     slider = new QSlider(Qt::Horizontal);
     slider->setMaximum(totalTimeMs);
@@ -25,7 +25,7 @@ timeline::timeline(VmtModel *vmtModel, QWidget *parent)
 	timeLine->setFrameRange(0, totalTimeMs);
 	timeLine->setCurveShape(QTimeLine::LinearCurve); //enum CurveShape {EaseInCurve,EaseOutCurve,EaseInOutCurve,LinearCurve,SineCurve,CosineCurve};
 
-	connect(timeLine, SIGNAL(frameChanged(int)), progressBar, SLOT(setValue(int)));
+	//connect(timeLine, SIGNAL(frameChanged(int)), progressBar, SLOT(setValue(int)));
 	connect(timeLine, SIGNAL(frameChanged(int)), slider, SLOT(setValue(int)));
 
 	// Clicking the push button will start the progress bar animation
@@ -39,7 +39,7 @@ timeline::timeline(VmtModel *vmtModel, QWidget *parent)
     connect(timeLine, SIGNAL(finished()), this, SLOT(finished()));
     connect(timeLine, SIGNAL(frameChanged(int)), this, SLOT(frameChangedTimeline(int)));
 
-	layout->addWidget(progressBar);
+	//layout->addWidget(progressBar);
 	layout->addWidget(timerLabel);
 	layout->addWidget(slider);
 	layout->addWidget(pushButton);

@@ -15,15 +15,13 @@ QuadEditorDialog::QuadEditorDialog(VmtModel *model, string Camera, string Layer,
     idCamera= Camera;
     idLayer = Layer;
     idQuad = Quad;
-    cout<< idCamera <<"  "<< idLayer <<"  "<< idQuad ;
+    //cout<< idCamera <<"  "<< idLayer <<"  "<< idQuad ;
     x0CoordSpinBox = UiUtils::createCoordinateSpinBox();
     y0CoordSpinBox = UiUtils::createCoordinateSpinBox();
     x1CoordSpinBox = UiUtils::createCoordinateSpinBox();
     y1CoordSpinBox = UiUtils::createCoordinateSpinBox();
-
     x2CoordSpinBox = UiUtils::createCoordinateSpinBox();
     y2CoordSpinBox = UiUtils::createCoordinateSpinBox();
-
     x3CoordSpinBox = UiUtils::createCoordinateSpinBox();
     y3CoordSpinBox = UiUtils::createCoordinateSpinBox();
 
@@ -78,20 +76,39 @@ QuadEditorDialog::QuadEditorDialog(VmtModel *model, string Camera, string Layer,
 void QuadEditorDialog::createFormGroupBox()
 {
     formGroupBox = new QGroupBox(tr("Quad properties"));
-    QFormLayout *layout = new QFormLayout;
-    layout->addRow(new QLabel(tr("Id/Name:")), idLineEdit);
-    layout->addRow(new QLabel(tr("Is Enabled:")), enabledBox);
+    QGridLayout *gridLayout = new QGridLayout;
 
-    layout->addRow(new QLabel(tr("Point 0 Coord. X:")), x0CoordSpinBox);
-    layout->addRow(new QLabel(tr("Point 0 Coord. Y:")), y0CoordSpinBox);
-    layout->addRow(new QLabel(tr("Point 1 Coord. X:")), x1CoordSpinBox);
-    layout->addRow(new QLabel(tr("Point 1 Coord. Y:")), y1CoordSpinBox);
-    layout->addRow(new QLabel(tr("Point 2 Coord. X:")), x2CoordSpinBox);
-    layout->addRow(new QLabel(tr("Point 2 Coord. Y:")), y2CoordSpinBox);
-    layout->addRow(new QLabel(tr("Point 3 Coord. X:")), x3CoordSpinBox);
-    layout->addRow(new QLabel(tr("Point 3 Coord. Y:")), y3CoordSpinBox);
+    gridLayout->addWidget(new QLabel(tr("Id/Name:")), 0, 0);
+    gridLayout->addWidget(idLineEdit, 0, 1, 1, 6);
 
-    formGroupBox->setLayout(layout);
+    gridLayout->addWidget(new QLabel(tr("Is Enabled:")), 1, 0);
+    gridLayout->addWidget(enabledBox, 1, 1, 1, 6);
+
+    gridLayout->addWidget(new QLabel(tr("Point 0:")), 2, 0);
+    gridLayout->addWidget(new QLabel(tr("X:")), 2, 1);
+    gridLayout->addWidget(x0CoordSpinBox, 2, 2);
+    gridLayout->addWidget(new QLabel(tr("Y:")), 2, 3);
+    gridLayout->addWidget(y0CoordSpinBox, 2, 4);
+
+    gridLayout->addWidget(new QLabel(tr("Point 1:")), 3, 0);
+    gridLayout->addWidget(new QLabel(tr("X:")), 3, 1);
+    gridLayout->addWidget(x1CoordSpinBox, 3, 2);
+    gridLayout->addWidget(new QLabel(tr("Y:")), 3, 3);
+    gridLayout->addWidget(y1CoordSpinBox, 3, 4);
+
+    gridLayout->addWidget(new QLabel(tr("Point 2:")), 4, 0);
+    gridLayout->addWidget(new QLabel(tr("X:")), 4, 1);
+    gridLayout->addWidget(x2CoordSpinBox, 4, 2);
+    gridLayout->addWidget(new QLabel(tr("Y:")), 4, 3);
+    gridLayout->addWidget(y2CoordSpinBox, 4, 4);
+
+    gridLayout->addWidget(new QLabel(tr("Point 3:")), 5, 0);
+    gridLayout->addWidget(new QLabel(tr("X:")), 5, 1);
+    gridLayout->addWidget(x3CoordSpinBox, 5, 2);
+    gridLayout->addWidget(new QLabel(tr("Y:")), 5, 3);
+    gridLayout->addWidget(y3CoordSpinBox, 5, 4);
+
+    formGroupBox->setLayout(gridLayout);
 }
 //! [12]
 
@@ -218,7 +235,6 @@ void QuadEditorDialog::rejectPressed(){
 
 void QuadEditorDialog::undoChanges(){
     if (this->model != NULL) {
-
         this ->model->enableQuad(idCamera, idLayer, idQuad, previousEnabled);
         this->model->setQuadPoint(idCamera, idLayer, idQuad,0, previous0X, previous0Y);
         this->model->setQuadPoint(idCamera, idLayer, idQuad,1, previous1X, previous1Y);

@@ -1,7 +1,6 @@
-#include <QtGui>
-
 #include "objecteditdialog.h"
-#include <limits>
+#include "uiutils.h"
+#include <QtGui>
 
 using namespace gui;
 
@@ -12,23 +11,11 @@ ObjectEditorDialog::ObjectEditorDialog(VmtModel *modelobj, string idobj)
     this->idobj = idobj;
     Object3D *obj3d = this->model->getObject3D(idobj);
     object3d = obj3d;
-    xCoordSpinBox = new QDoubleSpinBox();
-    yCoordSpinBox = new QDoubleSpinBox();
-    zCoordSpinBox = new QDoubleSpinBox();
+    xCoordSpinBox = UiUtils::createCoordinateSpinBox();
+    yCoordSpinBox = UiUtils::createCoordinateSpinBox();
+    zCoordSpinBox = UiUtils::createCoordinateSpinBox();
     idLineEdit = new QLineEdit();
-
-    xCoordSpinBox->setMouseTracking(true);
-    xCoordSpinBox->setMaximum(numeric_limits<double>::max());
-    xCoordSpinBox->setMinimum((numeric_limits<double>::max())*(-1));
-    xCoordSpinBox->setSingleStep(.5);
-    yCoordSpinBox->setMouseTracking(true);
-    yCoordSpinBox->setMaximum(numeric_limits<double>::max());
-    yCoordSpinBox->setMinimum((numeric_limits<double>::max())*(-1));
-    yCoordSpinBox->setSingleStep(.5);
-    zCoordSpinBox->setMouseTracking(true);
-    zCoordSpinBox->setMaximum(numeric_limits<double>::max());
-    zCoordSpinBox->setMinimum((numeric_limits<double>::max())*(-1));
-    zCoordSpinBox->setSingleStep(.5);
+    idLineEdit->setMaximumWidth(80);
 
     loadData();
 
@@ -67,11 +54,16 @@ ObjectEditorDialog::ObjectEditorDialog(VmtModel *modelobj, string idobj)
 void ObjectEditorDialog::createFormGroupBox()
 {
     formGroupBox = new QGroupBox(tr("Object properties"));
-    QFormLayout *layout = new QFormLayout;
-    layout->addRow(new QLabel(tr("Id/Name:")), idLineEdit);
-    layout->addRow(new QLabel(tr("Coord. X:")), xCoordSpinBox);
-    layout->addRow(new QLabel(tr("Coord. Y:")), yCoordSpinBox);
-    layout->addRow(new QLabel(tr("Coord. Z:")), zCoordSpinBox);
+    QGridLayout *layout = new QGridLayout;
+    layout->addWidget(new QLabel(tr("Id/Name:")), 0, 0);
+    layout->addWidget(idLineEdit, 0, 1, 1, 2);
+    layout->addWidget(new QLabel(tr("Coord. :")), 1, 0);
+    layout->addWidget(new QLabel(tr("X:")), 1, 1);
+    layout->addWidget(xCoordSpinBox, 1, 2);
+    layout->addWidget(new QLabel(tr("Y:")), 1, 3);
+    layout->addWidget(yCoordSpinBox, 1, 4);
+    layout->addWidget(new QLabel(tr("Z:")), 1, 5);
+    layout->addWidget(zCoordSpinBox, 1, 6);
     formGroupBox->setLayout(layout);
 }
 //! [12]

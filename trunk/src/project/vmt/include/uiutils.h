@@ -10,6 +10,7 @@ class UiUtils
 
     public:
         static QDoubleSpinBox* createCoordinateSpinBox();
+        static QDoubleSpinBox* createDoubleSpinBox();
         static void setComboIndexForText(QComboBox *combo, string txt);
         static void clearCombo(QComboBox *combo);
 };
