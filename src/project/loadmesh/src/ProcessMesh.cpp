@@ -404,7 +404,7 @@ CMeshO* ProcessMesh::SurfaceReconstructionPoisson(CMeshO *cm, int OctDepth, int 
 //		mesh.triangles[i].idx[2]+=mesh.inCorePoints.size();
 //		}
 //	Build((*cm),mesh.inCorePoints,mesh.triangles);
-	printf("Successfully created a mesh of %i faces",(*pm).vn);
+//	printf("Successfully created a mesh of %i faces",(*pm).vn);
 
     vcg::tri::UpdateBounding<CMeshO>::Box((*pm));
     vcg::tri::UpdateNormals<CMeshO>::PerVertexNormalizedPerFace((*pm));

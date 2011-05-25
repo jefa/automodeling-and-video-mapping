@@ -1,7 +1,7 @@
-#include <QtGui>
-
 #include "cameraeditdialog.h"
-#include <limits>
+
+#include <QtGui>
+#include "UiUtils.h"
 
 using namespace gui;
 
@@ -10,95 +10,29 @@ CameraEditorDialog::CameraEditorDialog(VmtModel *modelobj, string id)
 {
     this->model = modelobj;
     cameraId = id;
-    xCoordSpinBox = new QDoubleSpinBox();
-    yCoordSpinBox = new QDoubleSpinBox();
-    zCoordSpinBox = new QDoubleSpinBox();
+    xCoordSpinBox = UiUtils::createCoordinateSpinBox();
+    yCoordSpinBox = UiUtils::createCoordinateSpinBox();
+    zCoordSpinBox = UiUtils::createCoordinateSpinBox();
 
-    xCoordSpinEyeBox = new QDoubleSpinBox();
-    yCoordSpinEyeBox = new QDoubleSpinBox();
-    zCoordSpinEyeBox = new QDoubleSpinBox();
+    xCoordSpinEyeBox = UiUtils::createCoordinateSpinBox();
+    yCoordSpinEyeBox = UiUtils::createCoordinateSpinBox();
+    zCoordSpinEyeBox = UiUtils::createCoordinateSpinBox();
 
-    xCoordSpinUpBox = new QDoubleSpinBox();
-    yCoordSpinUpBox = new QDoubleSpinBox();
-    zCoordSpinUpBox = new QDoubleSpinBox();
+    xCoordSpinUpBox = UiUtils::createCoordinateSpinBox();
+    yCoordSpinUpBox = UiUtils::createCoordinateSpinBox();
+    zCoordSpinUpBox = UiUtils::createCoordinateSpinBox();
 
-    fieldOfView = new QDoubleSpinBox();
-    aspectRatio = new QDoubleSpinBox();
-    zNear = new QDoubleSpinBox();
-    zFar = new QDoubleSpinBox();
+    fieldOfView = UiUtils::createDoubleSpinBox();
+    fieldOfView->setMaximumWidth(100);
+    aspectRatio = UiUtils::createDoubleSpinBox();
+    aspectRatio->setMaximumWidth(100);
+    zNear = UiUtils::createDoubleSpinBox();
+    zNear->setMaximumWidth(100);
+    zFar = UiUtils::createDoubleSpinBox();
+    zFar->setMaximumWidth(100);
 
     projector = new  QCheckBox();
-
     idLineEdit = new QLineEdit();
-
-    xCoordSpinBox->setMouseTracking(true);
-    xCoordSpinBox->setMaximum(numeric_limits<double>::max());
-    xCoordSpinBox->setMinimum((numeric_limits<double>::max())*(-1));
-    xCoordSpinBox->setSingleStep(.5);
-
-    yCoordSpinBox->setMouseTracking(true);
-    yCoordSpinBox->setMaximum(numeric_limits<double>::max());
-    yCoordSpinBox->setMinimum((numeric_limits<double>::max())*(-1));
-    yCoordSpinBox->setSingleStep(.5);
-
-    zCoordSpinBox->setMouseTracking(true);
-    zCoordSpinBox->setMaximum(numeric_limits<double>::max());
-    zCoordSpinBox->setMinimum((numeric_limits<double>::max())*(-1));
-    zCoordSpinBox->setSingleStep(.5);
-
-
-    xCoordSpinEyeBox->setMouseTracking(true);
-    xCoordSpinEyeBox->setMaximum(numeric_limits<double>::max());
-    xCoordSpinEyeBox->setMinimum((numeric_limits<double>::max())*(-1));
-    xCoordSpinEyeBox->setSingleStep(.5);
-
-    yCoordSpinEyeBox->setMouseTracking(true);
-    yCoordSpinEyeBox->setMaximum(numeric_limits<double>::max());
-    yCoordSpinEyeBox->setMinimum((numeric_limits<double>::max())*(-1));
-    yCoordSpinEyeBox->setSingleStep(.5);
-
-    zCoordSpinEyeBox->setMouseTracking(true);
-    zCoordSpinEyeBox->setMaximum(numeric_limits<double>::max());
-    zCoordSpinEyeBox->setMinimum((numeric_limits<double>::max())*(-1));
-    zCoordSpinEyeBox->setSingleStep(.5);
-
-    xCoordSpinUpBox->setMouseTracking(true);
-    xCoordSpinUpBox->setMaximum(numeric_limits<double>::max());
-    xCoordSpinUpBox->setMinimum((numeric_limits<double>::max())*(-1));
-    xCoordSpinUpBox->setSingleStep(.5);
-
-    yCoordSpinUpBox->setMouseTracking(true);
-    yCoordSpinUpBox->setMaximum(numeric_limits<double>::max());
-    yCoordSpinUpBox->setMinimum((numeric_limits<double>::max())*(-1));
-    yCoordSpinUpBox->setSingleStep(.5);
-
-    zCoordSpinUpBox->setMouseTracking(true);
-    zCoordSpinUpBox->setMaximum(numeric_limits<double>::max());
-    zCoordSpinUpBox->setMinimum((numeric_limits<double>::max())*(-1));
-    zCoordSpinUpBox->setSingleStep(.5);
-
-
-    fieldOfView->setMouseTracking(true);
-    fieldOfView->setMaximum(numeric_limits<double>::max());
-    fieldOfView->setMinimum((numeric_limits<double>::max())*(-1));
-    fieldOfView->setSingleStep(.5);
-
-    aspectRatio->setMouseTracking(true);
-    aspectRatio->setMaximum(numeric_limits<double>::max());
-    aspectRatio->setMinimum((numeric_limits<double>::max())*(-1));
-    aspectRatio->setSingleStep(.5);
-
-    zNear->setMouseTracking(true);
-    zNear->setMaximum(numeric_limits<double>::max());
-    zNear->setMinimum((numeric_limits<double>::max())*(-1));
-    zNear->setSingleStep(.5);
-
-    zFar->setMouseTracking(true);
-    zFar->setMaximum(numeric_limits<double>::max());
-    zFar->setMinimum((numeric_limits<double>::max())*(-1));
-    zFar->setSingleStep(.5);
-
-
 
     loadData();
 
@@ -153,29 +87,48 @@ CameraEditorDialog::CameraEditorDialog(VmtModel *modelobj, string id)
 void CameraEditorDialog::createFormGroupBox()
 {
     formGroupBox = new QGroupBox(tr("Camera properties"));
-    QFormLayout *layout = new QFormLayout;
-    layout->addRow(new QLabel(tr("Id/Name:")), idLineEdit);
-    layout->addRow(new QLabel(tr("Position Coord. X:")), xCoordSpinBox);
-    layout->addRow(new QLabel(tr("Position Coord. Y:")), yCoordSpinBox);
-    layout->addRow(new QLabel(tr("Position Coord. Z:")), zCoordSpinBox);
 
-    layout->addRow(new QLabel(tr("Eye Coord. X:")), xCoordSpinEyeBox);
-    layout->addRow(new QLabel(tr("Eye Coord. Y:")), yCoordSpinEyeBox);
-    layout->addRow(new QLabel(tr("Eye Coord. Z:")), zCoordSpinEyeBox);
+    QGridLayout *coordinatesLayout = new QGridLayout;
+    coordinatesLayout->addWidget(new QLabel(tr("Id/Name:")), 0, 0);
+    coordinatesLayout->addWidget(idLineEdit, 0, 1, 1, 4);
+    coordinatesLayout->addWidget(new QLabel(tr("Position:")), 1, 0);
+    coordinatesLayout->addWidget(new QLabel(tr("X:")), 1, 1);
+    coordinatesLayout->addWidget(xCoordSpinBox, 1, 2);
+    coordinatesLayout->addWidget(new QLabel(tr("Y:")), 1, 3);
+    coordinatesLayout->addWidget(yCoordSpinBox, 1, 4);
+    coordinatesLayout->addWidget(new QLabel(tr("Z:")), 1, 5);
+    coordinatesLayout->addWidget(zCoordSpinBox, 1, 6);
+    coordinatesLayout->addWidget(new QLabel(tr("Eye:")), 2, 0);
+    coordinatesLayout->addWidget(new QLabel(tr("X:")), 2, 1);
+    coordinatesLayout->addWidget(xCoordSpinEyeBox, 2, 2);
+    coordinatesLayout->addWidget(new QLabel(tr("Y:")), 2, 3);
+    coordinatesLayout->addWidget(yCoordSpinEyeBox, 2, 4);
+    coordinatesLayout->addWidget(new QLabel(tr("Z:")), 2, 5);
+    coordinatesLayout->addWidget(zCoordSpinEyeBox, 2, 6);
+    coordinatesLayout->addWidget(new QLabel(tr("Up:")), 3, 0);
+    coordinatesLayout->addWidget(new QLabel(tr("X:")), 3, 1);
+    coordinatesLayout->addWidget(xCoordSpinUpBox, 3, 2);
+    coordinatesLayout->addWidget(new QLabel(tr("Y:")), 3, 3);
+    coordinatesLayout->addWidget(yCoordSpinUpBox, 3, 4);
+    coordinatesLayout->addWidget(new QLabel(tr("Z:")), 3, 5);
+    coordinatesLayout->addWidget(zCoordSpinUpBox, 3, 6);
 
-    layout->addRow(new QLabel(tr("Up Coord. X:")), xCoordSpinUpBox);
-    layout->addRow(new QLabel(tr("Up Coord. Y:")), yCoordSpinUpBox);
-    layout->addRow(new QLabel(tr("Up Coord. Z:")), zCoordSpinUpBox);
+    coordinatesLayout->addWidget(new QLabel(tr("fieldOfView :")), 4, 0);
+    coordinatesLayout->addWidget(fieldOfView, 4, 1, 1, 6);
 
-    layout->addRow(new QLabel(tr("fieldOfView :")), fieldOfView);
-    layout->addRow(new QLabel(tr("aspectRatio :")), aspectRatio);
-    layout->addRow(new QLabel(tr("zNear :")), zNear);
-    layout->addRow(new QLabel(tr("zFar :")), zFar);
+    coordinatesLayout->addWidget(new QLabel(tr("aspectRatio :")), 5, 0);
+    coordinatesLayout->addWidget(aspectRatio, 5, 1, 1, 6);
 
-    layout->addRow(new QLabel(tr("Is Proyector:")), projector);
+    coordinatesLayout->addWidget(new QLabel(tr("zNear :")), 6, 0);
+    coordinatesLayout->addWidget(zNear, 6, 1, 1, 6);
 
+    coordinatesLayout->addWidget(new QLabel(tr("zFar :")), 7, 0);
+    coordinatesLayout->addWidget(zFar, 7, 1, 1, 6);
 
-    formGroupBox->setLayout(layout);
+    coordinatesLayout->addWidget(new QLabel(tr("Is Proyector:")), 8, 0);
+    coordinatesLayout->addWidget(projector, 8, 1, 1, 6);
+
+    formGroupBox->setLayout(coordinatesLayout);
 }
 //! [12]
 
