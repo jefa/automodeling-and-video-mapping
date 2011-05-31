@@ -66,9 +66,12 @@ MST / Kruskal
 http://en.wikipedia.org/wiki/Kruskal%27s_algorithm
 http://en.wikipedia.org/wiki/Minimum_spanning_tree
 
+http://en.wikipedia.org/wiki/Laplacian_matrix
+
 * Poisson Surface reconstruction
 
 http://www.cs.jhu.edu/~misha/Code/PoissonRecon/
 http://www.cs.jhu.edu/~misha/MyPapers/SGP06.pdf
 http://research.microsoft.com/en-us/um/people/hoppe/proj/poissonrecon/
 http://www.cgal.org/
+http://www.cgal.org/Manual/3.5/doc_html/cgal_manual/Surface_reconstruction_points_3/Chapter_main.html
