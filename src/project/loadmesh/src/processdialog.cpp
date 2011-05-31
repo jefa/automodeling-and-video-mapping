@@ -72,7 +72,7 @@ ProcessDialog::ProcessDialog(QWidget *parent)
     // POISSON RECONSTRUCTION GROUP
     QGroupBox *poissonReconstrGroup = new QGroupBox(tr("Poisson Reconstruction"));
 
-    QLabel *octdepthLabel = new QLabel(tr("Otcet Depth:"));
+    QLabel *octdepthLabel = new QLabel(tr("Oct depth:"));
     octdepthSpinBox = new QSpinBox;
     QHBoxLayout *octetLayout = new QHBoxLayout;
     octetLayout->addWidget(octdepthLabel);
