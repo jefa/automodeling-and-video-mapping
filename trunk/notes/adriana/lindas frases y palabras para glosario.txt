@@ -1,0 +1,29 @@
+Video Projection Mapping is an exciting new projection technique that can turn almost any surface into a dynamic video display. 
+Specialized software is used to warp and mask the projected image to make it fit perfectly on irregularly shaped screens. 
+When done right, the end result is a dynamic projection installation that transcends ordinary video projection.
+
+
+The workshops were an introduction of working with video as a tool for creating and
+transforming spaces: to thinking of video as light, and how you can mask a projection to
+project on multiple objects and surfaces within the projector´s projection angle and to
+exploit the depth of field in video projectors
+
+Exploring how audiovisual technology can be used to transform, create, expand, amplify and interpret physical spaces.
+
+
+
+palabras para glosario:
+
+shaders
+canal alfa
+2D
+3D
+edge blending 
+homography
+costuras - utilización de más de un proyector
+capas (layers)
+máscara
+fade
+malla
+nube de puntos
+ 
