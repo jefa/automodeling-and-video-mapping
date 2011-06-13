@@ -26,4 +26,7 @@ máscara
 fade
 malla
 nube de puntos
+vj
+plano imagen
+textura
  
