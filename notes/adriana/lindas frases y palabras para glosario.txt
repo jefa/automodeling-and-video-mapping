@@ -24,9 +24,10 @@ costuras - utilización de más de un proyector
 capas (layers)
 máscara
 fade
-malla
+malla , mallas triangulares
 nube de puntos
 vj
 plano imagen
 textura
+
  
