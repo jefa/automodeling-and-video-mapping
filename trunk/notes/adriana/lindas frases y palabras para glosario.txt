@@ -29,5 +29,7 @@ nube de puntos
 vj
 plano imagen
 textura
+eje óptico: es el eje perpendicular al plano imagen que pasa por el centro de la cámara, también llamado centro óptico
+problemas de oclusión
 
  
