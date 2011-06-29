@@ -108,6 +108,10 @@ http://www.pixelsumo.com/post/inside-project-natal?utm_source=feedburner&utm_med
 The KHRONOS PROJECTOR
 http://www.k2.t.u-tokyo.ac.jp/members/alvaro/Khronos/
 
+
+Viktoy - Magyar Telekom kick-off - Architectural projection - Part1 
+http://www.youtube.com/watch?v=oZnAD8MHkHc&feature=related
+
 === Computer Vision source code
 http://www.cs.cmu.edu/~cil/v-source.html
 
