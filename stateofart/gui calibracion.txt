@@ -1,0 +1,16 @@
+GUI Calibración.
+
+(rojo)Como se mencionó anteriormente, la calibración en VMT es posible hacerla de forma independiente en cada uno de los proyectores.
+
+La calibración bidimensional se basa en ajustar todos los *quads de una capa de forma conjunta.
+
+Para que esto sea posible, los quads deben estar ajustados en un principio a donde se proyectarán para una posición fija de la cámara.
+La calibración entonces será necesaria cuando un movimiento en la ubicación u orientación del proyector haga que todos los *quads
+proyectados queden desajustados pero sus posiciones relativas se mantengan.
+
+Esta calibración aplicará una misma transformación a todos los *quads, deformando la proyección de modo tal de que estos *quads se vuelvan a ajustar
+a la superficie a proyectar.
+
+Esta transformacón que se aplica se denomina homografía. NOTA AL PIE: Una homografía es toda transformación proyectiva que determina una correspondencia
+entre dos figuras geométricas planas, de forma que a cada uno de los puntos y las rectas de una de ellas le corresponden, respectivamente, un punto y una recta de la otra.
+
