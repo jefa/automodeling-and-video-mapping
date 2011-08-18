@@ -1,0 +1,11 @@
+Kinect Hackers Are Changing the Future of Robotics
+http://www.wired.com/magazine/2011/06/mf_kinect/all/1
+
+Microsoft Releases Kinect for Windows SDK Beta for Academics and Enthusiasts
+http://www.microsoft.com/presspass/press/2011/jun11/06-16MSKinectSDKPR.mspx
+
+10 Hacks That Make Microsoft’s Kinect a Killer Controller
+http://www.wired.com/gadgetlab/2011/03/kinect-hacks/?pid=1423&viewall=true
+
+KinectFusion 3D reconstruction
+http://techcrunch.com/2011/08/10/video-free-moving-kinect-used-to-map-room-and-objects-in-detailed-3d/
