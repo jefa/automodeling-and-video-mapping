@@ -83,7 +83,7 @@
 		</Compiler>
 		<Linker>
 			<Add library="openFrameworks"/>
-			<!--Add library="fmodex"/-->
+			<Add library="fmodex"/>
 			<Add library="raw1394"/>
 			<Add library="glut"/>
 			<Add library="GL"/>
@@ -107,7 +107,7 @@
 			<Add directory="../of_preRelease_v0061_linux_FAT/libs/unicap/lib/linux"/>
 			<Add directory="../of_preRelease_v0061_linux_FAT/libs/poco/lib/linux"/>
 			<Add library="../of_preRelease_v0061_linux_FAT/addons\ofxOsc\libs\oscpack\lib\linux/liboscpack.a" />
-			<Add option="`pkg-config gstreamer-0.10 --libs`" />
+			<Add option="`pkg-config  gstreamer-0.10 gstreamer-video-0.10 gstreamer-base-0.10 libudev libavcodec libavformat libavutil --libs`" />
 		</Linker>
 		<ExtraCommands>
 			<Add after="#"/>
