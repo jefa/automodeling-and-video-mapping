@@ -22,8 +22,8 @@
 					<Add directory="C:\Qt\2010.05\qt\bin" />
 				</Compiler>
 				<Linker>
-					<Add option="../of_preRelease_v007_win_cb/libs/openFrameworksCompiled/lib/win_cb/openFrameworksDebug.lib" />
 					<Add option="../vmt_engine/lib/vmt_engine_dbg.lib" />
+					<Add option="../of_preRelease_v007_win_cb/libs/openFrameworksCompiled/lib/win_cb/openFrameworksDebug.lib" />
 					<Add library="QtCore4" />
 					<Add library="QtGui4" />
 					<Add directory="C:\Qt\2010.05\qt\lib" />
