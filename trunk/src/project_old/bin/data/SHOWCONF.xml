@@ -10,66 +10,569 @@
         </MidiPorts>
     </Ports>
     <Network>
-        <Node name="javier" address="localhost" port="12345" />
-        <!--Node name="adriana" address="10.1.4.109" port="12345" /-->
+        <Node name="proy1" address="192.168.1.109" port="12345" />
+		<Node name="proy2" address="192.168.1.101" port="12345" />
+		<Node name="proy3" address="192.168.1.103" port="12345" />
     </Network>
     <Textures>
         <Images>
-        <Image name="pegado" path="pegado.jpg" />
+            <Image name="pegado" path="pegado.jpg" />
         </Images>
         <Videos>
+			<Video name="noisef" path="videos/noisef.mov" />
+			<Video name="movie9" path="videos/movie9.mov" />
+			<Video name="particulas1bw" path="videos/particulas1bw.mov" />
+			
+			<Video name="cubos_colores_2" path="videos/cubos_colores_2.mov" />
+			<Video name="cubos_colores_3" path="videos/cubos_colores_3.mov" />
+			<Video name="cubo_amarillo" path="videos/cubo_amarillo.mov" />
+			<Video name="cubo_azul" path="videos/cubo_azul.mov" />
+			<Video name="cubo_rojo" path="videos/cubo_rojo.mov" />
+			<Video name="cubo_verde" path="videos/cubo_verde.mov" />
+			<Video name="cubo_amarillo_bw" path="videos/cubo_amarillo_bw.mov" />
+			<Video name="cubo_azul_bw" path="videos/cubo_azul_bw.mov" />
+			<Video name="cubo_rojo_bw" path="videos/cubo_rojo_bw.mov" />
+			<Video name="cubo_verde_bw" path="videos/cubo_verde_bw.mov" />
+			<Video name="rojo" path="videos/rojo.mov" />
+			
+			<Video name="particulas2" path="videos/particulas2.mov" />
 			<Video name="static" path="videos/static.mov" />
-        </Videos>
+			
+			<Video name="main2005" path="videos/main2005.mov" />
+			<Video name="main2006" path="videos/main2006.mov" />
+			<Video name="main2007" path="videos/main2007.mov" />
+			<Video name="main2008" path="videos/main2008.mov" />
+			<Video name="main2009" path="videos/main2009.mov" />
+						
+			<Video name="2005_nombres_1" path="videos/2005_nombres_1.mov" />
+			<Video name="2006_nombres_1" path="videos/2006_nombres_1.mov" />
+			<Video name="2007_nombres_1" path="videos/2007_nombres_1.mov" />
+			<Video name="2008_nombres_1" path="videos/2008_nombres_1.mov" />
+			<Video name="2009_nombres_1" path="videos/2009_nombres_1.mov" />
+			
+		</Videos>
     </Textures>
     <Shapes>
         <Quads2D>
-            <Quad2D id="quad01" x0="49.000000" y0="175.000000" x1="1208.000000" y1="210.000000" x2="1200.000000" y2="251.000000" x3="48.000000" y3="217.000000"></Quad2D>
-            <Quad2D id="quad02" x0="178.000000" y0="344.000000" x1="286.000000" y1="345.000000" x2="280.000000" y2="541.000000" x3="174.000000" y3="541.000000"></Quad2D>
-            <Quad2D id="quad03" x0="329.000000" y0="433.000000" x1="545.000000" y1="435.000000" x2="537.000000" y2="544.000000" x3="315.000000" y3="540.000000"></Quad2D>
-            <Quad2D id="quad04" x0="583.000000" y0="392.000000" x1="747.000000" y1="393.000000" x2="737.000000" y2="547.000000" x3="585.000000" y3="545.000000"></Quad2D>
-            <Quad2D id="quad05" x0="775.000000" y0="431.000000" x1="921.000000" y1="432.000000" x2="912.000000" y2="552.000000" x3="773.000000" y3="550.000000"></Quad2D>
-            <Quad2D id="quad06" x0="963.000000" y0="328.000000" x1="1068.000000" y1="335.000000" x2="1052.000000" y2="554.000000" x3="949.000000" y3="553.000000"></Quad2D>
-            <Quad2D id="quadb1" x0="46.000000" y0="216.000000" x1="115.000000" y1="218.000000" x2="93.000000" y2="610.000000" x3="41.000000" y3="615.000000"></Quad2D>
-            <Quad2D id="quadb2" x0="1148.000000" y0="249.000000" x1="1202.000000" y1="250.000000" x2="1170.000000" y2="632.000000" x3="1117.000000" y3="629.000000"></Quad2D>
-            <Quad2D id="quadt1" x0="213.000000" y0="313.000000" x1="262.000000" y1="318.000000" x2="261.000000" y2="350.000000" x3="211.000000" y3="345.000000"></Quad2D>
-            <Quad2D id="quadt2" x0="408.000000" y0="410.000000" x1="461.000000" y1="406.000000" x2="460.000000" y2="435.000000" x3="404.000000" y3="437.000000"></Quad2D>
-            <Quad2D id="quadt3" x0="643.000000" y0="366.000000" x1="698.000000" y1="358.000000" x2="695.000000" y2="397.000000" x3="629.000000" y3="393.000000"></Quad2D>
-            <Quad2D id="quadt4" x0="825.000000" y0="404.000000" x1="871.000000" y1="411.000000" x2="865.000000" y2="433.000000" x3="814.000000" y3="430.000000"></Quad2D>
-            <Quad2D id="quadt5" x0="990.000000" y0="303.000000" x1="1042.000000" y1="311.000000" x2="1034.000000" y2="333.000000" x3="989.000000" y3="333.000000"></Quad2D>
-            <Quad2D id="quadtt1" x0="197.000000" y0="292.000000" x1="275.000000" y1="285.000000" x2="260.000000" y2="320.000000" x3="197.000000" y3="315.000000"></Quad2D>
-            <Quad2D id="quadtt2" x0="401.000000" y0="372.000000" x1="475.000000" y1="377.000000" x2="462.000000" y2="405.000000" x3="407.000000" y3="412.000000"></Quad2D>
-            <Quad2D id="quadtt3" x0="627.000000" y0="336.000000" x1="701.000000" y1="332.000000" x2="702.000000" y2="358.000000" x3="643.000000" y3="369.000000"></Quad2D>
-            <Quad2D id="quadtt4" x0="814.000000" y0="373.000000" x1="891.000000" y1="369.000000" x2="865.000000" y2="412.000000" x3="818.000000" y3="407.000000"></Quad2D>
-            <Quad2D id="quadtt5" x0="978.000000" y0="270.000000" x1="1053.000000" y1="269.000000" x2="1042.000000" y2="310.000000" x3="984.000000" y3="306.000000"></Quad2D>
-        </Quads2D>
+            <Quad2D id="proy1_c1" x0="1.000000" y0="-1.000000" x1="93.000000" y1="4.000000" x2="90.000000" y2="774.000000" x3="17.000000" y3="757.000000"></Quad2D>
+            <Quad2D id="proy1_c2" x0="605.000000" y0="16.000000" x1="694.000000" y1="18.000000" x2="653.000000" y2="769.000000" x3="572.000000" y3="769.000000"></Quad2D>
+            <Quad2D id="proy1_cc1" x0="94.000000" y0="8.000000" x1="123.000000" y1="51.000000" x2="130.000000" y2="768.000000" x3="91.000000" y3="772.000000"></Quad2D>
+            <Quad2D id="proy1_lall" x0="143.000000" y0="501.000000" x1="565.000000" y1="518.000000" x2="559.000000" y2="753.000000" x3="142.000000" y3="752.000000"></Quad2D>
+            <Quad2D id="proy1_li1" x0="147.000000" y0="648.000000" x1="195.000000" y1="650.000000" x2="193.000000" y2="773.000000" x3="148.000000" y3="764.000000"></Quad2D>
+            <Quad2D id="proy1_li2" x0="202.000000" y0="650.000000" x1="247.000000" y1="651.000000" x2="243.000000" y2="772.000000" x3="203.000000" y3="767.000000"></Quad2D>
+            <Quad2D id="proy1_li3" x0="252.000000" y0="652.000000" x1="297.000000" y1="653.000000" x2="295.000000" y2="772.000000" x3="254.000000" y3="766.000000"></Quad2D>
+            <Quad2D id="proy1_li4" x0="303.000000" y0="654.000000" x1="352.000000" y1="655.000000" x2="346.000000" y2="778.000000" x3="300.000000" y3="768.000000"></Quad2D>
+            <Quad2D id="proy1_li5" x0="356.000000" y0="657.000000" x1="401.000000" y1="657.000000" x2="398.000000" y2="767.000000" x3="355.000000" y3="768.000000"></Quad2D>
+            <Quad2D id="proy1_li6" x0="414.000000" y0="659.000000" x1="460.000000" y1="660.000000" x2="457.000000" y2="771.000000" x3="413.000000" y3="768.000000"></Quad2D>
+            <Quad2D id="proy1_li7" x0="467.000000" y0="660.000000" x1="513.000000" y1="663.000000" x2="509.000000" y2="771.000000" x3="465.000000" y3="768.000000"></Quad2D>
+            <Quad2D id="proy1_li8" x0="521.000000" y0="661.000000" x1="564.000000" y1="663.000000" x2="559.000000" y2="769.000000" x3="516.000000" y3="768.000000"></Quad2D>
+            <Quad2D id="proy1_ls1" x0="148.000000" y0="507.000000" x1="194.000000" y1="511.000000" x2="192.000000" y2="639.000000" x3="147.000000" y3="637.000000"></Quad2D>
+            <Quad2D id="proy1_ls2" x0="200.000000" y0="510.000000" x1="247.000000" y1="513.000000" x2="244.000000" y2="643.000000" x3="198.000000" y3="637.000000"></Quad2D>
+            <Quad2D id="proy1_ls3" x0="252.000000" y0="514.000000" x1="301.000000" y1="515.000000" x2="297.000000" y2="643.000000" x3="251.000000" y3="643.000000"></Quad2D>
+            <Quad2D id="proy1_ls4" x0="308.000000" y0="515.000000" x1="357.000000" y1="517.000000" x2="354.000000" y2="646.000000" x3="305.000000" y3="645.000000"></Quad2D>
+            <Quad2D id="proy1_ls5" x0="360.000000" y0="517.000000" x1="407.000000" y1="517.000000" x2="402.000000" y2="650.000000" x3="358.000000" y3="647.000000"></Quad2D>
+            <Quad2D id="proy1_ls6" x0="416.000000" y0="518.000000" x1="464.000000" y1="519.000000" x2="461.000000" y2="649.000000" x3="413.000000" y3="649.000000"></Quad2D>
+            <Quad2D id="proy1_ls7" x0="471.000000" y0="522.000000" x1="517.000000" y1="523.000000" x2="514.000000" y2="652.000000" x3="467.000000" y3="650.000000"></Quad2D>
+            <Quad2D id="proy1_ls8" x0="524.000000" y0="524.000000" x1="565.000000" y1="525.000000" x2="564.000000" y2="655.000000" x3="521.000000" y3="653.000000"></Quad2D>
+            <Quad2D id="proy1_p1" x0="142.000000" y0="201.000000" x1="574.000000" y1="214.000000" x2="557.000000" y2="513.000000" x3="143.000000" y3="502.000000"></Quad2D>
+            <Quad2D id="proy1_p2" x0="682.000000" y0="234.000000" x1="692.000000" y1="233.000000" x2="687.000000" y2="481.000000" x3="670.000000" y3="489.000000"></Quad2D>
+            <Quad2D id="proy1_t1" x0="130.000000" y0="10.000000" x1="597.000000" y1="26.000000" x2="571.000000" y2="210.000000" x3="145.000000" y3="196.000000"></Quad2D>
+            <Quad2D id="proy1_t2" x0="697.000000" y0="37.000000" x1="1027.000000" y1="36.000000" x2="964.000000" y2="220.000000" x3="701.000000" y3="215.000000"></Quad2D>
+            <Quad2D id="proy1_v1" x0="713.000000" y0="238.000000" x1="909.000000" y1="238.000000" x2="897.000000" y2="309.000000" x3="704.000000" y3="308.000000"></Quad2D>
+            <Quad2D id="proy1_v2" x0="709.000000" y0="324.000000" x1="883.000000" y1="325.000000" x2="881.000000" y2="366.000000" x3="710.000000" y3="365.000000"></Quad2D>
+            <Quad2D id="proy1_v3" x0="703.000000" y0="395.000000" x1="886.000000" y1="398.000000" x2="890.000000" y2="450.000000" x3="703.000000" y3="456.000000"></Quad2D>
+        
+			<Quad2D id="proy2_c3" x0="260.000000" y0="-10.000000" x1="352.000000" y1="0.000000" x2="360.000000" y2="769.000000" x3="281.000000" y3="825.000000"></Quad2D>
+            <Quad2D id="proy2_c4" x0="866.000000" y0="2.000000" x1="954.000000" y1="3.000000" x2="930.000000" y2="771.000000" x3="851.000000" y3="766.000000"></Quad2D>
+            <Quad2D id="proy2_cc3" x0="820.000000" y0="28.000000" x1="866.000000" y1="2.000000" x2="851.000000" y2="768.000000" x3="813.000000" y3="770.000000"></Quad2D>
+            <Quad2D id="proy2_lall" x0="445.000000" y0="499.000000" x1="807.000000" y1="504.000000" x2="803.000000" y2="754.000000" x3="444.000000" y3="627.000000"></Quad2D>
+			<Quad2D id="proy2_li1" x0="446.000000" y0="640.000000" x1="493.000000" y1="640.000000" x2="492.000000" y2="769.000000" x3="448.000000" y3="768.000000"></Quad2D>
+            <Quad2D id="proy2_li2" x0="498.000000" y0="639.000000" x1="545.000000" y1="639.000000" x2="546.000000" y2="768.000000" x3="500.000000" y3="769.000000"></Quad2D>
+            <Quad2D id="proy2_li3" x0="553.000000" y0="639.000000" x1="598.000000" y1="638.000000" x2="599.000000" y2="769.000000" x3="555.000000" y3="769.000000"></Quad2D>
+            <Quad2D id="proy2_li4" x0="606.000000" y0="640.000000" x1="654.000000" y1="640.000000" x2="654.000000" y2="768.000000" x3="605.000000" y3="769.000000"></Quad2D>
+            <Quad2D id="proy2_li5" x0="662.000000" y0="640.000000" x1="708.000000" y1="640.000000" x2="707.000000" y2="767.000000" x3="661.000000" y3="767.000000"></Quad2D>
+            <Quad2D id="proy2_li6" x0="718.000000" y0="639.000000" x1="763.000000" y1="639.000000" x2="763.000000" y2="765.000000" x3="717.000000" y3="765.000000"></Quad2D>
+            <Quad2D id="proy2_li7" x0="771.000000" y0="641.000000" x1="807.000000" y1="641.000000" x2="803.000000" y2="754.000000" x3="767.000000" y3="757.000000"></Quad2D>
+            <Quad2D id="proy2_ls1" x0="445.000000" y0="499.000000" x1="494.000000" y1="499.000000" x2="491.000000" y2="627.000000" x3="444.000000" y3="627.000000"></Quad2D>
+            <Quad2D id="proy2_ls2" x0="501.000000" y0="500.000000" x1="545.000000" y1="500.000000" x2="545.000000" y2="627.000000" x3="502.000000" y3="626.000000"></Quad2D>
+            <Quad2D id="proy2_ls3" x0="552.000000" y0="503.000000" x1="597.000000" y1="503.000000" x2="597.000000" y2="629.000000" x3="555.000000" y3="629.000000"></Quad2D>
+            <Quad2D id="proy2_ls4" x0="605.000000" y0="503.000000" x1="652.000000" y1="503.000000" x2="652.000000" y2="627.000000" x3="607.000000" y3="628.000000"></Quad2D>
+            <Quad2D id="proy2_ls5" x0="661.000000" y0="501.000000" x1="709.000000" y1="501.000000" x2="709.000000" y2="627.000000" x3="661.000000" y3="628.000000"></Quad2D>
+            <Quad2D id="proy2_ls6" x0="718.000000" y0="500.000000" x1="766.000000" y1="500.000000" x2="765.000000" y2="626.000000" x3="717.000000" y3="627.000000"></Quad2D>
+            <Quad2D id="proy2_ls7" x0="773.000000" y0="502.000000" x1="807.000000" y1="504.000000" x2="808.000000" y2="625.000000" x3="773.000000" y3="625.000000"></Quad2D>
+            <Quad2D id="proy2_p3" x0="206.000000" y0="189.000000" x1="237.000000" y1="188.000000" x2="236.000000" y2="767.000000" x3="212.000000" y3="762.000000"></Quad2D>
+            <Quad2D id="proy2_p4" x0="361.000000" y0="502.000000" x1="441.000000" y1="504.000000" x2="441.000000" y2="765.000000" x3="367.000000" y3="761.000000"></Quad2D>
+            <Quad2D id="proy2_p5" x0="358.000000" y0="186.000000" x1="796.000000" y1="187.000000" x2="792.000000" y2="489.000000" x3="364.000000" y3="490.000000"></Quad2D>
+            <Quad2D id="proy2_t3" x0="191.000000" y0="6.000000" x1="246.000000" y1="6.000000" x2="232.000000" y2="178.000000" x3="207.000000" y3="182.000000"></Quad2D>
+            <Quad2D id="proy2_t4" x0="360.000000" y0="9.000000" x1="810.000000" y1="15.000000" x2="757.000000" y2="181.000000" x3="352.000000" y3="176.000000"></Quad2D>
+            			
+			
+			<Quad2D id="proy3_c5" x0="622.000000" y0="-6.000000" x1="702.000000" y1="1.000000" x2="702.000000" y2="841.000000" x3="627.000000" y3="834.000000"></Quad2D>
+            <Quad2D id="proy3_cc4" x0="579.000000" y0="22.000000" x1="622.000000" y1="-10.000000" x2="626.000000" y2="811.000000" x3="592.000000" y3="776.000000"></Quad2D>
+            <Quad2D id="proy3_lall" x0="204.000000" y0="480.000000" x1="566.000000" y1="480.000000" x2="568.000000" y2="731.000000" x3="207.000000" y3="741.000000"></Quad2D>
+			<Quad2D id="proy3_li1" x0="207.000000" y0="617.000000" x1="253.000000" y1="617.000000" x2="253.000000" y2="741.000000" x3="207.000000" y3="741.000000"></Quad2D>
+            <Quad2D id="proy3_li2" x0="259.000000" y0="616.000000" x1="303.000000" y1="616.000000" x2="304.000000" y2="741.000000" x3="258.000000" y3="741.000000"></Quad2D>
+            <Quad2D id="proy3_li3" x0="311.000000" y0="616.000000" x1="356.000000" y1="615.000000" x2="360.000000" y2="737.000000" x3="311.000000" y3="738.000000"></Quad2D>
+            <Quad2D id="proy3_li4" x0="370.000000" y0="614.000000" x1="414.000000" y1="613.000000" x2="415.000000" y2="735.000000" x3="372.000000" y3="737.000000"></Quad2D>
+            <Quad2D id="proy3_li5" x0="421.000000" y0="612.000000" x1="465.000000" y1="613.000000" x2="468.000000" y2="734.000000" x3="424.000000" y3="734.000000"></Quad2D>
+            <Quad2D id="proy3_li6" x0="473.000000" y0="613.000000" x1="519.000000" y1="614.000000" x2="517.000000" y2="733.000000" x3="476.000000" y3="732.000000"></Quad2D>
+            <Quad2D id="proy3_li7" x0="527.000000" y0="613.000000" x1="568.000000" y1="613.000000" x2="568.000000" y2="731.000000" x3="526.000000" y3="732.000000"></Quad2D>
+            <Quad2D id="proy3_ls1" x0="204.000000" y0="480.000000" x1="249.000000" y1="481.000000" x2="250.000000" y2="606.000000" x3="205.000000" y3="606.000000"></Quad2D>
+            <Quad2D id="proy3_ls2" x0="255.000000" y0="480.000000" x1="303.000000" y1="479.000000" x2="303.000000" y2="607.000000" x3="256.000000" y3="605.000000"></Quad2D>
+            <Quad2D id="proy3_ls3" x0="308.000000" y0="481.000000" x1="354.000000" y1="480.000000" x2="353.000000" y2="606.000000" x3="310.000000" y3="607.000000"></Quad2D>
+            <Quad2D id="proy3_ls4" x0="367.000000" y0="482.000000" x1="413.000000" y1="481.000000" x2="414.000000" y2="605.000000" x3="368.000000" y3="604.000000"></Quad2D>
+            <Quad2D id="proy3_ls5" x0="420.000000" y0="481.000000" x1="465.000000" y1="479.000000" x2="465.000000" y2="603.000000" x3="421.000000" y3="603.000000"></Quad2D>
+            <Quad2D id="proy3_ls6" x0="472.000000" y0="480.000000" x1="518.000000" y1="481.000000" x2="518.000000" y2="602.000000" x3="471.000000" y3="601.000000"></Quad2D>
+            <Quad2D id="proy3_ls7" x0="523.000000" y0="479.000000" x1="566.000000" y1="480.000000" x2="566.000000" y2="602.000000" x3="524.000000" y3="604.000000"></Quad2D>
+            <Quad2D id="proy3_p6" x0="180.000000" y0="175.000000" x1="580.000000" y1="179.000000" x2="580.000000" y2="469.000000" x3="191.000000" y3="470.000000"></Quad2D>
+            <Quad2D id="proy3_t5" x0="120.000000" y0="-30.000000" x1="578.000000" y1="3.000000" x2="578.000000" y2="177.000000" x3="181.000000" y3="174.000000"></Quad2D>
+
+		</Quads2D>
         <Objs3D>
             <Obj3D id="squirrel" filepath="./data/models/squirrel.3ds" posX="0" posY="0" posZ="0" />
         </Objs3D>
         <!-- otras shapes ... -->
     </Shapes>
     <Groups>
-    		<Group id="botellas_sintapa">
-    			<Item id="quad02"/>
-    			<Item id="quad03"/>
-    			<Item id="quad04"/>
-    			<Item id="quad05"/>
-    			<Item id="quad06"/>
-     		</Group>    
-    		<Group id="tapas1_sinbotella">
-    			<Item id="quadt1"/>
-    			<Item id="quadt2"/>
-    			<Item id="quadt3"/>
-    			<Item id="quadt4"/>
-    			<Item id="quadt5"/>
-     		</Group>    
-    		<Group id="tapas2_sinbotella">
-    			<Item id="quadtt1"/>
-    			<Item id="quadtt2"/>
-    			<Item id="quadtt3"/>
-    			<Item id="quadtt4"/>
-    			<Item id="quadtt5"/>
-     		</Group>    
-    </Groups>
+		<Group id="proy1_c">
+    		<Item id="proy1_c1"/>
+			<Item id="proy1_cc1"/>
+			<Item id="proy1_c2"/>
+     	</Group>
+
+		<Group id="proy1_t">
+    		<Item id="proy1_t1"/>
+			<Item id="proy1_t2"/>
+     	</Group>
+		
+		<Group id="proy1_p">
+    		<Item id="proy1_p1"/>
+			<Item id="proy1_p2"/>
+     	</Group>
+		
+		<Group id="proy1_v">
+    		<Item id="proy1_v1"/>
+			<Item id="proy1_v2"/>
+			<Item id="proy1_v3"/>
+     	</Group>
+		
+		<Group id="proy1_l">
+    		<Item id="proy1_ls1"/>
+			<Item id="proy1_ls2"/>
+			<Item id="proy1_ls3"/>
+			<Item id="proy1_ls4"/>
+			<Item id="proy1_ls5"/>
+			<Item id="proy1_ls6"/>
+			<Item id="proy1_ls7"/>
+			<Item id="proy1_ls8"/>
+    		<Item id="proy1_li1"/>
+			<Item id="proy1_li2"/>
+			<Item id="proy1_li3"/>
+			<Item id="proy1_li4"/>
+			<Item id="proy1_li5"/>
+			<Item id="proy1_li6"/>
+			<Item id="proy1_li7"/>
+			<Item id="proy1_li8"/>
+     	</Group>
+		
+		<Group id="proy1_ls">
+    		<Item id="proy1_ls1"/>
+			<Item id="proy1_ls2"/>
+			<Item id="proy1_ls3"/>
+			<Item id="proy1_ls4"/>
+			<Item id="proy1_ls5"/>
+			<Item id="proy1_ls6"/>
+			<Item id="proy1_ls7"/>
+			<Item id="proy1_ls8"/>
+     	</Group>
+		
+		<Group id="proy1_li">
+    		<Item id="proy1_li1"/>
+			<Item id="proy1_li2"/>
+			<Item id="proy1_li3"/>
+			<Item id="proy1_li4"/>
+			<Item id="proy1_li5"/>
+			<Item id="proy1_li6"/>
+			<Item id="proy1_li7"/>
+			<Item id="proy1_li8"/>
+     	</Group>
+		
+		<Group id="proy1_lb12">
+    		<Item id="proy1_ls1"/>
+			<Item id="proy1_ls2"/>
+    		<Item id="proy1_li1"/>
+			<Item id="proy1_li2"/>
+     	</Group>
+		
+		<Group id="proy1_lb34">
+			<Item id="proy1_ls3"/>
+			<Item id="proy1_ls4"/>
+			<Item id="proy1_li3"/>
+			<Item id="proy1_li4"/>
+     	</Group>
+		
+		<Group id="proy1_lb56">
+			<Item id="proy1_ls5"/>
+			<Item id="proy1_ls6"/>
+			<Item id="proy1_li5"/>
+			<Item id="proy1_li6"/>
+     	</Group>
+		
+		<Group id="proy1_lb78">
+			<Item id="proy1_ls7"/>
+			<Item id="proy1_ls8"/>
+			<Item id="proy1_li7"/>
+			<Item id="proy1_li8"/>
+     	</Group>
+		
+		<Group id="proy1_lr1">
+			<Item id="proy1_ls1"/>
+			<Item id="proy1_ls3"/>
+			<Item id="proy1_ls6"/>
+			<Item id="proy1_li2"/>
+			<Item id="proy1_li5"/>
+			<Item id="proy1_li8"/>
+     	</Group>
+		
+		<Group id="proy1_lr2">
+			<Item id="proy1_ls2"/>
+			<Item id="proy1_ls5"/>
+			<Item id="proy1_ls8"/>
+			<Item id="proy1_li1"/>
+			<Item id="proy1_li4"/>
+			<Item id="proy1_li7"/>
+     	</Group>
+		
+		<Group id="proy1_lr3">
+			<Item id="proy1_ls3"/>
+			<Item id="proy1_ls6"/>
+			<Item id="proy1_ls7"/>
+			<Item id="proy1_li3"/>
+			<Item id="proy1_li5"/>
+			<Item id="proy1_li8"/>
+     	</Group>
+		
+		<Group id="proy1_lr4">
+			<Item id="proy1_ls2"/>
+			<Item id="proy1_ls4"/>
+			<Item id="proy1_ls8"/>
+			<Item id="proy1_li1"/>
+			<Item id="proy1_li3"/>
+			<Item id="proy1_li6"/>
+     	</Group>
+
+		<Group id="proy1_global">
+			<Item id="proy1_lall"/>
+			<Item id="proy1_c1"/>
+			<Item id="proy1_c2"/>
+			<Item id="proy1_cc1"/>
+			<Item id="proy1_li1"/>
+			<Item id="proy1_li2"/>
+			<Item id="proy1_li3"/>
+			<Item id="proy1_li4"/>
+			<Item id="proy1_li5"/>
+			<Item id="proy1_li6"/>
+			<Item id="proy1_li7"/>
+			<Item id="proy1_li8"/>
+			<Item id="proy1_ls1"/>
+			<Item id="proy1_ls2"/>
+			<Item id="proy1_ls3"/>
+			<Item id="proy1_ls4"/>
+			<Item id="proy1_ls5"/>
+			<Item id="proy1_ls6"/>
+			<Item id="proy1_ls7"/>
+			<Item id="proy1_ls8"/>
+			<Item id="proy1_p1"/>
+			<Item id="proy1_p2"/>
+			<Item id="proy1_t1"/>
+			<Item id="proy1_t2"/>
+			<Item id="proy1_v1"/>
+			<Item id="proy1_v2"/>
+			<Item id="proy1_v3"/>
+		
+		</Group>
+		
+		<!-- Grupos Proy2 -->
+		
+		<Group id="proy2_c">
+    		<Item id="proy2_c3"/>
+			<Item id="proy2_cc3"/>
+			<Item id="proy2_c4"/>
+     	</Group>
+		
+		<Group id="proy2_t">
+    		<Item id="proy2_t3"/>
+			<Item id="proy2_t4"/>
+     	</Group>
+		
+		<Group id="proy2_p">
+    		<Item id="proy2_p3"/>
+			<Item id="proy2_p4"/>
+     	</Group>
+		
+		<Group id="proy2_l">
+    		<Item id="proy2_ls1"/>
+			<Item id="proy2_ls2"/>
+			<Item id="proy2_ls3"/>
+			<Item id="proy2_ls4"/>
+			<Item id="proy2_ls5"/>
+			<Item id="proy2_ls6"/>
+			<Item id="proy2_ls7"/>
+    		<Item id="proy2_li1"/>
+			<Item id="proy2_li2"/>
+			<Item id="proy2_li3"/>
+			<Item id="proy2_li4"/>
+			<Item id="proy2_li5"/>
+			<Item id="proy2_li6"/>
+			<Item id="proy2_li7"/>
+     	</Group>
+		
+		<Group id="proy2_ls">
+    		<Item id="proy2_ls1"/>
+			<Item id="proy2_ls2"/>
+			<Item id="proy2_ls3"/>
+			<Item id="proy2_ls4"/>
+			<Item id="proy2_ls5"/>
+			<Item id="proy2_ls6"/>
+			<Item id="proy2_ls7"/>
+     	</Group>
+		
+		<Group id="proy2_li">
+    		<Item id="proy2_li1"/>
+			<Item id="proy2_li2"/>
+			<Item id="proy2_li3"/>
+			<Item id="proy2_li4"/>
+			<Item id="proy2_li5"/>
+			<Item id="proy2_li6"/>
+			<Item id="proy2_li7"/>
+     	</Group>
+		
+		<Group id="proy2_lb12">
+    		<Item id="proy2_ls1"/>
+			<Item id="proy2_ls2"/>
+    		<Item id="proy2_li1"/>
+			<Item id="proy2_li2"/>
+     	</Group>
+		
+		<Group id="proy2_lb34">
+    		<Item id="proy2_ls3"/>
+			<Item id="proy2_ls4"/>
+    		<Item id="proy2_li3"/>
+			<Item id="proy2_li4"/>
+     	</Group>
+		
+		<Group id="proy2_lb56">
+    		<Item id="proy2_ls5"/>
+			<Item id="proy2_ls6"/>
+    		<Item id="proy2_li5"/>
+			<Item id="proy2_li6"/>
+     	</Group>
+		
+		<Group id="proy2_lb7">
+			<Item id="proy2_ls7"/>
+			<Item id="proy2_li7"/>
+     	</Group>
+		
+		<Group id="proy2_lr1">
+    		<Item id="proy2_ls1"/>
+			<Item id="proy2_ls3"/>
+			<Item id="proy2_ls6"/>
+			<Item id="proy2_li2"/>
+			<Item id="proy2_li4"/>
+			<Item id="proy2_li7"/>
+     	</Group>
+		
+		<Group id="proy2_lr2">
+    		<Item id="proy2_ls2"/>
+			<Item id="proy2_ls4"/>
+			<Item id="proy2_ls7"/>
+			<Item id="proy2_li1"/>
+			<Item id="proy2_li3"/>
+			<Item id="proy2_li6"/>
+     	</Group>
+		
+		<Group id="proy2_lr3">
+    		<Item id="proy2_ls3"/>
+			<Item id="proy2_ls5"/>
+			<Item id="proy2_ls7"/>
+			<Item id="proy2_li2"/>
+			<Item id="proy2_li4"/>
+			<Item id="proy2_li7"/>
+     	</Group>
+		
+		<Group id="proy2_lr4">
+    		<Item id="proy2_ls2"/>
+			<Item id="proy2_ls3"/>
+			<Item id="proy2_ls6"/>
+			<Item id="proy2_li1"/>
+			<Item id="proy2_li5"/>
+			<Item id="proy2_li6"/>
+     	</Group>
+		
+		<Group id="proy2_global">
+			<Item id="proy2_lall"/>
+			<Item id="proy2_c3"/>
+			<Item id="proy2_c4"/>
+			<Item id="proy2_cc3"/>
+			<Item id="proy2_li1"/>
+			<Item id="proy2_li2"/>
+			<Item id="proy2_li3"/>
+			<Item id="proy2_li4"/>
+			<Item id="proy2_li5"/>
+			<Item id="proy2_li6"/>
+			<Item id="proy2_li7"/>
+			<Item id="proy2_ls1"/>
+			<Item id="proy2_ls2"/>
+			<Item id="proy2_ls3"/>
+			<Item id="proy2_ls4"/>
+			<Item id="proy2_ls5"/>
+			<Item id="proy2_ls6"/>
+			<Item id="proy2_ls7"/>
+			<Item id="proy2_p3"/>
+			<Item id="proy2_p4"/> 
+			<Item id="proy2_p5"/>
+			<Item id="proy2_t3"/>
+			<Item id="proy2_t4"/>
+     	</Group>
+		
+		<!-- Grupos Proy3 -->
+		
+		<Group id="proy3_p">
+			<Item id="proy3_p6"/>
+		</Group>
+		
+		<Group id="proy3_c">
+			<Item id="proy3_c5"/>
+			<Item id="proy3_cc4"/>
+		</Group>
+		
+		<Group id="proy3_t">
+			<Item id="proy3_t5"/>
+		</Group>
+		
+		<Group id="proy3_l">
+			<Item id="proy3_li1"/>
+			<Item id="proy3_li2"/>
+			<Item id="proy3_li3"/>
+			<Item id="proy3_li4"/>
+			<Item id="proy3_li5"/>
+			<Item id="proy3_li6"/>
+			<Item id="proy3_li7"/>
+			<Item id="proy3_ls1"/>
+			<Item id="proy3_ls2"/>
+			<Item id="proy3_ls3"/>
+			<Item id="proy3_ls4"/>
+			<Item id="proy3_ls5"/>
+			<Item id="proy3_ls6"/>
+			<Item id="proy3_ls7"/>
+		</Group>
+		
+		<Group id="proy3_li">
+			<Item id="proy3_li1"/>
+			<Item id="proy3_li2"/>
+			<Item id="proy3_li3"/>
+			<Item id="proy3_li4"/>
+			<Item id="proy3_li5"/>
+			<Item id="proy3_li6"/>
+			<Item id="proy3_li7"/>
+		</Group>
+		
+		<Group id="proy3_ls">
+			<Item id="proy3_ls1"/>
+			<Item id="proy3_ls2"/>
+			<Item id="proy3_ls3"/>
+			<Item id="proy3_ls4"/>
+			<Item id="proy3_ls5"/>
+			<Item id="proy3_ls6"/>
+			<Item id="proy3_ls7"/>
+		</Group>
+		
+		<Group id="proy3_lb12">
+			<Item id="proy3_li1"/>
+			<Item id="proy3_li2"/>
+			<Item id="proy3_ls1"/>
+			<Item id="proy3_ls2"/>                			
+		</Group>
+		
+		<Group id="proy3_lb34">
+			<Item id="proy3_li3"/>
+			<Item id="proy3_li4"/>
+			<Item id="proy3_ls3"/>
+			<Item id="proy3_ls4"/>
+		</Group>
+		
+		<Group id="proy3_lb56">
+			<Item id="proy3_li5"/>
+			<Item id="proy3_li6"/>
+			<Item id="proy3_ls5"/>
+			<Item id="proy3_ls6"/>
+		</Group>
+		
+		<Group id="proy3_lb7">
+			<Item id="proy3_li7"/>
+			<Item id="proy3_ls7"/>
+		</Group>
+		
+		<Group id="proy3_lr1">
+			<Item id="proy3_li1"/>
+			<Item id="proy3_li3"/>
+			<Item id="proy3_li5"/>
+			<Item id="proy3_ls2"/>
+			<Item id="proy3_ls4"/>
+			<Item id="proy3_ls6"/>
+		</Group>
+		
+		<Group id="proy3_lr2">
+			<Item id="proy3_li1"/>
+			<Item id="proy3_li4"/>
+			<Item id="proy3_li7"/>
+			<Item id="proy3_ls2"/>
+			<Item id="proy3_ls4"/>
+			<Item id="proy3_ls6"/>
+		</Group>
+		
+		<Group id="proy3_lr3">
+			<Item id="proy3_li1"/>
+			<Item id="proy3_li2"/>
+			<Item id="proy3_li7"/>
+			<Item id="proy3_ls1"/>
+			<Item id="proy3_ls6"/>
+			<Item id="proy3_ls7"/>
+		</Group>
+		
+		<Group id="proy3_lr4">
+			<Item id="proy3_li2"/>
+			<Item id="proy3_li5"/>
+			<Item id="proy3_li7"/>
+			<Item id="proy3_ls2"/>
+			<Item id="proy3_ls5"/>
+			<Item id="proy3_ls7"/>
+		</Group>
+		
+		<Group id="proy3_global">
+			<Item id="proy3_lall"/>
+			<Item id="proy3_li1"/>
+			<Item id="proy3_li2"/>
+			<Item id="proy3_li3"/>
+			<Item id="proy3_li4"/>
+			<Item id="proy3_li5"/>
+			<Item id="proy3_li6"/>
+			<Item id="proy3_li7"/>
+			<Item id="proy3_ls1"/>
+			<Item id="proy3_ls2"/>
+			<Item id="proy3_ls3"/>
+			<Item id="proy3_ls4"/>
+			<Item id="proy3_ls5"/>
+			<Item id="proy3_ls6"/>
+			<Item id="proy3_ls7"/>
+			<Item id="proy3_t5"/>
+			<Item id="proy3_p6"/>
+			<Item id="proy3_c5"/>
+			<Item id="proy3_cc4"/>
+		</Group>
+	
+	</Groups>
+	
     <AnimationLoops>
         <AnimationLoop id="animLoop1">
             <LinearAnimation PropertyManagerId="material1" ParamId="AMBIENT_R" duration="2.0" targetValue="1.0" />
@@ -82,40 +585,814 @@
         <!--  occurrence time in seconds ,  Message Type@ID@... parameters?  -->
         <OscEvents />
         <TimedEvents>
-            <TimedEvent destination="javier" time="2.0">
-                <Message address="/texture/setcolor" param1="quad01" param2="1" param3="0" param4="0" param5="1" />
+			<TimedEvent destination="proy1" time="1.0">
+				<!-- dummy timedevent -->
+                <Message address="/texture/setcolorgroup" param1="proy1_global" param2="0" param3="0" param4="0" param5="0" />
             </TimedEvent>
-            <TimedEvent destination="javier" time="4.0">
-                <Message address="/texture/setcolorgroup" param1="botellas_sintapa" param2="1" param3="0" param4="1" param5="0" />
-                <Message address="/audio/play" param1="sounds/Violet.mp3" param2="1" />
+						
+			<TimedEvent destination="proy1" time="1.0">
+                <Message address="/texture/setcolorgroup" param1="proy1_global" param2="1" param3="1" param4="1" param5="0" />
+				<Message address="/texture/setcolorgroup" param1="proy2_global" param2="1" param3="1" param4="1" param5="0" />
+				<Message address="/texture/setcolorgroup" param1="proy3_global" param2="1" param3="1" param4="1" param5="0" />
             </TimedEvent>
-            <TimedEvent destination="javier" time="6.5">
-                <Message address="/texture/setcolor" param1="quad01" param2="1" param3="1" param4="0" param5="1" />
-      			<Message address="/texture/fadeto" param1="quad01" param2="2" param3="0" /> 
-            </TimedEvent>   
-            <TimedEvent destination="javier" time="8.0">
-                <Message address="/texture/setcolor" param1="quadb1" param2="1" param3="1" param4="0" param5="1" />
-      					<Message address="/texture/fadeto" param1="quadb1" param2="2" param3="0" /> 
-            </TimedEvent> 
-            <TimedEvent destination="javier" time="10.5">
-                <Message address="/texture/setcolor" param1="quad01" param2="1" param3="0" param4="0" param5="1" />
-            </TimedEvent>                                  
-          <TimedEvent destination="javier" time="11">
-				<Message address="/texture/setcolor" param1="quad01" param2="1" param3="1" param4="0" param5="1" />
-				<Message address="/texture/fadeto" param1="quad01" param2="2" param3="0" /> 
-                <Message address="/audio/play" param1="sounds/Sonar ping.mp3" param2="1" />
-          </TimedEvent>
-		  
-			<TimedEvent destination="javier" time="12">
-				<Message address="/texture/setcolor" param1="quad02" param2="1" param3="1" param4="1" param5="1" />
-				<Message address="/video/set" param1="quad02" param2="static" />
+			<TimedEvent destination="proy2" time="1.0">
+                <Message address="/texture/setcolorgroup" param1="proy1_global" param2="1" param3="1" param4="1" param5="0" />
+				<Message address="/texture/setcolorgroup" param1="proy2_global" param2="1" param3="1" param4="1" param5="0" />
+				<Message address="/texture/setcolorgroup" param1="proy3_global" param2="1" param3="1" param4="1" param5="0" />
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="1.0">
+                <Message address="/texture/setcolorgroup" param1="proy1_global" param2="1" param3="1" param4="1" param5="0" />
+				<Message address="/texture/setcolorgroup" param1="proy2_global" param2="1" param3="1" param4="1" param5="0" />
+				<Message address="/texture/setcolorgroup" param1="proy3_global" param2="1" param3="1" param4="1" param5="0" />
+            </TimedEvent>
+		
+		<!-- Saltos
+			<TimedEvent destination="proy1" time="1.5">
+                <Message address="/internal/settime" param1="392" />
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="1.5">
+                <Message address="/internal/settime" param1="392" />
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="1.5">
+                <Message address="/internal/settime" param1="392" />
+            </TimedEvent>
+		-->
+		
+		
+		<!-- Bloque 1 (2005) -->
+		
+			<!-- Prendo columnas -->
+		
+			<TimedEvent destination="proy1" time="5.0">
+				<Message address="/texture/fadeto" param1="proy1_c1" param2="0.5" param3="1" /> 
+				<Message address="/video/set" param1="proy1_c1" param2="noisef" />
+				<Message address="/video/play" param1="noisef" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy1" time="9.0">
+				<Message address="/texture/fadeto" param1="proy1_c2" param2="0.5" param3="1" /> 
+				<Message address="/video/set" param1="proy1_c2" param2="noisef" />
+				<Message address="/video/play" param1="noisef" param2="1" />
+            </TimedEvent>
+		
+			<TimedEvent destination="proy2" time="13.0">
+				<Message address="/texture/fadeto" param1="proy2_c3" param2="0.5" param3="1" /> 
+				<Message address="/video/set" param1="proy2_c3" param2="noisef" />
+				<Message address="/video/play" param1="noisef" param2="1" />
+            </TimedEvent>
+		
+			<TimedEvent destination="proy2" time="17.0">
+				<Message address="/texture/fadeto" param1="proy2_c4" param2="0.5" param3="1" /> 
+				<Message address="/video/set" param1="proy2_c4" param2="noisef" />
+				<Message address="/video/play" param1="noisef" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="21.0">
+				<Message address="/texture/fadeto" param1="proy3_c5" param2="0.5" param3="1" /> 
+				<Message address="/video/set" param1="proy3_c5" param2="noisef" />
+				<Message address="/video/play" param1="noisef" param2="1" />
+            </TimedEvent>
+				
+			<!-- Prendo lockers -->
+			
+				<TimedEvent destination="proy1" time="25.0">
+					<Message address="/video/setgroup" param1="proy1_l" param2="rojo" />
+					<Message address="/video/play" param1="rojo" param2="1" />
+				</TimedEvent>
+				<TimedEvent destination="proy2" time="25.0">
+					<Message address="/video/setgroup" param1="proy2_l" param2="rojo" />
+					<Message address="/video/play" param1="rojo" param2="1" />
+				</TimedEvent>
+				<TimedEvent destination="proy3" time="25.0">
+					<Message address="/video/setgroup" param1="proy3_l" param2="rojo" />
+					<Message address="/video/play" param1="rojo" param2="1" />
+				</TimedEvent>
+			
+			
+			<TimedEvent destination="proy1" time="25.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr1" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy1" time="26.2">
+				<Message address="/texture/fadetogroup" param1="proy1_lr1" param2="0.8" param3="0" /> 
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="25.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr1" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="26.2">
+				<Message address="/texture/fadetogroup" param1="proy3_lr1" param2="0.8" param3="0" /> 
+            </TimedEvent>
+		
+		
+			<TimedEvent destination="proy1" time="27.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr2" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy1" time="28.2">
+				<Message address="/texture/fadetogroup" param1="proy1_lr2" param2="0.8" param3="0" /> 
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="27.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr2" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="28.2">
+				<Message address="/texture/fadetogroup" param1="proy3_lr2" param2="0.8" param3="0" /> 
+            </TimedEvent>
+		
+		
+			<TimedEvent destination="proy1" time="29.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr3" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy1" time="30.2">
+				<Message address="/texture/fadetogroup" param1="proy1_lr3" param2="0.8" param3="0" /> 
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="29.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr3" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="30.2">
+				<Message address="/texture/fadetogroup" param1="proy2_lr3" param2="0.8" param3="0" /> 
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="29.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr3" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="30.2">
+				<Message address="/texture/fadetogroup" param1="proy3_lr3" param2="0.8" param3="0" /> 
+            </TimedEvent>
+			
+			
+			<TimedEvent destination="proy1" time="31.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr4" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy1" time="32.2">
+				<Message address="/texture/fadetogroup" param1="proy1_lr4" param2="0.8" param3="0" /> 
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="31.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr4" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="32.2">
+				<Message address="/texture/fadetogroup" param1="proy2_lr4" param2="0.8" param3="0" /> 
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="31.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr4" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="32.2">
+				<Message address="/texture/fadetogroup" param1="proy3_lr4" param2="0.8" param3="0" /> 
+            </TimedEvent>
+			
+			
+			<TimedEvent destination="proy1" time="33.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr1" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy1" time="34.2">
+				<Message address="/texture/fadetogroup" param1="proy1_lr1" param2="0.8" param3="0" /> 
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="33.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr1" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="34.2">
+				<Message address="/texture/fadetogroup" param1="proy2_lr1" param2="0.8" param3="0" /> 
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="33.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr1" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="34.2">
+				<Message address="/texture/fadetogroup" param1="proy3_lr1" param2="0.8" param3="0" /> 
+            </TimedEvent>
+			
+			
+			<TimedEvent destination="proy1" time="35.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr2" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy1" time="36.2">
+				<Message address="/texture/fadetogroup" param1="proy1_lr2" param2="0.8" param3="0" /> 
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="35.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr2" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="36.2">
+				<Message address="/texture/fadetogroup" param1="proy2_lr2" param2="0.8" param3="0" /> 
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="35.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr2" param2="0.1" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="36.2">
+				<Message address="/texture/fadetogroup" param1="proy3_lr2" param2="0.8" param3="0" /> 
+            </TimedEvent>
+			
+			<!-- Prendo columna color -->
+			
+			<TimedEvent destination="proy2" time="37.8">
+				<Message address="/texture/fadeto" param1="proy2_c3" param2="0.2" param3="0" /> 
+            </TimedEvent>
+		
+			<TimedEvent destination="proy2" time="38.0">
+				<Message address="/texture/fadeto" param1="proy2_c3" param2="0.1" param3="1" /> 
+				<Message address="/video/set" param1="proy2_c3" param2="rojo" />
+				<Message address="/video/play" param1="rojo" param2="1" />
+            </TimedEvent>
+			
+			
+			<!-- Prendo lockers con noisef -->
+				<TimedEvent destination="proy1" time="40.0">
+					<Message address="/video/setgroup" param1="proy1_l" param2="noisef" />
+				</TimedEvent>
+				<TimedEvent destination="proy2" time="40.0">
+					<Message address="/video/setgroup" param1="proy2_l" param2="noisef" />
+				</TimedEvent>
+				<TimedEvent destination="proy3" time="40.0">
+					<Message address="/video/setgroup" param1="proy3_l" param2="noisef" />
+				</TimedEvent>
+			
+			
+			<TimedEvent destination="proy1" time="40.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lb12" param2="0.3" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="40.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lb7" param2="0.3" param3="1" /> 
+            </TimedEvent>
+			
+			<TimedEvent destination="proy1" time="44.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lb34" param2="0.3" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="44.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lb56" param2="0.3" param3="1" /> 
+            </TimedEvent>
+			
+			<TimedEvent destination="proy1" time="48.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lb56" param2="0.3" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="48.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lb34" param2="0.3" param3="1" /> 
+            </TimedEvent>
+			
+			<TimedEvent destination="proy1" time="52.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lb78" param2="0.3" param3="1" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="52.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lb12" param2="0.3" param3="1" /> 
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="56.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lb12" param2="0.3" param3="1" />
+				<Message address="/texture/fadetogroup" param1="proy2_lb7" param2="0.3" param3="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="60.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lb34" param2="0.3" param3="1" />
+				<Message address="/texture/fadetogroup" param1="proy2_lb56" param2="0.3" param3="1" />
+            </TimedEvent>
+			
+			<!-- Prendo techos -->
+			
+			<TimedEvent destination="proy1" time="64.0">
+				<Message address="/texture/fadetogroup" param1="proy1_t" param2="0.1" param3="1" /> 
+				<Message address="/video/setgroup" param1="proy1_t" param2="particulas1bw" />
+				<Message address="/video/play" param1="particulas1bw" param2="1" />
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="64.0">
+				<Message address="/texture/fadetogroup" param1="proy2_t" param2="0.1" param3="1" /> 
+				<Message address="/video/setgroup" param1="proy2_t" param2="particulas1bw" />
+				<Message address="/video/play" param1="particulas1bw" param2="1" />
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="64.0">
+				<Message address="/texture/fadetogroup" param1="proy3_t" param2="0.1" param3="1" /> 
+				<Message address="/video/setgroup" param1="proy3_t" param2="particulas1bw" />
+				<Message address="/video/play" param1="particulas1bw" param2="1" />
+            </TimedEvent>
+			
+			<!-- Fadeout lockers y techos -->
+			
+			<TimedEvent destination="proy1" time="68">
+				<Message address="/texture/fadetogroup" param1="proy1_l" param2="0.2" param3="0" /> 
+				<Message address="/texture/fadetogroup" param1="proy1_t" param2="0.2" param3="0" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="68">
+				<Message address="/texture/fadetogroup" param1="proy2_l" param2="0.2" param3="0" /> 
+				<Message address="/texture/fadetogroup" param1="proy2_t" param2="0.2" param3="0" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="68">
+				<Message address="/texture/fadetogroup" param1="proy3_l" param2="0.2" param3="0" /> 
+				<Message address="/texture/fadetogroup" param1="proy3_t" param2="0.2" param3="0" /> 
+            </TimedEvent>
+			
+			<!-- Main 2005/2006/2007 -->
+			
+			<TimedEvent destination="proy1" time="68.0">
+				<Message address="/texture/fadeto" param1="proy1_p1" param2="0.5" param3="1" /> 
+				<Message address="/video/set" param1="proy1_p1" param2="main2005" />
+				<Message address="/video/play" param1="main2005" param2="1" />
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="72.0">
+				<Message address="/texture/fadeto" param1="proy2_p5" param2="0.5" param3="1" /> 
+				<Message address="/video/set" param1="proy2_p5" param2="main2006" />
+				<Message address="/video/play" param1="main2006" param2="1" />
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="76.0">
+				<Message address="/texture/fadeto" param1="proy3_p6" param2="0.5" param3="1" /> 
+				<Message address="/video/set" param1="proy3_p6" param2="main2007" />
+				<Message address="/video/play" param1="main2007" param2="1" />
+            </TimedEvent>
+			
+			<!-- Fadein lockers (nombres) -->
+			
+			<TimedEvent destination="proy1" time="80">
+				<Message address="/texture/fadeto" param1="proy1_lall" param2="0.5" param3="1" />
+				<Message address="/video/set" param1="proy1_lall" param2="2005_nombres_1" />
+				<Message address="/video/play" param1="2005_nombres_1" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="80">
+				<Message address="/texture/fadeto" param1="proy2_lall" param2="0.5" param3="1" />
+				<Message address="/video/set" param1="proy2_lall" param2="2006_nombres_1" />
+				<Message address="/video/play" param1="2006_nombres_1" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="80">
+				<Message address="/texture/fadeto" param1="proy3_lall" param2="0.5" param3="1" />
+				<Message address="/video/set" param1="proy3_lall" param2="2007_nombres_1" />
+				<Message address="/video/play" param1="2007_nombres_1" param2="1" />
+            </TimedEvent>
+						
+			<!-- Apago todo -->
+			<TimedEvent destination="proy1" time="100.0">
+				<Message address="/texture/fadetogroup" param1="proy1_global" param2="1" param3="0" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="100.0">
+				<Message address="/texture/fadetogroup" param1="proy2_global" param2="1" param3="0" /> 
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="100.0">
+				<Message address="/texture/fadetogroup" param1="proy3_global" param2="1" param3="0" /> 
+            </TimedEvent>
+			
+		<!-- Bloque 2 (2008/2009) -->
+		
+			<TimedEvent destination="proy1" time="104.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr1" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy1_lr1" param2="cubos_colores_2" />
+				<Message address="/video/play" param1="cubos_colores_2" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="104.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr1" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy2_lr1" param2="cubos_colores_2" />
+				<Message address="/video/play" param1="cubos_colores_2" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="104.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr1" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy3_lr1" param2="cubos_colores_2" />
+				<Message address="/video/play" param1="cubos_colores_2" param2="1" />
+            </TimedEvent>
+			
+			
+			<TimedEvent destination="proy1" time="116.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr2" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy1_lr2" param2="cubos_colores_3" />
+				<Message address="/video/play" param1="cubos_colores_3" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="116.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr2" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy2_lr2" param2="cubos_colores_3" />
+				<Message address="/video/play" param1="cubos_colores_3" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="116.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr2" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy3_lr2" param2="cubos_colores_3" />
+				<Message address="/video/play" param1="cubos_colores_3" param2="1" />
+            </TimedEvent>
+			
+			
+			<TimedEvent destination="proy1" time="128.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr3" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy1_lr3" param2="cubo_azul" />
+				<Message address="/video/play" param1="cubo_azul" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="128.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr3" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy2_lr3" param2="cubo_azul" />
+				<Message address="/video/play" param1="cubo_azul" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="128.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr3" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy3_lr3" param2="cubo_azul" />
+				<Message address="/video/play" param1="cubo_azul" param2="1" />
+            </TimedEvent>
+			
+			
+			<TimedEvent destination="proy1" time="140.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr4" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy1_lr4" param2="cubo_rojo" />
+				<Message address="/video/play" param1="cubo_rojo" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="140.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr4" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy2_lr4" param2="cubo_rojo" />
+				<Message address="/video/play" param1="cubo_rojo" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="140.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr4" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy3_lr4" param2="cubo_rojo" />
+				<Message address="/video/play" param1="cubo_rojo" param2="1" />
+            </TimedEvent>
+			
+			
+			<TimedEvent destination="proy1" time="152.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr4" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="152.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr4" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			
+			<TimedEvent destination="proy1" time="164.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr3" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="164.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr3" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			
+			<TimedEvent destination="proy1" time="176.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr2" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="176.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr2" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			
+			<TimedEvent destination="proy1" time="188.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr1" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="188.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr1" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="200.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr4" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="208.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr3" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="216.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr2" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="224.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr1" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<!-- Prendo todos los lockers con video b&w -->
+			
+			<TimedEvent destination="proy1" time="228">
+				<Message address="/texture/fadetogroup" param1="proy1_l" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy1_lr1" param2="cubo_rojo_bw" />
+				<Message address="/video/setgroup" param1="proy1_lr2" param2="cubo_azul_bw" />
+				<Message address="/video/setgroup" param1="proy1_lr3" param2="cubo_verde_bw" />
+				<Message address="/video/setgroup" param1="proy1_lr4" param2="cubo_amarillo_bw" />
+				<Message address="/video/play" param1="cubo_rojo_bw" param2="1" />
+				<Message address="/video/play" param1="cubo_azul_bw" param2="1" />
+				<Message address="/video/play" param1="cubo_verde_bw" param2="1" />
+				<Message address="/video/play" param1="cubo_amarillo_bw" param2="1" />
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="228">
+				<Message address="/texture/fadetogroup" param1="proy2_l" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy2_lr1" param2="cubo_rojo_bw" />
+				<Message address="/video/setgroup" param1="proy2_lr2" param2="cubo_azul_bw" />
+				<Message address="/video/setgroup" param1="proy2_lr3" param2="cubo_verde_bw" />
+				<Message address="/video/setgroup" param1="proy2_lr4" param2="cubo_amarillo_bw" />
+				<Message address="/video/play" param1="cubo_rojo_bw" param2="1" />
+				<Message address="/video/play" param1="cubo_azul_bw" param2="1" />
+				<Message address="/video/play" param1="cubo_verde_bw" param2="1" />
+				<Message address="/video/play" param1="cubo_amarillo_bw" param2="1" />
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="228">
+				<Message address="/texture/fadetogroup" param1="proy3_l" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy3_lr1" param2="cubo_rojo_bw" />
+				<Message address="/video/setgroup" param1="proy3_lr2" param2="cubo_azul_bw" />
+				<Message address="/video/setgroup" param1="proy3_lr3" param2="cubo_verde_bw" />
+				<Message address="/video/setgroup" param1="proy3_lr4" param2="cubo_amarillo_bw" />
+				<Message address="/video/play" param1="cubo_rojo_bw" param2="1" />
+				<Message address="/video/play" param1="cubo_azul_bw" param2="1" />
+				<Message address="/video/play" param1="cubo_verde_bw" param2="1" />
+				<Message address="/video/play" param1="cubo_amarillo_bw" param2="1" />
+            </TimedEvent>
+			
+			<!-- Prender columnas rojas -->
+			
+			<TimedEvent destination="proy1" time="240">
+				<Message address="/texture/fadetogroup" param1="proy1_c" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy1_c" param2="rojo" />
+				<Message address="/video/play" param1="rojo" param2="1" />
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="240">
+				<Message address="/texture/fadetogroup" param1="proy2_c" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy2_c" param2="rojo" />
+				<Message address="/video/play" param1="rojo" param2="1" />
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="240">
+				<Message address="/texture/fadetogroup" param1="proy3_c" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy3_c" param2="rojo" />
+				<Message address="/video/play" param1="rojo" param2="1" />
+            </TimedEvent>
+			
+			<!-- Prendo paredes con particulas2 -->
+			
+			<TimedEvent destination="proy1" time="252">
+				<Message address="/texture/fadeto" param1="proy1_p1" param2="0.2" param3="1" />
+				<Message address="/video/set" param1="proy1_p1" param2="particulas2" />
+				<Message address="/video/play" param1="particulas2" param2="1" />
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="252">
+				<Message address="/texture/fadeto" param1="proy2_p5" param2="0.2" param3="1" />
+				<Message address="/video/set" param1="proy2_p5" param2="particulas2" />
+				<Message address="/video/play" param1="particulas2" param2="1" />
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="252">
+				<Message address="/texture/fadeto" param1="proy3_p6" param2="0.2" param3="1" />
+				<Message address="/video/set" param1="proy3_p6" param2="particulas2" />
+				<Message address="/video/play" param1="particulas2" param2="1" />
+            </TimedEvent>
+			
+			<!-- Apago particulas2 -->
+			
+			<TimedEvent destination="proy1" time="276">
+				<Message address="/texture/fadeto" param1="proy1_p1" param2="0.2" param3="0" />
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="276">
+				<Message address="/texture/fadeto" param1="proy2_p5" param2="0.2" param3="0" />
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="276">
+				<Message address="/texture/fadeto" param1="proy3_p6" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<!-- Prendo paredes con main2008/2009 -->
+			
+			<TimedEvent destination="proy1" time="280">
+				<Message address="/texture/fadeto" param1="proy1_p1" param2="0.2" param3="1" />
+				<Message address="/video/set" param1="proy1_p1" param2="main2008" />
+				<Message address="/video/play" param1="main2008" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="280">
+				<Message address="/texture/fadeto" param1="proy3_p6" param2="0.2" param3="1" />
+				<Message address="/video/set" param1="proy3_p6" param2="main2009" />
+				<Message address="/video/play" param1="main2009" param2="1" />
+            </TimedEvent>
+			
+			<!-- Apago lockers -->
+			
+			<TimedEvent destination="proy1" time="291">
+				<Message address="/texture/fadetogroup" param1="proy1_l" param2="0.2" param3="0" />
+			</TimedEvent>
+			<TimedEvent destination="proy2" time="291">
+				<Message address="/texture/fadetogroup" param1="proy2_l" param2="0.2" param3="0" />
+			</TimedEvent>
+			<TimedEvent destination="proy3" time="291">
+				<Message address="/texture/fadetogroup" param1="proy3_l" param2="0.2" param3="0" />
+			</TimedEvent>
+			
+			<!-- Prendo lockers con nombres2008/2009 -->
+			
+			<TimedEvent destination="proy1" time="292">
+				<Message address="/texture/fadeto" param1="proy1_lall" param2="0.2" param3="1" />
+				<Message address="/video/set" param1="proy1_lall" param2="2008_nombres_1" />
+				<Message address="/video/play" param1="2008_nombres_1" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="292">
+				<Message address="/texture/fadeto" param1="proy3_lall" param2="0.2" param3="1" />
+				<Message address="/video/set" param1="proy3_lall" param2="2009_nombres_1" />
+				<Message address="/video/play" param1="2009_nombres_1" param2="1" />
+            </TimedEvent>
+			
+			<!-- Apago paredes y lalls -->
+			
+			<TimedEvent destination="proy1" time="328">
+				<Message address="/texture/fadeto" param1="proy1_lall" param2="0.2" param3="0" />
+				<Message address="/texture/fadeto" param1="proy1_p1" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="328">
+				<Message address="/texture/fadeto" param1="proy2_lall" param2="0.2" param3="0" />
+				<Message address="/texture/fadeto" param1="proy2_p5" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="328">
+				<Message address="/texture/fadeto" param1="proy3_lall" param2="0.2" param3="0" />
+				<Message address="/texture/fadeto" param1="proy3_p6" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<!-- Prendo lockers de colores otra vez -->
+			
+			<TimedEvent destination="proy1" time="332.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr1" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy1_lr1" param2="cubos_colores_2" />
+				<Message address="/video/play" param1="cubos_colores_2" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="332.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr1" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy2_lr1" param2="cubos_colores_2" />
+				<Message address="/video/play" param1="cubos_colores_2" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="332.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr1" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy3_lr1" param2="cubos_colores_2" />
+				<Message address="/video/play" param1="cubos_colores_2" param2="1" />
+            </TimedEvent>
+			
+			
+			<TimedEvent destination="proy1" time="344.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr2" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy1_lr2" param2="cubos_colores_3" />
+				<Message address="/video/play" param1="cubos_colores_3" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="344.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr2" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy2_lr2" param2="cubos_colores_3" />
+				<Message address="/video/play" param1="cubos_colores_3" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="344.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr2" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy3_lr2" param2="cubos_colores_3" />
+				<Message address="/video/play" param1="cubos_colores_3" param2="1" />
+            </TimedEvent>
+			
+			
+			<TimedEvent destination="proy1" time="356.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr3" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy1_lr3" param2="cubo_azul" />
+				<Message address="/video/play" param1="cubo_azul" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="356.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr3" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy2_lr3" param2="cubo_azul" />
+				<Message address="/video/play" param1="cubo_azul" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="356.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr3" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy3_lr3" param2="cubo_azul" />
+				<Message address="/video/play" param1="cubo_azul" param2="1" />
+            </TimedEvent>
+			
+			
+			<TimedEvent destination="proy1" time="368.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr4" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy1_lr4" param2="cubo_rojo" />
+				<Message address="/video/play" param1="cubo_rojo" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="368.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr4" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy2_lr4" param2="cubo_rojo" />
+				<Message address="/video/play" param1="cubo_rojo" param2="1" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="368.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr4" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy3_lr4" param2="cubo_rojo" />
+				<Message address="/video/play" param1="cubo_rojo" param2="1" />
+            </TimedEvent>
+			
+			<!-- Apago columnas de a 1 -->
+			<TimedEvent destination="proy1" time="392.0">
+				<Message address="/texture/fadeto" param1="proy1_c1" param2="0.2" param3="0" />
+				<Message address="/texture/fadeto" param1="proy1_cc1" param2="0.2" param3="0" />
+			</TimedEvent>
+			<TimedEvent destination="proy1" time="396.0">
+				<Message address="/texture/fadeto" param1="proy1_c2" param2="0.2" param3="0" />
+			</TimedEvent>
+			<TimedEvent destination="proy2" time="400.0">
+				<Message address="/texture/fadeto" param1="proy2_c3" param2="0.2" param3="0" />
+			</TimedEvent>
+			<TimedEvent destination="proy2" time="404.0">
+				<Message address="/texture/fadeto" param1="proy2_c4" param2="0.2" param3="0" />
+				<Message address="/texture/fadeto" param1="proy2_cc3" param2="0.2" param3="0" />
+			</TimedEvent>
+			<TimedEvent destination="proy3" time="408.0">
+				<Message address="/texture/fadeto" param1="proy3_c5" param2="0.2" param3="0" />
+				<Message address="/texture/fadeto" param1="proy3_cc4" param2="0.2" param3="0" />
+			</TimedEvent>
+			
+			<!-- Prendo columnas con static -->
+			<TimedEvent destination="proy1" time="416.0">
+				<Message address="/texture/fadetogroup" param1="proy1_c" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy1_c" param2="static" />
 				<Message address="/video/play" param1="static" param2="1" />
 			</TimedEvent>
-		  
-          <TimedEvent destination="javier" time="16">
-              <Message address="/internal/settime" param1="0.0" />
-          </TimedEvent>
-		  
-        </TimedEvents>        
+			<TimedEvent destination="proy2" time="416.0">
+				<Message address="/texture/fadetogroup" param1="proy2_c" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy2_c" param2="static" />
+				<Message address="/video/play" param1="static" param2="1" />
+			</TimedEvent>
+			<TimedEvent destination="proy3" time="416.0">
+				<Message address="/texture/fadetogroup" param1="proy3_c" param2="0.2" param3="1" />
+				<Message address="/video/setgroup" param1="proy3_c" param2="static" />
+				<Message address="/video/play" param1="static" param2="1" />
+			</TimedEvent>
+			
+			<!-- Apago lockers -->
+			
+			<TimedEvent destination="proy1" time="420.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr1" param2="0.2" param3="0" />
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="420.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr1" param2="0.2" param3="0" />
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="420.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr1" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy1" time="428.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr2" param2="0.2" param3="0" />
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="428.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr2" param2="0.2" param3="0" />
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="428.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr2" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy1" time="436.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr3" param2="0.2" param3="0" />
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="436.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr3" param2="0.2" param3="0" />
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="436.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr3" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy1" time="444.0">
+				<Message address="/texture/fadetogroup" param1="proy1_lr4" param2="0.2" param3="0" />
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="444.0">
+				<Message address="/texture/fadetogroup" param1="proy2_lr4" param2="0.2" param3="0" />
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="444.0">
+				<Message address="/texture/fadetogroup" param1="proy3_lr4" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<!-- Apago columnas -->
+			
+			<TimedEvent destination="proy1" time="452.0">
+				<Message address="/texture/fadeto" param1="proy1_c1" param2="0.2" param3="0" />
+				<Message address="/texture/fadeto" param1="proy1_cc1" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy3" time="460.0">
+				<Message address="/texture/fadeto" param1="proy3_c5" param2="0.2" param3="0" />
+				<Message address="/texture/fadeto" param1="proy3_cc4" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy1" time="468.0">
+				<Message address="/texture/fadeto" param1="proy1_c2" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="476.0">
+				<Message address="/texture/fadeto" param1="proy2_c4" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<TimedEvent destination="proy2" time="483.0">
+				<Message address="/texture/fadeto" param1="proy2_c3" param2="0.2" param3="0" />
+            </TimedEvent>
+			
+			<!-- loop back -->
+			
+			<TimedEvent destination="proy1" time="484">
+                <Message address="/internal/settime" param1="0" />
+            </TimedEvent>
+			<TimedEvent destination="proy2" time="484">
+                <Message address="/internal/settime" param1="0" />
+            </TimedEvent>
+			<TimedEvent destination="proy3" time="484">
+                <Message address="/internal/settime" param1="0" />
+            </TimedEvent>
+			
+		</TimedEvents>
     </Events>
 </Show>
