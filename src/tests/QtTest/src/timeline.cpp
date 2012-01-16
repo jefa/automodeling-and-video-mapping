@@ -17,7 +17,7 @@ timeline::timeline(QWidget *parent)
 	//  Construct a 5-second timeline with a frame range of 0 - 100
 	timeLine = new QTimeLine(5000, this);
 	timeLine->setFrameRange(0, 100);
-	 connect(timeLine, SIGNAL(frameChanged(int)), progressBar, SLOT(setValue(int)));
+    connect(timeLine, SIGNAL(frameChanged(int)), progressBar, SLOT(setValue(int)));
 	connect(timeLine, SIGNAL(frameChanged(int)), slider, SLOT(setValue(int)));
 
 
@@ -49,7 +49,7 @@ void timeline::frameChangedTimeline(int frameCount){
 }
 
 void timeline::stateChanged(QTimeLine::State newState){
-    //printf("=== stateChanged: %s\n", newState);
+    printf("=== stateChanged: %d\n", newState);
 }
 
 void timeline::finished(){

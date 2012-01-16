@@ -35,6 +35,7 @@ void testApp::setup(){
      scene->addItem(bar);
 
      QGraphicsView *view = new QGraphicsView(scene);
+     view->move(1000, 500);
      view->show();
 
      timer->start();
