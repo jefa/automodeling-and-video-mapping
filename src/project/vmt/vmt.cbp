@@ -52,6 +52,9 @@
 					<Add directory="C:\Qt\2010.05\qt\lib" />
 				</Linker>
 			</Target>
+			<Environment>
+				<Variable name="OF_BASE_DIR" value="../of_preRelease_v0062_linux_FAT" />
+			</Environment>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
