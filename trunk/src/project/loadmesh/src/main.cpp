@@ -5,7 +5,8 @@
 #include <stdio.h>
 #include <string>
 
-#include <QtGui\QApplication>
+//#include <QtGui\QApplication>
+#include <QApplication>
 
 using namespace std;
 
