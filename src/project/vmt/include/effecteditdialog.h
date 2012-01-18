@@ -1,11 +1,9 @@
 #ifndef EFFECTEDITDIALOG_H
 #define EFFECTEDITDIALOG_H
 
+#include "vmtmodel.h"
 #include "Effect.h"
 #include "effectpages.h"
-#include "VmtModel.h"
-
-#include <QDialog>
 
 QT_BEGIN_NAMESPACE
 class QListWidget;

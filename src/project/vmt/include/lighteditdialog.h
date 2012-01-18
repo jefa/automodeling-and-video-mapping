@@ -1,21 +1,8 @@
 #ifndef LIGHTEDITORDIALOG_H
 #define LIGHTEDITORDIALOG_H
 
-#include "ofxLight.h"
 #include "vmtmodel.h"
-
-#include <QDialog>
-#include <QAction>
-#include <QDialogButtonBox>
-#include <QGroupBox>
-#include <QComboBox>
-#include <QLabel>
-#include <QLineEdit>
-#include <QMenu>
-#include <QMenuBar>
-#include <QPushButton>
-#include <QCheckBox>
-#include <QTextEdit>
+#include "ofxLight.h"
 
 namespace gui {
 

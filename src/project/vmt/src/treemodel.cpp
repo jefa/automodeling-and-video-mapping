@@ -1,10 +1,6 @@
 #include <QtGui>
-#include <QVariant>
-#include <QString>
-#include <QInputDialog>
 #include "treeitem.h"
 #include "treemodel.h"
-
 
 using namespace gui;
 

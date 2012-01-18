@@ -1,3 +1,5 @@
+#include <QtGui>
+
 #include "effectpages.h"
 #include "Object3D.h"
 #include "ofxVectorMath.h"

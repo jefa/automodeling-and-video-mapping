@@ -1,8 +1,6 @@
-#include <QStringList>
+#include <QtGui>
 
 #include "treeitem.h"
-
-#include <QColor>
 
 using namespace gui;
 

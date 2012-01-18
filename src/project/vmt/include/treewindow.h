@@ -1,7 +1,7 @@
 #ifndef TREEWINDOW_H
 #define TREEWINDOW_H
 
-#include "VmtModel.h"
+#include "vmtmodel.h"
 
 #include <QModelIndex>
 #include <QWidget>

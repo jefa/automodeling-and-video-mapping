@@ -1,7 +1,7 @@
-#include "cameraeditdialog.h"
-
 #include <QtGui>
-#include "UiUtils.h"
+
+#include "cameraeditdialog.h"
+#include "uiutils.h"
 
 using namespace gui;
 

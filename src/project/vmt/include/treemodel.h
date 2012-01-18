@@ -1,12 +1,7 @@
 #ifndef TREEMODEL_H
 #define TREEMODEL_H
 
-#include "VmtModel.h"
-
-#include <QAbstractItemModel>
-#include <QModelIndex>
-#include <QVariant>
-#include <QString>
+#include "vmtmodel.h"
 
 namespace gui {
 

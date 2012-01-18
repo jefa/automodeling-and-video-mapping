@@ -1,6 +1,6 @@
-#include "effectitem.h"
+#include <QtGui>
 
-#include <QColor>
+#include "effectitem.h"
 
 using namespace gui;
 

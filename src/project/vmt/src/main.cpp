@@ -1,8 +1,7 @@
+#include <QtGui>
 #include "ofMain.h"
 #include "vmt.h"
 #include "ofAppGlutWindow.h"
-
-#include <QtGui\QApplication>
 
 //========================================================================
 int main( int argc, char** argv ) {

@@ -1,5 +1,6 @@
-#include "effecteditdialog.h"
 #include <QtGui>
+
+#include "effecteditdialog.h"
 
 EffectEditDialog::EffectEditDialog(){
     this->positionPage = NULL;

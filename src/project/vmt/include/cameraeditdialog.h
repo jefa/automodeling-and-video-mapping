@@ -1,7 +1,6 @@
 #ifndef CAMERAEDITORDIALOG_H
 #define CAMERAEDITORDIALOG_H
 
-#include "ofxCamera.h"
 #include "vmtmodel.h"
 
 #include <QDialog>
@@ -17,6 +16,8 @@
 #include <QDoubleSpinBox>
 #include <QTextEdit>
 #include <QCheckBox>
+
+#include "ofxCamera.h"
 
 namespace gui {
 

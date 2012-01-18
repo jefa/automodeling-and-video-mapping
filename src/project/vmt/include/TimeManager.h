@@ -3,7 +3,7 @@
 
 #include "ISerializable.h"
 
-#include <QTimer>
+//#include <QTimer>
 #include <map>
 #include <string>
 

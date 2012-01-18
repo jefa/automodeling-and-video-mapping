@@ -1,12 +1,18 @@
 #ifndef VMTMODEL_H
 #define VMTMODEL_H
 
+#include "qdatastream.h"
+#include "qmetatype.h"
+#include "qtextstream.h"
+#include <QtGui>
+
 #include "Scene.h"
 #include "OscManager.h"
 #include "TimeManager.h"
 #include "KeyEventsManager.h"
 #include "ISceneHandler.h"
 #include "ofxXmlSettings.h"
+
 
 enum CAM_CONTROL_MODE {
 	ORBIT_MODE,

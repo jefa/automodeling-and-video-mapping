@@ -1,7 +1,7 @@
 #ifndef EVTEFFECTSLISTWINDOW_H
 #define EVTEFFECTSLISTWINDOW_H
 
-#include "VmtModel.h"
+#include "vmtmodel.h"
 #include "evteffectitem.h"
 #include "evteffectslistmodel.h"
 #include "evteffecteditdialog.h"
@@ -15,6 +15,7 @@
 #include <QPushButton>
 #include <QString>
 #include <QTime>
+#include <QCoreApplication>
 
 class QAction;
 class QListView;
