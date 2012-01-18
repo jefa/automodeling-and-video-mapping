@@ -118,7 +118,7 @@
 			<Add after="#"/>
 			<Add after="#    this is a shell script that can either (a) run the app or (b) launch nautilus to a good directory for you to run the app"/>
 			<Add after="#"/>
-			<Add after="./cb_build_runner.sh $(TARGET_OUTPUT_BASENAME) $runOnBuild $nautilusOnBuild"/>
+			<!--Add after="./cb_build_runner.sh $(TARGET_OUTPUT_BASENAME) $runOnBuild $nautilusOnBuild"/-->
 			<Add after="#"/>
 			<Add after="#     to enable either, change the custom variables in project->build options->custom variables"/>
 			<Add after="#     to true / false."/>
