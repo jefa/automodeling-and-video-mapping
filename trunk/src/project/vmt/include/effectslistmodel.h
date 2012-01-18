@@ -1,12 +1,8 @@
 #ifndef EFFECTSLISTMODEL_H
 #define EFFECTSLISTMODEL_H
 
+#include "vmtmodel.h"
 #include "effectitem.h"
-#include "VmtModel.h"
-
-#include <QAbstractItemModel>
-#include <QModelIndex>
-#include <QVariant>
 
 #include <vector>
 

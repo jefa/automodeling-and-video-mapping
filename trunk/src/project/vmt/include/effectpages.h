@@ -1,13 +1,13 @@
 #ifndef EFFECTPAGES_H
 #define EFFECTPAGES_H
 
+#include "vmtmodel.h"
 #include "Effect.h"
 #include "PositionEffect.h"
 #include "FadeEffect.h"
 #include "TextureEffect.h"
-#include "VmtModel.h"
 
-#include <QtGui>
+//#include <QtGui>
 
 void setComboIndexForText(QComboBox *combo, string txt);
 void loadGroupsCombo(QComboBox *combo, VmtModel *vmtModel);

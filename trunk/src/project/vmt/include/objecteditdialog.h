@@ -1,21 +1,8 @@
 #ifndef OBJECTEDITORDIALOG_H
 #define OBJECTEDITORDIALOG_H
 
-#include "Object3D.h"
 #include "vmtmodel.h"
-
-#include <QDialog>
-#include <QAction>
-#include <QDialogButtonBox>
-#include <QGroupBox>
-#include <QComboBox>
-#include <QLabel>
-#include <QLineEdit>
-#include <QMenu>
-#include <QMenuBar>
-#include <QPushButton>
-#include <QDoubleSpinBox>
-#include <QTextEdit>
+#include "Object3D.h"
 
 namespace gui {
 

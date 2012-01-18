@@ -1,7 +1,6 @@
 #ifndef CALIBRATEDIALOG_H
 #define CALIBRATEDIALOG_H
 
-
 #include "vmtmodel.h"
 
 #include <QDoubleSpinBox>

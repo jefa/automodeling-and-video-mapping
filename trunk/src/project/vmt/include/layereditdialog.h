@@ -1,21 +1,8 @@
 #ifndef LAYEREDITORDIALOG_H
 #define LAYEREDITORDIALOG_H
 
-#include "Layer2D.h"
 #include "vmtmodel.h"
-
-#include <QDialog>
-#include <QAction>
-#include <QDialogButtonBox>
-#include <QGroupBox>
-#include <QComboBox>
-#include <QLabel>
-#include <QLineEdit>
-#include <QMenu>
-#include <QMenuBar>
-#include <QPushButton>
-#include <QCheckBox>
-#include <QTextEdit>
+#include "Layer2D.h"
 
 namespace gui {
 

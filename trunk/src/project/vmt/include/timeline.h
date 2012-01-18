@@ -1,7 +1,7 @@
 #ifndef TIMELINE_H
 #define TIMELINE_H
 
-#include "VmtModel.h"
+#include "vmtmodel.h"
 
 #include <QtGui/QWidget>
 #include <QVBoxLayout>

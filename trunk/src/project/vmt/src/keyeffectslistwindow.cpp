@@ -1,7 +1,6 @@
-#include "keyeffectslistwindow.h"
-
 #include <QtGui>
-#include <QCoreApplication>
+
+#include "keyeffectslistwindow.h"
 
 using namespace gui;
 

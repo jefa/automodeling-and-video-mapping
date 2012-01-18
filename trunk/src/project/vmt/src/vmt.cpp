@@ -1,7 +1,9 @@
+#include "qdatastream.h"
+#include "qmetatype.h"
+#include "qtextstream.h"
+#include <QtGui>
+
 #include "vmt.h"
-#include "ObjectEditDialog.h"
-#include "Quad2D.h"
-#include "Object3D.h"
 #include <map>
 //--------------------------------------------------------------
 

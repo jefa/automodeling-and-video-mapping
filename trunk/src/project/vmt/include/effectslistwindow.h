@@ -1,7 +1,7 @@
 #ifndef EFFECTSLISTWINDOW_H
 #define EFFECTSLISTWINDOW_H
 
-#include "VmtModel.h"
+#include "vmtmodel.h"
 #include "effectitem.h"
 #include "effectslistmodel.h"
 #include "effecteditdialog.h"
@@ -12,6 +12,7 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QString>
+#include <QCoreApplication>
 
 class QAction;
 class QListView;

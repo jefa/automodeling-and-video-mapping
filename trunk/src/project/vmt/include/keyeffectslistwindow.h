@@ -1,7 +1,7 @@
 #ifndef KEYEFFECTSLISTWINDOW_H
 #define KEYEFFECTSLISTWINDOW_H
 
-#include "VmtModel.h"
+#include "vmtmodel.h"
 #include "keyeffectitem.h"
 #include "keyeffectslistmodel.h"
 #include "keyeffecteditdialog.h"
@@ -13,6 +13,7 @@
 #include <QPushButton>
 #include <QString>
 #include <QTime>
+#include <QCoreApplication>
 
 class QAction;
 class QListView;
