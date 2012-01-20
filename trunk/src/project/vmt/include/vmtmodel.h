@@ -10,6 +10,7 @@
 #include "OscManager.h"
 #include "TimeManager.h"
 #include "KeyEventsManager.h"
+#include "MidiEventsManager.h"
 #include "ISceneHandler.h"
 #include "ofxXmlSettings.h"
 
@@ -135,6 +136,7 @@ class VmtModel : public ISceneHandler
 
         TimeManager* timeManager;
         KeyEventsManager* keyEventsManager;
+        MidiEventsManager* midiEventsManager;
 
         ofxXmlSettings showXML;
         CAM_CONTROL_MODE control_mode;

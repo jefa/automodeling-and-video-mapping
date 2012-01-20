@@ -5,7 +5,7 @@
 		<Option title="vmt" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
-		<Option virtualFolders="addons\;addons\ofxOsc\src\;common\;addons\ofxXmlSettings\;addons\ofxXmlSettings\src\;addons\ofxXmlSettings\libs\;" />
+		<Option virtualFolders="addons\;addons\ofxOsc\src\;common\;addons\ofxXmlSettings\;addons\ofxXmlSettings\src\;addons\ofxXmlSettings\libs\;addons\ofxMidiIn\;addons\ofxMidiIn\src\;addons\ofxMidiIn\libs\;addons\ofxMidiIn\events\;" />
 		<Build>
 			<Target title="Debug">
 				<Option output="bin\$(PROJECT_NAME)_DEBUG" prefix_auto="1" extension_auto="1" />
@@ -53,7 +53,7 @@
 				</Linker>
 			</Target>
 			<Environment>
-				<Variable name="OF_BASE_DIR" value="../of_preRelease_v0062_linux_FAT" />
+				<Variable name="OF_BASE_DIR" value="..\of_preRelease_v0062_linux_FAT" />
 			</Environment>
 		</Build>
 		<Compiler>
@@ -195,7 +195,26 @@
 		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\src\ofxXmlSettings.h">
 			<Option virtualFolder="addons\ofxXmlSettings\src\" />
 		</Unit>
+		<Unit filename="addons\ofxMidiIn\events\ofxMidiEvents.h">
+			<Option virtualFolder="addons\ofxMidiIn\events\" />
+		</Unit>
+		<Unit filename="addons\ofxMidiIn\libs\RtMidi.cpp">
+			<Option virtualFolder="addons\ofxMidiIn\libs\" />
+		</Unit>
+		<Unit filename="addons\ofxMidiIn\libs\RtMidi.h">
+			<Option virtualFolder="addons\ofxMidiIn\libs\" />
+		</Unit>
+		<Unit filename="addons\ofxMidiIn\libs\ofxMidiConstants.h">
+			<Option virtualFolder="addons\ofxMidiIn\libs\" />
+		</Unit>
+		<Unit filename="addons\ofxMidiIn\src\ofxMidiIn.cpp">
+			<Option virtualFolder="addons\ofxMidiIn\src\" />
+		</Unit>
+		<Unit filename="addons\ofxMidiIn\src\ofxMidiIn.h">
+			<Option virtualFolder="addons\ofxMidiIn\src\" />
+		</Unit>
 		<Unit filename="include\KeyEventsManager.h" />
+		<Unit filename="include\MidiEventsManager.h" />
 		<Unit filename="include\OscManager.h" />
 		<Unit filename="include\TimeManager.h" />
 		<Unit filename="include\backgraundeditdialog.h" />
@@ -228,6 +247,7 @@
 		<Unit filename="include\vmt.h" />
 		<Unit filename="include\vmtmodel.h" />
 		<Unit filename="src\KeyEventsManager.cpp" />
+		<Unit filename="src\MidiEventsManager.cpp" />
 		<Unit filename="src\OscManager.cpp" />
 		<Unit filename="src\TimeManager.cpp" />
 		<Unit filename="src\backgraundeditdialog.cpp" />
