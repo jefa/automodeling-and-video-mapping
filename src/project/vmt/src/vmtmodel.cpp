@@ -14,6 +14,7 @@ VmtModel::VmtModel() {
 
     timeManager = new TimeManager();
     keyEventsManager = new KeyEventsManager();
+    midiEventsManager = new MidiEventsManager();
 }
 
 VmtModel::~VmtModel() {
