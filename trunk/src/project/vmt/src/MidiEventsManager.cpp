@@ -30,15 +30,14 @@ string MidiEventsManager::getEffectId(ofxMidiEventArgs* msg) {
 
 SerializedNode* MidiEventsManager::Serialize() {
    SerializedNode *node = new SerializedNode("midievents");
-/*
-    map<midiEvent*, string>::iterator eventsIt;
+
+    map<ofxMidiEventArgs*, string>::iterator eventsIt;
     for(eventsIt = events.begin(); eventsIt != events.end(); eventsIt++) {
         SerializedNode *eventNode = new SerializedNode("midievents");
         eventNode->addAttribute("midi", eventsIt->first);
         eventNode->addAttribute("effect", eventsIt->second);
         node->addChildNode(eventNode);
-
-*/
+    }
     return node;
 }
 
