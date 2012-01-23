@@ -5,6 +5,7 @@
 
 #include <vector>
 #include <string>
+#include "..\addons\ofxMidiIn\events\ofxMidiEvents.h"
 using namespace std;
 
 class SerializedNode
@@ -24,6 +25,8 @@ class SerializedNode
         void addAttribute(string attrId, ofxVec2f attrVal);
         void addAttribute(string attrId, ofxVec3f attrVal);
         void addAttribute(string attrId, ofxVec4f attrVal);
+        void addAttribute(string attrId, ofxMidiEventArgs* attrVal);
+
 
         void addChildNode(SerializedNode* child);
 

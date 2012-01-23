@@ -58,6 +58,13 @@ void SerializedNode::addAttribute(string attrId, ofxVec4f attrVal) {
     attributes.push_back(pair<string, string>(attrId, sstr.str()));
 }
 
+void SerializedNode::addAttribute(string attrId, ofxMidiEventArgs* attrVal) {
+    std::stringstream sstr;
+    sstr.str("");
+    sstr << attrVal->id << " " << attrVal->value << " " << attrVal->timestamp;
+    attributes.push_back(pair<string, string>(attrId, sstr.str()));
+}
+
 void SerializedNode::addChildNode(SerializedNode* child) {
     childNodes.push_back(child);
 }
