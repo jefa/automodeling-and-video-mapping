@@ -2,7 +2,6 @@
 #define OSCUTIL_H
 
 #include "ofxOsc.h"
-#include "ofxVec3f.h"
 
 #include "ISceneHandler.h"
 #include "Effect.h"
@@ -28,7 +27,7 @@ const string SCENE_RESET                    = "/scene/reset";
 const string GROUP_ADD_ADDR                 = "/group/add";
 const string GROUP_ADDQUAD_ADDR             = "/group/addquad";
 const string OBJECT_ADD_ADDR                = "/object/add";
-const string OBJECT_SET_POS                = "/object/set_position";
+const string OBJECT_SET_POS                 = "/object/set_position";
 const string EFFECT_ADD_FADE_ADDR           = "/effect/add_fade";
 const string EFFECT_ADD_POSITION_ADDR       = "/effect/add_position";
 const string EFFECT_ADD_TEXTURE_GROUP_ADDR  = "/effect/add_texture_group";
@@ -56,11 +55,11 @@ class OscUtil
 
         static ofxOscMessage createAddCameraMsg(string id);
         static void processAddCameraMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
-        static ofxOscMessage createSetCameraPosMsg(string id, ofxVec3f position);
+        static ofxOscMessage createSetCameraPosMsg(string id, ofVec3f position);
         static void processSetCameraPosMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
-        static ofxOscMessage createSetCameraEyeMsg(string id, ofxVec3f eye);
+        static ofxOscMessage createSetCameraEyeMsg(string id, ofVec3f eye);
         static void processSetCameraEyeMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
-        static ofxOscMessage createSetCameraUpMsg(string id, ofxVec3f up);
+        static ofxOscMessage createSetCameraUpMsg(string id, ofVec3f up);
         static void processSetCameraUpMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
         static ofxOscMessage createActivateCameraMsg(string id);
@@ -97,11 +96,11 @@ class OscUtil
         static ofxOscMessage createSetObject3DPosMsg(string objId, int aParam, float aValue);
         static void processSetObject3DPosMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
-        static ofxOscMessage createAddPositionEffectMsg(string effectId, string objId, ofxVec3f posIni,
-                                                        ofxVec3f posFin, float delay);
+        static ofxOscMessage createAddPositionEffectMsg(string effectId, string objId, ofVec3f posIni,
+                                                        ofVec3f posFin, float delay);
         static void processAddPositionEffectMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
-        static ofxOscMessage createAddFadeEffectMsg(string effectId, string groupId, ofxVec4f colorIni,
-                                                    ofxVec4f colorFin, float delay);
+        static ofxOscMessage createAddFadeEffectMsg(string effectId, string groupId, ofVec4f colorIni,
+                                                    ofVec4f colorFin, float delay);
         static void processAddFadeEffectMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
 
         static ofxOscMessage createAddTextureGroupEffectMsg(string effectId, string groupId, string texturePath, textureType type);
@@ -115,7 +114,7 @@ class OscUtil
 
         static ofxOscMessage createSetActiveCamDisplayHelpersMsg(bool display);
         static void processSetActiveCamDisplayHelpersMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
-        static ofxOscMessage createSetActiveCamHelperCoordMsg(bool isSrc, int pointI, ofxVec2f coord);
+        static ofxOscMessage createSetActiveCamHelperCoordMsg(bool isSrc, int pointI, ofVec2f coord);
         static void processSetActiveCamHelperCoordMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
         static ofxOscMessage createCalibrateMsg();
         static void processCalibrateMsg(ofxOscMessage msg, ISceneHandler *sceneHandler);
