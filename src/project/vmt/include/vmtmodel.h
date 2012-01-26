@@ -64,8 +64,8 @@ class VmtModel : public ISceneHandler
         Object3D* getObject3D(string objId);
         void setObject3D(string objId,int aParam, float aValue);
         Layer2D* getLayer2D(string layId);
-        void addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay);
-        void addFadeEffect(string effectId, string groupId, ofxVec4f colorIni, ofxVec4f colorFin, float delay);
+        void addPositionEffect(string effectId, string objId, ofVec3f posIni, ofVec3f posFin, float delay);
+        void addFadeEffect(string effectId, string groupId, ofVec4f colorIni, ofVec4f colorFin, float delay);
         void addTextureObjectEffect(string effectId, string objId, string facesId, string texturePath, textureType type);
         void addTextureGroupEffect(string effectId, string groupId, string texturePath, textureType type);
 
@@ -107,8 +107,8 @@ class VmtModel : public ISceneHandler
         CAM_CONTROL_MODE getControlMode();
 
         void setActiveCamDisplayHelpers(bool display);
-        ofxVec2f getActiveCamHelperCoord(bool isSrc, int i);
-        void setActiveCamHelperCoord(bool isSrc, int i, ofxVec2f coord);
+        ofVec2f getActiveCamHelperCoord(bool isSrc, int i);
+        void setActiveCamHelperCoord(bool isSrc, int i, ofVec2f coord);
         void calibrateActiveCam();
         void resetActiveCamCalibraton();
 

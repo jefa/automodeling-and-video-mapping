@@ -2,7 +2,6 @@
 
 #include "effectpages.h"
 #include "Object3D.h"
-#include "ofxVectorMath.h"
 #include "uiutils.h"
 #include <map>
 
@@ -122,14 +121,14 @@ void PositionEffectPage::saveEffect(){
     QString objId = objectCombo->currentText();
     if (this->effect == NULL){
         this->vmtModel->addPositionEffect(effectIdTxt->text().toStdString(), objId.toStdString(),
-                                          ofxVec3f(xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value()),
-                                          ofxVec3f(xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value()),
+                                          ofVec3f(xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value()),
+                                          ofVec3f(xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value()),
                                           delaySpinBox->value());
     } else {
         this->effect->setId(effectIdTxt->text().toStdString());
         this->effect->setObject3D(this->vmtModel->getObject3D(objId.toStdString()));
-        this->effect->setPosIni(ofxVec3f(xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value()));
-        this->effect->setPosFin(ofxVec3f(xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value()));
+        this->effect->setPosIni(ofVec3f(xIniSpinBox->value(), yIniSpinBox->value(), zIniSpinBox->value()));
+        this->effect->setPosFin(ofVec3f(xFinSpinBox->value(), yFinSpinBox->value(), zFinSpinBox->value()));
         this->effect->setDelay(delaySpinBox->value());
     }
 }
@@ -301,14 +300,14 @@ void FadeEffectPage::saveEffect(){
     QString grpId = groupsCombo->currentText();
     if (this->effect == NULL){
         this->vmtModel->addFadeEffect(effectIdTxt->text().toStdString(), grpId.toStdString(),
-                                          ofxVec4f(rIniSpinBox->value()/255.0f, gIniSpinBox->value()/255.0f, bIniSpinBox->value()/255.0f, 0),
-                                          ofxVec4f(rFinSpinBox->value()/255.0f, gFinSpinBox->value()/255.0f, bFinSpinBox->value()/255.0f, 1),
+                                          ofVec4f(rIniSpinBox->value()/255.0f, gIniSpinBox->value()/255.0f, bIniSpinBox->value()/255.0f, 0),
+                                          ofVec4f(rFinSpinBox->value()/255.0f, gFinSpinBox->value()/255.0f, bFinSpinBox->value()/255.0f, 1),
                                           delaySpinBox->value());
     } else {
         this->effect->setId(effectIdTxt->text().toStdString());
         this->effect->setQuadGroup(this->vmtModel->getGroup(grpId.toStdString()));
-        this->effect->setColorIni(ofxVec4f(rIniSpinBox->value()/255.0f, gIniSpinBox->value()/255.0f, bIniSpinBox->value()/255.0f, 0));
-        this->effect->setColorFin(ofxVec4f(rFinSpinBox->value()/255.0f, gFinSpinBox->value()/255.0f, bFinSpinBox->value()/255.0f, 1));
+        this->effect->setColorIni(ofVec4f(rIniSpinBox->value()/255.0f, gIniSpinBox->value()/255.0f, bIniSpinBox->value()/255.0f, 0));
+        this->effect->setColorFin(ofVec4f(rFinSpinBox->value()/255.0f, gFinSpinBox->value()/255.0f, bFinSpinBox->value()/255.0f, 1));
         this->effect->setDelay(delaySpinBox->value());
     }
 }

@@ -22,8 +22,8 @@
 					<Add directory="C:\Qt\2010.05\qt\bin" />
 				</Compiler>
 				<Linker>
-					<Add option="../of_preRelease_v0061_win_cb_FAT/libs/openFrameworksCompiled/lib/win_cb/openFrameworksDebug.lib" />
 					<Add option="../vmt_engine/lib/vmt_engine_dbg.lib" />
+					<Add option="../of_preRelease_v007_win_cb/libs/openFrameworksCompiled/lib/win_cb/openFrameworksDebug.lib" />
 					<Add library="QtCore4" />
 					<Add library="QtGui4" />
 					<Add directory="C:\Qt\2010.05\qt\lib" />
@@ -34,6 +34,7 @@
 				<Option output="bin\$(PROJECT_NAME)" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="bin" />
 				<Option object_output="obj\Release\" />
+				<Option external_deps="..\vmt_engine\lib\vmt_engine.lib;" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option projectLinkerOptionsRelation="2" />
@@ -45,8 +46,8 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add option="../of_preRelease_v0061_win_cb_FAT/libs/openFrameworksCompiled/lib/win_cb/openFrameworks.lib" />
 					<Add option="../vmt_engine/lib/vmt_engine.lib" />
+					<Add option="../of_preRelease_v007_win_cb/libs/openFrameworksCompiled/lib/win_cb/openFrameworks.lib" />
 					<Add library="QtCore4" />
 					<Add library="QtGui4" />
 					<Add directory="C:\Qt\2010.05\qt\lib" />
@@ -59,70 +60,81 @@
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-Wno-multichar -Werror=return-type" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\app" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\communication" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\events" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\graphics" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\sound" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\utils" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\openFrameworks\video" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\glee\include" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\glu\include" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\glut\include" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\fmodex\include" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\FreeImage\include" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\freetype\include" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\freetype\include\freetype2" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\poco\include" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\quicktime\include" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\rtAudio\include" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\libs\videoInput\include" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\3DS\" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofx3DModelLoader\src\" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\libs\oscpack\include\ip" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\libs\oscpack\include\osc" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\src" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs" />
-			<Add directory="..\of_preRelease_v0061_win_cb_FAT\addons\ofxVectorMath\src" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\openFrameworks" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\openFrameworks\3d" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\openFrameworks\app" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\openFrameworks\communication" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\openFrameworks\events" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\openFrameworks\gl" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\openFrameworks\graphics" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\openFrameworks\math" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\openFrameworks\sound" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\openFrameworks\types" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\openFrameworks\utils" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\openFrameworks\video" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\cairo\include\cairo" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\fmodex\include" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\FreeImage\include" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\freetype\include" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\freetype\include\freetype2" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\glew\include" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\glu\include" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\glut\include" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\poco\include" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\quicktime\include" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\rtAudio\include" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\tess2\include" />
+			<Add directory="..\of_preRelease_v007_win_cb\libs\videoInput\include" />
+			<Add directory="..\of_preRelease_v007_win_cb\addons\" />
+			<Add directory="..\of_preRelease_v007_win_cb\addons\ofx3DModelLoader\src\3DS\" />
+			<Add directory="..\of_preRelease_v007_win_cb\addons\ofx3DModelLoader\src\" />
+			<Add directory="..\of_preRelease_v007_win_cb\addons\ofxOsc\src\" />
+			<Add directory="..\of_preRelease_v007_win_cb\addons\ofxOsc\libs\oscpack\include\ip" />
+			<Add directory="..\of_preRelease_v007_win_cb\addons\ofxOsc\libs\oscpack\include\osc" />
+			<Add directory="..\of_preRelease_v007_win_cb\addons\ofxXmlSettings\src" />
+			<Add directory="..\of_preRelease_v007_win_cb\addons\ofxXmlSettings\libs" />
 			<Add directory="..\vmt_engine\include" />
 			<Add directory="include" />
 			<Add directory="..\common" />
 		</Compiler>
 		<Linker>
-			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/FreeImage/lib/win_cb/FreeImage.lib" />
-			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/rtAudio/lib/win_cb/RtAudio.a" />
-			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/quicktime/lib/win_cb/qtmlClient.lib" />
-			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/freetype/lib/win_cb/libfreetype.a" />
-			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/glut/lib/win_cb/libglut.a" />
-			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/videoInput/lib/win_cb/videoInputLib.a" />
-			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/fmodex/lib/win_cb/libfmodex.a" />
-			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/glee/lib/win_cb/GLee.lib" />
-			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/glu/lib/win_cb/glu32.lib" />
-			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/poco/lib/win_cb/libPocoNetmt.a" />
-			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/poco/lib/win_cb/libPocoUtilmt.a" />
-			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/poco/lib/win_cb/libPocoXMLmt.a" />
-			<Add option="../of_preRelease_v0061_win_cb_FAT/libs/poco/lib/win_cb/libPocoFoundationmt.a" />
-			<Add option="../of_preRelease_v0061_win_cb_FAT/addons/ofxOsc/libs/oscpack/lib/win_cb/oscpack.a" />
-			<Add option="-lopengl32" />
-			<Add option="-lglu32" />
-			<Add option="-ldsound" />
-			<Add option="-lwinmm" />
-			<Add option="-ldxguid" />
-			<Add option="-lstrmiids" />
-			<Add option="-luuid" />
-			<Add option="-lole32" />
-			<Add option="-loleaut32" />
-			<Add option="-lsetupapi" />
-			<Add option="-lwsock32" />
-			<Add option="-lws2_32" />
-			<Add option="-lIphlpapi" />
-			<Add library="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\libs\oscpack\lib\win_cb\oscpack.a" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\FreeImage\lib\win_cb\FreeImage.lib" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\rtAudio\lib\win_cb\librtaudio.a" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\quicktime\lib\win_cb\qtmlClient.lib" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\cairo\lib\win_cb\libcairo.a" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\cairo\lib\win_cb\libpixman-1.a" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\freetype\lib\win_cb\libfreetype.a" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\glut\lib\win_cb\libglut.a" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\videoInput\lib\win_cb\videoInputLib.a" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\fmodex\lib\win_cb\libfmodex.a" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\glew\lib\win_cb\glew32s.lib" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\glu\lib\win_cb\glu32.lib" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\poco\lib\win_cb\libPocoNetmt.a" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\poco\lib\win_cb\libPocoUtilmt.a" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\poco\lib\win_cb\libPocoXMLmt.a" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\poco\lib\win_cb\libPocoFoundationmt.a" />
+			<Add library="..\of_preRelease_v007_win_cb\libs\tess2\lib\win_cb\libtess2.a" />
+			<Add library="..\of_preRelease_v007_win_cb\addons\ofxOsc\libs\oscpack\lib\win_cb\oscpack.a" />
+			<Add library="opengl32" />
+			<Add library="gdi32" />
+			<Add library="msimg32" />
+			<Add library="glu32" />
+			<Add library="dsound" />
+			<Add library="winmm" />
+			<Add library="dxguid" />
+			<Add library="strmbase" />
+			<Add library="strmiids" />
+			<Add library="z" />
+			<Add library="uuid" />
+			<Add library="ole32" />
+			<Add library="oleaut32" />
+			<Add library="setupapi" />
+			<Add library="wsock32" />
+			<Add library="ws2_32" />
+			<Add library="Iphlpapi" />
 		</Linker>
 		<ExtraCommands>
-			<Add after='xcopy /e /i /y &quot;$(PROJECT_DIR)..\of_preRelease_v0061_win_cb_FAT\export\win_cb\*.dll&quot;  &quot;$(PROJECT_DIR)bin&quot;' />
+			<Add after='xcopy /e /i /y &quot;$(PROJECT_DIR)..\of_preRelease_v007_win_cb\export\win_cb\*.dll&quot;  &quot;$(PROJECT_DIR)bin&quot;' />
 			<Add after='cmd /c if not exist &quot;$(PROJECT_DIR)bin/data&quot; mkdir &quot;$(PROJECT_DIR)bin/data&quot;' />
 			<Mode after="always" />
 		</ExtraCommands>
@@ -147,52 +159,52 @@
 		<Unit filename="..\common\base64.h">
 			<Option virtualFolder="common" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOsc.h">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxOsc\src\ofxOsc.h">
 			<Option virtualFolder="addons\ofxOsc\src" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscArg.h">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxOsc\src\ofxOscArg.h">
 			<Option virtualFolder="addons\ofxOsc\src" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscBundle.cpp">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxOsc\src\ofxOscBundle.cpp">
 			<Option virtualFolder="addons\ofxOsc\src" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscBundle.h">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxOsc\src\ofxOscBundle.h">
 			<Option virtualFolder="addons\ofxOsc\src" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscMessage.cpp">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxOsc\src\ofxOscMessage.cpp">
 			<Option virtualFolder="addons\ofxOsc\src" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscMessage.h">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxOsc\src\ofxOscMessage.h">
 			<Option virtualFolder="addons\ofxOsc\src" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscReceiver.cpp">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxOsc\src\ofxOscReceiver.cpp">
 			<Option virtualFolder="addons\ofxOsc\src" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscReceiver.h">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxOsc\src\ofxOscReceiver.h">
 			<Option virtualFolder="addons\ofxOsc\src" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscSender.cpp">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxOsc\src\ofxOscSender.cpp">
 			<Option virtualFolder="addons\ofxOsc\src" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxOsc\src\ofxOscSender.h">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxOsc\src\ofxOscSender.h">
 			<Option virtualFolder="addons\ofxOsc\src" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs\tinyxml.cpp">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxXmlSettings\libs\tinyxml.cpp">
 			<Option virtualFolder="addons\ofxXmlSettings\libs\" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs\tinyxml.h">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxXmlSettings\libs\tinyxml.h">
 			<Option virtualFolder="addons\ofxXmlSettings\libs\" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs\tinyxmlerror.cpp">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxXmlSettings\libs\tinyxmlerror.cpp">
 			<Option virtualFolder="addons\ofxXmlSettings\libs\" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxXmlSettings\libs\tinyxmlparser.cpp">
 			<Option virtualFolder="addons\ofxXmlSettings\libs\" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\src\ofxXmlSettings.cpp">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxXmlSettings\src\ofxXmlSettings.cpp">
 			<Option virtualFolder="addons\ofxXmlSettings\src\" />
 		</Unit>
-		<Unit filename="..\of_preRelease_v0061_win_cb_FAT\addons\ofxXmlSettings\src\ofxXmlSettings.h">
+		<Unit filename="..\of_preRelease_v007_win_cb\addons\ofxXmlSettings\src\ofxXmlSettings.h">
 			<Option virtualFolder="addons\ofxXmlSettings\src\" />
 		</Unit>
 		<Unit filename="addons\ofxMidiIn\events\ofxMidiEvents.h">
