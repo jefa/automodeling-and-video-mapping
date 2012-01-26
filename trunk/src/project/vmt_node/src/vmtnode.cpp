@@ -234,7 +234,7 @@ Object3D* VmtNode::getObject3D(string objId){
     return scene->getObject3D(objId);
 }
 
-void VmtNode::addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay){
+void VmtNode::addPositionEffect(string effectId, string objId, ofVec3f posIni, ofVec3f posFin, float delay){
     if (scene->getObject3D(objId) == NULL){
         printf("VmtNode::addPositionEffect: object does not exists(%s)\n", objId.c_str());
         return;
@@ -242,7 +242,7 @@ void VmtNode::addPositionEffect(string effectId, string objId, ofxVec3f posIni, 
     scene->addEffect(effectId, new PositionEffect(effectId, scene->getObject3D(objId), posIni, posFin, delay));
 }
 
-void VmtNode::addFadeEffect(string effectId, string groupId, ofxVec4f colorIni, ofxVec4f colorFin, float delay){
+void VmtNode::addFadeEffect(string effectId, string groupId, ofVec4f colorIni, ofVec4f colorFin, float delay){
     if (scene->getGroup(groupId) == NULL){
         printf("VmtNode::addFadeEffect: group does not exists(%s)\n", groupId.c_str());
         return;
@@ -282,7 +282,7 @@ void VmtNode::setActiveCamDisplayHelpers(bool display) {
     cam->setDisplayHelpers(display);
 }
 
-void VmtNode::setActiveCamHelperCoord(bool isSrc, int pointI, ofxVec2f coord) {
+void VmtNode::setActiveCamHelperCoord(bool isSrc, int pointI, ofVec2f coord) {
     ofxCamera *cam = scene->getActiveCamera();
     if(cam == NULL)
         return;

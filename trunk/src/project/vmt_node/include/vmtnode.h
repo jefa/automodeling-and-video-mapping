@@ -53,15 +53,15 @@ class VmtNode : public ofBaseApp, public ISceneHandler {
         Object3D* getObject3D(string objId);
         void setObject3D(string objId,int aParam, float aValue);
 
-        void addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay);
-        void addFadeEffect(string effectId, string groupId, ofxVec4f colorIni, ofxVec4f colorFin, float delay);
+        void addPositionEffect(string effectId, string objId, ofVec3f posIni, ofVec3f posFin, float delay);
+        void addFadeEffect(string effectId, string groupId, ofVec4f colorIni, ofVec4f colorFin, float delay);
         void addTextureGroupEffect(string effectId, string groupId, string texturePath, textureType type);
         void addTextureObjectEffect(string effectId, string objId, string facesId, string texturePath, textureType type);
 
         void testEffect(string id);
 
         void setActiveCamDisplayHelpers(bool display);
-        void setActiveCamHelperCoord(bool isSrc, int pointI, ofxVec2f coord);
+        void setActiveCamHelperCoord(bool isSrc, int pointI, ofVec2f coord);
         void calibrateActiveCam();
         void resetActiveCamCalibraton();
 
