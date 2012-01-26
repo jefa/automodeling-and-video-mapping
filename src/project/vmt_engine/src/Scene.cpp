@@ -163,7 +163,7 @@ void Scene::draw() {
 
 void Scene::setBackground(float r, float g, float b) {
     ofBackground(r * 255, g * 255, b * 255);
-    bgColor = ofxVec3f(r, g, b);
+    bgColor = ofVec3f(r, g, b);
 }
 
 SerializedNode* Scene::Serialize() {

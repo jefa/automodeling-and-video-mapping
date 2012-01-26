@@ -61,11 +61,11 @@ void Object3D::draw() {
 	glPopMatrix();
 }
 
-ofxVec3f Object3D::getPosition() {
+ofVec3f Object3D::getPosition() {
     return pos;
 }
 
-ofxVec3f Object3D::getScale() {
+ofVec3f Object3D::getScale() {
     return scale;
 }
 

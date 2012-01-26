@@ -1,8 +1,6 @@
 #ifndef SERIALIZEDNODE_H
 #define SERIALIZEDNODE_H
 
-#include "ofxVectorMath.h"
-
 #include <vector>
 #include <string>
 #include "..\addons\ofxMidiIn\events\ofxMidiEvents.h"
@@ -22,11 +20,10 @@ class SerializedNode
         void addAttribute(string attrId, int attrVal);
         void addAttribute(string attrId, float attrVal);
         void addAttribute(string attrId, bool attrVal);
-        void addAttribute(string attrId, ofxVec2f attrVal);
-        void addAttribute(string attrId, ofxVec3f attrVal);
-        void addAttribute(string attrId, ofxVec4f attrVal);
+        void addAttribute(string attrId, ofVec2f attrVal);
+        void addAttribute(string attrId, ofVec3f attrVal);
+        void addAttribute(string attrId, ofVec4f attrVal);
         void addAttribute(string attrId, ofxMidiEventArgs* attrVal);
-
 
         void addChildNode(SerializedNode* child);
 

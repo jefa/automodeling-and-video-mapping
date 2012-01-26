@@ -165,6 +165,14 @@ unsigned char * ofxAlphaVideoPlayer::getPixels(){
 }
 
 //------------------------------------
+
+ofPixels & ofxAlphaVideoPlayer::getPixelsRef() {
+    //HACK MIO PARA QUE COMPILE, ESTA MAL PORQUE LA VARIABLE QUE SE RETORNA SE DESTRUYE
+    ofPixels pxls;
+    return pxls;
+}
+
+//------------------------------------
 //for getting a reference to the texture
 ofTexture & ofxAlphaVideoPlayer::getTextureReference(){
 	if(!tex.bAllocated() ){

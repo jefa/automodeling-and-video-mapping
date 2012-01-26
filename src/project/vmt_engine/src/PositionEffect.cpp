@@ -3,7 +3,7 @@
 #include "LinearAnimation.h"
 #include "IPropertyManager.h"
 
-PositionEffect::PositionEffect(string id, Object3D *obj, ofxVec3f posIni, ofxVec3f posFin, float delay) {
+PositionEffect::PositionEffect(string id, Object3D *obj, ofVec3f posIni, ofVec3f posFin, float delay) {
     this->id = id;
     this->object3d = obj;
     this->posIni = posIni;
@@ -42,19 +42,19 @@ void PositionEffect::setObject3D(Object3D* obj3d){
     this->object3d = obj3d;
 }
 
-ofxVec3f PositionEffect::getPosIni(){
+ofVec3f PositionEffect::getPosIni(){
     return this->posIni;
 }
 
-void PositionEffect::setPosIni(ofxVec3f pIni){
+void PositionEffect::setPosIni(ofVec3f pIni){
     this->posIni = pIni;
 }
 
-ofxVec3f PositionEffect::getPosFin(){
+ofVec3f PositionEffect::getPosFin(){
     return this->posFin;
 }
 
-void PositionEffect::setPosFin(ofxVec3f pFin){
+void PositionEffect::setPosFin(ofVec3f pFin){
     this->posFin = pFin;
 }
 

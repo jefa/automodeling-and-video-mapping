@@ -27,8 +27,8 @@ class Object3D : public IPropertyManager, ISerializable
         void setScale(float x, float y, float z);
         void setRotation(int which, float angle, float rot_x, float rot_y, float r_z);
 
-        ofxVec3f getPosition();
-        ofxVec3f getScale();
+        ofVec3f getPosition();
+        ofVec3f getScale();
 
         virtual float get(int aParam);
         virtual void set(int aParam, float aValue);
@@ -44,8 +44,8 @@ class Object3D : public IPropertyManager, ISerializable
     private:
         vector <float> rotAngle;
         vector <ofPoint> rotAxis;
-        ofxVec3f scale;
-        ofxVec3f pos;
+        ofVec3f scale;
+        ofVec3f pos;
 
         int numRotations;
         model3DS * model;

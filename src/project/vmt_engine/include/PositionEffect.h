@@ -3,12 +3,11 @@
 
 #include "Effect.h"
 #include "Object3D.h"
-#include "ofxVectorMath.h"
 
 class PositionEffect : public Effect
 {
     public:
-        PositionEffect(string id, Object3D *obj, ofxVec3f posIni, ofxVec3f posFin, float delay);
+        PositionEffect(string id, Object3D *obj, ofVec3f posIni, ofVec3f posFin, float delay);
         virtual ~PositionEffect();
 
         virtual void play();
@@ -18,10 +17,10 @@ class PositionEffect : public Effect
 
         Object3D* getObject3D();
         void setObject3D(Object3D*);
-        ofxVec3f getPosIni();
-        void setPosIni(ofxVec3f);
-        ofxVec3f getPosFin();
-        void setPosFin(ofxVec3f);
+        ofVec3f getPosIni();
+        void setPosIni(ofVec3f);
+        ofVec3f getPosFin();
+        void setPosFin(ofVec3f);
         float getDelay();
         void setDelay(float);
 
@@ -30,8 +29,8 @@ class PositionEffect : public Effect
     protected:
     private:
         Object3D *object3d;
-        ofxVec3f posIni;
-        ofxVec3f posFin;
+        ofVec3f posIni;
+        ofVec3f posFin;
         float delay;
 };
 

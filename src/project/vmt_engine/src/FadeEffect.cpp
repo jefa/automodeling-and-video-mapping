@@ -1,6 +1,6 @@
 #include "FadeEffect.h"
 
-FadeEffect::FadeEffect(string id, QuadGroup *qg, ofxVec4f colorIni, ofxVec4f colorFin, float delay) {
+FadeEffect::FadeEffect(string id, QuadGroup *qg, ofVec4f colorIni, ofVec4f colorFin, float delay) {
     this->id = id;
     this->group = qg;
     this->colorIni = colorIni;
@@ -47,19 +47,19 @@ void FadeEffect::setQuadGroup(QuadGroup* grp){
     this->group = grp;
 }
 
-ofxVec4f FadeEffect::getColorIni(){
+ofVec4f FadeEffect::getColorIni(){
     return this->colorIni;
 }
 
-void FadeEffect::setColorIni(ofxVec4f color){
+void FadeEffect::setColorIni(ofVec4f color){
     this->colorIni = color;
 }
 
-ofxVec4f FadeEffect::getColorFin(){
+ofVec4f FadeEffect::getColorFin(){
     return this->colorFin;
 }
 
-void FadeEffect::setColorFin(ofxVec4f color){
+void FadeEffect::setColorFin(ofVec4f color){
     this->colorFin = color;
 }
 

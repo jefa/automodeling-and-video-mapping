@@ -3,7 +3,6 @@
 
 #include "IPropertyManager.h"
 #include "ISerializable.h"
-#include "ofxVectorMath.h"
 #include "Material.h"
 
 #include <string>
@@ -19,9 +18,9 @@ class Quad2D : public IPropertyManager, ISerializable
         virtual void set(int aParam, float value);
         virtual float get(int aParam);
         void draw();
-        void setPoint(int i, ofxVec2f p);
+        void setPoint(int i, ofVec2f p);
         void setPoint(int i, float x, float y);
-        ofxVec2f getPoint(int i);
+        ofVec2f getPoint(int i);
         void setUVCoordinate(int i, float u, float v);
         int getControlPointAt(int x, int y);
         void setSelected(bool selected);

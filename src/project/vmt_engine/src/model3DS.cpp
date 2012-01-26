@@ -5,7 +5,6 @@
 */
 
 #include "model3DS.h"
-#include "ofxVectorMath.h"
 
 void material3DS::loadTexture(std::string filename, int chunkType){
 
@@ -393,8 +392,8 @@ void mesh3DS::calculateNormals(){
 	if(DEBUG_OUTPUT) std::cout<<"Calculating normals... ";
 	m_normals.assign(m_vertices.size(), 0.0f);
 
-	ofxVec3f vtx1, vtx2, vtx3;
-	ofxVec3f v1, v2, faceNormal;
+	ofVec3f vtx1, vtx2, vtx3;
+	ofVec3f v1, v2, faceNormal;
 
 	for(int face=0; face < int(m_faces.size()); face+=3){
 		// Calculate face normal

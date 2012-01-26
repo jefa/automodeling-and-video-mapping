@@ -59,9 +59,9 @@ protected:
 
 private:
     string id;
-    ofxVec3f specularVector;
-    ofxVec3f diffuseVector;
-    ofxVec3f directionVector;
+    ofVec3f specularVector;
+    ofVec3f diffuseVector;
+    ofVec3f directionVector;
 
 };
 

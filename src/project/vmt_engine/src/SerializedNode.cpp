@@ -37,21 +37,21 @@ void SerializedNode::addAttribute(string attrId, bool attrVal) {
     }
 }
 
-void SerializedNode::addAttribute(string attrId, ofxVec2f attrVal) {
+void SerializedNode::addAttribute(string attrId, ofVec2f attrVal) {
     std::stringstream sstr;
     sstr.str("");
     sstr << attrVal.x << " " << attrVal.y;
     attributes.push_back(pair<string, string>(attrId, sstr.str()));
 }
 
-void SerializedNode::addAttribute(string attrId, ofxVec3f attrVal) {
+void SerializedNode::addAttribute(string attrId, ofVec3f attrVal) {
     std::stringstream sstr;
     sstr.str("");
     sstr << attrVal.x << " " << attrVal.y << " " << attrVal.z;
     attributes.push_back(pair<string, string>(attrId, sstr.str()));
 }
 
-void SerializedNode::addAttribute(string attrId, ofxVec4f attrVal) {
+void SerializedNode::addAttribute(string attrId, ofVec4f attrVal) {
     std::stringstream sstr;
     sstr.str("");
     sstr << attrVal.x << " " << attrVal.y << " " << attrVal.z << " " << attrVal.w;
