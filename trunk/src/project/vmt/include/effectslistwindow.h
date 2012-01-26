@@ -54,6 +54,7 @@ public:
 
     QListView *view;
 
+
     EffectEditDialog *effectEditDialog;
 
     EffectItem *selectedItem;

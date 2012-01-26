@@ -1,13 +1,10 @@
-#ifndef EVTEFFECTSLISTWINDOW_H
-#define EVTEFFECTSLISTWINDOW_H
+#ifndef MIDIEFFECTSLISTWINDOW_H
+#define MIDIEFFECTSLISTWINDOW_H
 
 #include "vmtmodel.h"
-#include "evteffectitem.h"
-#include "evteffectslistmodel.h"
-#include "evteffecteditdialog.h"
-#include "keyeffectslistwindow.h"
-#include "midieffectslistwindow.h"
-#include "timeline.h"
+#include "midieffectitem.h"
+#include "midieffectslistmodel.h"
+#include "midieffecteditdialog.h"
 
 #include <QModelIndex>
 #include <QWidget>
@@ -23,13 +20,13 @@ class QListView;
 
 namespace gui {
 
-class evtEffectsListWindow : public QWidget
+class midiEffectsListWindow : public QWidget
 {
     Q_OBJECT
 
 public:
-    evtEffectsListWindow(VmtModel *vmtModel);
-    ~evtEffectsListWindow();
+    midiEffectsListWindow(VmtModel *vmtModel);
+    ~midiEffectsListWindow();
 
 public slots:
     void effectsChanged();
@@ -43,7 +40,7 @@ private slots:
 private:
     void setupUi(QWidget *);
     void retranslateUi(QWidget *);
-    evtEffectsListModel* getListViewModel();
+    midiEffectsListModel* getListViewModel();
 
 public:
     //QVBoxLayout *vboxLayout;
@@ -53,12 +50,9 @@ public:
 
     QListView *view;
 
-    evtEffecteditdialog *evteffecteditdialog;
-    timeline *timeLine;
-    keyEffectsListWindow *evteffectsWindkey;
-    midiEffectsListWindow *midiEffectsWindkey;
+    midiEffecteditdialog *midieffecteditdialog;
 
-    evtEffectItem *selectedItem;
+    midiEffectItem *selectedItem;
 };
 
 }
