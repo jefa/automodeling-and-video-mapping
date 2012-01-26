@@ -181,7 +181,7 @@ void CalibrateDialog::createFormGroupBox()
 void CalibrateDialog::loadData(){
     if (this->model != NULL){
         this->model->setActiveCamDisplayHelpers(true);
-         ofxVec2f coord = this->model->getActiveCamHelperCoord(true,0);
+         ofVec2f coord = this->model->getActiveCamHelperCoord(true,0);
          x0IniSpinBox->setValue(coord.x);
          y0IniSpinBox->setValue(coord.y);
         coord = this->model->getActiveCamHelperCoord(true,1);
@@ -209,64 +209,64 @@ void CalibrateDialog::loadData(){
     }
 }
 void CalibrateDialog::x0IniValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(true,0);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(true,0);
     coord.set( newVal, coordAux.y);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(true, 0, coord);
     }
 }
 void CalibrateDialog::x1IniValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(true,1);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(true,1);
     coord.set( newVal, coordAux.y);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(true, 1, coord);
     }
 }
 void CalibrateDialog::x2IniValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(true,2);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(true,2);
     coord.set( newVal, coordAux.y);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(true, 2, coord);
     }
 }
 void CalibrateDialog::x3IniValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(true,3);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(true,3);
     coord.set( newVal, coordAux.y);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(true, 3, coord);
     }
 }
 void CalibrateDialog::y0IniValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(true,0);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(true,0);
     coord.set( coordAux.x, newVal);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(true, 0, coord);
     }
 }
 void CalibrateDialog::y1IniValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(true,1);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(true,1);
     coord.set( coordAux.x, newVal);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(true, 1, coord);
     }
 }
 void CalibrateDialog::y2IniValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(true,2);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(true,2);
     coord.set( coordAux.x, newVal);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(true, 2, coord);
     }
 }
 void CalibrateDialog::y3IniValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(true,3);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(true,3);
     coord.set( coordAux.x, newVal);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(true, 3, coord);
@@ -274,64 +274,64 @@ void CalibrateDialog::y3IniValueChanged(double newVal){
 }
 
 void CalibrateDialog::x0FinValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(false,0);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(false,0);
     coord.set( newVal, coordAux.y);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(false, 0, coord);
     }
 }
 void CalibrateDialog::x1FinValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(false,1);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(false,1);
     coord.set( newVal, coordAux.y);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(false, 1, coord);
     }
 }
 void CalibrateDialog::x2FinValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(false,2);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(false,2);
     coord.set( newVal, coordAux.y);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(false, 2, coord);
     }
 }
 void CalibrateDialog::x3FinValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(false,3);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(false,3);
     coord.set( newVal, coordAux.y);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(false, 3, coord);
     }
 }
 void CalibrateDialog::y0FinValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(false,0);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(false,0);
     coord.set( coordAux.x, newVal);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(false, 0, coord);
     }
 }
 void CalibrateDialog::y1FinValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(false,1);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(false,1);
     coord.set( coordAux.x, newVal);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(false, 1, coord);
     }
 }
 void CalibrateDialog::y2FinValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(false,2);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(false,2);
     coord.set( coordAux.x, newVal);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(false, 2, coord);
     }
 }
 void CalibrateDialog::y3FinValueChanged(double newVal){
-    ofxVec2f coord;
-    ofxVec2f coordAux = this->model->getActiveCamHelperCoord(false,3);
+    ofVec2f coord;
+    ofVec2f coordAux = this->model->getActiveCamHelperCoord(false,3);
     coord.set( coordAux.x, newVal);
     if (this->model != NULL){
         this->model->setActiveCamHelperCoord(false, 3, coord);

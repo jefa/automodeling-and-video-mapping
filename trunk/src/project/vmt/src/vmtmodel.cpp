@@ -88,7 +88,7 @@ void VmtModel::addCamera(string id){
 }
 
 void VmtModel::setCameraPos(string camId, float x, float y, float z){
-    oscManager->SendMessage(OscUtil::createSetCameraPosMsg(camId, ofxVec3f(x, y, z)), getNodeForCamera(camId));
+    oscManager->SendMessage(OscUtil::createSetCameraPosMsg(camId, ofVec3f(x, y, z)), getNodeForCamera(camId));
     ofxCamera *camera = scene->getCamera(camId);
     if (camera != NULL) {
         camera->position(x, y, z);
@@ -99,7 +99,7 @@ void VmtModel::setCameraPos(string camId, float x, float y, float z){
 }
 
 void VmtModel::setCameraEye(string camId, float x, float y, float z){
-    oscManager->SendMessage(OscUtil::createSetCameraEyeMsg(camId, ofxVec3f(x, y, z)), getNodeForCamera(camId));
+    oscManager->SendMessage(OscUtil::createSetCameraEyeMsg(camId, ofVec3f(x, y, z)), getNodeForCamera(camId));
     ofxCamera *camera = scene->getCamera(camId);
     if (camera != NULL) {
         camera->eye(x, y, z);
@@ -110,7 +110,7 @@ void VmtModel::setCameraEye(string camId, float x, float y, float z){
 }
 
 void VmtModel::setCameraUp(string camId, float x, float y, float z){
-    oscManager->SendMessage(OscUtil::createSetCameraEyeMsg(camId, ofxVec3f(x, y, z)), getNodeForCamera(camId));
+    oscManager->SendMessage(OscUtil::createSetCameraEyeMsg(camId, ofVec3f(x, y, z)), getNodeForCamera(camId));
     ofxCamera *camera = scene->getCamera(camId);
     if (camera != NULL) {
         camera->up(x, y, z);
@@ -243,11 +243,11 @@ void VmtModel::setActiveCamDisplayHelpers(bool display) {
     cam->setDisplayHelpers(display);
 }
 
-ofxVec2f VmtModel::getActiveCamHelperCoord(bool isSrc, int i) {
+ofVec2f VmtModel::getActiveCamHelperCoord(bool isSrc, int i) {
     //No manda mensaje por ser getter
     ofxCamera *cam = scene->getActiveCamera();
     if(cam == NULL)
-        return ofxVec2f(0,0);
+        return ofVec2f(0,0);
 
     if(isSrc)
         return cam->getSrcHelperCoord(i);
@@ -255,7 +255,7 @@ ofxVec2f VmtModel::getActiveCamHelperCoord(bool isSrc, int i) {
         return cam->getDstHelperCoord(i);
 }
 
-void VmtModel::setActiveCamHelperCoord(bool isSrc, int i, ofxVec2f coord) {
+void VmtModel::setActiveCamHelperCoord(bool isSrc, int i, ofVec2f coord) {
     ofxCamera *cam = scene->getActiveCamera();
     if(cam == NULL)
         return;
@@ -364,7 +364,7 @@ void VmtModel::setLightOff(string lightId){
     scene->setLightOff(lightId);
 }
 
-void VmtModel::addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay){
+void VmtModel::addPositionEffect(string effectId, string objId, ofVec3f posIni, ofVec3f posFin, float delay){
     if (scene->getObject3D(objId) == NULL){
         printf("VmtModel::addPositionEffect: object does not exists(%s)\n", objId.c_str());
         return;
@@ -373,7 +373,7 @@ void VmtModel::addPositionEffect(string effectId, string objId, ofxVec3f posIni,
     scene->addEffect(effectId, new PositionEffect(effectId, scene->getObject3D(objId), posIni, posFin, delay));
 }
 
-void VmtModel::addFadeEffect(string effectId, string groupId, ofxVec4f colorIni, ofxVec4f colorFin, float delay){
+void VmtModel::addFadeEffect(string effectId, string groupId, ofVec4f colorIni, ofVec4f colorFin, float delay){
     if (scene->getGroup(groupId) == NULL){
         printf("VmtModel::addFadeEffect: group does not exists(%s)\n", groupId.c_str());
         return;
@@ -474,10 +474,10 @@ void VmtModel::OrbitActiveCamera(int dx, int dy) {
     float angleX = -dx * 0.5f;
     float angleY = dy * 0.5f;
 
-    cam->orbitAround(cam->getEye(), ofxVec3f(0,1,0), angleX);
+    cam->orbitAround(cam->getEye(), ofVec3f(0,1,0), angleX);
 
-    ofxVec3f dir = -(cam->getDir());
-    ofxVec3f axis2 = dir.getCrossed(ofxVec3f(0,1,0));
+    ofVec3f dir = -(cam->getDir());
+    ofVec3f axis2 = dir.getCrossed(ofVec3f(0,1,0));
     axis2.normalize();
 
     cam->orbitAround(cam->getEye(), axis2, angleY);
@@ -494,8 +494,8 @@ void VmtModel::RollActiveCamera(int dx) {
 
     float angleX = -dx * 0.5f;
 
-    ofxVec3f dir = -(cam->getDir());
-    ofxVec3f up = cam->getUp();
+    ofVec3f dir = -(cam->getDir());
+    ofVec3f up = cam->getUp();
     up.rotate(angleX, dir);
     cam->up(up);
 
@@ -510,10 +510,10 @@ void VmtModel::DollyActiveCamera(int dy) {
 
     float delta = dy * 0.5f;
 
-    ofxVec3f dir = -(cam->getDir());
+    ofVec3f dir = -(cam->getDir());
     dir.normalize();
 
-    ofxVec3f pos = cam->getPosition();
+    ofVec3f pos = cam->getPosition();
     pos += dir * dy;
 
     cam->position(pos);
@@ -530,12 +530,12 @@ void VmtModel::PanActiveCamera(int dx, int dy) {
     float moveX = -dx * 0.25f;
     float moveY = dy * 0.25f;
 
-    ofxVec3f dir = -(cam->getDir());
+    ofVec3f dir = -(cam->getDir());
     dir.normalize();
-    ofxVec3f up = cam->getUp();
+    ofVec3f up = cam->getUp();
     up.normalize();
-    ofxVec3f left = up.crossed(dir);
-    ofxVec3f move = left * moveX + up * moveY;
+    ofVec3f left = up.crossed(dir);
+    ofVec3f move = left * moveX + up * moveY;
 
     cam->moveGlobal(move);
 
@@ -605,25 +605,25 @@ SerializedNode* VmtModel::SerializeNetwork() {
     return node;
 }
 
-ofxVec2f parseVector2f(string str) {
+ofVec2f parseVector2f(string str) {
     std::stringstream sstr(str);
     float x, y;
     sstr >> x >> y;
-    return ofxVec2f(x,y);
+    return ofVec2f(x,y);
 }
 
-ofxVec3f parseVector3f(string str) {
+ofVec3f parseVector3f(string str) {
     std::stringstream sstr(str);
     float x,y,z;
     sstr >> x >> y >> z;
-    return ofxVec3f(x,y,z);
+    return ofVec3f(x,y,z);
 }
 
-ofxVec4f parseVector4f(string str) {
+ofVec4f parseVector4f(string str) {
     std::stringstream sstr(str);
     float x,y,z,w;
     sstr >> x >> y >> z >> w;
-    return ofxVec4f(x,y,z,w);
+    return ofVec4f(x,y,z,w);
 }
 
 float parseFloat(string str) {
@@ -664,7 +664,7 @@ void VmtModel::loadShow(string filepath) {
     }
     showXML.popTag();//network
 
-        ofxVec3f bgColor = parseVector3f(showXML.getAttribute("scene", "backgroundcolor", "0 0 0", 0));
+        ofVec3f bgColor = parseVector3f(showXML.getAttribute("scene", "backgroundcolor", "0 0 0", 0));
         this->setBackground(bgColor.x, bgColor.y, bgColor.y);
 
     showXML.pushTag("scene");
@@ -677,10 +677,10 @@ void VmtModel::loadShow(string filepath) {
 
             showXML.pushTag("camera", camI);
 
-                ofxVec3f camPos = parseVector3f(showXML.getAttribute("view", "pos", "0 0 0", 0));
+                ofVec3f camPos = parseVector3f(showXML.getAttribute("view", "pos", "0 0 0", 0));
                 this->setCameraPos(camId, camPos.x, camPos.y, camPos.z);
 
-                ofxVec3f camEye = parseVector3f(showXML.getAttribute("view", "eye", "0 0 0", 0));
+                ofVec3f camEye = parseVector3f(showXML.getAttribute("view", "eye", "0 0 0", 0));
                 this->setCameraEye(camId, camEye.x, camEye.y, camEye.z);
 
                 int clientResX = parseInt(showXML.getAttribute("projection", "resx", "800", 0));
@@ -700,10 +700,10 @@ void VmtModel::loadShow(string filepath) {
                         quadsByLayer.insert(pair<string, string>(quadId, layerId));
 
                         bool quadEnabled = parseBool(showXML.getAttribute("quad", "enabled", "true", quadI));
-                        ofxVec2f quadP0 = parseVector2f(showXML.getAttribute("quad", "p0", "0 0", quadI));
-                        ofxVec2f quadP1 = parseVector2f(showXML.getAttribute("quad", "p1", "0 1", quadI));
-                        ofxVec2f quadP2 = parseVector2f(showXML.getAttribute("quad", "p2", "1 1", quadI));
-                        ofxVec2f quadP3 = parseVector2f(showXML.getAttribute("quad", "p3", "1 0", quadI));
+                        ofVec2f quadP0 = parseVector2f(showXML.getAttribute("quad", "p0", "0 0", quadI));
+                        ofVec2f quadP1 = parseVector2f(showXML.getAttribute("quad", "p1", "0 1", quadI));
+                        ofVec2f quadP2 = parseVector2f(showXML.getAttribute("quad", "p2", "1 1", quadI));
+                        ofVec2f quadP3 = parseVector2f(showXML.getAttribute("quad", "p3", "1 0", quadI));
                         this->addQuad(camId, layerId, quadId);
                         this->enableQuad(camId, layerId, quadId, quadEnabled);
                         this->setQuadPoint(camId, layerId, quadId, 0, quadP0.x, quadP0.y);
@@ -721,9 +721,9 @@ void VmtModel::loadShow(string filepath) {
     showXML.pushTag("lights");
     for(int lightI = 0; lightI < showXML.getNumTags("light"); lightI++) {
         string lightId = showXML.getAttribute("light", "id", "", lightI);
-        ofxVec3f specularVec = parseVector3f(showXML.getAttribute("light", "specular", "255 255 255", lightI));
-        ofxVec3f diffuseVec = parseVector3f(showXML.getAttribute("light", "diffuse", "255 255 255", lightI));
-        ofxVec3f directionVec = parseVector3f(showXML.getAttribute("light", "direction", "0 -1 0", lightI));
+        ofVec3f specularVec = parseVector3f(showXML.getAttribute("light", "specular", "255 255 255", lightI));
+        ofVec3f diffuseVec = parseVector3f(showXML.getAttribute("light", "diffuse", "255 255 255", lightI));
+        ofVec3f directionVec = parseVector3f(showXML.getAttribute("light", "direction", "0 -1 0", lightI));
 
         this->addLight(lightId);
         this->setLightSpecular(lightId, specularVec.x, specularVec.y, specularVec.z);
@@ -750,8 +750,8 @@ void VmtModel::loadShow(string filepath) {
     for(int object3dI = 0; object3dI < showXML.getNumTags("object3d") ; object3dI++) {
         string object3dId = showXML.getAttribute("object3d", "id", "", object3dI);
         string obj3dfilename = showXML.getAttribute("object3d", "filename", "", object3dI);
-        ofxVec3f obj3dPos = parseVector3f(showXML.getAttribute("object3d", "pos", "", object3dI));
-        ofxVec3f obj3dScale = parseVector3f(showXML.getAttribute("object3d", "scale", "", object3dI));
+        ofVec3f obj3dPos = parseVector3f(showXML.getAttribute("object3d", "pos", "", object3dI));
+        ofVec3f obj3dScale = parseVector3f(showXML.getAttribute("object3d", "scale", "", object3dI));
         this->addObject3D(object3dId, obj3dfilename);
     }
     showXML.popTag();//objects3d;
@@ -763,15 +763,15 @@ void VmtModel::loadShow(string filepath) {
 
         if(effectType.compare("position") == 0) {
             string objId = showXML.getAttribute("effect", "objid", "", effectI);
-            ofxVec3f pos1 = parseVector3f(showXML.getAttribute("effect", "pos1", "0 0 0", effectI));
-            ofxVec3f pos2 = parseVector3f(showXML.getAttribute("effect", "pos2", "0 0 0", effectI));
+            ofVec3f pos1 = parseVector3f(showXML.getAttribute("effect", "pos1", "0 0 0", effectI));
+            ofVec3f pos2 = parseVector3f(showXML.getAttribute("effect", "pos2", "0 0 0", effectI));
             float delay = parseFloat(showXML.getAttribute("effect", "delay", "0", effectI));
             this->addPositionEffect(effectId, objId, pos1, pos2, delay);
         }
         else if(effectType.compare("fade") == 0) {
             string groupId = showXML.getAttribute("effect", "groupid", "", effectI);
-            ofxVec4f col1 = parseVector4f(showXML.getAttribute("effect", "col1", "1 1 1 1", effectI));
-            ofxVec4f col2 = parseVector4f(showXML.getAttribute("effect", "col2", "1 1 1 1", effectI));
+            ofVec4f col1 = parseVector4f(showXML.getAttribute("effect", "col1", "1 1 1 1", effectI));
+            ofVec4f col2 = parseVector4f(showXML.getAttribute("effect", "col2", "1 1 1 1", effectI));
             float delay = parseFloat(showXML.getAttribute("effect", "delay", "0", effectI));
             this->addFadeEffect(effectId, groupId, col1, col2, delay);
         }
