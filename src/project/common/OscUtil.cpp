@@ -55,7 +55,7 @@ void OscUtil::processAddCameraMsg(ofxOscMessage msg, ISceneHandler *sceneHandler
     sceneHandler->addCamera(id);
 }
 
-ofxOscMessage OscUtil::createSetCameraPosMsg(string id, ofxVec3f position)
+ofxOscMessage OscUtil::createSetCameraPosMsg(string id, ofVec3f position)
 {
     ofxOscMessage oscMessage;
     oscMessage.setAddress(CAMERA_SETPOS_ADDR);
@@ -74,7 +74,7 @@ void OscUtil::processSetCameraPosMsg(ofxOscMessage msg, ISceneHandler *sceneHand
     sceneHandler->setCameraPos(id, x, y, z);
 }
 
-ofxOscMessage OscUtil::createSetCameraEyeMsg(string id, ofxVec3f eye)
+ofxOscMessage OscUtil::createSetCameraEyeMsg(string id, ofVec3f eye)
 {
     ofxOscMessage oscMessage;
     oscMessage.setAddress(CAMERA_SETEYE_ADDR);
@@ -93,7 +93,7 @@ void OscUtil::processSetCameraEyeMsg(ofxOscMessage msg, ISceneHandler *sceneHand
     sceneHandler->setCameraEye(id, x, y, z);
 }
 
-ofxOscMessage OscUtil::createSetCameraUpMsg(string id, ofxVec3f up) {
+ofxOscMessage OscUtil::createSetCameraUpMsg(string id, ofVec3f up) {
     ofxOscMessage oscMessage;
     oscMessage.setAddress(CAMERA_SETUP_ADDR);
     oscMessage.addStringArg(id);
@@ -307,8 +307,8 @@ void OscUtil::processSetObject3DPosMsg(ofxOscMessage msg, ISceneHandler *sceneHa
     sceneHandler->setObject3D(objId, pos, value);
 }
 
-ofxOscMessage OscUtil::createAddPositionEffectMsg(string effectId, string objId, ofxVec3f posIni,
-                                                ofxVec3f posFin, float delay){
+ofxOscMessage OscUtil::createAddPositionEffectMsg(string effectId, string objId, ofVec3f posIni,
+                                                ofVec3f posFin, float delay){
     ofxOscMessage oscMessage;
     oscMessage.setAddress(EFFECT_ADD_POSITION_ADDR);
     oscMessage.addStringArg(effectId);
@@ -333,12 +333,12 @@ void OscUtil::processAddPositionEffectMsg(ofxOscMessage m, ISceneHandler *sceneH
     float posFinY = m.getArgAsFloat(6);
     float posFinZ = m.getArgAsFloat(7);
     float delay = m.getArgAsFloat(8);
-    sceneHandler->addPositionEffect(effId, objId, ofxVec3f(posIniX,posIniY,posIniZ),
-                                    ofxVec3f(posFinX,posFinY,posFinZ), delay);
+    sceneHandler->addPositionEffect(effId, objId, ofVec3f(posIniX,posIniY,posIniZ),
+                                    ofVec3f(posFinX,posFinY,posFinZ), delay);
 }
 
-ofxOscMessage OscUtil::createAddFadeEffectMsg(string effectId, string groupId, ofxVec4f colorIni,
-                                            ofxVec4f colorFin, float delay){
+ofxOscMessage OscUtil::createAddFadeEffectMsg(string effectId, string groupId, ofVec4f colorIni,
+                                            ofVec4f colorFin, float delay){
     ofxOscMessage oscMessage;
     oscMessage.setAddress(EFFECT_ADD_FADE_ADDR);
     oscMessage.addStringArg(effectId);
@@ -367,8 +367,8 @@ void OscUtil::processAddFadeEffectMsg(ofxOscMessage m, ISceneHandler *sceneHandl
     float colFinB = m.getArgAsFloat(8);
     float colFinA = m.getArgAsFloat(9);
     float delay = m.getArgAsFloat(10);
-    sceneHandler->addFadeEffect(effId, groupId, ofxVec4f(colIniR,colIniG,colIniB,colIniA),
-                     ofxVec4f(colFinR,colFinG,colFinB,colFinA), delay);
+    sceneHandler->addFadeEffect(effId, groupId, ofVec4f(colIniR,colIniG,colIniB,colIniA),
+                     ofVec4f(colFinR,colFinG,colFinB,colFinA), delay);
 }
 
 ofxOscMessage OscUtil::createAddTextureGroupEffectMsg(string effectId, string groupId, string texturePath, textureType type) {
@@ -433,7 +433,7 @@ void OscUtil::processSetActiveCamDisplayHelpersMsg(ofxOscMessage msg, ISceneHand
     sceneHandler->setActiveCamDisplayHelpers(display);
 }
 
-ofxOscMessage OscUtil::createSetActiveCamHelperCoordMsg(bool isSrc, int pointI, ofxVec2f coord) {
+ofxOscMessage OscUtil::createSetActiveCamHelperCoordMsg(bool isSrc, int pointI, ofVec2f coord) {
     ofxOscMessage oscMessage;
     oscMessage.setAddress(CAMERA_SET_HELPER_COORD);
     oscMessage.addIntArg(isSrc);
@@ -446,7 +446,7 @@ ofxOscMessage OscUtil::createSetActiveCamHelperCoordMsg(bool isSrc, int pointI, 
 void OscUtil::processSetActiveCamHelperCoordMsg(ofxOscMessage msg, ISceneHandler *sceneHandler) {
     bool isSrc = msg.getArgAsInt32(0);
     int pointI = msg.getArgAsInt32(1);
-    ofxVec2f coord = ofxVec2f(msg.getArgAsFloat(2), msg.getArgAsFloat(3));
+    ofVec2f coord = ofVec2f(msg.getArgAsFloat(2), msg.getArgAsFloat(3));
 
     sceneHandler->setActiveCamHelperCoord(isSrc, pointI, coord);
 }

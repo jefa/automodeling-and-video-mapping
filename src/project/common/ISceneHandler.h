@@ -33,8 +33,8 @@ class ISceneHandler
         virtual void setObject3D(string objId, int aParam, float aValue) =0;
         virtual Object3D* getObject3D(string objId) =0;
 
-        virtual void addPositionEffect(string effectId, string objId, ofxVec3f posIni, ofxVec3f posFin, float delay) =0;
-        virtual void addFadeEffect(string effectId, string groupId, ofxVec4f colorIni, ofxVec4f colorFin, float delay) =0;
+        virtual void addPositionEffect(string effectId, string objId, ofVec3f posIni, ofVec3f posFin, float delay) =0;
+        virtual void addFadeEffect(string effectId, string groupId, ofVec4f colorIni, ofVec4f colorFin, float delay) =0;
 
         virtual void addTextureObjectEffect(string effectId, string objId, string facesId, string texturePath, textureType type) =0;
         virtual void addTextureGroupEffect(string effectId, string groupId, string texturePath, textureType type) =0;
@@ -42,7 +42,7 @@ class ISceneHandler
         virtual void testEffect(string id) =0;
 
         virtual void setActiveCamDisplayHelpers(bool display) =0;
-        virtual void setActiveCamHelperCoord(bool isSrc, int pointI, ofxVec2f coord) =0;
+        virtual void setActiveCamHelperCoord(bool isSrc, int pointI, ofVec2f coord) =0;
         virtual void calibrateActiveCam() =0;
         virtual void resetActiveCamCalibraton() =0;
 
