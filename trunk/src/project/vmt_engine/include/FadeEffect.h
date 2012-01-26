@@ -9,7 +9,7 @@
 class FadeEffect : public Effect
 {
     public:
-        FadeEffect(string id, QuadGroup *qg, ofxVec4f colorIni, ofxVec4f colorFin, float delay);
+        FadeEffect(string id, QuadGroup *qg, ofVec4f colorIni, ofVec4f colorFin, float delay);
         virtual ~FadeEffect();
 
         virtual void play();
@@ -19,10 +19,10 @@ class FadeEffect : public Effect
 
         QuadGroup* getQuadGroup();
         void setQuadGroup(QuadGroup*);
-        ofxVec4f getColorIni();
-        void setColorIni(ofxVec4f);
-        ofxVec4f getColorFin();
-        void setColorFin(ofxVec4f);
+        ofVec4f getColorIni();
+        void setColorIni(ofVec4f);
+        ofVec4f getColorFin();
+        void setColorFin(ofVec4f);
         float getDelay();
         void setDelay(float);
 
@@ -30,8 +30,8 @@ class FadeEffect : public Effect
     protected:
     private:
         QuadGroup *group;
-        ofxVec4f colorIni;
-        ofxVec4f colorFin;
+        ofVec4f colorIni;
+        ofVec4f colorFin;
         float delay;
 
 };

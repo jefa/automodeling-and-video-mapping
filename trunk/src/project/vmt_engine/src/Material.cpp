@@ -2,8 +2,8 @@
 #include "ofMain.h"
 
 Material::Material(){
-    ambient = ofxVec4f(0.7f, 0.8f, 0.9f, 1.0f);
-    texture_shader.loadShader("shaders/texture_ambient");
+    ambient = ofVec4f(0.7f, 0.8f, 0.9f, 1.0f);
+    texture_shader.load("shaders/texture_ambient");
     this->texID = "";
 }
 
@@ -32,11 +32,11 @@ void Material::Enable(){
             glActiveTexture(GL_TEXTURE0);
             glBindTexture(texData.textureTarget, (GLuint)texData.textureID);
 
-            texture_shader.setShaderActive(true);
+            texture_shader.begin();
 
-            texture_shader.setUniformVariable2f("texCorrection", texData.width / texData.tex_w, texData.height / texData.tex_h);
-            texture_shader.setUniformVariable4f("color", ambient[0], ambient[1], ambient[2], ambient[3]);
-            texture_shader.setUniformVariable1i("tex", 0);
+            texture_shader.setUniform2f("texCorrection", texData.width / texData.tex_w, texData.height / texData.tex_h);
+            texture_shader.setUniform4f("color", ambient[0], ambient[1], ambient[2], ambient[3]);
+            texture_shader.setUniform1i("tex", 0);
         } catch (exception& e) {
             ofLog(OF_LOG_ERROR, "Error al obtener textura: %s", e.what());
         }
@@ -44,7 +44,7 @@ void Material::Enable(){
 }
 
 void Material::Disable() {
-	texture_shader.setShaderActive(false);
+	texture_shader.end();
 	glDisable(GL_TEXTURE_2D);
 }
 

@@ -1,5 +1,6 @@
 #include "ofxCamera.h"
 #include "homography.h"
+#include "glut.h"
 
 #include <cmath>
 
@@ -19,15 +20,15 @@ ofxCamera::ofxCamera() {
 
     helpersRadius = 5.0f;
 
-    helperSrc[0]=ofxVec2f(20,20);
-    helperSrc[1]=ofxVec2f(40,20);
-    helperSrc[2]=ofxVec2f(40,40);
-    helperSrc[3]=ofxVec2f(20,40);
+    helperSrc[0]=ofVec2f(20,20);
+    helperSrc[1]=ofVec2f(40,20);
+    helperSrc[2]=ofVec2f(40,40);
+    helperSrc[3]=ofVec2f(20,40);
 
-    helperDst[0]=ofxVec2f(0,0);
-    helperDst[1]=ofxVec2f(60,0);
-    helperDst[2]=ofxVec2f(60,60);
-    helperDst[3]=ofxVec2f(0,60);
+    helperDst[0]=ofVec2f(0,0);
+    helperDst[1]=ofVec2f(60,0);
+    helperDst[2]=ofVec2f(60,60);
+    helperDst[3]=ofVec2f(0,60);
 }
 
 void ofxCamera::setClientResolution(int resx, int resy) {
@@ -49,7 +50,7 @@ void ofxCamera::position(float x, float y, float z) {
 	posCoord.z = z;
 }
 
-void ofxCamera::position(ofxVec3f _pos) {
+void ofxCamera::position(ofVec3f _pos) {
 	posCoord = _pos;
 }
 
@@ -67,7 +68,7 @@ void ofxCamera::eye(float x, float y, float z) {
 	eyeCoord.z = z;
 }
 
-void ofxCamera::eye(ofxVec3f _pos) {
+void ofxCamera::eye(ofVec3f _pos) {
 	eyeCoord = _pos;
 }
 
@@ -83,7 +84,7 @@ void ofxCamera::up(float _nx, float _ny, float _nz) {
 	upVec.z = _nz;
 }
 
-void ofxCamera::up(ofxVec3f _up) {
+void ofxCamera::up(ofVec3f _up) {
 	upVec = _up;
 }
 
@@ -176,11 +177,11 @@ void ofxCamera::remove() {
 }
 
 void ofxCamera::moveLocal(float _x, float _y, float _z) {
-	moveLocal(ofxVec3f(_x, _y, _z));
+	moveLocal(ofVec3f(_x, _y, _z));
 }
 
-void ofxCamera::moveLocal(ofxVec3f move) {
-	ofxVec3f dir =  getDir().normalized();
+void ofxCamera::moveLocal(ofVec3f move) {
+	ofVec3f dir =  getDir().normalized();
 	posCoord += dir.rescaled(move.z);
 	eyeCoord += dir.rescaled(move.z);
 
@@ -200,37 +201,37 @@ void ofxCamera::moveGlobal(float _x, float _y, float _z) {
 	eyeCoord.z += _z;
 }
 
-void ofxCamera::moveGlobal(ofxVec3f move) {
+void ofxCamera::moveGlobal(ofVec3f move) {
 	posCoord += move;
 	eyeCoord += move;
 }
 
-void ofxCamera::orbitAround(ofxVec3f target, ofxVec3f axis, float angle) {
-	ofxVec3f r = posCoord-target;
+void ofxCamera::orbitAround(ofVec3f target, ofVec3f axis, float angle) {
+	ofVec3f r = posCoord-target;
 	posCoord = target + r.rotated(angle, axis);
 }
 
-void ofxCamera::rotate(ofxVec3f axis, float angle) {
-	ofxVec3f r = -posCoord+eyeCoord;
+void ofxCamera::rotate(ofVec3f axis, float angle) {
+	ofVec3f r = -posCoord+eyeCoord;
 	eyeCoord = posCoord + r.rotated(angle, axis);
 }
 
 //
 //Getters
 //
-ofxVec3f ofxCamera::getDir() {
+ofVec3f ofxCamera::getDir() {
 	return eyeCoord-posCoord;
 }
 
-ofxVec3f ofxCamera::getPosition() {
+ofVec3f ofxCamera::getPosition() {
 	return posCoord;
 }
 
-ofxVec3f ofxCamera::getEye() {
+ofVec3f ofxCamera::getEye() {
 	return eyeCoord;
 }
 
-ofxVec3f ofxCamera::getUp() {
+ofVec3f ofxCamera::getUp() {
 	return upVec;
 }
 
@@ -260,7 +261,7 @@ void ofxCamera::setDisplayHelpers(bool display) {
     displayHelpers = display;
 }
 
-void ofxCamera::setSrcHelperCoord(int i, ofxVec2f coord) {
+void ofxCamera::setSrcHelperCoord(int i, ofVec2f coord) {
     if(i >= 0 || i <= 3) {
         helperSrc[i] = coord;
     }
@@ -269,7 +270,7 @@ void ofxCamera::setSrcHelperCoord(int i, ofxVec2f coord) {
     }
 }
 
-void ofxCamera::setDstHelperCoord(int i, ofxVec2f coord) {
+void ofxCamera::setDstHelperCoord(int i, ofVec2f coord) {
     if(i >= 0 || i <= 3) {
         helperDst[i] = coord;
     }
@@ -278,23 +279,23 @@ void ofxCamera::setDstHelperCoord(int i, ofxVec2f coord) {
     }
 }
 
-ofxVec2f ofxCamera::getSrcHelperCoord(int i) {
+ofVec2f ofxCamera::getSrcHelperCoord(int i) {
     if(i >= 0 || i <= 3) {
         return helperSrc[i];
     }
     else {
         ofLog(OF_LOG_ERROR, "ofxCamera::getSrcHelperCoord: index %i outside [0,3] range.", i);
-        return ofxVec2f(0,0);
+        return ofVec2f(0,0);
     }
 }
 
-ofxVec2f ofxCamera::getDstHelperCoord(int i) {
+ofVec2f ofxCamera::getDstHelperCoord(int i) {
     if(i >= 0 || i <= 3) {
         return helperDst[i];
     }
     else {
         ofLog(OF_LOG_ERROR, "ofxCamera::getDstHelperCoord: index %i outside [0,3] range.", i);
-        return ofxVec2f(0,0);
+        return ofVec2f(0,0);
     }
 }
 
@@ -348,9 +349,9 @@ void ofxCamera::drawCamera(){
         glVertex3f(pos[0],pos[1],pos[2]); 	glVertex3f(ax2[0],ax2[1],ax2[2]);
     glEnd();*/
 
-    ofxVec3f lVec = getDir();
-    ofxVec3f upVec = getUp();
-    ofxVec3f rightVec = lVec.crossed(upVec);
+    ofVec3f lVec = getDir();
+    ofVec3f upVec = getUp();
+    ofVec3f rightVec = lVec.crossed(upVec);
     //printf("================= Vector L:     (%f,%f,%f)\n", lVec[0],lVec[1],lVec[2]);
     //printf("================= Vector UP:    (%f,%f,%f)\n", upVec[0],upVec[1],upVec[2]);
     //printf("================= Vector RIGHT: (%f,%f,%f)\n", rightVec[0],rightVec[1],rightVec[2]);
@@ -366,13 +367,13 @@ void ofxCamera::drawCamera(){
     //printf("================= Vector ASPECTRATIO: %f \n", aspectRatio);
     //printf("================= Vector APH: %f ::: APV: %f\n", apHf, apVf);
 
-    ofxVec3f vecUp =  upVec * apVf / 2; //(0, apVf/2, eye[2]);
-    ofxVec3f vecRight = rightVec * apHf ; //(apHf/2, 0, eye[2]);
+    ofVec3f vecUp =  upVec * apVf / 2; //(0, apVf/2, eye[2]);
+    ofVec3f vecRight = rightVec * apHf ; //(apHf/2, 0, eye[2]);
 
-    ofxVec3f p1 = lVec - vecRight + vecUp;
-    ofxVec3f p2 = lVec + vecRight + vecUp;
-    ofxVec3f p3 = lVec - vecRight - vecUp;
-    ofxVec3f p4 = lVec + vecRight - vecUp;
+    ofVec3f p1 = lVec - vecRight + vecUp;
+    ofVec3f p2 = lVec + vecRight + vecUp;
+    ofVec3f p3 = lVec - vecRight - vecUp;
+    ofVec3f p4 = lVec + vecRight - vecUp;
 
     //printf("================= Vector P1:  (%f,%f,%f)\n", p1[0],p1[1],p1[2]);
     //printf("================= Vector P2:  (%f,%f,%f)\n", p2[0],p2[1],p2[2]);

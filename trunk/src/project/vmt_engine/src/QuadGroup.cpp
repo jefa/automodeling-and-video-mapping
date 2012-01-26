@@ -31,7 +31,7 @@ void QuadGroup::CalculateBounds() {
     vector<Quad2D*>::iterator quadsIt;
     for(quadsIt = quads2D.begin(); quadsIt != quads2D.end(); quadsIt++) {
         for(int i = 0; i < 4; i++) {
-            ofxVec2f p = (*quadsIt)->getPoint(i);
+            ofVec2f p = (*quadsIt)->getPoint(i);
             if (p.x < minX) minX = p.x;
             if (p.x > maxX) maxX = p.x;
             if (p.y < minY) minY = p.y;
@@ -57,7 +57,7 @@ void QuadGroup::genUVWCoords() {
     //Case PlanarMap
     for(quadsIt = quads2D.begin(); quadsIt != quads2D.end(); quadsIt++) {
         for(int i = 0; i < 4; i++) {
-            ofxVec2f p = (*quadsIt)->getPoint(i);
+            ofVec2f p = (*quadsIt)->getPoint(i);
             float uCoord = (p.x - bounds.x) / (bounds.width);
             float vCoord = (p.y - bounds.y) / (bounds.height);
             (*quadsIt)->setUVCoordinate(i, uCoord,vCoord);

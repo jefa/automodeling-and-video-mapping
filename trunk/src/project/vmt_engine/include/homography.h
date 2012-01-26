@@ -61,7 +61,7 @@ void gaussian_elimination(float *input, int n){
 	}
 }
 
-void findHomography(ofPoint src[4], ofPoint dst[4], float homography[16]){
+void findHomography(ofVec2f src[4], ofVec2f dst[4], float homography[16]){
 
 	// create the equation system to be solved
 	//

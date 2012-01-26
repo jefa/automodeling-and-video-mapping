@@ -40,6 +40,7 @@ class ofxAlphaVideoPlayer : public ofBaseVideo{
 
 		bool 				isFrameNew();
 		unsigned char * 	getPixels();
+		ofPixels &          getPixelsRef();
 		float 				getPosition();
 		float 				getSpeed();
 		float 				getDuration();

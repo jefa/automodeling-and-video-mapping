@@ -2,7 +2,6 @@
 
 #include "ISerializable.h"
 #include "ofMain.h"
-#include "ofxVectorMath.h"
 #include "Layer2D.h"
 
 class ofxCamera: public ISerializable {
@@ -10,14 +9,14 @@ public:
 	ofxCamera();
 
 	void position(float x, float y, float z);
-	void position(ofxVec3f _pos);
+	void position(ofVec3f _pos);
 	void position(); //reset the position to initial values
 
 	void eye(float _x, float _y, float _z);
-	void eye(ofxVec3f _eye);
+	void eye(ofVec3f _eye);
 	void eye(); //reset eye psition to the initial values
 	void up(float _x, float _y, float _z);
-	void up(ofxVec3f _up);
+	void up(ofVec3f _up);
 	void up(); //reset up vector to initial values
 
 	float getfieldOfView();
@@ -32,17 +31,17 @@ public:
 	void remove(); //Removes the camera, so it returns as if there was no camera
 
 	void moveLocal(float _x, float _y, float _z); //Moves the camera along it's own coordinatesystem
-	void moveLocal(ofxVec3f move);
+	void moveLocal(ofVec3f move);
 	void moveGlobal(float _x, float _y, float _z); //Moves the camera along the global coordinatesystem
-	void moveGlobal(ofxVec3f move);
+	void moveGlobal(ofVec3f move);
 
-	void orbitAround(ofxVec3f target, ofxVec3f axis, float value);
-	void rotate(ofxVec3f axis, float value);
+	void orbitAround(ofVec3f target, ofVec3f axis, float value);
+	void rotate(ofVec3f axis, float value);
 
-	ofxVec3f getDir();
-	ofxVec3f getPosition();
-	ofxVec3f getEye();
-	ofxVec3f getUp();
+	ofVec3f getDir();
+	ofVec3f getPosition();
+	ofVec3f getEye();
+	ofVec3f getUp();
 
 	void setId(string id);
 	string getId();
@@ -66,15 +65,15 @@ public:
     void resetHomography();
 
     void setDisplayHelpers(bool);
-    void setSrcHelperCoord(int i, ofxVec2f coord);
-    void setDstHelperCoord(int i, ofxVec2f coord);
-    ofxVec2f getSrcHelperCoord(int i);
-    ofxVec2f getDstHelperCoord(int i);
+    void setSrcHelperCoord(int i, ofVec2f coord);
+    void setDstHelperCoord(int i, ofVec2f coord);
+    ofVec2f getSrcHelperCoord(int i);
+    ofVec2f getDstHelperCoord(int i);
 
 protected:
-	ofxVec3f posCoord;
-	ofxVec3f eyeCoord;
-	ofxVec3f upVec;
+	ofVec3f posCoord;
+	ofVec3f eyeCoord;
+	ofVec3f upVec;
 
 	//relative to defining the persperctive:
 	float	fieldOfView;
@@ -95,8 +94,8 @@ private:
 
     bool displayHelpers;
 
-    ofxVec2f helperSrc[4];
-    ofxVec2f helperDst[4];
+    ofVec2f helperSrc[4];
+    ofVec2f helperDst[4];
 
     float helpersRadius;
 

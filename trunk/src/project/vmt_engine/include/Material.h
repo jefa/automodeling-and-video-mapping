@@ -3,9 +3,9 @@
 
 #include "TextureManager.h"
 
-#include "../addons/ofxShader/ofxShader.h"
+#include "ofShader.h"
 #include "ofImage.h"
-#include "ofxVectorMath.h"
+#include "ofVectorMath.h"
 
 #include <string>
 using namespace std;
@@ -27,8 +27,8 @@ class Material
         void SetTextureParams(string id, textureType type);
 
 	private:
-        ofxVec4f ambient;
-        ofxShader texture_shader;
+        ofVec4f ambient;
+        ofShader texture_shader;
 
         string texID;
         textureType texType;

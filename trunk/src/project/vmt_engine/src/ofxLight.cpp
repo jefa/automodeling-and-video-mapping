@@ -72,7 +72,7 @@ void ofxLight::spotLight(float _r, float _g, float _b,
 
 void ofxLight::directionalLight(float _r, float _g, float _b, float _nx, float _ny, float _nz){
 	diffuse(_r, _g, _b);
-	directionVector = ofxVec3f(_nx, _ny, _nz);
+	directionVector = ofVec3f(_nx, _ny, _nz);
 	GLfloat justDirection[] = {-_nx, -_ny, _nz, 0.0f};
 	glLightfv(lightEnum, GL_POSITION, justDirection);
 }
@@ -97,7 +97,7 @@ void ofxLight::ambient(float _r, float _g, float _b){
 }
 
 void ofxLight::specular(float _r, float _g, float _b){
-	specularVector = ofxVec3f(_r, _g, _b);
+	specularVector = ofVec3f(_r, _g, _b);
 
 	_r/=255.0f;
 	_g/=255.0f;
@@ -109,7 +109,7 @@ void ofxLight::specular(float _r, float _g, float _b){
 
 void ofxLight::diffuse(float _r, float _g, float _b){
 
-    diffuseVector = ofxVec3f(_r, _g, _b);
+    diffuseVector = ofVec3f(_r, _g, _b);
 
 	_r/=255.0f;
 	_g/=255.0f;
