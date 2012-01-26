@@ -10,6 +10,7 @@ evtEffectsListWindow::evtEffectsListWindow(VmtModel *vmtModel)
     this->evteffecteditdialog= new evtEffecteditdialog(vmtModel);
 
     evteffectsWindkey = new keyEffectsListWindow(vmtModel);
+    midiEffectsWindkey = new midiEffectsListWindow(vmtModel);
 
     this->timeLine = new timeline(vmtModel);
 
@@ -70,9 +71,15 @@ void evtEffectsListWindow::setupUi(QWidget *listWindow)
     keventsLayout->addWidget(evteffectsWindkey);
     keventsGroup->setLayout(keventsLayout);
 
+    QGroupBox *meventsGroup = new QGroupBox(tr("Midi events"));
+    QVBoxLayout *meventsLayout = new QVBoxLayout();
+    meventsLayout->addWidget(midiEffectsWindkey);
+    meventsGroup->setLayout(meventsLayout);
+
     QHBoxLayout *eventsLayout = new QHBoxLayout();
     eventsLayout->addWidget(teventsGroup);
     eventsLayout->addWidget(keventsGroup);
+    eventsLayout->addWidget(meventsGroup);
 
     QGroupBox *timelineGroup = new QGroupBox(tr("Scene timeline"));
     QVBoxLayout *timelineLayout = new QVBoxLayout();

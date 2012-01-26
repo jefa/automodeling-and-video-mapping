@@ -14,6 +14,11 @@ moc ..\include\evteffecteditdialog.h -o moc_evteffecteditdialog.cpp
 moc ..\include\keyeffectslistmodel.h -o moc_keyeffectslistmodel.cpp
 moc ..\include\keyeffectslistwindow.h -o moc_keyeffectslistwindow.cpp
 moc ..\include\keyeffecteditdialog.h -o moc_keyeffecteditdialog.cpp
+
+moc ..\include\midieffectslistmodel.h -o moc_midieffectslistmodel.cpp
+moc ..\include\midieffectslistwindow.h -o moc_midieffectslistwindow.cpp
+moc ..\include\midieffecteditdialog.h -o moc_midieffecteditdialog.cpp
+
 moc ..\include\backgraundeditdialog.h -o moc_backgraundeditdialog.cpp
 moc ..\include\lighteditdialog.h -o moc_lighteditdialog.cpp
 moc ..\include\effectpages.h -o moc_effectpages.cpp
