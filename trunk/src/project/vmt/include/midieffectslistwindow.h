@@ -14,13 +14,13 @@
 #include <QString>
 #include <QTime>
 #include <QCoreApplication>
-
+#include "..\addons\ofxMidiIn\src\ofxMidiIn.h"
 class QAction;
 class QListView;
 
 namespace gui {
 
-class midiEffectsListWindow : public QWidget
+class midiEffectsListWindow : public QWidget , ofxMidiListener
 {
     Q_OBJECT
 
@@ -42,6 +42,10 @@ private:
     void retranslateUi(QWidget *);
     midiEffectsListModel* getListViewModel();
 
+    void addMidiListener(ofxMidiListener *listener);
+    //midiIn events
+    void newMidiMessage(ofxMidiEventArgs& eventArgs);
+
 public:
     //QVBoxLayout *vboxLayout;
 
@@ -53,6 +57,7 @@ public:
     midiEffecteditdialog *midieffecteditdialog;
 
     midiEffectItem *selectedItem;
+    ofxMidiIn	midiIn;
 };
 
 }

@@ -79,6 +79,9 @@ class VmtModel : public ISceneHandler
         void addKeyEvent(char keyId, string effectId);
         bool hasKeyEvent(char keyId);
         string getEffectIdForKeyEvent(char keyId);
+        void addMidiEvent(ofxMidiEventArgs * MidiMsg, string effectId);
+        bool hasMidiEvent(ofxMidiEventArgs * MidiMsg);
+        string getEffectIdForMidiEvent(ofxMidiEventArgs * MidiMsg);
 
         /* End events */
 
@@ -122,6 +125,7 @@ class VmtModel : public ISceneHandler
         map<string, Effect*> getEffects();
         map<float, string> getEvtEffects();
         map<char, string> getKeyEffects();
+        map<ofxMidiEventArgs*, string> getMidiEffects();
         map<string, Node*> getNodes();
 
         double getTotalTime();

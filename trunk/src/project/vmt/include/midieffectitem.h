@@ -12,19 +12,20 @@ using namespace std;
 namespace gui {
 
 //! [0]
-class midiEffectItem
-{
+class midiEffectItem {
 public:
-    midiEffectItem(string idEffect = "", char key ='a');
+    midiEffectItem(string idEffect = "", int id=0, int value=0);
     ~midiEffectItem();
 
     QVariant data(int column) /*const*/;
     bool setData(int column, const QVariant &value);
-    char getItemData();
+    int getItemData();
+
 
 private:
-    char key;
+    int id, value;
     string idEffect;
+
 };
 //! [0]
 

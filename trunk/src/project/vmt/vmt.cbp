@@ -248,6 +248,10 @@
 		<Unit filename="include\keyeffectslistwindow.h" />
 		<Unit filename="include\layereditdialog.h" />
 		<Unit filename="include\lighteditdialog.h" />
+		<Unit filename="include\midieffecteditdialog.h" />
+		<Unit filename="include\midieffectitem.h" />
+		<Unit filename="include\midieffectslistmodel.h" />
+		<Unit filename="include\midieffectslistwindow.h" />
 		<Unit filename="include\nodeeditdialog.h" />
 		<Unit filename="include\objecteditdialog.h" />
 		<Unit filename="include\quadeditdialog.h" />
@@ -282,6 +286,10 @@
 		<Unit filename="src\layereditdialog.cpp" />
 		<Unit filename="src\lighteditdialog.cpp" />
 		<Unit filename="src\main.cpp" />
+		<Unit filename="src\midieffecteditdialog.cpp" />
+		<Unit filename="src\midieffectitem.cpp" />
+		<Unit filename="src\midieffectslistmodel.cpp" />
+		<Unit filename="src\midieffectslistwindow.cpp" />
 		<Unit filename="src\moc_backgraundeditdialog.cpp" />
 		<Unit filename="src\moc_calibratedialog.cpp" />
 		<Unit filename="src\moc_cameraeditdialog.cpp" />
@@ -298,6 +306,9 @@
 		<Unit filename="src\moc_keyeffectslistwindow.cpp" />
 		<Unit filename="src\moc_layereditdialog.cpp" />
 		<Unit filename="src\moc_lighteditdialog.cpp" />
+		<Unit filename="src\moc_midieffecteditdialog.cpp" />
+		<Unit filename="src\moc_midieffectslistmodel.cpp" />
+		<Unit filename="src\moc_midieffectslistwindow.cpp" />
 		<Unit filename="src\moc_nodeeditdialog.cpp" />
 		<Unit filename="src\moc_objecteditdialog.cpp" />
 		<Unit filename="src\moc_quadeditdialog.cpp" />

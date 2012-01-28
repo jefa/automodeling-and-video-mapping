@@ -3,11 +3,6 @@
 
 MidiEventsManager::MidiEventsManager()
 {
-     midiIn.listPorts();
-     midiIn.openPort(0);
-
-     midiIn.addListener(this);
-     midiIn.setVerbose(true);
 
 }
 
@@ -45,14 +40,4 @@ map<ofxMidiEventArgs*, string> MidiEventsManager::getMidiEvents(){
     return events;
 }
 
-//midiIn events
-void MidiEventsManager::newMessage(int _port, int _id, int _value, double _timestamp){
-	cout<<"MidiEventsManager::newMessage";
-}
-
-
-void MidiEventsManager::newMidiMessage(ofxMidiEventArgs& eventArgs){
-    	cout<<"MidiEventsManager::newMidiMessage"<<eventArgs.id <<" "<< eventArgs.value  << '\n';
-
-}
 

@@ -5,9 +5,10 @@
 using namespace gui;
 
 //! [0]
-midiEffectItem::midiEffectItem(string idEffect , char keyid)
+midiEffectItem::midiEffectItem(string idEffect , int id, int value)
 {
-    this->key = keyid;
+    this->id = id;
+    this->value = value;
     this->idEffect = idEffect;
 
 }
@@ -49,6 +50,8 @@ bool midiEffectItem::setData(int column, const QVariant &value)
 }
 //! [11]
 
-char midiEffectItem::getItemData(){
-    return this->key;
+int midiEffectItem::getItemData(){
+    return this->id;
 }
+
+

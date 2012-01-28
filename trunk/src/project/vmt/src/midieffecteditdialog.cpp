@@ -12,9 +12,11 @@ midiEffecteditdialog::midiEffecteditdialog(VmtModel *vmtModel)
 {
     this->vmtModel = vmtModel;
 
-    idLineEdit = new QLineEdit();
-    idKeyEdit = new QLineEdit();
 
+    idEffectEdit = new QLineEdit();
+    idMidiEdit = new QLineEdit();
+
+    valueMidiEdit = new QLineEdit();
 
     loadData();
 
@@ -53,8 +55,9 @@ void midiEffecteditdialog::createFormGroupBox()
 {
     formGroupBox = new QGroupBox(tr("Add"));
     QFormLayout *layout = new QFormLayout;
-    layout->addRow(new QLabel(tr("Id/Efect:")), idLineEdit);
-    layout->addRow(new QLabel(tr("Id MIDI:")), idKeyEdit);
+    layout->addRow(new QLabel(tr("Id/Efect:")), idEffectEdit);
+    layout->addRow(new QLabel(tr("Id MIDI:")), idMidiEdit);
+    layout->addRow(new QLabel(tr("Value MIDI:")), valueMidiEdit);
 
     formGroupBox->setLayout(layout);
 }
@@ -66,8 +69,6 @@ void midiEffecteditdialog::loadData(){
 
 
 void midiEffecteditdialog::acceptPressed(){
-    char key;// =((idKeyEdit->text()).toStdString()).c_ctr()[0];
-    this->vmtModel->addKeyEvent(key, (idLineEdit->text()).toStdString());
     emit dataChanged();
     hide();
 }
@@ -78,4 +79,15 @@ void midiEffecteditdialog::rejectPressed(){
 }
 
 void midiEffecteditdialog::undoChanges(){
+}
+
+void midiEffecteditdialog::newMidiMessage(ofxMidiEventArgs& eventArgs){
+    cout<<"midiEffecteditdialog::newMidiMessage"<<eventArgs.id <<" "<< eventArgs.value  << '\n';
+    idMidiEdit->setText(QString(eventArgs.id));
+    valueMidiEdit->setText(QString(eventArgs.value));
+
+    cout<<"midiEffecteditdialog::datos"<<idMidiEdit->text().toInt()<<" "<< valueMidiEdit->text().toInt()  << '\n';
+
+
+
 }

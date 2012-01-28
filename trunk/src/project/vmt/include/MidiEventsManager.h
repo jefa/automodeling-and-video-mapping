@@ -5,12 +5,11 @@
 
 #include <string>
 #include <map>
-#include "..\addons\ofxMidiIn\src\ofxMidiIn.h"
 #include "..\addons\ofxMidiIn\events\ofxMidiEvents.h"
 
 using namespace std;
 
-class MidiEventsManager : public ISerializable, ofxMidiListener{
+class MidiEventsManager : public ISerializable{
 
     public:
         MidiEventsManager();
@@ -23,13 +22,9 @@ class MidiEventsManager : public ISerializable, ofxMidiListener{
 
         virtual SerializedNode* Serialize();
 
-    protected:
-        //midiIn events
-        void newMessage(int port, int id, int value, double timestamp);
-		void newMidiMessage(ofxMidiEventArgs& eventArgs);
 
     private:
-        ofxMidiIn	midiIn;
+
         map<ofxMidiEventArgs*, string> events;
 };
 
