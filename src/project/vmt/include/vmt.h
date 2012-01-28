@@ -11,10 +11,12 @@
 #include "evteffectslistwindow.h"
 #include "keyeffectslistwindow.h"
 #include "timeline.h"
+#include "..\addons\ofxMidiIn\src\ofxMidiIn.h"
+#include "..\addons\ofxMidiIn\events\ofxMidiEvents.h"
 
 using namespace gui;
 
-class Vmt : public ofBaseApp {
+class Vmt : public ofBaseApp, ofxMidiListener {
 
 	public:
         Vmt();
@@ -23,7 +25,12 @@ class Vmt : public ofBaseApp {
 		void update();
 		void draw();
 
+		void addMidiListener(ofxMidiListener *listener);
+
 		void keyPressed(int key);
+
+        //midiIn events
+		void newMidiMessage(ofxMidiEventArgs& eventArgs);
 		void keyReleased(int key);
 		void mouseMoved(int x, int y );
 		void mouseDragged(int x, int y, int button);
@@ -34,6 +41,7 @@ class Vmt : public ofBaseApp {
         float camX, camY, camZ;
 
     private:
+        ofxMidiIn	midiIn;
         VmtModel *vmtModel;
         TreeWindow *treeWindow;
         EffectsListWindow *effectsWindow;

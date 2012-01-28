@@ -5,9 +5,15 @@
 
 #include "vmt.h"
 #include <map>
+
 //--------------------------------------------------------------
 
 Vmt::Vmt() : ofBaseApp() {
+     midiIn.listPorts();
+     midiIn.openPort(0);
+
+     addMidiListener(this);
+     midiIn.setVerbose(true);
 }
 
 void Vmt::setup(){
@@ -75,6 +81,27 @@ void Vmt::keyPressed(int key){
         vmtModel->activateCamera("cam2");
 }
 
+//--------------------------------------------------------------
+void Vmt::newMidiMessage(ofxMidiEventArgs& eventArgs){
+    	cout<<"MidiEventsManager::newMidiMessage"<<eventArgs.id <<" "<< eventArgs.value  << '\n';
+    ofxMidiEventArgs * msg = new ofxMidiEventArgs();
+    msg->channel = eventArgs.channel;
+    msg->id = eventArgs.id;
+    msg->msgType = eventArgs.msgType;
+    msg->port = eventArgs.port;
+    msg->timestamp = eventArgs.timestamp;
+    msg->value = eventArgs.value;
+    vmtModel->testEffect("ef1"/*efecto 1 hardcode*/);
+    if (vmtModel->hasMidiEvent(msg)) {
+        vmtModel->testEffect(vmtModel->getEffectIdForMidiEvent(msg));
+    }
+
+}
+//--------------------------------------------------------------
+
+void Vmt::addMidiListener(ofxMidiListener *listener){
+    midiIn.addListener(listener);
+}
 //--------------------------------------------------------------
 void Vmt::keyReleased(int key){
 }

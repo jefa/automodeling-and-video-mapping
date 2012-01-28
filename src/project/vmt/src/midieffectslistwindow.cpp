@@ -22,6 +22,14 @@ midiEffectsListWindow::midiEffectsListWindow(VmtModel *vmtModel)
     connect(newEffectAction, SIGNAL(clicked()), this, SLOT(newEffect()));
     connect(removeEffectAction, SIGNAL(clicked()), this, SLOT(removeEffect()));
 
+    midiIn.listPorts();
+    cout<<"midiEffectsListWindow::abrir puerto";
+    midiIn.openPort(1);
+
+    addMidiListener(this);
+    midiIn.setVerbose(true);
+
+
 }
 
 midiEffectsListWindow::~midiEffectsListWindow()
@@ -104,4 +112,12 @@ void midiEffectsListWindow::effectsChanged(){
     model->setupModelData();
     view->update();
     this->repaint();
+}
+void midiEffectsListWindow::newMidiMessage(ofxMidiEventArgs& eventArgs){
+    cout<<"midiEffectsListWindow::newMidiMessage"<<eventArgs.id <<" "<< eventArgs.value  << '\n';
+    midieffecteditdialog->newMidiMessage(eventArgs);
+
+}
+void midiEffectsListWindow::addMidiListener(ofxMidiListener *listener){
+    midiIn.addListener(listener);
 }

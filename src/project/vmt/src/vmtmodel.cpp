@@ -849,6 +849,9 @@ map<float, string> VmtModel::getEvtEffects() {
 map<char, string> VmtModel::getKeyEffects() {
     return keyEventsManager->getKeyEvents();
 }
+map<ofxMidiEventArgs*, string> VmtModel::getMidiEffects() {
+    return midiEventsManager->getMidiEvents();
+}
 void VmtModel::scheduleEvent(float time, string effectId) {
     timeManager->ScheduleEvent(time, effectId);
 }
@@ -864,7 +867,15 @@ bool VmtModel::hasKeyEvent(char keyId) {
 string VmtModel::getEffectIdForKeyEvent(char keyId) {
     return keyEventsManager->getEffectId(keyId);
 }
-
+bool VmtModel::hasMidiEvent(ofxMidiEventArgs* MidiMsg) {
+    return midiEventsManager->hasMidiEvent(MidiMsg);
+}
+void VmtModel::addMidiEvent(ofxMidiEventArgs * MidiMsg, string effectId) {
+    midiEventsManager->addMidiEvent(MidiMsg, effectId);
+}
+string VmtModel::getEffectIdForMidiEvent(ofxMidiEventArgs * MidiMsg) {
+    return midiEventsManager->getEffectId(MidiMsg);
+}
 void VmtModel::startTimeManager(TIMER_MODE mode) {
     timeManager->Start(mode);
 }

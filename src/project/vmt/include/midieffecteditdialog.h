@@ -2,6 +2,7 @@
 #define MIDIEFFECTEDITDIALOG_H
 
 #include <vmtmodel.h>
+#include "..\addons\ofxMidiIn\events\ofxMidiEvents.h"
 
 #include <QDoubleSpinBox>
 #include <QAction>
@@ -24,12 +25,13 @@ using namespace std;
 namespace gui {
 
 //! [0]
-class midiEffecteditdialog : public QWidget
+class midiEffecteditdialog : public QWidget, ofxMidiListener
 {
     Q_OBJECT
 
 public:
     midiEffecteditdialog(VmtModel *vmtModel);
+    void newMidiMessage(ofxMidiEventArgs& eventArgs);
 
 private slots:
     void acceptPressed();
@@ -44,7 +46,7 @@ private:
     void loadData();
     void undoChanges();
 
-    enum { NumGridRows = 2, NumButtons = 2 };
+    enum { NumGridRows = 3, NumButtons = 2 };
 
     QGroupBox *formGroupBox;
     QLabel *labels[NumGridRows];
@@ -53,9 +55,12 @@ private:
     QDialogButtonBox *buttonBox;
 
     VmtModel *vmtModel;
-    QLineEdit *idKeyEdit;
-    QLineEdit *idLineEdit;
 
+    QLineEdit *idEffectEdit;
+    QLineEdit *idMidiEdit;
+    QLineEdit *valueMidiEdit;
+
+    ofxMidiEventArgs * MidiMsg;
 
 };
 //! [0]
