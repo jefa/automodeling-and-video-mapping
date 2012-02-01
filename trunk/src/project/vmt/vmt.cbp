@@ -40,9 +40,11 @@
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-O2" />
+					<Add option="-g" />
 					<Add directory="C:\Qt\2010.05\qt\include" />
 					<Add directory="C:\Qt\2010.05\qt\include\QtGui" />
 					<Add directory="C:\Qt\2010.05\qt\include\QtCore" />
+					<Add directory="C:\Qt\2010.05\qt\bin" />
 				</Compiler>
 				<Linker>
 					<Add option="-s" />

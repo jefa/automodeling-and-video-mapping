@@ -54,7 +54,7 @@ private:
 
     VmtModel *vmtModel;
     QLineEdit *idKeyEdit;
-    QLineEdit *idLineEdit;
+    QComboBox *idLineEdit;
 
 
 };

@@ -18,7 +18,7 @@ evtEffecteditdialog::evtEffecteditdialog(VmtModel *vmtModel)
     TimeBox->setSingleStep(1);
     TimeBox->setMaximumWidth(70);
 
-    idLineEdit = new QLineEdit();
+    idLineEdit = new QComboBox();
 
 
 
@@ -67,6 +67,11 @@ void evtEffecteditdialog::createFormGroupBox()
 //! [12]
 
 void evtEffecteditdialog::loadData(){
+    map<string, Effect*>::iterator effectsIt;
+    map<string, Effect*> effectsMap = this->vmtModel->getEffects();
+    for(effectsIt = effectsMap.begin(); effectsIt != effectsMap.end(); effectsIt++) {
+        idLineEdit->addItem(QString(effectsIt->second->getId().c_str()),QString(effectsIt->second->getId().c_str()));
+    }
 
 }
 
@@ -74,7 +79,7 @@ void evtEffecteditdialog::loadData(){
 void evtEffecteditdialog::acceptPressed(){
     float timeShedule;
     timeShedule = TimeBox->value();
-    this->vmtModel->scheduleEvent(timeShedule, (idLineEdit->text()).toStdString());
+    this->vmtModel->scheduleEvent(timeShedule, (idLineEdit->currentText()).toStdString());
 
     emit dataChanged();
 
