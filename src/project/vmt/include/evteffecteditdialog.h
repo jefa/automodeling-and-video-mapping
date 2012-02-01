@@ -53,7 +53,7 @@ private:
 
     VmtModel *vmtModel;
     QDoubleSpinBox *TimeBox;
-    QLineEdit *idLineEdit;
+    QComboBox *idLineEdit;
 
 
 };

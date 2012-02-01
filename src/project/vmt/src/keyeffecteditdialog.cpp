@@ -12,7 +12,7 @@ keyEffecteditdialog::keyEffecteditdialog(VmtModel *vmtModel)
 {
     this->vmtModel = vmtModel;
 
-    idLineEdit = new QLineEdit();
+    idLineEdit = new QComboBox();
     idKeyEdit = new QLineEdit();
 
 
@@ -61,13 +61,17 @@ void keyEffecteditdialog::createFormGroupBox()
 //! [12]
 
 void keyEffecteditdialog::loadData(){
-
+    map<string, Effect*>::iterator effectsIt;
+    map<string, Effect*> effectsMap = this->vmtModel->getEffects();
+    for(effectsIt = effectsMap.begin(); effectsIt != effectsMap.end(); effectsIt++) {
+        idLineEdit->addItem(QString(effectsIt->second->getId().c_str()),QString(effectsIt->second->getId().c_str()));
+    }
 }
 
 
 void keyEffecteditdialog::acceptPressed(){
     char key;// =((idKeyEdit->text()).toStdString()).c_ctr()[0];
-    this->vmtModel->addKeyEvent(key, (idLineEdit->text()).toStdString());
+    this->vmtModel->addKeyEvent(key, (idLineEdit->currentText()).toStdString());
     emit dataChanged();
     hide();
 }

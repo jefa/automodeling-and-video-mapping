@@ -12,8 +12,8 @@ midiEffecteditdialog::midiEffecteditdialog(VmtModel *vmtModel)
 {
     this->vmtModel = vmtModel;
 
+    idEffectEdit = new QComboBox();
 
-    idEffectEdit = new QLineEdit();
     idMidiEdit = new QLineEdit();
 
     valueMidiEdit = new QLineEdit();
@@ -65,10 +65,28 @@ void midiEffecteditdialog::createFormGroupBox()
 
 void midiEffecteditdialog::loadData(){
 
+
+    //idEffectEdit->setEditable(true);
+
+    map<string, Effect*>::iterator effectsIt;
+    map<string, Effect*> effectsMap = this->vmtModel->getEffects();
+    for(effectsIt = effectsMap.begin(); effectsIt != effectsMap.end(); effectsIt++) {
+        idEffectEdit->addItem(QString(effectsIt->second->getId().c_str()),QString(effectsIt->second->getId().c_str()));
+    }
+
 }
 
 
 void midiEffecteditdialog::acceptPressed(){
+    ofxMidiEventArgs * MidiMsg = new ofxMidiEventArgs();
+    MidiMsg->channel = 0;
+    MidiMsg->id = idMidiEdit->text().toInt();
+    MidiMsg->msgType = 0;
+    MidiMsg->port = 0 ;
+    MidiMsg->timestamp = 0;
+    MidiMsg->value = valueMidiEdit->text().toInt();
+
+    this->vmtModel->addMidiEvent(MidiMsg,(idEffectEdit->currentText()).toStdString());
     emit dataChanged();
     hide();
 }
@@ -87,7 +105,4 @@ void midiEffecteditdialog::newMidiMessage(ofxMidiEventArgs& eventArgs){
     valueMidiEdit->setText(QString(eventArgs.value));
 
     cout<<"midiEffecteditdialog::datos"<<idMidiEdit->text().toInt()<<" "<< valueMidiEdit->text().toInt()  << '\n';
-
-
-
 }
