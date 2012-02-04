@@ -70,8 +70,9 @@ void keyEffecteditdialog::loadData(){
 
 
 void keyEffecteditdialog::acceptPressed(){
-    char key;// =((idKeyEdit->text()).toStdString()).c_ctr()[0];
-    this->vmtModel->addKeyEvent(key, (idLineEdit->currentText()).toStdString());
+    char * key;
+    key =((idKeyEdit->text()).toLocal8Bit()).data() ;
+    this->vmtModel->addKeyEvent(key[0], (idLineEdit->currentText()).toStdString());
     emit dataChanged();
     hide();
 }
