@@ -25,12 +25,12 @@ void midiEffectsListModel::setupModelData()
 {
     //beginInsertRows();
     this->listItems.clear();
-    map<char, string>::iterator midieffectsIt;
-    /*map<char, string> midieffectsMap = this->vmtModel->getMidiEffects();
-    for(keyeffectsIt = keyeffectsMap.begin(); keyeffectsIt != keyeffectsMap.end(); keyeffectsIt++) {
-        keyEffectItem *lItem = new keyEffectItem(keyeffectsIt->second, keyeffectsIt->first);
+    map<ofxMidiEventArgs*, string>::iterator midieffectsIt;
+    map<ofxMidiEventArgs*, string> midieffectsMap = this->vmtModel->getMidiEffects();
+    for(midieffectsIt = midieffectsMap.begin(); midieffectsIt != midieffectsMap.end(); midieffectsIt++) {
+        midiEffectItem *lItem = new midiEffectItem(midieffectsIt->second, midieffectsIt->first->id ,midieffectsIt->first->value );
         this->listItems.push_back(lItem);
-    }*/
+    }
     emit layoutChanged();
     //endInsertRows();
 }
