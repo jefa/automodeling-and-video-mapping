@@ -57,6 +57,7 @@ void keyEffecteditdialog::createFormGroupBox()
     layout->addRow(new QLabel(tr("Id Key:")), idKeyEdit);
 
     formGroupBox->setLayout(layout);
+    idKeyEdit->setMaxLength(1);
 }
 //! [12]
 
@@ -70,9 +71,9 @@ void keyEffecteditdialog::loadData(){
 
 
 void keyEffecteditdialog::acceptPressed(){
-    char * key;
-    key =((idKeyEdit->text()).toLocal8Bit()).data() ;
-    this->vmtModel->addKeyEvent(key[0], (idLineEdit->currentText()).toStdString());
+    char key;
+    key =((idKeyEdit->text()).toLatin1())[0] ;
+    this->vmtModel->addKeyEvent(key, (idLineEdit->currentText()).toStdString());
     emit dataChanged();
     hide();
 }
@@ -83,4 +84,10 @@ void keyEffecteditdialog::rejectPressed(){
 }
 
 void keyEffecteditdialog::undoChanges(){
+}
+
+void keyEffecteditdialog::Init(char key, string effectId){
+
+    idKeyEdit->setText(QString(key));
+    idLineEdit->setCurrentIndex(idLineEdit->findText(QString(effectId.c_str()),0) );
 }
