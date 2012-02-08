@@ -30,6 +30,7 @@ class keyEffecteditdialog : public QWidget
 
 public:
     keyEffecteditdialog(VmtModel *vmtModel);
+    void Init (char key, string effectId);
 
 private slots:
     void acceptPressed();

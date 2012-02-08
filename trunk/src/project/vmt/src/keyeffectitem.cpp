@@ -52,3 +52,7 @@ bool keyEffectItem::setData(int column, const QVariant &value)
 char keyEffectItem::getItemData(){
     return this->key;
 }
+
+string keyEffectItem::getIdEffect(){
+    return this->idEffect;
+}

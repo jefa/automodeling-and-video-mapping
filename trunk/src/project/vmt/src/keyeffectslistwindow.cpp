@@ -79,8 +79,8 @@ void keyEffectsListWindow::clickedList(const QModelIndex &index)
 
 void keyEffectsListWindow::doubleClickedList(const QModelIndex &index)
 {
-
     keyeffecteditdialog->show();
+    keyeffecteditdialog->Init(this->selectedItem->getItemData(),this->selectedItem->getIdEffect());
 }
 
 void keyEffectsListWindow::newEffect(){
