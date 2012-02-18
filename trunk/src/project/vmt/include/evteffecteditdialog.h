@@ -30,6 +30,7 @@ class evtEffecteditdialog : public QWidget
 
 public:
     evtEffecteditdialog(VmtModel *vmtModel);
+    void Init(float time, string effectId);
 
 private slots:
     void acceptPressed();
@@ -42,6 +43,7 @@ private:
     void createFormGroupBox();
     void loadData();
     void undoChanges();
+
 
     enum { NumGridRows = 2, NumButtons = 2 };
 

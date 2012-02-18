@@ -53,5 +53,9 @@ bool midiEffectItem::setData(int column, const QVariant &value)
 int midiEffectItem::getItemData(){
     return this->id;
 }
-
-
+string midiEffectItem::getIdEffect(){
+    return this->idEffect;
+}
+int midiEffectItem::getValueData(){
+    return this->value;
+}

@@ -75,11 +75,13 @@ class VmtModel : public ISceneHandler
 
         void scheduleEvent(float time, string effectId);
         void startTimeManager(TIMER_MODE mode);
-
+        void removeTimeEvent(float time, string effectId);
         void addKeyEvent(char keyId, string effectId);
+        void removeKeyEvent(char keyId, string effectId);
         bool hasKeyEvent(char keyId);
         string getEffectIdForKeyEvent(char keyId);
         void addMidiEvent(ofxMidiEventArgs * MidiMsg, string effectId);
+        void removeMidiEvent(ofxMidiEventArgs * MidiMsg, string effectId);
         bool hasMidiEvent(ofxMidiEventArgs * MidiMsg);
         string getEffectIdForMidiEvent(ofxMidiEventArgs * MidiMsg);
 

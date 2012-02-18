@@ -98,7 +98,7 @@ void evtEffectsListWindow::setupUi(QWidget *listWindow)
 
 void evtEffectsListWindow::retranslateUi(QWidget *listWindow)
 {
-    listWindow->setWindowTitle(QApplication::translate("listWindow2", "TimeEvents-Effects", 0, QApplication::UnicodeUTF8));
+    listWindow->setWindowTitle(QApplication::translate("listWindow2", "Events-Effects", 0, QApplication::UnicodeUTF8));
 
     newEffectAction->setText(QApplication::translate("treeWindow", "New", 0, QApplication::UnicodeUTF8));
     removeEffectAction->setText(QApplication::translate("treeWindow", "Remove", 0, QApplication::UnicodeUTF8));
@@ -117,18 +117,23 @@ void evtEffectsListWindow::doubleClickedList(const QModelIndex &index)
 {
 
     evteffecteditdialog->show();
+    evteffecteditdialog->Init(this->selectedItem->getItemData(),this->selectedItem->getIdEffect());
+    effectsChanged();
 }
 
 void evtEffectsListWindow::newEffect(){
 
     evteffecteditdialog->show();
-
-
 }
 
 void evtEffectsListWindow::removeEffect(){
     if (this->selectedItem == NULL)
         return;
+    evtEffectsListModel *model = (evtEffectsListModel*) view->model();
+    model->removeTimeEffect(this->selectedItem->getItemData(),this->selectedItem->getIdEffect());
+
+    view->update();
+    this->repaint();
 }
 
 

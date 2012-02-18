@@ -52,3 +52,6 @@ bool evtEffectItem::setData(int column, const QVariant &value)
 float evtEffectItem::getItemData(){
     return this->evtTime;
 }
+string evtEffectItem::getIdEffect(){
+    return this->idEffect;
+}

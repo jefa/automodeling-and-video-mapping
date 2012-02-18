@@ -83,3 +83,9 @@ int midiEffectsListModel::columnCount(const QModelIndex & parent ) const
 {
     return 1;
 }
+void midiEffectsListModel::removeMidiEffect(ofxMidiEventArgs * MidiMsg, string effectId){
+
+    this->vmtModel->removeMidiEvent(MidiMsg,effectId);
+    setupModelData();
+}
+

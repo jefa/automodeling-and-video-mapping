@@ -41,6 +41,15 @@ void TimeManager::ScheduleEvent(float time, string effectId) {
     if (time > totalAnimTime)
         totalAnimTime = time + 1; //add one second to the last added event
 }
+void TimeManager::removeTimeEvent(float time, string effectId) {
+    map<float, string>::iterator timeeffectsIt;
+    for(timeeffectsIt = events.begin(); timeeffectsIt != events.end(); timeeffectsIt++) {
+        if (timeeffectsIt->second == effectId & timeeffectsIt->first == time) {
+            events.erase(timeeffectsIt);
+            return;
+        }
+    }
+}
 
 map<float, string> TimeManager::getScheduleEvents() {
     return events;

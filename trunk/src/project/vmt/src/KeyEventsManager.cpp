@@ -12,8 +12,19 @@ KeyEventsManager::~KeyEventsManager()
 
 void KeyEventsManager::addKeyEvent(char key, string effectId) {
     events.insert(pair<char,string>(key,effectId));
+    map<char, string>::iterator keyeffectsIt;
+    for(keyeffectsIt = events.begin(); keyeffectsIt != events.end(); keyeffectsIt++) {
+    cout << (*keyeffectsIt).first << " => " << (*keyeffectsIt).second << endl;}
 }
-
+void KeyEventsManager::removeKeyEvent(char key, string effectId) {
+    map<char, string>::iterator keyeffectsIt;
+    for(keyeffectsIt = events.begin(); keyeffectsIt != events.end(); keyeffectsIt++) {
+        if (keyeffectsIt->second == effectId & keyeffectsIt->first == key) {
+            events.erase(keyeffectsIt);
+            return;
+        }
+    }
+}
 bool KeyEventsManager::hasKeyEvent(char key) {
     return events.count(key) > 0;
 }
