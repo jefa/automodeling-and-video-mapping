@@ -27,6 +27,7 @@ public:
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const ;
     int columnCount(const QModelIndex &parent = QModelIndex()) const ;
+    void removeTimeEffect(float time, string effectId);
 
     evtEffectItem *getItem(const QModelIndex &index) const;
     VmtModel *getVmtModel();

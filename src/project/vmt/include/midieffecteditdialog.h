@@ -32,6 +32,7 @@ class midiEffecteditdialog : public QWidget, ofxMidiListener
 public:
     midiEffecteditdialog(VmtModel *vmtModel);
     void newMidiMessage(ofxMidiEventArgs& eventArgs);
+    void Init(ofxMidiEventArgs* Msg, string IdEffect);
 
 private slots:
     void acceptPressed();
@@ -57,8 +58,8 @@ private:
     VmtModel *vmtModel;
 
     QComboBox *idEffectEdit;
-    QLineEdit *idMidiEdit;
-    QLineEdit *valueMidiEdit;
+    QDoubleSpinBox *idMidiEdit;
+    QDoubleSpinBox *valueMidiEdit;
 
     ofxMidiEventArgs * MidiMsg;
 

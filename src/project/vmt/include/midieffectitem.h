@@ -20,6 +20,8 @@ public:
     QVariant data(int column) /*const*/;
     bool setData(int column, const QVariant &value);
     int getItemData();
+    string getIdEffect();
+    int getValueData();
 
 
 private:

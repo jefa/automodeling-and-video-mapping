@@ -93,3 +93,8 @@ void evtEffecteditdialog::rejectPressed(){
 
 void evtEffecteditdialog::undoChanges(){
 }
+void evtEffecteditdialog::Init(float time, string effectId){
+
+    TimeBox->setValue(time);
+    idLineEdit->setCurrentIndex(idLineEdit->findText(QString(effectId.c_str()),0) );
+}

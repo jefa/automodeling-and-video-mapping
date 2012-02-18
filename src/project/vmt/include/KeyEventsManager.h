@@ -14,6 +14,7 @@ class KeyEventsManager : public ISerializable
         virtual ~KeyEventsManager();
 
         void addKeyEvent(char key, string effectId);
+        void removeKeyEvent(char key, string effectId);
         bool hasKeyEvent(char key);
         string getEffectId(char key);
         map<char, string> getKeyEvents();

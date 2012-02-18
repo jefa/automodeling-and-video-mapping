@@ -81,6 +81,8 @@ void keyEffectsListWindow::doubleClickedList(const QModelIndex &index)
 {
     keyeffecteditdialog->show();
     keyeffecteditdialog->Init(this->selectedItem->getItemData(),this->selectedItem->getIdEffect());
+    effectsChanged();
+
 }
 
 void keyEffectsListWindow::newEffect(){
@@ -92,6 +94,12 @@ void keyEffectsListWindow::newEffect(){
 void keyEffectsListWindow::removeEffect(){
     if (this->selectedItem == NULL)
         return;
+    keyEffectsListModel *model = (keyEffectsListModel*) view->model();
+    model->removeKeyEffect(this->selectedItem->getItemData(),this->selectedItem->getIdEffect());
+
+    view->update();
+    this->repaint();
+
 }
 
 

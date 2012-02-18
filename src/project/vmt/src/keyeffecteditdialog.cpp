@@ -72,8 +72,10 @@ void keyEffecteditdialog::loadData(){
 
 void keyEffecteditdialog::acceptPressed(){
     char key;
-    key =((idKeyEdit->text()).toLatin1())[0] ;
-    this->vmtModel->addKeyEvent(key, (idLineEdit->currentText()).toStdString());
+    string effectId;
+    key =((idKeyEdit->text()).toLatin1())[0];
+    effectId = (idLineEdit->currentText()).toStdString();
+    this->vmtModel->addKeyEvent(key, effectId);
     emit dataChanged();
     hide();
 }

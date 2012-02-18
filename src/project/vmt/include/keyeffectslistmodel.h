@@ -32,6 +32,7 @@ public:
     VmtModel *getVmtModel();
 
     void setupModelData();
+    void removeKeyEffect(char key, string effectId);
 
 private:
     VmtModel *vmtModel;

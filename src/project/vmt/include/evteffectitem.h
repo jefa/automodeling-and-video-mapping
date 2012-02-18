@@ -21,6 +21,7 @@ public:
     QVariant data(int column) /*const*/;
     bool setData(int column, const QVariant &value);
     float getItemData();
+    string getIdEffect();
 
 private:
     float evtTime;

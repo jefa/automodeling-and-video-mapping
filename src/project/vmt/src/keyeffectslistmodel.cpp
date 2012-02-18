@@ -2,6 +2,7 @@
 #include <QVariant>
 #include "keyeffectslistmodel.h"
 
+
 using namespace gui;
 
 //! [0]
@@ -82,4 +83,9 @@ int keyEffectsListModel::rowCount(const QModelIndex &parent) const
 int keyEffectsListModel::columnCount(const QModelIndex & parent ) const
 {
     return 1;
+}
+void keyEffectsListModel::removeKeyEffect(char key, string effectId){
+
+    this->vmtModel->removeKeyEvent(key,effectId);
+    setupModelData();
 }

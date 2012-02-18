@@ -14,7 +14,16 @@ MidiEventsManager::~MidiEventsManager()
 void MidiEventsManager::addMidiEvent(ofxMidiEventArgs*	msg, string effectId) {
     events.insert(pair<ofxMidiEventArgs*,string>(msg,effectId));
 }
-
+void MidiEventsManager::removeMidiEvent(ofxMidiEventArgs*	msg, string effectId) {
+    map<ofxMidiEventArgs*, string>::iterator midieffectsIt;
+    int count =events.size();
+    for(midieffectsIt = events.begin(); midieffectsIt != events.end(); midieffectsIt++) {
+        if (midieffectsIt->second == effectId & midieffectsIt->first->id == msg->id & midieffectsIt->first->value == msg->value) {
+            events.erase(midieffectsIt);
+            return;
+        }
+    }
+}
 bool MidiEventsManager::hasMidiEvent(ofxMidiEventArgs* msg) {
     return events.count(msg) > 0;
 }

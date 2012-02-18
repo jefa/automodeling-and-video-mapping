@@ -83,3 +83,8 @@ int evtEffectsListModel::columnCount(const QModelIndex & parent ) const
 {
     return 1;
 }
+void evtEffectsListModel::removeTimeEffect(float time, string effectId){
+
+    this->vmtModel->removeTimeEvent(time,effectId);
+    setupModelData();
+}

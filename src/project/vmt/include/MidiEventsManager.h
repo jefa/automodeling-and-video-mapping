@@ -16,6 +16,7 @@ class MidiEventsManager : public ISerializable{
         virtual ~MidiEventsManager();
 
         void addMidiEvent(ofxMidiEventArgs*	msg, string effectId);
+        void removeMidiEvent(ofxMidiEventArgs*	msg, string effectId);
         bool hasMidiEvent(ofxMidiEventArgs*	msg);
         string getEffectId(ofxMidiEventArgs*	msg);
         map<ofxMidiEventArgs*, string> getMidiEvents();

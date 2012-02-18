@@ -87,8 +87,13 @@ void midiEffectsListWindow::clickedList(const QModelIndex &index)
 
 void midiEffectsListWindow::doubleClickedList(const QModelIndex &index)
 {
+    ofxMidiEventArgs* Msg = new ofxMidiEventArgs();
+    Msg->id = this->selectedItem->getItemData();
+    Msg->value = this->selectedItem->getValueData();
 
     midieffecteditdialog->show();
+    midieffecteditdialog->Init(Msg,this->selectedItem->getIdEffect());
+    effectsChanged();
 }
 
 void midiEffectsListWindow::newEffect(){
@@ -100,6 +105,15 @@ void midiEffectsListWindow::newEffect(){
 void midiEffectsListWindow::removeEffect(){
     if (this->selectedItem == NULL)
         return;
+    ofxMidiEventArgs* Msg = new ofxMidiEventArgs();
+    Msg->id = this->selectedItem->getItemData();
+    Msg->value = this->selectedItem->getValueData();
+
+    midiEffectsListModel *model = (midiEffectsListModel*) view->model();
+    model->removeMidiEffect(Msg,this->selectedItem->getIdEffect());
+
+    view->update();
+    this->repaint();
 }
 
 

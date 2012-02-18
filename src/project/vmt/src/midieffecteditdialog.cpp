@@ -14,10 +14,13 @@ midiEffecteditdialog::midiEffecteditdialog(VmtModel *vmtModel)
 
     idEffectEdit = new QComboBox();
 
-    idMidiEdit = new QLineEdit();
+    idMidiEdit = new QDoubleSpinBox();
+    idMidiEdit->setDecimals(0);
+    idMidiEdit->setMaximum(9999999999);
 
-    valueMidiEdit = new QLineEdit();
-
+    valueMidiEdit = new QDoubleSpinBox();
+    valueMidiEdit->setDecimals(0);
+    valueMidiEdit->setMaximum(9999999999);
     loadData();
 
     createFormGroupBox();
@@ -65,9 +68,6 @@ void midiEffecteditdialog::createFormGroupBox()
 
 void midiEffecteditdialog::loadData(){
 
-
-    //idEffectEdit->setEditable(true);
-
     map<string, Effect*>::iterator effectsIt;
     map<string, Effect*> effectsMap = this->vmtModel->getEffects();
     for(effectsIt = effectsMap.begin(); effectsIt != effectsMap.end(); effectsIt++) {
@@ -101,8 +101,14 @@ void midiEffecteditdialog::undoChanges(){
 
 void midiEffecteditdialog::newMidiMessage(ofxMidiEventArgs& eventArgs){
     cout<<"midiEffecteditdialog::newMidiMessage"<<eventArgs.id <<" "<< eventArgs.value  << '\n';
-    idMidiEdit->setText(QString(eventArgs.id));
-    valueMidiEdit->setText(QString(eventArgs.value));
+    idMidiEdit->setValue(eventArgs.id);
+    valueMidiEdit->setValue(eventArgs.value);
 
     cout<<"midiEffecteditdialog::datos"<<idMidiEdit->text().toInt()<<" "<< valueMidiEdit->text().toInt()  << '\n';
 }
+ void midiEffecteditdialog::Init(ofxMidiEventArgs* Msg, string IdEffect){
+
+     idEffectEdit->setCurrentIndex(idEffectEdit->findText(QString(IdEffect.c_str()),0) );
+     idMidiEdit->setValue(Msg->id);
+     valueMidiEdit->setValue(Msg->value);
+ }
