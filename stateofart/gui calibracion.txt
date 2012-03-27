@@ -13,4 +13,3 @@ a la superficie a proyectar.
 
 Esta transformacón que se aplica se denomina homografía. NOTA AL PIE: Una homografía es toda transformación proyectiva que determina una correspondencia
 entre dos figuras geométricas planas, de forma que a cada uno de los puntos y las rectas de una de ellas le corresponden, respectivamente, un punto y una recta de la otra.
-

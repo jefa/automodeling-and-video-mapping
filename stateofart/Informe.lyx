@@ -16,16 +16,23 @@
 \font_tt_scale 100
 
 \graphics default
-\paperfontsize default
+\paperfontsize 12
 \spacing single
 \use_hyperref false
 \papersize default
-\use_geometry false
+\use_geometry true
 \use_amsmath 1
 \use_esint 1
 \cite_engine basic
 \use_bibtopic false
 \paperorientation portrait
+\leftmargin 2cm
+\topmargin 4cm
+\rightmargin 2cm
+\bottommargin 2cm
+\headheight 1cm
+\headsep 1cm
+\footskip 1cm
 \secnumdepth 3
 \tocdepth 3
 \paragraph_separation indent
@@ -43,33 +50,19 @@
 \begin_body
 
 \begin_layout Title
-\begin_inset Box Frameless
-position "t"
-hor_pos "c"
-has_inner_box 1
-inner_pos "t"
-use_parbox 0
-width "100col%"
-special "none"
-height "1in"
-height_special "totalheight"
-status open
-
-\begin_layout Plain Layout
 Proyección sobre superficies irregulares
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
 \begin_layout Author
-Daniel Gomez de Souza, Javier Fradiletti, Adriana Soucoff
+Estudiantes:Daniel Gomez de Souza, Javier Fradiletti, Adriana Soucoff
 \end_layout
 
 \begin_layout Standard
 Tutor: Tomás Laurenzo
+\end_layout
+
+\begin_layout Standard
+Universidad de la República - Uruguay
 \end_layout
 
 \begin_layout Standard
@@ -111,12 +104,28 @@ Tradicionalmente el video mapping se realiza en forma manual (modelando
 \end_layout
 
 \begin_layout Abstract
-Como ejemplos de esto último citaremos a - Johnny Lee (Microsoft Research),
- Automatic Projector Calibration with Embedded Light Sensors 
+Como ejemplos de esto último citaremos a:
+\end_layout
+
+\begin_layout Abstract
+- Johnny Lee (Microsoft Research), Automatic Projector Calibration with
+ Embedded Light Sensors 
+\end_layout
+
+\begin_layout Abstract
+
 \color blue
 http://www.youtube.com/watch?v=XgrGjJUBF_I http://johnnylee.net/academic/proj4.pdf
 \color inherit
- - Kyle McDonald Structured Light 
+ 
+\end_layout
+
+\begin_layout Abstract
+- Kyle McDonald Structured Light 
+\end_layout
+
+\begin_layout Abstract
+
 \color blue
 http://vimeo.com/8392566
 \color inherit
@@ -130,6 +139,22 @@ El proyecto consiste en un estudio del estado del arte de las técnicas de
  video mapping y de modelado automático de geometrías, para luego implementar
  un producto que permita hacer ambas cosas (adquisición y proyección).
  
+\end_layout
+
+\begin_layout Abstract
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+\begin_inset CommandInset index_print
+LatexCommand printindex
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Abstract
