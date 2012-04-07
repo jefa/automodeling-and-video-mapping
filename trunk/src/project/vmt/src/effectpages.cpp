@@ -54,9 +54,9 @@ PositionEffectPage::PositionEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *
     //Delay panel
     QGroupBox *delayGroup = new QGroupBox(tr("Delay"));
     delaySpinBox = new QDoubleSpinBox;
-    delaySpinBox->setPrefix(tr("Start after "));
-    delaySpinBox->setSuffix(tr(" milliseconds"));
-    delaySpinBox->setSpecialValueText(tr("Start immediatelly"));
+    //delaySpinBox->setPrefix(tr("Start after "));
+    //delaySpinBox->setSuffix(tr(" milliseconds"));
+    //delaySpinBox->setSpecialValueText(tr("Start immediatelly"));
     delaySpinBox->setSingleStep(.5);
 
     QVBoxLayout *delayLayout = new QVBoxLayout;
@@ -192,9 +192,9 @@ FadeEffectPage::FadeEffectPage(VmtModel *vmtModel, Effect *ef, QWidget *parent)
     //Delay panel
     QGroupBox *delayGroup = new QGroupBox(tr("Delay"));
     delaySpinBox = new QDoubleSpinBox;
-    delaySpinBox->setPrefix(tr("Start after "));
-    delaySpinBox->setSuffix(tr(" milliseconds"));
-    delaySpinBox->setSpecialValueText(tr("Start immediatelly"));
+    //delaySpinBox->setPrefix(tr("Start after "));
+    //delaySpinBox->setSuffix(tr(" milliseconds"));
+    //delaySpinBox->setSpecialValueText(tr("Start immediatelly"));
     delaySpinBox->setSingleStep(.5);
 
     QVBoxLayout *delayLayout = new QVBoxLayout;
