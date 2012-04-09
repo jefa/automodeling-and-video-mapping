@@ -151,7 +151,12 @@ Luego de simplificar la nube de puntos se construye un modelo tridimensional a p
 Los dispositivos de captura de información tridimensional estudiados entregan la información en forma de nube de puntos (ref a Kyle, kinect  y Sensores del chino). Es por ello que previo a la manipulación de la información tridimensional, es necesario procesar dicha nube de puntos para convertirla a formatos más manejables, como por ejemplo mallas triangulares.
 Un típico procesamiento de malla, ya estudiado e implementado en bibliotecas como VcgLib o CGAL Error: Reference source not found: dada una nube de puntos de entrada, realizar un sub-muestreo y suavizado de la misma, calcular las normales en cada punto de la nube y finalmente, aplicar algoritmos de reconstrucción de malla.
 
-Figura: Típico flujo para el procesamiento de nubes de puntos (fuente: CGALError: Reference source not found)
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-flow.png}
+  \caption{Típico flujo para el procesamiento de nubes de puntos (fuente: CGAL\cite{CGAL})}
+  \label{fig:Mesh-CGAL}
+\end{figure}
 
 Para la implementación de este modulo, se utilizaron algoritmos incluidos en VcgLib. Para visualizar y evaluar los resultados esperados se utilizo la aplicación de código abierto para la manipulación de mallas tridimensionales en diferentes formatos MeshLab Error: Reference source not found. Particularmente, se utilizaron los algoritmos de muestreo Poisson-disk para reducir y normalizar los puntos de la malla inicial, Normal Extrapolation para el cálculo de normales y reconstrucción de superficies de Poisson para la reconstrucción de la malla final.
 
@@ -160,15 +165,27 @@ Para la implementación de este modulo, se utilizaron algoritmos incluidos en Vc
 El muestreo o sorteo de variables aleatorias es una técnica utilizada para una gran variedad de aplicaciones graficas, incluyendo dibujado (rendering), procesamiento de imágenes y de geometrías.
 Particularmente, el muestreo Poisson-disk se utiliza para ubicación aleatoria de objetos en mundos artificiales, algoritmos de texturas procedurales y procesamiento de geometrías o mallas. Esta técnica genera conjunto de puntos con las siguientes propiedades: puntos suficientemente juntos, pero con la restricción de no estar más próximos unos de otros que una distancia mínima R predeterminada.
 
-Figura: a) Posición x e y generadas aleatoriamente. b) Imagen dividida en celdas. Puntos aleatorios generados en cada celda. c) Muestreo Poisson-disk en 2 dimensiones.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-poisson.png}
+  \caption{a) Posición x e y generadas aleatoriamente. b) Imagen dividida en celdas. Puntos aleatorios generados en cada celda. c) Muestreo Poisson-disk en 2 dimensiones}
+  \label{fig:Mesh-Poisson}
+\end{figure}
 
 En líneas generales, este algoritmo genera puntos alrededor de los ya existentes en la muestra, y valida si pueden ser agregados al conjunto final en caso de no violar la regla de la mínima distancia a los vecinos. Se genera una grilla en 2 o 3 dimensiones dependiendo del escenario de aplicación, en la cual cada celda contendrá al final del proceso a lo sumo un punto. Una grilla adicional es utilizada para realizar búsquedas rápidas, y dos conjuntos de puntos son mantenidos durante el procesamiento para poder diferenciar los que han sido generados y los que aún necesitan procesamiento.
 La implementación de VcgLib utilizada recibe 3 parámetros:
-La cantidad de puntos en la muestra. En este caso el radio o parámetro de cercanía es calculado en base a este parámetro.
-El radio, que es a su vez utilizado para calcular el tamaño de la muestra optimo en base a la malla inicial.
-Sub muestreo: indica si la muestra de Poisson es un subconjunto de la muestra inicial o si se deberán generar nuevos puntos aleatoriamente.
+\begin{itemize}
+	\item La cantidad de puntos en la muestra. En este caso el radio o parámetro de cercanía es calculado en base a este parámetro.
+	\item El radio, que es a su vez utilizado para calcular el tamaño de la muestra optimo en base a la malla inicial.
+	\item Sub muestreo: indica si la muestra de Poisson es un subconjunto de la muestra inicial o si se deberán generar nuevos puntos aleatoriamente.
+\end{itemize}
 
-Fig: configuracion parametros de poisson
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-poissongui.png}
+  \caption{Configuracion de parámetros del alrogirtmo Poisson-disk}
+  \label{fig:Mesh-PoissonGui}
+\end{figure}
 
 \subsection{Reconstrucción de normales}
 
@@ -188,7 +205,12 @@ Paso 3: calcular el árbol de expansión mínimo (MST) sobre el grafo de Riemann
 Dado un grafo conexo, no dirigido, con sus aristas con un peso asignado, se llama árbol de expansión mínimo al sub-grafo con forma de árbol que conecta todos los nodos con un peso total mínimo. Contiene todos los nodos del grafo inicial. El grafo de entrada es el construido en el paso enterior y se utiliza el algoritmo de Kruskal, uno de los varios algoritmos que resuelven el problema de encontrar un árbol de expansión mínima de un grafo (referencias).
 Una vez construido el MST, lo único que se hace es recorrer el árbol en orden y corregir el sentido de los vectores normales (multiplicando por -1.0f) en caso de ser necesario. La condición para efectuar dicha corrección se basa en el ángulo del nodo siendo inspeccionado versus todas las direcciones de las normales de los vecinos conectados a dicho nodo.
 
-Fig: configuracion parametros de extrapolacion de normales
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-normalextrapolation.png}
+  \caption{Configuracion de parámetros para reconstruccion de normales}
+  \label{fig:Mesh-Normals}
+\end{figure}
 
 \subsection{Reconstrucción de malla de Poisson}
 
@@ -200,6 +222,13 @@ Se computa una función indicador  en 3 dimensiones definida de la siguiente for
 Luego, se obtiene una reconstrucción de la superficie mediante la extracción de la ISO-surface (superficie de nivel en 3 dimensiones) al nivel apropiado.
 La clave está en que hay una estrecha relación entre los puntos orientados (con sus normales) de la muestra y la función indicador de la muestra. Específicamente el gradiente de la función indicador es un espacio de vectores que valen cero casi en todo el espacio excepto en puntos cercanos a la superficie, donde es igual al vector normal a la superficie.
 Es por eso que puntos orientados, pueden ser vistos como muestras del gradiente de la función indicador del modelo tridimensional en cuestión. Y es por este mismo motivo que el problema de reconstrucción de una malla puede ser visto como un problema de Poisson estándar: computar la función escalar F cuyo Laplaciano (o divergencia del gradiente) se iguala a la divergencia del espacio de vectores de las normales.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-poissonreconstruction.png}
+  \caption{Configuracion de parámetros para reconstruccion de malla de Poisson}
+  \label{fig:Mesh-Normals}
+\end{figure}
 
 Fig: cnofiguracion del paro de reconstruccion de Poisson
 
