@@ -23,12 +23,17 @@ Los programas de edición además de permitir modificar la geometría manipuland
 
 El mapeo tridimensional se realiza básicamente definiendo las coordenadas de mapeo en cada vértice del modelo 3DS. Las aplicaciones de edición 3D antes mencionadas proveen herramientas para hacer esta tarea de forma muy intuitiva. Ejemplo de esto es la definición de coordenadas de mapeo de un cilindro para mapear una textura en una columna cilíndrica.
 Los elementos gráficos por sí mismos no son representables. Es necesario asignarles primero un material dentro de VMT y es a este material que se le asigna un color o una textura con la cual se representará el objeto.
-En la implementación de los materiales se utilizan shaders [glosario], que son programas que se ejecutan en los procesadores gráficos y tienen como ventaja que son altamente paralelizables, permitiendo realizar cálculos de forma más rápida y eficiente. En la aplicación se utiliza el lenguaje de shaders para OpenGL GLSL ([www.lighthouse3d.com/opengl/glsl]) para la implementación de un shader básico que combina una textura de imagen o video con un color para obtener el resultado visibles del material. Este color tiene un canal alfa [glosario] y por lo tanto se pueden lograr texturas y colores con niveles de transparencia. No se esta considerando la iluminación en nuestra implementación del shader.
+En la implementación de los materiales se utilizan shaders [glosario], que son programas que se ejecutan en los procesadores gráficos y tienen como ventaja que son altamente paralelizables, permitiendo realizar cálculos de forma más rápida y eficiente. En la aplicación se utiliza el lenguaje de shaders para OpenGL GLSL ([www.lighthouse3d.com/opengl/glsl]) para la implementación de un shader básico que combina una textura de imagen o video con un color para obtener el resultado visibles del material. Este color tiene un canal alfa\footnote(Ver glosario.) y por lo tanto se pueden lograr texturas y colores con niveles de transparencia. No se esta considerando la iluminación en nuestra implementación del shader.
 
 Para visualizar los elementos tridimensionales es necesario definir un punto de vista. Esto se logra mediante el agregado de una cámara en el motor y la configruación de sus propiedades, entre ellas su ubicación o punto de vista. Los proyectores con los que se realiza el espectáculo de video mapping son también representados como cámaras en el motor, pero no toda cámara configurada representa un proyector, ya que se pueden contar con cámaras que representen puntos de vista de un observador del espectáculo que sea de interés para el creador.
 Las cámaras permiten ajustar sus parámetros mediante operaciones comunes a cámaras virtuales de forma similar a lo que ocurre en otros paquetes de animación por software y a cámaras cinematográficas en general. Estas operaciones representan movimientos de la cámara llamados Roll, Orbit, Dolly y Pan. Roll se refiere al movimiento en donde la posición de la cámara y el punto de vista son fijos y ésta rota a través del eje formado por ellos. Orbit es cuando la cámara orbita alrededor de su punto de vista, es decir, la posición de la cámara cambia pero siempre visualizando el mismo punto y manteniendo la distancia a este. Dolly es el movimiento en donde se mantienen el punto y la dirección de vista pero se mueve la posición de la cámara acercándose y alejándose del objetivo. Por último, Pan es el tipo de movimiento en el que cuando se mueve la cámara cambiando la posición y el punto de vista, se mantiene un paralelismo con la dirección.
 
-Figura X: Movimientos de cámara. a) Roll b) Dolly c) Pan d) Orbit
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmtengine-cameramove.png}
+  \caption{Movimientos de cámara. a) Roll b) Dolly c) Pan d) Orbit}
+  \label{fig:VMT-CameraMove}
+\end{figure}
 
 Aparte de estos parámetros de ubicación, también existe el parámetro FOV (Field Of View) o campo de vista que es el ángulo de apertura de la cámara. Para el caso de cámaras que representan proyectores, este parámetro debe coincidir con el FOV del proyector para ajustar correctamente las escenas con respecto a lo que muestra la cámara en pantalla.
 Mediante estas operaciones es que las cámaras virtuales de VMT ajustan sus parámetros para que la proyección de objetos tridimensionales coincida con las superficies proyectadas.
@@ -38,7 +43,12 @@ Los quads se pueden organizar en grupos de quads y pertenecen a una o mas capas,
 
 Las texturas se asocian a grupos de quads solamente. Los grupos también permiten variar de forma limitada como se mapean las texturas a los quads que lo componen. Pueden ser mapeadas por cara en donde a cada uno de los quads se le mapeará toda la textura, o también de forma “plana”. Esto último significa que la textura será mapeada al conjunto entero de quads como si estos fueran trozos de un quad de mayor tamaño compuesto por todos ellos.
 
-Fig.X: Izquierda: Proyección plana. Derecha: Proyección por cara.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmtengine-maping.png}
+  \caption{Izquierda: Proyección plana. Derecha: Proyección por cara.}
+  \label{fig:VMT-Projection}
+\end{figure}
 
 Con estas variantes de proyección se le dan más posibilidades a un artista para lograr los efectos utilizados normalmente en espectáculos de video mapping.
 
@@ -106,17 +116,32 @@ Cabe acotar que en los escenarios de múltiples proyectores este modelo de calib
 
 Para la estructura definida de escena o show, la interfaz grafica cuenta con formularios sencillos de altas, bajas y modificaciones para todos los tipos de objetos existentes. Se diseñó en base a barras de herramientas flotantes de forma de poder tener visibilidad de la escena en todo momento y observar así cómo los cambios efectuados impactan sobre ella.
 
-Figura: Vista general de la interfaz de usuario
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.7\textwidth]{./Cap5_vmt/vmt_todo.png}
+  \caption{Vista general de la interfaz de usuario de VMT}
+  \label{fig:VMT-MainWindow}
+\end{figure}
 
 Al inicio se cuenta con una vista gráfica de la escena desde el punto de vista de la cámara activa, una vista de los objetos contenidos en la escena, la lista de definición de efectos y una línea de tiempo con las listas de efectos por tiempo, por evento y MIDI.
 En la ventana de escena se manejan los objetos bidimensionales y tridimensionales, cámaras, luces, capas y los nodos distribuidos del show. También es desde donde se ejecuta la calibración de las cámaras-proyectores. Para la visualización de la escena se ofrecen diferentes modos de cámara para girar u orbitar alrededor del centro, o moverse en cada uno de los ejes.
 
-Figura: ventana para manejar la escena
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_scene.png}
+  \caption{Ventana para manejar la escena}
+  \label{fig:VMT-SceneWindow}
+\end{figure}
 
 \subsection{Cámaras, Capas y Quads}
 Las cámaras tienen todas las propiedades usuales que se pueden encontrar en paquetes de software de animación tridimensional como ser Posición, Eye, Up, FOV (Field of View), Aspecto, Near, Far, etc.
 
-Figura: Dialogo de propiedades de cámara
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_cameraProperties.png}
+  \caption{Dialogo de propiedades de cámara}
+  \label{fig:VMT-CameraProperties}
+\end{figure}
 
 Se han modelado los proyectores como cámaras con marcas especiales, por lo cual a cada cámara se le puede indicar además si de lo que se trata en realidad es de un proyector. Esto permite contar tanto con cámaras para las cuales lo que veamos será lo que efectivamente saldrá proyectado, como también poder tener cámaras sin proyector asociado que nos permiten tener una vista en perspectiva de la escena para por ejemplo, experimentar como se vería el show desde el punto de referencia de un cierto observador.
 Existen también acciones para seleccionar los tipos de movimiento de la cámara activa. Estos son:
@@ -125,13 +150,23 @@ Orbit: distancia al punto de vista fijo. Se orbita a dicha distancia alrededor d
 Dolly: punto y la dirección de vista fijos. Se mueve la posición de la cámara acercándose y alejándose del objetivo.
 Pan: distancia al plano de la imagen fija. Se mueve cualquier dirección pero en plano paralelo al de la dirección.
 
-Figura: Acciones para seleccionar modo de movimiento de la cámara activa.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_SceneBotonera.png}
+  \caption{Acciones para seleccionar modo de movimiento de la cámara activa}
+  \label{fig:VMT-CameraActions}
+\end{figure}
 
 Una vez activado el modo de la cámara, manteniendo presionado el botón izquierdo del ratón al moverlo se mueve la cámara acorde al modo seleccionado.
 Cada cámara es a su vez un contenedor de capas o layers. Su propósito es manejar todo lo relacionado al mapeo sobre estructuras bidimensionales, y por ello son los contendores de quads bidimensionales sobre los cuales se pueden realizar todas las operaciones y efectos disponibles.
 
-   
-Figura: Propiedades de los objetos Layer y Quad
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_layerProperties.png}
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_quadProperties.png}
+  \caption{Propiedades de los objetos Layer y Quad}
+  \label{fig:VMT-LayerQuadProperties}
+\end{figure}
 
 Tanto el quad como la capa tienen propiedades editables en tiempo de edición o durante el show para mostrarse u ocultarse completamente. Si se oculta una capa, todos los quads contenidos en ella también serán ocultados. En caso de mostrarla, todos los quads visibles volverán a desplegarse.
 
@@ -139,8 +174,12 @@ Tanto el quad como la capa tienen propiedades editables en tiempo de edición o 
 
 Se permite agregar objetos tridimensionales con formato de malla triangular del tipo 3DS [ref 3D-Studio File Format (.3ds) - Autodesk Ltd. - http://www.martinreddy.net/gfx/3d/3DS.spec ]. Para satisfacer los requerimientos actualmente definidos, solo fue necesario permitir la modificación del identificador y la posición de un objeto tridimensional.
 
-
-Figura: Dialogo de propiedades de objeto tridimensional
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_objectProperties.png}
+  \caption{Dialogo de propiedades de objeto tridimensional}
+  \label{fig:VMT-ObjectProperties}
+\end{figure}
 
 \subsection{Efectos}
 
