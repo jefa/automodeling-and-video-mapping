@@ -19,11 +19,11 @@ Los quads también pueden ser utilizados como máscaras para cubrir zonas de otr
 En cuanto a los elementos tridimensionales, estos representan objetos más complejos y ofrecen una mayor versatilidad para realizar mapeos sobre ellos.
 Estos objetos se cargan a partir de modelos tridimensionales en el formato estándar 3DS[The Labs: 3DS File Format, by Jeff Lewis - www.the-labs.com/Blender/3dsspec.html] y se permite cargar al motor cualquier geometría que lo respete.
 La edición de la geometría de estos objetos es en general un tema complejo pero bien resuelto por varias aplicaciones de edición 3D como pueden ser 3DS Max[usa.autodesk.com/3ds-max] y Blender[www.blender.org] entre otros. Por esta y otras razones es que se delega la edición de las formas tridimensionales a programas para este propósito.
-Los programas de edición además de permitir modificar la geometría manipulando vértices y caras, también posibilitan la definición de materiales para aplicar propiedades comunes a una cierta selección de caras de la malla 3D [glosario]. VMT utiliza estas selecciones de caras para mapear texturas sobre ellas resolviendo de esta forma el mapeo en tres dimensiones.
+Los programas de edición además de permitir modificar la geometría manipulando vértices y caras, también posibilitan la definición de materiales para aplicar propiedades comunes a una cierta selección de caras de la malla tridimensional\footnote{Ver glosario}. VMT utiliza estas selecciones de caras para mapear texturas sobre ellas resolviendo de esta forma el mapeo en tres dimensiones.
 
 El mapeo tridimensional se realiza básicamente definiendo las coordenadas de mapeo en cada vértice del modelo 3DS. Las aplicaciones de edición 3D antes mencionadas proveen herramientas para hacer esta tarea de forma muy intuitiva. Ejemplo de esto es la definición de coordenadas de mapeo de un cilindro para mapear una textura en una columna cilíndrica.
 Los elementos gráficos por sí mismos no son representables. Es necesario asignarles primero un material dentro de VMT y es a este material que se le asigna un color o una textura con la cual se representará el objeto.
-En la implementación de los materiales se utilizan shaders [glosario], que son programas que se ejecutan en los procesadores gráficos y tienen como ventaja que son altamente paralelizables, permitiendo realizar cálculos de forma más rápida y eficiente. En la aplicación se utiliza el lenguaje de shaders para OpenGL GLSL ([www.lighthouse3d.com/opengl/glsl]) para la implementación de un shader básico que combina una textura de imagen o video con un color para obtener el resultado visibles del material. Este color tiene un canal alfa\footnote(Ver glosario.) y por lo tanto se pueden lograr texturas y colores con niveles de transparencia. No se esta considerando la iluminación en nuestra implementación del shader.
+En la implementación de los materiales se utilizan shaders [glosario], que son programas que se ejecutan en los procesadores gráficos y tienen como ventaja que son altamente paralelizables, permitiendo realizar cálculos de forma más rápida y eficiente. En la aplicación se utiliza el lenguaje de shaders para OpenGL GLSL\cite{GLSL} para la implementación de un shader básico que combina una textura de imagen o video con un color para obtener el resultado visibles del material. Este color tiene un canal alfa\footnote{Ver glosario.} y por lo tanto se pueden lograr texturas y colores con niveles de transparencia. No se esta considerando la iluminación en nuestra implementación del shader.
 
 Para visualizar los elementos tridimensionales es necesario definir un punto de vista. Esto se logra mediante el agregado de una cámara en el motor y la configruación de sus propiedades, entre ellas su ubicación o punto de vista. Los proyectores con los que se realiza el espectáculo de video mapping son también representados como cámaras en el motor, pero no toda cámara configurada representa un proyector, ya que se pueden contar con cámaras que representen puntos de vista de un observador del espectáculo que sea de interés para el creador.
 Las cámaras permiten ajustar sus parámetros mediante operaciones comunes a cámaras virtuales de forma similar a lo que ocurre en otros paquetes de animación por software y a cámaras cinematográficas en general. Estas operaciones representan movimientos de la cámara llamados Roll, Orbit, Dolly y Pan. Roll se refiere al movimiento en donde la posición de la cámara y el punto de vista son fijos y ésta rota a través del eje formado por ellos. Orbit es cuando la cámara orbita alrededor de su punto de vista, es decir, la posición de la cámara cambia pero siempre visualizando el mismo punto y manteniendo la distancia a este. Dolly es el movimiento en donde se mantienen el punto y la dirección de vista pero se mueve la posición de la cámara acercándose y alejándose del objetivo. Por último, Pan es el tipo de movimiento en el que cuando se mueve la cámara cambiando la posición y el punto de vista, se mantiene un paralelismo con la dirección.
@@ -45,7 +45,7 @@ Las texturas se asocian a grupos de quads solamente. Los grupos también permite
 
 \begin{figure}[H]
   \centering
-    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmtengine-maping.png}
+    \includegraphics[width=0.7\textwidth]{./Cap5_vmt/vmtengine-maping.png}
   \caption{Izquierda: Proyección plana. Derecha: Proyección por cara.}
   \label{fig:VMT-Projection}
 \end{figure}
@@ -118,7 +118,7 @@ Para la estructura definida de escena o show, la interfaz grafica cuenta con for
 
 \begin{figure}[H]
   \centering
-    \includegraphics[width=0.7\textwidth]{./Cap5_vmt/vmt_todo.png}
+    \includegraphics[width=0.8\textwidth]{./Cap5_vmt/vmt_todo.png}
   \caption{Vista general de la interfaz de usuario de VMT}
   \label{fig:VMT-MainWindow}
 \end{figure}
@@ -160,12 +160,16 @@ Pan: distancia al plano de la imagen fija. Se mueve cualquier dirección pero en
 Una vez activado el modo de la cámara, manteniendo presionado el botón izquierdo del ratón al moverlo se mueve la cámara acorde al modo seleccionado.
 Cada cámara es a su vez un contenedor de capas o layers. Su propósito es manejar todo lo relacionado al mapeo sobre estructuras bidimensionales, y por ello son los contendores de quads bidimensionales sobre los cuales se pueden realizar todas las operaciones y efectos disponibles.
 
-\begin{figure}[H]
-  \centering
-    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_layerProperties.png}
-    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_quadProperties.png}
-  \caption{Propiedades de los objetos Layer y Quad}
-  \label{fig:VMT-LayerQuadProperties}
+\begin{figure}
+	\begin{center}
+		\begin{tabular}[c]{cc}
+			\includegraphics[width=0.3\textwidth]{./Cap5_vmt/vmt_layerProperties.png}
+				&        
+			\includegraphics[width=0.3\textwidth]{./Cap5_vmt/vmt_quadProperties.png}
+		\end{tabular}
+	\end{center}
+	\caption{Propiedades de los objetos Layer y Quad}
+	\label{fig:VMT-LayerQuadProperties}
 \end{figure}
 
 Tanto el quad como la capa tienen propiedades editables en tiempo de edición o durante el show para mostrarse u ocultarse completamente. Si se oculta una capa, todos los quads contenidos en ella también serán ocultados. En caso de mostrarla, todos los quads visibles volverán a desplegarse.
@@ -261,12 +265,16 @@ Sobre la linea de tiempo se pueden observar las listas de eventos agrupados por 
 
 Para modelar la red de nodos esclavos de VMT en los cuales se conectaran proyectores remotos es preciso definir, para cada nodo, su IP y puerto donde estarán configurados y la cámara definida en la escena que representará al proyector asociado.
 
-\begin{figure}[H]
-  \centering
-    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_nodeProperties_1.png}
-    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_nodeProperties_2.png}
-  \caption{Lista de nodos y dialogo de propiedades de nodos}
-  \label{fig:VMT-Nodes}
+\begin{figure}
+	\begin{center}
+		\begin{tabular}[c]{cc}
+			\includegraphics[width=0.3\textwidth]{./Cap5_vmt/vmt_nodeProperties_1.png}
+				&        
+			\includegraphics[width=0.3\textwidth]{./Cap5_vmt/vmt_nodeProperties_2.png}
+		\end{tabular}
+	\end{center}
+	\caption{Lista de nodos y dialogo de propiedades de nodos}
+	\label{fig:VMT-Nodes}
 \end{figure}
 
 Esta información es necesaria para establecer el canal de comunicación con el proceso remoto y deducir que información se enviara al nodo en base a su cámara asociada. Recordar que las capas o layers están asociadas a una y solo una cámara, por lo cual si un efecto esta aplicado sobre un quad o grupo de quads, el mismo deberá ser propagado al nodo cuya cámara sea la que los contiene. En cuanto a los efectos aplicados sobre objetos tridimensionales, estos serán enviados a todos los nodos ya que todas las cámaras de todos los nodos tienen visibilidad de la escena tridimensional, aunque esta sea desde perspectivas diferentes.
