@@ -9,7 +9,7 @@ La interfaz gráfica de usuario está basada enteramente en botoneras y ventanas
 La tecnología de base seleccionada para la creación de los módulos de nuestra herramienta y todas las bibliotecas de terceros que se han utilizado son multiplataforma, lo que permite la compilación y ejecución en los entornos mas utilizadas hoy en día como Microsoft Windows, Linux y Mac OS.
 
 \section{Descripción de módulos}
-ff
+
 \subsection{Motor gráfico}
 Para dar soporte a la visualización de elementos gráficos bidimensionales y tridimensionales en pantalla o proyectados y, el correspondiente mapeo de texturas de imágenes o videos sobre ellos tanto en la aplicación cliente como en la del editor del servidor, se creo un componente reusable para el motor de dibujado llamado \emph{vmt\_engine}. Este motor gráfico ofrece una interfaz programática genérica para el manejo y edición de objetos y efectos que contiene.
 
@@ -102,7 +102,7 @@ Por otra parte, la calibración tridimensional se basa en hacer coincidir los pa
 Cabe acotar que en los escenarios de múltiples proyectores este modelo de calibración asume que existe un solo proyector conectado a cada nodo, si bien es posible conectar mas de uno mediante placas especializadas como se vio anteriormente. Solo se podrán modificar los parámetros a la única cámara asociada al nodo en el modelo VMT, por lo cual en caso de ser mas de un proyector no sera posible ajustar los parámetros de todos. Los planos de imagen tampoco podrían coincidir, si no están posicionados exactamente paralelos.
 
 
-\subsection{Interfaz gráfica de usuario}
+\section{Interfaz gráfica de usuario}
 
 Para la estructura definida de escena o show, la interfaz grafica cuenta con formularios sencillos de altas, bajas y modificaciones para todos los tipos de objetos existentes. Se diseñó en base a barras de herramientas flotantes de forma de poder tener visibilidad de la escena en todo momento y observar así cómo los cambios efectuados impactan sobre ella.
 
@@ -112,7 +112,8 @@ Al inicio se cuenta con una vista gráfica de la escena desde el punto de vista 
 En la ventana de escena se manejan los objetos bidimensionales y tridimensionales, cámaras, luces, capas y los nodos distribuidos del show. También es desde donde se ejecuta la calibración de las cámaras-proyectores. Para la visualización de la escena se ofrecen diferentes modos de cámara para girar u orbitar alrededor del centro, o moverse en cada uno de los ejes.
 
 Figura: ventana para manejar la escena
-Cámaras, Capas y Quads
+
+\subsection{Cámaras, Capas y Quads}
 Las cámaras tienen todas las propiedades usuales que se pueden encontrar en paquetes de software de animación tridimensional como ser Posición, Eye, Up, FOV (Field of View), Aspecto, Near, Far, etc.
 
 Figura: Dialogo de propiedades de cámara
@@ -133,12 +134,16 @@ Cada cámara es a su vez un contenedor de capas o layers. Su propósito es manej
 Figura: Propiedades de los objetos Layer y Quad
 
 Tanto el quad como la capa tienen propiedades editables en tiempo de edición o durante el show para mostrarse u ocultarse completamente. Si se oculta una capa, todos los quads contenidos en ella también serán ocultados. En caso de mostrarla, todos los quads visibles volverán a desplegarse.
-Objetos tridimensionales
+
+\subsection{Objetos tridimensionales}
+
 Se permite agregar objetos tridimensionales con formato de malla triangular del tipo 3DS [ref 3D-Studio File Format (.3ds) - Autodesk Ltd. - http://www.martinreddy.net/gfx/3d/3DS.spec ]. Para satisfacer los requerimientos actualmente definidos, solo fue necesario permitir la modificación del identificador y la posición de un objeto tridimensional.
 
 
 Figura: Dialogo de propiedades de objeto tridimensional
-Efectos
+
+\subsection{Efectos}
+
 Es mediante un efecto que se declara lo que se hace o modifica en la escena, como y a que objetos. Se proveen ventanas flotantes tanto para la definición de efectos como para la asociación con sus disparadores como ser un instante de tiempo, un evento de teclado o un evento MIDI.
 
 Si un efecto es definido para ser desplegado en un instante dado este se podrá visualizar cuando la línea de tiempo pase por ese instante. En caso de ser definido por evento este será visualizado cada vez que el evento asociado suceda, sea un evento de teclado o MIDI.
@@ -158,7 +163,9 @@ Figura: Dialogo de definición de efecto de tipo textura (en este caso aplicada 
 Figura: Lista de efectos definidos en la escena.
 
 Es posible testear el efecto que se está creando presionando el botón Test de la lista de efectos. Esto forzara la ejecución por una única vez del efecto seleccionado en la lista.
-Calibración
+
+\subsection{Calibración}
+
 El proceso de calibración en VMT se basa en posicionar cuatro puntos de la superficie donde se proyecta y cuatro puntos de la capa contenedora de quads para de esta forma calcular la matriz de transformación de la homografía que los hace corresponder.
 
 Figura: Dialogo para configurar y ejecutar la calibración.
@@ -167,7 +174,9 @@ Al ingresar en el modo calibración se muestra en la pantalla de edición cuatro
 El diálogo posee controles para posicionar cada uno de los ocho puntos mostrados en pantalla. Se deberán posicionar los cuatro puntos de origen en regiones significativas de la capa donde hayan vértices de quads preferiblemente alejados entre si. De esta forma se minimiza el error obtenido al calcular la matriz.
 Los cuatro puntos de destino se deberán posicionar observando la proyección de estos sobre la superficie. Una vez los ocho puntos estén posicionados se podrá calcular y aplicar la nueva matriz de calibración presionando el botón OK.
 Mediante el botón ReCalibrate se reestablece la calibración original, descartando los cambios realizados.
-Línea de tiempo
+
+\subsection{Línea de tiempo}
+
 Tanto para la fases de producción y revisión del evento como para la ejecución o reproducción del espectáculo en vivo, es necesario contar controles estándares para el manejo de la línea de tiempo.
 
 Figura: Diálogo con línea de tiempo y lista de efectos asociados a tiempo y eventos.
@@ -177,7 +186,9 @@ La aplicación provee una forma de iniciar el evento mediante la acción de Star
 Figura: Asociación de eventos a instante de tiempo, evento y MIDI.
 
 Sobre la linea de tiempo se pueden observar las listas de eventos agrupados por tipo, pudiéndose asociar cualquiera de los eventos previamente definidos a un instante dado o a un código de evento a ser utilizado durante el espectáculo, ya sea de teclado o proveniente de dispositivos de entrada MIDI.
-Nodos remotos
+
+\subsection{Nodos remotos}
+
 Para modelar la red de nodos esclavos de VMT en los cuales se conectaran proyectores remotos es preciso definir, para cada nodo, su IP y puerto donde estarán configurados y la cámara definida en la escena que representará al proyector asociado.
   
 Figura: Lista de nodos y dialogo de propiedades de nodos.
@@ -189,6 +200,6 @@ Se permite almacenar en archivos XML estándar una representación de lo que se 
 
 Figura XML save and load
 
-\subsection{Decisiones de implementación}
+\section{Decisiones de implementación}
 Para la implementación del módulo de interfaz gráfica se siguió el patrón Model-View-Controller. Para cada ventana se generaron modelos que manejan los datos relevantes a cada una, impactando en el modelo general de la aplicación en caso de ser necesario.
 Se utilizó Qt Framework [Qt - framework multiplataforma para la creación de aplicaciones e interfaces de usuario con APIs para C++. http://qt.nokia.com/products/] como biblioteca de base para la creación de las ventanas, sus controles gráficos y manejo de la comunicación que ocurre entre ventanas y con los modelos de VMT. También se hizo uso de la funcionalidad para internacionalización de las interfaces gráficas, las que por el momento están tomando valores por defecto en idioma Inglés. Es multiplataforma por lo que puede ser utilizado en varios de los sistemas operativos de computadores de escritorio mas populares como ser Linux, Mac OS y Windows. Esto último es un requerimiento no funcional del proyecto que fue tenido en cuenta al decidir incorporar a la aplicación bibliotecas o marcos de trabajo para su desarrollo.
