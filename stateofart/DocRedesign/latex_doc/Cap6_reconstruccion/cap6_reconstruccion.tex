@@ -118,7 +118,44 @@ El ángulo $\hat\beta$ esta dado por la geometría de la proyección.
 \frac{d}{\sin(\gamma)} = \frac{b}{\sin(p - \gamma)} = \frac{b}{\sin(\alpha + \beta)} \Rightarrow d = b . \frac{\sin(a)}{\sin(\alpha + \beta)}
 \]
 
+Las coordenadas cartesianas quedan determinadas por:
+\[
+X_o = d. \cos (\beta)
+\]
+\[
+Z_o = d. \sin (\beta) = h
+\]
 
+Escena con tres dimensiones (3D)
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/triangulacion-2.PNG}
+  \caption{}
+  \label{fig:Triangulacion2}
+\end{figure}
+
+Se asume $Z = f$, $f$ plano en el cual se proyecta el punto $P(X_o,Y_o,Z_o)$, obteniendo como resultado de la proyección el punto $p(x,y)$.
+El centro óptico del proyector está situado en el eje $X$.
+Se considera realizada una pre-calibración en la cual se define:
+\[
+P = (x,y), \quad \frac{X_o}{x} = \frac{Z_o}{f} = \frac{Y_o}{y} = k \to (k_x,k_y,k_f)
+\]
+\[
+k_f = \tan (\alpha)(b - kx)
+\]
+
+Por trigonometría:
+\[
+\tan (\alpha) = \frac{Z_0}{(b - X_0)} \Rightarrow Z_0 = \tan (\alpha) (b - X_0) \quad k = \frac	{b * \tan (\alpha)}{f + x * \tan (\alpha)}
+\]
+\[
+X_o = \frac{x * b * \tan (\alpha)}{f + x * \tan (\alpha)}, \quad Yo = \frac{y * b * \tan (\alpha)}{f + x * \tan (\alpha)},\quad Zo = \frac{f * b * \tan (\alpha)}{f + x * \tan (\alpha)}
+\]
+
+Los métodos que resuelven obtener la geometría de una escena tridimensional sin tener contacto físico se pueden clasificar como activos o pasivos. [4]
+Los métodos pasivos son aquellos en los que no es necesario utilizar luz adicional a la luz ambiente.
+\]
 
 \subsection{Visión estéreo}
 
@@ -272,4 +309,3 @@ Es por eso que puntos orientados, pueden ser vistos como muestras del gradiente 
 \subsection{Pruebas y resultados}
 
 Para validar el correcto funcionamiento de esta técnica utilizando los tres algoritmos descritos, utilizamos una malla inicial de 5021 vertices y 9608 caras triangulares. Cabe destacar que si bien se ha mencionado que la malla de entrada debe ser simplemente una nube de puntos, se pueden utilizar mallas con caras, solo que estas serán ignoradas e incluso removidas de la malla de salida del primer paso del procesamiento (Poisson-disk sampling).
-
