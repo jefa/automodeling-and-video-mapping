@@ -15,7 +15,7 @@ Cada una de estas etapas se puede abordar con un enfoque bidimensional o tridime
 Con un enfoque bidimensional, el modelo de la escena es una proyección de los objetos sobre un plano, por ejemplo una fotografía. Con un enfoque tridimensional, el modelo se mantiene independiente de un punto de vista, representándose con un conjunto de objetos tridimensionales.
 
 %explicacion de pie de diagrama:redactarlo mejor, El modelo generado en 2d depende del punto de vista del proyector y puede no parecerse a la realidad. El modelo generado 3d se asimila a la realidad y luego con la cámara virtual ajusto el punto de vista del proyector.
-\section{Enfoque 2D}
+\section{Enfoque bidimensional}
 \subsection{Modelo}
 Un modelo bidimensional refleja lo que vería un observador desde un punto de vista fijo.
 %si se quieren agregar hay en el SVN imagenes de proyeccion perspectiva y paralela  VER
@@ -73,7 +73,7 @@ En caso de haber modificaciones en la posición y orientación del proyector la 
 Los ajustes necesarios variarán dependiendo del método utilizado para obtener el modelo, en caso de una fotografía se obtiene desde un punto de vista fijo dado por la ubicación de la cámara, luego el proyector se ubicará de forma que el punto de vista coincida con el de la cámara, así se logra coincidencia del centro de proyección, igualmente serán necesarios ajustes ya que los lentes de la cámara y el proyector no necesariamente coincidirán en el ángulo de enfoque y distorsiones serán generadas según las propiedades del lente causando que el modelo obtenido con la cámara no se corresponda con lo que se proyectará\cite{LibroCompGrafica2}\cite{LibroPhotographicOptics}.
 Con el método de generación de figuras geométricas delineando las secciones de la superficie utilizando el proyector y herramientas de software los ajustes se reducen a la posición y orientación del proyector, todas las deformaciones dadas por propiedades intrínsecas del proyector no existen.
 
-\section{Enfoque 3D}
+\section{Enfoque tridimensional}
 \subsection{Modelo}
 Un modelo tridimensional a diferencia de uno bidimensional, no depende de un punto de vista sino que es una representación de cuerpos y superficies en un espacio tridimensional permitiendo al diseñador visualizar la escena desde cualquier ángulo.
 
