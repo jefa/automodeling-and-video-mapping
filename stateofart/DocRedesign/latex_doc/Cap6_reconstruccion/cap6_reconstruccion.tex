@@ -201,7 +201,7 @@ Kinect es un dispositivo que se puede adicionar a la consola  Xbox360 de Microso
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/kinect.PNG}
-  \caption{}
+  \caption{Componentes de un sensor Kinect}
   \label{fig:Kinect}
 \end{figure}
 
@@ -289,10 +289,14 @@ Una vez construido el MST, lo único que se hace es recorrer el árbol en orden 
 \subsection{Reconstrucción de malla de Poisson}
 
 Finalmente, para reconstruir la malla a partir de la nube de puntos y sus normales se utiliza el algoritmo de Reconstrucción de Poisson.
-Se computa una función indicador  en 3 dimensiones definida de la siguiente forma:
+Se computa una función indicador $\chi$ en 3 dimensiones definida de la siguiente forma:
 
-
-[formula]
+$$
+\left\{ \begin{array}{rl}
+ \chi = 1 & \mbox{ si puntos dentro del modelo} \\
+ \chi = 0 & \mbox{ si puntos fuera del modelo}
+       \end{array} \right.
+$$
 
 Luego, se obtiene una reconstrucción de la superficie mediante la extracción de la ISO-surface (superficie de nivel en 3 dimensiones) al nivel apropiado.
 La clave está en que hay una estrecha relación entre los puntos orientados (con sus normales) de la muestra y la función indicador de la muestra. Específicamente el gradiente de la función indicador es un espacio de vectores que valen cero casi en todo el espacio excepto en puntos cercanos a la superficie, donde es igual al vector normal a la superficie.
