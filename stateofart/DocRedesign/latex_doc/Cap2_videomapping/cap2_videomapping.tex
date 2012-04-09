@@ -140,3 +140,44 @@ Producir el espectáculo transformando directamente los objetos y no sus perspec
 Si bien se mencionaron ventajas en cuanto a la producción del espectáculo en tres dimensiones existen muchos casos en donde es más simple realizar ciertos efectos en dos dimensiones, sobre todo cuando estos efectos se aplican sobre regiones planas de la superficie. Por esto es útil poder combinar estos dos enfoques y utilizarlos de acuerdo a las necesidades del diseñador. Cabe aclarar que al combinar los enfoques se pierden las ventajas de definir el punto de vista del proyector luego de la producción por lo que los objetos bidimensionales y efectos sobre estos se deben definir una vez fijada la ubicación de los proyectores.
 
 \subsection{Calibración}
+Se desarrolló un método de calibración cuyo objetivo es obtener la posición del proyector con respecto a un sistema de coordenadas  ubicado en un punto elegido, relativo a la escena. Para ello se utiliza una superficie de calibración que puede existir ya en la escena o puede ser ubicada sobre esta de forma temporal. Esta superficie de calibración deberá ser un plano rectangular en donde uno de los vértices será el centro de coordenadas que se desea determinar. La orientación del plano determinará la alineación del centro de coordenadas con sus ejes $X$ e $Y$ alineados con dos de los bordes del plano y el eje $Z$ perpendicular a este.
+Se utiliza además un proyector asumiendo el modelo pinhole\footnote{Pinhole}
+
+Para encontrar el sistema de coordenadas buscado, se resuelve el problema opuesto que es encontrar la posición del punto que será origen del nuevo centro de coordenadas con respecto al centro de proyección ubicado dentro del proyector. Este método utiliza tres de los vértices de la superficie de calibración que formarán una base del nuevo sistema de coordenadas. Las medidas de la superficie de calibración son conocidas por lo que la distancia entre sus vértices también lo son. Desde el centro del proyector se proyectan rayos de luz, tres de los cuales pasan por los vértices de la superficie de calibración y también por el centro de proyección con coordenadas $(0, 0, 0)$. Para obtener la ecuación de estos rayos solo se precisa un punto distinto al origen. La ecuación de este punto puede ser obtenida utilizando las coordenadas en pantalla del \emph{pixel} que se proyecta en cada vértice de la superficie de calibración.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/CalibrationSketch}
+  \caption{Esquema de calibración.}
+  \label{fig:CalibrationSketch}
+\end{figure}
+Usando las coordenadas en la pantalla de estos puntos y otros parámetros intrínsecos del proyector que son su resolución y el ángulo de proyección, es posible encontrar las coordenadas del punto con respecto al centro de proyección y por tanto la ecuación del rayo.
+\[
+a(t) = \vec{P} . t,	\mbox{ ecuación del rayo en dónde } \vec{P} \mbox{ es cualquier punto del rayo.}
+\]
+\[
+\begin{cases}
+P(X) = \frac{res_x}{2} - s_x \\
+P(Y) = \frac{res_y}{2} - s_y \\
+P(Z) = \frac{res_y}{2 \cdot \tan \frac{fov_y}{2}}
+\end{cases}
+\]
+en donde $s_x$ y $s_y$ son las coordenadas del pixel, $res_x$ y $res_y$ son la resolución horizontal y vertical del proyector y $fov_y$ es el ángulo de proyección vertical del proyector.
+
+Aplicando esta ecuación a cada uno de los puntos a determinar se obtienen las ecuaciones paramétricas de los tres rayos. Vale aclarar que estos puntos P son puntos de los rayos pero no necesariamente coinciden con los vértices de la superficie de calibración. Queda hallar las coordenadas de los vértices determinando el parámetro t para cada ecuación. Para hallar este parámetro se resuelve un sistema de ecuaciones utilizando las tres ecuaciones de los rayos y las distancias conocidas entre estos puntos.
+% Sistema de ecuaciones %
+\[
+\begin{cases}
+\lVert{a(t_0) - b(t_1)} = j\rVert \\
+\lVert{b(t_1) - c(t_2)} = k\rVert \\
+\lVert{c(t_2) - a(t_0)} = l\rVert
+\end{cases}
+\]
+siendo $a$, $b$ y $c$ los rayos y $j$, $k$ y $l$ las distancias entre las parejas de puntos.
+La solución será entonces los parámetros $t_0$, $t_1$ y $t_2$ que satisfacen el sistema de ecuaciones no lineal.
+Una aproximación a esta solución se puede obtener utilizando métodos numéricos, por ejemplo, con el método \emph{trust-region-dogleg}\cite{TrustRegionDogleg}.
+Una vez hallados los valores para $t_0$, $t_1$ y $t_2$, las coordenadas de los vértices de la superficie de calibración son $a(t_0)$, $b(t_1)$ y $c(t_2)$.
+La base para el sistema de coordenadas con origen en el punto $P$ es:
+\[
+x' = \frac{b(t_1) - a(t_0)}{\lVert b(t_1) - a(t_0) \rVert},\quad y' = \frac{c(t_2) - a(t_0)}{\lVert c(t_2) - a(t_0)\rVert},\quad z' = -x' \times y'
+\]
+La ubicación del proyector en este nuevo sistema se obtiene proyectando cualquiera de los rayos en la nueva base de coordenadas.
