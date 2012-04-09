@@ -8,8 +8,12 @@ La reconstrucción tridimensional de una superficie es la construcción de un mo
 
 Al calcular coordenadas tridimensionales a partir de imágenes obtenidas por capturas de video se introducen errores propios del modelo (modelo pinhole, modelo imaginario que utiliza una cámara) por ello es necesario hacer una corrección obteniendo una correspondencia entre el modelo real y el ideal, la calibración puede utilizarse como método para obtener la correspondencia mencionada. Luego de la calibración las coordenadas obtenidas son en dos dimensiones, corresponden a la proyección sobre el plano imagen, para completar las coordenadas tridimensionales en el modelo es necesario calcular la profundidad de cada punto, con este fin se utiliza el método de triangulación. El modelo ideal que se utiliza en las cámaras es el modelo pinhole, éste se presenta para un caso básico, se considera que el centro de proyección  (C) coincide con el origen del sistema de coordenadas, y que  Z = f (plano imagen o plano focal).
 
-
-Fig.X : Geometría de cámara pinhole.C es centro de la cámara y p el punto principal.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/pinhole.png}
+  \caption{Geometría de cámara pinhole.C es centro de la cámara y p el punto principal}
+  \label{fig:Calib-Pinhole}
+\end{figure}
 
 Un punto en el espacio X=(X,Y,Z)^T se corresponde con el punto X en el plano imagen, dado por la intersección del rayo que pasa por el centro de cámara y el punto X con el plano imagen, el punto (X,Y,Z)^T es mapeado con (fX/Z,fY/Z,f)^T en el plano imagen.
 (X,Y,Z)^T   →(fX/Z,fY/Z,f)^T      se considera que el centro de coordenadas del plano imagen coincide con el punto principal P.
@@ -54,7 +58,13 @@ Este método determina las coordenadas (x,y,z) de un punto utilizando la posici�
 Los centros de perspectiva y planos de proyección son conocidos [3].
 Escena con dos dimensiones (2D)
 
-[Imagen]
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/triangulacion.PNG}
+  \caption{}
+  \label{fig:Triangulacion}
+\end{figure}
 
 Este método tiene como objetivo calcular la distancia d de la cámara al punto P a partir de los datos: ángulos α  , β  y la distancia b entre el proyector y la cámara.
 El ángulo α     y la distancia b son dados por la calibración de la escena.
@@ -74,7 +84,12 @@ Xo=d.cos(β)
 Zo=d.sen(β)=h
 Escena con tres dimensiones (3D)
 
-[figura]
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/triangulacion-2.PNG}
+  \caption{}
+  \label{fig:Triangulacion2}
+\end{figure}
 
 Se asume Z=f  , f plano en el cual se proyecta el punto P(Xo,Yo,Zo), obteniendo como resultado de la proyección el punto p(x,y).
 El centro óptico del proyector está situado en el eje X.
@@ -102,7 +117,12 @@ La correspondencia entre una o más vistas de la escena se puede realizar basada
    features, las características usadas para la correspondencia son aristas, puntos o segmentos dadas por cambios de intensidad de la imagen, esta estrategia es más estable  ante variedad de luminosidad absoluta y en la práctica correspondencia es más rápida.
 La geometría convencional estéreo tiene un par de cámaras y los ejes ópticos son paralelos entre sí, y perpendiculares a la línea base (dada por los dos centros ópticos de las cámaras).
 
-[figura]
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/stereo.PNG}
+  \caption{}
+  \label{fig:Stereo}
+\end{figure}
 
 \subsection{Luz estructurada}
 
@@ -127,7 +147,12 @@ como limitante la profundidad del objeto no puede ser mayor que la mitad de la l
 
 Kinect es un dispositivo que se puede adicionar a la consola  Xbox360 de Microsoft. El objetivo de este dispositivo es permitir que el usuario interactúe con la consola utilizando solo el movimiento de su cuerpo. Para lograr eso, Kinect aplica distintas técnicas de procesamiento de imágenes, considerando ubicaciones, posturas y distancias. El hardware de Kinect no consiste tan solo de una cámara, sino que tiene adicionalmente un emisor de infrarrojo, que en base a la deformación del haz de luz determina la distancia de cada punto de la imagen capturada. Posteriormente, combina la información visual para tener una noción bastante precisa de los movimientos del usuario. A mediados del 2011 fue presentada una interfaz de programación gratuita que permite utilizar Kinect de forma directa en aplicaciones no licenciadas y para diferentes propósitos, no solo el de los video juegos.
 
-[imagen]
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/kinect.PNG}
+  \caption{}
+  \label{fig:Kinect}
+\end{figure}
 
 Para el análisis de las deformaciones de los rayos y construir el mapa de profundidad, Kinect utiliza la previamente mencionada técnica de Luz Estructurada. Mediante el sensor infrarrojo con el que viene equipado, se proyectan los patrones de luz por toda la escena y se analizan las distorsiones mediante la cámara de profundidad
 También se cuenta con una cámara convencional para analizar objetos o personas en la escena y la detección de colores.
@@ -229,8 +254,6 @@ Es por eso que puntos orientados, pueden ser vistos como muestras del gradiente 
   \caption{Configuracion de parámetros para reconstruccion de malla de Poisson}
   \label{fig:Mesh-Normals}
 \end{figure}
-
-Fig: cnofiguracion del paro de reconstruccion de Poisson
 
 \subsection{Pruebas y resultados}
 
