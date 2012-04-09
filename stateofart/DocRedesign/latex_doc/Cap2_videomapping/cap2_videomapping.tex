@@ -80,12 +80,12 @@ Un modelo tridimensional a diferencia de uno bidimensional, no depende de un pun
 Los modelos de superficie son utilizados en distintas disciplinas como la cartografía, visión computacional y gráfica computacional, su representación consta de mallas\footnote{Ver glosario.} de polígonos \cite{Mesh_building}.
 Las entidades que conforman la malla son vértices, aristas, caras y atributos numéricos que representan la posición y normales de los vértices, coordenadas de textura y colores. La topología de la malla puede variar, por ejemplo los polígonos que la componen pueden tener distinta cantidad de vértices.
 
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}{0.35\textwidth}
 \begin{flushleft} \large
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/EjemploMallaTriangular}
-  \caption{Ejemplo de mallas triangulares.}
+  \caption{Mallas triangulares.}
   \label{fig:mallas}
 \end{figure}
 \end{flushleft}
@@ -95,40 +95,48 @@ Las entidades que conforman la malla son vértices, aristas, caras y atributos n
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/EjemploMalla4Vertices}
-  \caption{Ejemplo de mallas de cuadriláteros.}
+  \caption{Mallas de cuadriláteros.}
   \label{fig:mallas}
 \end{figure}
 
 \end{flushright}
 \end{minipage}
 
-\begin{figure}[H]
-  \centering
-    \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/EjemploMallaTriangular}
-    \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/EjemploMalla4Vertices}
-  \caption{Ejemplo de mallas triangulares y mallas de cuadriláteros.}
-  \label{fig:mallas}
-\end{figure}
 
 
 La conectividad describe la incidencia entre los elementos, las aristas unen los vértices y juntos conforman las caras, dos caras son adyacentes cuando comparten por lo menos una arista. La valencia de un vértice es número de aristas en las que participa (que son incidentes a él) y el grado de una cara es la cantidad de aristas que la componen.
 \begin{figure}[H]
   \centering
-    \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/MallaAtributos}
+    \includegraphics[width=0.4\textwidth]{./Cap2_videomapping/MallaAtributos}
   \caption{Atributos de malla.}
   \label{fig:MallaAtributos}
 \end{figure}
 Las mallas pueden contener información redundante, para minimizar estos casos se realizan técnicas de \emph{remeshing} que constan de algoritmos que reducen la información sin perder la representatividad de la superficie.
+%si se quiere se pone esta referencia:Survey of Polygonal Surface Simplification Algorithms Paul S. Heckbert and Michael Garland doc/papers/Mesh_building/Survey of Polygonal Surface Simplification Algorithms.pdf
 
 Existen diversas aplicaciones informáticas que permiten generar modelos tridimensionales utilizando distintas técnicas:
-
+%http://en.wikipedia.org/wiki/3D_modeling#Modeling_Process
 \begin{itemize}
-  \item Poligonal modelling, a partir de mallas que representan figuras primitivas se podrán construir nuevas mallas por ejemplo aplicando operaciones de unión o resta, también se aplican transformaciones que modifican, las aristas, vértices o caras etc., aproximando el resultado a la superficie que se desea modelar.
+  \item Modelado utilizando polígonos, a partir de mallas que representan figuras primitivas se podrán construir nuevas mallas por ejemplo aplicando operaciones de unión o resta, también se aplican transformaciones que modifican, las aristas, vértices o caras etc., aproximando el resultado a la superficie que se desea modelar.
   \item  Modelado utilizando curvas, a partir de una jaula creada por curvas se aplican transformaciones para modificarla, hundiendo o resaltando secciones aproximando el modelo a el objeto deseado, es utilizado en modelado de autos, edificios y mobiliario.
-  \item Digital sculpting  es una técnica en la que software especializado provee una interfaz para modificar el modelo de forma detallada, oprimiendo y resaltando zonas de la superficie. Es utilizado para lograr efectos especiales en video juegos y películas logrando figuras y texturas subrealistas y complejas.
+  %programas: Maya, 3D Studio Max
+  \item Esculpido digital es una técnica en la que software especializado provee una interfaz para modificar el modelo de forma detallada, oprimiendo y resaltando zonas de la superficie. Es utilizado para lograr efectos especiales en video juegos y películas logrando figuras y texturas subrealistas y complejas.
+  %programas: 3D-Coat, Zbrush, y Mudbox
   \item Reconstrucción a partir de fotografías, se obtiene la representación de la superficie mediante mediciones de los objetos en las fotografías de la superficie, conociendo la escala de la imagen se extrapola y se obtiene distancia entre dos puntos en la superficie, es usada en arquitectura, ingeniería, geología, arqueología, etc.
+  %esta técnica es llamada fotogrametría en dos dimensiones, estereofotogrametría para obtener información tridimensional
   \item Utilizando hardware especializado, scanners 3d, se obtiene una nube de puntos que representa la superficie, generalemente la cantidad de información obtenida es densa provocando que la información capturada sea redundante, se utilizan algoritmos especializados para reducir la nube de puntos.
+  %se puede poner una nota al pie, que esta técnica se ampliará en el capítulo Reconstrucción
 \end{itemize}
 \subsection{Producción del espectáculo}
+La producción del espectáculo en tres dimensiones agrega un nivel de abstracción adicional a la producción bidimensional permitiendo que el diseñador cree su espectáculo transformando directamente los objetos del modelo tridimensional y no sus perspectivas como en el enfoque bidimensional.
+Esto plantea un cambio en la forma de trabajar en el espectáculo y de planificar la producción ya que el diseñador no estará ligado a la ubicación física de los proyectores desde el comienzo sino que esta preocupación se dejará para una etapa posterior.
+El modo de trabajo se basa en mapear texturas sobre las caras de los objetos tridimensionales de forma análoga a como se mapean las texturas sobre figuras bidimensionales. Adicionalmente en este tipo de modelos podría ser deseable mapear una textura de forma que abarque varias caras del mismo objeto tridimensional, por ejemplo, si se desea mapear una textura sobre la superficie de un cilindro se deben mapear distintos sectores de la textura en cada una de las caras que conforman la superficie.
+Esto, al igual que en el enfoque bidimensional, se logra utilizando coordenadas de textura en cada uno de los vértices que componen la superficie tridimensional. La diferencia está en que en este enfoque los vértices no se encuentran necesariamente en el mismo plano por lo que ajustar una textura bidimensional a este tipo de superficies no es tan directo. Para ello existen técnicas que asisten en la tarea de definir las coordenadas de textura. Una de ellas es la aproximación de la superficie por una primitiva conocida más simple como puede ser un cubo, cilindro, esfera o plano. Para estas superficies existen funciones matemáticas que proyectan cada punto de la superficie a un plano por lo que se pueden determinar las coordenadas UV. Un ejemplo de esto para esferas son las proyecciones utilizadas para representar el planisferio como la proyección cilíndrica equidistante \cite{flatteningTheEarth}
+
+La otra técnica es UV \emph{unwrapping} que consiste en desenvolver los vértices de la superficie, aplanándolos sobre la textura. De esta forma el mapeo de la textura se realiza de forma más intuitiva ya que la superficie aplanada es bidimensional al igual que la textura. Esta técnica y las distintas herramientas para ajustar la forma en que se desenvuelve la textura son soportadas por la mayoría de los programas de edición de gráficos tridimensionales.
+
+En la escena tridimensional los objetos son visualizados utilizando cámaras virtuales que fijan el punto de vista. En la salida gráfica se representará entonces la escena desde la perspectiva de esta cámara virtual permitiendo que estas sean utilizadas para visualizar la escena desde distintos ángulos al editarla así como también para definir el punto de vista del proyector. Esto tiene como ventaja que la ubicación del proyector no es necesariamente fijada antes de producir el espectáculo sino que una vez producido es posible observar el resultado y elegir el punto de vista que más agrade o incluso se podría definir recién al momento de la proyección.
+Producir el espectáculo transformando directamente los objetos y no sus perspectivas permite escalar con mayor facilidad en la cantidad de proyectores ya que lo único que habría que agregar serían cámaras virtuales que definan más puntos de vista sin modificar el modelo ni los efectos producidos.
+Si bien se mencionaron ventajas en cuanto a la producción del espectáculo en tres dimensiones existen muchos casos en donde es más simple realizar ciertos efectos en dos dimensiones, sobre todo cuando estos efectos se aplican sobre regiones planas de la superficie. Por esto es útil poder combinar estos dos enfoques y utilizarlos de acuerdo a las necesidades del diseñador. Cabe aclarar que al combinar los enfoques se pierden las ventajas de definir el punto de vista del proyector luego de la producción por lo que los objetos bidimensionales y efectos sobre estos se deben definir una vez fijada la ubicación de los proyectores.
 
 \subsection{Calibración}
