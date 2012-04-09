@@ -189,17 +189,37 @@ Si un efecto es definido para ser desplegado en un instante dado este se podrá 
 Los tipos de efectos posibles son de posición, degradé de color y mapeo de texturas.
 Los efectos de posición son aplicables a objetos tridimensionales solamente, y lo que permiten es animar el objeto moviéndolo de una posición inicial a una final. Es posible definir una demora en la ejecución del efecto comenzando en el instante en el que debería ser mostrado (al pasar la línea de tiempo por el instante definido si es un efecto asociado a tiempo o al reconocerse el código de evento del efecto si es lanzado por eventos).
 
-Figura: Dialogo de definición de efecto de tipo posición.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_EfectDialog1.png}
+  \caption{Dialogo de definición de efecto de tipo posición}
+  \label{fig:VMT-EffectPossition}
+\end{figure}
 
 Los efectos de degradé solo son aplicables a grupos de quads y lo que permiten es pintar todos los quads del grupo de un color inicial e ir pasando por toda la gama de colores intermedios hasta llegar al color final. Para la selección de colores se utiliza un dialogo nativo para ese propósito. También es posible definir la duración del efecto.
 
-Figura: Dialogo de definición de efecto de tipo degradé o fade.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_EfectDialog2.png}
+  \caption{Dialogo de definición de efecto de tipo degradé o fade}
+  \label{fig:VMT-EffectFade}
+\end{figure}
 
 Los efectos de tipo textura son aplicables tanto a grupos de quads como a objetos tridimensionales. Se pueden definir texturas de tipo Imagen o Video. En ambos casos es necesario proporcionar el camino al archivo multimedia correspondiente. Para el caso especifico de un efecto de textura asociado a un objeto tridimensional, es necesario proporcionar además la cara o conjunto de caras (lista de selección de faces) sobre los cuales se va a mapear el efecto de tipo textura definido.
 
-Figura: Dialogo de definición de efecto de tipo textura (en este caso aplicada a un grupo).
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_EfectDialog3.png}
+  \caption{Dialogo de definición de efecto de tipo textura (en este caso aplicada a un grupo)}
+  \label{fig:VMT-EffectTexture}
+\end{figure}
 
-Figura: Lista de efectos definidos en la escena.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_Efects.png}
+  \caption{Lista de efectos definidos en la escena}
+  \label{fig:VMT-EffectList}
+\end{figure}
 
 Es posible testear el efecto que se está creando presionando el botón Test de la lista de efectos. Esto forzara la ejecución por una única vez del efecto seleccionado en la lista.
 
@@ -207,7 +227,12 @@ Es posible testear el efecto que se está creando presionando el botón Test de 
 
 El proceso de calibración en VMT se basa en posicionar cuatro puntos de la superficie donde se proyecta y cuatro puntos de la capa contenedora de quads para de esta forma calcular la matriz de transformación de la homografía que los hace corresponder.
 
-Figura: Dialogo para configurar y ejecutar la calibración.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_Calibrate.png}
+  \caption{Dialogo para configurar y ejecutar la calibración}
+  \label{fig:VMT-Calib}
+\end{figure}
 
 Al ingresar en el modo calibración se muestra en la pantalla de edición cuatro puntos azules de destino y cuatro puntos rojos de origen junto con el diálogo de configuración de la calibración.
 El diálogo posee controles para posicionar cada uno de los ocho puntos mostrados en pantalla. Se deberán posicionar los cuatro puntos de origen en regiones significativas de la capa donde hayan vértices de quads preferiblemente alejados entre si. De esta forma se minimiza el error obtenido al calcular la matriz.
@@ -218,9 +243,15 @@ Mediante el botón ReCalibrate se reestablece la calibración original, descarta
 
 Tanto para la fases de producción y revisión del evento como para la ejecución o reproducción del espectáculo en vivo, es necesario contar controles estándares para el manejo de la línea de tiempo.
 
-Figura: Diálogo con línea de tiempo y lista de efectos asociados a tiempo y eventos.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_events_effects.png}
+  \caption{Diálogo con línea de tiempo y lista de efectos asociados a tiempo y eventos}
+  \label{fig:VMT-Timeline}
+\end{figure}
 
 La aplicación provee una forma de iniciar el evento mediante la acción de Start. Se provee una vista gráfica representada con una barra deslizante y una vista numérica para reflejar el avance en el tiempo en relación a la duración total del evento. Utilizando la barra deslizante es posible navegar por la línea de tiempo e iniciarla visualización del evento desde un instante cualquiera. Esto último es muy útil para la fase de pre-producción del espectáculo en la cual es muy común que el usuario se quiera concentrar en una ventana de tiempo específica en la que se está trabajando.
+
 
 Figura: Asociación de eventos a instante de tiempo, evento y MIDI.
 
@@ -229,15 +260,26 @@ Sobre la linea de tiempo se pueden observar las listas de eventos agrupados por 
 \subsection{Nodos remotos}
 
 Para modelar la red de nodos esclavos de VMT en los cuales se conectaran proyectores remotos es preciso definir, para cada nodo, su IP y puerto donde estarán configurados y la cámara definida en la escena que representará al proyector asociado.
-  
-Figura: Lista de nodos y dialogo de propiedades de nodos.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_nodeProperties_1.png}
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_nodeProperties_2.png}
+  \caption{Lista de nodos y dialogo de propiedades de nodos}
+  \label{fig:VMT-Nodes}
+\end{figure}
 
 Esta información es necesaria para establecer el canal de comunicación con el proceso remoto y deducir que información se enviara al nodo en base a su cámara asociada. Recordar que las capas o layers están asociadas a una y solo una cámara, por lo cual si un efecto esta aplicado sobre un quad o grupo de quads, el mismo deberá ser propagado al nodo cuya cámara sea la que los contiene. En cuanto a los efectos aplicados sobre objetos tridimensionales, estos serán enviados a todos los nodos ya que todas las cámaras de todos los nodos tienen visibilidad de la escena tridimensional, aunque esta sea desde perspectivas diferentes.
 
 \subsection{Escena en XML}
 Se permite almacenar en archivos XML estándar una representación de lo que se ha definido en la escena. Para la búsqueda de los archivos XML se utilizan diálogos nativos para este propósito.
 
-Figura XML save and load
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_loadShow.png}
+  \caption{Dialogo nativo para cargar y guardar archivos XML con la definición de la escena}
+  \label{fig:VMT-XML}
+\end{figure}
 
 \section{Decisiones de implementación}
 Para la implementación del módulo de interfaz gráfica se siguió el patrón Model-View-Controller. Para cada ventana se generaron modelos que manejan los datos relevantes a cada una, impactando en el modelo general de la aplicación en caso de ser necesario.
