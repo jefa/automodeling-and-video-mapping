@@ -177,9 +177,7 @@ En cuanto a los usos específicos orientados a la reconstrucción tridimensional
 
 Utilizando técnicas de structured light, stereo, laser, sensores infrarojos o kinect se obtienen miles de puntos, es necesario simplificar este modelo con el objetivo de eliminar redundancia, y aumentar la velocidad en el procesamiento de los datos. Un problema adicional al tamaño de la información obtenida es que comúnmente se introduce información errónea (ruido), para superar este problema se realiza un suavizado en el procesamiento de la nube de puntos (en [Survey of Polygonal Surface Simplification Algorithms.  Paul S. Heckbert and Michael Garland] se presentan distintos métodos para simplificar y aproximar superficies 3D).
 
-Las heurísticas utilizadas se pueden clasificar como
-[Efficient Simplification of Point-Sampled Surfaces. Mark Pauly, Markus Gross, Leif P. Kobbelt.
-http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.19.5512&rep=rep1&type=pdf] :
+Las heurísticas utilizadas se pueden clasificar como\cite{PntCloud} :
    Clustering methods, consta en obtener subgrupos de la nube de puntos, cada subgrupo se remplaza por un conjunto de puntos representativos en él. Los subgrupos se pueden construir de dos formas, una utilizando un enfoque incremental, en el cual los subgrupos (clusters) son creados por construcción de menor a mayor (region-growing), otro enfoque es el jerárquico en el cual se subdivide utilizando una estrategia top-down.
    Iterative simplification, se recorren iterativamente los puntos de la nube generando contracciones de pares de puntos a un nuevo punto, se evalúa el error introducido que genera la contracción comparándolo con el error que se obtendría al contraerse con un punto vecino (el error se calcula utilizando mínimos cuadrados), se elije la contracción que introduce menor error al sistema, la finalización se puede dar por haber logrado la cantidad de puntos deseada o por superar una cota de error a introducir en el sistema.
    Particle simulation, se generan nuevos puntos que sustituyen la nube de puntos original, inicialmente se genera conjuntos de partículas que se mueven aleatoriamente en la superficie, luego utilizando algoritmo de point – repulsión se definen en las zonas que hay mayor colisiones.
@@ -240,7 +238,7 @@ Calcular el centro geométrico (centroide) del plano tangente en el punto como e
 Calcular la normal asociada al centro geométrico. Se utiliza la matriz de covarianza en el punto contemplando los mismos K vecinos más cercanos de la muestra y los valores y vectores propios de la matriz de covarianza. Finalmente, ordenando los vectores propios, la estimación del vector perpendicular corresponde al vector propio de menor valor. Este método es conocido como PCA (Principal Component Analysis).
 Paso 2: construir grafo donde cada punto está conectado a los K vecinos más cercanos (grafo de Riemannian)
    Se crea un grafo en cuyos nodos se guardan todas las aristas a los K vecinos más cercanos. Cada arista se pesa con el valor absoluto del producto escalar de la normal en el punto con la normal en cada uno de los K vecinos:
-   fabs(nodoActual->normal . K_Vecinos[n]->normal)
+   fabs(nodoActual->normal . K\_Vecinos[n]->normal)
 Paso 3: calcular el árbol de expansión mínimo (MST) sobre el grafo de Riemannian y recorrerlo para orientar las normales
 Dado un grafo conexo, no dirigido, con sus aristas con un peso asignado, se llama árbol de expansión mínimo al sub-grafo con forma de árbol que conecta todos los nodos con un peso total mínimo. Contiene todos los nodos del grafo inicial. El grafo de entrada es el construido en el paso enterior y se utiliza el algoritmo de Kruskal, uno de los varios algoritmos que resuelven el problema de encontrar un árbol de expansión mínima de un grafo (referencias).
 Una vez construido el MST, lo único que se hace es recorrer el árbol en orden y corregir el sentido de los vectores normales (multiplicando por -1.0f) en caso de ser necesario. La condición para efectuar dicha corrección se basa en el ángulo del nodo siendo inspeccionado versus todas las direcciones de las normales de los vecinos conectados a dicho nodo.
@@ -256,6 +254,7 @@ Una vez construido el MST, lo único que se hace es recorrer el árbol en orden 
 
 Finalmente, para reconstruir la malla a partir de la nube de puntos y sus normales se utiliza el algoritmo de Reconstrucción de Poisson.
 Se computa una función indicador  en 3 dimensiones definida de la siguiente forma:
+
 
 [formula]
 
