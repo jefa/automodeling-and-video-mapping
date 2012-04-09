@@ -117,3 +117,160 @@ El ángulo $\hat\beta$ esta dado por la geometría de la proyección.
 \right \rbrace
 \frac{d}{\sin(\gamma)} = \frac{b}{\sin(p - \gamma)} = \frac{b}{\sin(\alpha + \beta)} \Rightarrow d = b . \frac{\sin(a)}{\sin(\alpha + \beta)}
 \]
+
+
+
+\subsection{Visión estéreo}
+
+Es un método pasivo para obtener la estructura tridimensional de una escena, se utiliza el método de triangulación sin intervención de luz auxiliar, la correspondencia es establecida entre dos o más imágenes.
+Los algoritmos que utilizan este método son clasificados basados en diferencias de la geometría de la imagen, distintas estrategias para resolver la correspondencia entre puntos y en las diferentes estructuras computacionales utilizadas[5].
+Se realiza un pre proceso de las imágenes para identificar las principales características que se utilizarán, luego se define qué tipo de correspondencia se utilizará.
+La principal desventaja de este método es que en caso de oclusión, hay regiones que no tienen correspondencia en las dos imágenes por lo tanto no se puede establecer la correspondencia de puntos, finalmente no se puede resolver el problema de correspondencia para estas regiones.
+Las variantes que influyen en la geometría de la imagen son, ejes ópticos paralelos (Glosario-> eje óptico: es el eje perpendicular al plano imagen que pasa por el centro de la cámara, también llamado centro óptico) o no, paradigma binocular o multiocular.
+La correspondencia entre una o más vistas de la escena se puede realizar basada en distintas estrategias que son separate area o features.
+   separate area, basada en correlación del brillo, intensidad, se utilizan patrones de brillo aplicados a un pixel y sus vecinos (utiliza principio de localidad), diferencias en la perspectiva de la imagen o cambios en luminosidad absoluta de la escena puede generar errores.
+   features, las características usadas para la correspondencia son aristas, puntos o segmentos dadas por cambios de intensidad de la imagen, esta estrategia es más estable  ante variedad de luminosidad absoluta y en la práctica correspondencia es más rápida.
+La geometría convencional estéreo tiene un par de cámaras y los ejes ópticos son paralelos entre sí, y perpendiculares a la línea base (dada por los dos centros ópticos de las cámaras).
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/stereo.PNG}
+  \caption{}
+  \label{fig:Stereo}
+\end{figure}
+
+\subsection{Luz estructurada}
+
+El método basado en la técnica de luz estructurada consiste en proyectar distintos patrones sobre la superficie a modelar, luego se realizan capturas de las proyecciones, analizando las deformaciones de los patrones proyectados se obtiene información de la posición (coordenadas tridimensionales), orientación y textura de la superficie [7].
+Los patrones a utilizar en este método pueden ser variados se clasifican en cuatro tipos: punto (singled scanned dot), línea (slit line), grilla (grid) y matriz de puntos (dot matrix).
+Dependiendo del tipo de objeto y superficie a escanear se puede tener problemas de oclusión, baja reflexión y puntos reflejados fuera del alcance de la cámara, como consecuencia, hay pérdida de puntos proyectados que no tienen proyección en el plano imagen.
+Estos problemas se pueden solucionar utilizando patrones codificados adecuados. Se distinguen tres grupos de patrones clasificados según: dependencia temporal, propiedades de la luz proyectada y discontinuidad de profundidad de la superficie proyectada[6].
+   Dependencia  temporal:
+   Estática, el patrón es limitado para escenas estáticas, son necesarias proyecciones de varios patrones distintos. El movimiento de cualquier objeto de la escena mientras se realiza la obtención de los patrones proyectados producirá un error de correspondencia.
+   Dinámica, los objetos en la escena se pueden mover, se utiliza un único patrón de proyección.
+   Propiedades de la luz proyectada:
+   Binaria, cada uno de los puntos del patrón tiene dos posibles valores codificados con 0 y 1 respectivamente. Este valor representa opacidad y transparencia, ausencia o presencia de la luz proyectada en el objeto.
+   Escala de grises, cada punto del patrón tiene asociado un valor de gris que representa el nivel de trasparencia (o nivel de opacidad) del punto para la luz proyectada. Son necesarios dos pasos, primero se obtiene una imagen de la escena iluminada con la misma luz (sin variar la intensidad), luego se obtiene la referencia de luz necesaria para cancelar el efecto de reflejo de la superficie (depende directamente del tipo de superficie). La necesidad de estos dos pasos contribuye a que este patrón también sea clasificado como estático.
+   Color, cada punto del patrón es asociado con un valor de tono. Los tonos deben ser bien diferenciados para alcanzar una segmentación eficiente. Este tipo de patrones son limitados por el color de la escena, si presenta objetos de colores altamente saturados se producen pérdidas de regiones en el paso de segmentación que luego provoca errores en la decodificación.
+   Discontinuidad en profundidad de la superficie proyectada:
+   Periódica, la codificación se repite periódicamente a lo largo del patrón. Esta  técnica se utiliza para reducir el número de bits que codifican el patrón,
+como limitante la profundidad del objeto no puede ser mayor que la mitad de la longitud del período.
+   Absoluta, cada columna o fila del patrón proyectado tiene una única codificación, no sufre dependencia de discontinuidad de profundidad.
+   
+\section{Sensores}
+\subsection{Kinect}
+
+Kinect es un dispositivo que se puede adicionar a la consola  Xbox360 de Microsoft. El objetivo de este dispositivo es permitir que el usuario interactúe con la consola utilizando solo el movimiento de su cuerpo. Para lograr eso, Kinect aplica distintas técnicas de procesamiento de imágenes, considerando ubicaciones, posturas y distancias. El hardware de Kinect no consiste tan solo de una cámara, sino que tiene adicionalmente un emisor de infrarrojo, que en base a la deformación del haz de luz determina la distancia de cada punto de la imagen capturada. Posteriormente, combina la información visual para tener una noción bastante precisa de los movimientos del usuario. A mediados del 2011 fue presentada una interfaz de programación gratuita que permite utilizar Kinect de forma directa en aplicaciones no licenciadas y para diferentes propósitos, no solo el de los video juegos.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/kinect.PNG}
+  \caption{}
+  \label{fig:Kinect}
+\end{figure}
+
+Para el análisis de las deformaciones de los rayos y construir el mapa de profundidad, Kinect utiliza la previamente mencionada técnica de Luz Estructurada. Mediante el sensor infrarrojo con el que viene equipado, se proyectan los patrones de luz por toda la escena y se analizan las distorsiones mediante la cámara de profundidad
+También se cuenta con una cámara convencional para analizar objetos o personas en la escena y la detección de colores.
+En cuanto a los usos específicos orientados a la reconstrucción tridimensional de objetos, el proyecto KinectFusion, actualmente esponsoreado por Microsoft, logra muy buenos resultados (link al paper de http://events.ccc.de/congress/2011/Fahrplan/events/4928.en.html).
+
+\section{Procesamiento de nube de puntos}
+
+Utilizando técnicas de structured light, stereo, laser, sensores infrarojos o kinect se obtienen miles de puntos, es necesario simplificar este modelo con el objetivo de eliminar redundancia, y aumentar la velocidad en el procesamiento de los datos. Un problema adicional al tamaño de la información obtenida es que comúnmente se introduce información errónea (ruido), para superar este problema se realiza un suavizado en el procesamiento de la nube de puntos (en [Survey of Polygonal Surface Simplification Algorithms.  Paul S. Heckbert and Michael Garland] se presentan distintos métodos para simplificar y aproximar superficies 3D).
+
+Las heurísticas utilizadas se pueden clasificar como
+[Efficient Simplification of Point-Sampled Surfaces. Mark Pauly, Markus Gross, Leif P. Kobbelt.
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.19.5512&rep=rep1&type=pdf] :
+   Clustering methods, consta en obtener subgrupos de la nube de puntos, cada subgrupo se remplaza por un conjunto de puntos representativos en él. Los subgrupos se pueden construir de dos formas, una utilizando un enfoque incremental, en el cual los subgrupos (clusters) son creados por construcción de menor a mayor (region-growing), otro enfoque es el jerárquico en el cual se subdivide utilizando una estrategia top-down.
+   Iterative simplification, se recorren iterativamente los puntos de la nube generando contracciones de pares de puntos a un nuevo punto, se evalúa el error introducido que genera la contracción comparándolo con el error que se obtendría al contraerse con un punto vecino (el error se calcula utilizando mínimos cuadrados), se elije la contracción que introduce menor error al sistema, la finalización se puede dar por haber logrado la cantidad de puntos deseada o por superar una cota de error a introducir en el sistema.
+   Particle simulation, se generan nuevos puntos que sustituyen la nube de puntos original, inicialmente se genera conjuntos de partículas que se mueven aleatoriamente en la superficie, luego utilizando algoritmo de point – repulsión se definen en las zonas que hay mayor colisiones.
+En la sección Tratamiento de malla se detallan los algoritmos utilizados en nuestra solución.
+Luego de simplificar la nube de puntos se construye un modelo tridimensional a partir de ella, las estructuras obtenidas son mallas de poliedros, particularmente son muy usadas las mallas triangulares, la razón principal es la simplicidad de los algoritmos que dibujan triángulos, esto permite que sean implementados fácilmente en hardware, otro beneficio de los triángulos es que cualquier polígono con más de tres caras puede representarse con un conjunto de triángulos [Efficient Implementation of Multiresolution Triangle Strips. Óscar Belmonte, Inmaculada Remolar, José Ribelles, Miguel Chover, y Marcos Fernández   http://www3.uji.es/~belfern/pdf/cggm02.pdf].
+
+\section{Tratamiento de malla}
+
+Los dispositivos de captura de información tridimensional estudiados entregan la información en forma de nube de puntos (ref a Kyle, kinect  y Sensores del chino). Es por ello que previo a la manipulación de la información tridimensional, es necesario procesar dicha nube de puntos para convertirla a formatos más manejables, como por ejemplo mallas triangulares.
+Un típico procesamiento de malla, ya estudiado e implementado en bibliotecas como VcgLib o CGAL Error: Reference source not found: dada una nube de puntos de entrada, realizar un sub-muestreo y suavizado de la misma, calcular las normales en cada punto de la nube y finalmente, aplicar algoritmos de reconstrucción de malla.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-flow.png}
+  \caption{Típico flujo para el procesamiento de nubes de puntos (fuente: CGAL\cite{CGAL})}
+  \label{fig:Mesh-CGAL}
+\end{figure}
+
+Para la implementación de este modulo, se utilizaron algoritmos incluidos en VcgLib. Para visualizar y evaluar los resultados esperados se utilizo la aplicación de código abierto para la manipulación de mallas tridimensionales en diferentes formatos MeshLab Error: Reference source not found. Particularmente, se utilizaron los algoritmos de muestreo Poisson-disk para reducir y normalizar los puntos de la malla inicial, Normal Extrapolation para el cálculo de normales y reconstrucción de superficies de Poisson para la reconstrucción de la malla final.
+
+\subsection{Muestreo Poisson-disk}
+
+El muestreo o sorteo de variables aleatorias es una técnica utilizada para una gran variedad de aplicaciones graficas, incluyendo dibujado (rendering), procesamiento de imágenes y de geometrías.
+Particularmente, el muestreo Poisson-disk se utiliza para ubicación aleatoria de objetos en mundos artificiales, algoritmos de texturas procedurales y procesamiento de geometrías o mallas. Esta técnica genera conjunto de puntos con las siguientes propiedades: puntos suficientemente juntos, pero con la restricción de no estar más próximos unos de otros que una distancia mínima R predeterminada.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-poisson.png}
+  \caption{a) Posición x e y generadas aleatoriamente. b) Imagen dividida en celdas. Puntos aleatorios generados en cada celda. c) Muestreo Poisson-disk en 2 dimensiones}
+  \label{fig:Mesh-Poisson}
+\end{figure}
+
+En líneas generales, este algoritmo genera puntos alrededor de los ya existentes en la muestra, y valida si pueden ser agregados al conjunto final en caso de no violar la regla de la mínima distancia a los vecinos. Se genera una grilla en 2 o 3 dimensiones dependiendo del escenario de aplicación, en la cual cada celda contendrá al final del proceso a lo sumo un punto. Una grilla adicional es utilizada para realizar búsquedas rápidas, y dos conjuntos de puntos son mantenidos durante el procesamiento para poder diferenciar los que han sido generados y los que aún necesitan procesamiento.
+La implementación de VcgLib utilizada recibe 3 parámetros:
+\begin{itemize}
+	\item La cantidad de puntos en la muestra. En este caso el radio o parámetro de cercanía es calculado en base a este parámetro.
+	\item El radio, que es a su vez utilizado para calcular el tamaño de la muestra optimo en base a la malla inicial.
+	\item Sub muestreo: indica si la muestra de Poisson es un subconjunto de la muestra inicial o si se deberán generar nuevos puntos aleatoriamente.
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-poissongui.png}
+  \caption{Configuracion de parámetros del alrogirtmo Poisson-disk}
+  \label{fig:Mesh-PoissonGui}
+\end{figure}
+
+\subsection{Reconstrucción de normales}
+
+Este algoritmo computa las normales en cada elemento de un conjunto de puntos sin la necesidad de explorar la conectividad de los triángulos. Por ello es que es muy útil para objetos tridimensionales sin información de caras (faces).
+Se detalla un pseudocódigo del método:
+
+Figura: planos tangentes
+
+Paso 1: Identificar los planos tangentes para aproximar localmente la superficie y estimar así los vectores normales
+   Para cada vértice:
+Calcular el centro geométrico (centroide) del plano tangente en el punto como el promedio de los K puntos más cercanos.
+Calcular la normal asociada al centro geométrico. Se utiliza la matriz de covarianza en el punto contemplando los mismos K vecinos más cercanos de la muestra y los valores y vectores propios de la matriz de covarianza. Finalmente, ordenando los vectores propios, la estimación del vector perpendicular corresponde al vector propio de menor valor. Este método es conocido como PCA (Principal Component Analysis).
+Paso 2: construir grafo donde cada punto está conectado a los K vecinos más cercanos (grafo de Riemannian)
+   Se crea un grafo en cuyos nodos se guardan todas las aristas a los K vecinos más cercanos. Cada arista se pesa con el valor absoluto del producto escalar de la normal en el punto con la normal en cada uno de los K vecinos:
+   fabs(nodoActual->normal . K_Vecinos[n]->normal)
+Paso 3: calcular el árbol de expansión mínimo (MST) sobre el grafo de Riemannian y recorrerlo para orientar las normales
+Dado un grafo conexo, no dirigido, con sus aristas con un peso asignado, se llama árbol de expansión mínimo al sub-grafo con forma de árbol que conecta todos los nodos con un peso total mínimo. Contiene todos los nodos del grafo inicial. El grafo de entrada es el construido en el paso enterior y se utiliza el algoritmo de Kruskal, uno de los varios algoritmos que resuelven el problema de encontrar un árbol de expansión mínima de un grafo (referencias).
+Una vez construido el MST, lo único que se hace es recorrer el árbol en orden y corregir el sentido de los vectores normales (multiplicando por -1.0f) en caso de ser necesario. La condición para efectuar dicha corrección se basa en el ángulo del nodo siendo inspeccionado versus todas las direcciones de las normales de los vecinos conectados a dicho nodo.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-normalextrapolation.png}
+  \caption{Configuracion de parámetros para reconstruccion de normales}
+  \label{fig:Mesh-Normals}
+\end{figure}
+
+\subsection{Reconstrucción de malla de Poisson}
+
+Finalmente, para reconstruir la malla a partir de la nube de puntos y sus normales se utiliza el algoritmo de Reconstrucción de Poisson.
+Se computa una función indicador  en 3 dimensiones definida de la siguiente forma:
+
+[formula]
+
+Luego, se obtiene una reconstrucción de la superficie mediante la extracción de la ISO-surface (superficie de nivel en 3 dimensiones) al nivel apropiado.
+La clave está en que hay una estrecha relación entre los puntos orientados (con sus normales) de la muestra y la función indicador de la muestra. Específicamente el gradiente de la función indicador es un espacio de vectores que valen cero casi en todo el espacio excepto en puntos cercanos a la superficie, donde es igual al vector normal a la superficie.
+Es por eso que puntos orientados, pueden ser vistos como muestras del gradiente de la función indicador del modelo tridimensional en cuestión. Y es por este mismo motivo que el problema de reconstrucción de una malla puede ser visto como un problema de Poisson estándar: computar la función escalar F cuyo Laplaciano (o divergencia del gradiente) se iguala a la divergencia del espacio de vectores de las normales.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-poissonreconstruction.png}
+  \caption{Configuracion de parámetros para reconstruccion de malla de Poisson}
+  \label{fig:Mesh-Normals}
+\end{figure}
+
+\subsection{Pruebas y resultados}
+
+Para validar el correcto funcionamiento de esta técnica utilizando los tres algoritmos descritos, utilizamos una malla inicial de 5021 vertices y 9608 caras triangulares. Cabe destacar que si bien se ha mencionado que la malla de entrada debe ser simplemente una nube de puntos, se pueden utilizar mallas con caras, solo que estas serán ignoradas e incluso removidas de la malla de salida del primer paso del procesamiento (Poisson-disk sampling).
+
