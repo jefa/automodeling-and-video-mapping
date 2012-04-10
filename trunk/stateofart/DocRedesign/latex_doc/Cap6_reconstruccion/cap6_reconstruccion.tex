@@ -332,9 +332,22 @@ Luego de experimntar con varios juegos de datos iniciales durante varias ejecuci
 La aplicación de estos algoritmos resultó ser lo esperado, en términos estructurales de cada malla procesada en cada uno de los paso. No se llego a procesar mallas de ambientes tridimensionales escaneados para luego ser mapeados con la herramienta.
 
 
+\begin{table}
+\begin{center}
+\begin{tabular}{|l||cc|} \hline
+	Fase & Vértices & Caras \\
+	Nube inicial & 5021 & 9608 \\
+	Luego Poisson-disk & 1776 & 0 \\
+	Luego Extrapolación Normales & 1776 & 0 \\
+	Luego de Poisson-recontruction & 1959 & 3910 \\ \hline
+\end{tabular}
+\caption{Comparación de estructura de mallas de entrada y salida en cada fase}
+\end{center}
+\end{table}
+
 \begin{figure}[H]
   \centering
-    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-nubepuntos.png}
+    \includegraphics[width=0.8\textwidth]{./Cap6_reconstruccion/malla-nubepuntos.png}
   \caption{1) Nube de puntos inicial con 5021 vértices. 2) Resultado de muestreo Poisson-disk con 1776 vértices. 3) Luego de extrapolar normales y reconstruir la malla con 1959 vértices y 3910 caras.}
   \label{fig:Mesh-Results}
 \end{figure}
