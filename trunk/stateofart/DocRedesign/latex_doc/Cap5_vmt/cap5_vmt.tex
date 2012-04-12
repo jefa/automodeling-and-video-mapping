@@ -1,28 +1,28 @@
-\chapter{VMT}
+\chapter{\emph{VMT}}
 \section{Descripción general}
-VMT es una herramienta para la edición y posterior ejecución de un espectáculo de \emph{video mapping}, el mismo puede utilizar uno o más proyectores eventualmente alejados físicamente unos de otros para obtener un mejor cubrimiento de la escena a mapear. Para dar soporte al escenario distribuido, se cuenta con componentes remotos (cliente) con el fin de reproducir los efectos y eventos existentes del espectáculo. Mediante un editor tridimensional, es posible observar de forma centralizado lo que se ha producido hasta el momento así como visualizar la salida de cada uno de los proyectores a modo de validación. Si bien es un editor tridimensional se manejan conceptos bidimensionales de capa (\emph{layer}) y cuadrilátero (\emph{quad}), los que se pueden agregar y asociar a una cámara o proyector sin un limite predeterminado. Se proveen de mecanismos de calibración separadamente para objetos tridimensionales y bidimensionales utilizados al trabajar sobre la escena real luego de un primer escaneo. Dichos mecanismos serán explicados en detalles más adelante.
+\emph{VMT} es una herramienta para la edición y ejecución de un espectáculo de \emph{video mapping}, el mismo puede utilizar uno o más proyectores eventualmente alejados físicamente unos de otros para lograr cubrir una superficie mayor de la escena a mapear. Para dar soporte al escenario distribuido, se cuenta con componentes remotos con el fin de reproducir los efectos y eventos existentes del espectáculo. Mediante un editor tridimensional, es posible observar de forma centralizada lo que se ha producido hasta el momento así como visualizar la salida de cada uno de los proyectores. Si bien es un editor tridimensional se manejan conceptos bidimensionales de capa y cuadrilátero en \emph{VMT} los elementos correspondientes son \emph{layer} y \emph{quad}, los que se pueden asociar a una cámara o proyector. La cantidad de estos elementos que se utilizarán en el espectáculo puede ser variada dependiendo del diseño sin existir en \emph{VMT} un límite fijo para ellos. Se proveen de mecanismos de calibración separadamente para objetos tridimensionales y bidimensionales utilizados al trabajar sobre la escena real luego de un primer escaneo. Dichos mecanismos serán explicados en detalle más adelante en este capítulo.
 
-Las alternativas en cuanto a efectos de mapeo son de degrades (\emph{fade}) de colores y la aplicación de texturas de imagen o video. Se cuenta también con un efecto para la animación de la posición de los objetos en tiempo de ejecución del espectáculo. Es posible visualizar en todo momento la ejecución de los efectos y su correspondiente impacto en la escena, y estos pueden ser lanzados por tiempo, por eventos de teclado o \emph{MIDI}. Existe una linea de tiempo navegable, permitiéndose avanzar o retroceder a un intervalo de tiempo dado durante la producción del espectáculo. Se permite agregar una única pista de audio en sincronía con el tiempo transcurrido del evento.
+Los efectos de mapeo disponibles son de degradé de colores \footnote{en \emph{VMT} es el efecto \emph{fade}.}, y la aplicación de texturas de imagen o video. Se cuenta también con un efecto para la animación de la posición de los objetos en tiempo de ejecución del espectáculo. Es posible visualizar en todo momento la ejecución de los efectos y su correspondiente impacto en la escena. Los efectos pueden ser lanzados por tiempo, por eventos de teclado o \emph{MIDI} se definen en una línea de tiempo navegable, permitiéndose avanzar o retroceder a un intervalo de tiempo dado durante la producción del espectáculo. Una pista de audio puede tocarse en sincronía con el transcurso de los efectos en el espectáculo.
 
-La interfaz gráfica de usuario está basada enteramente en botoneras y ventanas de propiedades flotantes para poder tener una vista mejorada y en tiempo real de lo que está sucediendo en la escena. Se proveen mecanismos para almacenar y cargar en archivos \emph{XML} estándar toda la definición de la escena.
+La interfaz gráfica de usuario está basada enteramente en botoneras y ventanas de propiedades flotantes para poder tener una vista mejorada y en tiempo real de lo que está sucediendo en la escena. Se proveen mecanismos para almacenar y cargar la definición de la escena en o desde archivos \emph{XML} estándar .
 
-La tecnología de base seleccionada para la creación de los módulos de nuestra herramienta y todas las bibliotecas de terceros que se han utilizado son multiplataforma, lo que permite la compilación y ejecución en los entornos mas utilizadas hoy en día como Microsoft Windows, Linux y Mac OS.
+La tecnología de base seleccionada para la creación de los módulos de nuestra herramienta y todas las bibliotecas de terceros que se han utilizado son multiplataforma, lo que permite la compilación y ejecución en los entornos Microsoft Windows, Linux y Mac OS.
 
 \section{Descripción de módulos}
 
 \subsection{Motor gráfico}
-Para dar soporte a la visualización de elementos gráficos bidimensionales y tridimensionales en pantalla o proyectados y, el correspondiente mapeo de texturas de imágenes o videos sobre ellos tanto en la aplicación cliente como en la del editor del servidor, se creo un componente reusable para el motor de dibujado llamado \emph{vmt\_engine}. Este motor gráfico ofrece una interfaz programática genérica para el manejo y edición de objetos y efectos que contiene.
+El componente \emph{vmt\_engine} es un motor de dibujado que birnda soporte a la visualización de elementos gráficos bidimensionales y tridimensionales en pantalla o proyectados y resuelve el mapeo de texturas de imágenes o videos sobre ellos. Este motor gráfico ofrece una interfaz programática genérica para el manejo y edición de objetos y efectos que contiene.
 
-Los elementos bidimensionales son cuadriláteros y en la aplicación se llaman quads. Los quads se definen mediante las coordenadas bidimensionales en el plano de la imagen de los cuatro vértices que los componen. Se pueden posicionar en la pantalla de forma tal que al ser proyectados cubran una superficie total o parcial. Luego, sobre estos quads se aplicarán texturas en forma de imagen o video, para que la proyección deforme estas texturas adaptándolas a la forma del quad.
-Los quads también pueden ser utilizados como máscaras para cubrir zonas de otros quads o elementos tridimensionales. Una máscara es básicamente un quad opaco de color negro. Dado que el color negro es el menos visible al ser proyectado, es útil para bloquear secciones que, por la geometría de la escena, podrían estar quedando mal proyectadas o iluminando zonas indeseadas.
+Los elementos bidimensionales \emph{quads} se pueden posicionar en la pantalla de forma tal que al ser proyectados cubran una superficie total o parcial de la escena. Luego, sobre estos \emph{quads} se aplicarán texturas en forma de imagen o video, para que la proyección deforme estas texturas adaptándolas a la forma del \emph{quad}.
+Los \emph{quads} también pueden ser utilizados como máscaras para cubrir zonas de otros \emph{quads} o elementos tridimensionales que podrían estar quedando mal proyectadas por deformaciones en la superficie o por ser zonas no deseadas. Una máscara se logra con un \emph{quad} opaco de color negro, se utiliza el color negro porque es el menos visible al ser proyectado.
 
-En cuanto a los elementos tridimensionales, estos representan objetos más complejos y ofrecen una mayor versatilidad para realizar mapeos sobre ellos.
-Estos objetos se cargan a partir de modelos tridimensionales en el formato estándar 3DS[The Labs: 3DS File Format, by Jeff Lewis - www.the-labs.com/Blender/3dsspec.html] y se permite cargar al motor cualquier geometría que lo respete.
-La edición de la geometría de estos objetos es en general un tema complejo pero bien resuelto por varias aplicaciones de edición 3D como pueden ser 3DS Max[usa.autodesk.com/3ds-max] y Blender[www.blender.org] entre otros. Por esta y otras razones es que se delega la edición de las formas tridimensionales a programas para este propósito.
-Los programas de edición además de permitir modificar la geometría manipulando vértices y caras, también posibilitan la definición de materiales para aplicar propiedades comunes a una cierta selección de caras de la malla tridimensional\footnote{Ver glosario}. VMT utiliza estas selecciones de caras para mapear texturas sobre ellas resolviendo de esta forma el mapeo en tres dimensiones.
+Los elementos tridimensionales representan objetos más complejos y ofrecen una mayor versatilidad para realizar mapeos sobre ellos.
+El formato estándar utilizado para representar los elementos tridimensionales es \emph{3D Studio}\cite{3DS} y se permite cargar al motor cualquier geometría que lo respete.
+La edición de la geometría de estos objetos tridimensionales es en general un tema complejo pero bien resuelto por varias aplicaciones de edición 3D como pueden ser 3DS Max\footnote{usa.autodesk.com/3ds-max} y Blender\footnote{www.blender.org} entre otros. %Por esta y otras razones es que se delega la edición de las formas tridimensionales a programas para este propósito.
+Los programas de edición además de permitir modificar la geometría manipulando vértices y caras, también posibilitan la definición de materiales para aplicar propiedades comunes a una cierta selección de caras de la malla tridimensional\footnote{Ver glosario}. \emph{VMT} utiliza estas selecciones de caras para mapear texturas sobre ellas resolviendo de esta forma el mapeo en tres dimensiones.
 
 El mapeo tridimensional se realiza básicamente definiendo las coordenadas de mapeo en cada vértice del modelo 3DS. Las aplicaciones de edición 3D antes mencionadas proveen herramientas para hacer esta tarea de forma muy intuitiva. Ejemplo de esto es la definición de coordenadas de mapeo de un cilindro para mapear una textura en una columna cilíndrica.
-Los elementos gráficos por sí mismos no son representables. Es necesario asignarles primero un material dentro de VMT y es a este material que se le asigna un color o una textura con la cual se representará el objeto.
+Los elementos gráficos por sí mismos no son representables. Es necesario asignarles primero un material dentro de \emph{VMT} y es a este material que se le asigna un color o una textura con la cual se representará el objeto.
 En la implementación de los materiales se utilizan shaders [glosario], que son programas que se ejecutan en los procesadores gráficos y tienen como ventaja que son altamente paralelizables, permitiendo realizar cálculos de forma más rápida y eficiente. En la aplicación se utiliza el lenguaje de shaders para OpenGL GLSL\cite{GLSL} para la implementación de un shader básico que combina una textura de imagen o video con un color para obtener el resultado visibles del material. Este color tiene un canal alfa\footnote{Ver glosario.} y por lo tanto se pueden lograr texturas y colores con niveles de transparencia. No se esta considerando la iluminación en nuestra implementación del shader.
 
 Para visualizar los elementos tridimensionales es necesario definir un punto de vista. Esto se logra mediante el agregado de una cámara en el motor y la configruación de sus propiedades, entre ellas su ubicación o punto de vista. Los proyectores con los que se realiza el espectáculo de video mapping son también representados como cámaras en el motor, pero no toda cámara configurada representa un proyector, ya que se pueden contar con cámaras que representen puntos de vista de un observador del espectáculo que sea de interés para el creador.
@@ -36,7 +36,7 @@ Las cámaras permiten ajustar sus parámetros mediante operaciones comunes a cá
 \end{figure}
 
 Aparte de estos parámetros de ubicación, también existe el parámetro FOV (Field Of View) o campo de vista que es el ángulo de apertura de la cámara. Para el caso de cámaras que representan proyectores, este parámetro debe coincidir con el FOV del proyector para ajustar correctamente las escenas con respecto a lo que muestra la cámara en pantalla.
-Mediante estas operaciones es que las cámaras virtuales de VMT ajustan sus parámetros para que la proyección de objetos tridimensionales coincida con las superficies proyectadas.
+Mediante estas operaciones es que las cámaras virtuales de \emph{VMT} ajustan sus parámetros para que la proyección de objetos tridimensionales coincida con las superficies proyectadas.
 Hay que destacar que las cámaras proveen un punto de vista solo para los elementos tridimensionales. Los quads, que como se menciono son contrucciones bidimensionales, no dependen del punto de vista de la cámara y se representan en un sector de la pantalla relativo a esta. Es por esto que los quads no alteran su posición en pantalla al ajustar los parámetros de la cámara.
 
 Los quads se pueden organizar en grupos de quads y pertenecen a una o mas capas, y cada capa pertenece a una única cámara de manera de representar las zonas a cubrir por un solo proyector. A su vez se permite aplicar una transformacion inicial a una capa, la que se aplicara a todos los quads o grupos de quads contenidos en ella. Esto es útil para ajustar la proyección de los quads en caso de mover el proyector levemente y que esta proyección deje de coincidir con las superficies, y provee la funcionalidad basica y de bajo nivel para el mecanismo de calibracion bidimensional que se detallara mas adelante.
@@ -52,7 +52,7 @@ Las texturas se asocian a grupos de quads solamente. Los grupos también permite
 
 Con estas variantes de proyección se le dan más posibilidades a un artista para lograr los efectos utilizados normalmente en espectáculos de video mapping.
 
-El motor gráfico también contiene los efectos que se ejecutarán durante el espectáculo. Se aceptan como efectos la asignación de texturas en forma de imagen o video, ya sea a grupos de quads u objetos tridimensionales, el degrade de colores o fade en un material desde un color inicial a otro final, y la animación de la posición de un objeto tridimensional de un origen a un destino en un lapso de tiempo dado.
+El motor gráfico también contiene los efectos que se ejecutarán durante el espectáculo. Se aceptan como efectos la asignación de texturas en forma de imagen o video, ya sea a grupos de quads u objetos tridimensionales, el degradé de colores o fade en un material desde un color inicial a otro final, y la animación de la posición de un objeto tridimensional de un origen a un destino en un lapso de tiempo dado.
 
 El efecto de mapeo de texturas es el más básico pero también el más potente en cuanto a la gran cantidad de alternativas al momento de mapear texturas sobre superficies. La variedad y la complejidad de las texturas está en la creación de los recursos de imagen o video que se deseen mapear. Al permitirse mapear estas texturas sobre objetos tridimensionales no es necesario distorsionar la forma de los videos sino que será el motor quien los adaptará a la forma del objeto que está siendo mapeado. El efecto de fade puede ser combinado en un objeto que ya disponga de una textura y así permitir por ejemplo su atenuación o resaltado. La duración del fade, al igual que la de animación de posición, es configurable.
 
@@ -87,29 +87,29 @@ Si se utilizan videos en las texturas, la compresión y resolución de estos tam
 
 \subsection{Multi proyector}
 
-Uno de los puntos fuertes de VMT es la posibilidad de editar y visualizar un espectáculo de video mapping utilizando más de un proyector. El soporte de múltiples proyectores puede lograrse de diferentes maneras o formas de distribución.
+Uno de los puntos fuertes de \emph{VMT} es la posibilidad de editar y visualizar un espectáculo de video mapping utilizando más de un proyector. El soporte de múltiples proyectores puede lograrse de diferentes maneras o formas de distribución.
 
 La forma más sencilla de conectar varios proyectores es con más de una salida de video desde el mismo computador. Esto es posible mediante una tarjeta de video con salida múltiple, conectando cada proyector a cada una de estas salidas. Luego, se configura el sistema operativo para que extienda la resolución en las múltiples salidas y de esta forma se dispondrá de un área de trabajo mayor. Los diferentes sectores del área de trabajo serán desplegados por los proyectores conectados.
-VMT permite, al inicio de un espectáculo, indicar la resolución y la posición en pantalla en donde se desplegará. Controlando estos parámetros es que se permiten distintas variaciones en la configuración interna de la aplicación y en la disposición de los proyectores.
+\emph{VMT} permite, al inicio de un espectáculo, indicar la resolución y la posición en pantalla en donde se desplegará. Controlando estos parámetros es que se permiten distintas variaciones en la configuración interna de la aplicación y en la disposición de los proyectores.
 
 Otra forma de lograr varias salidas es conectando un dispositivo como las tarjetas DualHead2Go o TripleHead2Go [www.matrox.com/graphics/en/products/gxm/] y de esta manera conectar dos o tres proyectores a partir de una única salida de la tarjeta de video. El resultado es similar al anterior, extendiendo el área de trabajo a la resolución duplicada o triplicada.
 
 Estas variantes en la forma de conectar los proyectores son útiles cuando se desea proyectar sobre una superficie tan extensa que un solo proyector no pueda abarcarla completamente, ya que como se menciona, el área de trabajo o escritorio es extendido para abarcar la cantidad de proyectores conectados al computador único, con la restricción de que están todos organizados de forma contigua. En cambio, si queremos proyectar sobre zonas de la escena contiguas o no entre si, lo ideal es contar con proyectores conectados a nodos distribuidos e independientes tanto al momento de la producción del espectáculo como al de su ejecución.
 
-En VMT, el escenario descrito se implementa teniendo una instancia de VMT maestro que orquestará toda la ejecución del espectáculo, y varias instancias de VMT esclavo con uno o mas proyectores conectados. Para modelarlo en la herramienta se agregan los proyectores a la escena, asignando las propiedades para cada uno en particular, y luego se define la red de nodos de VMT esclavo con la información de conectividad necesaria y su asociación al proyector que tiene conectado el nodo. La comunicación entre maestro y esclavos se realiza sobre OSC, protocolo construido sobre UDP para IP vía Ethernet o WiFi. Por la naturaleza del protocolo UDP, es preferible contar con conexiones cableadas en lugar de inalámbricas dada la alta tasa de perdida de paquetes que existe en este tipo de redes, lo cual podría causar desincronización de algunos nodos esclavos. OSC también permite a cualquier aplicación capaz de enviar mensajes OSC y que conozca el formato de los mismos para VMT, controlar los esclavos y por consiguiente lo que se proyecta en los correspondientes proyectores.
+En \emph{VMT}, el escenario descrito se implementa teniendo una instancia de \emph{VMT} maestro que orquestará toda la ejecución del espectáculo, y varias instancias de \emph{VMT} esclavo con uno o mas proyectores conectados. Para modelarlo en la herramienta se agregan los proyectores a la escena, asignando las propiedades para cada uno en particular, y luego se define la red de nodos de \emph{VMT} esclavo con la información de conectividad necesaria y su asociación al proyector que tiene conectado el nodo. La comunicación entre maestro y esclavos se realiza sobre OSC, protocolo construido sobre UDP para IP vía Ethernet o WiFi. Por la naturaleza del protocolo UDP, es preferible contar con conexiones cableadas en lugar de inalámbricas dada la alta tasa de perdida de paquetes que existe en este tipo de redes, lo cual podría causar desincronización de algunos nodos esclavos. OSC también permite a cualquier aplicación capaz de enviar mensajes OSC y que conozca el formato de los mismos para \emph{VMT}, controlar los esclavos y por consiguiente lo que se proyecta en los correspondientes proyectores.
 
 \subsection{Calibración}
 
-VMT ofrece la capacidad de calibrar las cámaras para que la proyección reflejada por los proyectores se corresponda y ajuste a la geometría de la escena.
-Como se mencionó anteriormente, VMT permite trabajar simultáneamente de forma bidimensional y tridimensional. Cada uno de estos modos de trabajo requiere distintos mecanismos de calibración.
+\emph{VMT} ofrece la capacidad de calibrar las cámaras para que la proyección reflejada por los proyectores se corresponda y ajuste a la geometría de la escena.
+Como se mencionó anteriormente, \emph{VMT} permite trabajar simultáneamente de forma bidimensional y tridimensional. Cada uno de estos modos de trabajo requiere distintos mecanismos de calibración.
 
 La calibración bidimensional se basa en ajustar todos los quads de una capa de forma conjunta.
 Inicialmente, al preparar el espectáculo, los quads son posicionados en pantalla para cubrir las áreas de interés a proyectar. Luego de este posicionamiento inicial, cualquier movimiento de los proyectores causará que se desajuste simultáneamente la proyección de todos los quads. Si ocurre un desajuste se hace necesario reposicionar los quads para que vuelvan a cubrir las áreas a proyectar.
-VMT ofrece la posibilidad de ajustar todos los quads pertenecientes a una misma capa de forma simultánea aplicando una homografía. Esta transformación es la que ocurre naturalmente en la proyección al variar la posición u orientación del mismo por lo tanto es necesario aplicar la transformación inversa para que los quads se ajusten nuevamente a las superficies.
+\emph{VMT} ofrece la posibilidad de ajustar todos los quads pertenecientes a una misma capa de forma simultánea aplicando una homografía. Esta transformación es la que ocurre naturalmente en la proyección al variar la posición u orientación del mismo por lo tanto es necesario aplicar la transformación inversa para que los quads se ajusten nuevamente a las superficies.
 
 Por otra parte, la calibración tridimensional se basa en hacer coincidir los parámetros de posición, orientación y proyección de las cámaras con los de los proyectores físicos. Este ajuste de parámetros se realiza manualmente por el usuario, utilizando los modos de movimientos de cámara antes mencionados. Esta calibración es necesario hacerla de forma independiente en cada uno de las cámaras y proyectores.
 
-Cabe acotar que en los escenarios de múltiples proyectores este modelo de calibración asume que existe un solo proyector conectado a cada nodo, si bien es posible conectar mas de uno mediante placas especializadas como se vio anteriormente. Solo se podrán modificar los parámetros a la única cámara asociada al nodo en el modelo VMT, por lo cual en caso de ser mas de un proyector no sera posible ajustar los parámetros de todos. Los planos de imagen tampoco podrían coincidir, si no están posicionados exactamente paralelos.
+Cabe acotar que en los escenarios de múltiples proyectores este modelo de calibración asume que existe un solo proyector conectado a cada nodo, si bien es posible conectar mas de uno mediante placas especializadas como se vio anteriormente. Solo se podrán modificar los parámetros a la única cámara asociada al nodo en el modelo \emph{VMT}, por lo cual en caso de ser mas de un proyector no sera posible ajustar los parámetros de todos. Los planos de imagen tampoco podrían coincidir, si no están posicionados exactamente paralelos.
 
 
 \section{Interfaz gráfica de usuario}
@@ -119,7 +119,7 @@ Para la estructura definida de escena o show, la interfaz grafica cuenta con for
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{./Cap5_vmt/vmt_todo.png}
-  \caption{Vista general de la interfaz de usuario de VMT}
+  \caption{Vista general de la interfaz de usuario de \emph{VMT}}
   \label{fig:VMT-MainWindow}
 \end{figure}
 
@@ -139,7 +139,7 @@ Las cámaras tienen todas las propiedades usuales que se pueden encontrar en paq
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_cameraProperties.png}
-  \caption{Dialogo de propiedades de cámara}
+  \caption{Diálogo de propiedades de cámara}
   \label{fig:VMT-CameraProperties}
 \end{figure}
 
@@ -181,7 +181,7 @@ Se permite agregar objetos tridimensionales con formato de malla triangular del 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_objectProperties.png}
-  \caption{Dialogo de propiedades de objeto tridimensional}
+  \caption{Diálogo de propiedades de objeto tridimensional}
   \label{fig:VMT-ObjectProperties}
 \end{figure}
 
@@ -196,16 +196,16 @@ Los efectos de posición son aplicables a objetos tridimensionales solamente, y 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_EfectDialog1.png}
-  \caption{Dialogo de definición de efecto de tipo posición}
+  \caption{Diálogo de definición de efecto de tipo posición}
   \label{fig:VMT-EffectPossition}
 \end{figure}
 
-Los efectos de degradé solo son aplicables a grupos de quads y lo que permiten es pintar todos los quads del grupo de un color inicial e ir pasando por toda la gama de colores intermedios hasta llegar al color final. Para la selección de colores se utiliza un dialogo nativo para ese propósito. También es posible definir la duración del efecto.
+Los efectos de degradé solo son aplicables a grupos de quads y lo que permiten es pintar todos los quads del grupo de un color inicial e ir pasando por toda la gama de colores intermedios hasta llegar al color final. Para la selección de colores se utiliza un diálogo nativo para ese propósito. También es posible definir la duración del efecto.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_EfectDialog2.png}
-  \caption{Dialogo de definición de efecto de tipo degradé o fade}
+  \caption{Diálogo de definición de efecto de tipo degradé o fade}
   \label{fig:VMT-EffectFade}
 \end{figure}
 
@@ -214,7 +214,7 @@ Los efectos de tipo textura son aplicables tanto a grupos de quads como a objeto
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_EfectDialog3.png}
-  \caption{Dialogo de definición de efecto de tipo textura (en este caso aplicada a un grupo)}
+  \caption{Diálogo de definición de efecto de tipo textura (en este caso aplicada a un grupo)}
   \label{fig:VMT-EffectTexture}
 \end{figure}
 
@@ -229,12 +229,12 @@ Es posible testear el efecto que se está creando presionando el botón Test de 
 
 \subsection{Calibración}
 
-El proceso de calibración en VMT se basa en posicionar cuatro puntos de la superficie donde se proyecta y cuatro puntos de la capa contenedora de quads para de esta forma calcular la matriz de transformación de la homografía que los hace corresponder.
+El proceso de calibración en \emph{VMT} se basa en posicionar cuatro puntos de la superficie donde se proyecta y cuatro puntos de la capa contenedora de quads para de esta forma calcular la matriz de transformación de la homografía que los hace corresponder.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.6\textwidth]{./Cap5_vmt/vmt_Calibrate.png}
-  \caption{Dialogo para configurar y ejecutar la calibración}
+  \caption{Diálogo para configurar y ejecutar la calibración}
   \label{fig:VMT-Calib}
 \end{figure}
 
@@ -263,7 +263,7 @@ Sobre la linea de tiempo se pueden observar las listas de eventos agrupados por 
 
 \subsection{Nodos remotos}
 
-Para modelar la red de nodos esclavos de VMT en los cuales se conectaran proyectores remotos es preciso definir, para cada nodo, su IP y puerto donde estarán configurados y la cámara definida en la escena que representará al proyector asociado.
+Para modelar la red de nodos esclavos de \emph{VMT} en los cuales se conectaran proyectores remotos es preciso definir, para cada nodo, su IP y puerto donde estarán configurados y la cámara definida en la escena que representará al proyector asociado.
 
 \begin{figure}
 	\begin{center}
@@ -273,7 +273,7 @@ Para modelar la red de nodos esclavos de VMT en los cuales se conectaran proyect
 			\includegraphics[width=0.3\textwidth]{./Cap5_vmt/vmt_nodeProperties_2.png}
 		\end{tabular}
 	\end{center}
-	\caption{Lista de nodos y dialogo de propiedades de nodos}
+	\caption{Lista de nodos y diálogo de propiedades de nodos}
 	\label{fig:VMT-Nodes}
 \end{figure}
 
@@ -285,10 +285,10 @@ Se permite almacenar en archivos XML estándar una representación de lo que se 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_loadShow.png}
-  \caption{Dialogo nativo para cargar y guardar archivos XML con la definición de la escena}
+  \caption{Diálogo nativo para cargar y guardar archivos XML con la definición de la escena}
   \label{fig:VMT-XML}
 \end{figure}
 
 \section{Decisiones de implementación}
 Para la implementación del módulo de interfaz gráfica se siguió el patrón Model-View-Controller. Para cada ventana se generaron modelos que manejan los datos relevantes a cada una, impactando en el modelo general de la aplicación en caso de ser necesario.
-Se utilizó Qt Framework [Qt - framework multiplataforma para la creación de aplicaciones e interfaces de usuario con APIs para C++. http://qt.nokia.com/products/] como biblioteca de base para la creación de las ventanas, sus controles gráficos y manejo de la comunicación que ocurre entre ventanas y con los modelos de VMT. También se hizo uso de la funcionalidad para internacionalización de las interfaces gráficas, las que por el momento están tomando valores por defecto en idioma Inglés. Es multiplataforma por lo que puede ser utilizado en varios de los sistemas operativos de computadores de escritorio mas populares como ser Linux, Mac OS y Windows. Esto último es un requerimiento no funcional del proyecto que fue tenido en cuenta al decidir incorporar a la aplicación bibliotecas o marcos de trabajo para su desarrollo.
+Se utilizó Qt Framework [Qt - framework multiplataforma para la creación de aplicaciones e interfaces de usuario con APIs para C++. http://qt.nokia.com/products/] como biblioteca de base para la creación de las ventanas, sus controles gráficos y manejo de la comunicación que ocurre entre ventanas y con los modelos de \emph{VMT}. También se hizo uso de la funcionalidad para internacionalización de las interfaces gráficas, las que por el momento están tomando valores por defecto en idioma Inglés. Es multiplataforma por lo que puede ser utilizado en varios de los sistemas operativos de computadores de escritorio mas populares como ser Linux, Mac OS y Windows. Esto último es un requerimiento no funcional del proyecto que fue tenido en cuenta al decidir incorporar a la aplicación bibliotecas o marcos de trabajo para su desarrollo.
