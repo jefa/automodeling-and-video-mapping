@@ -96,6 +96,14 @@ Otra forma de lograr varias salidas es conectando un dispositivo como las tarjet
 
 Estas variantes en la forma de conectar los proyectores son útiles cuando se desea proyectar sobre una superficie tan extensa que un solo proyector no pueda abarcarla completamente, ya que como se menciona, el área de trabajo o escritorio es extendido para abarcar la cantidad de proyectores conectados al computador único, con la restricción de que están todos organizados de forma contigua. En cambio, si queremos proyectar sobre zonas de la escena contiguas o no entre si, lo ideal es contar con proyectores conectados a nodos distribuidos e independientes tanto al momento de la producción del espectáculo como al de su ejecución.
 
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.8\textwidth]{./Cap5_vmt/vmt_multiProjector.png}
+  \caption{Escenarios posibles de multiples proyectores en VMT}
+  \label{fig:VMT-MultiProjector}
+\end{figure}
+
+
 En \emph{VMT}, el escenario descrito se implementa teniendo una instancia de \emph{VMT} maestro que orquestará toda la ejecución del espectáculo, y varias instancias de \emph{VMT} esclavo con uno o mas proyectores conectados. Para modelarlo en la herramienta se agregan los proyectores a la escena, asignando las propiedades para cada uno en particular, y luego se define la red de nodos de \emph{VMT} esclavo con la información de conectividad necesaria y su asociación al proyector que tiene conectado el nodo. La comunicación entre maestro y esclavos se realiza sobre OSC, protocolo construido sobre UDP para IP vía Ethernet o WiFi. Por la naturaleza del protocolo UDP, es preferible contar con conexiones cableadas en lugar de inalámbricas dada la alta tasa de perdida de paquetes que existe en este tipo de redes, lo cual podría causar desincronización de algunos nodos esclavos. OSC también permite a cualquier aplicación capaz de enviar mensajes OSC y que conozca el formato de los mismos para \emph{VMT}, controlar los esclavos y por consiguiente lo que se proyecta en los correspondientes proyectores.
 
 \subsection{Calibración}
