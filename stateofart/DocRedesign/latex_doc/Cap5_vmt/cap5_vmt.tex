@@ -131,7 +131,7 @@ Cabe acotar que en los escenarios de múltiples proyectores este modelo de calib
 
 \section{Interfaz gráfica de usuario}
 
-Para la estructura definida de escena o show, la interfaz grafica cuenta con formularios sencillos de altas, bajas y modificaciones para todos los tipos de objetos existentes. Se diseñó en base a barras de herramientas flotantes de forma de poder tener visibilidad de la escena en todo momento y observar así cómo los cambios efectuados impactan sobre ella.
+Para la estructura definida de escena o espectáculo, la interfaz gráfica cuenta con formularios sencillos de altas, bajas y modificaciones para todos los tipos de objetos existentes. Se diseñó en base a barras de herramientas flotantes de forma de poder tener visibilidad de la escena en todo momento y observar así cómo los cambios efectuados impactan sobre ella.
 
 \begin{figure}[H]
   \centering
@@ -140,8 +140,8 @@ Para la estructura definida de escena o show, la interfaz grafica cuenta con for
   \label{fig:VMT-MainWindow}
 \end{figure}
 
-Al inicio se cuenta con una vista gráfica de la escena desde el punto de vista de la cámara activa, una vista de los objetos contenidos en la escena, la lista de definición de efectos y una línea de tiempo con las listas de efectos por tiempo, por evento y MIDI.
-En la ventana de escena se manejan los objetos bidimensionales y tridimensionales, cámaras, luces, capas y los nodos distribuidos del show. También es desde donde se ejecuta la calibración de las cámaras-proyectores. Para la visualización de la escena se ofrecen diferentes modos de cámara para girar u orbitar alrededor del centro, o moverse en cada uno de los ejes.
+Al inicio se cuenta con una vista gráfica de la escena desde el punto de vista de la cámara activa, una vista de los objetos contenidos en la escena, la lista de definición de efectos y una línea de tiempo con las listas de efectos por tiempo, por evento de teclado y evento \emph{MIDI}.
+En la ventana de escena se manejan los objetos bidimensionales y tridimensionales, cámaras, luces, capas y los nodos distribuidos del espectáculo. También es desde donde se ejecuta la calibración de las cámaras virtuales. En la visualización de la escena se ofrecen diferentes modos de cámara que permite girar u orbitar alrededor del centro, o moverse en cada uno de los ejes.
 
 \begin{figure}[H]
   \centering
@@ -160,8 +160,8 @@ Las cámaras tienen todas las propiedades usuales que se pueden encontrar en paq
   \label{fig:VMT-CameraProperties}
 \end{figure}
 
-Se han modelado los proyectores como cámaras con marcas especiales, por lo cual a cada cámara se le puede indicar además si de lo que se trata en realidad es de un proyector. Esto permite contar tanto con cámaras para las cuales lo que veamos será lo que efectivamente saldrá proyectado, como también poder tener cámaras sin proyector asociado que nos permiten tener una vista en perspectiva de la escena para por ejemplo, experimentar como se vería el show desde el punto de referencia de un cierto observador.
-Existen también acciones para seleccionar los tipos de movimiento de la cámara activa. Estos son:
+Las cámaras y proyectores son modeladas con el elemento cámara, la diferencia se define con una propiedad del elemento. De esta forma un elemento cámara se utiliza para simular la vista de un observador, mientras que un proyector será la vista de la proyección en perspectiva del espectáculo.
+Los tipos de movimiento de la cámara activa son:
 Roll: posición y punto de vista fijos. Se rota alrededor del eje formado por ellos.
 Orbit: distancia al punto de vista fijo. Se orbita a dicha distancia alrededor del punto de vista.
 Dolly: punto y la dirección de vista fijos. Se mueve la posición de la cámara acercándose y alejándose del objetivo.
@@ -174,8 +174,8 @@ Pan: distancia al plano de la imagen fija. Se mueve cualquier dirección pero en
   \label{fig:VMT-CameraActions}
 \end{figure}
 
-Una vez activado el modo de la cámara, manteniendo presionado el botón izquierdo del ratón al moverlo se mueve la cámara acorde al modo seleccionado.
-Cada cámara es a su vez un contenedor de capas o layers. Su propósito es manejar todo lo relacionado al mapeo sobre estructuras bidimensionales, y por ello son los contendores de quads bidimensionales sobre los cuales se pueden realizar todas las operaciones y efectos disponibles.
+Una vez seleccionado el modo de la cámara, manteniendo presionado el botón izquierdo del ratón al moverlo se mueve la cámara acorde al modo seleccionado.
+Cada cámara es a su vez un contenedor de \emph{layers}. Su propósito es manejar todo lo relacionado al mapeo sobre estructuras bidimensionales, y por ello son los contendores de \emph{quads} bidimensionales sobre los cuales se pueden realizar todas las operaciones y efectos disponibles.
 
 \begin{figure}
 	\begin{center}
@@ -185,15 +185,15 @@ Cada cámara es a su vez un contenedor de capas o layers. Su propósito es manej
 			\includegraphics[width=0.3\textwidth]{./Cap5_vmt/vmt_quadProperties.png}
 		\end{tabular}
 	\end{center}
-	\caption{Propiedades de los objetos Layer y Quad}
+	\caption{Propiedades de los objetos \emph{Layer} y \emph{Quad}}
 	\label{fig:VMT-LayerQuadProperties}
 \end{figure}
 
-Tanto el quad como la capa tienen propiedades editables en tiempo de edición o durante el show para mostrarse u ocultarse completamente. Si se oculta una capa, todos los quads contenidos en ella también serán ocultados. En caso de mostrarla, todos los quads visibles volverán a desplegarse.
+Tanto el \emph{quad} como la \emph{layer} tienen propiedades editables en tiempo de edición o durante el espectáculo para mostrarse u ocultarse completamente. Si se oculta una \emph{layer}, todos los \emph{quads} contenidos en ella también serán ocultados. En caso de mostrarla, todos los \emph{quads} visibles volverán a desplegarse.
 
 \subsection{Objetos tridimensionales}
 
-Se permite agregar objetos tridimensionales con formato de malla triangular del tipo 3DS [ref 3D-Studio File Format (.3ds) - Autodesk Ltd. - http://www.martinreddy.net/gfx/3d/3DS.spec ]. Para satisfacer los requerimientos actualmente definidos, solo fue necesario permitir la modificación del identificador y la posición de un objeto tridimensional.
+Se permite agregar objetos tridimensionales con formato de malla triangular del tipo \emph{3DS}\cite{3D-Studio}. Para satisfacer los requerimientos actualmente definidos, solo fue necesario permitir la modificación del identificador y la posición de un objeto tridimensional.
 
 \begin{figure}[H]
   \centering
@@ -204,11 +204,11 @@ Se permite agregar objetos tridimensionales con formato de malla triangular del 
 
 \subsection{Efectos}
 
-Es mediante un efecto que se declara lo que se hace o modifica en la escena, como y a que objetos. Se proveen ventanas flotantes tanto para la definición de efectos como para la asociación con sus disparadores como ser un instante de tiempo, un evento de teclado o un evento MIDI.
+Es mediante un efecto que se declara lo que se hace o modifica en la escena, como y a que objetos. Se proveen ventanas flotantes tanto para la definición de efectos como para la asociación con sus disparadores como ser un instante de tiempo, un evento de teclado o un evento \emph{MIDI}.
 
-Si un efecto es definido para ser desplegado en un instante dado este se podrá visualizar cuando la línea de tiempo pase por ese instante. En caso de ser definido por evento este será visualizado cada vez que el evento asociado suceda, sea un evento de teclado o MIDI.
+Si un efecto es definido para ser desplegado en un instante dado este se podrá visualizar cuando la línea de tiempo pase por ese instante. En caso de ser definido por evento este será visualizado cada vez que el evento asociado suceda, sea un evento de teclado o \emph{MIDI}.
 Los tipos de efectos posibles son de posición, degradé de color y mapeo de texturas.
-Los efectos de posición son aplicables a objetos tridimensionales solamente, y lo que permiten es animar el objeto moviéndolo de una posición inicial a una final. Es posible definir una demora en la ejecución del efecto comenzando en el instante en el que debería ser mostrado (al pasar la línea de tiempo por el instante definido si es un efecto asociado a tiempo o al reconocerse el código de evento del efecto si es lanzado por eventos).
+Los efectos de posición son aplicables unicamente a objetos tridimensionales, y lo que permiten es animar el objeto moviéndolo de una posición inicial a una final. Es posible definir una demora en la ejecución del efecto comenzando en el instante en el que debería ser mostrado (al pasar la línea de tiempo por el instante definido si es un efecto asociado a tiempo o al reconocerse el código de evento del efecto si es lanzado por eventos).
 
 \begin{figure}[H]
   \centering
@@ -217,7 +217,7 @@ Los efectos de posición son aplicables a objetos tridimensionales solamente, y 
   \label{fig:VMT-EffectPossition}
 \end{figure}
 
-Los efectos de degradé solo son aplicables a grupos de quads y lo que permiten es pintar todos los quads del grupo de un color inicial e ir pasando por toda la gama de colores intermedios hasta llegar al color final. Para la selección de colores se utiliza un diálogo nativo para ese propósito. También es posible definir la duración del efecto.
+Los efectos de \emph{fade} solo son aplicables a grupos de \emph{quads} y lo que permiten es pintar todos los \emph{quads} del grupo de un color inicial e ir pasando por toda la gama de colores intermedios hasta llegar al color final. Para la selección de colores se utiliza un diálogo nativo para ese propósito. También es posible definir la duración del efecto.
 
 \begin{figure}[H]
   \centering
@@ -246,7 +246,7 @@ Es posible testear el efecto que se está creando presionando el botón Test de 
 
 \subsection{Calibración}
 
-El proceso de calibración en \emph{VMT} se basa en posicionar cuatro puntos de la superficie donde se proyecta y cuatro puntos de la capa contenedora de quads para de esta forma calcular la matriz de transformación de la homografía que los hace corresponder.
+El proceso de calibración en \emph{VMT} se basa en posicionar cuatro puntos de la superficie donde se proyecta y cuatro puntos de la \emph{layer} contenedora de \emph{quads} para de esta forma calcular la matriz de transformación de la homografía que los hace corresponder.
 
 \begin{figure}[H]
   \centering
@@ -256,9 +256,9 @@ El proceso de calibración en \emph{VMT} se basa en posicionar cuatro puntos de 
 \end{figure}
 
 Al ingresar en el modo calibración se muestra en la pantalla de edición cuatro puntos azules de destino y cuatro puntos rojos de origen junto con el diálogo de configuración de la calibración.
-El diálogo posee controles para posicionar cada uno de los ocho puntos mostrados en pantalla. Se deberán posicionar los cuatro puntos de origen en regiones significativas de la capa donde hayan vértices de quads preferiblemente alejados entre si. De esta forma se minimiza el error obtenido al calcular la matriz.
+El diálogo posee controles para posicionar cada uno de los ocho puntos mostrados en pantalla. Se deberán posicionar los cuatro puntos de origen en regiones significativas de la \emph{layer} donde hayan vértices de quads preferiblemente alejados entre si. De esta forma se minimiza el error obtenido al calcular la matriz.
 Los cuatro puntos de destino se deberán posicionar observando la proyección de estos sobre la superficie. Una vez los ocho puntos estén posicionados se podrá calcular y aplicar la nueva matriz de calibración presionando el botón OK.
-Mediante el botón ReCalibrate se reestablece la calibración original, descartando los cambios realizados.
+Mediante el botón \emph{ReCalibrate} se reestablece la calibración original, descartando los cambios realizados.
 
 \subsection{Línea de tiempo}
 
@@ -271,12 +271,9 @@ Tanto para la fases de producción y revisión del evento como para la ejecució
   \label{fig:VMT-Timeline}
 \end{figure}
 
-La aplicación provee una forma de iniciar el evento mediante la acción de Start. Se provee una vista gráfica representada con una barra deslizante y una vista numérica para reflejar el avance en el tiempo en relación a la duración total del evento. Utilizando la barra deslizante es posible navegar por la línea de tiempo e iniciarla visualización del evento desde un instante cualquiera. Esto último es muy útil para la fase de pre-producción del espectáculo en la cual es muy común que el usuario se quiera concentrar en una ventana de tiempo específica en la que se está trabajando.
+La aplicación provee una forma de iniciar el evento mediante la acción de \emph{Start}. Se provee una vista gráfica representada con una barra deslizante y una vista numérica para reflejar el avance en el tiempo en relación a la duración total del evento. Utilizando la barra deslizante es posible navegar por la línea de tiempo e iniciarla visualización del evento desde un instante cualquiera. Esto último es muy útil para la fase de pre-producción del espectáculo en la cual es muy común que el usuario se quiera concentrar en una ventana de tiempo específica en la que se está trabajando.
 
-
-Figura: Asociación de eventos a instante de tiempo, evento y MIDI.
-
-Sobre la linea de tiempo se pueden observar las listas de eventos agrupados por tipo, pudiéndose asociar cualquiera de los eventos previamente definidos a un instante dado o a un código de evento a ser utilizado durante el espectáculo, ya sea de teclado o proveniente de dispositivos de entrada MIDI.
+Sobre la linea de tiempo se pueden observar las listas de eventos agrupados por tipo, pudiéndose asociar cualquiera de los eventos previamente definidos a un instante dado o a un código de evento a ser utilizado durante el espectáculo, ya sea de teclado o proveniente de dispositivos de entrada \emph{MIDI}.
 
 \subsection{Nodos remotos}
 
@@ -294,18 +291,18 @@ Para modelar la red de nodos esclavos de \emph{VMT} en los cuales se conectaran 
 	\label{fig:VMT-Nodes}
 \end{figure}
 
-Esta información es necesaria para establecer el canal de comunicación con el proceso remoto y deducir que información se enviara al nodo en base a su cámara asociada. Recordar que las capas o layers están asociadas a una y solo una cámara, por lo cual si un efecto esta aplicado sobre un quad o grupo de quads, el mismo deberá ser propagado al nodo cuya cámara sea la que los contiene. En cuanto a los efectos aplicados sobre objetos tridimensionales, estos serán enviados a todos los nodos ya que todas las cámaras de todos los nodos tienen visibilidad de la escena tridimensional, aunque esta sea desde perspectivas diferentes.
+Esta información es necesaria para establecer el canal de comunicación con el proceso remoto y deducir que información se enviara al nodo en base a su cámara asociada. Recordar que las \emph{capas} o \emph{layers} están asociadas a una y solo una cámara, por lo cual si un efecto esta aplicado sobre un \emph{quad} o grupo de \emph{quads}, el mismo deberá ser propagado al nodo cuya cámara sea la que los contiene. En cuanto a los efectos aplicados sobre objetos tridimensionales, estos serán enviados a todos los nodos ya que todas las cámaras de todos los nodos tienen visibilidad de la escena tridimensional, aunque esta sea desde perspectivas diferentes.
 
 \subsection{Escena en XML}
-Se permite almacenar en archivos XML estándar una representación de lo que se ha definido en la escena. Para la búsqueda de los archivos XML se utilizan diálogos nativos para este propósito.
+Se permite almacenar en archivos \emph{XML} estándar una representación de lo que se ha definido en la escena. Para la búsqueda de los archivos \emph{XML} se utilizan diálogos nativos para este propósito.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_loadShow.png}
-  \caption{Diálogo nativo para cargar y guardar archivos XML con la definición de la escena}
+  \caption{Diálogo nativo para cargar y guardar archivos \emph{XML} con la definición de la escena}
   \label{fig:VMT-XML}
 \end{figure}
 
 \section{Decisiones de implementación}
-Para la implementación del módulo de interfaz gráfica se siguió el patrón Model-View-Controller. Para cada ventana se generaron modelos que manejan los datos relevantes a cada una, impactando en el modelo general de la aplicación en caso de ser necesario.
-Se utilizó Qt Framework [Qt - framework multiplataforma para la creación de aplicaciones e interfaces de usuario con APIs para C++. http://qt.nokia.com/products/] como biblioteca de base para la creación de las ventanas, sus controles gráficos y manejo de la comunicación que ocurre entre ventanas y con los modelos de \emph{VMT}. También se hizo uso de la funcionalidad para internacionalización de las interfaces gráficas, las que por el momento están tomando valores por defecto en idioma Inglés. Es multiplataforma por lo que puede ser utilizado en varios de los sistemas operativos de computadores de escritorio mas populares como ser Linux, Mac OS y Windows. Esto último es un requerimiento no funcional del proyecto que fue tenido en cuenta al decidir incorporar a la aplicación bibliotecas o marcos de trabajo para su desarrollo.
+Para la implementación del módulo de interfaz gráfica se siguió el patrón \emph{Model-View-Controller}. Para cada ventana se generaron modelos que manejan los datos relevantes a cada una, impactando en el modelo general de la aplicación en caso de ser necesario.
+Se utilizó \emph{Qt Framework}\cite{Qt-framework} como biblioteca de base para la creación de las ventanas, sus controles gráficos y manejo de la comunicación que ocurre entre ventanas y con los modelos de \emph{VMT}. También se hizo uso de la funcionalidad para internacionalización de las interfaces gráficas, las que por el momento están tomando valores por defecto en idioma Inglés. Es multiplataforma por lo que puede ser utilizado en varios de los sistemas operativos de computadores de escritorio mas populares como ser Linux, Mac OS y Windows. Esto último es un requerimiento no funcional del proyecto que fue tenido en cuenta al decidir incorporar a la aplicación bibliotecas o marcos de trabajo para su desarrollo.
