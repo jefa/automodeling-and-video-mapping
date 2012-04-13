@@ -4,14 +4,15 @@
 
 Los efectos de mapeo disponibles son de degradé de colores \footnote{en \emph{VMT} es el efecto \emph{fade}.}, y la aplicación de texturas de imagen o video. Se cuenta también con un efecto para la animación de la posición de los objetos en tiempo de ejecución del espectáculo. Es posible visualizar en todo momento la ejecución de los efectos y su correspondiente impacto en la escena. Los efectos pueden ser lanzados por tiempo, por eventos de teclado o \emph{MIDI} se definen en una línea de tiempo navegable, permitiéndose avanzar o retroceder a un intervalo de tiempo dado durante la producción del espectáculo. Una pista de audio puede tocarse en sincronía con el transcurso de los efectos en el espectáculo.
 
-La interfaz gráfica de usuario está basada enteramente en botoneras y ventanas de propiedades flotantes para poder tener una vista mejorada y en tiempo real de lo que está sucediendo en la escena. Se proveen mecanismos para almacenar y cargar la definición de la escena en o desde archivos \emph{XML} estándar .
+La interfaz gráfica de usuario está basada enteramente en botoneras y ventanas de propiedades flotantes para poder tener una vista mejorada y en tiempo real de lo que está sucediendo en la escena. Se proveen mecanismos para almacenar y cargar la definición de la escena utilizando archivos \emph{XML} estándar .
 
 La tecnología de base seleccionada para la creación de los módulos de nuestra herramienta y todas las bibliotecas de terceros que se han utilizado son multiplataforma, lo que permite la compilación y ejecución en los entornos Microsoft Windows, Linux y Mac OS.
 
-\section{Descripción de módulos}
+\section{Funcionalidades}
 
-\subsection{Motor gráfico}
-El componente \emph{vmt\_engine} es un motor de dibujado que brinda soporte a la visualización de elementos gráficos bidimensionales y tridimensionales en pantalla o proyectados y resuelve el mapeo de texturas de imágenes o videos sobre ellos. Este motor gráfico ofrece una interfaz programática genérica para el manejo y edición de objetos y efectos que contiene.
+\subsection{Manejo de escena y mapeo}
+
+Una escena en VMT es una coleccion de objetos, efectos y cámaras que seran representados gráficamente. Se cuenta con un motor de dibujado que se encarga de generar dicha representaion brindando soporte a la visualización de elementos gráficos bidimensionales y tridimensionales en pantalla o proyectados y al mapeo de texturas de imágenes o videos sobre ellos. Este motor ofrece una interfaz programática genérica para el manejo y edición de objetos y efectos que contiene la escena.
 
 Los elementos bidimensionales \emph{quads} se pueden posicionar en la pantalla de forma tal que al ser proyectados cubran una superficie total o parcial de la escena. Luego, sobre estos \emph{quads} se aplicarán texturas en forma de imagen o video, para que la proyección deforme estas texturas adaptándolas a la forma del \emph{quad}.
 Los \emph{quads} también pueden ser utilizados como máscaras para cubrir zonas de otros \emph{quads} o elementos tridimensionales que podrían estar quedando mal proyectadas por deformaciones en la superficie o por ser zonas no deseadas. Una máscara se logra con un \emph{quad} opaco de color negro, se utiliza el color negro porque es el menos visible al ser proyectado.
@@ -37,11 +38,11 @@ Las cámaras permiten ajustar sus parámetros mediante operaciones comunes a cá
 
 Aparte de estos parámetros de ubicación, también existe el parámetro FOV\footnote{Field Of View} o campo de vista que es el ángulo de apertura de la cámara. Para el caso de cámaras que representan proyectores, este parámetro debe coincidir con el FOV del proyector para ajustar correctamente las escenas con respecto a lo que muestra la cámara en pantalla.
 Mediante estas operaciones es que las cámaras virtuales de \emph{VMT} ajustan sus parámetros para que la proyección de objetos tridimensionales coincida con las superficies proyectadas.
-Hay que destacar que las cámaras proveen un punto de vista solo para los elementos tridimensionales. Los quads, que como se menciono son contrucciones bidimensionales, no dependen del punto de vista de la cámara y se representan en un sector de la pantalla relativo a esta. Es por esto que los quads no alteran su posición en pantalla al ajustar los parámetros de la cámara.
+Hay que destacar que las cámaras proveen un punto de vista solo para los elementos tridimensionales. Los \emph{quads}, que como se menciono son contrucciones bidimensionales, no dependen del punto de vista de la cámara y se representan en un sector de la pantalla relativo a esta. Es por esto que los \emph{quads} no alteran su posición en pantalla al ajustar los parámetros de la cámara.
 
-Los quads se pueden organizar en grupos que pertenecen a una o mas capas, y cada capa pertenece a una única cámara de manera de representar las zonas a cubrir por un solo proyector. A su vez se permite aplicar una transformacion inicial a una capa, la que se aplicara a todos los quads o grupos de quads contenidos en ella. Esto es útil para ajustar la proyección de los quads en caso de mover el proyector levemente y que esta proyección deje de coincidir con las superficies, y provee la funcionalidad basica y de bajo nivel para el mecanismo de calibracion bidimensional que se detallara mas adelante.
+Los \emph{quads} se pueden organizar en grupos, y estos pertenecen a una o mas layers. A su vez cada layer pertenece a una única cámara de manera de representar las zonas a cubrir por un solo proyector. Es posible aplicar una transformacion inicial a una layer, la que se aplicara a todos los \emph{quads} o grupos de \emph{quads} contenidos en ella. Esto es útil para ajustar la proyección de los \emph{quads} en caso de mover el proyector levemente y que esta proyección deje de coincidir con las superficies, y provee la funcionalidad basica y de bajo nivel para el mecanismo de calibracion bidimensional que se detallara mas adelante.
 
-Las texturas se asocian a grupos de quads solamente. Los grupos también permiten variar de forma limitada como se mapean las texturas a los quads que lo componen. Pueden ser mapeadas por cara en donde a cada uno de los quads se le mapeará toda la textura, o también de forma “plana”. Esto último significa que la textura será mapeada al conjunto entero de quads como si estos fueran trozos de un quad de mayor tamaño compuesto por todos ellos.
+Las texturas se asocian a grupos de \emph{quads} solamente. Los grupos también permiten variar de forma limitada como se mapean las texturas a los \emph{quads} que lo componen. Pueden ser mapeadas por cara en donde a cada uno de los \emph{quads} se le mapeará toda la textura, o también de forma plana, esto es que la textura sea mapeada al conjunto entero de \emph{quads} como si estos fueran trozos de un \emph{quad} de mayor tamaño compuesto por todos ellos.
 
 \begin{figure}[H]
   \centering
@@ -50,19 +51,19 @@ Las texturas se asocian a grupos de quads solamente. Los grupos también permite
   \label{fig:VMT-Projection}
 \end{figure}
 
-Con estas variantes de proyección se le dan más posibilidades a un artista para lograr los efectos utilizados normalmente en espectáculos de video mapping.
+Con estas variantes de proyección se le dan más posibilidades a un artista para lograr los efectos utilizados normalmente en espectáculos de \emph{video mapping}.
 
-El motor gráfico también contiene los efectos que se ejecutarán durante el espectáculo. Se aceptan como efectos la asignación de texturas en forma de imagen o video, ya sea a grupos de quads u objetos tridimensionales, el degradé de colores o fade en un material desde un color inicial a otro final, y la animación de la posición de un objeto tridimensional de un origen a un destino en un lapso de tiempo dado.
+La escena también contiene los efectos que se ejecutarán durante el espectáculo. Se aceptan como efectos la asignación de texturas en forma de imagen o video, ya sea a grupos de \emph{quads} u objetos tridimensionales, el degradé de colores o fade en un material desde un color inicial a otro final, y la animación de la posición de un objeto tridimensional de un origen a un destino en un lapso de tiempo dado.
 
 El efecto de mapeo de texturas es el más básico pero también el más potente en cuanto a la gran cantidad de alternativas al momento de mapear texturas sobre superficies. La variedad y la complejidad de las texturas está en la creación de los recursos de imagen o video que se deseen mapear. Al permitirse mapear estas texturas sobre objetos tridimensionales no es necesario distorsionar la forma de los videos sino que será el motor quien los adaptará a la forma del objeto que está siendo mapeado. El efecto de fade puede ser combinado en un objeto que ya disponga de una textura y así permitir por ejemplo su atenuación o resaltado. La duración del fade, al igual que la de animación de posición, es configurable.
 
 Cabe aclarar que el estado final de la escena y todos los objetos contenidos en ella sera el que resulte luego de la finalización de los efectos. Esto es, si un objeto es de color rojo, y tiene un efecto de fade al azul aplicado, su color luego de la ejecución del efecto continuará siendo azul.
 
-Un punto posible de extensión en el motor es la creación de más efectos genéricos como pueden ser animación de rotación, escala o modificadores de objetos tridimensionales, para dar mas posibilidades al usuario al momento de la creación del espectáculo.
+Un punto posible de extensión \emph{VMT} es la creación de más efectos genéricos como pueden ser animación de rotación, escala o modificadores de objetos tridimensionales, para dar mas posibilidades al usuario al momento de la creación del espectáculo.
 
-Como se mencionó anteriormente, una de las tareas principales del motor gráfico es la representación en pantalla o la proyección de los elementos gráficos. La implementación del dibujado en si se realiza en un bucle principal de la aplicación encargado de actualizar todos los objetos de la escena de ser necesario, procesar los eventos pendientes y finalmente dibujar el resultado. Esto es un proceso cíclico que se repite varias veces por segundo.
+Como se mencionó anteriormente, una de las tareas principales es la representación en pantalla o la proyección de los elementos gráficos. La implementación del dibujado en si se realiza en un bucle principal de la aplicación encargado de actualizar todos los objetos de la escena de ser necesario, procesar los eventos pendientes y finalmente dibujar el resultado. Esto es un proceso cíclico que se repite varias veces por segundo.
 En cada uno de estos ciclos se generan los frames que son las imágenes que se muestran como resultado final.
-Para dar la ilusión de continuidad, la frecuencia de estos ciclos debe ser alta. En el caso de \emph{vmt\_engine} ésta se predetermina en 60 ciclos por segundo aunque alcanzar ésta frecuencia dependerá de varios factores como cantidad de quads, tamaño de texturas utilizadas, capacidad de procesamiento y memoria de los equipos.
+Para dar la ilusión de continuidad, la frecuencia de estos ciclos debe ser alta. En el caso de \emph{VMT} ésta se predetermina en 60 ciclos por segundo aunque alcanzar ésta frecuencia dependerá de varios factores como cantidad de \emph{quads}, tamaño de texturas utilizadas, capacidad de procesamiento y memoria de los equipos.
 Si esta frecuencia se encuentra muy por debajo de los 60 ciclos, la reproducción del espectáculo no será fluida y se podrían percibir saltos o pausas al reproducirlo.
 Para que esta frecuencia efectivamente se logre es necesario que el procesamiento de cada uno de los ciclos del bucle principal sea eficiente. Esta eficiencia se logra reduciendo el costo de procesamiento en cada tareas u operación. A continuación se muestra un pseudo-código del bucle principal de dibujado y se analizan cada una de las acciones que se toman, su impacto en cuanto al rendimiento del programa y las medidas que se tomaron para su optimización:
 
@@ -90,7 +91,7 @@ Para que esta frecuencia efectivamente se logre es necesario que el procesamient
 Un bucle de este estilo cuenta con varios cuellos de botella.
 La carga de materiales implica copiar una textura a la zona de la memoria de video correspondiente para utilizarla. Esto podría ser un proceso lento si no se disponen las texturas precargadas en memoria. Es por esta razón es que las texturas se cargan desde un comienzo en memoria y luego se utilizan referencias para identificarlas y asociarlas a una unidad de textura de OpenGL\footnote{www.opengl.org/wiki/Texture} para finalmente poder utilizarla.
 Otra optimización pasa por hacer uso de shaders para el cálculo del resultado visual final.
-La visualización fluida de un espectáculo de video mapping es difícil de predecir ya que, como se puede ver en el pseudo-codigo, los tiempos de ejecución dependen de la cantidad de materiales, caras, objetos y quads incluidos en la escena.
+La visualización fluida de un espectáculo de video mapping es difícil de predecir ya que, como se puede ver en el pseudo-codigo, los tiempos de ejecución dependen de la cantidad de materiales, caras, objetos y \emph{quads} incluidos en la escena.
 Si se utilizan videos en las texturas, la compresión y resolución de estos también afecta la fluidez del espectáculo. Preferentemente deberían estar descomprimidos o con una baja tasa de compresión. El mismo problema ocurre con formatos de imágenes comprimidas, pero teniendo un menor impacto en el rendimiento de la reproducción del espectáculo.
 
 \subsection{Multi proyector}
@@ -119,9 +120,9 @@ En \emph{VMT}, el escenario descrito se implementa teniendo una instancia de \em
 \emph{VMT} ofrece la capacidad de calibrar las cámaras para que la proyección reflejada por los proyectores se corresponda y ajuste a la geometría de la escena.
 Como se mencionó anteriormente, \emph{VMT} permite trabajar simultáneamente de forma bidimensional y tridimensional. Cada uno de estos modos de trabajo requiere distintos mecanismos de calibración.
 
-La calibración bidimensional se basa en ajustar todos los quads de una capa de forma conjunta.
-Inicialmente, al preparar el espectáculo, los quads son posicionados en pantalla para cubrir las áreas de interés a proyectar. Luego de este posicionamiento inicial, cualquier movimiento de los proyectores causará que se desajuste simultáneamente la proyección de todos los quads. Si ocurre un desajuste se hace necesario reposicionar los quads para que vuelvan a cubrir las áreas a proyectar.
-\emph{VMT} ofrece la posibilidad de ajustar todos los quads pertenecientes a una misma capa de forma simultánea aplicando una homografía. Esta transformación es la que ocurre naturalmente en la proyección al variar la posición u orientación del mismo por lo tanto es necesario aplicar la transformación inversa para que los quads se ajusten nuevamente a las superficies.
+La calibración bidimensional se basa en ajustar todos los \emph{quads} de una layer de forma conjunta.
+Inicialmente, al preparar el espectáculo, los \emph{quads} son posicionados en pantalla para cubrir las áreas de interés a proyectar. Luego de este posicionamiento inicial, cualquier movimiento de los proyectores causará que se desajuste simultáneamente la proyección de todos los \emph{quads}. Si ocurre un desajuste se hace necesario reposicionar los \emph{quads} para que vuelvan a cubrir las áreas a proyectar.
+\emph{VMT} ofrece la posibilidad de ajustar todos los \emph{quads} pertenecientes a una misma layer de forma simultánea aplicando una homografía. Esta transformación es la que ocurre naturalmente en la proyección al variar la posición u orientación del mismo por lo tanto es necesario aplicar la transformación inversa para que los \emph{quads} se ajusten nuevamente a las superficies.
 
 Por otra parte, la calibración tridimensional se basa en hacer coincidir los parámetros de posición, orientación y proyección de las cámaras con los de los proyectores físicos. Este ajuste de parámetros se realiza manualmente por el usuario, utilizando los modos de movimientos de cámara antes mencionados. Esta calibración es necesario hacerla de forma independiente en cada uno de las cámaras y proyectores.
 
