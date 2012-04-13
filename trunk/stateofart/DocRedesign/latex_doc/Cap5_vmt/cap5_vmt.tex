@@ -1,6 +1,6 @@
 \chapter{\emph{VMT}}
 \section{Descripción general}
-\emph{VMT} es una herramienta para la edición y ejecución de un espectáculo de \emph{video mapping}, el mismo puede utilizar uno o más proyectores eventualmente alejados físicamente unos de otros para lograr cubrir una superficie mayor de la escena a mapear. Para dar soporte al escenario distribuido, se cuenta con componentes remotos con el fin de reproducir los efectos y eventos existentes del espectáculo. Mediante un editor tridimensional, es posible observar de forma centralizada lo que se ha producido hasta el momento así como visualizar la salida de cada uno de los proyectores. Si bien es un editor tridimensional se manejan conceptos bidimensionales de capa y cuadrilátero en \emph{VMT} los elementos correspondientes son \emph{layer} y \emph{quad}, los que se pueden asociar a una cámara o proyector. La cantidad de estos elementos que se utilizarán en el espectáculo puede ser variada dependiendo del diseño sin existir en \emph{VMT} un límite fijo para ellos. Se proveen de mecanismos de calibración separadamente para objetos tridimensionales y bidimensionales utilizados al trabajar sobre la escena real luego de un primer escaneo. Dichos mecanismos serán explicados en detalle más adelante en este capítulo.
+\emph{VMT} es una herramienta para la edición y ejecución de un espectáculo de \emph{video mapping}, el mismo puede utilizar uno o más proyectores eventualmente alejados físicamente unos de otros para lograr cubrir una superficie mayor de la escena a mapear. Para dar soporte al escenario distribuido, se cuenta con componentes remotos con el fin de reproducir los efectos y eventos existentes del espectáculo. Mediante un editor tridimensional, es posible observar de forma centralizada lo que se ha producido hasta el momento así como visualizar la salida de cada uno de los proyectores. Si bien es un editor tridimensional se manejan conceptos bidimensionales de capa y cuadrilátero. En \emph{VMT} son llamados \emph{layer} y \emph{quad} respectivamente, y se pueden asociar a una cámara o proyector. La cantidad de estos elementos que se utilizarán en el espectáculo puede ser variada dependiendo del diseño sin existir en \emph{VMT} un límite fijo para ellos. Se proveen de mecanismos de calibración separadamente para objetos tridimensionales y bidimensionales utilizados al trabajar sobre la escena real luego de un primer escaneo. Dichos mecanismos serán explicados en detalle más adelante en este capítulo.
 
 Los efectos de mapeo disponibles son de degradé de colores \footnote{en \emph{VMT} es el efecto \emph{fade}.}, y la aplicación de texturas de imagen o video. Se cuenta también con un efecto para la animación de la posición de los objetos en tiempo de ejecución del espectáculo. Es posible visualizar en todo momento la ejecución de los efectos y su correspondiente impacto en la escena. Los efectos pueden ser lanzados por tiempo, por eventos de teclado o \emph{MIDI} se definen en una línea de tiempo navegable, permitiéndose avanzar o retroceder a un intervalo de tiempo dado durante la producción del espectáculo. Una pista de audio puede tocarse en sincronía con el transcurso de los efectos en el espectáculo.
 
@@ -35,11 +35,11 @@ Las cámaras permiten ajustar sus parámetros mediante operaciones comunes a cá
   \label{fig:VMT-CameraMove}
 \end{figure}
 
-Aparte de estos parámetros de ubicación, también existe el parámetro FOV (Field Of View) o campo de vista que es el ángulo de apertura de la cámara. Para el caso de cámaras que representan proyectores, este parámetro debe coincidir con el FOV del proyector para ajustar correctamente las escenas con respecto a lo que muestra la cámara en pantalla.
+Aparte de estos parámetros de ubicación, también existe el parámetro FOV\footnote{Field Of View} o campo de vista que es el ángulo de apertura de la cámara. Para el caso de cámaras que representan proyectores, este parámetro debe coincidir con el FOV del proyector para ajustar correctamente las escenas con respecto a lo que muestra la cámara en pantalla.
 Mediante estas operaciones es que las cámaras virtuales de \emph{VMT} ajustan sus parámetros para que la proyección de objetos tridimensionales coincida con las superficies proyectadas.
 Hay que destacar que las cámaras proveen un punto de vista solo para los elementos tridimensionales. Los quads, que como se menciono son contrucciones bidimensionales, no dependen del punto de vista de la cámara y se representan en un sector de la pantalla relativo a esta. Es por esto que los quads no alteran su posición en pantalla al ajustar los parámetros de la cámara.
 
-Los quads se pueden organizar en grupos de quads y pertenecen a una o mas capas, y cada capa pertenece a una única cámara de manera de representar las zonas a cubrir por un solo proyector. A su vez se permite aplicar una transformacion inicial a una capa, la que se aplicara a todos los quads o grupos de quads contenidos en ella. Esto es útil para ajustar la proyección de los quads en caso de mover el proyector levemente y que esta proyección deje de coincidir con las superficies, y provee la funcionalidad basica y de bajo nivel para el mecanismo de calibracion bidimensional que se detallara mas adelante.
+Los quads se pueden organizar en grupos que pertenecen a una o mas capas, y cada capa pertenece a una única cámara de manera de representar las zonas a cubrir por un solo proyector. A su vez se permite aplicar una transformacion inicial a una capa, la que se aplicara a todos los quads o grupos de quads contenidos en ella. Esto es útil para ajustar la proyección de los quads en caso de mover el proyector levemente y que esta proyección deje de coincidir con las superficies, y provee la funcionalidad basica y de bajo nivel para el mecanismo de calibracion bidimensional que se detallara mas adelante.
 
 Las texturas se asocian a grupos de quads solamente. Los grupos también permiten variar de forma limitada como se mapean las texturas a los quads que lo componen. Pueden ser mapeadas por cara en donde a cada uno de los quads se le mapeará toda la textura, o también de forma “plana”. Esto último significa que la textura será mapeada al conjunto entero de quads como si estos fueran trozos de un quad de mayor tamaño compuesto por todos ellos.
 
@@ -66,21 +66,29 @@ Para dar la ilusión de continuidad, la frecuencia de estos ciclos debe ser alta
 Si esta frecuencia se encuentra muy por debajo de los 60 ciclos, la reproducción del espectáculo no será fluida y se podrían percibir saltos o pausas al reproducirlo.
 Para que esta frecuencia efectivamente se logre es necesario que el procesamiento de cada uno de los ciclos del bucle principal sea eficiente. Esta eficiencia se logra reduciendo el costo de procesamiento en cada tareas u operación. A continuación se muestra un pseudo-código del bucle principal de dibujado y se analizan cada una de las acciones que se toman, su impacto en cuanto al rendimiento del programa y las medidas que se tomaron para su optimización:
 
-Posicionar cámara
-para todo objeto3d en la escena:
-   para toda selección de caras:
-       cargar material
-       dibujar caras con el material
-   fin
-fin
-Reset cámara
-para todo quad
-   cargar material
-   dibujar quad
-fin
+\begin{algorithm}
+    \caption{Pseudo-código bucle de dibujado.}
+    \label{alg:mainLoop}
+    \begin{algorithmic}
+      \State $posicionarCamara();$
+      \ForAll{objeto3d $ojb$ en la escena}
+        \ForAll{cara $c$ de $obj$}
+             \State $mat = cargarMaterial(obj);$
+             \State $c.dibujar(mat);$
+         \EndFor
+      \EndFor
+
+      \State $resetCamara();$
+      \ForAll {quad $q$ en la escena}
+         \State $mat = q.cargarMaterial();$
+         \State $q.dibujar(mat);$
+      \EndFor
+    \end{algorithmic}
+\end{algorithm}
+
 
 Un bucle de este estilo cuenta con varios cuellos de botella.
-La carga de materiales implica copiar una textura a la zona de la memoria de video correspondiente para utilizarla. Esto podría ser un proceso lento si no se disponen las texturas precargadas en memoria. Es por esta razón es que las texturas se cargan desde un comienzo en memoria y luego se utilizan referencias para identificarlas y asociarlas a una unidad de textura de OpenGL [www.opengl.org/wiki/Texture] para finalmente poder utilizarla.
+La carga de materiales implica copiar una textura a la zona de la memoria de video correspondiente para utilizarla. Esto podría ser un proceso lento si no se disponen las texturas precargadas en memoria. Es por esta razón es que las texturas se cargan desde un comienzo en memoria y luego se utilizan referencias para identificarlas y asociarlas a una unidad de textura de OpenGL\footnote{www.opengl.org/wiki/Texture} para finalmente poder utilizarla.
 Otra optimización pasa por hacer uso de shaders para el cálculo del resultado visual final.
 La visualización fluida de un espectáculo de video mapping es difícil de predecir ya que, como se puede ver en el pseudo-codigo, los tiempos de ejecución dependen de la cantidad de materiales, caras, objetos y quads incluidos en la escena.
 Si se utilizan videos en las texturas, la compresión y resolución de estos también afecta la fluidez del espectáculo. Preferentemente deberían estar descomprimidos o con una baja tasa de compresión. El mismo problema ocurre con formatos de imágenes comprimidas, pero teniendo un menor impacto en el rendimiento de la reproducción del espectáculo.
@@ -217,7 +225,7 @@ Los efectos de degradé solo son aplicables a grupos de quads y lo que permiten 
   \label{fig:VMT-EffectFade}
 \end{figure}
 
-Los efectos de tipo textura son aplicables tanto a grupos de quads como a objetos tridimensionales. Se pueden definir texturas de tipo Imagen o Video. En ambos casos es necesario proporcionar el camino al archivo multimedia correspondiente. Para el caso especifico de un efecto de textura asociado a un objeto tridimensional, es necesario proporcionar además la cara o conjunto de caras (lista de selección de faces) sobre los cuales se va a mapear el efecto de tipo textura definido.
+Los efectos de tipo textura son aplicables tanto a grupos de quads como a objetos tridimensionales. Se pueden definir texturas de tipo Imagen o Video. En ambos casos es necesario proporcionar el camino al archivo multimedia correspondiente. Para el caso especifico de un efecto de textura asociado a un objeto tridimensional, es necesario proporcionar además la cara o conjunto de caras sobre los cuales se va a mapear el efecto de tipo textura definido.
 
 \begin{figure}[H]
   \centering
