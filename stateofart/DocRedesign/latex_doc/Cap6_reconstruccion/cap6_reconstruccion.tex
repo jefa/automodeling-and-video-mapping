@@ -243,77 +243,78 @@ Luego de simplificar la nube de puntos se construye un modelo tridimensional a p
 
 \section{Tratamiento de malla}
 
-Los dispositivos de captura de información tridimensional estudiados entregan la información en forma de nube de puntos (ref a Kyle, kinect  y Sensores del chino). Es por ello que previo a la manipulación de la información tridimensional, es necesario procesar dicha nube de puntos para convertirla a formatos más manejables, como por ejemplo mallas triangulares.
-Un típico procesamiento de malla, ya estudiado e implementado en bibliotecas como VcgLib\cite{VCGLib} o CGAL\cite{CGAL}: dada una nube de puntos de entrada, realizar un sub-muestreo y suavizado de la misma, calcular las normales en cada punto de la nube y finalmente, aplicar algoritmos de reconstrucción de malla.
+Los dispositivos de captura de información tridimensional estudiados entregan la información en forma de nube de puntos. Es por ello que previo a la manipulación de la información tridimensional, es necesario procesar dicha nube de puntos para convertirla a representaciones más manejables como por ejemplo mallas triangulares.
+Un algoritmo de procesamiento de malla se basa en tomar como entrada una nube de puntos, realizar un sub-muestreo y suavizado de la misma, calcular las normales en cada punto de la nube y finalmente, aplicar algoritmos de reconstrucción de malla. Esto ha sido estudiado e implementado en las bibliotecas \emph{VcgLib}\cite{VCGLib} y \emph{CGAL}\cite{CGAL}.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-flow.png}
-  \caption{Típico flujo para el procesamiento de nubes de puntos (fuente: CGAL\cite{CGAL})}
+  \caption{Típico flujo para el procesamiento de nubes de puntos. Fuente: \emph{CGAL}}
   \label{fig:Mesh-CGAL}
 \end{figure}
 
-Para la implementación de este modulo, se utilizaron algoritmos incluidos en VcgLib. Para visualizar y evaluar los resultados esperados se utilizo la aplicación de código abierto para la manipulación de mallas tridimensionales en diferentes formatos MeshLab Error: Reference source not found. Particularmente, se utilizaron los algoritmos de muestreo Poisson-disk para reducir y normalizar los puntos de la malla inicial, Normal Extrapolation para el cálculo de normales y reconstrucción de superficies de Poisson para la reconstrucción de la malla final.
+Para la implementación de este módulo se utilizan algoritmos incluidos en \emph{VcgLib}. Para visualizar y evaluar los resultados esperados fue utilizada la aplicación de código abierto para la manipulación de mallas tridimensionales en diferentes formatos \emph{MeshLab}\cite{MeshLab}. Particularmente se utilizan los algoritmos de muestreo \emph{Poisson-disk} para reducir y normalizar los puntos de la malla inicial, \emph{normal extrapolation} para el cálculo de normales y reconstrucción de superficies de Poisson para la reconstrucción de la malla final.
 
-\subsection{Muestreo Poisson-disk}
+\subsection{Muestreo \emph{Poisson-disk}}
 
-El muestreo o sorteo de variables aleatorias es una técnica utilizada para una gran variedad de aplicaciones graficas, incluyendo dibujado (rendering), procesamiento de imágenes y de geometrías.
-Particularmente, el muestreo Poisson-disk se utiliza para ubicación aleatoria de objetos en mundos artificiales, algoritmos de texturas procedurales y procesamiento de geometrías o mallas. Esta técnica genera conjunto de puntos con las siguientes propiedades: puntos suficientemente juntos, pero con la restricción de no estar más próximos unos de otros que una distancia mínima R predeterminada.
+El muestreo de variables aleatorias es una técnica utilizada para una gran variedad de aplicaciones como procesamiento de imágenes y geometrías. Particularmente, el muestreo \emph{Poisson-disk} se utiliza para la ubicación aleatoria de objetos en mundos artificiales, algoritmos de texturas procedurales y procesamiento de geometrías o mallas.%REFERENCIAR%
+Esta técnica genera conjuntos de puntos con la propiedad de obtener puntos suficientemente juntos pero con la restricción de no estar más próximos unos de otros que una distancia mínima $R$ predeterminada.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-poisson.png}
-  \caption{a) Posición x e y generadas aleatoriamente. b) Imagen dividida en celdas. Puntos aleatorios generados en cada celda. c) Muestreo Poisson-disk en 2 dimensiones}
+  \caption{a) Posición $x$ e $y$ generadas aleatoriamente. b) Imagen dividida en celdas. Puntos aleatorios generados en cada celda. c) Muestreo \emph{Poisson-disk} en dos dimensiones.}
   \label{fig:Mesh-Poisson}
 \end{figure}
 
-En líneas generales, este algoritmo genera puntos alrededor de los ya existentes en la muestra, y valida si pueden ser agregados al conjunto final en caso de no violar la regla de la mínima distancia a los vecinos. Se genera una grilla en 2 o 3 dimensiones dependiendo del escenario de aplicación, en la cual cada celda contendrá al final del proceso a lo sumo un punto. Una grilla adicional es utilizada para realizar búsquedas rápidas, y dos conjuntos de puntos son mantenidos durante el procesamiento para poder diferenciar los que han sido generados y los que aún necesitan procesamiento.
-La implementación de VcgLib utilizada recibe 3 parámetros:
+En líneas generales, este algoritmo genera puntos alrededor de los ya existentes en la muestra y valida si pueden ser agregados al conjunto final en caso de no violar la regla de la mínima distancia a los vecinos. Se genera una grilla en dos o tres dimensiones, dependiendo del escenario de aplicación, en la cuál cada celda contendrá al final del proceso a lo sumo un punto. Una grilla adicional es utilizada para realizar búsquedas rápidas y dos conjuntos de puntos son mantenidos durante el procesamiento para poder diferenciar los que han sido generados y los que aún necesitan procesamiento.
+La implementación realizada en \emph{VcgLib} recibe tres parámetros:
 \begin{itemize}
-	\item La cantidad de puntos en la muestra. En este caso el radio o parámetro de cercanía es calculado en base a este parámetro.
-	\item El radio, que es a su vez utilizado para calcular el tamaño de la muestra optimo en base a la malla inicial.
-	\item Sub muestreo: indica si la muestra de Poisson es un subconjunto de la muestra inicial o si se deberán generar nuevos puntos aleatoriamente.
+	\item 1) La cantidad de puntos en la muestra. En este caso el radio de cercanía es calculado en base a este parámetro.
+	\item 2) El radio, que es a su vez utilizado para calcular el tamaño de la muestra óptimo en base a la malla inicial.
+	\item 3) Sub muestreo: indica si la muestra de Poisson es un subconjunto de la muestra inicial o si se deberán generar nuevos puntos aleatoriamente.
 \end{itemize}
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-poissongui.png}
-  \caption{Configuracion de parámetros del alrogirtmo Poisson-disk}
+  \caption{Configuración de parámetros del algoritmo \emph{Poisson-disk}}
   \label{fig:Mesh-PoissonGui}
 \end{figure}
 
 \subsection{Reconstrucción de normales}
 
-Este algoritmo computa las normales en cada elemento de un conjunto de puntos sin la necesidad de explorar la conectividad de los triángulos. Por ello es que es muy útil para objetos tridimensionales sin información de caras (faces).
-Se detalla un pseudocódigo del método:
+Este algoritmo computa las normales en cada elemento de un conjunto de puntos sin la necesidad de explorar la conectividad de los triángulos. Por ello es muy útil para objetos tridimensionales sin información de caras.
+Se detalla un pseudo-código del método:
 
-Figura: planos tangentes
+%Figura: planos tangentes%
 
-\subsubsection{Paso 1: Identificar los planos tangentes para aproximar localmente la superficie y estimar así los vectores normales}
+\subsubsection{Paso 1: identificar los planos tangentes para aproximar localmente la superficie y estimar así los vectores normales.}
 Para cada vértice:
 	\begin{itemize}
-		\item Calcular el centro geométrico (centroide) del plano tangente en el punto como el promedio de los K puntos más cercanos.
-		\item Calcular la normal asociada al centro geométrico. Se utiliza la matriz de covarianza en el punto contemplando los mismos K vecinos más cercanos de la muestra y los valores y vectores propios de la matriz de covarianza. Finalmente, ordenando los vectores propios, la estimación del vector perpendicular corresponde al vector propio de menor valor. Este método es conocido como PCA (Principal Component Analysis).
+		\item Calcular el centro geométrico del plano tangente en el punto como el promedio de los $K$ puntos más cercanos.
+		\item Calcular la normal asociada al centro geométrico. Se utiliza la matriz de covarianza en el punto, contemplando los mismos $K$ vecinos más cercanos de la muestra y los valores y vectores propios de la matriz de covarianza. Finalmente, ordenando los vectores propios, la estimación del vector perpendicular corresponde al vector propio de menor valor. Este método es conocido como \emph{Principal Component Analysis (PCA)}\footnote{PCA}.
 	\end{itemize}
 
-\subsubsection{Paso 2: construir grafo donde cada punto está conectado a los K vecinos más cercanos (grafo de Riemannian)}
-Se crea un grafo en cuyos nodos se guardan todas las aristas a los K vecinos más cercanos. Cada arista se pesa con el valor absoluto del producto escalar de la normal en el punto con la normal en cada uno de los K vecinos:
+\subsubsection{Paso 2: construir un grafo en donde cada punto está conectado a los $K$ vecinos más cercanos (grafo de Riemannian)}
+Se crea un grafo en cuyos nodos se guardan todas las aristas incidentes a los $K$ vecinos más cercanos. A cada arista se le asigna un peso igual al valor absoluto del producto escalar de la normal en el punto con la normal en cada uno de los $K$ vecinos:
    $$fabs(nodoActual->normal . K\_Vecinos[n]->normal)$$
-\subsubsection{Paso 3: calcular el árbol de expansión mínimo (MST) sobre el grafo de Riemannian y recorrerlo para orientar las normales}
-Dado un grafo conexo, no dirigido, con sus aristas con un peso asignado, se llama árbol de expansión mínimo al sub-grafo con forma de árbol que conecta todos los nodos con un peso total mínimo. Contiene todos los nodos del grafo inicial. El grafo de entrada es el construido en el paso enterior y se utiliza el algoritmo de Kruskal, uno de los varios algoritmos que resuelven el problema de encontrar un árbol de expansión mínima de un grafo (referencias).
-Una vez construido el MST, lo único que se hace es recorrer el árbol en orden y corregir el sentido de los vectores normales (multiplicando por -1.0f) en caso de ser necesario. La condición para efectuar dicha corrección se basa en el ángulo del nodo siendo inspeccionado versus todas las direcciones de las normales de los vecinos conectados a dicho nodo.
+\subsubsection{Paso 3: calcular el árbol de expansión mínimo sobre el grafo de Riemannian y recorrerlo para orientar las normales.}
+Dado un grafo conexo, no dirigido, con sus aristas con un peso asignado, se llama árbol de expansión mínimo al sub-grafo con forma de árbol que conecta todos los nodos con un peso total mínimo conteniendo todos los nodos del grafo inicial. El grafo de entrada es el construido en el paso anterior y se utiliza el algoritmo de Kruskal\footnote{Kruskal}, uno de los varios algoritmos que resuelven el problema de encontrar un árbol de expansión mínima de un grafo.
+Una vez construido el árbol de expansión, lo único que se hace es recorrerlo en orden e invertir el sentido de los vectores normales en caso de ser necesario. La condición para efectuar dicha corrección se basa en el ángulo del nodo siendo inspeccionado en comparación a todas las direcciones de las normales de los vecinos conectados a dicho nodo.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-normalextrapolation.png}
-  \caption{Configuracion de parámetros para reconstruccion de normales}
+  \caption{Configuración de parámetros para reconstrucción de normales}
   \label{fig:Mesh-Extrapolation}
 \end{figure}
 
 \subsection{Reconstrucción de malla de Poisson}
 
-Finalmente, para reconstruir la malla a partir de la nube de puntos y sus normales se utiliza el algoritmo de Reconstrucción de Poisson.
-Se computa una función indicador $\chi$ en 3 dimensiones definida de la siguiente forma:
+Finalmente, para reconstruir la malla a partir de la nube de puntos y sus normales, se utiliza el algoritmo de reconstrucción de Poisson.
+Se computa una función indicadora $\chi$ definida de la siguiente forma:
+%Se computa una función indicadora $\chi$ en tres dimensiones definida de la siguiente forma:%
 
 $$
 \left\{ \begin{array}{rl}
@@ -322,31 +323,32 @@ $$
        \end{array} \right.
 $$
 
-Luego, se obtiene una reconstrucción de la superficie mediante la extracción de la ISO-surface (superficie de nivel en 3 dimensiones) al nivel apropiado.
-La clave está en que hay una estrecha relación entre los puntos orientados (con sus normales) de la muestra y la función indicador de la muestra. Específicamente el gradiente de la función indicador es un espacio de vectores que valen cero casi en todo el espacio excepto en puntos cercanos a la superficie, donde es igual al vector normal a la superficie.
-Es por eso que puntos orientados, pueden ser vistos como muestras del gradiente de la función indicador del modelo tridimensional en cuestión. Y es por este mismo motivo que el problema de reconstrucción de una malla puede ser visto como un problema de Poisson estándar: computar la función escalar $F$ cuyo Laplaciano (o divergencia del gradiente) se iguala a la divergencia del espacio de vectores de las normales.
+Luego, se obtiene una reconstrucción de la superficie mediante la extracción de la superficie de nivel en 3 dimensiones\footnote{ISO-surface} al nivel apropiado.
+La estrategia se basa en la estrecha relación que hay entre los puntos de la muestra, orientados por sus normales, y la función indicadora de la muestra. Específicamente el gradiente de la función indicadora es un espacio de vectores, de valor nulo en todo el espacio excepto en puntos cercanos a la superficie, donde son iguales al vector normal a ella.
+Es por eso que puntos orientados pueden ser vistos como muestras del gradiente de la función indicadora del modelo tridimensional en cuestión y es por este mismo motivo que el problema de reconstrucción de una malla puede ser visto como un problema de Poisson estándar, es decir, computar la función escalar $F$ cuya divergencia del gradiente\footnote{Laplaciano} se iguala a la divergencia del espacio de vectores de las normales.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-poissonreconstruction.png}
-  \caption{Configuracion de parámetros para reconstruccion de malla de Poisson}
+  \caption{Configuración de parámetros para reconstruccion de malla de Poisson}
   \label{fig:Mesh-Normals}
 \end{figure}
 
 \subsection{Pruebas y resultados}
 
-Para validar el correcto funcionamiento de esta técnica utilizando los tres algoritmos descritos, utilizamos una malla inicial de 5021 vertices y 9608 caras triangulares. Cabe destacar que si bien se ha mencionado que la malla de entrada debe ser simplemente una nube de puntos, se pueden utilizar mallas con caras, solo que estas serán ignoradas e incluso removidas de la malla de salida del primer paso del procesamiento (Poisson-disk sampling).
-Luego de experimntar con varios juegos de datos iniciales durante varias ejecuciones del procesamiento, se fijaron de manera personalizada para la malla de entrada algunos parámetros clave. Dado que la muestra inicial tiene alrededor de cinco mil puntos, elegimos cinco mil como cantidad de muestras para el algorimso de Poisson-disk. Luego, para la extrapolación de normales se utilizaran $K=15$ vecinos para la toma de decisiones locales de aproximación. 
-La aplicación de estos algoritmos resultó ser lo esperado, en términos estructurales de cada malla procesada en cada uno de los paso. No se llego a procesar mallas de ambientes tridimensionales escaneados para luego ser mapeados con la herramienta.
+Para validar el correcto funcionamiento de esta técnica mediante los tres algoritmos descritos, fue utilizada una malla inicial de 5021 vértices y 9608 caras triangulares. Cabe destacar que si bien se ha mencionado que la malla de entrada debe ser simplemente una nube de puntos, se pueden utilizar mallas con caras, solo que estas serán ignoradas e incluso eliminadas de la malla de salida del primer paso del procesamiento (muestreo de \emph{Poisson-disk}).
+Luego de experimentar con varios juegos de datos iniciales durante varias ejecuciones del procesamiento, se fijaron de manera personalizada para la malla de entrada algunos parámetros clave. Dado que la muestra inicial tiene alrededor de cinco mil puntos, fueron elegidas cinco mil muestras para el algoritmo de \emph{Poisson-disk}. Luego, para la extrapolación de normales se utilizan $K=15$ vecinos para la toma de decisiones locales de aproximación.
+La aplicación de estos algoritmos resultó ser lo esperado en términos estructurales de cada malla procesada en cada uno de los pasos.
+%Puede ir a trabajo futuro: No se llegó a procesar mallas de ambientes tridimensionales escaneados para luego ser mapeados con la herramienta.%
 
 \begin{table}
 \begin{center}
 \begin{tabular}{|l||cc|} \hline
 	Fase & Vértices & Caras \\
 	Nube inicial & 5021 & 9608 \\
-	Luego Poisson-disk & 1776 & 0 \\
-	Luego Extrapolación Normales & 1776 & 0 \\
-	Luego de Poisson-recontruction & 1959 & 3910 \\ \hline
+	Poisson-disk & 1776 & 0 \\
+	Extrapolación Normales & 1776 & 0 \\
+	Reconstrucción de Poisson & 1959 & 3910 \\ \hline %hay 1959 puntos en lugar de 1776, por que?%
 \end{tabular}
 \caption{Comparación de estructura de mallas de entrada y salida en cada fase}
 \end{center}
@@ -355,8 +357,8 @@ La aplicación de estos algoritmos resultó ser lo esperado, en términos estruc
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{./Cap6_reconstruccion/malla-nubepuntos.png}
-  \caption{1) Nube de puntos inicial con 5021 vértices. 2) Resultado de muestreo Poisson-disk con 1776 vértices. 3) Luego de extrapolar normales y reconstruir la malla con 1959 vértices y 3910 caras.}
+  \caption{1) Nube de puntos inicial con 5021 vértices. 2) Resultado de muestreo \emph{Poisson-disk} con 1776 vértices. 3) Luego de extrapolar normales y reconstruir la malla con 1959 vértices y 3910 caras.}
   \label{fig:Mesh-Results}
 \end{figure}
  
-Se observaron buenos tiempos computacionales de respuesta. Si bien la malla utilizada no es de un tamaño considerable, estamos hablando de algoritmos de orden relativamente alto.
+%Se observaron buenos tiempos computacionales de respuesta. Si bien la malla utilizada no es de un tamaño considerable, estamos hablando de algoritmos de orden relativamente alto.%
