@@ -117,7 +117,7 @@ El ángulo $\beta$ esta dado por la geometría de la proyección.
 \sin (\pi - \gamma) = \sin (\gamma)
 \end{array}
 \right \rbrace
-\frac{d}{\sin(\gamma)} = \frac{b}{\sin(\pi - \gamma)} = \frac{b}{\sin(\alpha + \beta)} \Rightarrow d = b . \frac{\sin(a)}{\sin(\alpha + \beta)}
+\frac{d}{\sin(\alpha)} = \frac{b}{\sin(p - \gamma)} = \frac{b}{\sin(\alpha + \beta)} \Rightarrow d = b . \frac{\sin(\alpha)}{\sin(\alpha + \beta)}
 \]
 
 Las coordenadas cartesianas quedan determinadas por:
@@ -141,15 +141,20 @@ Se asume $Z = f$ siendo $f$ el plano en el cuál se proyecta el punto $P(X_o, Y_
 El centro óptico del proyector está situado en el eje $X$.
 Se considera realizada una pre-calibración en la cual se define:
 \[
-P = (x,y), \quad \frac{X_o}{x} = \frac{Z_o}{f} = \frac{Y_o}{y} = k \to (k_x,k_y,k_f)
+P = (x,y), \quad \frac{X_o}{x} = \frac{Z_o}{f} = \frac{Y_o}{y} = k \to (k * x,k * y,k * f)
 \]
-\[
-k_f = \tan (\alpha)(b - kx)
-\]
-
 Por trigonometría:
 \[
-\tan (\alpha) = \frac{Z_0}{(b - X_0)} \Rightarrow Z_0 = \tan (\alpha) (b - X_0) \quad k = \frac	{b * \tan (\alpha)}{f + x * \tan (\alpha)}
+\tan (\alpha) = \frac{Z_0}{(b - X_0)} \Rightarrow Z_0 = \tan (\alpha) (b - X_0) \quad 
+\]
+\[
+k * f = \tan (\alpha)(b - k * x)
+\]
+\[
+k (f + x * \tan (\alpha)) = b * \tan (\alpha)
+\]
+\[
+k = \frac	{b * \tan (\alpha)}{f + x * \tan (\alpha)}
 \]
 \[
 X_o = \frac{x * b * \tan (\alpha)}{f + x * \tan (\alpha)}, \quad Yo = \frac{y * b * \tan (\alpha)}{f + x * \tan (\alpha)},\quad Zo = \frac{f * b * \tan (\alpha)}{f + x * \tan (\alpha)}
