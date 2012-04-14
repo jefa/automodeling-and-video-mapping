@@ -1,21 +1,18 @@
 \chapter{Obtención de geometría}
 
-La obtención de la geometría es la reconstrucción tridimensional automática de una superficie utilizando técnicas computacionales.
-En esta sección se presentan distintas técnicas y métodos que permiten la construcción automática de modelos, discutiendo distintas características según propiedades de la superficie a representar y tecnologías utilizada.
-El producto de la obtención de la geometría para las técnicas presentadas es una nube de puntos. Utilizando procesamiento de datos se puede obtener información adicional como grupos de puntos que representan caras de una malla y las normales que identifican la orientación de la superficie. La reconstrucción del modelo se presenta en dos etapas, inicialmente obteniendo puntos de la superficie y luego procesando los datos para completar el modelo.
+En este capítulo se presenta la reconstrucción tridimensional automática de una superficie utilizando técnicas computacionales.
+Se introducen distintas técnicas y métodos que permiten la construcción automática de modelos, discutiendo distintas características según propiedades de la superficie a representar y tecnologías utilizadas.
+La construcción del modelo se presenta en dos etapas. Inicialmente se obtiene una nube de puntos correspondiente a la superficie utilizando técnicas y dispositivos para este propósito para luego procesar la información obtenida y construir una malla tridimensional. Este procesamiento se puede obtener información adicional como grupos de puntos que representan caras de una malla y las normales que identifican la orientación de la superficie. 
 
 \section{Obtención de la nube de puntos}
 
+A continuacion se estudian modelos matemáticos en los que se basa la resolución del problema de correspondencia de puntos en la realidad observada por una cámara con puntos bidimensionales en el plano de la imagen. Se analizan también técnicas y dispositivos para la obtención de la profundidad o distancia de dichos puntos de la realidad en el eje principal de la cámara.
 
-A continuacion se estudian modelos matematicos en los que se basa la resolucion del problema de correspondencia de puntos en la realidad observada por una camara con puntos bidimensionales en el plano de la imagen. Se analizan tambien tecnicas y dispositivos para la obtencion de la profundidad o distancia de dichos puntos de la realidad en el eje principal de la camara.
-
-En esta seccion se estudian los fundamentos matematicos, tecnicas y dispositivos relacionados al problema de la correspondencia de puntos de la realidad en tres dimensiones con puntos bidimensionales en el plano de una imagen obtenida por una camara y la posterior determinacion de su profundidad.
-
-
+En esta sección se estudian los fundamentos matemáticos, técnicas y dispositivos relacionados al problema de la correspondencia de puntos de la realidad en tres dimensiones con puntos bidimensionales en el plano de una imagen obtenida por una cámara y la posterior determinación de su profundidad.
 
 \subsection{Correspondencia}
 
-Al calcular coordenadas tridimensionales a partir de imágenes obtenidas por capturas de video se introducen errores propios del modelo (modelo \emph{pinhole}, modelo imaginario que utiliza una cámara) por ello es necesario hacer una corrección obteniendo una correspondencia entre el modelo real y el ideal. El objetivo del proceso de calibración es obtener dicha correspondencia. Luego de la calibración las coordenadas obtenidas son en dos dimensiones y corresponden a la proyección sobre el plano imagen. Para completar las coordenadas tridimensionales en el modelo es necesario calcular la profundidad de cada punto. Es con este fin que se utiliza el método de triangulación. El modelo ideal que se utiliza en las cámaras es el modelo \emph{pinhole}, éste se presenta para un caso básico, se considera que el centro de proyección $C$ coincide con el origen del sistema de coordenadas, y que $Z = f$ (plano imagen o plano focal).
+Al calcular coordenadas tridimensionales a partir de imágenes obtenidas por capturas de video se introducen errores propios del modelo (modelo \emph{pinhole}, modelo imaginario que utiliza una cámara) por ello es necesario hacer una corrección obteniendo una correspondencia entre el modelo real y el ideal. El objetivo del proceso de calibración es obtener dicha correspondencia. Luego de la calibración las coordenadas obtenidas son en dos dimensiones y corresponden a la proyección sobre el plano imagen. Para completar las coordenadas tridimensionales en el modelo es necesario calcular la profundidad de cada punto. Es con este fin que se utiliza el método de triangulación. El modelo ideal que se utiliza en las cámaras es el modelo \emph{pinhole}, éste se presenta para un caso básico, se considera que el centro de proyección $C$ coincide con el origen del sistema de coordenadas y que $Z = f$ (plano imagen o plano focal).
 
 \begin{figure}[H]
   \centering
@@ -24,7 +21,7 @@ Al calcular coordenadas tridimensionales a partir de imágenes obtenidas por cap
   \label{fig:Calib-Pinhole}
 \end{figure}
 
-Un punto en el espacio $ \vec{X}=(X,Y,Z)^T$ se corresponde con el punto $X$ en el plano imagen, dado por la intersección del rayo que pasa por el centro de cámara y el punto $\vec{X}$ con el plano imagen, el punto $(X,Y,Z)^T$ es mapeado con $(\frac{fX}{Z}, \frac{fY}{Z}, f)^T$ en el plano imagen.
+Un punto en el espacio $A=(A_X, A_Y, A_Z)^T$ se corresponde con el punto $a$ en el plano imagen, dado por la intersección del rayo que pasa por el centro de cámara y el punto $A$ con el plano imagen. El punto $(A_X, A_Y, A_Z)^T$ es mapeado con $(\frac{fA_X}{A_Z}, \frac{fA_Y}{A_Z}, f)^T$ en el plano imagen.
 $(X, Y, Z)^T \to (\frac{fX}{Z}, \frac{fY}{Z},f)^T$ se considera que el centro de coordenadas del plano imagen coincide con el punto principal $P$.
 El centro de proyección $C$ es el centro de la cámara o centro óptico.
 Proyección central utilizando coordenadas homogéneas:
