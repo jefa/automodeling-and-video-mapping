@@ -1,12 +1,12 @@
 \chapter{Obtención de geometría}
 
-La obtención de la geometría es la reconstrucción tridimensional automática de una superficie, utilizando técnicas computacionales.
-En esta sección se presentan distintas técnicas y métodos que permiten la construcción automática de modelos, discutiendo distintas características según propiedades de la superficie a representar y de la tecnología utilizada.
-El producto inicial de la obtención de la geometría es en general una nube de puntos. Utilizando procesamiento de datos se puede obtener información adicional entre los puntos como grupos de puntos que representan caras de una malla y normales que identifiquen la orientación de la superficie. La reconstrucción del modelo se presenta en dos etapas, inicialmente obteniendo puntos de la superficie y luego procesando los datos para completar el modelo.
+La obtención de la geometría es la reconstrucción tridimensional automática de una superficie utilizando técnicas computacionales.
+En esta sección se presentan distintas técnicas y métodos que permiten la construcción automática de modelos, discutiendo distintas características según propiedades de la superficie a representar y tecnologías utilizada.
+El producto de la obtención de la geometría para las técnicas presentadas es una nube de puntos. Utilizando procesamiento de datos se puede obtener información adicional como grupos de puntos que representan caras de una malla y las normales que identifican la orientación de la superficie. La reconstrucción del modelo se presenta en dos etapas, inicialmente obteniendo puntos de la superficie y luego procesando los datos para completar el modelo.
 
-\section{Correspondencia}
+\section{Obtención de la nube de puntos}
 
-\subsection{Calibración} %Calibración no lo veo como titulo, habría que hablar de scanning antes%
+\subsection{Correspondencia}
 
 Al calcular coordenadas tridimensionales a partir de imágenes obtenidas por capturas de video se introducen errores propios del modelo (modelo \emph{pinhole}, modelo imaginario que utiliza una cámara) por ello es necesario hacer una corrección obteniendo una correspondencia entre el modelo real y el ideal. El objetivo del proceso de calibración es obtener dicha correspondencia. Luego de la calibración las coordenadas obtenidas son en dos dimensiones y corresponden a la proyección sobre el plano imagen. Para completar las coordenadas tridimensionales en el modelo es necesario calcular la profundidad de cada punto. Es con este fin que se utiliza el método de triangulación. El modelo ideal que se utiliza en las cámaras es el modelo \emph{pinhole}, éste se presenta para un caso básico, se considera que el centro de proyección $C$ coincide con el origen del sistema de coordenadas, y que $Z = f$ (plano imagen o plano focal).
 
@@ -17,8 +17,8 @@ Al calcular coordenadas tridimensionales a partir de imágenes obtenidas por cap
   \label{fig:Calib-Pinhole}
 \end{figure}
 
-Un punto en el espacio $ \vec{X}=(X,Y,Z)^T$ se corresponde con el punto $X$ en el plano imagen, dado por la intersección del rayo que pasa por el centro de cámara y el punto $\vec{X}$ con el plano imagen, el punto $(X,Y,Z)^T$ es mapeado con $(\frac{f_X}{Z}, \frac{f_Y}{Z}, f)^T$ en el plano imagen.
-$(X, Y, Z)^T \to (\frac{f_X}{Z}, \frac{f_Y}{Z},f)^T$ se considera que el centro de coordenadas del plano imagen coincide con el punto principal $P$.
+Un punto en el espacio $ \vec{X}=(X,Y,Z)^T$ se corresponde con el punto $X$ en el plano imagen, dado por la intersección del rayo que pasa por el centro de cámara y el punto $\vec{X}$ con el plano imagen, el punto $(X,Y,Z)^T$ es mapeado con $(\frac{fX}{Z}, \frac{fY}{Z}, f)^T$ en el plano imagen.
+$(X, Y, Z)^T \to (\frac{fX}{Z}, \frac{fY}{Z},f)^T$ se considera que el centro de coordenadas del plano imagen coincide con el punto principal $P$.
 El centro de proyección $C$ es el centro de la cámara o centro óptico.
 Proyección central utilizando coordenadas homogéneas:
 Considerando la representación de los puntos como vectores homogéneos se expresa la proyección central como una correspondencia lineal entre las coordenadas homogéneas:
@@ -29,7 +29,7 @@ X \\ Y \\ Z \\ 1
 \end{pmatrix}
 \to
 \begin{pmatrix}
-f_X \\ f_Y \\ Z
+fX \\ fY \\ Z
 \end{pmatrix}
 =
 \begin{pmatrix}
@@ -64,7 +64,7 @@ X \\ Y \\ Z \\ 1
 \end{pmatrix}
 \to
 \begin{pmatrix}
-f_X + Z * p_x \\ f_Y + Z * p_y \\ Z
+fX + Z * p_x \\ fY + Z * p_y \\ Z
 \end{pmatrix}
 =
 \begin{pmatrix}
@@ -212,7 +212,6 @@ Estos problemas se pueden solucionar utilizando patrones codificados adecuados. 
    \end{itemize}
 \end{itemize}
 
-\section{Sensores}
 \subsection{Kinect}
 
 \emph{Kinect} es un dispositivo que se puede adicionar a la consola \emph{Xbox360} de \emph{Microsoft}. El objetivo de este dispositivo es permitir que el usuario interactúe con la consola utilizando solo el movimiento de su cuerpo. Para lograr esto, \emph{Kinect} aplica distintas técnicas de procesamiento de imágenes, considerando ubicaciones, posturas y distancias. El \emph{hardware} de \emph{Kinect} no consiste tan solo de una cámara, sino que tiene adicionalmente un emisor de infrarrojos que en base a la deformación del haz de luz determina la distancia de cada punto de la imagen capturada. Posteriormente, combina la información visual para tener una noción bastante precisa de los movimientos del usuario. A mediados del 2011 fue presentada una interfaz de programación gratuita que permite utilizar \emph{Kinect} de forma directa en aplicaciones no licenciadas para diferentes propósitos, no solo el de los videojuegos.
