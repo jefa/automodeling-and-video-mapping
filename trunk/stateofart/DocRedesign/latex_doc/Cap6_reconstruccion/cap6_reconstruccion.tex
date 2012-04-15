@@ -156,6 +156,11 @@ La disposición de la geometría en visión estéreo incluye un par de cámaras 
 \subsection{Luz estructurada}
 
 El método basado en la técnica de luz estructurada consiste en proyectar distintos patrones sobre la superficie a modelar que son capturadas por una cámara. Analizando las deformaciones de los patrones proyectados se obtiene información tridimensional de la posición, orientación y textura de la superficie\cite{SLightPatterns}.
+
+Ver \url{http://en.wikipedia.org/wiki/Structured_Light_3D_Scanner}
+
+\subsubsection{Generación de patrones}
+
 Los patrones proyectados en esta técnica son variados y se clasifican en cuatro tipos: punto (\emph{singled scanned dot}), línea (\emph{slit line}), grilla (\emph{grid}) y matriz de puntos (\emph{dot matrix}).
 Dependiendo del tipo de objeto y superficie a escanear pueden ocurrir problemas de oclusión, baja reflexión y puntos reflejados fuera del alcance de la cámara. Como consecuencia, existen pérdidas de puntos proyectados que no tienen proyección en el plano imagen.
 Estos problemas se pueden solucionar utilizando patrones codificados adecuados. Se distinguen tres grupos de patrones clasificados: dependencia temporal, propiedades de la luz proyectada y discontinuidad de profundidad de la superficie proyectada\cite{SLightCorrespondence}.
@@ -177,6 +182,11 @@ Estos problemas se pueden solucionar utilizando patrones codificados adecuados. 
 	\item Absoluta: cada columna o fila del patrón proyectado tiene una única codificación. No sufre dependencia de discontinuidad de profundidad.
    \end{itemize}
 \end{itemize}
+
+\subsubsection{Calibración}
+
+\subsubsection{Analisis de deformaciones}
+
 
 \subsection{Kinect}
 
