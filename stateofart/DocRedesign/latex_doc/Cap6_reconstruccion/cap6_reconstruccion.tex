@@ -71,13 +71,13 @@ Escena con dos dimensiones:
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.65\textwidth]{./Cap6_reconstruccion/triangulacion.PNG}
-  \caption{Diagrama con propiedades trigonométricas para escena 2D.}
+  \caption{Propiedades trigonométricas para escena bidimensional.}
   \label{fig:Triangulacion}
 \end{figure}
 
 Este método tiene como objetivo calcular la distancia $d$ de la cámara al punto $P$ a partir de los ángulos $\alpha$, $\beta$ y la distancia $b$ entre el proyector y la cámara.
-El ángulo $\alpha$ y la distancia $b$ son dados por la calibración de la escena.
-El ángulo $\beta$ esta dado por la geometría de la proyección.
+El ángulo $\alpha$ y la distancia $b$ son dados por la configuración de la escena.
+El ángulo $\beta$ está dado por la geometría de la proyección.
 
 \[
 \left.
@@ -87,7 +87,7 @@ El ángulo $\beta$ esta dado por la geometría de la proyección.
 \sin (\pi - \gamma) = \sin (\gamma)
 \end{array}
 \right \rbrace
-\frac{d}{\sin(\alpha)} = \frac{b}{\sin(p - \gamma)} = \frac{b}{\sin(\alpha + \beta)} \Rightarrow d = b . \frac{\sin(\alpha)}{\sin(\alpha + \beta)}
+\frac{d}{\sin(\alpha)} = \frac{b}{\sin(\pi - \gamma)} = \frac{b}{\sin(\alpha + \beta)} \Rightarrow d = b . \frac{\sin(\alpha)}{\sin(\alpha + \beta)}
 \]
 
 Las coordenadas cartesianas quedan determinadas por:
@@ -103,7 +103,7 @@ Escena con tres dimensiones:
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.65\textwidth]{./Cap6_reconstruccion/triangulacion-2.PNG}
-  \caption{Diagrama con propiedades trigonométricas para escena 3D.}
+  \caption{Propiedades trigonométricas para escena tridimensional.}
   \label{fig:Triangulacion2}
 \end{figure}
 
@@ -133,7 +133,7 @@ X_0 = \frac{x * b * \tan (\alpha)}{f + x * \tan (\alpha)}, \quad Y_0 = \frac{y *
 
 \subsection{Visión estéreo}
 
-Visión estéreo es un método pasivo para obtener la estructura tridimensional de una escena. Se utiliza el método de triangulación sin intervención de luz auxiliar y la correspondencia es establecida entre dos o más imágenes.
+Visión estéreo es un método pasivo para la obtención de la estructura tridimensional de una escena. Se utiliza el método de triangulación sin intervención de luz auxiliar y la correspondencia es establecida entre dos o más imágenes.
 Los algoritmos que utilizan este método están clasificados basados en diferencias de la geometría de la imagen, en las estrategias para resolver la correspondencia entre puntos y en las diferentes estructuras computacionales utilizadas\cite{StereoReview}.
 Se realiza un preproceso de las imágenes para identificar las principales características que se utilizarán. Luego, se define qué tipo de correspondencia se utilizará.
 La principal desventaja de este método es que en caso de oclusión, hay regiones que no tienen correspondencia en las dos imágenes, por lo tanto no se puede establecer la correspondencia de puntos.
