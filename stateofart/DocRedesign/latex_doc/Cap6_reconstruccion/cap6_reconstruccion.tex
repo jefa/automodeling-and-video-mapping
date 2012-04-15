@@ -6,13 +6,7 @@ La construcción del modelo se presenta en dos etapas. Inicialmente se obtiene u
 
 \section{Obtención de la nube de puntos}
 
-En esta sección se estudian los fundamentos matemáticos, técnicas y dispositivos relacionados al problema de la correspondencia de puntos de la realidad con puntos bidimensionales en el plano imagen, obtenido por una cámara, y la posterior determinación de su profundidad.
-
-Los métodos que resuelven obtener la geometría de una escena tridimensional sin tener contacto físico se pueden clasificar como activos o pasivos\footnote{IEEE TRANSACTION ON PATTERN ANALYSIS AND MACHINE INTELIGENCE, VOL. PAMI-5, NO.2 MARCH 1983. A Perspective on Range Finding Techniques for Computer Vision.}.
-Los métodos pasivos son aquellos en los que no es necesario utilizar luz adicional a la luz ambiente.
-%los activos?%
-
-
+En esta sección se estudian los fundamentos matemáticos, técnicas y dispositivos relacionados al problema de la correspondencia de puntos de la realidad con puntos bidimensionales en el plano imagen, obtenido por una cámara, y la posterior determinación de su profundidad. 
 
 \subsection{Correspondencia}
 
@@ -20,10 +14,10 @@ Los métodos pasivos son aquellos en los que no es necesario utilizar luz adicio
 
 %El modelo ideal que se utiliza en las cámaras es el modelo \emph{pinhole}\cite{LibroCompGrafica3}, el que se describe a continuación para un caso básico.
 
-Una cámara, por medio de una proyección central, establece una correspondencia entre puntos del espacio con puntos bidimensionales en su plano imágen. En particular se estudiará el modelo de cámara pinhole\emph{pinhole}.
+Una cámara, por medio de una proyección central, establece una correspondencia entre puntos del espacio con puntos bidimensionales en su plano imágen. En particular se estudiará el modelo de cámara \emph{pinhole}\cite{LibroCompGrafica3}.
 %ponemos que es el mas simple?
 
-Se considera el centro de proyección $C$, también centro óptico de la cámara, como el origen de un sistema de coordenadas Euclideano, y $Z = f$ el plano de la imágen o plano focal.
+Se considera el centro de proyección $C$, también centro óptico de la cámara, como el origen de un sistema de coordenadas euclideano, y $Z = f$ el plano de la imágen o plano focal.
 
 \begin{figure}[H]
   \centering
@@ -70,7 +64,7 @@ f & 0 & 0 & 0 \\
 
 \subsection{Método de triangulación}
 
-Este método determina las coordenadas $(x,y,z)$ de un punto utilizando la posición bidimensional dada por las perspectivas de dos proyecciones de las que se conocen los centros de perspectiva y planos de proyección\cite{PresUnivYonsei}.
+Mediante este método se determinan las coordenadas $(x,y,z)$ de un punto utilizando la posición bidimensional dada por las perspectivas de dos proyecciones de las que se conocen los centros de perspectiva y planos de proyección\cite{PresUnivYonsei}.
 
 Escena con dos dimensiones:
 
