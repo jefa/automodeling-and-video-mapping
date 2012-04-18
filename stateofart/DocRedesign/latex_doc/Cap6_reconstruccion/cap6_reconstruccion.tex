@@ -133,7 +133,26 @@ X_0 = \frac{x * b * \tan (\alpha)}{f + x * \tan (\alpha)}, \quad Y_0 = \frac{y *
 
 \subsection{Visión estéreo}
 
-Visión estéreo es un método pasivo para la obtención de la estructura tridimensional de una escena. Se utiliza el método de triangulación sin intervención de luz auxiliar y la correspondencia es establecida entre dos o más imágenes.
+
+\subsubsection{Geometria epipolar}
+explicacion del metodo en gral
+que la correspondencia, en vision estereo, pasa por corresponder dos puntos 2D en los planos imagen de cada una de las camaras con un punto 3D de la escena (algo asi: el SISTEMA stereo SABE que un punto 3D A correponde con el punto 2D X1 de la camara C1 y tambien al punto 2D X2 de la camara C2).
+
+epipolar contraint and triangulation:
+.- primero se resuelve el problema de corresponder los puntos (geom epipolar, matriz fundamental, etc.)
+.- luego se calcula, mediante triangulacion, la profundidad Z del punto (distancia focal) 
+
+
+\subsubsection{Geometria epipolar}
+explicar la gemoetria epipolar. mencionar que esta basada en el modelo de camara pinhole.
+va al anexo.
+
+
+
+Visión computacional estéreo es un método para la obtención de la estructura tridimensional de una escena a partir de dos o mas imagenes. 
+
+
+No se utiliza iluminacion auxuliar, y la correspondencia se establece una correspondencia  establecida entre dos o más imágenes.
 Los algoritmos que utilizan este método están clasificados basados en diferencias de la geometría de la imagen, en las estrategias para resolver la correspondencia entre puntos y en las diferentes estructuras computacionales utilizadas\cite{StereoReview}.
 Se realiza un preproceso de las imágenes para identificar las principales características que se utilizarán. Luego, se define qué tipo de correspondencia se utilizará.
 La principal desventaja de este método es que en caso de oclusión, hay regiones que no tienen correspondencia en las dos imágenes, por lo tanto no se puede establecer la correspondencia de puntos.
