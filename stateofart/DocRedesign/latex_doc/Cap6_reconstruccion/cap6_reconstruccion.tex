@@ -133,22 +133,17 @@ X_0 = \frac{x * b * \tan (\alpha)}{f + x * \tan (\alpha)}, \quad Y_0 = \frac{y *
 
 \subsection{Visión estéreo}
 
-El análisis de imágenes de video en estereo se ha utilizado como método para reconstruir la estructura tridimensional de una escena, este método no utiliza luz auxilar,
-por esta razón es un método pasivo. El análisis de las imágenes se realiza por medio de algoritmos que han avanzado en los últimos tiempos logrando reconstrucción de escenas
-rápidamente, es por esto que esta técnica es muy utilizada en implementaciones que necesitan respuesta en tiempo real.
-La reconstrucción utilizando el modelo de cámara estereo se divide en dos pasos, primero resolver el problema de la correspondencia, para todos los puntos de una imagen
-se obtiene el punto correspondiente en la otra imagen y se calcula la desigualdad de cada punto, es decir la distancia en pixels entre los puntos que se corresponden.
-y segundo resolver el problema de triangulación, teniendo en cuenta la desigualdad definida en la correspondencia utilizando el método de triangulación se obtiene la distancia 
-focal de cada punto a cada una de las cámaras, de esta forma se calcula la profundidad del punto.
-
-Both the above tasks are easier to realize when cameras are in a standard setting, that is with parallel
-optical axes and coplanar image planes. In this setting epipolar lines correspond to rows in the frame
-bufer and point correspondences are searched over these rows. Obviously the standard setting cannot
-be obtained with real cameras, and thus a calibration procedure is needed in order to compute the
-parameters that relate the ideal model of the cameras to the real devices. This is required because of two
-factors: (i) both the correspondence problem and triangulation make the assumption of an ideal model
-of the camera (pinhole model ), that can be very diferent from actual imaging devices; (ii) the relative
-position and orientation of the two cameras must be known in order to determine range information.
+El análisis de imágenes de video en estereo se ha utilizado como método para reconstruir la estructura tridimensional de una escena, este método no utiliza luz auxilar, por esta razón es un método pasivo. El análisis de las imágenes se realiza por medio de algoritmos que han evolucionado en los últimos tiempos logrando la reconstrucción de escenas rápidamente, es por esto que esta técnica es muy utilizada en implementaciones que necesitan respuesta en tiempo real.
+En la reconstrucción utilizando el modelo de cámara estereo se identifican dos pasos a seguir, primero resolver el problema de la correspondencia, para todos los puntos de una imagen se obtiene el punto correspondiente en la otra imagen y se calcula la desigualdad de cada punto, es decir la distancia en \emph{pixels} entre los puntos que se corresponden.
+y segundo resolver el problema de triangulación\footnote{ver anexo de método de triangulación}, teniendo en cuenta la desigualdad definida en la correspondencia utilizando el método de triangulación se obtiene la distancia focal de cada punto a cada una de las cámaras, de esta forma se calcula la profundidad del punto.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/stereo.PNG}
+  \caption{geometía estéreo con ejes paralelos}
+  \label{fig:Stereo}
+\end{figure}
+Un caso simple sería con los ejes ópticos de las cámaras paralelos y los planos de imagen coplanares, como se muestra en la figura, en este caso las líneas epipolares\footnote{ver anexo de geometría epipolar} correspden a las filas en el \emph{frame bufer} y la correspondencia de los puntos es buscada en esas filas.
+En los casos más comunes no se tienen estas características, y por ello es necesario introducir parámetros en los cálculos que hacen el ajuste del modelo ideal, modelo \emph{pinhole} al modelo real de las cámaras. 
 
 Existen variedad de algorimos que solucionan el problema de correspondecia y cálculo de desigualdad entre los puntos de las dos imágenes se clasifican según diferencias en las imágenes
 se destacan dos estrategias:
@@ -158,14 +153,11 @@ se destacan dos estrategias:
 \end{itemize}
 La disposición de la geometría en visión estéreo incluye un par de cámaras y los ejes ópticos son paralelos entre sí y perpendiculares a la línea base que es dada por los dos centros ópticos de las cámaras.
 
-\begin{figure}[H]
-  \centering
-    \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/stereo.PNG}
-  \caption{}
-  \label{fig:Stereo}
-\end{figure}
 
-\subsubsection{Geometria epipolar}
+
+\subsubsection{Geometría epipolar}
+la explicación de esta sección estará en un anexo- lo estoy haciendo.
+
 
 \subsection{Luz estructurada}
 
