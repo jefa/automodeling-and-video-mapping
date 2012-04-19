@@ -133,32 +133,25 @@ X_0 = \frac{x * b * \tan (\alpha)}{f + x * \tan (\alpha)}, \quad Y_0 = \frac{y *
 
 \subsection{Visión estéreo}
 
+El análisis de imágenes de video en estereo se ha utilizado como método para reconstruir la estructura tridimensional de una escena, este método no utiliza luz auxilar,
+por esta razón es un método pasivo. El análisis de las imágenes se realiza por medio de algoritmos que han avanzado en los últimos tiempos logrando reconstrucción de escenas
+rápidamente, es por esto que esta técnica es muy utilizada en implementaciones que necesitan respuesta en tiempo real.
+La reconstrucción utilizando el modelo de cámara estereo se divide en dos pasos, primero resolver el problema de la correspondencia, para todos los puntos de una imagen
+se obtiene el punto correspondiente en la otra imagen y se calcula la desigualdad de cada punto, es decir la distancia en pixels entre los puntos que se corresponden.
+y segundo resolver el problema de triangulación, teniendo en cuenta la desigualdad definida en la correspondencia utilizando el método de triangulación se obtiene la distancia 
+focal de cada punto a cada una de las cámaras, de esta forma se calcula la profundidad del punto.
 
-\subsubsection{Geometria epipolar}
-explicacion del metodo en gral
-que la correspondencia, en vision estereo, pasa por corresponder dos puntos 2D en los planos imagen de cada una de las camaras con un punto 3D de la escena (algo asi: el SISTEMA stereo SABE que un punto 3D A correponde con el punto 2D X1 de la camara C1 y tambien al punto 2D X2 de la camara C2).
+Both the above tasks are easier to realize when cameras are in a standard setting, that is with parallel
+optical axes and coplanar image planes. In this setting epipolar lines correspond to rows in the frame
+bufer and point correspondences are searched over these rows. Obviously the standard setting cannot
+be obtained with real cameras, and thus a calibration procedure is needed in order to compute the
+parameters that relate the ideal model of the cameras to the real devices. This is required because of two
+factors: (i) both the correspondence problem and triangulation make the assumption of an ideal model
+of the camera (pinhole model ), that can be very diferent from actual imaging devices; (ii) the relative
+position and orientation of the two cameras must be known in order to determine range information.
 
-epipolar contraint and triangulation:
-.- primero se resuelve el problema de corresponder los puntos (geom epipolar, matriz fundamental, etc.)
-.- luego se calcula, mediante triangulacion, la profundidad Z del punto (distancia focal) 
-
-
-\subsubsection{Geometria epipolar}
-explicar la gemoetria epipolar. mencionar que esta basada en el modelo de camara pinhole.
-va al anexo.
-
-
-
-Visión computacional estéreo es un método para la obtención de la estructura tridimensional de una escena a partir de dos o mas imagenes. 
-
-
-No se utiliza iluminacion auxuliar, y la correspondencia se establece una correspondencia  establecida entre dos o más imágenes.
-Los algoritmos que utilizan este método están clasificados basados en diferencias de la geometría de la imagen, en las estrategias para resolver la correspondencia entre puntos y en las diferentes estructuras computacionales utilizadas\cite{StereoReview}.
-Se realiza un preproceso de las imágenes para identificar las principales características que se utilizarán. Luego, se define qué tipo de correspondencia se utilizará.
-La principal desventaja de este método es que en caso de oclusión, hay regiones que no tienen correspondencia en las dos imágenes, por lo tanto no se puede establecer la correspondencia de puntos.
-Las variantes que influyen en la geometría de la imagen son, ejes ópticos\footnote{Ejes ópticos.} paralelos o no, paradigma binocular o multiocular.
-%referenciar%
-La correspondencia entre una o más vistas de la escena se puede realizar basada en distintas estrategias que son \emph{separate area} o \emph{features}.
+Existen variedad de algorimos que solucionan el problema de correspondecia y cálculo de desigualdad entre los puntos de las dos imágenes se clasifican según diferencias en las imágenes
+se destacan dos estrategias:
 \begin{itemize}
    \item \emph{separate area}: basada en correlación del brillo e intensidad. Se utilizan patrones de brillo aplicados a un \emph{pixel} y sus vecinos utilizando principio de localidad. Las diferencias en la perspectiva de la imagen o cambios en luminosidad absoluta de la escena pueden generar errores.
    \item \emph{features}: las características usadas para la correspondencia son aristas, puntos o segmentos dadas por cambios de intensidad de la imagen. Esta estrategia es más estable ante la variación de luminosidad absoluta y en la práctica la correspondencia es más rápida.
@@ -171,6 +164,8 @@ La disposición de la geometría en visión estéreo incluye un par de cámaras 
   \caption{}
   \label{fig:Stereo}
 \end{figure}
+
+\subsubsection{Geometria epipolar}
 
 \subsection{Luz estructurada}
 
