@@ -59,8 +59,6 @@ El efecto de mapeo de texturas es el más básico pero también el más potente 
 
 Cabe aclarar que el estado final de la escena y todos los objetos contenidos en ella será el que resulte luego de la finalización de los efectos. Por ejemplo, si un objeto es de color rojo, y tiene un efecto de \emph{fade} al azul aplicado, su color luego de la ejecución del efecto continuará siendo azul.
 
-%Un punto posible de extensión \emph{VMT} es la creación de más efectos genéricos como pueden ser animación de rotación, escala o modificadores de objetos tridimensionales, para dar mas posibilidades al usuario al momento de la creación del espectáculo. %Esto va a Cap7
-
 Como se mencionó anteriormente, una de las tareas principales es la representación en pantalla o la proyección de los elementos gráficos. La implementación del dibujado se realiza en un bucle principal de la aplicación encargado de actualizar todos los objetos de la escena de ser necesario, procesar los eventos pendientes y finalmente dibujar el resultado. Este es un proceso cíclico que se repite varias veces por segundo.
 En cada uno de estos ciclos se generan los \emph{frames} que son las imágenes que se muestran como resultado final.
 Para dar la ilusión de continuidad, la frecuencia de estos ciclos debe ser alta. En el caso de \emph{VMT} ésta se predetermina en 60 ciclos por segundo aunque alcanzar esta frecuencia dependerá de varios factores como la cantidad de \emph{quads}, tamaño de texturas utilizadas, capacidad de procesamiento y memoria de los equipos.
