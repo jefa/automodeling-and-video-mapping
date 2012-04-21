@@ -11,9 +11,16 @@ Es en la proyección del espectáculo en donde se puede contemplar el resultado 
 Para lograr la correspondencia en la proyección de los objetos del modelo con las superficies se debe calibrar la proyección. Esta correspondencia se logra modificando el modelo de la escena, ajustando la posición y orientación de los proyectores, y ajustando los parámetros intrínsecos\footnote{parámetros intrínsecos} de la proyección.
 
 Cada una de estas etapas se puede abordar con un enfoque bidimensional o tridimensional.
-Con un enfoque bidimensional, el modelo de la escena es una proyección de los objetos sobre un plano, por ejemplo una fotografía. Con un enfoque tridimensional, el modelo se mantiene independiente de un punto de vista, representándose con un conjunto de objetos tridimensionales.
+Con un enfoque bidimensional el modelo de la escena es una proyección en perspectiva de los objetos a proyectar, por ejemplo, una fotografía. Con un enfoque tridimensional el modelo se mantiene independiente de un punto de vista, representándose con un conjunto de objetos virtuales tridimensionales.
 
 %explicacion de pie de diagrama:redactarlo mejor, El modelo generado en 2d depende del punto de vista del proyector y puede no parecerse a la realidad. El modelo generado 3d se asimila a la realidad y luego con la cámara virtual ajusto el punto de vista del proyector.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/proy2dvs3d}
+  \caption{Esquema de proyección.}
+  \label{fig:proy2dvs3d}
+\end{figure}
 
 \section{Enfoque bidimensional}
 \subsection{Modelo}
