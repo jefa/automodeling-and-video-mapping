@@ -133,8 +133,8 @@ X_0 = \frac{x * b * \tan (\alpha)}{f + x * \tan (\alpha)}, \quad Y_0 = \frac{y *
 
 \subsection{Visión estéreo}
 
-El análisis de imágenes de video en estereo se ha utilizado como método para reconstruir la estructura tridimensional de una escena, este método no utiliza luz auxilar, por esta razón es un método pasivo. El análisis de las imágenes se realiza por medio de algoritmos que han evolucionado en los últimos tiempos logrando la reconstrucción de escenas rápidamente, es por esto que esta técnica es muy utilizada en implementaciones que necesitan respuesta en tiempo real.
-En la reconstrucción utilizando el modelo de cámara estereo se identifican dos pasos a seguir, primero resolver el problema de la correspondencia, para todos los puntos de una imagen se obtiene el punto correspondiente en la otra imagen y se calcula la desigualdad de cada punto, es decir la distancia en \emph{pixels} entre los puntos que se corresponden.
+\cite {StereoReview} El análisis de imágenes de video en estéreo se ha utilizado como método para reconstruir la estructura tridimensional de una escena, este método no utiliza luz auxilar, por esta razón es un método pasivo. El análisis de las imágenes se realiza por medio de algoritmos que han evolucionado en los últimos tiempos logrando la reconstrucción de escenas rápidamente, es por esto que esta técnica es muy utilizada en implementaciones que necesitan respuesta en tiempo real.
+En la reconstrucción utilizando el modelo de cámara estéreo se identifican dos pasos a seguir, primero resolver el problema de la correspondencia, esto es dadas dos imágenes de la escena para todos los puntos de una imagen se obtiene el punto correspondiente en la otra imagen y se calcula la desigualdad de cada punto, es decir la distancia en \emph{pixels} entre los puntos que se corresponden.
 y segundo resolver el problema de triangulación\footnote{ver anexo de método de triangulación}, teniendo en cuenta la desigualdad definida en la correspondencia utilizando el método de triangulación se obtiene la distancia focal de cada punto a cada una de las cámaras, de esta forma se calcula la profundidad del punto.
 \begin{figure}[H]
   \centering
@@ -145,13 +145,13 @@ y segundo resolver el problema de triangulación\footnote{ver anexo de método d
 Un caso simple sería con los ejes ópticos de las cámaras paralelos y los planos de imagen coplanares, como se muestra en la figura, en este caso las líneas epipolares\footnote{ver anexo de geometría epipolar} correspden a las filas en el \emph{frame bufer} y la correspondencia de los puntos es buscada en esas filas.
 En los casos más comunes no se tienen estas características, y por ello es necesario introducir parámetros en los cálculos que hacen el ajuste del modelo ideal, modelo \emph{pinhole} al modelo real de las cámaras. 
 
-Existen variedad de algorimos que solucionan el problema de correspondecia y cálculo de desigualdad entre los puntos de las dos imágenes se clasifican según diferencias en las imágenes
+Existen variedad de algorimos que solucionan el problema de correspondecia y cálculo de desigualdad entre los puntos de las dos imágenes se clasifican según diferencias en las imágenes y
 se destacan dos estrategias:
 \begin{itemize}
    \item \emph{separate area}: basada en correlación del brillo e intensidad. Se utilizan patrones de brillo aplicados a un \emph{pixel} y sus vecinos utilizando principio de localidad. Las diferencias en la perspectiva de la imagen o cambios en luminosidad absoluta de la escena pueden generar errores.
    \item \emph{features}: las características usadas para la correspondencia son aristas, puntos o segmentos dadas por cambios de intensidad de la imagen. Esta estrategia es más estable ante la variación de luminosidad absoluta y en la práctica la correspondencia es más rápida.
 \end{itemize}
-La disposición de la geometría en visión estéreo incluye un par de cámaras y los ejes ópticos son paralelos entre sí y perpendiculares a la línea base que es dada por los dos centros ópticos de las cámaras.
+
 
 
 
