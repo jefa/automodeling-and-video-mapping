@@ -160,7 +160,7 @@ la explicación de esta sección estará en un anexo- lo estoy haciendo.
 
 \subsection{Luz estructurada}
 
-El método basado en la técnica de luz estructurada consiste en proyectar distintos patrones sobre la superficie a modelar que son capturadas por una cámara. Analizando las deformaciones de los patrones proyectados se obtiene información tridimensional de la posición, orientación y textura de la superficie\cite{SLightPatterns}.
+El método basado en la técnica de luz estructurada consiste en un sistema formado por una o mas camaras de video mas un proyector que despliega distintos patrones sobre la superficie a modelar. Los patrones son capturadas por la o las cámara de video para su posterior analisis. Mediante patrones codificados apropiadamente para la escena siendo observada, se resuelve el problema de correspondencia de los puntos de la escena con los capturados, y luego, mediante un analisis de las deformaciones de los patrones se obtiene información tridimensional de la posición, orientación y textura de la superficie\cite{SLightPatterns}.
 
 Ver \url{http://en.wikipedia.org/wiki/Structured_Light_3D_Scanner}
 
@@ -190,81 +190,20 @@ Estos problemas se pueden solucionar utilizando patrones codificados adecuados. 
 
 \subsubsection{Calibración}
 
-3.1
-Camera Calibration
-Camera Calibration
-In this section we describe both the theory and practice of camera calibra-
-tion. We begin by briefly considering what cameras are best suiting for
-building your own 3D scanner. We then present the widely-used calibra-
-tion method originally proposed by Zhang [Zha00]. Finally, we provide
-step-by-step directions on how to use a freely-available M ATLAB-based im-
-plementation of Zhang’s method.
+En esta sección se describe un método originalmente propuesto por Zhang [Zha00] para la calibración de una cámara y un proyector con el objetivo de capturar correctamente los patrones proyectados para su posterior análisis. 
 
+La calibración de la cámara requiere inicialmente estimar los parametros del modelo de cámara pinhole. Por lo tanto se deberán obtener los parámetros intrínsicos como distancia focal, punto principal y factores de escala, y los extrínsicos definidos por la matriz de rotación y vector de traslación de un punto en el espacio al sistema de coordenadas de la cámara. 
+%We recommend the reader review [HZ04, MSKS05] for an in-depth description of camera models and calibration methods
+%el modelo pinhole que nosotros presentamos no incluye los extrinsicos (matrices de traslacion y rotacion) 
 
-Camera Calibration Methods
-Camera calibration requires estimating the parameters of the general pin-
-hole model presented in Section 2.4.3. This includes the intrinsic parame-
-ters, being focal length, principal point, and the scale factors, as well as the
-extrinsic parameters, defined by the rotation matrix and translation vector
-mapping between the world and camera coordinate systems. In total, 11
-parameters (5 intrinsic and 6 extrinsic) must be estimated from a calibra-
-tion sequence. In practice, a lens distortion model must be estimated as
-well. We recommend the reader review [HZ04, MSKS05] for an in-depth
-description of camera models and calibration methods.
+Básicamente la calibracion de la cámara requiere la captura de una secuencia de imagenes de un objeto simple, con un conjunto de caracteristicas fijo y distinguibles, y con un desplazamiento tridimensional conocido. Esto permite que cada imagen capturada durante el proceso de calibracion provea de un conjunto de correspondencias de los puntos tridimensionales de la escena a puntos bidimensionales en el sistema de coordenadas de la camara. Particularmente, en el método de Zhang, el objeto conocido que se observa es un tablero de damas plano en una o mas orientaciones. De la secuencia capturada se pueden obtener los parametros intrinsicos y luego, utilizando una sola toma de la secuencia,  se obtienen los parametros extrinsicos.
 
+Para la calibracion del proyector, este se modela como el inverso de una cámara, teniendo en cuenta que la luz viaja en la dirección opuesta y que un punto en el plano de la imagen se mapea a un rayo de luz saliente por el punto y por el centro de proyeccion. Dado este modelo, la calibración sucede de forma similar a la de una cámara, pero en lugar de tomar imágenes de un tablero de damas fijo, se proyecta un tablero en una ubicacion conocida y se toman imagenes del mismo utilizando la cámara para analizar las distorsiones. Este enfoque resulta ser una extension directa del metodo de Zhang para calibración de cámaras, por lo que toda la teoria y software disponible es reutilizado.  
 
-At a basic level, camera calibration required recording a sequence of
-images of a calibration object, composed of a unique set of distinguishable
-features with known 3D displacements. Thus, each image of the calibration
-object provides a set of 2D-to-3D correspondences, mapping image coordi-
-nates to scene points. Naively, one would simply need to optimize over the
-ı
-set of 11 camera model parameters so that the set of 2D-to-3D correspon-
-dences are correctly predicted (i.e., the projection of each known 3D model
-feature is close to its measured image coordinates).
-Many methods have been proposed over the years to solve for the cam-
-era parameters given such correspondences. In particular, the factorized
-approach originally proposed Zhang [Zha00] is widely-adopted in most
-community-developed tools. In this method, a planar checkerboard pat-
-tern is observed in two or more orientations (see Figure 3.2). From this
-sequence, the intrinsic parameters can be separately solved. Afterwards,
-a single view of a checkerboard can be used to solve for the extrinsic pa-
-rameters. Given the relative ease of printing 2D patterns, this method is
-commonly used in computer graphics and vision publications.
-
-Projector Calibration
-We now turn our attention to projector calibration. Following the conclu-
-sions of Chapter 2, we model the projector as an inverse camera (i.e., one in
-which light travels in the opposite direction as usual). Under this model,
-calibration proceeds in a similar manner as with cameras. Rather than pho-
-tographing fixed checkerboards, we project known checkerboard patterns
-and photograph their distorted appearance when reflected from a diffuse
-rigid object. This approach has the advantage of being a direct extension
-of Zhang’s calibration algorithm for cameras. As a result, much of the soft-
-ware can be shared between camera calibration and projector calibration.
-
-
-Calibration Methods and Software
-Projector calibration has received increasing attention, in part driven by
-the emergence of lower-cost digital projectors. As mentioned at several
-points, a projector is simply the “inverse” of a camera, wherein points on an
-image plane are mapped to outgoing light rays passing through the center
-of projection. As in Section 3.1.2, a lens distortion model can augment the
-basic general pinhole model presented in Chapter 2.
-
-Numerous methods have been proposed for estimating the parameters
-of this inverse camera model. However, community-developed tools are
-slow to emerge—most researchers keeping their tools in-house. It is our
-opinion that both OpenCV and the M ATLAB calibration toolbox can be eas-
-ily modified to allow projector calibration. We document our modifica-
-tions to the latter in the following section. As noted in the OpenCV text-
-book [BK08], it is expected that similar modifications to OpenCV (possibly
-arising from this course’s attendees) will be made available soon.
-
+Existen varias implementaciones de esta tecnica de calibracion basado en el modelo inverso de la cámara, la mayoria de ellos desarrollados por investigadores para uso propio. Puede observarse una de estas implemtaciones, BYO3D\cite{BYO3D}, en la que se proveen dos alternativeas, un \emph{Toolbox} de MATLAB\cite{MATLAB} y una extension a la biblioteca de visión computacional\footnote{computer vision} OpenCV\cite{OpenCV}.
 
 
 \subsubsection{Análisis de deformaciones}
-
 
 \subsection{Kinect}
 
