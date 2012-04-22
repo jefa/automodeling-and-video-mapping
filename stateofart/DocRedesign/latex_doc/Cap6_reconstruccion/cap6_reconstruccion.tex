@@ -130,6 +130,34 @@ k = \frac	{b * \tan (\alpha)}{f + x * \tan (\alpha)}
 X_0 = \frac{x * b * \tan (\alpha)}{f + x * \tan (\alpha)}, \quad Y_0 = \frac{y * b * \tan (\alpha)}{f + x * \tan (\alpha)},\quad Z_0 = \frac{f * b * \tan (\alpha)}{f + x * \tan (\alpha)}
 \]
 
+\subsection{Geometría epipolar}
+\cite{LibroCompGrafica3} La geometía epipolar entre dos vistas es la geometía dada por la intersección de los planos imagen de cada cámara con el plano epipolar, este plano es el definido por el punto a representar $X$ y los dos centros de cámaras $C$ y $C'$.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.7\textwidth]{./Cap6_reconstruccion/epipolar.PNG}
+  \caption{geometía epipolar, $C$ y $C'$ centos de las cámaras.}
+  \label{fig:Epipolar}
+\end{figure}
+La matriz fundamental $F$ es la representación algebraica de la geometía epipolar.
+Dado un par de imágenes, como se muestra en la figura para cada punto $x$ en una imagen existe una linea epipolar correspondiente $l'$ en la otra imagen. Cualquier punto $x'$ en la segunda imagen que corresponde al punto $x$ debe pertenecer a la linea epipolar $l'$.
+La linea epipolar $l'$ en la segunda imagen es la proyección en la segunda imagen del rayo que parte del punto $x$ y llega al centro $C$ de la primer cámara. Hay un mapeo de un punto en una imagen con la línea epopolar en la otra imagen.
+\[  x \to l'
+\]
+ 
+El mapeo en proyectiva de puntos a lineas es representado por $F$ la matriz fundamental.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.7\textwidth]{./Cap6_reconstruccion/epipolar2.PNG}
+  \caption{geometía epipolar, matriz fundamental $F$.}
+  \label{fig:Epipolar2}
+\end{figure}
+Dado $x$ en una imagen se corresponde con el punto $x'$ en la segunda imagen vía una trasferencia establecida por la intersección del plano $\pi$ con los planos imagen de cada cámara.
+La línea epipolar que contiene $x'$ se obtiene uniendo $x'$ con el epipolo $e'$, esto es:
+\[ x' = H_{\pi} * x \]    siendo  $H_{\pi}$ una homografía 2D que establece la correspondencia entre cada $x_i$ de la primer imagen a $x'_i$ en la segunda imagen.
+\[ l' = e' * x' = e' * H_{\pi} * x = F * x  \]
+\[ F = e' * H_{\pi}  \mbox{es la matriz fundamental}  \]
 
 \subsection{Visión estéreo}
 
@@ -152,10 +180,6 @@ se destacan dos estrategias:
    \item \emph{features}: las características usadas para la correspondencia son aristas, puntos o segmentos dadas por cambios de intensidad de la imagen. Esta estrategia es más estable ante la variación de luminosidad absoluta y en la práctica la correspondencia es más rápida.
 \end{itemize}
 La principal desventaja de este método es que en caso de oclusión, hay regiones que no tienen correspondencia en las dos imágenes por esto no se puede resolver el problema de correspondencia para estas regiones.
-
-
-\subsubsection{Geometría epipolar}
-la explicación de esta sección estará en un anexo- lo estoy haciendo.
 
 
 \subsection{Luz estructurada}
