@@ -1,12 +1,13 @@
 \chapter{\emph{VMT}}
 \section{Descripción general}%HABLAR QUE VMT SE BASA EN OPENFRAMEWORKS Y OPENGL, QT%
+%Mencionar que es nuestra herramienta%
 \emph{VMT} es una herramienta para la edición y ejecución de un espectáculo de \emph{video mapping}. Puede utilizar uno o más proyectores eventualmente alejados físicamente unos de otros para lograr cubrir una superficie mayor de la escena a mapear. Para dar soporte al escenario distribuido se cuenta con componentes remotos con el fin de reproducir los efectos y eventos existentes del espectáculo. Mediante un editor tridimensional, es posible observar de forma centralizada lo que se ha producido hasta el momento así como visualizar la salida de cada uno de los proyectores. Si bien es un editor tridimensional se manejan conceptos bidimensionales de capa y cuadrilátero. En \emph{VMT} son llamados \emph{layer} y \emph{quad} respectivamente, y se pueden asociar a una cámara o proyector. La cantidad de estos elementos que se utilizarán en el espectáculo puede ser variada dependiendo del diseño sin existir en \emph{VMT} un límite fijo para ellos. Se proveen mecanismos de calibración diferenciados para objetos tridimensionales y bidimensionales utilizados al trabajar sobre la escena real.
 
 Los efectos de mapeo disponibles son de degradé de colores\footnote{en \emph{VMT} es el efecto \emph{fade}.}, y la aplicación de texturas de imagen o video. Se cuenta además con un efecto para la animación de la posición de los objetos tridimensionales en tiempo de ejecución del espectáculo. Es posible visualizar en todo momento la ejecución de los efectos y su correspondiente impacto en la escena. Los efectos pueden ser lanzados por tiempo, por eventos de teclado o \emph{MIDI}. Se definen en una línea de tiempo navegable, permitiéndose avanzar o retroceder a un intervalo de tiempo dado durante la producción del espectáculo. Una pista de audio puede reproducirse en sincronía con el transcurso de los efectos en el espectáculo.
 
 La interfaz gráfica de usuario está basada enteramente en botoneras y ventanas flotantes para poder tener una vista personalizable y en tiempo real de lo que está sucediendo en la escena. Se proveen mecanismos para almacenar y cargar la definición de la escena utilizando archivos \emph{XML} estándar.
 
-La tecnología de base seleccionada para la creación de los módulos de la herramienta y todas las bibliotecas de terceros que se han utilizado son multiplataforma, lo que permite la compilación y ejecución en entornos \emph{Microsoft Windows}, \emph{Linux} y \emph{Mac OS}.
+La tecnología de base seleccionada para la creación de los módulos de la herramienta y todas las bibliotecas de terceros que se han utilizado son multiplataforma, lo que permite la compilación y ejecución en entornos \emph{Microsoft Windows}, \emph{Linux} y \emph{Mac OS X}.
 
 \section{Funcionalidades}
 
@@ -18,16 +19,17 @@ Los elementos bidimensionales \emph{quads} se pueden posicionar en la pantalla d
 Los \emph{quads} también pueden ser utilizados como máscaras para cubrir zonas de otros \emph{quads} o elementos tridimensionales que podrían estar quedando mal proyectadas por deformaciones en la superficie o por ser zonas no deseadas. Una máscara se logra con un \emph{quad} opaco de color negro. Se utiliza el color negro porque es el menos visible al ser proyectado.
 
 Los elementos tridimensionales representan objetos más complejos y ofrecen una mayor versatilidad para realizar mapeos sobre ellos.
-El formato estándar utilizado para representar los elementos tridimensionales es \emph{3DS}\cite{3DS} y se permite cargar al motor cualquier geometría que lo respete.
-La edición de la geometría de estos objetos tridimensionales es en general un tema complejo pero bien resuelto por varias aplicaciones de edición tridimensional como pueden ser \emph{3D Studio}\footnote{usa.autodesk.com/3ds-max} y Blender\footnote{www.blender.org}. %Por esta y otras razones es que se delega la edición de las formas tridimensionales a programas para este propósito.
-Los programas de edición además de permitir modificar la geometría manipulando vértices y caras, también posibilitan la definición de materiales para aplicar propiedades comunes a una cierta selección de caras de la malla tridimensional\footnote{Ver glosario}. \emph{VMT} utiliza estas selecciones de caras para mapear texturas sobre ellas resolviendo de esta forma el mapeo en tres dimensiones.
+El formato estándar utilizado para representar los elementos tridimensionales es \emph{3DS} \cite{3DS} y se permite cargar al motor cualquier geometría que lo respete.
+La edición de la geometría de estos objetos tridimensionales es en general un tema complejo pero bien resuelto por varias aplicaciones de edición tridimensional como pueden ser \emph{3D Studio}\footnote{usa.autodesk.com/3ds-max} o Blender\footnote{www.blender.org}. %Por esta y otras razones es que se delega la edición de las formas tridimensionales a programas para este propósito.
+Los programas de edición además de permitir modificar la geometría manipulando vértices y caras, también posibilitan la definición de materiales para aplicar propiedades comunes a una cierta selección de caras de la malla tridimensional$^\dagger$. \emph{VMT} utiliza estas selecciones de caras para mapear texturas sobre ellas resolviendo de esta forma el mapeo en tres dimensiones.
 
 El mapeo tridimensional se realiza básicamente definiendo las coordenadas \emph{UV} en cada vértice del modelo. Las aplicaciones de edición tridimensional antes mencionadas proveen herramientas para hacer esta tarea de forma muy intuitiva. Ejemplo de esto es la definición de coordenadas de mapeo de un cilindro para mapear una textura en una columna cilíndrica.
 Los elementos gráficos por sí mismos no son representables siendo necesario asignarles un material y es a este material que se le asigna un color o una textura con la cual se representará el objeto.
-En la implementación de los materiales se utilizan \emph{shaders} que son programas que se ejecutan en los procesadores gráficos y tienen como ventaja que son altamente paralelizables, permitiendo realizar cálculos de forma más rápida y eficiente. En la aplicación se utiliza el lenguaje de shaders para \emph{OpenGL} GLSL\cite{GLSL} para la implementación de un shader básico que combina una textura de imagen o video con un color para obtener el resultado visible del material. Este color tiene un canal alfa\footnote{Ver glosario.} y por lo tanto se pueden lograr texturas y colores con niveles de transparencia.
+En la implementación de los materiales se utilizan \emph{shaders} que son programas que se ejecutan en los procesadores gráficos y tienen como ventaja que son altamente paralelizables, permitiendo realizar cálculos de forma más rápida y eficiente. En la aplicación se utiliza el lenguaje de shaders para \emph{OpenGL} GLSL\cite{GLSL} para la implementación de un shader básico que combina una textura de imagen o video con un color para obtener el resultado visible del material. Este color tiene un canal alfa$^\dagger$ y por lo tanto se pueden lograr texturas y colores con niveles de transparencia.
 
 Para visualizar los elementos tridimensionales es necesario definir un punto de vista. Esto se logra mediante el agregado de una cámara en el motor y la configruación de sus propiedades, entre ellas su ubicación o punto de vista. Los proyectores con los que se realiza el espectáculo de \emph{video mapping} son también representados como cámaras en el motor, pero no toda cámara configurada representa un proyector, ya que se pueden contar con cámaras que representen puntos de vista de un observador del espectáculo que sea de interés para el creador.
 Las cámaras permiten ajustar sus parámetros mediante operaciones comunes a cámaras virtuales de forma similar a lo que ocurre en otros paquetes de animación por software y a cámaras cinematográficas en general. Estas operaciones representan movimientos de la cámara llamados \emph{Roll}, \emph{Orbit}, \emph{Dolly} y \emph{Pan}. \emph{Roll} se refiere al movimiento en donde la posición de la cámara y el punto de vista son fijos y ésta rota a través del eje formado por ellos. \emph{Orbit} es cuando la cámara orbita alrededor de su punto de vista, es decir, la posición de la cámara cambia pero siempre visualizando el mismo punto y manteniendo la distancia a este. \emph{Dolly} es el movimiento en donde se mantienen el punto y la dirección de vista pero se mueve la posición de la cámara acercándose y alejándose del objetivo. Por último, \emph{Pan} es el tipo de movimiento en el cual se mueve la cámara cambiando la posición y el punto de vista y siempre manteniendo un paralelismo con la dirección.
+%Mencionar que son las transformaciones estandar de camaras%
 
 \begin{figure}[H]
   \centering
@@ -36,11 +38,11 @@ Las cámaras permiten ajustar sus parámetros mediante operaciones comunes a cá
   \label{fig:VMT-CameraMove}
 \end{figure}
 
-Aparte de estos parámetros de ubicación, también existe el parámetro \emph{FOV}\footnote{Field Of View} o campo de vista que es el ángulo de apertura de la cámara. Para el caso de cámaras que representan proyectores, este parámetro debe coincidir con el ángulo de apertura del proyector para ajustar correctamente las escenas con respecto a lo que muestra la cámara en pantalla.
+Aparte de estos parámetros de ubicación, también existe el parámetro \emph{Field Of View (FOV)} o campo de vista que es el ángulo de apertura de la cámara. Para el caso de cámaras que representan proyectores, este parámetro debe coincidir con el ángulo de apertura del proyector para ajustar correctamente las escenas con respecto a lo que muestra la cámara en pantalla.
 Mediante estas operaciones es que las cámaras virtuales de \emph{VMT} ajustan sus parámetros para que la proyección de objetos tridimensionales coincida con las superficies proyectadas.
 Hay que destacar que las cámaras proveen un punto de vista solo para los elementos tridimensionales. Los \emph{quads}, que como se mencionó son contrucciones bidimensionales, no dependen del punto de vista de la cámara y se representan en un sector de la pantalla relativo a esta. Es por esto que los \emph{quads} no alteran su posición en pantalla al ajustar los parámetros de la cámara.
 
-Los \emph{quads} se pueden organizar en grupos, y estos pertenecen a una o más \emph{layers}. A su vez cada \emph{layer} pertenece a una única cámara de manera de representar las zonas a cubrir por un solo proyector. Es posible aplicar una transformación inicial a una \emph{layer}, la que se aplicará a todos los \emph{quads} o grupos de \emph{quads} contenidos en ella. Esto es útil para ajustar la proyección de los \emph{quads} en caso de mover el proyector levemente y que esta proyección deje de coincidir con las superficies, y provee la funcionalidad básica y de bajo nivel para el mecanismo de calibración bidimensional que se detallará más adelante.
+Los \emph{quads} se pueden organizar en grupos, y estos pertenecen a una o más capas. A su vez cada capa pertenece a una única cámara de manera de representar las zonas a cubrir por un solo proyector. Es posible aplicar una transformación inicial a una capa, la que se aplicará a todos los \emph{quads} o grupos de \emph{quads} contenidos en ella. Esto es útil para ajustar la proyección de los \emph{quads} en caso de mover el proyector levemente y que esta proyección deje de coincidir con las superficies, y provee la funcionalidad básica y de bajo nivel para el mecanismo de calibración bidimensional que se detallará más adelante.
 
 Las texturas se asocian a grupos de \emph{quads}. Los grupos también permiten variar de forma limitada como se mapean las texturas a los \emph{quads} que los componen. Pueden ser mapeadas por cara en donde a cada uno de los \emph{quads} se le mapeará toda la textura, o también de forma plana, esto es que la textura sea mapeada al conjunto entero de \emph{quads} como si estos fueran trozos de un \emph{quad} de mayor tamaño.
 
@@ -55,12 +57,12 @@ Con estas variantes de proyección se le dan más posibilidades a un artista par
 
 La escena también contiene los efectos que se ejecutarán durante el espectáculo. Se aceptan como efectos la asignación de texturas en forma de imagen o video, ya sea a grupos de \emph{quads} u objetos tridimensionales, el \emph{fade} en un material desde un color inicial a otro final, y la animación de la posición de un objeto tridimensional de un origen a un destino en un lapso de tiempo dado.
 
-El efecto de mapeo de texturas es el más básico pero también el más potente en cuanto a la gran cantidad de alternativas al momento de mapear texturas sobre superficies. La variedad y la complejidad de las texturas está en la creación de los recursos de imagen o video que se deseen mapear. Al permitirse mapear estas texturas sobre objetos tridimensionales no es necesario distorsionar la forma de los videos sinó que será el motor quien los adaptará a la forma del objeto que está siendo mapeado. El efecto de \emph{fade} puede ser combinado en un objeto que ya disponga de una textura y así permitir por ejemplo su atenuación o resaltado. La duración del \emph{fade}, al igual que la de animación de posición, es configurable.
+El efecto de mapeo de texturas es el más básico pero también el más potente en cuanto a la gran cantidad de alternativas al momento de mapear texturas sobre superficies. La variedad y la complejidad de las texturas está en la creación de los recursos de imagen o video que se deseen mapear. Al permitirse mapear estas texturas sobre objetos tridimensionales no es necesario distorsionar la forma de los videos sino que será el motor quien los adaptará a la forma del objeto que está siendo mapeado. El efecto de \emph{fade} puede ser combinado en un objeto que ya disponga de una textura y así permitir por ejemplo su atenuación o resaltado. La duración del \emph{fade}, al igual que la de animación de posición, es configurable.
 
 Cabe aclarar que el estado final de la escena y todos los objetos contenidos en ella será el que resulte luego de la finalización de los efectos. Por ejemplo, si un objeto es de color rojo, y tiene un efecto de \emph{fade} al azul aplicado, su color luego de la ejecución del efecto continuará siendo azul.
 
 Como se mencionó anteriormente, una de las tareas principales es la representación en pantalla o la proyección de los elementos gráficos. La implementación del dibujado se realiza en un bucle principal de la aplicación encargado de actualizar todos los objetos de la escena de ser necesario, procesar los eventos pendientes y finalmente dibujar el resultado. Este es un proceso cíclico que se repite varias veces por segundo.
-En cada uno de estos ciclos se generan los \emph{frames} que son las imágenes que se muestran como resultado final.
+En cada uno de estos ciclos se generan los cuadros que son las imágenes que se muestran como resultado final.
 Para dar la ilusión de continuidad, la frecuencia de estos ciclos debe ser alta. En el caso de \emph{VMT} ésta se predetermina en 60 ciclos por segundo aunque alcanzar esta frecuencia dependerá de varios factores como la cantidad de \emph{quads}, tamaño de texturas utilizadas, capacidad de procesamiento y memoria de los equipos.
 Si esta frecuencia se encuentra muy por debajo de los 60 ciclos, la reproducción del espectáculo no será fluida y se podrán percibir saltos o pausas al reproducirlo.
 Para que esta frecuencia efectivamente se logre es necesario que el procesamiento de cada uno de los ciclos del bucle principal sea eficiente en cuanto al costo de procesamiento en cada tarea u operación. A continuación se muestra un pseudo-código del bucle principal de dibujado y se analizan cada una de las acciones que se toman, su impacto en cuanto al rendimiento del programa y las medidas que se tomaron para su optimización:
@@ -91,6 +93,7 @@ La carga de materiales implica copiar una textura a la zona de la memoria de vid
 Otra optimización pasa por hacer uso de \emph{shaders} para el cálculo del resultado visual final.
 La visualización fluida de un espectáculo de \emph{video mapping} es difícil de predecir ya que, como se puede ver en el pseudo-código, los tiempos de ejecución dependen de la cantidad de materiales, caras, objetos y \emph{quads} incluidos en la escena.
 Si se utilizan videos en las texturas, la compresión y resolución de estos también afecta la fluidez del espectáculo. Preferentemente deberían estar descomprimidos o con una baja tasa de compresión. El mismo problema ocurre con formatos de imágenes comprimidas, pero teniendo un menor impacto en el rendimiento de la reproducción del espectáculo.
+%Esto no es verdad ya que hay codecs que son ideales para real time%
 
 \subsection{Multi proyector}
 
@@ -126,7 +129,7 @@ Inicialmente, al preparar el espectáculo, los \emph{quads} son posicionados en 
 
 Por otra parte, la calibración tridimensional se basa en hacer coincidir los parámetros de posición, orientación y proyección de las cámaras con los de los proyectores físicos. Este ajuste de parámetros se realiza manualmente por el usuario, utilizando los modos de movimientos de cámara antes mencionados. Esta calibración es necesario hacerla de forma independiente en cada una de las cámaras y proyectores.
 
-Cabe acotar que en los escenarios de múltiples proyectores este modelo de calibración asume que existe un solo proyector conectado a cada nodo, si bien es posible conectar más de uno mediante placas especializadas como se vio anteriormente. Solo se podrán modificar los parámetros a la única cámara asociada al nodo en el modelo \emph{VMT}, por lo cuál en caso de ser más de un proyector no será posible ajustar los parámetros de todos. Los planos de imagen tampoco podrían coincidir, si no están posicionados exactamente paralelos.
+Cabe acotar que en los escenarios de múltiples proyectores este modelo de calibración asume que existe un solo proyector conectado a cada nodo, si bien es posible conectar más de uno mediante placas especializadas como se vio anteriormente. Sólo se podrán modificar los parámetros a la única cámara asociada al nodo en el modelo \emph{VMT}, por lo cuál en caso de ser más de un proyector no será posible ajustar los parámetros de todos. Los planos de imagen tampoco podrían coincidir, si no están posicionados exactamente paralelos.
 
 
 \section{Interfaz gráfica de usuario}
@@ -151,7 +154,7 @@ En la ventana de escena se manejan los objetos bidimensionales y tridimensionale
 \end{figure}
 
 \subsection{Cámaras, capas y \emph{quads}}
-Las cámaras tienen todas las propiedades usuales que se pueden encontrar en paquetes de \emph{software} de animación tridimensional como ser posición, \emph{eye}, \emph{up}, \emph{FOV}, aspecto, \emph{near}, \emph{far}.
+Las cámaras tienen todas las propiedades usuales que se pueden encontrar en paquetes de \emph{software} de animación tridimensional como ser posición, \emph{eye}, \emph{up}, \emph{FOV}, aspecto, \emph{near}\footnote{explicar near}, \emph{far}\footnote{explicar far}.
 
 \begin{figure}[H]
   \centering
@@ -200,7 +203,7 @@ Se permite agregar a la escena objetos tridimensionales con formato de malla tri
 
 \subsection{Efectos}
 
-Se proveen ventanas flotantes tanto para la definición de efectos como para la asociación con sus disparadores como ser un instante de tiempo, un evento de teclado o un evento \emph{MIDI}.
+Se proveen ventanas flotantes tanto para la definición de efectos como para la asociación con sus disparadores como ser un instante específico, un evento de teclado o un evento \emph{MIDI}.
 
 Si un efecto es definido para ser desplegado en un instante dado este se podrá visualizar cuando la línea de tiempo pase por ese instante. En caso de ser definido por evento este será visualizado cada vez que el evento asociado suceda, sea un evento de teclado o \emph{MIDI}.
 Los efectos de posición son aplicables únicamente a objetos tridimensionales y permiten animar el objeto trasladándolo de una posición inicial a una final.
@@ -212,7 +215,7 @@ Los efectos de posición son aplicables únicamente a objetos tridimensionales y
   \label{fig:VMT-EffectPossition}
 \end{figure}
 
-Los efectos de \emph{fade} solo son aplicables a grupos de \emph{quads} y lo que permiten es pintar todos los \emph{quads} del grupo de un color inicial e ir pasando por toda la gama de colores intermedios hasta llegar al color final. Para la selección de colores se utiliza un diálogo específico para ese propósito. También es posible definir la duración del efecto.
+Los efectos de \emph{fade} sólo son aplicables a grupos de \emph{quads} y lo que permiten es pintar todos los \emph{quads} del grupo de un color inicial e ir pasando por toda la gama de colores intermedios hasta llegar al color final. Para la selección de colores se utiliza un diálogo específico para ese propósito. También es posible definir la duración del efecto.
 
 \begin{figure}[H]
   \centering
@@ -237,11 +240,11 @@ Los efectos de tipo textura son aplicables tanto a grupos de quads como a objeto
   \label{fig:VMT-EffectList}
 \end{figure}
 
-Es posible visualizar el efecto que se está creando presionando el botón \emph{Test} de la lista de efectos. Esto forzará la ejecución por una única vez del efecto seleccionado en la lista.
+Es posible visualizar el efecto que se está creando presionando el botón \emph{Test} de la lista de efectos. Esto disparará la ejecución por una única vez del efecto seleccionado en la lista.
 
 \subsection{Calibración}
 
-El proceso de calibración en \emph{VMT} se basa en posicionar cuatro puntos de la superficie donde se proyecta y cuatro puntos de la \emph{layer} contenedora de \emph{quads} para de esta forma calcular la matriz de transformación de la homografía que los hace corresponder.
+El proceso de calibración en \emph{VMT} se basa en posicionar cuatro puntos de la superficie donde se proyecta y cuatro puntos de la capa contenedora de \emph{quads} para de esta forma calcular la matriz de transformación de la homografía que los hace corresponder.
 
 \begin{figure}[H]
   \centering
@@ -251,7 +254,7 @@ El proceso de calibración en \emph{VMT} se basa en posicionar cuatro puntos de 
 \end{figure}
 
 Al ingresar en el modo calibración se muestra en la pantalla de edición cuatro puntos azules de destino y cuatro puntos rojos de origen junto con el diálogo de configuración de la calibración.
-El diálogo posee controles para posicionar cada uno de los ocho puntos mostrados en pantalla. Se deberán posicionar los cuatro puntos de origen en regiones significativas de la \emph{layer} donde hayan vértices de \emph{quads} preferiblemente alejados entre si. De esta forma se minimiza el error obtenido al calcular la matriz.
+El diálogo posee controles para posicionar cada uno de los ocho puntos mostrados en pantalla. Se deberán posicionar los cuatro puntos de origen en regiones significativas de la capa donde hayan vértices de \emph{quads} preferiblemente alejados entre si. De esta forma se minimiza el error obtenido al calcular la matriz.
 Los cuatro puntos de destino se deberán posicionar observando la proyección de estos sobre la superficie. Una vez los ocho puntos estén posicionados se podrá calcular y aplicar la nueva matriz de calibración presionando el botón \emph{OK}.
 Mediante el botón \emph{ReCalibrate} se reestablece la calibración original, descartando los cambios realizados.
 
@@ -266,9 +269,9 @@ Tanto para la fases de producción y previsualización del evento como para la e
   \label{fig:VMT-Timeline}
 \end{figure}
 
-La aplicación provee una forma de iniciar el evento mediante la acción de \emph{Start}. Se provee una vista gráfica representada con una barra deslizante y una vista numérica para reflejar el avance en el tiempo en relación a la duración total del evento. Utilizando la barra deslizante es posible navegar por la línea de tiempo e iniciarla visualización del evento desde un instante cualquiera. Esto último es muy útil para la fase de pre-producción del espectáculo en la cual es muy común que el usuario se quiera concentrar en un lapso de tiempo específico en el que se está trabajando.
+La aplicación provee una forma de iniciar el evento mediante la acción de \emph{Start}. Se provee una vista gráfica representada con una barra deslizante y una vista numérica para reflejar el avance en el tiempo en relación a la duración total del evento. Utilizando la barra deslizante es posible navegar por la línea de tiempo e iniciarla visualización del evento desde un instante cualquiera. Esto último es muy útil para la fase de pre-producción del espectáculo en la cual es muy común que el usuario se quiera concentrar en un lapso específico en el que se está trabajando.
 
-Sobre la linea de tiempo se pueden observar las listas de eventos agrupados por tipo, pudiéndose asociar cualquiera de los eventos previamente definidos a un instante dado o a un código de evento a ser utilizado durante el espectáculo, ya sea de teclado o proveniente de dispositivos de entrada \emph{MIDI}.
+Sobre la línea de tiempo se pueden observar las listas de eventos agrupados por tipo, pudiéndose asociar cualquiera de los eventos previamente definidos a un instante dado o a un código de evento a ser utilizado durante el espectáculo, ya sea de teclado o proveniente de dispositivos de entrada \emph{MIDI}.
 
 \subsection{Nodos remotos}
 
@@ -297,5 +300,5 @@ Se permite almacenar en archivos \emph{XML} estándar una representación de lo 
 \end{figure}
 
 \section{Decisiones de implementación}
-Para la implementación del módulo de interfaz gráfica se siguió el patrón \emph{Model-View-Controller}\footnote{MVC}. Para cada ventana se generaron modelos que manejan los datos relevantes a cada una, impactando en el modelo general de la aplicación en caso de ser necesario.
-Se utilizó \emph{Qt Framework}\cite{Qt-framework} como biblioteca de base para la creación de las ventanas, sus controles gráficos y manejo de la comunicación que ocurre entre ventanas y con los modelos de \emph{VMT}. También se hizo uso de la funcionalidad para internacionalización de las interfaces gráficas, las que por el momento están tomando valores por defecto en idioma inglés. \emph{Qt Framework} es multiplataforma por lo que puede ser utilizado en varios de los sistemas operativos más populares como \emph{Linux}, \emph{Mac OS} y \emph{Windows}.
+Para la implementación del módulo de interfaz gráfica se siguió el patrón \emph{Model-View-Controller (MVC)}\footnote{Explicar MVC}. Para cada ventana se generaron modelos que manejan los datos relevantes a cada una, impactando en el modelo general de la aplicación en caso de ser necesario.
+Se utilizó \emph{Qt Framework} \cite{Qt-framework} como biblioteca de base para la creación de las ventanas, sus controles gráficos y manejo de la comunicación que ocurre entre ventanas y con los modelos de \emph{VMT}. También se hizo uso de la funcionalidad para internacionalización de las interfaces gráficas, las que por el momento están tomando valores por defecto en idioma inglés. \emph{Qt Framework} es multiplataforma por lo que puede ser utilizado en varios de los sistemas operativos más populares como \emph{Linux}, \emph{Mac OS X} y \emph{Windows}.

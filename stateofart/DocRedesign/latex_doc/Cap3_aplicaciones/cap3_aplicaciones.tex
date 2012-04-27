@@ -1,38 +1,41 @@
 ﻿\chapter{Relevamiento de aplicaciones de \emph{video mapping}}
 \section{\emph{Modul8}}
-\emph{Modul8}\cite{Module8} es una herramienta profesional para realizar espectáculos de proyección de video en vivo diseñada por \emph{VJs} y se encuentra disponible exclusivamente para plataforma \emph{Mac OS} mediante licenciamiento propietario.
+\emph{Modul8} \cite{Module8} es una herramienta profesional para realizar espectáculos de proyección de video en vivo diseñada por \emph{VJs} y se encuentra disponible exclusivamente para plataforma \emph{Mac OS X} mediante licenciamiento propietario.%se dice licenciamiento propietario?%
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.6\textwidth]{./Cap3_aplicaciones/apps-modul8.png}
-  \caption{Pantalla principal de \emph{Modul8}}
+  \caption{Pantalla principal de \emph{Modul8}}%referenciar%
   \label{fig:Apps-Module8}
 \end{figure}
 
-La interfaz de usuario está pensada para los espectáculos en vivo, para lo que cuenta con cuatro paneles con un fin específico: un panel principal donde crear y editar las composiciones de video, sonido y efectos; un panel multimedia para administrar los archivos de medios (videos, imágenes, pistas de audio, etc.); un panel de previsualización donde se puede ir observando la ejecución de una parte de la composición del espectáculo; y por último el panel de salida, donde se observa la composición final que será proyectada. Todas las funcionalidades provistas pueden ser asignadas a eventos \emph{MIDI}\footnote{MIDI}, por lo que es posible utilizar cualquier dispositivo que los genere para controlar enteramente la aplicación.
+La interfaz de usuario está pensada para los espectáculos en vivo, para lo que cuenta con cuatro paneles con un fin específico: un panel principal donde crear y editar las composiciones de video, sonido y efectos; un panel multimedia para administrar los archivos de medios (videos, imágenes, pistas de audio, etc.); un panel de previsualización donde se puede ir observando la ejecución de una parte de la composición del espectáculo; y por último el panel de salida, donde se observa la composición final que será proyectada. Todas las funcionalidades provistas pueden ser asignadas a eventos \emph{MIDI}\footnote{Explicación de MIDI}, por lo que es posible utilizar cualquier dispositivo que los genere para controlar enteramente la aplicación.
 \emph{Modul8} maneja hasta siete salidas simultáneas de proyección y una más para la interfaz de usuario. Para hacer uso de esta funcionalidad es necesario contar con una tarjeta de video que dé soporte a la salida múltiple. Esto activa el modo de salida avanzado donde se puede escoger entre varias alternativas para la selección de la composición o porción de la misma a ser emitida en cada una de las salidas disponibles. \emph{Modul8} maneja el concepto de capa, con un máximo de diez, las cuales pueden contener sus propios medios, efectos y configuraciones.
 Si bien no hay un manejo tridimensional de la escena, la aplicación provee algunas transformaciones a aplicar a los medios para ajustarlos a la representación bidimensional de los objetos de la escena o incluso a objetos tridimensionales autogenerados que aparecerán en la misma.
-La arquitectura de la herramienta permite su extensión mediante la programación de módulos o efectos en el lenguaje \emph{Python}\footnote{\emph{Python}}.
-En relación al rendimiento, se hace un uso intensivo de la unidad de procesamiento gráfica o \emph{GPU}\footnote{Ver glosario.} para todo lo que es dibujado, composición y transformaciones de gráficos.
+La arquitectura de la herramienta permite su extensión mediante la programación de módulos o efectos en el lenguaje \emph{Python}\footnote{Explicacion de Python}.
+En relación al rendimiento, se hace un uso intensivo de la unidad de procesamiento gráfica o \emph{GPU}$^\dagger$ para todo lo que es dibujado, composición y transformaciones de gráficos.
+%Agregar madmapper y hablar de la integración con modul8%
 
 \section{\emph{VDMX}}
-\emph{VDMX}\cite{VDMX} es una aplicación para el procesamiento multimedia en tiempo real, disponible exclusivamente para plataforma \emph{Mac OS} mediante licenciamiento propietario. Su arquitectura modular la hace altamente personalizable.
+\emph{VDMX} \cite{VDMX} es una aplicación para el procesamiento multimedia en tiempo real, disponible exclusivamente para plataforma \emph{Mac OS X} mediante licenciamiento propietario. Su arquitectura modular la hace altamente personalizable.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.6\textwidth]{./Cap3_aplicaciones/apps-vdmx.png}
-  \caption{Ejemplo de consola personalizable avanzada realizada en VDMX}
+  \caption{Ejemplo de consola personalizable avanzada realizada en VDMX} %referenciar%
   \label{fig:Apps-VDMX}
 \end{figure}
 
 %No se puede empezar un párrafo diciendo Para ello.., se habla de herramientas como QuartzComposer sin mencionar que son%
-Para ello provee funcionalidad básica mediante lo que la aplicación denomina \emph{inspectores}. El \emph{inspector} del grupo de trabajo expone todo lo que esta sucediendo en \emph{VDMX} a bajo nivel, como ser los archivos multimedia, las entradas de video configuradas, las capas, los \emph{plugins} existentes, etc. Luego, el \emph{inspector} de interfaz de usuario permite ver y editar las propiedades de cada control que se selecciona en la interfaz. Adicionalmente, permite crear interfaces propias a partir de controles básicos como deslizadores, botones, ventanas emergentes, etc, lo que permite a los \emph{VJs} tener toda la información que crea relevante a disposición en el momento de la representación en vivo.
-La aplicación permite asociar eventos de entrada \emph{MIDI}, \emph{OSC} o de teclado a cualquier control de la interfaz de usuario, así como también generar eventos \emph{MIDI} u \emph{OSC} para ser consumidos por otras aplicaciones.
-Las capas contienen una única fuente de medios, la que puede ser de tipo video, composición de \emph{QuartzComposer}\footnote{QuartzComposer} o imagen, y adicionalmente se define una cadena de efectos a ser aplicados a la fuente de la capa. La ejecución de la secuencia de efectos puede ser configurada mediante cualquiera de los mecanismos de eventos mencionados anteriormente así como por tiempo. No hay un máximo establecido en el número de capas que se pueden crear en \emph{VDMX}, y es posible agruparlas para darle un manejo diferenciado o aplicar efectos a todas a la vez.
+Para ello provee funcionalidad básica mediante lo que la aplicación denomina \emph{inspectores}. El \emph{inspector} del grupo de trabajo expone todo lo que esta sucediendo en \emph{VDMX} a bajo nivel, por ejemplo, los archivos multimedia, las entradas de video configuradas, las capas, los \emph{plugins} existentes, etc. Luego, el \emph{inspector} de interfaz de usuario permite ver y editar las propiedades de cada control que se selecciona en la interfaz. Adicionalmente, permite crear interfaces propias a partir de controles básicos como deslizadores, botones, ventanas emergentes, etc, lo que permite a los \emph{VJs} tener toda la información que crea relevante a disposición en el momento de la representación en vivo.
+La aplicación permite asociar eventos de entrada \emph{MIDI}, \emph{OSC}\footnote{Explicar OSC} o de teclado a cualquier control de la interfaz de usuario, así como también generar eventos \emph{MIDI} u \emph{OSC} para ser consumidos por otras aplicaciones.
+Las capas contienen una única fuente de medios, la que puede ser de tipo video, composición de \emph{QuartzComposer}\footnote{Explicar QuartzComposer} o imagen, y adicionalmente se define una cadena de efectos a ser aplicados a la fuente de la capa. La ejecución de la secuencia de efectos puede ser configurada mediante cualquiera de los mecanismos de eventos mencionados anteriormente así como por tiempo. No hay un máximo establecido en el número de capas que se pueden crear en \emph{VDMX}, y es posible agruparlas para darle un manejo diferenciado o aplicar efectos a todas a la vez.
 Se cuenta con tres modos de salida de video: ventana, pantalla completa y avanzado. En el modo avanzado se permite definir dispositivos de salida, sin un límite predeterminado, y asociarlos a las capas o dispositivos de entrada que se desee.
 
+%Agregar Syphon y Resolume%
+
 \section{\emph{VVVV}}
-\emph{VVVV}\cite{VVVV} es una herramienta de programación de propósito general que provee un entorno híbrido de programación gráfica y textual. Es de uso gratuito para propósitos no comerciales y se encuentra disponible únicamente para plataformas \emph{Windows}.
+\emph{VVVV} \cite{VVVV} es una herramienta de programación de propósito general que provee un entorno híbrido de programación gráfica y textual. Es de uso gratuito para propósitos no comerciales y se encuentra disponible únicamente para plataformas \emph{Windows}.
 
 \begin{figure}[H]
   \centering
@@ -41,21 +44,21 @@ Se cuenta con tres modos de salida de video: ventana, pantalla completa y avanza
   \label{fig:Apps-VVVV}
 \end{figure}
 
-Para la construcción de un programa se utilizan nodos que representan operaciones o funciones individuales que pueden tomar una entrada, procesarla, y entregar datos a la salida. Las conexiones entre nodos se llaman \emph{links} y es como se modela el flujo de información entre nodos.
+Para la construcción de un programa se utilizan nodos que representan operaciones o funciones individuales que pueden tomar una entrada, procesarla, y entregar datos a la salida. Las conexiones entre nodos se llaman \emph{links} y es cómo se modela el flujo de información entre nodos.
 Existen varios tipos de nodos para diferentes propósitos. A modo de ejemplo, el nodo utilizado para desplegar la salida visual del programa es del tipo \emph{Renderer}, para el agregado de cuadrantes se utiliza el nodo \emph{Quad}, para el manejo de transformaciones el nodo \emph{Transform} y para redimensionar a escala el nodo \emph{Scale}. También hay nodos para cargar objetos tridimensionales, manejar texturas, vectores, temporizadores, etc.
 A diferencia de otros lenguajes de programación, que cuentan con diferentes modos para construir y ejecutar los programas, \emph{VVVV} todo el tiempo trabaja en un solo modo, el modo de ejecución. En él, constantemente se están ejecutando cálculos y dibujando gráficos mientras se está generando o editando un programa.
 Para dar soporte multiproyector, \emph{VVVV} implementa una arquitectura cliente-servidor, la que permite contar con cualquier cantidad de motores tridimensionales (clientes) manejados desde una instancia de \emph{VVVV} central (servidor). Toda la configuración y ejecución de un espectáculo distribuído se implementa en un módulo llamado \emph{boygrouping}\footnote{http://vvvv.org/documentation/boygrouping-basics}.
 \emph{VVVV} provee soporte para varios protocolos de entrada y salida como \emph{TCP}, \emph{UDP}, \emph{MIDI} y \emph{OSC} entre otros, y gracias a aportes de la comunidad de programadores \emph{VVVV} es posible también interactuar con dispositivos como \emph{Wii}, \emph{PSP} y \emph{Kinect}. Existen nodos que proveen funcionalidad avanzada como ser soporte para animación y líneas de tiempo, detección y seguimiento de objetos en tiempo real utilizando técnicas como \emph{ARToolkit} y \emph{OpenCV}, emisión de flujos de video, reproducción y mezcla de archivos de audio, simulación de movimiento, colisiones y efectos físicos en general.
-El motor gráfico tridimensional de \emph{VVVV} está basado en \emph{Direct3D}\footnote{Direct3D}, lo que permite hacer un uso intensivo de las placas gráficas modernas para el dibujado de gráficos de alto rendimiento.
-\emph{VVVV} ofrece la posibilidad de crear nodos personalizados a través de una interfaz \emph{COM}\footnote{COM} para la implementación de \emph{plugins}, lo que ofrece alternativas en cuanto a la implementación, pudiéndose utilizar \emph{C\#}, \emph{Delphi} o \emph{C++}.
+El motor gráfico tridimensional de \emph{VVVV} está basado en \emph{Direct3D}, lo que permite hacer un uso intensivo de las placas gráficas modernas para el dibujado de gráficos de alto rendimiento.
+\emph{VVVV} ofrece la posibilidad de crear nodos personalizados a través de una interfaz \emph{COM} para la implementación de \emph{plugins}, lo que ofrece alternativas en cuanto a la implementación, pudiéndose utilizar \emph{C\#}, \emph{Delphi} o \emph{C++}.
 
 \section{\emph{VPT - Video Projection Tool}}
-\emph{VPT}\cite{VPT} es una herramienta para la realización de proyecciones en tiempo real. Es una aplicación de uso y distribución gratuita. Se encuentra disponible para plataformas \emph{Windows} y \emph{MacOS}.
+\emph{VPT} \cite{VPT} es una herramienta para la realización de proyecciones en tiempo real. Es una aplicación de uso y distribución gratuita. Se encuentra disponible para plataformas \emph{Windows} y \emph{MacOS}.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.65\textwidth]{./Cap3_aplicaciones/apps-vpt.png}
-  \caption{Pantalla principal de \emph{VPT}}
+  \caption{Pantalla principal de \emph{VPT}}%ref%
   \label{fig:Apps-VPT}
 \end{figure}
 
@@ -66,7 +69,7 @@ Hay una cantidad máxima de 32 capas que se pueden utilizar simultáneamente en 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.65\textwidth]{./Cap3_aplicaciones/apps-vpt-cuelist.png}
-  \caption{Efectos y secuencia de eventos de un espectaculo realizado en VPT}
+  \caption{Efectos y secuencia de eventos de un espectaculo realizado en VPT}%ref%
   \label{fig:Apps-VPTCuelist}
 \end{figure}
 

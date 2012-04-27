@@ -2,7 +2,7 @@
 
 En este capítulo se presenta la reconstrucción tridimensional automática de una superficie utilizando técnicas computacionales.
 Se introducen distintos métodos que permiten la construcción automática de modelos, discutiendo sus características según propiedades de la superficie a representar y tecnologías utilizadas.
-La construcción del modelo se presenta en dos etapas. Inicialmente se obtiene una nube de puntos correspondiente a la superficie utilizando técnicas y dispositivos para este propósito para luego procesar la información obtenida y construir una malla tridimensional. Mediante este procesamiento se obtiene información adicional como grupos de puntos que representan caras de una malla y las normales que identifican la orientación de la superficie. 
+La construcción del modelo se presenta en dos etapas. Inicialmente se obtiene una nube de puntos correspondiente a la superficie utilizando técnicas y dispositivos para este propósito para luego procesar la información obtenida y construir una malla tridimensional. Mediante este procesamiento se obtienen propiedades adicionales como grupos de puntos que representan caras de una malla y las normales que identifican la orientación de la superficie.
 
 \section{Obtención de la nube de puntos}
 
@@ -10,11 +10,11 @@ En esta sección se estudian los fundamentos matemáticos, técnicas y dispositi
 
 \subsection{Correspondencia}
 
-%Al calcular coordenadas tridimensionales a partir de imágenes obtenidas por capturas de video se introducen errores propios del modelo (modelo \emph{pinhole}, modelo imaginario que utiliza una cámara) por ello es necesario hacer una corrección obteniendo una correspondencia entre el modelo real y el ideal. El objetivo del proceso de calibración es obtener dicha correspondencia. Luego de la calibración las coordenadas obtenidas son en dos dimensiones y corresponden a la proyección sobre el plano imagen. Para completar las coordenadas tridimensionales en el modelo es necesario calcular la profundidad de cada punto. Es con este fin que se utiliza el método de triangulación.
+%Al calcular coordenadas tridimensionales a partir de imágenes obtenidas por capturas de video se introducen errores propios del modelo (modelo \emph{pinhole}, modelo imaginario que utiliza una cámara) por ello es necesario hacer una corrección obteniendo una correspondencia entre el modelo y la realidad. El objetivo del proceso de calibración es obtener dicha correspondencia. Luego de la calibración las coordenadas obtenidas son en dos dimensiones y corresponden a la proyección sobre el plano imagen. Para completar las coordenadas tridimensionales en el modelo es necesario calcular la profundidad de cada punto. Es con este fin que se utiliza el método de triangulación.
 
 %El modelo ideal que se utiliza en las cámaras es el modelo \emph{pinhole}\cite{LibroCompGrafica3}, el que se describe a continuación para un caso básico.
 
-Una cámara, por medio de una proyección central, establece una correspondencia entre puntos del espacio con puntos bidimensionales en su plano imágen. En particular se estudiará el modelo de cámara \emph{pinhole}\cite{LibroCompGrafica3}.
+Una cámara, por medio de una proyección central, establece una correspondencia entre puntos del espacio con puntos bidimensionales en su plano imágen. En particular se estudiará el modelo de cámara \emph{pinhole} \cite{LibroCompGrafica3}.
 %ponemos que es el mas simple?
 
 Se considera el centro de proyección $C$, también centro óptico de la cámara, como el origen de un sistema de coordenadas euclideano, y $Z = f$ el plano de la imágen o plano focal.
@@ -64,7 +64,7 @@ f & 0 & 0 & 0 \\
 
 \subsection{Método de triangulación}
 
-Mediante este método se determinan las coordenadas $(x,y,z)$ de un punto utilizando la posición bidimensional dada por las perspectivas de dos proyecciones de las que se conocen los centros de perspectiva y planos de proyección\cite{PresUnivYonsei}.
+Mediante este método se determinan las coordenadas $(x,y,z)$ de un punto utilizando la posición bidimensional dada por las perspectivas de dos proyecciones de las que se conocen los centros de perspectiva y planos de proyección \cite{PresUnivYonsei}.
 
 Escena con dos dimensiones:
 
@@ -167,16 +167,16 @@ y segundo resolver el problema de triangulación\footnote{ver anexo de método d
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/stereo.PNG}
-  \caption{geometía estéreo con ejes paralelos}
+  \caption{geometía estéreo con ejes paralelos}%ref%
   \label{fig:Stereo}
 \end{figure}
-Un caso simple sería con los ejes ópticos de las cámaras paralelos y los planos de imagen coplanares, como se muestra en la figura, en este caso las líneas epipolares\footnote{ver anexo de geometría epipolar} correspden a las filas en el \emph{frame bufer} y la correspondencia de los puntos es buscada en esas filas.
+Un caso simple sería con los ejes ópticos de las cámaras paralelos y los planos de imagen coplanares, como se muestra en la figura, en este caso las líneas epipolares\footnote{ver anexo de geometría epipolar} correspden a las filas en el \emph{frame buffer} y la correspondencia de los puntos es buscada en esas filas.
 En los casos más comunes no se tienen estas características, y por ello es necesario introducir parámetros en los cálculos que hacen el ajuste del modelo ideal, modelo \emph{pinhole} al modelo real de las cámaras. 
 
 Existen variedad de algorimos que solucionan el problema de correspondecia y cálculo de desigualdad entre los puntos de las dos imágenes se clasifican según diferencias en las imágenes y
 se destacan dos estrategias:
 \begin{itemize}
-   \item \emph{separate area}: basada en correlación del brillo e intensidad. Se utilizan patrones de brillo aplicados a un \emph{pixel} y sus vecinos utilizando principio de localidad. Las diferencias en la perspectiva de la imagen o cambios en luminosidad absoluta de la escena pueden generar errores.
+   \item \emph{separate area}: basada en correlación del brillo e intensidad. Se utilizan patrones de brillo aplicados a un píxel y sus vecinos utilizando principio de localidad. Las diferencias en la perspectiva de la imagen o cambios en luminosidad absoluta de la escena pueden generar errores.
    \item \emph{features}: las características usadas para la correspondencia son aristas, puntos o segmentos dadas por cambios de intensidad de la imagen. Esta estrategia es más estable ante la variación de luminosidad absoluta y en la práctica la correspondencia es más rápida.
 \end{itemize}
 La principal desventaja de este método es que en caso de oclusión, hay regiones que no tienen correspondencia en las dos imágenes por esto no se puede resolver el problema de correspondencia para estas regiones.
@@ -185,8 +185,6 @@ La principal desventaja de este método es que en caso de oclusión, hay regione
 \subsection{Luz estructurada}
 
 El método basado en la técnica de luz estructurada consiste en un sistema formado por una o mas camaras de video mas un proyector que despliega distintos patrones sobre la superficie a modelar. Los patrones son capturadas por la o las cámara de video para su posterior analisis. Mediante patrones codificados apropiadamente para la escena siendo observada, se resuelve el problema de correspondencia de los puntos de la escena con los capturados, y luego, mediante un analisis de las deformaciones de los patrones se obtiene información tridimensional de la posición, orientación y textura de la superficie\cite{SLightPatterns}.
-
-Ver \url{http://en.wikipedia.org/wiki/Structured_Light_3D_Scanner}
 
 \subsubsection{Clasificación de patrones}
 
@@ -236,43 +234,44 @@ Existen varias implementaciones de esta tecnica de calibracion basado en el mode
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{./Cap6_reconstruccion/kinect.PNG}
-  \caption{Componentes de un sensor Kinect}
+  \caption{Componentes de un sensor Kinect}%ref%
   \label{fig:Kinect}
 \end{figure}
 
 Para el análisis de las deformaciones de los rayos y construir el mapa de profundidad, \emph{Kinect} utiliza la previamente mencionada técnica de luz estructurada. Mediante el emisor infrarrojo con el que viene equipado, se proyectan los patrones de luz por toda la escena y utilizando la cámara de profundidad se analizan las distorsiones.
 También se cuenta con una cámara convencional para analizar objetos o personas en la escena y la detección de colores.
-En cuanto a los usos específicos orientados a la reconstrucción tridimensional de objetos, el proyecto \emph{KinectFusion}\cite{KinectFusion}, actualmente patrocinado por \emph{Microsoft}, logra muy buenos resultados.%extender kinectfusion%
+En cuanto a los usos específicos orientados a la reconstrucción tridimensional de objetos, el proyecto \emph{KinectFusion} \cite{KinectFusion}, actualmente patrocinado por \emph{Microsoft}, logra muy buenos resultados.%extender kinectfusion%
 
 \section{Procesamiento de nube de puntos}
 
-Al utilizar técnicas de obtención de geometría lo que se obtiene son nubes de puntos. Es necesario simplificar este modelo con el objetivo de eliminar redundancia y aumentar la velocidad en el procesamiento de los datos. Un problema adicional al volumen de la información obtenida es que comúnmente se introduce información errónea. Para solucionar este problema se realiza un suavizado en el procesamiento de la nube de puntos\cite{PCloudSimplify}.
+Al utilizar técnicas de obtención de geometría lo que se obtiene son nubes de puntos. Es necesario simplificar este modelo con el objetivo de eliminar redundancia y aumentar la velocidad en el procesamiento de los datos. Un problema adicional al volumen de la información obtenida es que comúnmente se introduce ruido. Para solucionar este problema se realiza un suavizado en el procesamiento de la nube de puntos \cite{PCloudSimplify}.
 
-Las heurísticas utilizadas se pueden clasificar como\cite{PntCloud}:
+Las heurísticas utilizadas se pueden clasificar como \cite{PntCloud}:
 \begin{itemize}
-   \item \emph{Clustering methods}: consta en obtener grupos de la nube de puntos en donde cada grupo se remplaza por un conjunto de puntos representativos en él. Los grupos se pueden construir utilizando un enfoque incremental en el cuál estos son creados iniciando por un punto aleatorio y agregando puntos vecinos hasta llegar a una cantidad establecida de elementos o un enfoque jerárquico en donde se particiona el conjunto de puntos recursivamente hasta conseguir grupos de un tamaño predefinido.
+   \item \emph{Clustering methods}: consiste en obtener grupos de la nube de puntos en donde cada grupo se remplaza por un conjunto de puntos representativos en él. Los grupos se pueden construir utilizando un enfoque incremental en el cual estos son creados iniciando por un punto aleatorio y agregando puntos vecinos hasta llegar a una cantidad establecida de elementos o un enfoque jerárquico en donde se particiona el conjunto de puntos recursivamente hasta conseguir grupos de un tamaño predefinido.
    \item \emph{Iterative simplification}: se recorren iterativamente los puntos de la nube contrayendo parejas en un único punto. Se evalúa el error introducido, utilizando mínimos cuadrados, que se genera en la contracción comparándolo con el error que se obtendría al contraerse con otro punto vecino eligiendo la contracción que introduce menor error al sistema. La simplificación se da por finalizada por haber logrado la cantidad de puntos deseada o por superar una cota de error a introducir en el sistema.
    \item \emph{Particle simulation}: se generan nuevos puntos que sustituyen la nube de puntos original. Se generan conjuntos de partículas que se mueven aleatoriamente en la superficie hasta lograr un balance. %Luego, utilizando el algoritmo de point–repulsion se definen en las zonas que hay mayor colisiones.%
 \end{itemize}
 
-Luego de simplificar la nube de puntos se construye un modelo tridimensional a partir de ella utilizando mallas de triángulos. La razón principal es la simplicidad de los algoritmos que dibujan triángulos. Esto permite que sean implementados fácilmente en hardware además del beneficio de que cualquier polígono con más de tres caras puede representarse como un conjunto de triángulos\cite{PCloudTriangle}.
+Luego de simplificar la nube de puntos se construye un modelo tridimensional a partir de ella utilizando mallas de triángulos. La razón principal es la simplicidad de los algoritmos que dibujan triángulos. Esto permite que sean implementados fácilmente en hardware además del beneficio de que cualquier polígono con más de tres caras puede representarse como un conjunto de triángulos \cite{PCloudTriangle}.
 
 \section{Tratamiento de malla}
 
 Los dispositivos de captura de información tridimensional estudiados entregan la información en forma de nube de puntos. Es por ello que previo a la manipulación de la información tridimensional, es necesario procesar dicha nube de puntos para convertirla a representaciones más manejables como por ejemplo mallas triangulares.
-Un algoritmo de procesamiento de malla se basa en tomar como entrada una nube de puntos, realizar un sub-muestreo y suavizado de la misma, calcular las normales en cada punto de la nube y finalmente, aplicar algoritmos de reconstrucción de malla. Esto ha sido estudiado e implementado en las bibliotecas \emph{VcgLib}\cite{VCGLib} y \emph{CGAL}\cite{CGAL}.
+Un algoritmo de procesamiento de malla se basa en tomar como entrada una nube de puntos, realizar un sub-muestreo y suavizado de la misma, calcular las normales en cada punto de la nube y finalmente, aplicar algoritmos de reconstrucción de malla. Esto ha sido estudiado e implementado en las bibliotecas \emph{VcgLib} \cite{VCGLib} y \emph{CGAL} \cite{CGAL}.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap6_reconstruccion/malla-flow.png}
-  \caption{Típico flujo para el procesamiento de nubes de puntos. Fuente: \emph{CGAL}}
+  \caption{Típico flujo para el procesamiento de nubes de puntos. Fuente: \emph{CGAL}}%ref%
   \label{fig:Mesh-CGAL}
 \end{figure}
 
-Para la implementación de este módulo se utilizan algoritmos incluidos en \emph{VcgLib}. Para visualizar y evaluar los resultados esperados fue utilizada la aplicación de código abierto para la manipulación de mallas tridimensionales en diferentes formatos \emph{MeshLab}\cite{MeshLab}. Particularmente se utilizan los algoritmos de muestreo \emph{Poisson-disk} para reducir y normalizar los puntos de la malla inicial, \emph{normal extrapolation} para el cálculo de normales y reconstrucción de superficies de Poisson para la reconstrucción de la malla final.
+Para la implementación de este módulo se utilizan algoritmos incluidos en \emph{VcgLib}. Para visualizar y evaluar los resultados esperados fue utilizada la aplicación de código abierto para la manipulación de mallas tridimensionales en diferentes formatos \emph{MeshLab} \cite{MeshLab}. Particularmente se utilizan los algoritmos de muestreo \emph{Poisson-disk} para reducir y normalizar los puntos de la malla inicial, \emph{normal extrapolation} para el cálculo de normales y reconstrucción de superficies de Poisson para la reconstrucción de la malla final.
 
 \subsection{Muestreo \emph{Poisson-disk}}
 
+%falta referencia%
 El muestreo de variables aleatorias es una técnica utilizada para una gran variedad de aplicaciones como procesamiento de imágenes y geometrías. Particularmente, el muestreo \emph{Poisson-disk} se utiliza para la ubicación aleatoria de objetos en mundos artificiales, algoritmos de texturas procedurales y procesamiento de geometrías o mallas.%REFERENCIAR%
 Esta técnica genera conjuntos de puntos con la propiedad de obtener puntos suficientemente juntos pero con la restricción de no estar más próximos unos de otros que una distancia mínima $R$ predeterminada.
 
@@ -351,6 +350,8 @@ Es por eso que puntos orientados pueden ser vistos como muestras del gradiente d
 \end{figure}
 
 \subsection{Pruebas y resultados}
+
+%Esta sección va dentro de lo que implementamos, recien aca salta que lo hicimos nosotros%
 
 Para validar el correcto funcionamiento de esta técnica mediante los tres algoritmos descritos, fue utilizada una malla inicial de 5021 vértices y 9608 caras triangulares. Cabe destacar que si bien se ha mencionado que la malla de entrada debe ser simplemente una nube de puntos, se pueden utilizar mallas con caras, solo que estas serán ignoradas e incluso eliminadas de la malla de salida del primer paso del procesamiento (muestreo de \emph{Poisson-disk}).
 Luego de experimentar con varios juegos de datos iniciales durante varias ejecuciones del procesamiento, se fijaron de manera personalizada para la malla de entrada algunos parámetros clave. Dado que la muestra inicial tiene alrededor de cinco mil puntos, fueron elegidas cinco mil muestras para el algoritmo de \emph{Poisson-disk}. Luego, para la extrapolación de normales se utilizan $K=15$ vecinos para la toma de decisiones locales de aproximación.
