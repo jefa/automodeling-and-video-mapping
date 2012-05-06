@@ -1,19 +1,19 @@
-\chapter{MÈtodo de triangulaciÛn}
+Ôªø\chapter{M√©todo de triangulaci√≥n}
 
-Mediante este mÈtodo se determinan las coordenadas $(x,y,z)$ de un punto utilizando la posiciÛn bidimensional dada por las perspectivas de dos proyecciones de las que se conocen los centros de perspectiva y planos de proyecciÛn \cite{PresUnivYonsei}.
+Mediante este m√©todo se determinan las coordenadas $(x,y,z)$ de un punto utilizando la posici√≥n bidimensional dada por las perspectivas de dos proyecciones de las que se conocen los centros de perspectiva y planos de proyecci√≥n \cite{PresUnivYonsei}.
 
 Escena con dos dimensiones:
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.65\textwidth]{./Cap2_videomapping/triangulacion.PNG}
-  \caption{Propiedades trigonomÈtricas para escena bidimensional.}%GeometÌa de C·maras  StereoReview pag 154. fig 6.1%
+  \caption{Propiedades trigonom√©tricas para escena bidimensional.}%Geomet√≠a de C√°maras  StereoReview pag 154. fig 6.1%
   \label{fig:Triangulacion}
 \end{figure}
 
-Este mÈtodo tiene como objetivo calcular la distancia $d$ de la c·mara al punto $P$ a partir de los ·ngulos $\alpha$, $\beta$ y la distancia $b$ entre el proyector y la c·mara.
-El ·ngulo $\alpha$ y la distancia $b$ son dados por la configuraciÛn de la escena.
-El ·ngulo $\beta$ est· dado por la geometrÌa de la proyecciÛn.
+Este m√©todo tiene como objetivo calcular la distancia $d$ de la c√°mara al punto $P$ a partir de los √°ngulos $\alpha$, $\beta$ y la distancia $b$ entre el proyector y la c√°mara.
+El √°ngulo $\alpha$ y la distancia $b$ son dados por la configuraci√≥n de la escena.
+El √°ngulo $\beta$ est√° dado por la geometr√≠a de la proyecci√≥n.
 
 \[
 \left.
@@ -39,17 +39,17 @@ Escena con tres dimensiones:
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.65\textwidth]{./Cap2_videomapping/triangulacion-2.PNG}
-  \caption{Propiedades trigonomÈtricas para escena tridimensional.}
+  \caption{Propiedades trigonom√©tricas para escena tridimensional.}
   \label{fig:Triangulacion2}
 \end{figure}
 
-Se asume $Z = f$ siendo $f$ el plano en el cu·l se proyecta el punto $P(X_0, Y_0, Z_0)$, obteniendo como resultado de la proyecciÛn el punto $p(x,y)$.
-El centro Ûptico del proyector est· situado en el eje $X$.
-Se considera realizada una pre-calibraciÛn en la cual se define:
+Se asume $Z = f$ siendo $f$ el plano en el cu√°l se proyecta el punto $P(X_0, Y_0, Z_0)$, obteniendo como resultado de la proyecci√≥n el punto $p(x,y)$.
+El centro √≥ptico del proyector est√° situado en el eje $X$.
+Se considera realizada una pre-calibraci√≥n en la cual se define:
 \[
 P = (x,y), \quad \frac{X_0}{x} = \frac{Z_0}{f} = \frac{Y_0}{y} = k \to (k * x,k * y,k * f)
 \]
-Por trigonometrÌa:
+Por trigonometr√≠a:
 \[
 \tan (\alpha) = \frac{Z_0}{(b - X_0)} \Rightarrow Z_0 = \tan (\alpha) (b - X_0) \quad 
 \]
