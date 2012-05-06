@@ -1,26 +1,26 @@
-\chapter{Modelo de c·maras}
+Ôªø\chapter{Modelo de c√°maras}
 
 \section{Modelo \emph{pinhole}}
 
-%Al calcular coordenadas tridimensionales a partir de im·genes obtenidas por capturas de video se introducen errores propios del modelo (modelo \emph{pinhole}, modelo imaginario que utiliza una c·mara) por ello es necesario hacer una correcciÛn obteniendo una correspondencia entre el modelo y la realidad. El objetivo del proceso de calibraciÛn es obtener dicha correspondencia. Luego de la calibraciÛn las coordenadas obtenidas son en dos dimensiones y corresponden a la proyecciÛn sobre el plano imagen. Para completar las coordenadas tridimensionales en el modelo es necesario calcular la profundidad de cada punto. Es con este fin que se utiliza el mÈtodo de triangulaciÛn.
+%Al calcular coordenadas tridimensionales a partir de im√°genes obtenidas por capturas de video se introducen errores propios del modelo (modelo \emph{pinhole}, modelo imaginario que utiliza una c√°mara) por ello es necesario hacer una correcci√≥n obteniendo una correspondencia entre el modelo y la realidad. El objetivo del proceso de calibraci√≥n es obtener dicha correspondencia. Luego de la calibraci√≥n las coordenadas obtenidas son en dos dimensiones y corresponden a la proyecci√≥n sobre el plano imagen. Para completar las coordenadas tridimensionales en el modelo es necesario calcular la profundidad de cada punto. Es con este fin que se utiliza el m√©todo de triangulaci√≥n.
 
-%El modelo ideal que se utiliza en las c·maras es el modelo \emph{pinhole}\cite{LibroCompGrafica3}, el que se describe a continuaciÛn para un caso b·sico.
+%El modelo ideal que se utiliza en las c√°maras es el modelo \emph{pinhole}\cite{LibroCompGrafica3}, el que se describe a continuaci√≥n para un caso b√°sico.
 
-Una c·mara, por medio de una proyecciÛn central, establece una correspondencia entre puntos del espacio con puntos bidimensionales en su plano im·gen. En particular se estudiar· el modelo de c·mara \emph{pinhole} \cite{LibroCompGrafica3}.
+Una c√°mara, por medio de una proyecci√≥n central, establece una correspondencia entre puntos del espacio con puntos bidimensionales en su plano im√°gen. En particular se estudiar√° el modelo de c√°mara \emph{pinhole} \cite{LibroCompGrafica3}.
 %ponemos que es el mas simple?
 
-Se considera el centro de proyecciÛn $C$, tambiÈn centro Ûptico de la c·mara, como el origen de un sistema de coordenadas euclideano, y $Z = f$ el plano de la im·gen o plano focal.
+Se considera el centro de proyecci√≥n $C$, tambi√©n centro √≥ptico de la c√°mara, como el origen de un sistema de coordenadas euclideano, y $Z = f$ el plano de la im√°gen o plano focal.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{./Cap2_videomapping/pinhole.png}
-  \caption{GeometrÌa de c·mara \emph{pinhole}. $C$ es centro de la c·mara y $p$ el punto principal}
+  \caption{Geometr√≠a de c√°mara \emph{pinhole}. $C$ es centro de la c√°mara y $p$ el punto principal}
   \label{fig:Calib-Pinhole}
 \end{figure}
 
-Un punto en el espacio $A=(A_X, A_Y, A_Z)^T$ se corresponde con el punto $a$ en el plano imagen, dado por la intersecciÛn del rayo que pasa por el centro de c·mara y el punto $A$ con el plano imagen. El punto $A$ se corresponde con $(\frac{fA_X}{A_Z}, \frac{fA_Y}{A_Z}, f)^T$ en el plano imagen considerando que el centro de coordenadas del plano imagen coincide con el punto principal $P$.
+Un punto en el espacio $A=(A_X, A_Y, A_Z)^T$ se corresponde con el punto $a$ en el plano imagen, dado por la intersecci√≥n del rayo que pasa por el centro de c√°mara y el punto $A$ con el plano imagen. El punto $A$ se corresponde con $(\frac{fA_X}{A_Z}, \frac{fA_Y}{A_Z}, f)^T$ en el plano imagen considerando que el centro de coordenadas del plano imagen coincide con el punto principal $P$.
 
-Considerando la representaciÛn de los puntos como vectores homogÈneos se expresa la proyecciÛn central como una correspondencia lineal entre las coordenadas homogÈneas.
+Considerando la representaci√≥n de los puntos como vectores homog√©neos se expresa la proyecci√≥n central como una correspondencia lineal entre las coordenadas homog√©neas.
 
 \[
 \begin{pmatrix}
@@ -41,7 +41,7 @@ A_X \\ A_Y \\ A_Z \\ 1
 \end{pmatrix}
 \]
 
-Dado $A_h = (A_X,A_Y,A_Z,1)^T$ y la proyecciÛn $a$ sobre el plano imagen, la correspondencia utilizando el mÈtodo pinhole es:
+Dado $A_h = (A_X,A_Y,A_Z,1)^T$ y la proyecci√≥n $a$ sobre el plano imagen, la correspondencia utilizando el m√©todo pinhole es:
 $a=PA_h$
 
 Siendo
@@ -54,31 +54,31 @@ f & 0 & 0 & 0 \\
 \end{pmatrix}
 \]
 
-\section{GeometrÌa epipolar}
-\cite{LibroCompGrafica3} La geometÌa epipolar es la geometÌa proyectiva intrÌnseca entre dos puntos de vista. Es dada por la intersecciÛn de los planos imagen de cada c·mara con el plano epipolar, este plano es el definido por el punto a representar $X$ y los dos centros de las c·maras $C$ y $C'$.
+\section{Geometr√≠a epipolar}
+\cite{LibroCompGrafica3} La geomet√≠a epipolar es la geomet√≠a proyectiva intr√≠nseca entre dos puntos de vista. Es dada por la intersecci√≥n de los planos imagen de cada c√°mara con el plano epipolar, este plano es el definido por el punto a representar $X$ y los dos centros de las c√°maras $C$ y $C'$.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/epipolar.PNG}
-  \caption{geometÌa epipolar, $C$ y $C'$ centos de las c·maras.}%GeometÌa de C·maras  StereoReview pag 241. fig 9.1%
+  \caption{geomet√≠a epipolar, $C$ y $C'$ centos de las c√°maras.}%Geomet√≠a de C√°maras  StereoReview pag 241. fig 9.1%
   \label{fig:Epipolar}
 \end{figure}
-La matriz fundamental $F$ es la representaciÛn algebraica de la geometÌa epipolar.
-Dado un par de im·genes, como se muestra en la figura para cada punto $x$ en una imagen existe una linea epipolar correspondiente $l'$ en la otra imagen. Cualquier punto $x'$ en la segunda imagen que corresponde al punto $x$ debe pertenecer a la linea epipolar $l'$.
-La lÌnea epipolar $l'$ en la segunda imagen es la proyecciÛn en la segunda imagen del rayo que parte del punto $x$ y llega al centro $C$ de la primer c·mara. Hay un mapeo de un punto en una imagen con la lÌnea epipolar en la otra imagen.
+La matriz fundamental $F$ es la representaci√≥n algebraica de la geomet√≠a epipolar.
+Dado un par de im√°genes, como se muestra en la figura para cada punto $x$ en una imagen existe una linea epipolar correspondiente $l'$ en la otra imagen. Cualquier punto $x'$ en la segunda imagen que corresponde al punto $x$ debe pertenecer a la linea epipolar $l'$.
+La l√≠nea epipolar $l'$ en la segunda imagen es la proyecci√≥n en la segunda imagen del rayo que parte del punto $x$ y llega al centro $C$ de la primer c√°mara. Hay un mapeo de un punto en una imagen con la l√≠nea epipolar en la otra imagen.
 \[  x \to l'
 \]
  
-El mapeo en proyectiva de puntos a lÌneas es representado por $F$ la matriz fundamental.
+El mapeo en proyectiva de puntos a l√≠neas es representado por $F$ la matriz fundamental.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/epipolar2.PNG}
-  \caption{geometÌa epipolar, matriz fundamental $F$.} %GeometÌa de C·maras  StereoReview pag 243. fig 9.5%
+  \caption{geomet√≠a epipolar, matriz fundamental $F$.} %Geomet√≠a de C√°maras  StereoReview pag 243. fig 9.5%
   \label{fig:Epipolar2}
 \end{figure}
-Dado $x$ en una imagen se corresponde con el punto $x'$ en la segunda imagen vÌa una trasferencia establecida por la intersecciÛn del plano $\pi$ con los planos imagen de cada c·mara.
-La lÌnea epipolar que contiene $x'$ se obtiene uniendo $x'$ con el epipolo $e'$, esto es:
-\[ x' = H_{\pi} * x \]    siendo  $H_{\pi}$ una homografÌa 2D que establece la correspondencia entre cada $x_i$ de la primer imagen a $x'_i$ en la segunda imagen.
+Dado $x$ en una imagen se corresponde con el punto $x'$ en la segunda imagen v√≠a una trasferencia establecida por la intersecci√≥n del plano $\pi$ con los planos imagen de cada c√°mara.
+La l√≠nea epipolar que contiene $x'$ se obtiene uniendo $x'$ con el epipolo $e'$, esto es:
+\[ x' = H_{\pi} * x \]    siendo  $H_{\pi}$ una homograf√≠a 2D que establece la correspondencia entre cada $x_i$ de la primer imagen a $x'_i$ en la segunda imagen.
 \[ l' = e' * x' = e' * H_{\pi} * x = F * x  \]
 \[ F = e' * H_{\pi}  \mbox{es la matriz fundamental}  \]
