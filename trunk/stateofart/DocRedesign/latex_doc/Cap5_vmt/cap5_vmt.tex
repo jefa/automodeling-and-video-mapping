@@ -302,3 +302,162 @@ Se permite almacenar en archivos \emph{XML} estándar una representación de lo 
 \section{Decisiones de implementación}
 Para la implementación del módulo de interfaz gráfica se siguió el patrón \emph{Model-View-Controller (MVC)}\footnote{Explicar MVC}. Para cada ventana se generaron modelos que manejan los datos relevantes a cada una, impactando en el modelo general de la aplicación en caso de ser necesario.
 Se utilizó \emph{Qt Framework} \cite{Qt-framework} como biblioteca de base para la creación de las ventanas, sus controles gráficos y manejo de la comunicación que ocurre entre ventanas y con los modelos de \emph{VMT}. También se hizo uso de la funcionalidad para internacionalización de las interfaces gráficas, las que por el momento están tomando valores por defecto en idioma inglés. \emph{Qt Framework} es multiplataforma por lo que puede ser utilizado en varios de los sistemas operativos más populares como \emph{Linux}, \emph{Mac OS X} y \emph{Windows}.
+
+\section{Calibración NO VMT}
+En este proyecto se desarrolla un método de calibración cuyo objetivo es obtener la posición del proyector con respecto a un sistema de coordenadas ubicado en un punto elegido relativo a la escena. Para ello se utiliza una superficie de calibración que puede existir ya en la escena o puede ser ubicada sobre ésta de forma temporal. Esta superficie de calibración deberá ser un plano rectangular en donde uno de los vértices será el centro de coordenadas que se desea determinar. La orientación del plano determinará la alineación del centro de coordenadas con sus ejes $X$ e $Y$ alineados con dos de los bordes del plano y el eje $Z$ perpendicular a éste. Se utiliza además un proyector asumiendo el modelo \emph{pinhole}\footnote{Ver sección con modelo \emph{pinhole}}.
+
+Para encontrar el sistema de coordenadas buscado, se resuelve el problema opuesto que es encontrar la posición del punto que será origen del nuevo centro de coordenadas con respecto al centro de proyección ubicado dentro del proyector. Este método utiliza tres de los vértices de la superficie de calibración que formarán una base del nuevo sistema de coordenadas. Las medidas de la superficie de calibración son conocidas por lo que la distancia entre sus vértices también lo son. Desde el centro del proyector se proyectan rayos de luz, tres de los cuales pasan por los vértices de la superficie de calibración y también por el centro de proyección con coordenadas $(0, 0, 0)$. Para obtener la ecuación de estos rayos solo se precisa un punto distinto al origen. La ecuación de este punto puede ser obtenida utilizando las coordenadas en pantalla del píxel que se proyecta en cada vértice de la superficie de calibración.
+%Traducir la imagen%
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/CalibrationSketch}
+  \caption{Esquema de calibración.}
+  \label{fig:CalibrationSketch}
+\end{figure}
+Usando las coordenadas en la pantalla de estos puntos y otros parámetros intrínsecos del proyector que son su resolución y el ángulo de proyección, es posible encontrar las coordenadas del punto con respecto al centro de proyección y por tanto la ecuación del rayo.
+\[
+a(t) = \vec{P} . t,	\mbox{ ecuación del rayo en dónde } \vec{P} \mbox{ es cualquier punto del rayo.}
+\]
+\[
+\begin{cases}
+P(X) = \frac{res_x}{2} - s_x \\
+P(Y) = \frac{res_y}{2} - s_y \\
+P(Z) = \frac{res_y}{2 \cdot \tan \frac{fov_y}{2}}
+\end{cases}
+\]
+en donde $s_x$ y $s_y$ son las coordenadas del \emph{pixel}, $res_x$ y $res_y$ son la resolución horizontal y vertical del proyector y $fov_y$ es el ángulo de proyección vertical del proyector.
+
+Aplicando esta ecuación a cada uno de los puntos a determinar se obtienen las ecuaciones paramétricas de los tres rayos. Vale aclarar que estos puntos $P$ son puntos de los rayos pero no necesariamente coinciden con los vértices de la superficie de calibración. Queda hallar las coordenadas de los vértices determinando el parámetro $t$ para cada ecuación. Para hallar este parámetro se resuelve un sistema de ecuaciones utilizando las tres ecuaciones de los rayos y las distancias conocidas entre estos puntos.
+% Sistema de ecuaciones %
+\[
+\begin{cases}
+\lVert{a(t_0) - b(t_1)} = j\rVert \\
+\lVert{b(t_1) - c(t_2)} = k\rVert \\
+\lVert{c(t_2) - a(t_0)} = l\rVert
+\end{cases}
+\]
+siendo $a$, $b$ y $c$ los rayos y $j$, $k$ y $l$ las distancias entre las parejas de puntos.
+La solución será entonces los parámetros $t_0$, $t_1$ y $t_2$ que satisfacen el sistema de ecuaciones no lineal.
+Una aproximación a esta solución se puede obtener utilizando métodos numéricos, por ejemplo, el método \emph{trust-region-dogleg}\cite{TrustRegionDogleg}.
+Una vez hallados los valores para $t_0$, $t_1$ y $t_2$, las coordenadas de los vértices de la superficie de calibración son $a(t_0)$, $b(t_1)$ y $c(t_2)$.
+La base para el sistema de coordenadas con origen en el punto $P$ es:
+\[
+x' = \frac{b(t_1) - a(t_0)}{\lVert b(t_1) - a(t_0) \rVert},\quad y' = \frac{c(t_2) - a(t_0)}{\lVert c(t_2) - a(t_0)\rVert},\quad z' = -x' \times y'
+\]
+La ubicación del proyector en este nuevo sistema se obtiene proyectando cualquiera de los rayos en la nueva base de coordenadas.
+
+\section{Tratamiento de malla implementado}
+
+%Rearmar la prosa de este primer párrafo%
+Para la implementación de este módulo se utilizan algoritmos incluidos en \emph{VcgLib}. Para visualizar y evaluar los resultados esperados fue utilizada la aplicación de código abierto para la manipulación de mallas tridimensionales en diferentes formatos \emph{MeshLab} \cite{MeshLab}. Particularmente se utilizan los algoritmos de muestreo \emph{Poisson-disk} para reducir y normalizar los puntos de la malla inicial, \emph{normal extrapolation} para el cálculo de normales y reconstrucción de superficies de Poisson para la reconstrucción de la malla final.
+
+\subsection{Muestreo \emph{Poisson-disk}}
+
+%falta referencia%
+El muestreo de variables aleatorias es una técnica utilizada para una gran variedad de aplicaciones como procesamiento de imágenes y geometrías. Particularmente, el muestreo \emph{Poisson-disk} se utiliza para la ubicación aleatoria de objetos en mundos artificiales, algoritmos de texturas procedurales y procesamiento de geometrías o mallas.%REFERENCIAR%
+Esta técnica genera conjuntos de puntos con la propiedad de obtener puntos suficientemente juntos pero con la restricción de no estar más próximos unos de otros que una distancia mínima $R$ predeterminada.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/malla-poisson.png}
+  \caption{a) Posición $x$ e $y$ generadas aleatoriamente. b) Imagen dividida en celdas. Puntos aleatorios generados en cada celda. c) Muestreo \emph{Poisson-disk} en dos dimensiones.}
+  \label{fig:Mesh-Poisson}
+\end{figure}
+
+En líneas generales, este algoritmo genera puntos alrededor de los ya existentes en la muestra y valida si pueden ser agregados al conjunto final en caso de no violar la regla de la mínima distancia a los vecinos. Se genera una grilla en dos o tres dimensiones, dependiendo del escenario de aplicación, en la cuál cada celda contendrá al final del proceso a lo sumo un punto. Una grilla adicional es utilizada para realizar búsquedas rápidas y dos conjuntos de puntos son mantenidos durante el procesamiento para poder diferenciar los que han sido generados y los que aún necesitan procesamiento.
+La implementación realizada en \emph{VcgLib} recibe tres parámetros:
+\begin{itemize}
+	\item 1) La cantidad de puntos en la muestra. En este caso el radio de cercanía es calculado en base a este parámetro.
+	\item 2) El radio, que es a su vez utilizado para calcular el tamaño de la muestra óptimo en base a la malla inicial.
+	\item 3) Sub muestreo: indica si la muestra de Poisson es un subconjunto de la muestra inicial o si se deberán generar nuevos puntos aleatoriamente.
+\end{itemize}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/malla-poissongui.png}
+  \caption{Configuración de parámetros del algoritmo \emph{Poisson-disk}}
+  \label{fig:Mesh-PoissonGui}
+\end{figure}
+
+\subsection{Reconstrucción de normales}
+
+Este algoritmo computa las normales en cada elemento de un conjunto de puntos sin la necesidad de explorar la conectividad de los triángulos. Por ello es muy útil para objetos tridimensionales sin información de caras.
+Se detalla un pseudo-código del método:
+
+%Figura: planos tangentes%
+
+\paragraph{Paso 1: identificar los planos tangentes para aproximar localmente la superficie y estimar así los vectores normales.}
+Para cada vértice:
+	\begin{itemize}
+		\item Calcular el centro geométrico del plano tangente en el punto como el promedio de los $K$ puntos más cercanos.
+		\item Calcular la normal asociada al centro geométrico. Se utiliza la matriz de covarianza en el punto, contemplando los mismos $K$ vecinos más cercanos de la muestra y los valores y vectores propios de la matriz de covarianza. Finalmente, ordenando los vectores propios, la estimación del vector perpendicular corresponde al vector propio de menor valor. Este método es conocido como \emph{Principal Component Analysis (PCA)}\footnote{PCA}.
+	\end{itemize}
+
+\paragraph{Paso 2: construir un grafo en donde cada punto está conectado a los $K$ vecinos más cercanos (grafo de Riemannian)}
+Se crea un grafo en cuyos nodos se guardan todas las aristas incidentes a los $K$ vecinos más cercanos. A cada arista se le asigna un peso igual al valor absoluto del producto escalar de la normal en el punto con la normal en cada uno de los $K$ vecinos:
+   $$fabs(nodoActual->normal . K\_Vecinos[n]->normal)$$
+\paragraph{Paso 3: calcular el árbol de expansión mínimo sobre el grafo de Riemannian y recorrerlo para orientar las normales.}
+Dado un grafo conexo, no dirigido, con sus aristas con un peso asignado, se llama árbol de expansión mínimo al sub-grafo con forma de árbol que conecta todos los nodos con un peso total mínimo conteniendo todos los nodos del grafo inicial. El grafo de entrada es el construido en el paso anterior y se utiliza el algoritmo de Kruskal\footnote{Kruskal}, uno de los varios algoritmos que resuelven el problema de encontrar un árbol de expansión mínima de un grafo.
+Una vez construido el árbol de expansión, lo único que se hace es recorrerlo en orden e invertir el sentido de los vectores normales en caso de ser necesario. La condición para efectuar dicha corrección se basa en el ángulo del nodo siendo inspeccionado en comparación a todas las direcciones de las normales de los vecinos conectados a dicho nodo.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/malla-normalextrapolation.png}
+  \caption{Configuración de parámetros para reconstrucción de normales}
+  \label{fig:Mesh-Extrapolation}
+\end{figure}
+
+\subsection{Reconstrucción de malla de Poisson}
+
+Finalmente, para reconstruir la malla a partir de la nube de puntos y sus normales, se utiliza el algoritmo de reconstrucción de Poisson.
+Se computa una función indicadora $\chi$ definida de la siguiente forma:
+%Se computa una función indicadora $\chi$ en tres dimensiones definida de la siguiente forma:%
+
+$$
+\left\{ \begin{array}{rl}
+ \chi = 1 & \mbox{ si puntos dentro del modelo} \\
+ \chi = 0 & \mbox{ si puntos fuera del modelo}
+       \end{array} \right.
+$$
+
+Luego, se obtiene una reconstrucción de la superficie mediante la extracción de la superficie de nivel en 3 dimensiones\footnote{ISO-surface} al nivel apropiado.
+La estrategia se basa en la estrecha relación que hay entre los puntos de la muestra, orientados por sus normales, y la función indicadora de la muestra. Específicamente el gradiente de la función indicadora es un espacio de vectores, de valor nulo en todo el espacio excepto en puntos cercanos a la superficie, donde son iguales al vector normal a ella.
+Es por eso que puntos orientados pueden ser vistos como muestras del gradiente de la función indicadora del modelo tridimensional en cuestión y es por este mismo motivo que el problema de reconstrucción de una malla puede ser visto como un problema de Poisson estándar, es decir, computar la función escalar $F$ cuya divergencia del gradiente\footnote{Laplaciano} se iguala a la divergencia del espacio de vectores de las normales.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/malla-poissonreconstruction.png}
+  \caption{Configuración de parámetros para reconstruccion de malla de Poisson}
+  \label{fig:Mesh-Normals}
+\end{figure}
+
+\subsection{Pruebas y resultados}
+
+%Esta sección va dentro de lo que implementamos, recien aca salta que lo hicimos nosotros%
+
+Para validar el correcto funcionamiento de esta técnica mediante los tres algoritmos descritos, fue utilizada una malla inicial de 5021 vértices y 9608 caras triangulares. Cabe destacar que si bien se ha mencionado que la malla de entrada debe ser simplemente una nube de puntos, se pueden utilizar mallas con caras, solo que estas serán ignoradas e incluso eliminadas de la malla de salida del primer paso del procesamiento (muestreo de \emph{Poisson-disk}).
+Luego de experimentar con varios juegos de datos iniciales durante varias ejecuciones del procesamiento, se fijaron de manera personalizada para la malla de entrada algunos parámetros clave. Dado que la muestra inicial tiene alrededor de cinco mil puntos, fueron elegidas cinco mil muestras para el algoritmo de \emph{Poisson-disk}. Luego, para la extrapolación de normales se utilizan $K=15$ vecinos para la toma de decisiones locales de aproximación.
+La aplicación de estos algoritmos resultó ser lo esperado en términos estructurales de cada malla procesada en cada uno de los pasos.
+%Puede ir a trabajo futuro: No se llegó a procesar mallas de ambientes tridimensionales escaneados para luego ser mapeados con la herramienta.%
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|l||cc|} \hline
+	Fase & Vértices & Caras \\
+	Nube inicial & 5021 & 9608 \\
+	Poisson-disk & 1776 & 0 \\
+	Extrapolación Normales & 1776 & 0 \\
+	Reconstrucción de Poisson & 1959 & 3910 \\ \hline %hay 1959 puntos en lugar de 1776, por que?%
+\end{tabular}
+\caption{Comparación de estructura de mallas de entrada y salida en cada fase}
+\end{center}
+\end{table}
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.8\textwidth]{./Cap2_videomapping/malla-nubepuntos.png}
+  \caption{1) Nube de puntos inicial con 5021 vértices. 2) Resultado de muestreo \emph{Poisson-disk} con 1776 vértices. 3) Luego de extrapolar normales y reconstruir la malla con 1959 vértices y 3910 caras.}
+  \label{fig:Mesh-Results}
+\end{figure}
+ 
+%Se observaron buenos tiempos computacionales de respuesta. Si bien la malla utilizada no es de un tamaño considerable, estamos hablando de algoritmos de orden relativamente alto.%
