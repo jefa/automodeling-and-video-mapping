@@ -263,8 +263,8 @@ Luego de simplificar la nube de puntos se construye un modelo tridimensional a p
 
 \subsection{Tratamiento de malla}
 
-Los dispositivos de captura de información tridimensional estudiados entregan la información en forma de nube de puntos. Es por ello que previo a la manipulación de la información tridimensional, es necesario procesar dicha nube de puntos para convertirla a representaciones más manejables como por ejemplo mallas triangulares.
-Un algoritmo de procesamiento de malla se basa en tomar como entrada una nube de puntos, realizar un sub-muestreo y suavizado de la misma, calcular las normales en cada punto de la nube y finalmente, aplicar algoritmos de reconstrucción de malla. Esto ha sido estudiado e implementado en las bibliotecas \emph{VcgLib} \cite{VCGLib} y \emph{CGAL} \cite{CGAL}.
+Los dispositivos de captura de información tridimensional estudiados entregan la información en forma de nube de puntos. Es por ello que previo a la manipulación de la información tridimensional, es necesario procesar la nube de puntos para convertirla a representaciones más manejables como por ejemplo mallas triangulares.
+Un algoritmo de procesamiento de malla se basa en tomar como entrada una nube de puntos, realizar un sub-muestreo y suavizado de la misma, calcular las normales en cada punto de la nube y finalmente, aplicar algoritmos de reconstrucción de malla. Esto ha sido estudiado e implementado en las bibliotecas \emph{VcgLib} \cite{VCGLib} y \emph{CGAL} \cite{CGAL}. 
 
 \begin{figure}[H]
   \centering
@@ -272,3 +272,65 @@ Un algoritmo de procesamiento de malla se basa en tomar como entrada una nube de
   \caption{Típico flujo para el procesamiento de nubes de puntos.}%  Fuente: \emph{CGAL} http://www.cgal.org%
   \label{fig:Mesh-CGAL}
 \end{figure}
+
+A continuacion se detallan los algoritmos asociados a cada uno de los pasos enumerados que se correspodnen con lo implementado en \emph{VcgLib} 
+
+\subsection{Muestreo \emph{Poisson-disk}}
+
+%falta referencia%
+El muestreo de variables aleatorias es una técnica utilizada para una gran variedad de aplicaciones como procesamiento de imágenes y geometrías. Particularmente, el muestreo \emph{Poisson-disk} se utiliza para la ubicación aleatoria de objetos en mundos artificiales, algoritmos de texturas procedurales y procesamiento de geometrías o mallas.%REFERENCIAR%
+Esta técnica genera conjuntos de puntos con la propiedad de obtener puntos suficientemente juntos pero con la restricción de no estar más próximos unos de otros que una distancia mínima $R$ predeterminada.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/malla-poisson.png}
+  \caption{a) Posición $x$ e $y$ generadas aleatoriamente. b) Imagen dividida en celdas. Puntos aleatorios generados en cada celda. c) Muestreo \emph{Poisson-disk} en dos dimensiones.}
+  \label{fig:Mesh-Poisson}
+\end{figure}
+
+En líneas generales, este algoritmo genera puntos alrededor de los ya existentes en la muestra y valida si pueden ser agregados al conjunto final en caso de no violar la regla de la mínima distancia a los vecinos. Se genera una grilla en dos o tres dimensiones, dependiendo del escenario de aplicación, en la cuál cada celda contendrá al final del proceso a lo sumo un punto. Una grilla adicional es utilizada para realizar búsquedas rápidas y dos conjuntos de puntos son mantenidos durante el procesamiento para poder diferenciar los que han sido generados y los que aún necesitan procesamiento.
+La implementación realizada en \emph{VcgLib} recibe tres parámetros:
+\begin{itemize}
+  \item 1) La cantidad de puntos en la muestra. En este caso el radio de cercanía es calculado en base a este parámetro.
+  \item 2) El radio, que es a su vez utilizado para calcular el tamaño de la muestra óptimo en base a la malla inicial.
+  \item 3) Sub muestreo: indica si la muestra de Poisson es un subconjunto de la muestra inicial o si se deberán generar nuevos puntos aleatoriamente.
+\end{itemize}
+
+\subsection{Reconstrucción de normales}
+
+Este algoritmo computa las normales en cada elemento de un conjunto de puntos sin la necesidad de explorar la conectividad de los triángulos. Por ello es muy útil para objetos tridimensionales sin información de caras.
+Se detalla un pseudo-código del método:
+
+%Figura: planos tangentes%
+
+\paragraph{Paso 1: identificar los planos tangentes para aproximar localmente la superficie y estimar así los vectores normales.}
+Para cada vértice:
+  \begin{itemize}
+    \item Calcular el centro geométrico del plano tangente en el punto como el promedio de los $K$ puntos más cercanos.
+    \item Calcular la normal asociada al centro geométrico. Se utiliza la matriz de covarianza en el punto, contemplando los mismos $K$ vecinos más cercanos de la muestra y los valores y vectores propios de la matriz de covarianza. Finalmente, ordenando los vectores propios, la estimación del vector perpendicular corresponde al vector propio de menor valor. Este método es conocido como \emph{Principal Component Analysis (PCA)}\footnote{PCA}.
+  \end{itemize}
+
+\paragraph{Paso 2: construir un grafo en donde cada punto está conectado a los $K$ vecinos más cercanos (grafo de Riemannian)}
+Se crea un grafo en cuyos nodos se guardan todas las aristas incidentes a los $K$ vecinos más cercanos. A cada arista se le asigna un peso igual al valor absoluto del producto escalar de la normal en el punto con la normal en cada uno de los $K$ vecinos:
+   $$fabs(nodoActual->normal . K\_Vecinos[n]->normal)$$
+\paragraph{Paso 3: calcular el árbol de expansión mínimo sobre el grafo de Riemannian y recorrerlo para orientar las normales.}
+Dado un grafo conexo, no dirigido, con sus aristas con un peso asignado, se llama árbol de expansión mínimo al sub-grafo con forma de árbol que conecta todos los nodos con un peso total mínimo conteniendo todos los nodos del grafo inicial. El grafo de entrada es el construido en el paso anterior y se utiliza el algoritmo de Kruskal\footnote{Kruskal}, uno de los varios algoritmos que resuelven el problema de encontrar un árbol de expansión mínima de un grafo.
+Una vez construido el árbol de expansión, lo único que se hace es recorrerlo en orden e invertir el sentido de los vectores normales en caso de ser necesario. La condición para efectuar dicha corrección se basa en el ángulo del nodo siendo inspeccionado en comparación a todas las direcciones de las normales de los vecinos conectados a dicho nodo.
+
+\subsection{Reconstrucción de malla de Poisson}
+
+Finalmente, para reconstruir la malla a partir de la nube de puntos y sus normales, se utiliza el algoritmo de reconstrucción de Poisson.
+Se computa una función indicadora $\chi$ definida de la siguiente forma:
+%Se computa una función indicadora $\chi$ en tres dimensiones definida de la siguiente forma:%
+
+$$
+\left\{ \begin{array}{rl}
+ \chi = 1 & \mbox{ si puntos dentro del modelo} \\
+ \chi = 0 & \mbox{ si puntos fuera del modelo}
+       \end{array} \right.
+$$
+
+Luego, se obtiene una reconstrucción de la superficie mediante la extracción de la superficie de nivel en 3 dimensiones\footnote{ISO-surface} al nivel apropiado.
+La estrategia se basa en la estrecha relación que hay entre los puntos de la muestra, orientados por sus normales, y la función indicadora de la muestra. Específicamente el gradiente de la función indicadora es un espacio de vectores, de valor nulo en todo el espacio excepto en puntos cercanos a la superficie, donde son iguales al vector normal a ella.
+Es por eso que puntos orientados pueden ser vistos como muestras del gradiente de la función indicadora del modelo tridimensional en cuestión y es por este mismo motivo que el problema de reconstrucción de una malla puede ser visto como un problema de Poisson estándar, es decir, computar la función escalar $F$ cuya divergencia del gradiente\footnote{Laplaciano} se iguala a la divergencia del espacio de vectores de las normales.
+
