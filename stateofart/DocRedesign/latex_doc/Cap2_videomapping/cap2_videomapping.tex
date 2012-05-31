@@ -153,7 +153,7 @@ Si bien se está abordando un enfoque tridimensional de la producción del espec
 
 En este capítulo se presenta la reconstrucción tridimensional automática de una superficie utilizando técnicas computacionales.
 Se introducen distintos métodos que permiten la construcción automática de modelos, discutiendo sus características según propiedades de la superficie a representar y tecnologías utilizadas.
-La construcción del modelo se presenta en dos etapas. Inicialmente se obtiene una nube de puntos correspondiente a la superficie utilizando técnicas y dispositivos para este propósito para luego procesar la información obtenida y construir una malla tridimensional. Mediante este procesamiento se obtienen propiedades adicionales como grupos de puntos que representan caras de una malla y las normales que identifican la orientación de la superficie.
+La construcción del modelo se presenta en dos etapas. Inicialmente se obtiene una nube de puntos correspondiente a la superficie utilizando técnicas y dispositivos para este propósito, para luego procesar la información obtenida y construir una malla tridimensional. Mediante este procesamiento se obtienen propiedades adicionales como grupos de puntos que representan caras de una malla y las normales que identifican la orientación de la superficie.
 
 \subsection{Obtención de la nube de puntos}
 
@@ -252,7 +252,7 @@ En cuanto a los usos específicos orientados a la reconstrucción tridimensional
 
 Al utilizar técnicas de obtención de geometría lo que se obtiene son nubes de puntos. Es necesario simplificar este modelo con el objetivo de eliminar redundancia y aumentar la velocidad en el procesamiento de los datos. Un problema adicional al volumen de la información obtenida es que comúnmente se introduce ruido. Para solucionar este problema se realiza un suavizado en el procesamiento de la nube de puntos \cite{PCloudSimplify}.
 
-Las heurísticas utilizadas se pueden clasificar como \cite{PntCloud}:
+Las heurísticas existentes para reducir nubes de puntos pueden clasificarse en tres grandes grupos \cite{PntCloud}:
 \begin{itemize}
    \item \emph{Clustering methods}: consiste en obtener grupos de la nube de puntos en donde cada grupo se remplaza por un conjunto de puntos representativos en él. Los grupos se pueden construir utilizando un enfoque incremental en el cual estos son creados iniciando por un punto aleatorio y agregando puntos vecinos hasta llegar a una cantidad establecida de elementos o un enfoque jerárquico en donde se particiona el conjunto de puntos recursivamente hasta conseguir grupos de un tamaño predefinido.
    \item \emph{Iterative simplification}: se recorren iterativamente los puntos de la nube contrayendo parejas en un único punto. Se evalúa el error introducido, utilizando mínimos cuadrados, que se genera en la contracción comparándolo con el error que se obtendría al contraerse con otro punto vecino eligiendo la contracción que introduce menor error al sistema. La simplificación se da por finalizada por haber logrado la cantidad de puntos deseada o por superar una cota de error a introducir en el sistema.
@@ -261,21 +261,16 @@ Las heurísticas utilizadas se pueden clasificar como \cite{PntCloud}:
 
 Luego de simplificar la nube de puntos se construye un modelo tridimensional a partir de ella utilizando mallas de triángulos. La razón principal es la simplicidad de los algoritmos que dibujan triángulos. Esto permite que sean implementados fácilmente en hardware además del beneficio de que cualquier polígono con más de tres caras puede representarse como un conjunto de triángulos \cite{PCloudTriangle}.
 
-\subsection{Tratamiento de malla}
-
-Los dispositivos de captura de información tridimensional estudiados entregan la información en forma de nube de puntos. Es por ello que previo a la manipulación de la información tridimensional, es necesario procesar la nube de puntos para convertirla a representaciones más manejables como por ejemplo mallas triangulares.
-Un algoritmo de procesamiento de malla se basa en tomar como entrada una nube de puntos, realizar un sub-muestreo y suavizado de la misma, calcular las normales en cada punto de la nube y finalmente, aplicar algoritmos de reconstrucción de malla. Esto ha sido estudiado e implementado en las bibliotecas \emph{VcgLib} \cite{VCGLib} y \emph{CGAL} \cite{CGAL}. 
+A continuacion se detallan los algoritmos asociados a cada paso de un típico procesamiento de malla que toma como entrada una nube de puntos, realiza un sub-muestreo y suavizado de la misma, calcula las normales en cada punto de la nube y finalmente aplica algoritmos de reconstrucción de la malla. Esto ha sido estudiado e implementado en bibliotecas como \emph{VcgLib} \cite{VCGLib} y \emph{CGAL} \cite{CGAL}, pero lo presentado se corresponde con la implementación de \emph{VcgLib}. 
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/malla-flow.png}
-  \caption{Típico flujo para el procesamiento de nubes de puntos.}%  Fuente: \emph{CGAL} http://www.cgal.org%
+  \caption{Flujo típico de procesamiento de nubes de puntos \cite{CGAL}
   \label{fig:Mesh-CGAL}
 \end{figure}
 
-A continuacion se detallan los algoritmos asociados a cada uno de los pasos enumerados que se correspodnen con lo implementado en \emph{VcgLib} 
-
-\subsection{Muestreo \emph{Poisson-disk}}
+\subsubsection{Muestreo \emph{Poisson-disk}}
 
 %falta referencia%
 El muestreo de variables aleatorias es una técnica utilizada para una gran variedad de aplicaciones como procesamiento de imágenes y geometrías. Particularmente, el muestreo \emph{Poisson-disk} se utiliza para la ubicación aleatoria de objetos en mundos artificiales, algoritmos de texturas procedurales y procesamiento de geometrías o mallas.%REFERENCIAR%
@@ -296,7 +291,7 @@ La implementación realizada en \emph{VcgLib} recibe tres parámetros:
   \item 3) Sub muestreo: indica si la muestra de Poisson es un subconjunto de la muestra inicial o si se deberán generar nuevos puntos aleatoriamente.
 \end{itemize}
 
-\subsection{Reconstrucción de normales}
+\subsubsection{Reconstrucción de normales}
 
 Este algoritmo computa las normales en cada elemento de un conjunto de puntos sin la necesidad de explorar la conectividad de los triángulos. Por ello es muy útil para objetos tridimensionales sin información de caras.
 Se detalla un pseudo-código del método:
@@ -317,7 +312,7 @@ Se crea un grafo en cuyos nodos se guardan todas las aristas incidentes a los $K
 Dado un grafo conexo, no dirigido, con sus aristas con un peso asignado, se llama árbol de expansión mínimo al sub-grafo con forma de árbol que conecta todos los nodos con un peso total mínimo conteniendo todos los nodos del grafo inicial. El grafo de entrada es el construido en el paso anterior y se utiliza el algoritmo de Kruskal\footnote{Kruskal}, uno de los varios algoritmos que resuelven el problema de encontrar un árbol de expansión mínima de un grafo.
 Una vez construido el árbol de expansión, lo único que se hace es recorrerlo en orden e invertir el sentido de los vectores normales en caso de ser necesario. La condición para efectuar dicha corrección se basa en el ángulo del nodo siendo inspeccionado en comparación a todas las direcciones de las normales de los vecinos conectados a dicho nodo.
 
-\subsection{Reconstrucción de malla de Poisson}
+\subsubsection{Reconstrucción de malla de Poisson}
 
 Finalmente, para reconstruir la malla a partir de la nube de puntos y sus normales, se utiliza el algoritmo de reconstrucción de Poisson.
 Se computa una función indicadora $\chi$ definida de la siguiente forma:
