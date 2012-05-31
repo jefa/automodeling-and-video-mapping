@@ -346,7 +346,9 @@ x' = \frac{b(t_1) - a(t_0)}{\lVert b(t_1) - a(t_0) \rVert},\quad y' = \frac{c(t_
 \]
 La ubicación del proyector en este nuevo sistema se obtiene proyectando cualquiera de los rayos en la nueva base de coordenadas.
 
-\section{Tratamiento de malla implementado}
+\section{Tratamiento de malla}
+
+Para la generacion mallas manejables por nuestra herramienta VMT se desarrollo un componente que se ejecuta separadamente y que recibe como entrada la nube de puntos a procesar. Como salida se generan mallas triangulares en el formato estandard OBJ.
 
 %Rearmar la prosa de este primer párrafo%
 Para la implementación de este módulo se utilizan los algoritmos descriptos en el estado del arte que incluye \emph{VcgLib} y que forman parte del procesamiento de malla propuesto. Para visualizar y evaluar los resultados esperados fue utilizada la aplicación de código abierto para la manipulación de mallas tridimensionales en diferentes formatos \emph{MeshLab} \cite{MeshLab}. Particularmente se utilizan los algoritmos de muestreo \emph{Poisson-disk} para reducir y normalizar los puntos de la malla inicial, \emph{normal extrapolation} para el cálculo de normales y reconstrucción de superficies de Poisson para la reconstrucción de la malla final.
