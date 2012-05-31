@@ -1,24 +1,39 @@
 \chapter{Estado del arte}
 
-%Introduccion que unifique creación del espectáculo con obtención de la geometría. Si NO es posible unificarlos explicar de todas maneras que estas dos cosas se estudian como temas disjuntos, y como convivirían. Estas dos cosas por más que sean disjuntas se unen en la solución del proyecto.%
+%Introduccion que unifique creación del espectáculo con obtención de la geometría.%
+%Si NO es posible unificarlos explicar de todas maneras que estas dos cosas se estudian como temas disjuntos, y como convivirían.%
+%Estas dos cosas por más que sean disjuntas se unen en la solución del proyecto.%
+
+%
 
 \section{Creación de un espectáculo de \emph{video mapping}}
 
 En la creación de un espectáculo de \emph{video mapping} se identifican tres etapas que son el modelado de la escena, la producción del espectáculo y la proyección del mismo.
 
-En el modelado de la escena se obtiene una representación virtual y abstracta de los objetos reales sobre los que se proyectará. Este modelo será la base para trabajar en posteriores etapas y sobre el cuál se diseñará el espectáculo.
+En el modelado de la escena se obtiene una representación virtual y abstracta de los objetos reales sobre los que se proyectará.
+Este modelo será la base para trabajar en posteriores etapas y sobre el cuál se diseñará el espectáculo.
 
-En la siguiente etapa se realiza la producción del espectáculo que consiste en aplicar distintos efectos visuales sobre los objetos modelados y orquestar la ejecución de los mismos. En esta etapa también se diseña y produce la musicalización que será utilizada durante todo el espectáculo.
-%Orquestar no aplica para toques en vivo, hay que explicar este caso también y reescribir.%
+En la siguiente etapa se realiza la producción del espectáculo que consiste en definir los distintos efectos visuales a ser aplicados sobre los objetos modelados.
+La reproducción de estos efectos podrá ser orquestada en el caso que el espectáculo sea una visualización de efectos predefinida, como las que se ven en presentaciones sobre fachadas y lanzamiento de productos.
+También un espectáculo podrá ser dinámico, en el cuál, un \emph{VJ} decidirá en tiempo real los efectos a desplegar.
+En este caso no se realiza una orquestación de los efectos en esta etapa, sino que se define una interfaz para que el \emph{VJ} ejecute de forma simple el efecto deseado.
+Esto puede ser, por ejemplo, definiendo una tecla para cada efecto a mostrar.
+En esta etapa también se diseña y produce la musicalización que será utilizada durante todo el espectáculo.
 
 Es en la proyección del espectáculo en donde se puede contemplar el resultado de los distintos efectos visuales proyectados sobre las superficies acompañados por efectos de sonido.
-Para lograr la correspondencia en la proyección de los objetos del modelo con las superficies se debe calibrar la proyección. Esta correspondencia se logra modificando el modelo de la escena, ajustando la posición y orientación de los proyectores, y ajustando los parámetros intrínsecos$^\dagger$ de la proyección.
+Para lograr la correspondencia en la proyección de los objetos del modelo con las superficies se debe calibrar la proyección.
+Esta correspondencia se logra modificando el modelo de la escena, ajustando la posición y orientación de los proyectores, y ajustando los parámetros intrínsecos$^\dagger$ de la proyección.
 %Esta etapa no es necesariamente una proyeccion final sino que se puede simular%
 
-Cada una de estas etapas se puede abordar con un enfoque bidimensional o tridimensional.
-Con un enfoque bidimensional el modelo de la escena es una proyección en perspectiva de los objetos a proyectar, por ejemplo, una fotografía. Con un enfoque tridimensional el modelo se mantiene independiente de un punto de vista, representándose con un conjunto de objetos virtuales tridimensionales.
+Cada una de estas etapas será abordada en esta sección desde dos enfoques diferentes: bidimensional y tridimensional.
+Con un enfoque bidimensional el modelo de la escena es una proyección en perspectiva de los objetos a proyectar, por ejemplo, una fotografía.
+Con un enfoque tridimensional el modelo se mantiene independiente de un punto de vista, representándose con un conjunto de objetos virtuales tridimensionales.
 
-%explicacion de pie de diagrama:redactarlo mejor, El modelo generado en 2d depende del punto de vista del proyector y puede no parecerse a la realidad. El modelo generado 3d se asimila a la realidad y luego con la cámara virtual ajusto el punto de vista del proyector.
+%Las distintas herramientas actuales para realizar espectáculos de \emph{video mapping} optan por uno de estos dos enfoques para abordar el problema.
+%
+
+%explicacion de pie de diagrama:redactarlo mejor, El modelo generado en 2d depende del punto de vista del proyector y puede no parecerse a la realidad.
+%El modelo generado 3d se asimila a la realidad y luego con la cámara virtual ajusto el punto de vista del proyector.
 
 \begin{figure}[H]
   \centering
@@ -44,7 +59,8 @@ En caso de utilizar más de un proyector cada uno de estos será posicionado en 
   \label{fig:diagrama-2proyectores}
 \end{figure}
 
-Son ejemplos de modelos una fotografía, un plano arquitectónico de una fachada o figuras geométricas bidimensionales que representan las secciones de las superficies. En algunos casos estos se combinan para obtener como resultado un único modelo.
+Son ejemplos de modelos una fotografía, un plano arquitectónico de una fachada o figuras geométricas bidimensionales que representan las secciones de las superficies.
+En algunos casos estos se combinan para obtener como resultado un único modelo.
 \begin{itemize}
   \item Una fotografía. Ubicando la cámara de forma que su punto de vista y el del proyector coincidan minimizará los ajustes necesarios en la etapa de calibración.%extender y que no quede tan en el aire lo de ajustes de calibracion%
   \item Un plano arquitectónico contiene información exacta de las medidas de la superficie que representa en una escala dada. Generalmente utiliza el método de proyecciones paralelas \cite{LibroCompGrafica} sobre un plano de proyección. Para utilizar el plano arquitectónico como modelo se debe transformar de forma que coincida con la proyección en perspectiva desde el punto vista que estará ubicado el proyector.
