@@ -191,20 +191,22 @@ La principal desventaja de este método es que en caso de oclusión, hay regione
 
 \subsubsection{Luz estructurada}
 
-Un método basado en la técnica de luz estructurada consiste en un sistema formado por una o mas cámaras de video mas un proyector que despliega distintos patrones sobre la superficie a modelar. Los patrones son capturadas por la o las cámara de video para su posterior analisis. Mediante patrones codificados apropiadamente para la escena observada, se resuelve el problema de correspondencia de los puntos de la escena con los capturados, y luego, mediante un analisis de las deformaciones de los patrones se obtiene información tridimensional de la posición, orientación y textura de la superficie\cite{SLightPatterns}.
+Un método basado en la técnica de luz estructurada consiste en un sistema formado por una o mas cámaras de video mas un proyector que despliega distintos patrones sobre la superficie a modelar. Los patrones son capturadas por la o las cámara de video para su posterior analisis. Mediante patrones codificados apropiadamente para la escena observada, se resuelve el problema de correspondencia de los puntos de la escena con los capturados, y luego, mediante un análisis de las deformaciones de los patrones se obtiene información tridimensional de la posición, orientación y textura de la superficie\cite{SLightPatterns}.
 
 \paragraph{Clasificación de patrones}
 
-A state of the art in structured light patterns for surface profilometry
-Joaquim Salvi, Sergio Fernandez, Tomislav Pribanic, Xavier Llado
-5 March 2010
-Reference: PR 3792
-
-
 Los sistemas que utilizan luz estructurada se basan en la proyeccion de un patron o secuencia de patrones que identifican cada uno de los \emph{pixeles} en la region iluminada mediante una palabra clave. 
-La figura XXX muestra la clasificacion de patrones propuesta por XXX\cite{XXX}, en la que se distingue principalmente entre la naturaleza continua o discreta de los mismos. 
+La figura XXX muestra la clasificacion de patrones propuesta en \cite{SLightClassification} en la que se diferencian principalmente por la naturaleza continua o discreta de los mismos. 
 
-Los patrones discretos asignan el mismo valor a todos los puntos de la region representada por la misma codificacion. Por otro lado, los patrones continuos utilizan una representan mas suavizada en donde cada \emph{pixel} tienen una codificacion unica dentro de la region, variandose la intensidad o el color a lo largo de uno o ambos ejes en la proyeccion.
+%figura de patrones clasificados%
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.8\textwidth]{./Cap2_videomapping/SL-patternclassiff.png}
+  \caption{Clasificación de patrones de luz estructurada \cite{SLightClassification}}
+  \label{fig:SLPatternClassification}
+\end{figure}
+
+Los patrones discretos asignan el mismo valor a todos los puntos de la region representada por la misma codificacion, mientras que los continuos utilizan una representan mas suavizada en donde cada \emph{pixel} tienen una codificacion unica dentro de la region, variandose la intensidad o el color a lo largo de uno o ambos ejes en la proyeccion.
 
 
 Discretos
