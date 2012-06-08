@@ -1,20 +1,54 @@
-% traer conclusiones de trabajos futuros que hay en otros capitulos mas arriba
+\chapter{Conclusiones y trabajos futuros}
 
-% poner referencia a shows que hicimos, ingeniería de muestra y noche de fallos farq.
+Se desarrolló la herramienta VMT para la realización de espectáculos de video mapping que implementa un enfoque novedoso permitiendo la utilización de modelos tridimensionales para representar las superficies a proyectar y posibilitando la aplicación de efectos directamente sobre ellos. Cuenta con una interfaz de usuario interactiva donde es posible visualizar los efectos en tiempo real a medida que se van diseñando.
+Se lograron identificar etapas claramente diferenciadas del proceso de creación de un espectáculo, lo cual fue muy útil para delinear requerimientos específicos para la implementación de VMT. 
+En las entrevistas que se mantuvieron con los VJs surgió como un problema común a resolver el de las costuras en áreas donde se solapan las proyecciones en espectáculos que utilizan más de un proyector. Mediante el soporte de múltiples proyectores VMT evita este problema al tener control sobre lo que proyecta cada uno de los proyectores y permite definir en qué proyector se visualizan cada uno de los objetos y sus efectos asociados. Más en general, el manejo de múltiples proyectores distribuidos posibilita la creación de distintos esquemas de proyección soportando áreas amplias y disjuntas e incluso mapeos en 360 grados. 
 
-% Comentar los problemas que surgieron, que el software no estaba listo y los agregados que se le hicieron al software a partir de esto.
-% Al principio el formato del show estaba distribuido en todos los nodos
+* obtención automática de la geometría
+
+Se logró resolver parcialmente el problema de la reconstrucción automática de la escena a mapear mediante la implementación de una aplicación que toma una nube de puntos ya capturada, la procesa y genera un objeto tridimensional en un formato soportado por VMT.
+Trabajo futuro: realizar mas pruebas con LoadMesh, jugar con parámetros de los algoritmos, mas benchmarks
+Se trabajó en el estudio de las técnicas y componentes existentes para la reconstrucción tridimensional de la escena, principalmente mediante la utilización del método de luz estructurada, en donde se experimentaron varios problemas, principalmente en la etapa de calibración del sistema cámara-proyector. 
+Se logró realizar exitosamente una prueba de concepto del método de escaneo de Kyle McDonald  (Three-Phase shift) (poner imagen de mi cara). Si bien este método logra obtener una representación tridimensional, tiene limitantes en cuanto a que las superficies a escanear deben ser continuas. Es por esta razón que fue descartado ya que escenas normalmente utilizadas en espectáculos de video mapping utilizan por lo general geometría discontinua.
+Si bien existen otros métodos de escaneo con SL que se adaptan mejor a superficies discontinuas, no existían prototipos ya desarrollados para realizar pruebas de concepto y se consideró fuera del alcance del proyecto.
+
+Trabajo futuro: evaluar y hacer andar un scanner que sirva para nuestro proposito.
+
+Durante el transcurso del proyecto surgió el dispositivo Kinect para el escaneo en tiempo real de objetos utilizando una implementación de luz estructurada. Con la liberación de su kit de desarrollo se incentivó su uso a desarrolladores de todo el mundo y para una variedad de propósitos. Esto motivó a enfocar el alcance en cuanto a la obtención de geometría en el procesamiento de la nube de puntos, independiente de cómo estos puntos se obtienen y finalmente abandonar el estudio de escáneres de bajo costo a incluir como parte del proyecto, ya que Kinect logra excelentes resultados y es muy accesible en términos de costos.
+
+Trabajo futuro: usar efectivamente Kinect para escaner algo y usarlo para mapping. Cerrar el ciclo.
+
+* Espectáculos en vivo
+
+Se realizaron dos espectáculos en vivo con la herramienta \emph{VMT} en una versión alfa: el evento de cierre de Ingeniería de Muestra año 2010\footnote{http://www.fing.edu.uy/eventos/ingenieria_demuestra/2010/index.html} y una exposición durante la noche de fallos de fin de curso de la Facultad de Arquitectura de la Universidad de la República. Durante la preparación y ejecución de los mismos se adquirió un conocimiento más profundo de qué es lo que se necesita para llevar adelante un espectáculo de estas características, lo que ayudó a definir las funcionalidades básicas que la aplicación debía cubrir. A partir de estas experiencias resaltó la importancia de la robustez y tolerancia a fallos que debe tener una aplicación que tiene como propósito la ejecución de espectáculos en vivo.
+Desde el punto de vista funcional, se identificaron varios aspectos de la aplicación en las que se debía trabajar para mejorarlos, como ser el agregado de un mismo evento en varios momentos en la línea de tiempo, la agrupación de \emph{quads} para aplicarles el mismo efecto especificándolo una única vez, la ejecución del espectáculo a partir de un instante dado de la línea de tiempo, todo lo anterior accesible mediante una interfaz gráfica de usuario que adopte criterios encontrados en aplicaciones orientadas al diseño en términos generales.
+En las instancias iniciales del desarrollo de la aplicación, se había decididido distribuir los archivos que contenían la definición del espectáculo en todos los nodos esclavo de \emph{VMT}, enviando desde el nodo maestro solamente los efectos en el instante que se debían ejecutar. Esto tenía varios problemas, por ejemplo durante la edición del espectáculo, ante cualquier modificación en los \emph{quads} u objetos tridimensionales, se debía actualizar el archivo de definición en cada nodo y posteriormente reiniciarlo.
+Debido a esta fuerte limitación se rediseñó la arquitectura y el protocolo de comunicación entre nodos maestro y esclavo, centralizando la definición del espectáculo en el nodo \emph{VMT} maestro y soportando la creación de todos los elementos mediante nuevos mensajes que se agregaron a dicho protocolo. Estos mensajes envían a cada nodo esclavo los objetos bidimensionales, tridimensionales, grupos de objetos, y efectos necesarios para la visualización del espectáculo en ese nodo en particular.
+De estas experiencias surgió además el inconveniente de que mediante el uso de redes inalámbricas para la interconexión de los nodos de \emph{VMT} para la configuración de un espectáculo, se producían pérdidas de mensajes durante la ejecución lo que ocasionaba un desfasaje en la reproducción en los diferentes nodos esclavo. Se decidió utilizar para el espectáculo de Facultad de Arquitectura una red cableada \emph{Ethernet} y se observaron mejoras notorias en cuanto a la calidad de la transmisión sin notar pérdida de mensajes.
+
+* Trabajos futuros
+
+Durante la ejecución del proyecto tanto en su estapa de investigación del estado del arte, desarrollo del paquete de software entregable, así como también producto de la experiencia obtenida en los dos espectáculos en vivo mencionados, es que se identificaron varias oportunidades de mejora de lo realizado así como también nuevas líneas de trabajo a seguir.
+
+Un aspecto en donde hay posibilidades de mejoras es la ampliación de las funcionalidades brindadas por la interfaz gráfica de usuario para permitir un uso más directo e intuitivo de la aplicación.
+Esto se puede lograr permitiendo posicionar y editar elementos bidimensionales y tridimensionales directamente mediante acciones de ratón, sin dejar de soportar la opción de posicionamiento mediante el ingreso de coordenadas ya que esto permite un control más preciso.
 
 
+GUI
+· Posicionar y editar quads y objetos3d con el mouse. permitiendo un uso más directo e intuitivo de la aplicación.
+· Creación de otras figuras 2d con distinta cantidad de vértices permitiendo que actúen también como máscaras.
+· Visualización del show completa integrando 2d con 3d, o sea, mostrar los quads proyectados sobre la escena 3d y no que solamente se vean en el nodo proyector. (Puede ser interesante pero es difícil de explicar y de implementar, si complica mucho no se menciona en trabajos a futuro)
 
+Modelo
+· Un conjunto de herramientas completo para la edición 3d para no depender fuertemente de software externo. En particular las funcionalidades de las que se depende de un software externo son la asignación de materiales a un conjunto de caras, la edición de vértices, etc(o se pone enumerado algo más o se va el etc).
 
+Scanning
+· avanzar en obtención de geometría, investigar en detalle SL y Kinect y su posterior utilización en un espectáculo de Video Mapping. Cerrar el ciclo.
 
-%Trabajos a futuro:
+Mapping
+· Un punto posible de extensión es la creación de más efectos genéricos como pueden ser animación de rotación, escala o modificadores de objetos tridimensionales, para dar mas posibilidades al usuario al momento de la creación del espectáculo.
 
-% Posicionar y editar quads y objetos3d con el mouse.
+· Enriquecer el tema del sonido creando herramientas para sincronizar este con el espectáculo, permitir sonidos como efectos, herramienta visual que muestre el dibujo de la onda.
 
-% Visualización del show completa integrando 2d con 3d, o sea, mostrar los quads proyectados sobre la escena 3d y no que solamente se vean en el nodo proyector.
-
-% Un punto posible de extensión es la creación de más efectos genéricos como pueden ser animación de rotación, escala o modificadores de objetos tridimensionales, para dar mas posibilidades al usuario al momento de la creación del espectáculo.
-
-% Extensibilidad a través de plugins, sería complejo, habría que soportar además un mecanismo de crear interfaces (desde el plugin) para configurar los mismos plugins.
+Extensibilidad
+· integración con software externo para delegar la producción de efectos visuales y pistas de audio, por ejemplo lo que hace VDMX con QuartzComposer. (Explicación de la idea de linkeo en tiempo real con otras app)
