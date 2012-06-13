@@ -1,39 +1,16 @@
 \chapter{Estado del arte}
 
-%Introduccion que unifique creación del espectáculo con obtención de la geometría.%
-%Si NO es posible unificarlos explicar de todas maneras que estas dos cosas se estudian como temas disjuntos, y como convivirían.%
-%Estas dos cosas por más que sean disjuntas se unen en la solución del proyecto.%
+El estado del arte se basa en el estudio de las técnicas de \emph{video mapping} y el modelado automático de geometrías.
+El proceso de creación de un espectáculo de \emph{video mapping} se analiza en este proyecto, dividiéndolo en tres etapas que son: el modelado de la escena, la producción del espectáculo y la proyección del mismo.
+Por su parte, el modelado automático es un área no solo relacionada al \emph{video mapping} sino que es aplicable también en distintas ramas de la ingeniería como son la visión de robots, animación tridimensional, interfaces persona-computador, entre otras. Es por esta razón que se decidió realizar un estudio de éstas técnicas, abordándose de forma genérica los problemas de obtención de una nube de puntos$^\dagger$ correspondientes a objetos tridimensionales reales y la reconstrucción de mallas$^\dagger$ tridimensionales para su utilización durante el proceso de creación de \emph{video mapping}.
 
 \section{Creación de un espectáculo de \emph{video mapping}}
 
 El proceso de creación de un espectáculo de \emph{video mapping} se analiza en este proyecto, dividiéndolo en tres etapas que son: el modelado de la escena, la producción del espectáculo y la proyección del mismo.
 Esta división surge del estudio del estado del arte que se apoya en entrevistas a \emph{VJs} y un relevamiento de las aplicaciones por ellos sugeridas, anexadas en los apéndices \titleref{chapter:aportes} y \titleref{chapter:aplicaciones}.
 
-En el modelado de la escena se obtiene una representación virtual y abstracta de los objetos reales sobre los que se proyectará.
-Este modelo será la base para trabajar en posteriores etapas y sobre el cuál se diseñará el espectáculo. En la figura \ref{fig:Efecto1} y \ref{fig:Efecto2} se presenta un efecto en una herramienta de software realizado con la imagen de la fachada como base realizando distorsiones sobre la misma.
-
-\begin{minipage}{0.50\textwidth}
-\begin{flushleft} \large
-\begin{figure}[H]
-  \centering
-    \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/celestin_head.jpg}
-  \caption[http://mappingvideo.blogspot.com/]{Vista del efecto en software.}
-  \label{fig:Efecto1}
-\end{figure}
-\end{flushleft}
-\end{minipage}
-\begin{minipage}{0.50\textwidth}
-\begin{flushright} \large
-\begin{figure}[H]
-  \centering
-    \includegraphics[width=0.75\textwidth]{./Cap2_videomapping/realcelestins_headshot.jpg}
-  \caption[http://mappingvideo.blogspot.com/]{Vista del efecto proyectado.}
-  \label{fig:Efecto2}
-\end{figure}
-\end{flushright}
-\end{minipage}
-
-
+En el modelado de la escena se obtiene una representación abstracta de los objetos reales sobre los que se proyectará.
+Este modelo será la base para trabajar en posteriores etapas y sobre el cuál se diseñará el espectáculo.
 En la siguiente etapa se realiza la producción del espectáculo que consiste en definir los distintos efectos visuales a ser aplicados sobre los objetos modelados.
 La reproducción de estos efectos podrá ser orquestada en el caso que el espectáculo sea una visualización de efectos predefinida, como las que se ven en presentaciones sobre fachadas y lanzamiento de productos.
 También un espectáculo podrá ser dinámico, en el cuál, un \emph{VJ} decidirá en tiempo real los efectos a desplegar.
@@ -128,7 +105,7 @@ Los ajustes necesarios varían dependiendo del método utilizado para obtener el
 
 \subsection{Enfoque tridimensional}
 \subsubsection{Modelo}
-Para el modelado tridimensional se pueden utilizar representaciones de cuerpos y superficies tridimensionales representadas por mallas$^\dagger$ de polígonos \cite{Mesh_building}, comúnmente utilizadas en disciplinas como cartografía, visión computacional y computación gráfica. A diferencia de un modelo bidimensional, éste no depende de un punto de vista, lo que permite al diseñador visualizar la escena desde diferentes ángulos. Las entidades que conforman la malla son vértices, aristas, caras y atributos numéricos que representan la posición y normales de los vértices, coordenadas de textura y colores. La topología de la malla puede variar, por ejemplo, los polígonos que la componen pueden tener distinta cantidad de vértices.
+Para el modelado tridimensional se pueden utilizar representaciones de cuerpos y superficies tridimensionales representadas por mallas de polígonos \cite{Mesh_building}, comúnmente utilizadas en disciplinas como cartografía, visión computacional y computación gráfica. A diferencia de un modelo bidimensional, éste no depende de un punto de vista, lo que permite al diseñador visualizar la escena desde diferentes ángulos. Las entidades que conforman la malla son vértices, aristas, caras y atributos numéricos que representan la posición y normales de los vértices, coordenadas de textura y colores. La topología de la malla puede variar, por ejemplo, los polígonos que la componen pueden tener distinta cantidad de vértices.
 
 \begin{minipage}{0.35\textwidth}
 \begin{flushleft} \large
@@ -166,7 +143,7 @@ Los modelos tridimensionales se generan utilizando distintas técnicas:
   %programas: 3D-Coat, Zbrush, y Mudbox
   \item Reconstrucción a partir de fotografías: se obtiene la representación de la superficie mediante mediciones de los objetos fotografiados. Conociendo la escala de la imagen se extrapola y se obtiene la distancia entre dos puntos en la superficie. Es usada en arquitectura, ingeniería, geología, arqueología, etc.
   %esta técnica es llamada fotogrametría en dos dimensiones, estereofotogrametría para obtener información tridimensional
-  \item Reconstrucción utilizando hardware especializado: utilizando escáneres tridimensionales se obtiene una nube de puntos$^\dagger$ que representa la superficie. Generalmente la cantidad de información obtenida es densa provocando redundancia. Es por esto que se utilizan algoritmos especializados para reducir la nube de puntos.
+  \item Reconstrucción utilizando hardware especializado: utilizando escáneres tridimensionales se obtiene una nube de puntos que representa la superficie. Generalmente la cantidad de información obtenida es densa provocando redundancia. Es por esto que se utilizan algoritmos especializados para reducir la nube de puntos.
   %explicar que el ruido tambien genera informacion que se debe depurar%
   %se puede poner una nota al pie, que esta técnica se ampliará en el capítulo Reconstrucción
 
