@@ -64,7 +64,7 @@ Son ejemplos de modelos:
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/RepresentacionconfigurasGeometricas}
-  \caption{Representación con figuras geométricas.}%imagen nuestra no necesita referencia%
+  \caption[Imagen propia]{Representación con figuras geométricas.}
   \label{fig:RepresentacionconfigurasGeometricas}
 \end{figure}
 Al usar el proyector para obtener el modelo queda incorporada la perspectiva del mismo y si no se modifica su posición y orientación no sería necesaria otra calibración.
@@ -74,11 +74,34 @@ Una forma automática de generar el modelo es utilizando técnicas de visión po
 
 \subsubsection{Producción del espectáculo}
 La producción del espectáculo en dos dimensiones consiste en definir efectos visuales sobre regiones de un espacio bidimensional discreto$^\dagger$ representadas en el modelo de la escena. Este espacio bidimensional discreto se representa con coordenadas de pantalla que identifican cada uno de los píxeles$^\dagger$ del área de trabajo. Los efectos visuales se logran realizando cualquier animación computacional que genere una salida gráfica como pueden ser videos e imágenes.
-En esta etapa, además de definir los efectos, se planifica en qué momento se mostrarán cada uno de ellos, pudiendo sincronizarse con la música que forma parte del espectáculo.
-%Mencionar caso de espectaculos en vivo%
+En esta etapa, además de definir los efectos, se planifica cuando se mostrarán cada uno de ellos, pudiendo sincronizarse con la música que forma parte del espectáculo.
+Los efectos podrán ser mostrados de forma secuencial, planificando en qué instante se ejecutará cada uno de ellos, o también definiendo acciones para que un \emph{VJ} decida en tiempo real en un espectáculo en vivo, los efectos a desplegar.
 
 En computación gráfica se utilizan texturas para proyectar videos e imágenes sobre regiones del área de trabajo. Las texturas son mapas de bits$^\dagger$ utilizados para cubrir la superficie de un objeto virtual. Estos mapas de bits pueden ser generados a partir de imágenes, videos, o incluso dinámicamente mediante algoritmos permitiendo así crear efectos visuales como, por ejemplo, la transición de un color a otro.
-Cuando se utilizan videos estos pueden ser generados teniendo en cuenta la superficie donde se está proyectando y el punto de vista desde donde se contemplará el espectáculo. Esto es particularmente importante cuando el contenido a mostrar pretende crear una ilusión tridimensional, pues la perspectiva debe coincidir con la de los espectadores.%ampliar o explicar mejor%
+
+\begin{minipage}{0.50\textwidth}
+	\begin{flushleft} \large
+		\begin{figure}[H]
+		  \centering
+			\includegraphics[width=0.7\textwidth]{./Cap2_videomapping/celestin_head.jpg}
+		  \caption[http://mappingvideo.blogspot.com/]{Izq. efecto en una herramienta de software. Der. Efecto proyectado.}
+		  \label{fig:Efecto1}
+		\end{figure}
+	\end{flushleft}
+\end{minipage}
+\begin{minipage}{0.50\textwidth}
+	\begin{flushright} \large
+		\begin{figure}[H]
+		  \centering
+			\includegraphics[width=0.75\textwidth]{./Cap2_videomapping/realcelestins_headshot.jpg}
+		  \caption[http://mappingvideo.blogspot.com/]{Vista del efecto proyectado.}
+		  \label{fig:Efecto2}
+		\end{figure}
+	\end{flushright}
+\end{minipage}
+
+Cuando se utilizan videos, estos pueden ser generados teniendo en cuenta la superficie donde se está proyectando y el punto de vista desde donde se contemplará el espectáculo. Esto es particularmente importante cuando el contenido a mostrar pretende crear una ilusión tridimensional, pues la perspectiva de las formas proyectadas en el efecto debe ser coherente con la escena desde la óptica de los espectadores.
+
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/3dillusion}
@@ -86,18 +109,30 @@ Cuando se utilizan videos estos pueden ser generados teniendo en cuenta la super
   \label{fig:3dillusion}
 \end{figure}
 
-En este contexto se habla de mapeo, no como la salida a través de un equipo proyector, sino como la operación que logra una correspondencia entre una textura y una figura geométrica que no necesariamente coinciden en tamaño y forma. Para esto se definen coordenadas de textura en cada vértice de la figura geométrica que referencian distintas ubicaciones dentro de la misma.
-Las coordenadas de las texturas tienen dos componentes: una horizontal y una vertical llamadas U y V. Si el valor de estas componentes se normaliza entre 0 y 1 entonces la esquina superior izquierda de la textura se corresponderá con la coordenada (0,0), la superior derecha con (1,0), la inferior izquierda con (0,1) y la inferior derecha con (1,1).
-%agregar referencia a correspondencia de textura en un objeto, ver para imagen http://en.wikipedia.org/wiki/UV_mapping
-Los vértices de una figura geométrica se asocian con coordenadas UV que definen el punto de la textura que se corresponde sobre el vértice. Mediante interpolación se logra mapear toda la textura a la figura geométrica.
+En este contexto se habla de mapeo, no como la salida a través de un equipo proyector, sino como la operación que logra una correspondencia entre una textura y una figura geométrica que no necesariamente coinciden en tamaño y forma. Para esto se definen coordenadas de textura en cada vértice de la figura geométrica que referencian distintas ubicaciones dentro de dicha textura.
+Las coordenadas de las texturas tienen dos componentes: una horizontal y una vertical llamadas $U$ y $V$. Si el valor de estas componentes se normaliza entre $0$ y $1$ entonces la esquina superior izquierda de la textura se corresponderá con la coordenada $(0,0)$, la superior derecha con $(1,0)$, la inferior izquierda con $(0,1)$ y la inferior derecha con $(1,1)$.
+
+%Realizar imagen de una textura simple y un quad deformado para explicar como se mapean las texturas.
+%\begin{figure}[H]
+%  \centering
+%    \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/3dillusion}
+%  \caption[vvvv.org]{Izq. Ilusión 3D lograda. Der. No se logra la ilusión.}
+%  \label{fig:3dillusion}
+%\end{figure}
+
+Los vértices de una figura geométrica se asocian con coordenadas $UV$ que definen el punto de la textura que se corresponde sobre el vértice y es mediante interpolación como se logra mapear toda la textura a la figura geométrica.
 Si bien es posible mapear una textura a cualquier figura geométrica, esta correspondencia es más directa utilizando un cuadrilátero ya que a cada uno de los vértices se lo hace corresponder con una esquina de la textura. A su vez el cuadrilátero es la figura básica en las aplicaciones\footnote{Las aplicaciones relevadas utilizan el cuadrilátero como figura básica. Ver apéndice: Aplicaciones relevadas.} de \emph{video mapping}.
 Estos cuadriláteros se utilizan como piezas constructoras del espectáculo, cubriendo sectores del modelo sobre los cuales luego se aplican las texturas permitiendo crear los distintos efectos visuales.
 
-\subsubsection{Calibración}
-La calibración se utiliza para ajustar el modelo con la superficie que representa. Inicialmente se fija la posición y orientación del proyector y luego, con ayuda de herramientas de software, se aplica la transformación geométrica homografía\footnote{Ver sección: Obtención de geometría} a la proyección resultante, para lograr la correspondencia.
-En caso de haber modificaciones en la posición y orientación del proyector la calibración deberá realizase nuevamente. %reescribir esta oración%
+\subsubsection{Calibración de la proyección}
+La calibración es el proceso mediante el cual se ajusta el modelo a proyectar con la superficie que representa.
+Los ajustes necesarios varían dependiendo del método utilizado para obtener el modelo. En caso de utilizar una fotografía, el proyector deberá ser ubicado de forma tal que el punto de vista de la cámara con la que se tomó coincida con el del proyector y así lograr la coincidencia del centro de proyección. Igualmente son necesarios ajustes ya que los lentes de la cámara y el proyector no necesariamente coinciden en el ángulo de visión \cite{LibroCompGrafica2}\cite{LibroPhotographicOptics}. Con el método de generación de figuras geométricas en el que se modelan las secciones de la superficie a mapear utilizando el mismo proyector, los ajustes se reducen a lograr la misma posición y orientación que tenía el proyector al momento de la captura de secciones, ya que las deformaciones relacionadas a los parámetros intrínsecos fueron implícitamente consideradas durante el proceso de captura.
 
-Los ajustes necesarios varían dependiendo del método utilizado para obtener el modelo. En caso de utilizar una fotografía, el proyector deberá ser ubicado de forma tal que el punto de vista de la cámara con la que se tomó coincida con el del proyector y así lograr la coincidencia del centro de proyección. Igualmente son necesarios ajustes ya que los lentes de la cámara y el proyector no necesariamente coinciden en el ángulo de visión \cite{LibroCompGrafica2}\cite{LibroPhotographicOptics}. Con el método de generación de figuras geométricas, en el que se modelan las secciones de la superficie a mapear utilizando el mismo proyector, los ajustes se reducen a lograr la misma posición y orientación que tenía el proyector al momento de la captura de secciones, ya que las deformaciones relacionadas a los parámetros intrínsecos fueron implícitamente consideradas durante el proceso de captura.
+%La calibracion se puede hacer de forma manual en el modelo, ajustando la posicion de cada elemento (fig geom)%
+%El mismo resultado se puede obtener tanto modificando la posicion del proyector como aplicando transformacion sobre la proyeccion...
+En cualquiera de estos dos métodos, lograr que la posición y orientación del proyector coincidan con el punto de vista desde donde se obtuvo el modelo puede no ser una tarea sencilla. Esta tarea se puede ajustar, modificando la proyección mediante una homografía\footnote{Esto se extiende en la sección: Obtención de geometría} que es la transformación geométrica que permite corresponder puntos en dos planos de perspectiva distintos, logrando de esta manera ajustar la perspectiva del modelo proyectado.
+
+Los parámetros de calibración obtenidos al lograr la correspondencia son particulares para cierta posición y orientación del proyector. En caso de haber modificaciones en la ubicación del proyector, este proceso deberá ser llevado a cabo nuevamente.
 
 \subsection{Enfoque tridimensional}
 \subsubsection{Modelo}
