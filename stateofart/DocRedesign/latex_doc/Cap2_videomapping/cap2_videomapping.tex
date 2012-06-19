@@ -6,33 +6,15 @@ Por su parte, el modelado automático es un área no solo relacionada al \emph{v
 
 \section{Creación de un espectáculo de \emph{video mapping}}
 
-La creación de un espectáculo de \emph{video mapping} se presenta en tres etapas que son: el modelado de la escena, la producción del espectáculo y la proyección del mismo.
-Durante la etapa de modelado de la escena se obtiene una representación abstracta de los objetos reales sobre los que se proyectará, siendo éste modelo la base para trabajar en posteriores etapas sobre el cuál se diseñará el espectáculo.
-En la siguiente etapa se realiza la producción del espectáculo que consiste en definir los distintos efectos visuales a ser aplicados sobre los objetos modelados y la forma en que serán ejecutados.
-
-%REESCRIBIR esta oración con las siguientes 4 para que quede bien.
-El VJ organiza la ejecución de efectos distinguiendose 2 enfoques: En tiempo real los efectos se realizan por acciones predefinidas. Otro es la ejecución secuencial fijando un tiempo específico del espectáculo.
-
-La reproducción de estos efectos podrá ser orquestada en el caso que el espectáculo sea una secuencia predefinida de efectos, como las que se ven en presentaciones sobre fachadas y lanzamiento de productos.
-También un espectáculo podrá ser dinámico, en el cuál, un \emph{VJ} decidirá en tiempo real los efectos a desplegar.
-En este caso no se realiza una orquestación de los efectos en esta etapa, sino que se define una interfaz para que el \emph{VJ} ejecute de forma simple el efecto deseado.
-Esto puede ser, por ejemplo, definiendo una tecla para cada efecto a mostrar.
-
+La creación de un espectáculo de \emph{video mapping} se presenta en tres etapas: el modelado de la escena, la producción del espectáculo y la proyección del mismo.
+Durante la etapa de modelado de la escena, se obtiene una representación abstracta de los objetos reales sobre los que se proyectará. Este modelo constituye la base para trabajar en posteriores etapas y sobre él se diseñará el espectáculo.
+La siguiente etapa, la producción del espectáculo, consiste en definir los distintos efectos visuales a ser aplicados sobre los objetos modelados y la forma en que serán ejecutados. Los espectáculos pueden discriminarse en dos categorías según si los efectos se presentan en una secuencia predefinida o si se presentan en tiempo real.
+Si la secuencia a ejecutar es predefinida, en esta etapa se define dicha secuencia indicando el instante en que cada efecto se desplegará. Esto por lo general se hace de forma sincronizada con la música que suele acompañar al espectáculo. Por otra parte, si la ejecución de los efectos se define en tiempo real, esta etapa es utilizada para definir los mecanismos que desencadenan la ejecución de los efectos. Así por ejemplo, se podría definir como mecanismo un teclado, asignando una tecla distinta a cada efecto para que el \emph{VJ} los ejecute a voluntad propia en la presentación.
 En esta etapa también se diseña y produce la musicalización que será utilizada durante todo el espectáculo.
-
-Es en la proyección del espectáculo en donde se puede contemplar el resultado de los distintos efectos visuales proyectados sobre las superficies acompañados por efectos de sonido.
+Es en la etapa de proyección del espectáculo en donde se puede contemplar el resultado de los distintos efectos visuales proyectados sobre las superficies, acompañados estos por efectos de sonido.
 Para lograr la correspondencia en la proyección de los objetos del modelo con las superficies se debe calibrar la proyección.
-Esta correspondencia se logra modificando el modelo de la escena, ajustando la posición y orientación de los proyectores, y ajustando los parámetros intrínsecos$^\dagger$ de la proyección.
-
-%REDACCION INDIA
-Cada una de estas etapas será abordada en esta sección desde dos enfoques diferentes: bidimensional y tridimensional.
-Esta distinción se realiza porque dependiendo del enfoque utilizado, los problemas a resolver son diferentes.
-Cada uno de estos enfoques serán más convenientes de utilizar dependiendo del escenario.
-
-% 
-% distinto nivel de abstracción, bidimensional es más fácil de implementar y es intuitivo para superficies planas. No tanto para distintas de las planas.
-% tridimensional incluye elementos como cámaras y proyectores virtuales, es más intuitivo para superficies no planas (incluye el caso de las planas)
-%
+Esto se logra modificando el modelo de la escena, ajustando la posición y orientación de los proyectores, así como los parámetros intrínsecos$^\dagger$ de la proyección.
+Cada una de estas etapas será abordada en esta sección desde dos enfoques: bidimensional y tridimensional, ya que tanto los problemas que plantean, así como los escenarios de aplicación difieren en cada caso, según el enfoque.
 
 \begin{figure}[H]
   \centering
@@ -52,7 +34,7 @@ En caso de utilizar más de un proyector cada uno de estos será posicionado en 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/diagrama-2proyectores}
-  \caption{Proyectores y sus puntos de vista.}% vvvv.org/ %
+  \caption[vvvv.org]{Proyectores y sus puntos de vista.}
   \label{fig:diagrama-2proyectores}
 \end{figure}
 
@@ -111,18 +93,16 @@ Cuando se utilizan videos, estos pueden ser generados teniendo en cuenta la supe
 
 En este contexto se habla de mapeo, no como la salida a través de un equipo proyector, sino como la operación que logra una correspondencia entre una textura y una figura geométrica que no necesariamente coinciden en tamaño y forma. Para esto se definen coordenadas de textura en cada vértice de la figura geométrica que referencian distintas ubicaciones dentro de dicha textura.
 Las coordenadas de las texturas tienen dos componentes: una horizontal y una vertical llamadas $U$ y $V$. Si el valor de estas componentes se normaliza entre $0$ y $1$ entonces la esquina superior izquierda de la textura se corresponderá con la coordenada $(0,0)$, la superior derecha con $(1,0)$, la inferior izquierda con $(0,1)$ y la inferior derecha con $(1,1)$.
-
-%Realizar imagen de una textura simple y un quad deformado para explicar como se mapean las texturas.
-%\begin{figure}[H]
-%  \centering
-%    \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/3dillusion}
-%  \caption[vvvv.org]{Izq. Ilusión 3D lograda. Der. No se logra la ilusión.}
-%  \label{fig:3dillusion}
-%\end{figure}
-
 Los vértices de una figura geométrica se asocian con coordenadas $UV$ que definen el punto de la textura que se corresponde sobre el vértice y es mediante interpolación como se logra mapear toda la textura a la figura geométrica.
 Si bien es posible mapear una textura a cualquier figura geométrica, esta correspondencia es más directa utilizando un cuadrilátero ya que a cada uno de los vértices se lo hace corresponder con una esquina de la textura. A su vez el cuadrilátero es la figura básica en las aplicaciones\footnote{Las aplicaciones relevadas utilizan el cuadrilátero como figura básica. Ver apéndice: Aplicaciones relevadas.} de \emph{video mapping}.
 Estos cuadriláteros se utilizan como piezas constructoras del espectáculo, cubriendo sectores del modelo sobre los cuales luego se aplican las texturas permitiendo crear los distintos efectos visuales.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/2dmapping}
+  \caption[Imagen propia.]{Izq. Textura. Der. Cuadrilátero con textura mapeada.}
+  \label{fig:2dmapping}
+\end{figure}
 
 \subsubsection{Calibración de la proyección}
 La calibración es el proceso mediante el cual se ajusta el modelo a proyectar con la superficie que representa.
@@ -162,7 +142,6 @@ En el modelado tridimensional se representan cuerpos y superficies tridimensiona
 
 Existen técnicas como la de \emph{remeshing} que mediante la utilización de algoritmos específicos reducen la cantidad de vértices de la malla sin perder la representatividad de la superficie. De esta forma se logra eficiencia en algoritmos cuyo orden varía dependiendo de la cantidad de vértices y optimización en el almacenamiento de estas representaciones. 
 
-
 Los modelos tridimensionales se generan utilizando distintas técnicas:
 \begin{itemize}
   \item Modelado utilizando polígonos: a partir de mallas que representan figuras primitivas se podrán construir nuevas mallas.
@@ -184,6 +163,13 @@ La producción del espectáculo en tres dimensiones agrega un nivel de abstracci
 Se plantea un cambio en la forma de trabajar en el espectáculo y planificar la producción, ya que el diseñador no estará restringido a considerar ubicación alguna de los proyectores.
 
 El modo de trabajo se basa en mapear texturas sobre las caras de los objetos tridimensionales de forma análoga a como se realiza sobre figuras bidimensionales. En este tipo de modelos podría ser deseable mapear una textura de forma que abarque varias caras del mismo objeto tridimensional, por ejemplo, el conjunto de caras que representa la superficie lateral curva de un cilindro. Para lograrlo se deben mapear distintos sectores de la textura en cada una de las caras que conforman la superficie, utilizando coordenadas de textura en cada uno de los vértices. La diferencia está en que en este enfoque los vértices no se encuentran necesariamente en el mismo plano, por lo que ajustar una textura bidimensional a este tipo de superficies no es tan directo. Para ello existen técnicas que asisten en la tarea de definir las coordenadas de textura. Una de ellas consiste en aproximar la superficie por una primitiva conocida, más simple, como ser un cubo, cilindro, esfera o plano. Para estas superficies existen funciones matemáticas que proyectan cada punto de la superficie a un plano. De esta forma se pueden determinar las coordenadas $UV$. Un ejemplo de esto para esferas son las proyecciones utilizadas para representar el planisferio como la proyección cilíndrica equidistante \cite{flatteningTheEarth}. Otra técnica es $UV$ \emph{unwrapping} que consiste en desenvolver los vértices de la superficie, aplanándolos sobre la textura. De esta forma el mapeo se realiza de forma más intuitiva ya que la superficie aplanada es bidimensional al igual que la textura. Esta técnica es soportada por la mayoría de los programas de edición de gráficos tridimensionales que proveen distintas herramientas para ajustar la forma en que se desenvuelve la textura.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/3dmapping}
+  \caption[Imagen propia.]{Izq. Textura. Der. Esferas con distintos mapeos de la misma textura.}
+  \label{fig:3dmapping}
+\end{figure}
 
 En la escena tridimensional los objetos son visualizados utilizando cámaras virtuales que fijan un punto de vista. En la salida gráfica se representará entonces la escena desde la perspectiva de una cámara virtual, permitiendo visualizarla desde distintos ángulos. Esto posibilita definir el punto de vista del proyector que reproducirá la salida gráfica en el momento que se desee. Un caso sería visualizar el resultado del espectáculo luego de producido y en este momento definir el punto de vista más conveniente.
 
