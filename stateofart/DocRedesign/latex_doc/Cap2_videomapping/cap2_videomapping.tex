@@ -104,8 +104,8 @@ Estos cuadriláteros se utilizan como piezas constructoras del espectáculo, cub
   \label{fig:2dmapping}
 \end{figure}
 
-\subsubsection{Calibración de la proyección}
-La calibración es el proceso mediante el cual se ajusta el modelo a proyectar con la superficie que representa.
+\subsubsection{Proyección del espectáculo}
+La principal dificultad encontrada en la etapa de la proyección del espectáculo es lograr que el modelo previamente generado se corresponda con la escena sobre la cuál se proyectará. El proceso que ajusta este modelo a proyectar con la superficie que representa es denominado calibración.
 Los ajustes necesarios varían dependiendo del método utilizado para obtener el modelo. En caso de utilizar una fotografía, el proyector deberá ser ubicado de forma tal que el punto de vista de la cámara con la que se tomó coincida con el del proyector y así lograr la coincidencia del centro de proyección. Igualmente son necesarios ajustes ya que los lentes de la cámara y el proyector no necesariamente coinciden en el ángulo de visión \cite{LibroCompGrafica2}\cite{LibroPhotographicOptics}. Con el método de generación de figuras geométricas en el que se modelan las secciones de la superficie a mapear utilizando el mismo proyector, los ajustes se reducen a lograr la misma posición y orientación que tenía el proyector al momento de la captura de secciones, ya que las deformaciones relacionadas a los parámetros intrínsecos fueron implícitamente consideradas durante el proceso de captura.
 
 %La calibracion se puede hacer de forma manual en el modelo, ajustando la posicion de cada elemento (fig geom)%
@@ -116,14 +116,14 @@ Los parámetros de calibración obtenidos al lograr la correspondencia son parti
 
 \subsection{Enfoque tridimensional}
 \subsubsection{Modelo}
-En el modelado tridimensional se representan cuerpos y superficies tridimensionales por medio de mallas de polígonos \cite{Mesh_building}, comúnmente utilizadas en disciplinas como cartografía, visión computacional y computación gráfica. A diferencia de un modelo bidimensional, éste no depende de un punto de vista, lo que permite al diseñador visualizar la escena desde diferentes ángulos. Las entidades que conforman la malla son vértices, aristas, caras y atributos numéricos que representan la posición y normales de los vértices, coordenadas de textura y colores. Existen distintas topología$^\dagger$ de mallas de polígonos, y una clasificación común es la que se basa en la cantidad de vérticies que forman una cara.
+En el modelado tridimensional se representan cuerpos y superficies tridimensionales comúnmente representadas por medio de mallas de polígonos \cite{Mesh_building}, utilizadas en disciplinas como visión computacional y computación gráfica. A diferencia de un modelo bidimensional, éste no depende de un punto de vista, lo que permite al diseñador visualizarlo desde diferentes ángulos mediante la definición de cámaras virtuales. Las entidades que conforman la malla son vértices, aristas, caras y atributos numéricos que representan la posición y normales de los vértices, coordenadas de textura y colores. Existen distintas topologías$^\dagger$ de mallas de polígonos, y una clasificación común es la que se basa en la cantidad de vérticies que forman una cara.
 
 \begin{minipage}{0.35\textwidth}
 \begin{flushleft} \large
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/EjemploMallaTriangular}
-  \caption{Mallas triangulares.}%ref  http://stochastix.wordpress.com/2008/07/15/bust-of-mystery/ %
+  \caption[http://stochastix.wordpress.com/2008/07/15/bust-of-mystery]{Mallas triangulares.}
   \label{fig:mallas1}
 \end{figure}
 \end{flushleft}
@@ -133,7 +133,7 @@ En el modelado tridimensional se representan cuerpos y superficies tridimensiona
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.75\textwidth]{./Cap2_videomapping/EjemploMalla4Vertices}
-  \caption{Mallas de cuadriláteros.}%ref  http://www.fallingpixel.com/perfect-sphere-mesh-384-polygons-3d-model/35623  %
+  \caption[http://www.fallingpixel.com/perfect-sphere-mesh-384-polygons-3d-model/35623]{Mallas de cuadriláteros.}
   \label{fig:mallas2}
 \end{figure}
 
@@ -155,8 +155,8 @@ Los modelos tridimensionales se generan utilizando distintas técnicas:
   %esta técnica es llamada fotogrametría en dos dimensiones, estereofotogrametría para obtener información tridimensional
   \item Reconstrucción utilizando hardware especializado: mediante escáneres tridimensionales se obtiene una nube de puntos que representa la superficie. Generalmente el conjunto de puntos obtenido es denso, probablemente con redundancia y con errores. Es por esto que se utilizan algoritmos específicos para reducir la nube de puntos \footnote{Esta técnica se ampliará en la sección Obtención de Geometía}.
   \end{itemize}
-Para técnicas de modelado utlizando polígonos y curvas dos herramientas populares son  Maya, 3D Studio Max, mientras que para a la realización de esculpido digital son también muy utilizadas 3D-Coat, Zbrush, y Mudbox. 
-  % imagenes con referencia de cada una de las herramientas
+Para técnicas de modelado utlizando polígonos y curvas, algunas de las herramientas más populares son Maya y 3D Studio Max, mientras que para la realización de esculpido digital son también muy utilizadas 3D-Coat, Zbrush, y Mudbox. 
+% imagenes con referencia de cada una de las herramientas
   
 \subsubsection{Producción del espectáculo}
 La producción del espectáculo en tres dimensiones agrega un nivel de abstracción adicional a la producción bidimensional. Esto permite que el diseñador cree un espectáculo transformando directamente los objetos del modelo tridimensional y no sus perspectivas como en el anterior enfoque.
@@ -177,7 +177,11 @@ Producir el espectáculo transformando directamente los objetos y no sus perspec
 
 Si bien se está abordando un enfoque tridimensional de la producción del espectáculo, existen casos en que es más sencilla la implementación de ciertos efectos tomando un enfoque en dos dimensiones, sobre todo cuando estos se aplican sobre regiones planas de la superficie. Es por esto que es muy común combinar ambos enfoques y utilizarlos de acuerdo a las necesidades del diseñador. Cabe aclarar que al combinar los enfoques se pierden las ventajas de definir el punto de vista del proyector luego de la producción por lo que los objetos bidimensionales y efectos sobre estos se deben definir una vez fijada la ubicación de los proyectores.
 
-\subsubsection{Calibración}
+\subsubsection{Proyección del espectáculo}
+
+En la proyección del espectáculo es cuando se fija finalmente el punto de vista desde donde se proyectará, definiendo la ubicación y orientación de los proyectores.
+La calibración consiste en modificar los parámetros de las cámaras virtuales para lograr que la proyección del modelo se ajuste sobre la superficie a proyectar.
+La ubicación y orientación relativas de la cámara virtual y la escena deberán corresponderse a las del proyector con las superficies a proyectar.
 %Hablar de forma genérica de la calibración%
 
 %Redondear el tema de ENFOQUE 2D y 3D luego de hablar de las 3 etapas%
@@ -192,14 +196,11 @@ Se introducen distintos métodos que permiten la construcción automática de mo
 
 En esta sección se estudian los fundamentos matemáticos, técnicas y dispositivos relacionados al problema de la correspondencia de puntos de la realidad con puntos bidimensionales en el plano imagen obtenido por una cámara, y la posterior determinación de su profundidad. 
 
-\subsubsection{Correspondencia}
-
 \subsubsection{Visión estéreo}
 
-\cite {StereoReview} El análisis de imágenes de video en estéreo se ha utilizado como método para reconstruir la estructura tridimensional de una escena. Este método no utiliza luz auxilar por lo que se clasifica como un método pasivo. El análisis de las imágenes se realiza por medio de algoritmos que han evolucionado en los últimos tiempos logrando la reconstrucción de escenas rápidamente. Es por esto que esta técnica es muy utilizada en implementaciones que necesitan respuesta en tiempo real.
+\cite{StereoReview} El análisis de imágenes de video en estéreo se ha utilizado como método para reconstruir la estructura tridimensional de una escena. Este método no utiliza luz auxilar por lo que se clasifica como un método pasivo. El análisis de las imágenes se realiza por medio de algoritmos que han evolucionado en los últimos tiempos logrando la reconstrucción de escenas rápidamente. Es por esto que esta técnica es muy utilizada en implementaciones que necesitan respuesta en tiempo real.
 
-Un primer paso es resolver el problema de la correspondencia, en el que dadas dos imágenes de la escena para todos los puntos de una imagen se obtiene el punto correspondiente en la otra y se calcula la desigualdad de cada punto, es decir la distancia en \emph{pixels} entre los puntos que se corresponden. Luego se calcula la profundidad del punto utilizando el método de triangulación\footnote{ver anexo de método de triangulación} en el cual se obtiene la distancia focal de cada punto a cada una de las cámaras.
-
+Un primer paso es resolver el problema de la correspondencia, en el que dadas dos imágenes de la escena para todos los puntos de una imagen se obtiene el punto correspondiente en la otra y se calcula la desigualdad de cada punto, es decir la distancia en píxeles entre los puntos que se corresponden. Luego se calcula la profundidad del punto utilizando el método de triangulación\footnote{ver anexo de método de triangulación} en el cual se obtiene la distancia focal de cada punto a cada una de las cámaras.
 
 \begin{figure}[H]
   \centering
@@ -217,21 +218,22 @@ Un caso particular consta de ejes ópticos de las cámaras paralelos y en consec
 
 En los casos más comunes no se tienen estas características, y por ello es necesario introducir parámetros en los cálculos que hacen el ajuste del modelo ideal, modelo \emph{pinhole} al modelo de las cámaras reales. 
 
-Existen variedad de algorimos que solucionan el problema de correspondecia y cálculo de desigualdad entre los puntos de las dos imágenes, y se clasifican según diferencias en las imágenes destacándose dos estrategias:
+Existen variedad de algoritmos que solucionan el problema de correspondecia y cálculo de desigualdad entre los puntos de las dos imágenes, y se clasifican según diferencias en las imágenes destacándose dos estrategias:
 \begin{itemize}
-   \item \emph{separate area}: basada en correlación del brillo e intensidad. Se utilizan patrones de brillo aplicados a un píxel y sus vecinos utilizando principio de localidad. Las diferencias en la perspectiva de la imágen o cambios en luminosidad absoluta de la escena pueden generar errores.
-   \item \emph{features}: las características usadas para la correspondencia son aristas, puntos o segmentos dadas por cambios de intensidad de la imagen. Esta estrategia es más estable ante la variación de luminosidad absoluta y en la práctica la correspondencia es más rápida.
+   \item \emph{Separate area}: basada en correlación del brillo e intensidad. Se utilizan patrones de brillo aplicados a un píxel y sus vecinos utilizando principio de localidad. Las diferencias en la perspectiva de la imágen o cambios en luminosidad absoluta de la escena pueden generar errores.
+   \item \emph{Features}: las características usadas para la correspondencia son aristas, puntos o segmentos dadas por cambios de intensidad de la imagen. Esta estrategia es más estable ante la variación de luminosidad absoluta y en la práctica la correspondencia es más rápida.
 \end{itemize}
 La principal desventaja de este método es que en caso de oclusión, hay regiones que no tienen correspondencia en las dos imágenes por esto no se puede resolver el problema de correspondencia para estas regiones.
 
 \subsubsection{Luz estructurada}
 
-Un método basado en la técnica de luz estructurada consiste en un sistema formado por una o mas cámaras de video mas un proyector que despliega distintos patrones sobre la superficie a modelar. Los patrones son capturadas por la o las cámara de video para su posterior analisis. Mediante patrones codificados apropiadamente para la escena observada, se resuelve el problema de correspondencia de los puntos de la escena con los capturados, y luego, mediante un análisis de las deformaciones de los patrones se obtiene información tridimensional de la posición, orientación y textura de la superficie\cite{SLightPatterns}.
+Luz estructurada es una técnica de obtención de geometría tridimensional que consiste en la proyección de patrones sobre la superficie a capturar para luego analizar la deformación de los mismos y obtener una nube de puntos que la representan.
+Un método basado en la técnica de luz estructurada consiste en un sistema formado por una cámara de video y un proyector que despliega distintos patrones sobre la superficie a modelar. Los patrones son capturados por la cámara de video para su posterior análisis obteniendo información tridimensional de la posición, orientación y textura de la superficie\cite{SLightPatterns}.
 
 \paragraph{Clasificación de patrones}
 
-Los sistemas que utilizan luz estructurada se basan en la proyeccion de un patron o secuencia de patrones que identifican cada uno de los \emph{pixeles} en la región iluminada mediante una palabra clave. 
-La figura XXX muestra la clasificacion de patrones propuesta en \cite{SLightClassification} en la que se diferencian principalmente por la naturaleza continua o discreta de los mismos. 
+Los sistemas que utilizan luz estructurada se basan en la proyección de un patrón o secuencia de patrones que identifican cada uno de los píxeles en la región iluminada mediante una palabra clave.
+La figura \ref{fig:SLPatternClassification} muestra la clasificación de patrones propuesta en \cite{SLightClassification} en la que se diferencian principalmente por la naturaleza continua o discreta de los mismos.
 
 %figura de patrones clasificados%
 \begin{figure}[H]
