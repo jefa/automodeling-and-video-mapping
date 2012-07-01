@@ -202,26 +202,25 @@ La ubicación y orientación relativas de la cámara virtual y la escena deberá
 
 \section{Obtención de geometría}
 
-En este capítulo se presenta la reconstrucción tridimensional automática de una superficie utilizando técnicas computacionales.
+En esta sección se presenta la reconstrucción tridimensional automática de una superficie utilizando técnicas computacionales.
 Se introducen distintos métodos que permiten la construcción automática de modelos, discutiendo sus características según propiedades de la superficie a representar y tecnologías utilizadas. Inicialmente se obtiene una nube de puntos correspondiente a la superficie utilizando técnicas y dispositivos para este propósito, para luego procesar la información obtenida y construir una malla tridimensional. Mediante este procesamiento se obtienen propiedades adicionales como grupos de puntos que representan caras de una malla y las normales que identifican la orientación de la superficie.
 
 \subsection{Obtención de la nube de puntos}
 
-En esta sección se estudian los fundamentos matemáticos, técnicas y dispositivos relacionados al problema de la correspondencia de puntos de la realidad con puntos bidimensionales en el plano imagen obtenido por una cámara, y la posterior determinación de su profundidad. 
+A continuación se estudian los fundamentos matemáticos, técnicas y dispositivos relacionados al problema de la correspondencia de puntos de la realidad con puntos bidimensionales en el plano imagen obtenido por una cámara, y la posterior determinación de su profundidad.
 
 \subsubsection{Visión estéreo}
 
-\cite{StereoReview} El análisis de imágenes de video en estéreo se ha utilizado como método para reconstruir la estructura tridimensional de una escena. Este método no utiliza luz auxilar por lo que se clasifica como un método pasivo. El análisis de las imágenes se realiza por medio de algoritmos que han evolucionado en los últimos tiempos logrando la reconstrucción de escenas rápidamente. Es por esto que esta técnica es muy utilizada en implementaciones que necesitan respuesta en tiempo real.
-
+\cite{StereoReview} La visión estéreo se basa en el análisis de dos imágenes observadas desde puntos de vista ligeramente diferentes, de forma similar a la visión humana, para reconstruir la estructura tridimensional de una escena. Este método entra en la categoría de los métodos pasivos por no utilizar luz auxilar. El análisis de las imágenes se realiza por medio de algoritmos que han evolucionado en los últimos tiempos logrando la reconstrucción de escenas rápidamente. Es por esto que esta técnica es muy utilizada en implementaciones que necesitan respuesta en tiempo real.
 Un primer paso es resolver el problema de la correspondencia, en el que dadas dos imágenes de la escena para todos los puntos de una imagen se obtiene el punto correspondiente en la otra y se calcula la desigualdad de cada punto, es decir la distancia en píxeles entre los puntos que se corresponden. Luego se calcula la profundidad del punto utilizando el método de triangulación\footnote{ver anexo de método de triangulación} en el cual se obtiene la distancia focal de cada punto a cada una de las cámaras.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/stereo.PNG}
-  \caption{geometía estéreo con ejes paralelos}%Structure from Stereo- A Review  Umesh R. Dhond and J.K.Aggarwal 1989%
+  \caption{Geometría estéreo con ejes paralelos}%Structure from Stereo- A Review Umesh R. Dhond and J.K.Aggarwal 1989%
   \label{fig:Stereo}
 \end{figure}
-Un caso particular consta de ejes ópticos de las cámaras paralelos y en consecuencia los planos de imagen son coplanares. En este caso las líneas epipolares\footnote{ver anexo de geometría epipolar} correspden a las filas en el \emph{frame buffer} y la correspondencia de los puntos es buscada en esas filas.
+Un caso particular consta de ejes ópticos de las cámaras paralelos y en consecuencia los planos de imagen son coplanares. En este caso las líneas epipolares\footnote{ver anexo de geometría epipolar} corresponden a las filas en el \emph{frame buffer} y la correspondencia de los puntos es buscada en esas filas.
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/epipolar3.PNG}
@@ -259,8 +258,14 @@ La figura \ref{fig:SLPatternClassification} muestra la clasificación de patrone
 Los patrones discretos asignan el mismo valor a todos los puntos de la región representada por la misma codificación, mientras que los continuos utilizan una representación más suavizada en donde cada píxel tiene una codificación única dentro de la región, variándose la intensidad o el color a lo largo de uno o ambos ejes en la proyección.
 
 Las técnicas más comunes utilizan codificación binaria$^\dagger$, que consiste en proyectar en una mitad de la pantalla una columna en blanco y en la otra mitad negro y determinar si un punto siendo observado aparece como blanco o negro. Esto determina de que lado de la escena se encuentra dicho punto. Realizando divisiones sucesivas en la región de la escena donde se espera que el punto se encuentre, es posible determinar la coordenada $X$ de dicho punto. Este proceso funciona como una búsqueda binaria tradicional, por lo que su orden es logarítmico. A modo de ejemplo, para un proyector con una resolución de 1024x768 píxeles son necesarias $\log(1024)=10$ subdivisiones. Este mismo proceso se realiza para determinar la coordenada $Y$ del punto. Otra forma de codificación binaria que obtiene mejores resultados es la llamada \emph{gray code}. El primer paso de la subdivision es similar en cuanto a que divide la mitad izquierda y derecha del area en blanco y negro. Los siguientes patrones proyectados son diferentes con la particularidad que dos columnas adyacentes del patrón difieren solamente en un bit. Esto ultimo implica menos errores al momento de decodificar puntos cercanos a las fronteras.  
-La codificación \emph{gray code} tiene la desventaja de la cantidad de marcos que se necesitan para el procesamiento (10 \emph{frames}). Un metodo que mejora este aspecto es el llamado \emph{Three Phase-Shifting} que utiliza tres ondas sinusoidales para la determinacion de columnas. El metodo es explicado en detalle en \cite{3DShapeMeasurement} y \cite{SLThreeStepPhaseShift} por Zhang e implementado por Kyle McDonalds en \cite{KyleMcDonald}. Una desventaja de este algoritmo, y por tanto también de la implementación de McDonalds\emph{Structured Light}, es que es exitoso únicamente para superficies con curvas continuas.
-%%FOTOS%%
+La codificación \emph{gray code} tiene la desventaja de la cantidad de marcos que se necesitan para el procesamiento (10 \emph{frames}). Un metodo que mejora este aspecto es el llamado \emph{Three Phase-Shifting} que utiliza tres ondas sinusoidales para la determinacion de columnas. El metodo es explicado en detalle en \cite{3DShapeMeasurement} y \cite{SLThreeStepPhaseShift} por Zhang e implementado por Kyle McDonalds en \cite{KyleMcDonald}. Una desventaja de este algoritmo, y por tanto también de la implementación de McDonalds, es que es aplicable únicamente para superficies con curvas continuas. Superficies disjuntas o con aristas pronunciadas no podrán ser capturadas existosamente.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.8\textwidth]{./Cap2_videomapping/phase2.jpg}
+  \caption{Superficie con patrón proyectado}
+  \label{fig:phase2}
+\end{figure}
 
 \paragraph{Calibración}
 
