@@ -217,7 +217,7 @@ Un primer paso es resolver el problema de la correspondencia, en el que dadas do
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/stereo.PNG}
-  \caption{Geometría estéreo con ejes paralelos}%Structure from Stereo- A Review Umesh R. Dhond and J.K.Aggarwal 1989%
+  \caption[Structure from Stereo- A Review  Umesh R. Dhond and J.K.Aggarwal 1989]{geometía estéreo con ejes paralelos}
   \label{fig:Stereo}
 \end{figure}
 Un caso particular consta de ejes ópticos de las cámaras paralelos y en consecuencia los planos de imagen son coplanares. En este caso las líneas epipolares\footnote{ver anexo de geometría epipolar} corresponden a las filas en el \emph{frame buffer} y la correspondencia de los puntos es buscada en esas filas.
@@ -230,7 +230,7 @@ Un caso particular consta de ejes ópticos de las cámaras paralelos y en consec
 
 En los casos más comunes no se tienen estas características, y por ello es necesario introducir parámetros en los cálculos que hacen el ajuste del modelo ideal, modelo \emph{pinhole} al modelo de las cámaras reales. 
 
-Existen variedad de algoritmos que solucionan el problema de correspondecia y cálculo de desigualdad entre los puntos de las dos imágenes, y se clasifican según diferencias en las imágenes destacándose dos estrategias:
+Existen variedad de algoritmos que solucionan el problema de correspondecia y cálculo de desigualdad entre los puntos de las dos imágenes, y se clasifican según diferencias en las imágenes destacándose dos estrategias\cite{StructureFromStereo}:
 \begin{itemize}
    \item \emph{Separate area}: basada en correlación del brillo e intensidad. Se utilizan patrones de brillo aplicados a un píxel y sus vecinos utilizando principio de localidad. Las diferencias en la perspectiva de la imágen o cambios en luminosidad absoluta de la escena pueden generar errores.
    \item \emph{Features}: las características usadas para la correspondencia son aristas, puntos o segmentos dadas por cambios de intensidad de la imagen. Esta estrategia es más estable ante la variación de luminosidad absoluta y en la práctica la correspondencia es más rápida.
