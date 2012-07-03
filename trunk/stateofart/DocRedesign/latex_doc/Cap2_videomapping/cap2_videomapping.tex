@@ -212,7 +212,13 @@ A continuación se estudian los fundamentos matemáticos, técnicas y dispositiv
 \subsubsection{Visión estéreo}
 
 \cite{StereoReview} La visión estéreo se basa en el análisis de dos imágenes observadas desde puntos de vista ligeramente diferentes, de forma similar a la visión humana, para reconstruir la estructura tridimensional de una escena. Este método entra en la categoría de los métodos pasivos por no utilizar luz auxilar. El análisis de las imágenes se realiza por medio de algoritmos que han evolucionado en los últimos tiempos logrando la reconstrucción de escenas rápidamente. Es por esto que esta técnica es muy utilizada en implementaciones que necesitan respuesta en tiempo real.
-Un primer paso es resolver el problema de la correspondencia, en el que dadas dos imágenes de la escena para todos los puntos de una imagen se obtiene el punto correspondiente en la otra y se calcula la desigualdad de cada punto, es decir la distancia en píxeles entre los puntos que se corresponden. Luego se calcula la profundidad del punto utilizando el método de triangulación\footnote{ver anexo de método de triangulación} en el cual se obtiene la distancia focal de cada punto a cada una de las cámaras.
+Un primer paso es el preproceso de las imágenes donde se identifican las principales características de las imágenes, éste análisis definirá que tipo de algoritmo se utilizará en el paso de correspondencia, ya que definirá las características que se estudiarán. Luego se resuelve el problema de correspondencia, en el que dadas dos imágenes de la escena para todos los puntos de una imagen se obtiene el punto correspondiente en la otra y se calcula la desigualdad de cada punto, es decir la distancia en píxeles entre los puntos que se corresponden. Finalmente se calcula la profundidad del punto utilizando el método de triangulación\footnote{ver anexo de método de triangulación} en el cual se obtiene la distancia focal de cada punto a cada una de las cámaras.
+
+Existen variedad de algoritmos que solucionan el problema de correspondecia y cálculo de desigualdad entre los puntos de las dos imágenes, se pueden clasificar según el análisis de preproceso identificando características principales de las mismas destacándose dos estrategias\cite{StructureFromStereo}:
+\begin{itemize}
+   \item \emph{Separate area}: basada en correlación del brillo e intensidad. Se utilizan patrones de brillo aplicados a un píxel y sus vecinos utilizando principio de localidad. Las diferencias en la perspectiva de la imágen o cambios en luminosidad absoluta de la escena pueden generar errores.
+   \item \emph{Features}: las características usadas para la correspondencia son aristas, puntos o segmentos dadas por cambios de intensidad de la imagen. Esta estrategia es más estable ante la variación de luminosidad absoluta y en la práctica la correspondencia es más rápida.
+\end{itemize}
 
 \begin{figure}[H]
   \centering
@@ -220,21 +226,16 @@ Un primer paso es resolver el problema de la correspondencia, en el que dadas do
   \caption[Structure from Stereo- A Review  Umesh R. Dhond and J.K.Aggarwal 1989]{geometía estéreo con ejes paralelos}
   \label{fig:Stereo}
 \end{figure}
-Un caso particular consta de ejes ópticos de las cámaras paralelos y en consecuencia los planos de imagen son coplanares. En este caso las líneas epipolares\footnote{ver anexo de geometría epipolar} corresponden a las filas en el \emph{frame buffer} y la correspondencia de los puntos es buscada en esas filas.
+Un caso particular consta de ejes ópticos de las cámaras paralelos y en consecuencia los planos de imagen son coplanares. En los casos más comunes no se tienen estas características, y por ello es necesario introducir parámetros en los cálculos que hacen el ajuste del modelo ideal, modelo \emph{pinhole} al modelo de las cámaras reales. 
+
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/epipolar3.PNG}
   \caption{dos imágenes con las líneas epipolares y puntos que se corresponden}%Geometía de Cámaras  StereoReview pag 241. fig 9.3%
   \label{fig:Stereo2}
 \end{figure}
+En este caso se ven los puntos correspondientes en cada imagen ubicados sobre las líneas epipolares\footnote{ver anexo de geometría epipolar}.
 
-En los casos más comunes no se tienen estas características, y por ello es necesario introducir parámetros en los cálculos que hacen el ajuste del modelo ideal, modelo \emph{pinhole} al modelo de las cámaras reales. 
-
-Existen variedad de algoritmos que solucionan el problema de correspondecia y cálculo de desigualdad entre los puntos de las dos imágenes, y se clasifican según diferencias en las imágenes destacándose dos estrategias\cite{StructureFromStereo}:
-\begin{itemize}
-   \item \emph{Separate area}: basada en correlación del brillo e intensidad. Se utilizan patrones de brillo aplicados a un píxel y sus vecinos utilizando principio de localidad. Las diferencias en la perspectiva de la imágen o cambios en luminosidad absoluta de la escena pueden generar errores.
-   \item \emph{Features}: las características usadas para la correspondencia son aristas, puntos o segmentos dadas por cambios de intensidad de la imagen. Esta estrategia es más estable ante la variación de luminosidad absoluta y en la práctica la correspondencia es más rápida.
-\end{itemize}
 La principal desventaja de este método es que en caso de oclusión, hay regiones que no tienen correspondencia en las dos imágenes por esto no se puede resolver el problema de correspondencia para estas regiones.
 
 \subsubsection{Luz estructurada}
