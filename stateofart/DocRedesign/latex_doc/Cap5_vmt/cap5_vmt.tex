@@ -1,13 +1,17 @@
 \chapter{Solución planteada}
-\section{Descripción general}%HABLAR QUE VMT SE BASA EN OPENFRAMEWORKS Y OPENGL, QT%
-%Mencionar que es nuestra herramienta%
-\emph{VMT} es una herramienta para la edición y ejecución de un espectáculo de \emph{video mapping}. Puede utilizar uno o más proyectores eventualmente alejados físicamente unos de otros para lograr cubrir una superficie mayor de la escena a mapear. Para dar soporte al escenario distribuido se cuenta con componentes remotos con el fin de reproducir los efectos y eventos existentes del espectáculo. Mediante un editor tridimensional, es posible observar de forma centralizada lo que se ha producido hasta el momento así como visualizar la salida de cada uno de los proyectores. Si bien es un editor tridimensional se manejan conceptos bidimensionales de capa y cuadrilátero. En \emph{VMT} son llamados \emph{layer} y \emph{quad} respectivamente, y se pueden asociar a una cámara o proyector. La cantidad de estos elementos que se utilizarán en el espectáculo puede ser variada dependiendo del diseño sin existir en \emph{VMT} un límite fijo para ellos. Se proveen mecanismos de calibración diferenciados para objetos tridimensionales y bidimensionales utilizados al trabajar sobre la escena real.
+\section{Descripción general}
 
-Los efectos de mapeo disponibles son de degradé de colores\footnote{en \emph{VMT} es el efecto \emph{fade}.}, y la aplicación de texturas de imagen o video. Se cuenta además con un efecto para la animación de la posición de los objetos tridimensionales en tiempo de ejecución del espectáculo. Es posible visualizar en todo momento la ejecución de los efectos y su correspondiente impacto en la escena. Los efectos pueden ser lanzados por tiempo, por eventos de teclado o \emph{MIDI}. Se definen en una línea de tiempo navegable, permitiéndose avanzar o retroceder a un intervalo de tiempo dado durante la producción del espectáculo. Una pista de audio puede reproducirse en sincronía con el transcurso de los efectos en el espectáculo.
+En este proyecto se desarrolla una aplicación para la edición y ejecución de un espectáculo de \emph{video mapping} que se denomina \emph{Video Mapping Tool (VMT)} la cual está basada en los dos enfoques anteriormente descriptos: bidimensional y tridimensional.
+Dispone de un editor tridimensional en el cual se importan modelos en formatos específicos permitiendo visualizarlos desde distintos puntos de vista mediante cámaras virtuales. De forma análoga permite la creación de objetos bidimensionales para generar así un modelo mixto, adaptable a las distintas necesidades de los usuarios.
+Para la producción del espectáculo, \emph{VMT} brinda distintos efectos como la proyección de imágenes, videos y degradado de colores, los cuales se pueden aplicar de igual forma a objetos bidimensionales y tridimensionales. A su vez existen efectos sólo para objetos tridimensionales que permiten variar su posición en el tiempo.
+\emph{VMT} brinda una línea de tiempo sobre la cual es posible definir el orden de ejecución de estos efectos, mediante su asociación a un instante del espectáculo. A su vez también se puede especificar la ejecución de efectos, asociándola con eventos de teclado o \emph{MIDI}.
+El espectáculo puede ser acompañado por una pista de audio que se asocia también mediante el editor.
+La aplicación tiene la capacidad de utilizar múltiples proyectores, permitiendo así cubrir una amplia superficie a mapear. El resultado de estas proyecciones puede ser previsualizado de forma centralizada en el editor, logrando visualizar desde diferentes ángulos los efectos aplicados sobre el modelo.
+La calibración de la proyección es asistida por \emph{VMT} con distintos mecanismos para objetos bidimensionales y tridimensionales, utilizados en la escena.
 
-La interfaz gráfica de usuario está basada enteramente en botoneras y ventanas flotantes para poder tener una vista personalizable y en tiempo real de lo que está sucediendo en la escena. Se proveen mecanismos para almacenar y cargar la definición de la escena utilizando archivos \emph{XML} estándar.
+La persistencia del espectáculo se logra almacenando y cargando la definición del mismo desde archivos \emph{XML} estándar.
 
-La tecnología de base seleccionada para la creación de los módulos de la herramienta y todas las bibliotecas de terceros que se han utilizado son multiplataforma, lo que permite la compilación y ejecución en entornos \emph{Microsoft Windows}, \emph{Linux} y \emph{Mac OS X}.
+\emph{VMT} es una aplicación multiplataforma de código abierto, basado en OpenFrameworks y Qt que permite su compilación y ejecución en entornos \emph{Microsoft Windows}, \emph{Linux} y \emph{Mac OS X}.%Falta hablar o referenciar openframeworks
 
 \section{Funcionalidades}
 
@@ -38,7 +42,7 @@ Las cámaras permiten ajustar sus parámetros mediante operaciones comunes a cá
   \label{fig:VMT-CameraMove}
 \end{figure}
 
-Aparte de estos parámetros de ubicación, también existe el parámetro \emph{Field Of View (FOV)} o campo de vista que es el ángulo de apertura de la cámara. Para el caso de cámaras que representan proyectores, este parámetro debe coincidir con el ángulo de apertura del proyector para ajustar correctamente las escenas con respecto a lo que muestra la cámara en pantalla.
+Además de estos parámetros de ubicación, también existe el parámetro \emph{Field Of View (FOV)} o campo de vista que es el ángulo de apertura de la cámara. Para el caso de cámaras que representan proyectores, este parámetro debe coincidir con el ángulo de apertura del proyector para ajustar correctamente las escenas con respecto a lo que muestra la cámara en pantalla.
 Mediante estas operaciones es que las cámaras virtuales de \emph{VMT} ajustan sus parámetros para que la proyección de objetos tridimensionales coincida con las superficies proyectadas.
 Hay que destacar que las cámaras proveen un punto de vista solo para los elementos tridimensionales. Los \emph{quads}, que como se mencionó son contrucciones bidimensionales, no dependen del punto de vista de la cámara y se representan en un sector de la pantalla relativo a esta. Es por esto que los \emph{quads} no alteran su posición en pantalla al ajustar los parámetros de la cámara.
 
