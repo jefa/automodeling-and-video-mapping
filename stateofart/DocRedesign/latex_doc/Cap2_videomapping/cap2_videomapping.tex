@@ -259,9 +259,9 @@ La clasificación según la luz proyectada:
 	\item Color: Cada punto del patrón es asociado con un valor de tono. Los tonos deben ser bien diferenciados para alcanzar una segmentación eficiente. Este tipo de patrones son limitados por el color de la escena, si presenta objetos de colores altamente saturados se producen pérdidas de regiones en el paso de segmentación que luego provoca errores en la decodificación.
 \end{itemize}
 
-\begin{itemize}
 Otra posible clasificación es según la discontinuidad en la profundidad de la superficie proyectada:
-	\item Periódica: La codificación se repite periódicamente a lo largo del patrón. Esta  técnica se utiliza para reducir el número de bits que codifican el patrón, como limitante la profundidad del objeto no puede ser mayor que la mitad de la longitud del período.
+\begin{itemize}
+	\item Periódica: La codificación se repite periódicamente a lo largo del patrón. Esta técnica se utiliza para reducir el número de bits que codifican el patrón, como limitante la profundidad del objeto no puede ser mayor que la mitad de la longitud del período.
 	\item Absoluta: Cada columna o fila del patrón proyectado tiene una única codificación, no sufre dependencia de discontinuidad de profundidad.
 \end{itemize}
 
