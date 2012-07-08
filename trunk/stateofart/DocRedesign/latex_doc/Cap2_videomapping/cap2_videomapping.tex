@@ -265,8 +265,13 @@ Otra posible clasificación es según la discontinuidad en la profundidad de la 
 	\item Absoluta: Cada columna o fila del patrón proyectado tiene una única codificación, no sufre dependencia de discontinuidad de profundidad.
 \end{itemize}
 
-Un algoritmo que utiliza codificación binaria es el llamado \emph{Three Phase-Shifting} que utiliza tres ondas sinusoidales para la proyección del patrón. El método es explicado en detalle en \cite{3DShapeMeasurement} y \cite{SLThreeStepPhaseShift} por Zhang e implementado por Kyle McDonalds en \cite{KyleMcDonald}. Una desventaja de este algoritmo, y por tanto también de la implementación de McDonalds, es que es aplicable únicamente para superficies con curvas continuas. Superficies disjuntas o con aristas pronunciadas serán capturadas de forma distorsionada.
-
+Un algoritmo que utiliza codificación binaria es el llamado \emph{Three Phase-Shifting} utiliza tres ondas sinusoidales para la proyección del patrón es presentado por Zhang\cite{ZhangS} e implementado por Kyle McDonalds en \cite{KyleMcDonald} . Éste algoritmo es aplicable únicamente para superficies con curvas continuas. Superficies disjuntas o con aristas pronunciadas serán capturadas de forma distorsionada.
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.8\textwidth]{./Cap2_videomapping/diagramaLS.png}
+  \caption{Instalación básica de proyección de patrones y sistema de \emph{Phase-Shifting} }
+  \label{fig:phase21}
+\end{figure}
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{./Cap2_videomapping/phase2.jpg}
@@ -280,7 +285,7 @@ En esta sección se describe un método originalmente propuesto por Zhang\cite{Z
 La calibración de la cámara requiere estimar inicialmente los parámetros del modelo de cámara pinhole, por lo tanto se deben obtener los parámetros intrínsecos como distancia focal, punto principal y factores de escala, y los extrínsecos definidos por la matriz de rotación y vector de traslación de un punto en el espacio al sistema de coordenadas de la cámara.
 La calibración de la cámara requiere la captura de una secuencia de imágenes de un objeto simple, con un conjunto de características fijo y distinguible, y con un desplazamiento tridimensional conocido. Esto permite que cada imagen capturada durante el proceso de calibración provea de un conjunto de correspondencias de los puntos tridimensionales de la escena a puntos bidimensionales en el sistema de coordenadas de la cámara. Particularmente, en el método de Zhang, el objeto conocido que se observa es un tablero de damas plano en una o más orientaciones. De la secuencia capturada se pueden obtener los parámetros intrínsecos y luego, utilizando una sola toma de la secuencia, se obtienen los parámetros extrínsecos.
 Para la calibracion del proyector, éste se modela como el inverso de una cámara, teniendo en cuenta que la luz viaja en la dirección opuesta y que un punto en el plano de la imagen se mapea a un rayo de luz saliente por el punto y por el centro de proyeccion. Dado este modelo, la calibración sucede de forma similar a la de una cámara, pero en lugar de tomar imágenes de un tablero de damas fijo, se proyecta un tablero en una ubicacion conocida y se toman imagenes del mismo utilizando la cámara para analizar las distorsiones. Este enfoque resulta ser una extensión directa del método de Zhang para calibración de cámaras.
-Existen varias implementaciones de esta técnica de calibración basado en el modelo inverso de la cámara. Una de estas implementaciones es BYO3D\cite{BYO3D}, que se encuentra disponible para MATLAB\cite{MATLAB} y como una extensión a la biblioteca de visión computacional \emph{OpenCV}\cite{OpenCV}.
+Existen varias implementaciones de esta técnica de calibración basado en el modelo inverso de la cámara. Una de estas implementaciones es BYO3D\footnote{http://mccammon.ucsd.edu/~bgrant/bio3d/}, que se encuentra disponible para MATLAB\footnote{http://www.mathworks.com/products/matlab/} y como una extensión a la biblioteca de visión computacional \emph{OpenCV}\footnote{http://opencv.org/}.
 
 \subsubsection{Kinect}
 
