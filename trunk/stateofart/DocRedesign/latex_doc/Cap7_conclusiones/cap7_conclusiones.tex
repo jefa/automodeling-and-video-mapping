@@ -4,7 +4,7 @@ Se desarrolló la herramienta \emph{VMT} para la realización de espectáculos d
 Se lograron identificar etapas claramente diferenciadas del proceso de creación de un espectáculo, lo cual fue muy útil para delinear requerimientos específicos para la implementación de \emph{VMT}. 
 En las entrevistas que se mantuvieron con los \emph{VJs} surgió como un problema común a resolver el de las costuras en áreas donde se solapan las proyecciones en espectáculos que utilizan más de un proyector. Mediante el soporte de múltiples proyectores \emph{VMT} evita este problema al tener control sobre lo que proyecta cada uno de los proyectores y permite definir en qué proyector se visualizan cada uno de los objetos y sus efectos asociados. Más en general, el manejo de múltiples proyectores distribuidos posibilita la creación de distintos esquemas de proyección soportando áreas amplias y disjuntas e incluso mapeos en 360 grados.
 
-* obtención automática de la geometría
+\paragraph{Obtención automática de la geometría}
 
 Se logró resolver parcialmente el problema de reconstrucción automática de la escena a mapear mediante la implementación de una aplicación que toma una nube de puntos ya capturada, la procesa y genera un objeto tridimensional en un formato soportado por \emph{VMT}.
 Se trabajó en el estudio de las técnicas y componentes existentes para la reconstrucción tridimensional de la escena, principalmente mediante la utilización del método de luz estructurada, en donde se experimentaron varios problemas, la mayoría de ellos en la etapa de calibración del sistema cámara-proyector. 
@@ -15,7 +15,7 @@ Si bien existen otros métodos de escaneo con luz estructurada que se adaptan me
 
 Durante el transcurso del proyecto surgió el dispositivo Kinect para el escaneo en tiempo real de objetos utilizando una implementación de luz estructurada. Con la liberación de su kit de desarrollo se incentivó su uso a desarrolladores de todo el mundo y para una variedad de propósitos. Esto motivó a enfocar el alcance en cuanto a la obtención de geometría en el procesamiento de la nube de puntos, independiente de cómo estos puntos se obtienen y finalmente abandonar el estudio de escáneres de bajo costo a incluir como parte del proyecto, ya que Kinect logra buenos resultados y es accesible en términos de costos.
 
-* Espectáculos en vivo
+\paragraph{Espectáculos en vivo}
 
 Se realizaron dos espectáculos en vivo con la herramienta \emph{VMT} en una versión alfa: el evento de cierre de Ingeniería de Muestra año 2010\footnote{\url{http://www.fing.edu.uy/eventos/ingenieria_demuestra/2010/index.html}} y una exposición durante la noche de fallos de fin de curso de la Facultad de Arquitectura de la Universidad de la República.
 \begin{figure}[H]
@@ -52,13 +52,13 @@ Se realizaron dos espectáculos en vivo con la herramienta \emph{VMT} en una ver
   \label{fig:Arquitectura3}
 \end{figure}
 
- Durante la preparación y ejecución de los mismos se adquirió un conocimiento más profundo de qué es lo que se necesita para llevar adelante un espectáculo de estas características, lo que ayudó a definir las funcionalidades básicas que la aplicación debía cubrir. También se experimentó la importancia de la robustez y tolerancia a fallos que debe tener una aplicación que tiene como propósito la ejecución de espectáculos en vivo.
+Durante la preparación y ejecución de los mismos se adquirió un conocimiento más profundo de qué es lo que se necesita para llevar adelante un espectáculo de estas características, lo que ayudó a definir las funcionalidades básicas que la aplicación debía cubrir. También se experimentó la importancia de la robustez y tolerancia a fallos que debe tener una aplicación que tiene como propósito la ejecución de espectáculos en vivo.
 Desde el punto de vista funcional, se identificaron varios aspectos de la aplicación en las que se debía trabajar para mejorarlos, como ser el agregado de un mismo evento en varios momentos en la línea de tiempo, la agrupación de \emph{quads} para aplicarles el mismo efecto especificándolo una única vez, la ejecución del espectáculo a partir de un instante dado de la línea de tiempo, todo lo anterior accesible mediante una interfaz gráfica de usuario que adopte criterios encontrados en aplicaciones orientadas al diseño en términos generales.
 En las instancias iniciales del desarrollo de la aplicación, se había decididido distribuir los archivos que contenían la definición del espectáculo en todos los nodos esclavo de \emph{VMT}, enviando desde el nodo maestro solamente los efectos en el instante que se debían ejecutar. Esto tenía varios problemas, por ejemplo durante la edición del espectáculo, ante cualquier modificación en los \emph{quads} u objetos tridimensionales, se debía actualizar el archivo de definición en cada nodo y posteriormente reiniciarlo.
 Debido a esta fuerte limitación se rediseñó la arquitectura y el protocolo de comunicación entre nodos maestro y esclavo, centralizando la definición del espectáculo en el nodo \emph{VMT} maestro y soportando la creación de todos los elementos mediante nuevos mensajes que se agregaron a dicho protocolo. Estos mensajes envían a cada nodo esclavo los objetos bidimensionales, tridimensionales, grupos de objetos, y efectos necesarios para la visualización del espectáculo en ese nodo en particular.
 De estas experiencias también surgió el inconveniente de pérdida de información durante la ejecución, dada la conexión de los nodos de \emph{VMT} mediante el uso de redes inalámbricas se producían pérdidas de mensajes durante la ejecución lo que ocasionaba un desfasaje en la reproducción en los diferentes nodos esclavo. Se decidió utilizar para el espectáculo de Facultad de Arquitectura una red cableada \emph{Ethernet} y se observaron mejoras notorias en cuanto a la calidad de la transmisión sin notar pérdida de mensajes.
 
-* Trabajo futuro
+\paragraph{Trabajo futuro}
 
 Durante la ejecución del proyecto en sus etapas de investigación del estado del arte y desarrollo del paquete de software así como también producto de la experiencia obtenida en los dos espectáculos en vivo mencionados, se identificaron varias oportunidades de mejora de lo realizado y de esto se desprendieron nuevas líneas de trabajo a seguir.
 
