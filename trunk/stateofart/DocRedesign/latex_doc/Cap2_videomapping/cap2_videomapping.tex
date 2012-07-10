@@ -133,7 +133,7 @@ En el modelado tridimensional se representan cuerpos y superficies tridimensiona
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.75\textwidth]{./Cap2_videomapping/EjemploMalla4Vertices}
-  \caption[http://www.fallingpixel.com/perfect-sphere-mesh-384-polygons-3d-model/35623]{Mallas de cuadriláteros.}
+  \caption[http://www.fallingpixel.com]{Mallas de cuadriláteros.}
   \label{fig:mallas2}
 \end{figure}
 
@@ -160,7 +160,7 @@ Para técnicas de modelado utlizando polígonos y curvas, algunas de las herrami
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/mudbox.png}
-  \caption[http://usa.autodesk.com/adsk/servlet/pc/index?id=13565063\&siteID=123112]{Mudbox}
+  \caption[http://usa.autodesk.com]{Mudbox}
   \label{fig:Mudbox}
 \end{figure}
 
@@ -223,7 +223,7 @@ Existen variedad de algoritmos que solucionan el problema de correspondecia y c�
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/stereo.PNG}
-  \caption[Structure from Stereo- A Review  Umesh R. Dhond and J.K.Aggarwal 1989]{geometía estéreo con ejes paralelos}
+  \caption[Structure from Stereo- A Review Umesh R. Dhond and J.K.Aggarwal 1989]{Geometía estéreo con ejes paralelos}
   \label{fig:Stereo}
 \end{figure}
 Un caso particular consta de ejes ópticos de las cámaras paralelos y en consecuencia los planos de imagen son coplanares. En los casos más comunes no se tienen estas características, y por ello es necesario introducir parámetros en los cálculos que hacen el ajuste del modelo ideal, modelo \emph{pinhole} al modelo de las cámaras reales. 
@@ -231,7 +231,7 @@ Un caso particular consta de ejes ópticos de las cámaras paralelos y en consec
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/epipolar3.PNG}
-  \caption{dos imágenes con las líneas epipolares y puntos que se corresponden}%Geometía de Cámaras  StereoReview pag 241. fig 9.3%
+  \caption[Geometría de Cámaras StereoReview pag 241. fig 9.3]{Dos imágenes con las líneas epipolares y puntos que se corresponden}
   \label{fig:Stereo2}
 \end{figure}
 En este caso se ven los puntos correspondientes en cada imagen ubicados sobre las líneas epipolares\footnote{ver anexo de geometría epipolar}.
@@ -265,7 +265,7 @@ Otra posible clasificación es según la discontinuidad en la profundidad de la 
 	\item Absoluta: Cada columna o fila del patrón proyectado tiene una única codificación, no sufre dependencia de discontinuidad de profundidad.
 \end{itemize}
 
-Un algoritmo que utiliza codificación binaria es el llamado \emph{Three Phase-Shifting} utiliza tres ondas sinusoidales para la proyección del patrón es presentado por Zhang\cite{ZhangS} e implementado por Kyle McDonalds en \cite{KyleMcDonald} . Éste algoritmo es aplicable únicamente para superficies con curvas continuas. Superficies disjuntas o con aristas pronunciadas serán capturadas de forma distorsionada.
+Un algoritmo que utiliza codificación binaria es el llamado \emph{Three Phase-Shifting} utiliza tres ondas sinusoidales para la proyección del patrón es presentado por Zhang\cite{ZhangS} e implementado por Kyle McDonalds en \cite{KyleMcDonald}. Este algoritmo es aplicable únicamente para superficies con curvas continuas. Superficies disjuntas o con aristas pronunciadas serán capturadas de forma distorsionada.
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{./Cap2_videomapping/diagramaLS.png}
@@ -279,7 +279,7 @@ Un algoritmo que utiliza codificación binaria es el llamado \emph{Three Phase-S
   \label{fig:phase2}
 \end{figure}
 
-\paragraph{Calibración}
+\subsubsection{Calibración}
 
 En esta sección se describe un método originalmente propuesto por Zhang\cite{ZhangS} para la calibración de una cámara y un proyector con el objetivo de capturar correctamente los patrones proyectados para su posterior análisis.
 La calibración de la cámara requiere estimar inicialmente los parámetros del modelo de cámara pinhole, por lo tanto se deben obtener los parámetros intrínsecos como distancia focal, punto principal y factores de escala, y los extrínsecos definidos por la matriz de rotación y vector de traslación de un punto en el espacio al sistema de coordenadas de la cámara.
@@ -287,7 +287,7 @@ La calibración de la cámara requiere la captura de una secuencia de imágenes 
 Para la calibracion del proyector, éste se modela como el inverso de una cámara, teniendo en cuenta que la luz viaja en la dirección opuesta y que un punto en el plano de la imagen se mapea a un rayo de luz saliente por el punto y por el centro de proyeccion. Dado este modelo, la calibración sucede de forma similar a la de una cámara, pero en lugar de tomar imágenes de un tablero de damas fijo, se proyecta un tablero en una ubicacion conocida y se toman imagenes del mismo utilizando la cámara para analizar las distorsiones. Este enfoque resulta ser una extensión directa del método de Zhang para calibración de cámaras.
 Existen varias implementaciones de esta técnica de calibración basado en el modelo inverso de la cámara. Una de estas implementaciones es BYO3D\footnote{http://mccammon.ucsd.edu/~bgrant/bio3d/}, que se encuentra disponible para MATLAB\footnote{http://www.mathworks.com/products/matlab/} y como una extensión a la biblioteca de visión computacional \emph{OpenCV}\footnote{http://opencv.org/}.
 
-\subsubsection{Kinect}
+\subsubsection{\emph{Kinect}}
 
 \emph{Kinect} es un dispositivo que se puede adicionar a la consola \emph{Xbox360} de \emph{Microsoft} cuyo objetivo es permitir que el usuario interactúe con la consola utilizando únicamente el movimiento de su cuerpo. Para lograr esto, \emph{Kinect} aplica distintas técnicas de procesamiento de imágenes, considerando ubicaciones, posturas y distancias. El \emph{hardware} de \emph{Kinect} consiste en una cámara a la que se le adiciona un emisor de infrarrojos que en base a la deformación del haz de luz determina la distancia de cada punto de la imagen capturada. Posteriormente, combina la información visual para tener una noción precisa de los movimientos del usuario. A mediados del 2011 fue presentada una interfaz de programación gratuita que permite utilizar \emph{Kinect} de forma directa en aplicaciones no licenciadas para diferentes propósitos, no limitándose a los videojuegos.
 
