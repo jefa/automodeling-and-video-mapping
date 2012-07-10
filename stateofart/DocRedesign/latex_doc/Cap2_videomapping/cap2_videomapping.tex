@@ -13,7 +13,7 @@ Si la secuencia a ejecutar es predefinida, en esta etapa se define dicha secuenc
 En esta etapa también se diseña y produce la musicalización que será utilizada durante todo el espectáculo.
 Es en la etapa de proyección del espectáculo en donde se puede contemplar el resultado de los distintos efectos visuales proyectados sobre las superficies, acompañados estos por efectos de sonido.
 Para lograr la correspondencia en la proyección de los objetos del modelo con las superficies se debe calibrar la proyección.
-Esto se logra modificando el modelo de la escena, ajustando la posición y orientación de los proyectores, así como los parámetros intrínsecos$^\dagger$ de la proyección.
+Esto se logra modificando el modelo de la escena, ajustando la posición y orientación de los proyectores, así como los parámetros intrínsecos de la proyección, siendo estos el ángulo de enfoque, la resolución y distancia focal.
 Cada una de estas etapas será abordada en esta sección desde dos enfoques: bidimensional y tridimensional, ya que tanto los problemas que plantean, así como los escenarios de aplicación difieren en cada caso, según el enfoque.
 
 \begin{figure}[H]
@@ -116,7 +116,7 @@ Los parámetros de calibración obtenidos al lograr la correspondencia son parti
 
 \subsection{Enfoque tridimensional}
 \subsubsection{Modelo}
-En el modelado tridimensional se representan cuerpos y superficies tridimensionales comúnmente representadas por medio de mallas de polígonos \cite{Mesh_building}, utilizadas en disciplinas como visión computacional y computación gráfica. A diferencia de un modelo bidimensional, éste no depende de un punto de vista, lo que permite al diseñador visualizarlo desde diferentes ángulos mediante la definición de cámaras virtuales. Las entidades que conforman la malla son vértices, aristas, caras y atributos numéricos que representan la posición y normales de los vértices, coordenadas de textura y colores. Existen distintas topologías$^\dagger$ de mallas de polígonos, y una clasificación común es la que se basa en la cantidad de vérticies que forman una cara.
+En el modelado tridimensional se representan cuerpos y superficies tridimensionales comúnmente representadas por medio de mallas de polígonos \cite{Mesh_building}, utilizadas en disciplinas como visión computacional y computación gráfica. A diferencia de un modelo bidimensional, éste no depende de un punto de vista, lo que permite al diseñador visualizarlo desde diferentes ángulos mediante la definición de cámaras virtuales. Las entidades que conforman la malla son vértices, aristas, caras y atributos numéricos que representan la posición y normales de los vértices, coordenadas de textura y colores. Existen distintas topologías de mallas de polígonos, y una clasificación común es la que se basa en la cantidad de vérticies que forman una cara.
 
 \begin{minipage}{0.35\textwidth}
 \begin{flushleft} \large
