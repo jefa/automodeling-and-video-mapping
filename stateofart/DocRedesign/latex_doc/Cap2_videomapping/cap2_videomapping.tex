@@ -12,7 +12,7 @@ Cada una de estas etapas será abordada en esta sección desde dos enfoques: bid
 Durante la etapa de modelado de la escena, se obtiene una representación abstracta de los objetos reales sobre los que se proyectará. Este modelo constituye la base para trabajar en posteriores etapas y sobre él se diseñará el espectáculo.
 
 La producción del espectáculo consiste en definir los distintos efectos visuales a ser aplicados sobre los objetos modelados y la forma en que serán ejecutados. Los espectáculos pueden discriminarse en dos categorías según la forma de presentación de los efectos pudiendo ser en una secuencia predefinida o en tiempo real.
-Si la secuencia a ejecutar es predefinida, en esta etapa se define dicha secuencia indicando el instante en que cada efecto se desplegará. Esto por lo general se hace de forma sincronizada con la música que suele acompañar al espectáculo. Por otra parte, si la ejecución de los efectos se define en tiempo real, esta etapa es utilizada para definir los mecanismos que desencadenan la ejecución de los efectos. Así por ejemplo, se podría definir como mecanismo un teclado, asignando una tecla distinta a cada efecto para que el \emph{VJ} los ejecute a voluntad propia en la presentación.
+Si la secuencia a ejecutar es predefinida, en esta etapa se define dicha secuencia indicando el instante en que cada efecto se desplegará. Esto por lo general se hace de forma sincronizada con la música que suele acompañar al espectáculo. Por otra parte, si la ejecución de los efectos se define en tiempo real, esta etapa es utilizada para definir los mecanismos que desencadenan la ejecución de los efectos. Así por ejemplo, se podría definir para un teclado, un efecto distinto para cada tecla para que el \emph{VJ} los ejecute a voluntad en la presentación.
 En esta etapa también se diseña y produce la musicalización que será utilizada durante todo el espectáculo.
 
 Es en la etapa de proyección del espectáculo en donde se puede contemplar el resultado de los distintos efectos visuales proyectados sobre las superficies, acompañados estos por efectos de sonido. Para lograr la correspondencia en la proyección de los objetos del modelo con las superficies se debe calibrar la proyección.
@@ -120,7 +120,7 @@ Este procedimiento deberá ser realizado nuevamente en caso de haber alteracione
 
 \subsection{Enfoque tridimensional}
 \subsubsection{Modelo}
-En el modelado tridimensional se representan cuerpos y superficies tridimensionales comúnmente representadas por medio de mallas de polígonos \cite{Mesh_building}, utilizadas en disciplinas como visión computacional y computación gráfica. A diferencia de un modelo bidimensional, éste no depende de un punto de vista, lo que permite al diseñador visualizarlo desde diferentes ángulos mediante la definición de cámaras virtuales. Las entidades que conforman la malla son vértices, aristas, caras y atributos numéricos que representan la posición y normales de los vértices, coordenadas de textura y colores. Existen distintas topologías de mallas de polígonos, y una clasificación común es la que se basa en la cantidad de vérticies que forman una cara.
+En el modelado tridimensional se representan cuerpos y superficies tridimensionales comúnmente representadas por medio de mallas de polígonos, utilizadas en disciplinas como visión computacional y computación gráfica. A diferencia de un modelo bidimensional, éste no depende de un punto de vista, lo que permite al diseñador visualizarlo desde diferentes ángulos mediante la definición de cámaras virtuales. Las entidades que conforman la malla son vértices, aristas, caras y atributos numéricos que representan la posición y normales de los vértices, coordenadas de textura y colores. Existen distintas topologías de mallas de polígonos siendo de las más utilizadas la que se basa en la cantidad de vértices que forman una cara.
 
 \begin{minipage}{0.35\textwidth}
 \begin{flushleft} \large
@@ -144,42 +144,50 @@ En el modelado tridimensional se representan cuerpos y superficies tridimensiona
 \end{flushright}
 \end{minipage}
 
-Existen técnicas como la de \emph{remeshing} que mediante la utilización de algoritmos específicos reducen la cantidad de vértices de la malla sin perder la representatividad de la superficie. De esta forma se logra eficiencia en algoritmos cuyo orden varía dependiendo de la cantidad de vértices y optimización en el almacenamiento de estas representaciones. 
+Técnicas como las de \emph{remeshing}, mediante la utilización de algoritmos específicos reducen la cantidad de vértices de la malla sin perder la representatividad de la superficie.
+Un estudio de estas técnicas se presenta en el artículo \emph{Recent advances in compression of 3D meshes\cite{Mesh_building}}.
+De esta forma se logra eficiencia en el manejo de las mallas que generalmente utilizan algoritmos cuyo orden varía dependiendo de la cantidad de vértices así como también se optimiza el almacenamiento de estas representaciones.
 
-Los modelos tridimensionales se generan utilizando distintas técnicas:
+Los modelos tridimensionales se generan utilizando distintas técnicas cuya elección depende de varios factores como el nivel de detalle deseado, uso final del modelo y habilidades del usuario. Algunas de estas técnicas son:
 \begin{itemize}
-  \item Modelado utilizando polígonos: a partir de mallas que representan figuras primitivas se podrán construir nuevas mallas.
-  %se fue lo de union y resta
-  También se aplican transformaciones que modifican las aristas, vértices o caras, aproximando el resultado a la superficie que se desea modelar.
-  \item  Modelado utilizando curvas: a partir de una jaula creada por curvas se aplican transformaciones para modificarla, manipulando sus puntos de control. Es utilizado en modelado de automóviles, edificios y mobiliario, entre otros.
+  \item Modelado utilizando polígonos: a partir de mallas que representan figuras primitivas, por ejemplo cubos o esferas, se podrán construir nuevas mallas aplicando transformaciones que modifican las aristas, vértices o caras.
+  
+  \item Modelado utilizando curvas: a partir de una jaula creada por curvas se aplican transformaciones para modificarla, manipulando sus puntos de control. Es utilizado en el modelado de automóviles, edificios y mobiliario, entre otros.
 
-  \item Esculpido digital: técnica digital que simula el esculpido convencional, en la que software especializado provee una interfaz para modificar el modelo de forma detallada, oprimiendo y resaltando zonas de la superficie. Es utilizado para lograr efectos especiales en video juegos y películas logrando figuras y texturas complejas.
+  \item Esculpido digital: técnica digital que simula el esculpido convencional mediante software especializado que provee una interfaz para modificar el modelo de forma detallada, oprimiendo y resaltando zonas de la superficie. Es utilizado para lograr efectos especiales en películas y video juegos logrando figuras y texturas complejas.
 
   \item Reconstrucción a partir de fotografías: se obtiene la representación de la superficie con una foto. Conociendo la escala de la imagen y mediante mediciones de los objetos fotografiados se extrapola y se obtiene la distancia entre dos puntos en la superficie. Es usada en arquitectura, ingeniería, geología, arqueología, etc.
-  %esta técnica es llamada fotogrametría en dos dimensiones, estereofotogrametría para obtener información tridimensional
-  \item Reconstrucción utilizando hardware especializado: mediante escáneres tridimensionales se obtiene una nube de puntos que representa la superficie. Generalmente el conjunto de puntos obtenido es denso, probablemente con redundancia y con errores. Es por esto que se utilizan algoritmos específicos para reducir la nube de puntos \footnote{Esta técnica se ampliará en la sección Obtención de Geometía}.
-  \end{itemize}
-Para técnicas de modelado utlizando polígonos y curvas, algunas de las herramientas más populares son Maya\cite{Maya} y 3D Studio Max\cite{3DStudioMax}, mientras que para la realización de esculpido digital son también muy utilizadas 3D-Coat\cite{3DCoat}, Zbrush\cite{Zbrush}, Sculptris\cite{Sculptris} y Mudbox\cite{Mudbox}. 
+  
+  \item Reconstrucción utilizando hardware especializado: mediante escáneres tridimensionales se obtiene una nube de puntos que representa la superficie. El conjunto de puntos obtenido es denso, generalmente con redundancia y errores, es por esto que comúnmente se utilizan algoritmos específicos para reducir la nube de puntos \footnote{Esta técnica se ampliará en la sección Obtención de Geometía}.
+\end{itemize}
+
+Para las técnicas de modelado utlizando polígonos y curvas, algunas de las herramientas más populares son \emph{Maya}\cite{Maya}, \emph{3D Studio Max}\cite{3DStudioMax} y \emph{Blender}\cite{Blender}, mientras que para la realización de esculpido digital son también muy utilizadas \emph{3D-Coat}\cite{3DCoat}, \emph{ZBrush}\cite{Zbrush}, \emph{Sculptris}\cite{Sculptris} y \emph{Mudbox}\cite{Mudbox}. 
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/mudbox.png}
-  \caption[http://usa.autodesk.com]{Mudbox}
+  \caption[http://usa.autodesk.com]{\emph{Mudbox}}
   \label{fig:Mudbox}
 \end{figure}
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/sculptris.png}
-  \caption[http://www.pixologic.com/sculptris/]{Sculptris}
+  \caption[http://www.pixologic.com/sculptris/]{\emph{Sculptris}}
   \label{fig:Sculptris}
 \end{figure}
   
 \subsubsection{Producción del espectáculo}
-La producción del espectáculo en tres dimensiones agrega un nivel de abstracción adicional a la producción bidimensional. Esto permite que el diseñador cree un espectáculo transformando directamente los objetos del modelo tridimensional y no sus perspectivas como en el anterior enfoque.
+La producción del espectáculo en tres dimensiones agrega un nivel de abstracción adicional a la producción bidimensional. Esto permite que el diseñador cree un espectáculo transformando directamente los objetos del modelo tridimensional en contraposición al anterior enfoque en el que se transforman sus perspectivas.
 Se plantea un cambio en la forma de trabajar en el espectáculo y planificar la producción, ya que el diseñador no estará restringido a considerar ubicación alguna de los proyectores.
 
-El modo de trabajo se basa en mapear texturas sobre las caras de los objetos tridimensionales de forma análoga a como se realiza sobre figuras bidimensionales. En este tipo de modelos podría ser deseable mapear una textura de forma que abarque varias caras del mismo objeto tridimensional, por ejemplo, el conjunto de caras que representa la superficie lateral curva de un cilindro. Para lograrlo se deben mapear distintos sectores de la textura en cada una de las caras que conforman la superficie, utilizando coordenadas de textura en cada uno de los vértices. La diferencia está en que en este enfoque los vértices no se encuentran necesariamente en el mismo plano, por lo que ajustar una textura bidimensional a este tipo de superficies no es tan directo. Para ello existen técnicas que asisten en la tarea de definir las coordenadas de textura. Una de ellas consiste en aproximar la superficie por una primitiva conocida, más simple, como ser un cubo, cilindro, esfera o plano. Para estas superficies existen funciones matemáticas que proyectan cada punto de la superficie a un plano. De esta forma se pueden determinar las coordenadas $UV$. Un ejemplo de esto para esferas son las proyecciones utilizadas para representar el planisferio como la proyección cilíndrica equidistante \cite{flatteningTheEarth}. Otra técnica es $UV$ \emph{unwrapping} que consiste en desenvolver los vértices de la superficie, aplanándolos sobre la textura. De esta forma el mapeo se realiza de forma más intuitiva ya que la superficie aplanada es bidimensional al igual que la textura. Esta técnica es soportada por la mayoría de los programas de edición de gráficos tridimensionales que proveen distintas herramientas para ajustar la forma en que se desenvuelve la textura.
+El modo de trabajo se basa en mapear texturas sobre las caras de los objetos tridimensionales de forma análoga a como se realiza sobre figuras bidimensionales. En este tipo de modelos podría ser deseable mapear una textura de forma que abarque varias caras del mismo objeto tridimensional, por ejemplo, el conjunto de caras que representa la superficie lateral curva de un cilindro. Para lograrlo se deben mapear distintos sectores de la textura en cada una de las caras que conforman la superficie, utilizando coordenadas de textura en cada uno de los vértices.
+La diferencia radica en que en el presente enfoque los vértices no se encuentran necesariamente en el mismo plano, por lo cual ajustar una textura bidimensional a este tipo de superficies no es directo.
+
+Existen diversas técnicas que asisten en la tarea de definir las coordenadas de textura.
+Una de ellas consiste en aproximar la superficie por una primitiva conocida, más simple, como ser un cubo, cilindro, esfera o plano. Para estas superficies existen funciones matemáticas que proyectan cada punto de la superficie a un plano, de esta forma se pueden determinar las coordenadas $UV$.
+Un ejemplo de esto para esferas son las proyecciones utilizadas para representar el planisferio como la proyección cilíndrica equidistante presentada en el libro \emph{Flattening the Earth\cite{flatteningTheEarth}}.
+Otra técnica es la denominada $UV$ \emph{unwrapping} que consiste en desenvolver una malla tridimensional, aplanándola sobre la textura. De esta manera el mapeo se realiza de forma más intuitiva ya que la superficie aplanada es bidimensional al igual que la textura. Esta técnica es soportada por la mayoría de los programas de edición de gráficos tridimensionales, los que proveen distintas herramientas para ajustar la forma en que se desenvuelve la textura.
 
 \begin{figure}[H]
   \centering
@@ -190,47 +198,43 @@ El modo de trabajo se basa en mapear texturas sobre las caras de los objetos tri
 
 En la escena tridimensional los objetos son visualizados utilizando cámaras virtuales que fijan un punto de vista. En la salida gráfica se representará entonces la escena desde la perspectiva de una cámara virtual, permitiendo visualizarla desde distintos ángulos. Esto posibilita definir el punto de vista del proyector que reproducirá la salida gráfica en el momento que se desee. Un caso sería visualizar el resultado del espectáculo luego de producido y en este momento definir el punto de vista más conveniente.
 
-Producir el espectáculo transformando directamente los objetos y no sus perspectivas permite escalar con mayor facilidad en la cantidad de proyectores. Esto se logra agregando cámaras virtuales que definan más puntos de vista sin necesidad de modificar el modelo ni los efectos producidos.
+Producir el espectáculo con este enfoque, es decir, transformando directamente los objetos y no sus perspectivas, permite escalar con mayor facilidad en la cantidad de proyectores a utilizar. Esto se logra agregando cámaras virtuales que definan más puntos de vista sin necesidad de modificar el modelo ni los efectos producidos.
 
-Si bien se está abordando un enfoque tridimensional de la producción del espectáculo, existen casos en que es más sencilla la implementación de ciertos efectos tomando un enfoque en dos dimensiones, sobre todo cuando estos se aplican sobre regiones planas de la superficie. Es por esto que es muy común combinar ambos enfoques y utilizarlos de acuerdo a las necesidades del diseñador. Cabe aclarar que al combinar los enfoques se pierden las ventajas de definir el punto de vista del proyector luego de la producción por lo que los objetos bidimensionales y efectos sobre estos se deben definir una vez fijada la ubicación de los proyectores.
+Si bien se está abordando un enfoque tridimensional de la producción del espectáculo, existen casos en que es más sencilla la implementación de ciertos efectos tomando un enfoque en dos dimensiones, sobre todo cuando estos se aplican sobre regiones planas de la superficie. Es por esto que es muy común combinar ambos enfoques y utilizarlos de acuerdo a las necesidades del diseñador. Cabe aclarar que al combinar los enfoques se pierden las ventajas de definir el punto de vista del proyector luego de la etapa de producción por lo que los objetos bidimensionales y efectos sobre estos se deben definir una vez fijada la ubicación de los proyectores.
 
 \subsubsection{Proyección del espectáculo}
 
-En la proyección del espectáculo es cuando se fija finalmente el punto de vista desde donde se proyectará, definiendo la ubicación y orientación de los proyectores.
-La calibración consiste en modificar los parámetros de las cámaras virtuales para lograr que la proyección del modelo se ajuste sobre la superficie a proyectar.
+En esta etapa se fija finalmente el punto de vista desde donde se proyectará, definiendo la ubicación y orientación de los proyectores.
+Al igual que en el enfoque bidimensional, para lograr una correspondencia en la proyección de la escena con las superficies a proyectar se debe realizar una calibración que consiste en modificar los parámetros de ubicación, orientación y proyección de las cámaras virtuales.
 La ubicación y orientación relativas de la cámara virtual y la escena deberán corresponderse a las del proyector con las superficies a proyectar.
-%Hablar de forma genérica de la calibración%
 
-%Redondear el tema de ENFOQUE 2D y 3D luego de hablar de las 3 etapas%
-%Hablar de orquestación de efectos, reproducción en vivo, etc.%
+%Agregar una seccion mas que redondee los 2 enfoques?%
 
 \section{Obtención de geometría}
 
 En esta sección se presenta la reconstrucción tridimensional automática de una superficie utilizando técnicas computacionales.
-Se introducen distintos métodos que permiten la construcción automática de modelos, discutiendo sus características según propiedades de la superficie a representar y tecnologías utilizadas. Inicialmente se obtiene una nube de puntos correspondiente a la superficie utilizando técnicas y dispositivos para este propósito, para luego procesar la información obtenida y construir una malla tridimensional. Mediante este procesamiento se obtienen propiedades adicionales como grupos de puntos que representan caras de una malla y las normales que identifican la orientación de la superficie.
+Se introducen distintos métodos que permiten la construcción automática de modelos, discutiendo sus características según propiedades de la superficie a representar y tecnologías utilizadas. Inicialmente se obtiene una nube de puntos correspondiente a la superficie, utilizando técnicas y dispositivos para este propósito, para luego procesar la información obtenida y construir una malla tridimensional. Mediante este procesamiento se obtienen propiedades adicionales como grupos de puntos que representan caras de una malla y las normales que identifican la orientación de la superficie.
 
 \subsection{Obtención de la nube de puntos}
 
-A continuación se estudian los fundamentos matemáticos, técnicas y dispositivos relacionados al problema de la correspondencia de puntos de la realidad con puntos bidimensionales en el plano imagen obtenido por una cámara, y la posterior determinación de su profundidad.
-
 \subsubsection{Visión estéreo}
 
-\cite{StereoReview} La visión estéreo se basa en el análisis de dos imágenes observadas desde puntos de vista ligeramente diferentes, de forma similar a la visión humana, para reconstruir la estructura tridimensional de una escena. Este método entra en la categoría de los métodos pasivos por no utilizar luz auxilar. El análisis de las imágenes se realiza por medio de algoritmos que han evolucionado en los últimos tiempos logrando la reconstrucción de escenas rápidamente. Es por esto que esta técnica es muy utilizada en implementaciones que necesitan respuesta en tiempo real.
-Un primer paso es el preproceso de las imágenes donde se identifican las principales características de las imágenes, éste análisis definirá que tipo de algoritmo se utilizará en el paso de correspondencia, ya que definirá las características que se estudiarán. Luego se resuelve el problema de correspondencia, en el que dadas dos imágenes de la escena para todos los puntos de una imagen se obtiene el punto correspondiente en la otra y se calcula la desigualdad de cada punto, es decir la distancia en píxeles entre los puntos que se corresponden. Finalmente se calcula la profundidad del punto utilizando el método de triangulación\footnote{ver anexo de método de triangulación} en el cual se obtiene la distancia focal de cada punto a cada una de las cámaras.
+La visión estéreo se basa en el análisis de dos imágenes observadas desde puntos de vista ligeramente diferentes, de forma similar a la visión humana, para reconstruir la estructura tridimensional de una escena. Este método entra en la categoría de los métodos pasivos por no utilizar luz auxilar. El análisis de las imágenes se realiza por medio de algoritmos que han evolucionado en los últimos tiempos logrando la reconstrucción de escenas rápidamente. Es por esto que esta técnica es muy utilizada en implementaciones que necesitan respuesta en tiempo real.
+Un primer paso es el preproceso de las imágenes donde se identifican sus principales características. Este análisis definirá que tipo de algoritmo se utilizará en el paso de correspondencia, ya que definirá las características que se estudiarán. Luego se resuelve el problema de correspondencia, en el que dadas dos imágenes de la escena, para todos los puntos de la primera se obtiene el punto correspondiente en la otra y se calcula la desigualdad de cada punto, es decir, la distancia en píxeles entre los puntos que se corresponden. Finalmente se calcula la profundidad del punto utilizando el método de triangulación\footnote{ver anexo de método de triangulación} en el cual se obtiene la distancia focal de cada punto a cada una de las cámaras\cite{StereoReview}.
 
-Existen variedad de algoritmos que solucionan el problema de correspondecia y cálculo de desigualdad entre los puntos de las dos imágenes, se pueden clasificar según el análisis de preproceso identificando características principales de las mismas destacándose dos estrategias\cite{StructureFromStereo}:
+Existen variedad de algoritmos que solucionan el problema de correspondecia y cálculo de desigualdad entre los puntos de las dos imágenes. Se pueden clasificar según el análisis de preproceso identificando características principales de las mismas destacándose dos estrategias\cite{StructureFromStereo}:
 \begin{itemize}
-   \item \emph{Separate area}: basada en correlación del brillo e intensidad. Se utilizan patrones de brillo aplicados a un píxel y sus vecinos utilizando principio de localidad. Las diferencias en la perspectiva de la imágen o cambios en luminosidad absoluta de la escena pueden generar errores.
+   \item \emph{Separate area}: basada en correlación del brillo e intensidad. Se utilizan patrones de brillo aplicados a un píxel y sus vecinos utilizando principio de localidad. Las diferencias en la perspectiva de la imagen o cambios en luminosidad absoluta de la escena pueden generar errores.
    \item \emph{Features}: las características usadas para la correspondencia son aristas, puntos o segmentos dadas por cambios de intensidad de la imagen. Esta estrategia es más estable ante la variación de luminosidad absoluta y en la práctica la correspondencia es más rápida.
 \end{itemize}
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/stereo.PNG}
-  \caption[Structure from Stereo- A Review Umesh R. Dhond and J.K.Aggarwal 1989]{Geometía estéreo con ejes paralelos}
+  \caption[Structure from Stereo- A Review Umesh R. Dhond and J.K.Aggarwal 1989]{Geometría estéreo con ejes paralelos}
   \label{fig:Stereo}
 \end{figure}
-Un caso particular consta de ejes ópticos de las cámaras paralelos y en consecuencia los planos de imagen son coplanares. En los casos más comunes no se tienen estas características, y por ello es necesario introducir parámetros en los cálculos que hacen el ajuste del modelo ideal, modelo \emph{pinhole} al modelo de las cámaras reales. 
+En la figura \ref{fig:Stereo} se muestra un caso particular de geometría estéreo que consta de ejes ópticos de las cámaras paralelos y en consecuencia los planos de imagen son coplanares. En los casos más comunes no se tienen estas características, y por ello es necesario introducir parámetros en los cálculos que hacen el ajuste del modelo \emph{pinhole\footnote{Ver apéndice modelo de cámara: modelo \emph{pinhole}}} al modelo de las cámaras reales.
 
 \begin{figure}[H]
   \centering
@@ -238,13 +242,13 @@ Un caso particular consta de ejes ópticos de las cámaras paralelos y en consec
   \caption[Geometría de Cámaras StereoReview pag 241. fig 9.3]{Dos imágenes con las líneas epipolares y puntos que se corresponden}
   \label{fig:Stereo2}
 \end{figure}
-En este caso se ven los puntos correspondientes en cada imagen ubicados sobre las líneas epipolares\footnote{ver anexo de geometría epipolar}.
+En el caso mostrado en la figura \ref{fig:Stereo2} se ven los puntos correspondientes en cada imagen ubicados sobre las líneas epipolares\footnote{ver anexo de geometría epipolar}.
 
-La principal desventaja de este método es que en caso de oclusión, hay regiones que no tienen correspondencia en las dos imágenes por esto no se puede resolver el problema de correspondencia para estas regiones.
+La principal desventaja del método de visión estéreo es que en caso de oclusión hay regiones que no tienen correspondencia en las dos imágenes, por esto no se puede resolver el problema de correspondencia para estas regiones.
 
 \subsubsection{Luz estructurada}
 
-Luz estructurada es una técnica de obtención de geometría tridimensional que consiste en la proyección de patrones sobre la superficie a capturar para luego analizar la deformación de los mismos y obtener una nube de puntos que la representan. Este método, a diferencia de visión estéreo es un método activo ya que reemplaza la segunda cámara por un proyector de luz que proyecta patrones sobre la supericie a modelar.
+Luz estructurada es una técnica de obtención de geometría tridimensional que consiste en la proyección de patrones sobre la superficie a capturar para luego analizar la deformación de los mismos y obtener una nube de puntos que la representan. Este método, a diferencia de visión estéreo, es un método activo ya que reemplaza la segunda cámara por un proyector de luz que proyecta patrones sobre la supericie a modelar.
 Los patrones son capturados por la cámara de video para su posterior análisis, obteniendo información tridimensional de la posición, orientación y textura de la superficie\cite{SLightPatterns}.
 
 Dependiendo de la superficie a escanear, los patrones proyectados pueden tener problemas de oclusión, baja reflexión y puntos reflejados fuera del alcance de la cámara. Como consecuencia, la pérdida de estos puntos proyectados impide resolver el problema de la correspondencia.
@@ -256,40 +260,42 @@ Según dependencia temporal los patrones se clasifican en:
 	\item Dinámicos: Los objetos en la escena se pueden mover por lo tanto es necesaria la utilización de un único patrón de proyección.
 \end{itemize}
 
-La clasificación según la luz proyectada:
+Clasificación según la luz proyectada:
 \begin{itemize}
-	\item Binaria: Cada uno de los puntos del patrón tiene dos posibles valores codificados con 0 y 1 respectivamente. Este valor representa opacidad y transparencia, ausencia o presencia de la luz proyectada en el objeto.
-	\item Escala de grises: Cada punto del patrón tiene asociado un valor de gris que representa el nivel de trasparencia o nivel de opacidad del punto para la luz proyectada. Son necesarios dos pasos, primero se obtiene una imagen de la escena iluminada con la misma luz sin variar la intensidad, luego se obtiene la referencia de luz necesaria para cancelar el efecto de reflejo de la superficie. Esto depende directamente del tipo de superficie. La necesidad de estos dos pasos contribuye a que este patrón también sea clasificado como estático.
-	\item Color: Cada punto del patrón es asociado con un valor de tono. Los tonos deben ser bien diferenciados para alcanzar una segmentación eficiente. Este tipo de patrones son limitados por el color de la escena, si presenta objetos de colores altamente saturados se producen pérdidas de regiones en el paso de segmentación que luego provoca errores en la decodificación.
+	\item Binaria: Cada uno de los puntos del patrón tiene dos posibles valores codificados con $0$ y $1$ respectivamente. Este valor representa opacidad y transparencia, ausencia o presencia de la luz proyectada en el objeto.
+	\item Escala de grises: Cada punto del patrón tiene asociado un valor de gris que representa el nivel de trasparencia o nivel de opacidad del punto para la luz proyectada. En este caso son necesarios dos pasos. Primero se obtiene una imagen de la escena iluminada con la misma luz sin variar la intensidad y luego se obtiene la referencia de luz necesaria para cancelar el efecto de reflejo de la superficie que depende directamente del tipo de superficie. La necesidad de estos dos pasos contribuye a que este patrón también sea clasificado como estático.
+	\item Color: Cada punto del patrón es asociado con un valor de tono. Los tonos deben ser bien diferenciados para alcanzar una segmentación eficiente. Este tipo de patrones son limitados por el color de la escena. En caso de presentar colores altamente saturados se producen pérdidas de regiones en el paso de segmentación que luego provocan errores en la decodificación.
 \end{itemize}
 
 Otra posible clasificación es según la discontinuidad en la profundidad de la superficie proyectada:
 \begin{itemize}
-	\item Periódica: La codificación se repite periódicamente a lo largo del patrón. Esta técnica se utiliza para reducir el número de bits que codifican el patrón, como limitante la profundidad del objeto no puede ser mayor que la mitad de la longitud del período.
-	\item Absoluta: Cada columna o fila del patrón proyectado tiene una única codificación, no sufre dependencia de discontinuidad de profundidad.
+	\item Periódica: La codificación se repite periódicamente a lo largo del patrón. Esta técnica se utiliza para reducir el número de bits que codifican el patrón. Como limitante la profundidad del objeto no puede ser mayor que la mitad de la longitud del período.
+	\item Absoluta: Cada columna o fila del patrón proyectado tiene una única codificación. No sufre dependencia de discontinuidad de profundidad.
 \end{itemize}
 
-Un algoritmo que utiliza codificación binaria es el llamado \emph{Three Phase-Shifting} utiliza tres ondas sinusoidales para la proyección del patrón es presentado por Zhang\cite{ZhangS} e implementado por Kyle McDonalds en \cite{KyleMcDonald}. Este algoritmo es aplicable únicamente para superficies con curvas continuas. Superficies disjuntas o con aristas pronunciadas serán capturadas de forma distorsionada.
+Un algoritmo que utiliza codificación binaria es el llamado \emph{Three Phase-Shifting} que utiliza tres ondas sinusoidales para la proyección del patrón. Este algoritmo fue presentado por Zhang\cite{ZhangS} e implementado por Kyle McDonalds en \cite{KyleMcDonald}. Dicho algoritmo es aplicable únicamente para superficies con curvas continuas, superficies disjuntas o con aristas pronunciadas serán capturadas de forma distorsionada.
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{./Cap2_videomapping/diagramaLS.png}
-  \caption{Instalación básica de proyección de patrones y sistema de \emph{Phase-Shifting} }
+  \caption[Recent progresses on real-time 3D shape measurement using digital fringe projection techniques]{Instalación básica de proyección de patrones y sistema de \emph{Phase-Shifting}}
   \label{fig:phase21}
 \end{figure}
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{./Cap2_videomapping/phase2.jpg}
-  \caption{Superficie con patrón proyectado}
+  \caption[Imagen propia.]{Superficie con patrón proyectado}
   \label{fig:phase2}
 \end{figure}
 
-\subsubsection{Calibración}
+\paragraph{Calibración}
 
 En esta sección se describe un método originalmente propuesto por Zhang\cite{ZhangS} para la calibración de una cámara y un proyector con el objetivo de capturar correctamente los patrones proyectados para su posterior análisis.
-La calibración de la cámara requiere estimar inicialmente los parámetros del modelo de cámara pinhole, por lo tanto se deben obtener los parámetros intrínsecos como distancia focal, punto principal y factores de escala, y los extrínsecos definidos por la matriz de rotación y vector de traslación de un punto en el espacio al sistema de coordenadas de la cámara.
-La calibración de la cámara requiere la captura de una secuencia de imágenes de un objeto simple, con un conjunto de características fijo y distinguible, y con un desplazamiento tridimensional conocido. Esto permite que cada imagen capturada durante el proceso de calibración provea de un conjunto de correspondencias de los puntos tridimensionales de la escena a puntos bidimensionales en el sistema de coordenadas de la cámara. Particularmente, en el método de Zhang, el objeto conocido que se observa es un tablero de damas plano en una o más orientaciones. De la secuencia capturada se pueden obtener los parámetros intrínsecos y luego, utilizando una sola toma de la secuencia, se obtienen los parámetros extrínsecos.
-Para la calibracion del proyector, éste se modela como el inverso de una cámara, teniendo en cuenta que la luz viaja en la dirección opuesta y que un punto en el plano de la imagen se mapea a un rayo de luz saliente por el punto y por el centro de proyeccion. Dado este modelo, la calibración sucede de forma similar a la de una cámara, pero en lugar de tomar imágenes de un tablero de damas fijo, se proyecta un tablero en una ubicacion conocida y se toman imagenes del mismo utilizando la cámara para analizar las distorsiones. Este enfoque resulta ser una extensión directa del método de Zhang para calibración de cámaras.
-Existen varias implementaciones de esta técnica de calibración basado en el modelo inverso de la cámara. Una de estas implementaciones es BYO3D\footnote{http://mccammon.ucsd.edu/~bgrant/bio3d/}, que se encuentra disponible para MATLAB\footnote{http://www.mathworks.com/products/matlab/} y como una extensión a la biblioteca de visión computacional \emph{OpenCV}\footnote{http://opencv.org/}.
+La calibración de la cámara requiere estimar inicialmente los parámetros del modelo de cámara \emph{pinhole}, por lo tanto se deben obtener los parámetros intrínsecos como distancia focal, punto principal y factores de escala, y los extrínsecos definidos por la matriz de rotación y vector de traslación de un punto en el espacio al sistema de coordenadas de la cámara.
+Luego se debe capturar una secuencia de imágenes de un objeto simple, con un conjunto de características fijo y distinguible, y con un desplazamiento tridimensional conocido. Esto permite que cada imagen capturada durante el proceso de calibración provea de un conjunto de correspondencias de los puntos tridimensionales de la escena a puntos bidimensionales en el sistema de coordenadas de la cámara. Particularmente, en el método de Zhang, el objeto conocido que se observa es un tablero de damas plano en una o más orientaciones. De la secuencia capturada se pueden obtener los parámetros intrínsecos y luego, utilizando una sola toma de la secuencia, se obtienen los parámetros extrínsecos.
+Para la calibracion del proyector, éste se modela como el inverso de una cámara, teniendo en cuenta que la luz viaja en la dirección opuesta y que un punto en el plano de la imagen se mapea a un rayo de luz saliente por el punto y por el centro de proyección.
+Dado este modelo, la calibración se debe realizar de forma similar a la de una cámara, con la salvedad que en lugar de tomar imágenes de un tablero de damas fijo, se proyecta un tablero en una ubicación conocida y se toman imágenes del mismo utilizando la cámara para analizar las distorsiones. Este enfoque resulta ser una extensión directa del método de Zhang para calibración de cámaras.
+
+Existen varias implementaciones de esta técnica de calibración basado en el modelo inverso de la cámara. Una de estas implementaciones es \emph{BYO3D}\cite{BYO3D}, que se encuentra disponible para \emph{MATLAB}\cite{MATLAB} y como una extensión a la biblioteca de visión computacional \emph{OpenCV}\cite{OpenCV}.
 
 \subsubsection{\emph{Kinect}}
 
