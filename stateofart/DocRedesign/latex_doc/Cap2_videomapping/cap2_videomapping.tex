@@ -297,20 +297,23 @@ Dado este modelo, la calibración se debe realizar de forma similar a la de una 
 
 Existen varias implementaciones de esta técnica de calibración basado en el modelo inverso de la cámara. Una de estas implementaciones es \emph{BYO3D}\cite{BYO3D}, que se encuentra disponible para \emph{MATLAB}\cite{MATLAB} y como una extensión a la biblioteca de visión computacional \emph{OpenCV}\cite{OpenCV}.
 
-\subsubsection{\emph{Kinect}}
+\subsubsection{Dispositivos de captura de geometría}
 
-\emph{Kinect} es un dispositivo que se puede adicionar a la consola \emph{Xbox360} de \emph{Microsoft} cuyo objetivo es permitir que el usuario interactúe con la consola utilizando únicamente el movimiento de su cuerpo. Para lograr esto, \emph{Kinect} aplica distintas técnicas de procesamiento de imágenes, considerando ubicaciones, posturas y distancias. El \emph{hardware} de \emph{Kinect} consiste en una cámara a la que se le adiciona un emisor de infrarrojos que en base a la deformación del haz de luz determina la distancia de cada punto de la imagen capturada. Posteriormente, combina la información visual para tener una noción precisa de los movimientos del usuario. A mediados del 2011 fue presentada una interfaz de programación gratuita que permite utilizar \emph{Kinect} de forma directa en aplicaciones no licenciadas para diferentes propósitos, no limitándose a los videojuegos.
+Un dispositivo para la captura de geometría en tres dimensiones cuenta con componentes de hardware y software que implementan las técnicas antes mencionadas.
+En general, estos componentes son seleccionados de modo que optimicen las técnicas en las que se basan.
+Ejemplos de estos dispositivos son \emph{DAVID Structured Light Scanner\cite{DAVID}}, cuyo componente de software utiliza la técnica de luz estructurada y su hardware está compuesto por una cámara y un proyector de video, y \emph{Kinect} de \emph{Microsoft}, que también implementa la técnica de luz estructurada con la salvedad de que se reemplaza el proyector y la cámara de video por un emisor y una cámara de infrarrojos.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/kinect.PNG}
-  \caption{Componentes de un sensor Kinect}
+  \caption[http://qph.cf.quoracdn.net/main-qimg-90d9a2ceb96f836e0b724027c2aba723]{Componentes de un sensor \emph{Kinect}}
   \label{fig:Kinect}
 \end{figure}
 
-Para el análisis de las deformaciones de los rayos y construir el mapa de profundidad, \emph{Kinect} utiliza la previamente mencionada técnica de luz estructurada. Mediante el emisor infrarrojo con el que viene equipado, se proyectan los patrones de luz por toda la escena y utilizando la cámara de profundidad se analizan las distorsiones.
-También se cuenta con una cámara convencional para analizar objetos o personas en la escena y la detección de colores.
-%En cuanto a los usos específicos orientados a la reconstrucción tridimensional de objetos, el proyecto \emph{KinectFusion} \cite{KinectFusion}, actualmente patrocinado por \emph{Microsoft}, logra muy buenos resultados.%extender kinectfusion%
+En los últimos años se ha popularizado el uso de \emph{Kinect} por ser un dispositivo que se puede adicionar a la consola \emph{Xbox360} de \emph{Microsoft} con el objetivo de permitir que el usuario interactúe con la consola utilizando únicamente el movimiento de su cuerpo.
+Para el análisis de las deformaciones de los rayos y construir el mapa de profundidad, mediante el emisor infrarrojo con el que viene equipado se proyectan patrones de luz por toda la escena y utilizando la cámara de profundidad se analizan las distorsiones. También se cuenta con una cámara convencional para analizar objetos o personas en la escena y la detección de colores.
+
+A mediados de 2011 fue presentada una interfaz de programación gratuita que permite utilizar \emph{Kinect} de forma directa en aplicaciones no licenciadas para diferentes propósitos, no limitándose a los videojuegos. Esto motiva la aparición de una variedad de aplicaciones que explotan las posibilidades del dispositivo \emph{Kinect}. Una de ellas es \emph{KinectFusion}\cite{KinectFusion}, biblioteca orientada a la reconstrucción tridimensional de objetos en tiempo real, con la posibilidad de que tanto éstos como el sensor estén en movimiento y con esto realizar capturas en 360 grados.
 
 \subsection{Procesamiento de nube de puntos}
 
