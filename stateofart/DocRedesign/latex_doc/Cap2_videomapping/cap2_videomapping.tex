@@ -301,7 +301,7 @@ Existen varias implementaciones de esta técnica de calibración basado en el mo
 
 Un dispositivo para la captura de geometría en tres dimensiones cuenta con componentes de hardware y software que implementan las técnicas antes mencionadas.
 En general, estos componentes son seleccionados de modo que optimicen las técnicas en las que se basan.
-Ejemplos de estos dispositivos son \emph{DAVID Structured Light Scanner\cite{DAVID}}, cuyo componente de software utiliza la técnica de luz estructurada y su hardware está compuesto por una cámara y un proyector de video, y \emph{Kinect} de \emph{Microsoft}, que también implementa la técnica de luz estructurada con la salvedad de que se reemplaza el proyector y la cámara de video por un emisor y una cámara de infrarrojos.
+Un ejemplo de estos dispositivos es \emph{DAVID Structured Light Scanner\cite{DAVID}}, cuyo componente de software utiliza la técnica de luz estructurada y su hardware está compuesto por una cámara y un proyector de video. Otro es el caso \emph{Kinect} de \emph{Microsoft}, que también implementa la técnica de luz estructurada con la salvedad de que se reemplaza el proyector y la cámara de video por un emisor y una cámara de infrarrojos.
 
 \begin{figure}[H]
   \centering
@@ -310,23 +310,23 @@ Ejemplos de estos dispositivos son \emph{DAVID Structured Light Scanner\cite{DAV
   \label{fig:Kinect}
 \end{figure}
 
-En los últimos años se ha popularizado el uso de \emph{Kinect} por ser un dispositivo que se puede adicionar a la consola \emph{Xbox360} de \emph{Microsoft} con el objetivo de permitir que el usuario interactúe con la consola utilizando únicamente el movimiento de su cuerpo.
-Para el análisis de las deformaciones de los rayos y construir el mapa de profundidad, mediante el emisor infrarrojo con el que viene equipado se proyectan patrones de luz por toda la escena y utilizando la cámara de profundidad se analizan las distorsiones. También se cuenta con una cámara convencional para analizar objetos o personas en la escena y la detección de colores.
+En los últimos años se ha popularizado el uso de \emph{Kinect} por ser un dispositivo que se puede adicionar a la consola \emph{Xbox360} de \emph{Microsoft} con el objetivo de permitir que el usuario interactúe con la misma utilizando únicamente el movimiento de su cuerpo.
+Para el análisis de las deformaciones de los rayos y construir el mapa de profundidad, mediante el emisor infrarrojo con el que viene equipado se proyectan patrones de luz por toda la escena y utilizando la cámara de profundidad se analizan las distorsiones. También se cuenta con una cámara convencional para analizar objetos o personas en la escena y para la detección de colores.
 
 A mediados de 2011 fue presentada una interfaz de programación gratuita que permite utilizar \emph{Kinect} de forma directa en aplicaciones no licenciadas para diferentes propósitos, no limitándose a los videojuegos. Esto motiva la aparición de una variedad de aplicaciones que explotan las posibilidades del dispositivo \emph{Kinect}. Una de ellas es \emph{KinectFusion}\cite{KinectFusion}, biblioteca orientada a la reconstrucción tridimensional de objetos en tiempo real, con la posibilidad de que tanto éstos como el sensor estén en movimiento y con esto realizar capturas en 360 grados.
 
 \subsection{Procesamiento de nube de puntos}
 
-Al utilizar técnicas de obtención de geometría el resultado generado es una nube de puntos. Esta nube de puntos por lo general es muy densa por lo que es necesario simplificar este modelo con el objetivo de eliminar redundancia y aumentar la velocidad en el procesamiento de los datos. Un problema adicional al volumen de la información obtenida es que comúnmente se introduce ruido, es decir, información distorsionada que no corresponde con puntos de la realidad. Para solucionar este problema se realiza un suavizado en el procesamiento de la nube de puntos \cite{PCloudSimplify}.
+Al utilizar técnicas de obtención de geometría el resultado generado es una nube de puntos. Esta nube de puntos por lo general es densa, por lo que es necesario simplificar este modelo con el objetivo de eliminar redundancia y mejorar el rendimiento durante su procesamiento. Un problema adicional al volumen de la información obtenida es que comúnmente se introduce ruido, es decir, información distorsionada que no corresponde con puntos de la realidad. Para solucionar este problema se realiza un suavizado en el procesamiento de la nube de puntos\cite{PCloudSimplify}.
 
 Las heurísticas existentes para reducir nubes de puntos pueden clasificarse en tres grandes grupos \cite{PntCloud}:
 \begin{itemize}
-   \item \emph{Clustering methods}: consiste en obtener grupos de la nube de puntos en donde cada grupo se remplaza por un conjunto de puntos representativos en él. Los grupos se pueden construir utilizando un enfoque incremental en el cual estos son creados iniciando por un punto aleatorio y agregando puntos vecinos hasta llegar a una cantidad establecida de elementos o un enfoque jerárquico en donde se particiona el conjunto de puntos recursivamente hasta conseguir grupos de un tamaño predefinido.
-   \item \emph{Iterative simplification}: se recorren iterativamente los puntos de la nube contrayendo parejas en un único punto. Se evalúa el error introducido, utilizando mínimos cuadrados, que se genera en la contracción comparándolo con el error que se obtendría al contraerse con otro punto vecino y eligiendo la contracción que introduce menor error al sistema. La simplificación se da por finalizada por haber logrado la cantidad de puntos deseada o por superar una cota de error a introducir en el sistema.
-   \item \emph{Particle simulation}: se generan nuevos puntos que sustituyen la nube de puntos original. Se generan conjuntos de partículas que se mueven aleatoriamente en la superficie hasta lograr un balance. %Luego, utilizando el algoritmo de point–repulsion se definen en las zonas que hay mayor colisiones.%
+   \item \emph{Clustering methods}: consiste en obtener grupos de la nube de puntos en donde cada grupo se remplaza por un conjunto de puntos representativos en él. Los grupos se pueden construir utilizando un enfoque incremental en el cual estos son creados iniciando por un punto aleatorio y agregando puntos vecinos hasta llegar a una cantidad establecida de elementos. Otra enfoque es el jerárquico, en donde se particiona el conjunto de puntos recursivamente hasta conseguir grupos de un tamaño predefinido.
+   \item \emph{Iterative simplification}: se recorren iterativamente los puntos de la nube contrayendo parejas en un único punto. Se evalúa el error introducido, utilizando mínimos cuadrados, que se genera en la contracción comparándolo con el error que se obtendría al contraerse con otro punto vecino y eligiendo la contracción que introduce menor error al sistema. La simplificación se da por finalizada por haber logrado la cantidad de puntos deseada o por superar una cota$^\dagger$ de error a introducir en el sistema.
+   \item \emph{Particle simulation}: se generan nuevos puntos que sustituyen la nube de puntos original. Se generan conjuntos de partículas que se mueven aleatoriamente en la superficie hasta lograr un balance.
 \end{itemize}
 
-Luego de simplificar la nube de puntos se construye un modelo tridimensional a partir de ella utilizando mallas de triángulos debido a la simplicidad de los algoritmos que los dibujan. Esto permite que sean implementados fácilmente en hardware además del beneficio de que cualquier polígono con más de tres caras puede representarse como un conjunto de triángulos \cite{PCloudTriangle}.
+Luego de simplificar la nube de puntos se construye un modelo tridimensional a partir de ella utilizando mallas de triángulos debido a la simplicidad de los algoritmos que dibujan este tipo de figuras geométricas. Esto permite que sean implementados fácilmente en hardware además del beneficio de que cualquier polígono con más de tres caras puede representarse como un conjunto de triángulos \cite{PCloudTriangle}.
 
 A continuación se detallan los algoritmos asociados a cada paso de un típico procesamiento de malla que toma como entrada una nube de puntos, realiza un sub-muestreo y suavizado de la misma, calcula las normales en cada punto de la nube y finalmente aplica algoritmos de reconstrucción de la malla. Esto es implementado en bibliotecas como \emph{VcgLib}\cite{VCGLib} y \emph{CGAL}\cite{CGAL}.
 
@@ -339,7 +339,7 @@ A continuación se detallan los algoritmos asociados a cada paso de un típico p
 
 \subsubsection{Muestreo \emph{Poisson-disk}}
 
-El muestreo de variables aleatorias es una técnica utilizada para una gran variedad de aplicaciones como procesamiento de imágenes y geometrías. Particularmente, el muestreo \emph{Poisson-disk} se utiliza para la ubicación aleatoria de objetos en mundos artificiales, algoritmos de texturas procedurales y procesamiento de geometrías o mallas. Esta técnica genera conjuntos de puntos con la propiedad de obtener puntos suficientemente cercanos pero con la restricción de no estar más próximos unos de otros que una distancia mínima predeterminada.
+El muestreo de variables aleatorias es una técnica utilizada para una gran variedad de aplicaciones como procesamiento de imágenes y geometrías. Particularmente, el muestreo \emph{Poisson-disk} se utiliza para la ubicación aleatoria de objetos en mundos artificiales, algoritmos de texturas procedurales y procesamiento de geometrías o mallas. Esta técnica genera conjuntos de puntos con la propiedad de que sean suficientemente cercanos pero con la restricción de no estar más próximos unos de otros que una distancia mínima predeterminada.
 
 \begin{figure}[H]
   \centering
@@ -351,7 +351,7 @@ El muestreo de variables aleatorias es una técnica utilizada para una gran vari
 En líneas generales, este algoritmo genera puntos alrededor de los ya existentes en la muestra y valida si pueden ser agregados al conjunto final en caso de no violar la regla de la mínima distancia a los vecinos. Se genera una grilla en dos o tres dimensiones, dependiendo del escenario de aplicación, en la cuál cada celda contendrá al final del proceso a lo sumo un punto. Una grilla adicional es utilizada para realizar búsquedas rápidas y dos conjuntos de puntos son mantenidos durante el procesamiento para poder diferenciar los que han sido generados y los que aún necesitan procesamiento.
 La implementación realizada en \emph{VcgLib} recibe tres parámetros:
 \begin{itemize}
-  \item 1) La cantidad de puntos en la muestra: En este caso el radio de cercanía es calculado en base a este parámetro.
+  \item 1) La cantidad de puntos en la muestra: El radio de cercanía es calculado en base a este parámetro.
   \item 2) El radio: Es utilizado para calcular el tamaño de la muestra óptimo en base a la malla inicial.
   \item 3) Sub muestreo: Indica si la muestra de Poisson es un subconjunto de la muestra inicial o si se deberán generar nuevos puntos aleatoriamente.
 \end{itemize}
@@ -361,7 +361,8 @@ La implementación realizada en \emph{VcgLib} recibe tres parámetros:
 Este algoritmo computa las normales en cada elemento de un conjunto de puntos sin la necesidad de explorar la conectividad de los triángulos. Por ello es muy útil para objetos tridimensionales sin información de caras.
 Se detalla un pseudo-código del método:
 
-\paragraph{Paso 1: identificar los planos tangentes para aproximar localmente la superficie y estimar así los vectores normales.}
+\paragraph{Paso 1: }Identificar los planos tangentes para aproximar localmente la superficie y estimar así los vectores normales.
+
 
 Para cada vértice:
   \begin{itemize}
@@ -369,10 +370,14 @@ Para cada vértice:
     \item Calcular la normal asociada al centro geométrico. Se utiliza la matriz de covarianza en el punto, contemplando los mismos $K$ vecinos más cercanos de la muestra y los valores y vectores propios de la matriz de covarianza. Finalmente, ordenando los vectores propios, la estimación del vector perpendicular corresponde al vector propio de menor valor. Este método es conocido como \emph{Principal Component Analysis (PCA)}.
   \end{itemize}
 
-\paragraph{Paso 2: construir un grafo en donde cada punto está conectado a los $K$ vecinos más cercanos (grafo de Riemannian)}
+\paragraph{Paso 2: }Construir un grafo en donde cada punto está conectado a los $K$ vecinos más cercanos (grafo de Riemannian)
+
+
 Se crea un grafo en cuyos nodos se guardan todas las aristas incidentes a los $K$ vecinos más cercanos. A cada arista se le asigna un peso igual al valor absoluto del producto escalar de la normal en el punto con la normal en cada uno de los $K$ vecinos:
    $$fabs(nodoActual->normal . K\_Vecinos[n]->normal)$$
-\paragraph{Paso 3: calcular el árbol de expansión mínimo sobre el grafo de Riemannian y recorrerlo para orientar las normales.}
+\paragraph{Paso 3: }Calcular el árbol de expansión mínimo sobre el grafo de Riemannian y recorrerlo para orientar las normales.
+
+
 Dado un grafo conexo, no dirigido, con sus aristas con un peso asignado, se llama árbol de expansión mínimo al sub-grafo con forma de árbol que conecta todos los nodos con un peso total mínimo conteniendo todos los nodos del grafo inicial. El grafo de entrada es el construido en el paso anterior y se utiliza el algoritmo de Kruskal$^\dagger$, uno de los varios algoritmos que resuelven el problema de encontrar un árbol de expansión mínima de un grafo.
 Una vez construido el árbol de expansión, lo único que se hace es recorrerlo en orden e invertir el sentido de los vectores normales en caso de ser necesario. La condición para efectuar dicha corrección se basa en el ángulo del nodo siendo inspeccionado en comparación a todas las direcciones de las normales de los vecinos conectados a dicho nodo.
 
