@@ -114,7 +114,7 @@ Dependiendo del tipo de mensaje, el nodo maestro decidirá si enviarlo a un nodo
 Por la naturaleza del protocolo \emph{UDP}, es preferible contar con conexiones cableadas en lugar de inalámbricas dada la alta tasa de pérdida de paquetes que existe en este tipo de redes, lo cual podría causar desincronización de algunos nodos esclavos. \emph{OSC} también permite a cualquier aplicación capaz de enviar mensajes de este tipo y que conozca el formato de los mismos, controlar los esclavos y por consiguiente lo que se proyecta en los correspondientes proyectores.
 
 La edición del espectáculo se realiza exclusivamente en el nodo maestro quien envía órdenes mediante el protocolo de comunicación a los nodos esclavos para que éstos representen objetos tridimensionales y \emph{quads}, aplicándoles efectos visuales.
-En \emph{VMT}, los nodos se definen agregando proyectores a la escena, asignando propiedades de ubicación para cada uno en particular para luego definir la red de nodos esclavo con la información de conectividad necesaria y su correspondiente asociación al proyector que tiene conectado el nodo.
+En \emph{VMT}, los nodos se definen agregando cámaras virtuales que representan proyectores a la escena, asignando propiedades de ubicación para cada una en particular para luego definir la red de nodos esclavo con la información de conectividad necesaria y su correspondiente asociación al proyector conectado el nodo.
 
 \begin{figure}[H]
   \centering
@@ -136,58 +136,57 @@ En cambio, si queremos proyectar sobre zonas de la escena no contiguas entre si,
 Como se mencionó anteriormente, \emph{VMT} permite trabajar simultáneamente de forma bidimensional y tridimensional, por lo tanto, cada uno de estos modos de trabajo requiere distintos mecanismos de calibración.
 
 La calibración bidimensional se basa en ajustar los vértices de todos los \emph{quads} de una capa de forma conjunta.
-Inicialmente, al preparar el modelo para el espectáculo, los \emph{quads} son posicionados en pantalla, al mismo tiempo que estos son proyectados, cubriendo las áreas de interés a proyectar. Luego de este posicionamiento inicial, cualquier movimiento de los proyectores causará que se desajuste simultáneamente la proyección de todos los \emph{quads}. Si esto ocurriese se hace necesario reposicionar los \emph{quads} para que vuelvan a cubrir las áreas a proyectar.
-\emph{VMT} ofrece la posibilidad de ajustar todos los \emph{quads} pertenecientes a una misma capa de forma simultánea aplicando una homografía. Esta transformación es la que ocurre naturalmente en la proyección al variar la posición u orientación del mismo por lo tanto es necesario aplicar la transformación inversa para que los \emph{quads} se ajusten nuevamente a las superficies. Esta transformación queda definida conociendo cuatro puntos de origen y cuatro de destino, por lo que se puede calibrar la proyección escogiendo los cuatro vértices de un \emph{quad} y cuatro puntos en donde se desea proyectar el \emph{quad}.
+Inicialmente, al preparar el modelo para el espectáculo, los \emph{quads} son posicionados en pantalla al mismo tiempo que estos son proyectados, cubriendo las áreas de interés a proyectar. Luego de este posicionamiento inicial, cualquier movimiento de los proyectores causará que se desajuste simultáneamente la proyección de todos los \emph{quads}. Si esto ocurriese, se hace necesario reposicionar los \emph{quads} para que vuelvan a cubrir las áreas a proyectar.
+\emph{VMT} ofrece la posibilidad de ajustar todos los \emph{quads} pertenecientes a una misma capa de forma simultánea aplicando una homografía. Esta transformación es la que ocurre naturalmente en la proyección al variar la posición u orientación del mismo, por lo tanto es necesario aplicar la transformación inversa para que la proyección de los \emph{quads} se ajuste nuevamente a la superficie. La homografía queda definida conociendo cuatro puntos de origen y cuatro de destino, por lo que se puede calibrar la proyección escogiendo los cuatro vértices de un \emph{quad} y cuatro puntos en donde se desea proyectar dicho \emph{quad}.
 
-Por otra parte, la calibración tridimensional se basa en hacer coincidir los parámetros de posición, orientación y proyección de las cámaras virtuales con los de los proyectores físicos. Este ajuste de parámetros se realiza manualmente por el usuario, utilizando las transformaciones de cámara explicadas anteriormente, \emph{dolly}, \emph{pan}, \emph{roll} y \emph{orbit}. Esta calibración es distinta para cada cámara y proyector por lo que debe hacerse de forma independiente para cada uno de estos.
+Por otra parte, la calibración tridimensional se basa en hacer coincidir los parámetros de posición, orientación y proyección de las cámaras virtuales con los de los proyectores físicos. Este ajuste de parámetros se realiza manualmente por el usuario, utilizando las transformaciones de cámara explicadas anteriormente, \emph{dolly}, \emph{pan}, \emph{roll} y \emph{orbit}. Esta calibración es distinta para cada cámara virtual y proyector por lo que debe hacerse de forma independiente para cada uno de estos.
 
 \section{Interfaz gráfica de usuario}
 
-La interfaz gráfica cuenta con ventanas y diálogos sencillos de altas, bajas y modificaciones para todos los tipos de objetos existentes. Fue diseñada en base a barras de herramientas flotantes de forma de tener visibilidad de la escena en todo momento sin ocupar partes considerables del espacio de trabajo y observar así de mejor forma el impacto de los cambios efectuados.
+La interfaz gráfica de \emph{VMT} cuenta con ventanas y diálogos de altas, bajas y modificaciones para todos los tipos de objetos existentes en una escena. Fue diseñada en base a barras de herramientas flotantes de forma de tener visibilidad del editor tridimensional en todo momento sin ocupar áreas considerables del espacio de trabajo y poder observar así de mejor forma el impacto de las acciones realizadas.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{./Cap5_vmt/vmt_todo.png}
-  \caption{Vista general de la interfaz de usuario de \emph{VMT}}
+  \caption[Imagen propia.]{Vista general de la interfaz de usuario de \emph{VMT}}
   \label{fig:VMT-MainWindow}
 \end{figure}
 
-Al inicio de la ejecución de \emph{VMT} se cuenta con una vista gráfica de la escena desde el punto de vista de la cámara activa, una vista de los objetos contenidos en la escena, la lista de definición de efectos y una línea de tiempo con las listas de efectos por tiempo, por evento de teclado y \emph{MIDI}.
-La ventana de escena brinda las funcionalidades principales de la aplicación y es desde donde se manejan los objetos bidimensionales y tridimensionales, cámaras, capas y los nodos distribuidos del espectáculo, así como también los controles para la calibración de las cámaras virtuales.
-Esta ventana además cuenta con botones para cambiar los modos de control de las cámaras ofrecidos.
+Al inicio de la ejecución de \emph{VMT} se cuenta con una vista gráfica de la escena, un árbol con los elementos contenidos en la escena, la lista de definición de efectos y una línea de tiempo con las listas de efectos por tiempo, evento de teclado y \emph{MIDI}.
+La ventana de escena brinda las funcionalidades principales de la aplicación, desde donde se manejan los objetos bidimensionales y tridimensionales, cámaras, capas y nodos distribuidos del espectáculo. También esta ventana ofrece los controles para la calibración de las cámaras virtuales para cambiar los modos de control ofrecidos.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_scene.png}
-  \caption{Ventana para manejar la escena}
+  \caption[Imagen propia.]{Ventana para manejar la escena}
   \label{fig:VMT-SceneWindow}
 \end{figure}
 
 \subsection{Cámaras, capas y \emph{quads}}
-Las cámaras virtuales tienen todas las propiedades usuales que se pueden encontrar en paquetes de software de animación tridimensional como son la posición, \emph{eye}, \emph{up}, \emph{FOV}, aspecto, \emph{near}, \emph{far}.
-La posición, \emph{eye} y \emph{up} son ternas de coordenadas tridimensionales que identifican respectivamente el punto de origen de la cámara, hacia donde está apuntando, y la dirección vertical de la cámara virtual.
+Las cámaras virtuales tienen todas las propiedades usuales que se pueden encontrar en paquetes de software de animación tridimensional como son la posición, \emph{eye}, \emph{up}, \emph{FOV}, aspecto, \emph{near} y \emph{far}.
+\emph{Eye}, \emph{up} y posición son ternas de coordenadas tridimensionales que identifican respectivamente hacia donde apunta la cámara, su dirección vertical y su punto de origen.
 El parámetro \emph{FOV} o campo de vista, es el ángulo de apertura de la cámara virtual. A mayor ángulo de apertura, mayor cantidad de objetos serán incluidos en el campo visual de la cámara.
-El aspecto es un valor que representa la relación entre la resolución horizontal y vertical tanto de cámaras como de proyectores.
-Finalmente, los parámetros \emph{near} y \emph{far}, son propios del modelo y no representan propiedades de los proyectores físicos. Estos son utilizados para restringir la representación de objetos, definiendo la distancia a la cámara mínima y máxima en donde será efectiva la representación de objetos.
+Por su parte el aspecto es un valor que representa la relación entre la resolución horizontal y vertical tanto de cámaras como de proyectores.
+Finalmente, los parámetros \emph{near} y \emph{far}, son propios del modelo y no representan propiedades de los proyectores físicos. Éstos definen la distancia mínima y máxima de los objetos a la cámara, lo que será considerado para restringir la representación de los mismos.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_cameraProperties.png}
-  \caption{Diálogo de propiedades de cámara}
+  \caption[Imagen propia.]{Diálogo de propiedades de cámara}
   \label{fig:VMT-CameraProperties}
 \end{figure}
 
-Las cámaras virtuales en \emph{VMT} representan puntos de vista desde donde visualizar una escena tridimensional. Estas cámaras virtuales poseen la propiedad \emph{isProjector} que diferencia si esta cámara es utilizada para representar el punto de vista de un proyector o un punto de vista arbitrario. La aplicación utiliza esta información para asociar las cámaras que representan proyectores a los nodos esclavos en una configuración multiproyector.
+Las cámaras virtuales en \emph{VMT} representan puntos de vista desde donde visualizar una escena tridimensional. Estas cámaras virtuales poseen la propiedad \emph{isProjector} que diferencia si esta cámara es utilizada para representar el punto de vista de un proyector o un punto de vista arbitrario. La aplicación utiliza esta información para asociar las cámaras que representen proyectores a los nodos esclavos en una configuración multiproyector.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_SceneBotonera.png}
-  \caption{Acciones para seleccionar modo de movimiento de la cámara activa}
+  \caption[Imagen propia.]{Acciones para seleccionar modo de movimiento de la cámara activa}
   \label{fig:VMT-CameraActions}
 \end{figure}
 
-Una vez seleccionado el modo de la cámara y manteniendo presionado el botón izquierdo del ratón, al desplazarlo se mueve la cámara acorde al modo seleccionado.
-Cada cámara es a su vez un contenedor de \emph{layers}, cuyo propósito es manejar todo lo relacionado al mapeo sobre estructuras bidimensionales, y por ello son los contenedores de \emph{quads} sobre los cuales se realizan todas las operaciones y efectos disponibles.
+Una vez seleccionado el modo de la cámara, arrastrando el ratón manteniendo presionado el botón izquierdo se mueve la cámara de manera acorde al modo seleccionado.
+Cada cámara es a su vez un contenedor de capas, cuyo propósito es manejar todo lo relacionado al mapeo sobre estructuras bidimensionales. Por esta razón, las capas son a su vez contenedores de \emph{quads} sobre los cuales se realizan todas las operaciones y efectos disponibles.
 
 \begin{figure}
 	\begin{center}
@@ -197,64 +196,65 @@ Cada cámara es a su vez un contenedor de \emph{layers}, cuyo propósito es mane
 			\includegraphics[width=0.3\textwidth]{./Cap5_vmt/vmt_quadProperties.png}
 		\end{tabular}
 	\end{center}
-	\caption{Propiedades de los objetos \emph{Layer} y \emph{Quad}}
+	\caption[Imagen propia.]{Propiedades de los objetos capa y \emph{Quad}}
 	\label{fig:VMT-LayerQuadProperties}
 \end{figure}
 
-Tanto \emph{quads} como \emph{layers} tienen propiedades editables en tiempo de edición o durante el espectáculo para mostrarse u ocultarse completamente. Si se oculta una \emph{layer}, todos los \emph{quads} contenidos en ella también se ocultarán. En caso de revelarla, todos los \emph{quads} visibles volverán a desplegarse.
+Tanto \emph{quads} como capas tienen propiedades que pueden ser modificadas en tiempo de edición para mostrarse u ocultarse completamente. Si se oculta una capa, todos los \emph{quads} contenidos en ella también se ocultarán. En caso de revelarla, todos los \emph{quads} visibles volverán a desplegarse.
 
 \subsection{Objetos tridimensionales}
 
 \emph{VMT} permite el manejo de objetos tridimensionales, importándolos de archivos con formato de malla triangular de tipo \emph{3DS}.
-Fue escogido este formato debido a que es un estándar manejado por los programas de modelado tridimensional más populares, y por la disponibilidad de bibliotecas que lo manejan.
+Fue escogido este formato debido a que es un estándar utilizado por los programas de modelado tridimensional más populares, y por la disponibilidad de bibliotecas facilitan su manipulación.
+Como se mencionó anteriormente, la edición de los objetos tridimensionales se delega a aplicaciones para este propósito, limitándose \emph{VMT} a su posicionamiento.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_objectProperties.png}
-  \caption{Diálogo de propiedades de objeto tridimensional}
+  \caption[Imagen propia.]{Diálogo de propiedades de objeto tridimensional}
   \label{fig:VMT-ObjectProperties}
 \end{figure}
 
 \subsection{Efectos}
 
 Se proveen ventanas flotantes tanto para la definición de efectos como para la asociación con sus disparadores como ser un instante específico, un evento de teclado o un evento \emph{MIDI}.
+Si un efecto es definido para ser desplegado en un instante dado, éste se podrá visualizar durante el transcurso de la línea de tiempo. En caso de ser definido por evento de teclado o \emph{MIDI}, éste será ejecutado cada vez que el evento asociado suceda.
 
-Si un efecto es definido para ser desplegado en un instante dado, éste se podrá visualizar durante el transcurso de la línea de tiempo. En caso de ser definido por evento, éste será visualizado cada vez que el evento asociado suceda, sea un evento de teclado o \emph{MIDI}.
-El efectos de posición de objetos tridimensional permite animar el objeto trasladándolo de una posición inicial a una final en un lapso de tiempo.
+El efecto de posición de objetos tridimensionales permite animar el objeto trasladándolo de una posición inicial a una final en un rango de tiempo.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_EfectDialog1.png}
-  \caption{Diálogo de definición de efecto de tipo posición}
+  \caption[Imagen propia.]{Diálogo de definición de efecto de tipo posición}
   \label{fig:VMT-EffectPossition}
 \end{figure}
 
-El efecto de \emph{fade} es aplicable a grupos de \emph{quads} y permite colorear todos los \emph{quads} del grupo variando desde un color inicial y pasando por toda la gama de colores intermedios hasta llegar al color final en un lapso de tiempo definido por el usuario. Para la selección de colores se utiliza un diálogo específico para ese propósito.
+El efecto \emph{fade} es aplicable a grupos de \emph{quads} y permite colorear todos los \emph{quads} del grupo variando desde un color inicial y pasando por toda la gama de colores intermedios hasta llegar al color final en un rango de tiempo. Para la selección de colores se utiliza un diálogo específico para este propósito.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_EfectDialog2.png}
-  \caption{Diálogo de definición de efecto de tipo \emph{fade}}
+  \caption[Imagen propia.]{Diálogo de definición de efecto de tipo \emph{fade}}
   \label{fig:VMT-EffectFade}
 \end{figure}
 
-Los efectos de tipo textura son aplicables tanto a grupos de \emph{quads} como a objetos tridimensionales, definiendo texturas de tipo imagen o video. En ambos casos es necesario proporcionar la ruta al archivo multimedia correspondiente. Para el caso especifico de un efecto de textura asociado a un objeto tridimensional, es necesario proporcionar además la cara o conjunto de caras sobre los cuales se va a mapear el efecto de tipo textura definido. Este conjunto de caras se representa en el formato \emph{3DS} asociándole un material, para luego identificarlas mediante el nombre de dicho material.
+Los efectos de tipo textura son aplicables tanto a grupos de \emph{quads} como a objetos tridimensionales, definiendo texturas de tipo imagen o video. En ambos casos es necesario proporcionar la ruta al archivo multimedia correspondiente. Para el caso específico de un efecto de textura asociado a un objeto tridimensional, es necesario proporcionar además la cara o conjunto de caras sobre los cuales se mapeará dicho efecto. Este conjunto de caras se representa en el formato \emph{3DS} asociándole un material, para luego identificarlas mediante su nombre.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_EfectDialog3.png}
-  \caption{Diálogo de definición de efecto de tipo textura aplicada a un grupo.}
+  \caption[Imagen propia.]{Diálogo de definición de efecto de tipo textura}
   \label{fig:VMT-EffectTexture}
 \end{figure}
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.2\textwidth]{./Cap5_vmt/vmt_Efects.png}
-  \caption{Lista de efectos definidos en la escena}
+  \caption[Imagen propia.]{Lista de efectos definidos en la escena}
   \label{fig:VMT-EffectList}
 \end{figure}
 
-Es posible visualizar el efecto que se está creando presionando el botón \emph{Test} de la lista de efectos. Esto disparará la ejecución por una única vez del efecto seleccionado en la lista.
+Es posible visualizar el efecto que se está creando presionando el botón \emph{Test} de la lista de efectos. Esto disparará la ejecución del efecto seleccionado por una única vez.
 
 \subsection{Calibración}
 
@@ -263,69 +263,71 @@ El proceso de calibración en \emph{VMT} se basa en posicionar cuatro puntos de 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.6\textwidth]{./Cap5_vmt/vmt_Calibrate.png}
-  \caption{Diálogo para configurar y ejecutar la calibración}
+  \caption[Imagen propia.]{Diálogo para configurar y ejecutar la calibración}
   \label{fig:VMT-Calib}
 \end{figure}
 
 Al ingresar en el modo calibración se muestran en la pantalla de edición cuatro puntos azules de destino y cuatro puntos rojos de origen junto con el diálogo de configuración de la calibración.
 El diálogo posee controles para posicionar cada uno de los ocho puntos mostrados en pantalla. Se deberán posicionar los cuatro puntos de origen en regiones significativas de la capa donde hayan vértices de \emph{quads}, preferiblemente alejados entre si para de esta forma minimizar el error obtenido al calcular la matriz.
-Los cuatro puntos de destino se deberán posicionar observando la proyección de estos sobre la superficie, trasladándolos hasta que coincidan con la superficie que se desea cubrir. Una vez los ocho puntos estén posicionados se podrá calcular y aplicar la nueva matriz de calibración confirmando con el botón \emph{OK}.
+Los cuatro puntos de destino se deberán posicionar observando la proyección de estos sobre la superficie, trasladándolos hasta que coincidan con la superficie que se desea cubrir. Una vez que los ocho puntos estén posicionados se podrá calcular y aplicar la nueva matriz de calibración confirmando con el botón \emph{OK}.
 Mediante el botón \emph{ReCalibrate} se reestablece la calibración original, descartando los cambios realizados.
 
 \subsection{Línea de tiempo}
 
-Tanto para la fases de producción y previsualización del evento como para la ejecución o reproducción del espectáculo en vivo, es necesario contar con controles para el manejo de la línea de tiempo.
+Tanto para la fases de producción y previsualización del espectáculo como para su reproducción en vivo, es necesario contar con controles para el manejo de la línea de tiempo.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_events_effects.png}
-  \caption{Diálogo con línea de tiempo y lista de efectos asociados a tiempo y eventos}
+  \caption[Imagen propia.]{Diálogo con línea de tiempo y lista de efectos asociados a tiempo y eventos}
   \label{fig:VMT-Timeline}
 \end{figure}
 
-La aplicación permite iniciar la ejecución de la línea de tiempo mediante la acción de \emph{Start}. Se provee una vista gráfica representada con una barra deslizante y una vista numérica para reflejar el avance en el tiempo en relación a la duración total del evento.
+La aplicación permite iniciar la ejecución de la línea de tiempo mediante el botón \emph{Start}. Se provee una vista gráfica representada con una barra deslizante y una vista numérica para reflejar el avance en el tiempo en relación a la duración total del evento.
 Utilizando la barra deslizante es posible navegar por la línea de tiempo e iniciar la visualización del espectáculo desde cualquier instante deseado. Esto último es muy útil para la fase de producción del espectáculo en la cual es muy común que el usuario se quiera concentrar en un lapso específico en el que se está trabajando.
-Sobre la línea de tiempo se pueden observar las listas de eventos agrupados por tipo, pudiéndo asociar cualquiera de los eventos previamente definidos a un instante dado o a un código de evento a ser utilizado durante el espectáculo, ya sea de teclado o proveniente de dispositivos de entrada \emph{MIDI}.
+El diálogo contiene los efectos asociados a eventos agrupados por tipo, pudiendo estos referenciar un instante dado, un evento de teclado o proveniente de dispositivos de entrada \emph{MIDI}.
 
 \subsection{Nodos remotos}
 
-Para modelar la red de nodos esclavos de \emph{VMT} en los cuales se conectarán proyectores remotos es preciso definir, para cada nodo, su dirección \emph{IP} y número de puerto en donde estarán configurados así como también la cámara definida en la escena que representará al proyector asociado.
+Para modelar la red de nodos esclavos de \emph{VMT} en los cuales se conectarán proyectores remotos es preciso definir para cada uno de ellos, su dirección \emph{IP} y número de puerto en donde estarán configurados así como también la cámara definida en la escena que representará al proyector asociado.
 
 \begin{figure}
 	\begin{center}
 		\begin{tabular}[c]{cc}
 			\includegraphics[width=0.3\textwidth]{./Cap5_vmt/vmt_nodeProperties_1.png}
-				&        
+				&
 			\includegraphics[width=0.3\textwidth]{./Cap5_vmt/vmt_nodeProperties_2.png}
 		\end{tabular}
 	\end{center}
-	\caption{Lista de nodos y diálogo de propiedades de nodos}
+	\caption[Imagen propia.]{Lista de nodos y diálogo de propiedades de nodos}
 	\label{fig:VMT-Nodes}
 \end{figure}
 
 \subsection{Escena en XML}
-El almacenamiento de la escena y su carga se realiza mediante archivos \emph{XML} estándar. La interfaz provee de diálogos nativos para guardar y cargar estos archivos.
+El almacenamiento de la escena y su carga se realiza mediante archivos \emph{XML} estándar.
+La interfaz provee diálogos específicos para guardar y cargar estos archivos.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap5_vmt/vmt_loadShow.png}
-  \caption{Diálogo para cargar y guardar archivos \emph{XML}.}
+  \caption[Imagen propia.]{Diálogo para cargar y guardar archivos \emph{XML}.}
   \label{fig:VMT-XML}
 \end{figure}
 
-\section{Decisiones de implementación de la interfaz gráfica de usuario}
-Para la implementación del módulo de interfaz gráfica se utilizó \emph{Qt Framework} \cite{Qt-framework} como biblioteca de base para la creación de las ventanas, controles gráficos y manejo de la comunicación que ocurre entre las ventanas y los modelos de \emph{VMT}. Esta biblioteca utiliza el patrón \emph{Model-View-Controller (MVC)}, lo que exige generar para cada ventana, modelos que manejan sus datos relevantes.
-Se hizo uso de la funcionalidad para internacionalización de las interfaces gráficas, las que por el momento están tomando valores por defecto en idioma inglés. \emph{Qt Framework} es multiplataforma y puede ser utilizado en varios de los sistemas operativos más populares como \emph{Linux}, \emph{Mac OS X} y \emph{Windows}, por esta razón es que fue escogido para el módulo de interfaz gráfica.
+\subsection{Decisiones de implementación de la interfaz gráfica de usuario}
+Para la implementación del módulo de interfaz gráfica se utilizó \emph{Qt Framework}\cite{Qt-framework} como biblioteca de base para la creación de las ventanas, controles gráficos y manejo de la comunicación que ocurre entre las ventanas y los modelos de \emph{VMT}. Esta biblioteca utiliza el patrón de diseño \emph{Model-View-Controller (MVC)}\cite{QTMVC}, lo que exige generar para cada ventana, modelos que manejan sus datos relevantes.
+Se hizo uso de la funcionalidad para internacionalización de las interfaces gráficas, las que por el momento están tomando valores por defecto en idioma inglés. \emph{Qt Framework} es multiplataforma y puede ser utilizado en varios de los sistemas operativos más populares como \emph{Linux}, \emph{Mac OS X} y \emph{Windows}, por esta razón es que fue escogido como base para el módulo de interfaz gráfica.
 
 \section{Prototipo de calibración tridimensional}
-En el marco de este proyecto se desarrolló un prototipo de calibración basado en un método cuyo objetivo es obtener la posición del proyector con respecto a un sistema de coordenadas ubicado en un punto relativo a la escena. Para ello se utiliza una superficie plana de calibración que puede existir ya en la escena o puede ser ubicada sobre ésta de forma temporal. Esta superficie de calibración deberá ser un plano rectangular en donde uno de los vértices será el centro de coordenadas que se desea determinar. La orientación del plano determinará la alineación del centro de coordenadas con sus ejes $X$ e $Y$ alineados con dos de los bordes del plano y el eje $Z$ perpendicular a éste. Se utiliza además un proyector asumiendo el modelo \emph{pinhole}.
+En el marco de este proyecto se desarrolló un prototipo de calibración basado en un método cuyo objetivo es obtener la posición del proyector con respecto a un sistema de coordenadas ubicado en un punto relativo a la escena. Para ello se utiliza una superficie plana de calibración que puede existir ya en la escena o puede ser ubicada sobre ésta de forma temporal. Esta superficie de calibración deberá ser un plano rectangular en donde uno de los vértices será el centro de coordenadas que se desea determinar. La orientación del plano determinará la alineación del centro de coordenadas con sus ejes $X$ e $Y$ alineados con dos de los bordes del plano y el eje $Z$ perpendicular a éste.
+Se utiliza además un proyector el cual es representado mediante el modelo \emph{pinhole}.
 
 Para encontrar el sistema de coordenadas buscado, se resuelve el problema opuesto que es encontrar la posición del punto que será origen del nuevo centro de coordenadas con respecto al centro de proyección ubicado dentro del proyector. Este método utiliza tres de los vértices de la superficie de calibración que formarán una base del nuevo sistema de coordenadas. Las medidas de la superficie de calibración son conocidas por lo que las distancias entre sus vértices también lo son. Desde el centro del proyector se proyectan rayos de luz, tres de los cuales pasan por los vértices de la superficie de calibración y también por el centro de proyección con coordenadas $(0, 0, 0)$. Para obtener la ecuación de estos rayos se precisa únicamente un punto distinto del origen. La ecuación de este punto puede ser obtenida utilizando las coordenadas en pantalla del píxel que se proyecta en cada vértice de la superficie de calibración.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/CalibrationSketch}
-  \caption{Esquema de calibración.}
+  \caption[Imagen propia.]{Esquema de calibración.}
   \label{fig:CalibrationSketch}
 \end{figure}
 
@@ -363,38 +365,38 @@ La ubicación del proyector en este nuevo sistema se obtiene proyectando cualqui
 
 \section{Tratamiento de malla}
 
-Para generar mallas que puedan ser manejadas por \emph{VMT} se desarrolló una aplicación independiente que recibe como entrada una nube de puntos a procesar.
+Para generar mallas que puedan ser manejadas por \emph{VMT} se desarrolló separadamente una aplicación que recibe como entrada una nube de puntos a procesar.
 Como salida se generan mallas triangulares en el formato estándar \emph{OBJ}.
 
-Para la implementación de este módulo se utilizan los algoritmos descriptos en el capítulo de estado del arte incluidos en \emph{VcgLib} y que forman parte del procesamiento de malla propuesto. Para visualizar y evaluar los resultados esperados fue utilizada la aplicación de código abierto para la manipulación de mallas tridimensionales en diferentes formatos \emph{MeshLab} \cite{MeshLab}. Particularmente se utilizan los algoritmos de muestreo \emph{Poisson-disk} para reducir y normalizar los puntos de la malla inicial, \emph{normal extrapolation} para el cálculo de normales y reconstrucción de superficies de Poisson para la reconstrucción de la malla final.
+Para la implementación de este módulo se utilizan los algoritmos descriptos en el capítulo de estado del arte, incluidos en \emph{VcgLib} y que forman parte del procesamiento de malla propuesto. Para visualizar y evaluar los resultados esperados fue utilizada la aplicación de código abierto para la manipulación de mallas tridimensionales en diferentes formatos \emph{MeshLab}\cite{MeshLab}. Particularmente se utilizan los algoritmos de muestreo \emph{Poisson-disk} para reducir y normalizar los puntos de la malla inicial, \emph{normal extrapolation} para el cálculo de normales y reconstrucción de superficies de Poisson para la reconstrucción de la malla final.
 
 Esta aplicación cuenta con una sencilla interfaz de usuario, con una única ventana que recibe los parámetros para la configuración de los algoritmos que se ejecutan en cada uno de los pasos del procesamiento.
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/malla-poissongui.png}
-  \caption{Configuración de parámetros del algoritmo \emph{Poisson-disk}}
+  \caption[Imagen propia.]{Configuración de parámetros del algoritmo \emph{Poisson-disk}}
   \label{fig:Mesh-PoissonGui}
 \end{figure}
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/malla-normalextrapolation.png}
-  \caption{Configuración de parámetros para reconstrucción de normales}
+  \caption[Imagen propia.]{Configuración de parámetros para reconstrucción de normales}
   \label{fig:Mesh-Extrapolation}
 \end{figure}
 
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/malla-poissonreconstruction.png}
-  \caption{Configuración de parámetros para reconstruccion de malla de Poisson}
+  \caption[Imagen propia.]{Configuración de parámetros para reconstruccion de malla de Poisson}
   \label{fig:Mesh-Normals}
 \end{figure}
 
 \subsection{Pruebas y resultados}
 
 Para validar el correcto funcionamiento de esta técnica mediante los tres algoritmos descritos, fue utilizada una malla inicial de 5021 vértices y 9608 caras triangulares. Cabe destacar que si bien se ha mencionado que la malla de entrada debe ser simplemente una nube de puntos, se pueden utilizar mallas con caras, aunque estas serán ignoradas e incluso eliminadas de la malla de salida del primer paso del procesamiento (muestreo de \emph{Poisson-disk}).
-Luego de experimentar con varios juegos de datos iniciales durante varias ejecuciones del procesamiento, se fijaron de manera personalizada para la malla de entrada algunos parámetros clave. Dado que la muestra inicial tiene alrededor de cinco mil puntos, fueron elegidas cinco mil muestras para el algoritmo de \emph{Poisson-disk}. Luego, para la extrapolación de normales se utilizan $K=15$ vecinos para la toma de decisiones locales de aproximación.
+Luego de experimentar con varios juegos de datos iniciales durante varias ejecuciones del procesamiento, se fijaron de manera personalizada para la malla de entrada algunos parámetros clave. Dado que la muestra inicial tiene alrededor de 5000 puntos, fueron elegidas 5000 muestras para el algoritmo de \emph{Poisson-disk}. Luego, para la extrapolación de normales se utilizan $K=15$ vecinos para la toma de decisiones locales de aproximación.
 La aplicación de estos algoritmos resultó ser lo esperado en términos estructurales de cada malla procesada en cada uno de los pasos.
 
 \begin{table}
@@ -413,7 +415,7 @@ La aplicación de estos algoritmos resultó ser lo esperado en términos estruct
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{./Cap2_videomapping/malla-nubepuntos.png}
-  \caption{1) Nube de puntos inicial con 5021 vértices. 2) Resultado de muestreo \emph{Poisson-disk} con 1776 vértices. 3) Luego de extrapolar normales y reconstruir la malla con 1959 vértices y 3910 caras.}
+  \caption[Captura de Meshlab]{1) Nube de puntos inicial con 5021 vértices. 2) Resultado de muestreo \emph{Poisson-disk} con 1776 vértices. 3) Luego de extrapolar normales y reconstruir la malla con 1959 vértices y 3910 caras.}
   \label{fig:Mesh-Results}
 \end{figure}
  
