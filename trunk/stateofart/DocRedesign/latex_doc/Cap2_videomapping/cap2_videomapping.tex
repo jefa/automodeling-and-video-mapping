@@ -161,7 +161,7 @@ Los modelos tridimensionales se generan utilizando distintas técnicas cuya elec
   \item Reconstrucción utilizando hardware especializado: mediante escáneres tridimensionales se obtiene una nube de puntos que representa la superficie. El conjunto de puntos obtenido es denso, generalmente con redundancia y errores, es por esto que comúnmente se utilizan algoritmos específicos para reducir la nube de puntos \footnote{Esta técnica se ampliará en la sección Obtención de Geometía}.
 \end{itemize}
 
-Para las técnicas de modelado utlizando polígonos y curvas, algunas de las herramientas más populares son \emph{Maya}\cite{Maya}, \emph{3D Studio Max}\cite{3DStudioMax} y \emph{Blender}\cite{Blender}, mientras que para la realización de esculpido digital son también muy utilizadas \emph{3D-Coat}\cite{3DCoat}, \emph{ZBrush}\cite{Zbrush}, \emph{Sculptris}\cite{Sculptris} y \emph{Mudbox}\cite{Mudbox}. 
+Para las técnicas de modelado utilizando polígonos y curvas, algunas de las herramientas más populares son \emph{Maya}\cite{Maya}, \emph{3D Studio Max}\cite{3DStudioMax} y \emph{Blender}\cite{Blender}, mientras que para la realización de esculpido digital son también muy utilizadas \emph{3D-Coat}\cite{3DCoat}, \emph{ZBrush}\cite{Zbrush}, \emph{Sculptris}\cite{Sculptris} y \emph{Mudbox}\cite{Mudbox}. 
 
 \begin{figure}[H]
   \centering
@@ -219,10 +219,10 @@ Se introducen distintos métodos que permiten la construcción automática de mo
 
 \subsubsection{Visión estéreo}
 
-La visión estéreo se basa en el análisis de dos imágenes observadas desde puntos de vista ligeramente diferentes, de forma similar a la visión humana, para reconstruir la estructura tridimensional de una escena. Este método entra en la categoría de los métodos pasivos por no utilizar luz auxilar. El análisis de las imágenes se realiza por medio de algoritmos que han evolucionado en los últimos tiempos logrando la reconstrucción de escenas rápidamente. Es por esto que esta técnica es muy utilizada en implementaciones que necesitan respuesta en tiempo real.
+La visión estéreo se basa en el análisis de dos imágenes observadas desde puntos de vista ligeramente diferentes, de forma similar a la visión humana, para reconstruir la estructura tridimensional de una escena. Este método entra en la categoría de los métodos pasivos por no utilizar luz auxiliar. El análisis de las imágenes se realiza por medio de algoritmos que han evolucionado en los últimos tiempos logrando la reconstrucción de escenas rápidamente. Es por esto que esta técnica es muy utilizada en implementaciones que necesitan respuesta en tiempo real.
 Un primer paso es el preproceso de las imágenes donde se identifican sus principales características. Este análisis definirá que tipo de algoritmo se utilizará en el paso de correspondencia, ya que definirá las características que se estudiarán. Luego se resuelve el problema de correspondencia, en el que dadas dos imágenes de la escena, para todos los puntos de la primera se obtiene el punto correspondiente en la otra y se calcula la desigualdad de cada punto, es decir, la distancia en píxeles entre los puntos que se corresponden. Finalmente se calcula la profundidad del punto utilizando el método de triangulación\footnote{ver anexo de método de triangulación} en el cual se obtiene la distancia focal de cada punto a cada una de las cámaras\cite{StereoReview}.
 
-Existen variedad de algoritmos que solucionan el problema de correspondecia y cálculo de desigualdad entre los puntos de las dos imágenes. Se pueden clasificar según el análisis de preproceso identificando características principales de las mismas destacándose dos estrategias\cite{StructureFromStereo}:
+Existen variedad de algoritmos que solucionan el problema de correspondencia y cálculo de desigualdad entre los puntos de las dos imágenes. Se pueden clasificar según el análisis de preproceso identificando características principales de las mismas destacándose dos estrategias\cite{StructureFromStereo}:
 \begin{itemize}
    \item \emph{Separate area}: basada en correlación del brillo e intensidad. Se utilizan patrones de brillo aplicados a un píxel y sus vecinos utilizando principio de localidad. Las diferencias en la perspectiva de la imagen o cambios en luminosidad absoluta de la escena pueden generar errores.
    \item \emph{Features}: las características usadas para la correspondencia son aristas, puntos o segmentos dadas por cambios de intensidad de la imagen. Esta estrategia es más estable ante la variación de luminosidad absoluta y en la práctica la correspondencia es más rápida.
@@ -248,7 +248,7 @@ La principal desventaja del método de visión estéreo es que en caso de oclusi
 
 \subsubsection{Luz estructurada}
 
-Luz estructurada es una técnica de obtención de geometría tridimensional que consiste en la proyección de patrones sobre la superficie a capturar para luego analizar la deformación de los mismos y obtener una nube de puntos que la representan. Este método, a diferencia de visión estéreo, es un método activo ya que reemplaza la segunda cámara por un proyector de luz que proyecta patrones sobre la supericie a modelar.
+Luz estructurada es una técnica de obtención de geometría tridimensional que consiste en la proyección de patrones sobre la superficie a capturar para luego analizar la deformación de los mismos y obtener una nube de puntos que la representan. Este método, a diferencia de visión estéreo, es un método activo ya que reemplaza la segunda cámara por un proyector de luz que proyecta patrones sobre la superficie a modelar.
 Los patrones son capturados por la cámara de video para su posterior análisis, obteniendo información tridimensional de la posición, orientación y textura de la superficie\cite{SLightPatterns}.
 
 Dependiendo de la superficie a escanear, los patrones proyectados pueden tener problemas de oclusión, baja reflexión y puntos reflejados fuera del alcance de la cámara. Como consecuencia, la pérdida de estos puntos proyectados impide resolver el problema de la correspondencia.
@@ -292,7 +292,7 @@ Un algoritmo que utiliza codificación binaria es el llamado \emph{Three Phase-S
 En esta sección se describe un método originalmente propuesto por Zhang\cite{ZhangS} para la calibración de una cámara y un proyector con el objetivo de capturar correctamente los patrones proyectados para su posterior análisis.
 La calibración de la cámara requiere estimar inicialmente los parámetros del modelo de cámara \emph{pinhole}, por lo tanto se deben obtener los parámetros intrínsecos como distancia focal, punto principal y factores de escala, y los extrínsecos definidos por la matriz de rotación y vector de traslación de un punto en el espacio al sistema de coordenadas de la cámara.
 Luego se debe capturar una secuencia de imágenes de un objeto simple, con un conjunto de características fijo y distinguible, y con un desplazamiento tridimensional conocido. Esto permite que cada imagen capturada durante el proceso de calibración provea de un conjunto de correspondencias de los puntos tridimensionales de la escena a puntos bidimensionales en el sistema de coordenadas de la cámara. Particularmente, en el método de Zhang, el objeto conocido que se observa es un tablero de damas plano en una o más orientaciones. De la secuencia capturada se pueden obtener los parámetros intrínsecos y luego, utilizando una sola toma de la secuencia, se obtienen los parámetros extrínsecos.
-Para la calibracion del proyector, éste se modela como el inverso de una cámara, teniendo en cuenta que la luz viaja en la dirección opuesta y que un punto en el plano de la imagen se mapea a un rayo de luz saliente por el punto y por el centro de proyección.
+Para la calibración del proyector, éste se modela como el inverso de una cámara, teniendo en cuenta que la luz viaja en la dirección opuesta y que un punto en el plano de la imagen se mapea a un rayo de luz saliente por el punto y por el centro de proyección.
 Dado este modelo, la calibración se debe realizar de forma similar a la de una cámara, con la salvedad que en lugar de tomar imágenes de un tablero de damas fijo, se proyecta un tablero en una ubicación conocida y se toman imágenes del mismo utilizando la cámara para analizar las distorsiones. Este enfoque resulta ser una extensión directa del método de Zhang para calibración de cámaras.
 
 Existen varias implementaciones de esta técnica de calibración basado en el modelo inverso de la cámara. Una de estas implementaciones es \emph{BYO3D}\cite{BYO3D}, que se encuentra disponible para \emph{MATLAB}\cite{MATLAB} y como una extensión a la biblioteca de visión computacional \emph{OpenCV}\cite{OpenCV}.
@@ -393,12 +393,6 @@ $$
        \end{array} \right.
 $$
 
+Luego, se obtiene una reconstrucción de la superficie mediante la extracción de la superficie de nivel en 3 dimensiones al nivel apropiado.
 La estrategia se basa en la estrecha relación que hay entre los puntos de la muestra, orientados por sus normales, y la función indicadora de la muestra. Específicamente el gradiente de la función indicadora es un espacio de vectores, de valor nulo en todo el espacio excepto en puntos cercanos a la superficie, donde son iguales al vector normal a ella.
-Es por eso que puntos orientados pueden ser vistos como muestras del gradiente de la función indicadora del modelo tridimensional en cuestión y es por este mismo motivo que el problema de reconstrucción de una malla puede ser visto como un problema de Poisson estándar, es decir, computar la función escalar $F$ cuya divergencia del gradiente se iguala a la divergencia del espacio de vectores de las normales. Fnalmente se obtiene una reconstrucción aproximada de la malla mediante la extracción de la superficie de nivel apropiada.
-
-\begin{figure}[H]
-  \centering
-    \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/poisson2d.png}
-  \caption[Poisson Surface Reconstruction, Michael Kazhdan, Matthew Bolitho and Hugues Hoppe Fig.1]{Reconstrucción de Poisson en 2D.}
-  \label{fig:Reconstruction-Poisson}
-\end{figure}
+Es por eso que puntos orientados pueden ser vistos como muestras del gradiente de la función indicadora del modelo tridimensional en cuestión y es por este mismo motivo que el problema de reconstrucción de una malla puede ser visto como un problema de Poisson estándar, es decir, computar la función escalar $F$ cuya divergencia del gradiente se iguala a la divergencia del espacio de vectores de las normales.
