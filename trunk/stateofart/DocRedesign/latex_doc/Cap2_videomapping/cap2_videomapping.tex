@@ -333,7 +333,7 @@ A continuación se detallan los algoritmos asociados a cada paso de un típico p
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{./Cap2_videomapping/malla-flow-2.png}
-  \caption[http://www.cgal.org]{Flujo típico de procesamiento de nubes de puntos \cite{CGAL}}
+  \caption[http://www.cgal.org]{Flujo típico de procesamiento de nubes de puntos}
   \label{fig:Mesh-CGAL}
 \end{figure}
 
@@ -393,6 +393,12 @@ $$
        \end{array} \right.
 $$
 
-Luego, se obtiene una reconstrucción de la superficie mediante la extracción de la superficie de nivel en 3 dimensiones al nivel apropiado.
 La estrategia se basa en la estrecha relación que hay entre los puntos de la muestra, orientados por sus normales, y la función indicadora de la muestra. Específicamente el gradiente de la función indicadora es un espacio de vectores, de valor nulo en todo el espacio excepto en puntos cercanos a la superficie, donde son iguales al vector normal a ella.
-Es por eso que puntos orientados pueden ser vistos como muestras del gradiente de la función indicadora del modelo tridimensional en cuestión y es por este mismo motivo que el problema de reconstrucción de una malla puede ser visto como un problema de Poisson estándar, es decir, computar la función escalar $F$ cuya divergencia del gradiente se iguala a la divergencia del espacio de vectores de las normales.
+Es por eso que puntos orientados pueden ser vistos como muestras del gradiente de la función indicadora del modelo tridimensional en cuestión y es por este mismo motivo que el problema de reconstrucción de una malla puede ser visto como un problema de Poisson estándar, es decir, computar la función escalar $F$ cuya divergencia del gradiente se iguala a la divergencia del espacio de vectores de las normales. Fnalmente se obtiene una reconstrucción aproximada de la malla mediante la extracción de la superficie de nivel apropiada.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.5\textwidth]{./Cap2_videomapping/poisson2d.png}
+  \caption[Poisson Surface Reconstruction, Michael Kazhdan, Matthew Bolitho and Hugues Hoppe Fig.1]{Reconstrucción de Poisson en dos dimensiones.}
+  \label{fig:Reconstruction-Poisson}
+\end{figure}
