@@ -2,9 +2,9 @@
 
 \section{Modelo \emph{pinhole}}
 
-Una cámara, por medio de una proyección central, establece una correspondencia entre puntos del espacio con puntos bidimensionales en su plano imágen. En particular se estudia el modelo de cámara \emph{pinhole} \cite{LibroCompGrafica3}.
+Una cámara, por medio de una proyección central, establece una correspondencia entre puntos del espacio con puntos bidimensionales en su plano imagen. En particular se estudia el modelo de cámara \emph{pinhole} \cite{LibroCompGrafica3}.
 
-Se considera el centro de proyección $C$, también centro óptico de la cámara, como el orígen de un sistema de coordenadas euclideano, y $Z = f$ el plano de la imagen o plano focal.
+Se considera el centro de proyección $C$, también centro óptico de la cámara, como el origen de un sistema de coordenadas euclideano, y $Z = f$ el plano de la imagen o plano focal.
 
 \begin{figure}[H]
   \centering
@@ -55,11 +55,11 @@ La geometría epipolar\cite{LibroCompGrafica3} es la geometría proyectiva intr�
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.7\textwidth]{./Cap2_videomapping/epipolar.PNG}
-  \caption[Multiple View Geometry in Computer Vision, Fig. 9.1]{$C$ y $C'$ centos de las cámaras.}
+  \caption[Multiple View Geometry in Computer Vision, Fig. 9.1]{$C$ y $C'$ centros de las cámaras.}
   \label{fig:Epipolar}
 \end{figure}
 La matriz fundamental $F$ es la representación algebraica de la geometría epipolar.
-Dado un par de imágenes, como se muestra en la figura para cada punto $x$ en una imagen existe una linea epipolar correspondiente $l'$ en la otra imagen. Cualquier punto $x'$ en la segunda imagen que corresponde al punto $x$, debe pertenecer a la linea epipolar $l'$.
+Dado un par de imágenes, como se muestra en la figura para cada punto $x$ en una imagen existe una línea epipolar correspondiente $l'$ en la otra imagen. Cualquier punto $x'$ en la segunda imagen que corresponde al punto $x$, debe pertenecer a la línea epipolar $l'$.
 La línea epipolar $l'$ es la proyección en la segunda imagen del rayo que parte del punto $x$ y llega al centro $C$ de la primer cámara. Se establece por tanto un mapeo de un punto en una imagen con la línea epipolar en la otra imagen.
 \[  x \to l'
 \]
