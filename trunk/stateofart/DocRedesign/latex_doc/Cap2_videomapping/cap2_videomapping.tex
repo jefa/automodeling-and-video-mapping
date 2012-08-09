@@ -40,14 +40,14 @@ En caso de utilizar más de un proyector cada uno de estos será posicionado en 
   \label{fig:diagrama-2proyectores}
 \end{figure}
 
-Son ejemplos de modelos: Fotografías, planos arquitectónicos y figuras geométricas.
+Son ejemplos de modelos: fotografías, planos arquitectónicos y figuras geométricas.
 Cada uno de estos requiere distintas técnicas para su creación y la forma de trabajo en las posteriores etapas dependerá del modelo utilizado.
 
-Una fotografía captura lo que vería un observador desde el punto de vista desde donde fue tomada. Es una forma sencilla de crear el modelo de una escena, aunque usualmente requieren trabajo adicional para llegar a ser un modelo fiel. Para utilizar este modelo en etapas posteriores es conveniente que el punto de vista desde donde fue tomada la fotografía coincida con la posición desde donde se desea proyectar, de esta forma minimizando los ajustes de calibración necesarios.
+Una fotografía captura lo que vería un observador desde el punto de vista desde donde fue tomada. Es una forma sencilla de crear el modelo de una escena, aunque usualmente requiere trabajo adicional para llegar a ser un modelo fiel. Para utilizar este modelo en etapas posteriores es conveniente que el punto de vista desde donde fue tomada la fotografía coincida con la posición desde donde se desea proyectar, minimizando de esta forma los ajustes de calibración necesarios.
 
-Un plano arquitectónico, por ejemplo de una fachada, contiene información exacta de las medidas de la superficie que representa en una escala dada. Generalmente utiliza el método de proyecciones paralelas \cite{LibroCompGrafica} sobre un plano de proyección. Para utilizar el plano arquitectónico como modelo se debe transformar de forma que coincida con la proyección en perspectiva desde el punto vista donde estará ubicado el proyector.
+Un plano arquitectónico, por ejemplo de una fachada, contiene información exacta de las medidas de la superficie que representa en una escala dada. Generalmente utiliza el método de proyecciones paralelas \cite{LibroCompGrafica} sobre un plano de proyección. Para utilizar el plano arquitectónico como modelo, se debe transformar de forma que coincida con la proyección en perspectiva desde el punto vista donde estará ubicado el proyector.
 
-Mediante figuras geométricas se modelan sectores de la superficie a proyectar. Un método para generarlas consiste en utilizar un proyector y herramientas de software que permiten delinear el contorno de las secciones de la superficie, ajustando el modelo en el momento de la construcción. Al usar el proyector para obtener el modelo queda incorporada la perspectiva del mismo por lo tanto no es necesaria otra calibración a menos de modificaciones en la ubicación u orientación del proyector.
+Mediante figuras geométricas se modelan sectores de la superficie a proyectar. Un método para generarlas consiste en utilizar un proyector y herramientas de software que permiten delinear el contorno de las secciones de la superficie, ajustando el modelo en el momento de la construcción. Al usar el proyector para obtener el modelo queda incorporada la perspectiva del mismo, por lo tanto no es necesaria otra calibración a menos que haya modificaciones en la ubicación u orientación del proyector.
 Otro método consiste en dibujar las figuras con una fotografía o plano de fondo. En este caso la construcción de las figuras geométricas se realiza delineando el contorno de la superficie en la fotografía o plano.
 Este tipo de modelos también pueden ser generados de forma automática utilizando técnicas de visión por computadora$^\dagger$ como por ejemplo el método basado en el filtrado de partículas\cite{ArticuloAutom2dmodel} para el reconocimiento de aristas.
 
@@ -60,10 +60,10 @@ Este tipo de modelos también pueden ser generados de forma automática utilizan
 
 \subsubsection{Producción del espectáculo}
 La producción del espectáculo en dos dimensiones consiste en definir efectos visuales sobre regiones de un espacio bidimensional discreto$^\dagger$ representadas en el modelo de la escena. Este espacio se representa con coordenadas de pantalla que identifican cada uno de los píxeles$^\dagger$ del área de trabajo. Los efectos visuales se logran realizando cualquier animación computacional que genere una salida gráfica como pueden ser videos e imágenes.
-En esta etapa, además de definir los efectos, se planifica cuando se mostrarán cada uno de ellos, pudiendo sincronizarse con la música que forma parte del espectáculo.
+En esta etapa, además de definir los efectos, se planifica cuándo se mostrarán cada uno de ellos, pudiendo sincronizarse con la música que forma parte del espectáculo.
 Los efectos podrán ser mostrados de forma secuencial, planificando en qué instante se ejecutará cada uno de ellos, o también definiendo acciones para que un \emph{VJ} decida en tiempo real en un espectáculo en vivo, los efectos a desplegar.
 
-En computación gráfica se utilizan texturas para proyectar videos e imágenes sobre regiones del área de trabajo. Las texturas son mapas de bits$^\dagger$ utilizados para cubrir la superficie de un objeto virtual. Estos mapas de bits pueden ser generados a partir de imágenes, videos, o incluso dinámicamente mediante rutinas computacionales permitiendo así crear efectos visuales como, por ejemplo, la transición de un color a otro.
+En computación gráfica se utilizan texturas para proyectar videos e imágenes sobre regiones del área de trabajo. Las texturas son mapas de bits$^\dagger$ utilizados para cubrir la superficie de un objeto virtual. Estos mapas de bits pueden ser generados a partir de imágenes, videos, o incluso dinámicamente mediante rutinas computacionales, permitiendo así crear efectos visuales como por ejemplo, la transición de un color a otro.
 
 \begin{minipage}{0.50\textwidth}
 	\begin{flushleft} \large
@@ -111,7 +111,7 @@ Estos cuadriláteros se utilizan como piezas constructoras del espectáculo, cub
 \end{figure}
 
 \subsubsection{Proyección del espectáculo}
-La principal dificultad encontrada en la etapa de la proyección del espectáculo es lograr que el modelo previamente generado se corresponda con la escena sobre la cuál se proyectará. El proceso que ajusta este modelo a proyectar con la superficie que representa es denominado calibración.
+La principal dificultad encontrada en la etapa de la proyección del espectáculo es lograr que el modelo previamente generado se corresponda con la escena sobre la cual se proyectará. El proceso que ajusta este modelo a proyectar con la superficie que representa es denominado calibración.
 Los ajustes necesarios varían dependiendo del método utilizado para obtener el modelo. En caso de utilizar una fotografía, el proyector deberá ser ubicado de forma tal que el punto de vista de la cámara con la que se tomó coincida con el del proyector y así lograr la coincidencia del centro de proyección. Igualmente son necesarios ajustes ya que los lentes de la cámara y el proyector no necesariamente coinciden en el ángulo de visión.
 Con el método de generación de figuras geométricas en el que se modelan las secciones de la superficie a mapear utilizando el mismo proyector, los ajustes se reducen a lograr la misma posición y orientación que tiene el proyector al momento de la captura de secciones, ya que las deformaciones relacionadas a los parámetros intrínsecos fueron implícitamente consideradas durante el proceso de captura.
 
@@ -200,7 +200,7 @@ En la escena tridimensional los objetos son visualizados utilizando cámaras vir
 
 Producir el espectáculo con este enfoque, es decir, transformando directamente los objetos y no sus perspectivas, permite escalar con mayor facilidad en la cantidad de proyectores a utilizar. Esto se logra agregando cámaras virtuales que definan más puntos de vista sin necesidad de modificar el modelo ni los efectos producidos.
 
-Si bien se está abordando un enfoque tridimensional de la producción del espectáculo, existen casos en que es más sencilla la implementación de ciertos efectos tomando un enfoque en dos dimensiones, sobre todo cuando estos se aplican sobre regiones planas de la superficie. Es por esto que es muy común combinar ambos enfoques y utilizarlos de acuerdo a las necesidades del diseñador. Cabe aclarar que al combinar los enfoques se pierden las ventajas de definir el punto de vista del proyector luego de la etapa de producción por lo que los objetos bidimensionales y efectos sobre estos se deben definir una vez fijada la ubicación de los proyectores.
+Si bien se está abordando un enfoque tridimensional de la producción del espectáculo, existen casos en que es más sencilla la implementación de ciertos efectos tomando un enfoque en dos dimensiones, sobre todo cuando estos se aplican sobre regiones planas de la superficie. Es por esto que es muy común combinar ambos enfoques y utilizarlos de acuerdo a las necesidades del diseñador. Cabe aclarar que al combinar los enfoques se pierden las ventajas de definir el punto de vista del proyector luego de la etapa de producción, por lo que los objetos bidimensionales y efectos sobre éstos se deben definir una vez fijada la ubicación de los proyectores.
 
 \subsubsection{Proyección del espectáculo}
 
@@ -220,7 +220,7 @@ Se introducen distintos métodos que permiten la construcción automática de mo
 \subsubsection{Visión estéreo}
 
 La visión estéreo se basa en el análisis de dos imágenes observadas desde puntos de vista ligeramente diferentes, de forma similar a la visión humana, para reconstruir la estructura tridimensional de una escena. Este método entra en la categoría de los métodos pasivos por no utilizar luz auxiliar. El análisis de las imágenes se realiza por medio de algoritmos que han evolucionado en los últimos tiempos logrando la reconstrucción de escenas rápidamente. Es por esto que esta técnica es muy utilizada en implementaciones que necesitan respuesta en tiempo real.
-Un primer paso es el preproceso de las imágenes donde se identifican sus principales características. Este análisis definirá que tipo de algoritmo se utilizará en el paso de correspondencia, ya que definirá las características que se estudiarán. Luego se resuelve el problema de correspondencia, en el que dadas dos imágenes de la escena, para todos los puntos de la primera se obtiene el punto correspondiente en la otra y se calcula la desigualdad de cada punto, es decir, la distancia en píxeles entre los puntos que se corresponden. Finalmente se calcula la profundidad del punto utilizando el método de triangulación\footnote{ver anexo de método de triangulación} en el cual se obtiene la distancia focal de cada punto a cada una de las cámaras\cite{StereoReview}.
+Un primer paso es el preproceso de las imágenes donde se identifican sus principales características. Este análisis definirá qué tipo de algoritmo se utilizará en el paso de correspondencia, ya que definirá las características que se estudiarán. Luego se resuelve el problema de correspondencia, en el que dadas dos imágenes de la escena, para todos los puntos de la primera se obtiene el punto correspondiente en la otra y se calcula la desigualdad de cada punto, es decir, la distancia en píxeles entre los puntos que se corresponden. Finalmente se calcula la profundidad del punto utilizando el método de triangulación\footnote{ver anexo de método de triangulación} en el cual se obtiene la distancia focal de cada punto a cada una de las cámaras\cite{StereoReview}.
 
 Existen variedad de algoritmos que solucionan el problema de correspondencia y cálculo de desigualdad entre los puntos de las dos imágenes. Se pueden clasificar según el análisis de preproceso identificando características principales de las mismas destacándose dos estrategias\cite{StructureFromStereo}:
 \begin{itemize}
@@ -273,7 +273,8 @@ Otra posible clasificación es según la discontinuidad en la profundidad de la 
 	\item Absoluta: Cada columna o fila del patrón proyectado tiene una única codificación. No sufre dependencia de discontinuidad de profundidad.
 \end{itemize}
 
-Un algoritmo que utiliza codificación binaria es el llamado \emph{Three Phase-Shifting} que utiliza tres ondas sinusoidales para la proyección del patrón. Este algoritmo fue presentado por Zhang\cite{ZhangS} e implementado por Kyle McDonalds en \cite{KyleMcDonald}. Dicho algoritmo es aplicable únicamente para superficies con curvas continuas, superficies disjuntas o con aristas pronunciadas serán capturadas de forma distorsionada.
+Un algoritmo que utiliza codificación binaria es el llamado \emph{Three Phase-Shifting} que utiliza tres ondas sinusoidales para la proyección del patrón. Este algoritmo fue presentado por Zhang\cite{ZhangS} e implementado por Kyle McDonalds en \cite{KyleMcDonald}. Dicho algoritmo es aplicable únicamente para superficies con curvas continuas. Superficies disjuntas o con aristas pronunciadas serán capturadas de forma distorsionada.
+
 \begin{figure}[H]
   \centering
     \includegraphics[width=0.8\textwidth]{./Cap2_videomapping/diagramaLS.png}
@@ -287,7 +288,7 @@ Un algoritmo que utiliza codificación binaria es el llamado \emph{Three Phase-S
   \label{fig:phase2}
 \end{figure}
 
-\paragraph{Calibración}
+\subsubsection{Calibración}
 
 En esta sección se describe un método originalmente propuesto por Zhang\cite{ZhangS} para la calibración de una cámara y un proyector con el objetivo de capturar correctamente los patrones proyectados para su posterior análisis.
 La calibración de la cámara requiere estimar inicialmente los parámetros del modelo de cámara \emph{pinhole}, por lo tanto se deben obtener los parámetros intrínsecos como distancia focal, punto principal y factores de escala, y los extrínsecos definidos por la matriz de rotación y vector de traslación de un punto en el espacio al sistema de coordenadas de la cámara.
@@ -301,7 +302,7 @@ Existen varias implementaciones de esta técnica de calibración basado en el mo
 
 Un dispositivo para la captura de geometría en tres dimensiones cuenta con componentes de hardware y software que implementan las técnicas antes mencionadas.
 En general, estos componentes son seleccionados de modo que optimicen las técnicas en las que se basan.
-Un ejemplo de estos dispositivos es \emph{DAVID Structured Light Scanner\cite{DAVID}}, cuyo componente de software utiliza la técnica de luz estructurada y su hardware está compuesto por una cámara y un proyector de video. Otro es el caso \emph{Kinect} de \emph{Microsoft}, que también implementa la técnica de luz estructurada con la salvedad de que se reemplaza el proyector y la cámara de video por un emisor y una cámara de infrarrojos.
+Un ejemplo de estos dispositivos es \emph{DAVID Structured Light Scanner\cite{DAVID}}, cuyo componente de software utiliza la técnica de luz estructurada y su hardware está compuesto por una cámara y un proyector de video. Otro es el caso \emph{Kinect} de \emph{Microsoft}, que también implementa la técnica de luz estructurada con la salvedad que se reemplaza el proyector y la cámara de video por un emisor y una cámara de infrarrojos.
 
 \begin{figure}[H]
   \centering
@@ -311,9 +312,9 @@ Un ejemplo de estos dispositivos es \emph{DAVID Structured Light Scanner\cite{DA
 \end{figure}
 
 En los últimos años se ha popularizado el uso de \emph{Kinect} por ser un dispositivo que se puede adicionar a la consola \emph{Xbox360} de \emph{Microsoft} con el objetivo de permitir que el usuario interactúe con la misma utilizando únicamente el movimiento de su cuerpo.
-Para el análisis de las deformaciones de los rayos y construir el mapa de profundidad, mediante el emisor infrarrojo con el que viene equipado se proyectan patrones de luz por toda la escena y utilizando la cámara de profundidad se analizan las distorsiones. También se cuenta con una cámara convencional para analizar objetos o personas en la escena y para la detección de colores.
+Para el análisis de las deformaciones de los rayos y la construcción del mapa de profundidad, mediante el emisor infrarrojo con el que viene equipado se proyectan patrones de luz por toda la escena y utilizando la cámara de profundidad se analizan las distorsiones. También se cuenta con una cámara convencional para analizar objetos o personas en la escena y para la detección de colores.
 
-A mediados de 2011 fue presentada una interfaz de programación gratuita que permite utilizar \emph{Kinect} de forma directa en aplicaciones no licenciadas para diferentes propósitos, no limitándose a los videojuegos. Esto motiva la aparición de una variedad de aplicaciones que explotan las posibilidades del dispositivo \emph{Kinect}. Una de ellas es \emph{KinectFusion}\cite{KinectFusion}, biblioteca orientada a la reconstrucción tridimensional de objetos en tiempo real, con la posibilidad de que tanto éstos como el sensor estén en movimiento y con esto realizar capturas en 360 grados.
+A mediados de 2011 fue presentada una interfaz de programación gratuita que permite utilizar \emph{Kinect} de forma directa en aplicaciones no licenciadas para diferentes propósitos, no limitándose a los videojuegos. Esto motiva la aparición de una variedad de aplicaciones que explotan las posibilidades del dispositivo \emph{Kinect}. Una de ellas es \emph{KinectFusion}\cite{KinectFusion}, biblioteca orientada a la reconstrucción tridimensional de objetos en tiempo real, que brinda la posibilidad de que tanto éstos como el sensor estén en movimiento y de esta forma realizar capturas en 360 grados.
 
 \subsection{Procesamiento de nube de puntos}
 
@@ -321,8 +322,8 @@ Al utilizar técnicas de obtención de geometría el resultado generado es una n
 
 Las heurísticas existentes para reducir nubes de puntos pueden clasificarse en tres grandes grupos \cite{PntCloud}:
 \begin{itemize}
-   \item \emph{Clustering methods}: consiste en obtener grupos de la nube de puntos en donde cada grupo se remplaza por un conjunto de puntos representativos en él. Los grupos se pueden construir utilizando un enfoque incremental en el cual estos son creados iniciando por un punto aleatorio y agregando puntos vecinos hasta llegar a una cantidad establecida de elementos. Otra enfoque es el jerárquico, en donde se particiona el conjunto de puntos recursivamente hasta conseguir grupos de un tamaño predefinido.
-   \item \emph{Iterative simplification}: se recorren iterativamente los puntos de la nube contrayendo parejas en un único punto. Se evalúa el error introducido, utilizando mínimos cuadrados, que se genera en la contracción comparándolo con el error que se obtendría al contraerse con otro punto vecino y eligiendo la contracción que introduce menor error al sistema. La simplificación se da por finalizada por haber logrado la cantidad de puntos deseada o por superar una cota de error a introducir en el sistema.
+   \item \emph{Clustering methods}: consiste en obtener grupos de la nube de puntos en donde cada grupo se remplaza por un conjunto de puntos representativos en él. Los grupos se pueden construir utilizando un enfoque incremental en el cual estos son creados iniciando por un punto aleatorio y agregando puntos vecinos hasta llegar a una cantidad establecida de elementos. Otro enfoque es el jerárquico, en donde se particiona el conjunto de puntos recursivamente hasta conseguir grupos de un tamaño predefinido.
+   \item \emph{Iterative simplification}: se recorren iterativamente los puntos de la nube contrayendo parejas en un único punto. Se evalúa el error introducido, utilizando mínimos cuadrados, que se generan en la contracción comparándolos con el error que se obtendría al contraerse con otro punto vecino y eligiendo la contracción que introduce menor error al sistema. La simplificación se da por finalizada por haber logrado la cantidad de puntos deseada o por superar una cota de error a introducir en el sistema.
    \item \emph{Particle simulation}: se generan nuevos puntos que sustituyen la nube de puntos original. Se generan conjuntos de partículas que se mueven aleatoriamente en la superficie hasta lograr un balance.
 \end{itemize}
 
@@ -348,12 +349,12 @@ El muestreo de variables aleatorias es una técnica utilizada para una gran vari
   \label{fig:Mesh-Poisson}
 \end{figure}
 
-En líneas generales, este algoritmo genera puntos alrededor de los ya existentes en la muestra y valida si pueden ser agregados al conjunto final en caso de no violar la regla de la mínima distancia a los vecinos. Se genera una grilla en dos o tres dimensiones, dependiendo del escenario de aplicación, en la cuál cada celda contendrá al final del proceso a lo sumo un punto. Una grilla adicional es utilizada para realizar búsquedas rápidas y dos conjuntos de puntos son mantenidos durante el procesamiento para poder diferenciar los que han sido generados y los que aún necesitan procesamiento.
+En líneas generales, este algoritmo genera puntos alrededor de los ya existentes en la muestra y valida si pueden ser agregados al conjunto final en caso de no violar la regla de la mínima distancia a los vecinos. Se genera una grilla en dos o tres dimensiones, dependiendo del escenario de aplicación, en la cual cada celda contendrá al final del proceso a lo sumo un punto. Una grilla adicional es utilizada para realizar búsquedas rápidas y dos conjuntos de puntos son mantenidos durante el procesamiento para poder diferenciar los que han sido generados y los que aún necesitan procesamiento.
 La implementación realizada en \emph{VcgLib} recibe tres parámetros:
 \begin{itemize}
-  \item 1) La cantidad de puntos en la muestra: El radio de cercanía es calculado en base a este parámetro.
-  \item 2) El radio: Es utilizado para calcular el tamaño de la muestra óptimo en base a la malla inicial.
-  \item 3) Sub muestreo: Indica si la muestra de Poisson es un subconjunto de la muestra inicial o si se deberán generar nuevos puntos aleatoriamente.
+  \item 1) La cantidad de puntos en la muestra: el radio de cercanía es calculado en base a este parámetro.
+  \item 2) El radio: es utilizado para calcular el tamaño de la muestra óptimo en base a la malla inicial.
+  \item 3) Sub muestreo: indica si la muestra de Poisson es un subconjunto de la muestra inicial o si se deberán generar nuevos puntos aleatoriamente.
 \end{itemize}
 
 \subsubsection{Reconstrucción de normales}
@@ -363,7 +364,6 @@ Se detalla un pseudo-código del método:
 
 \paragraph{Paso 1: }Identificar los planos tangentes para aproximar localmente la superficie y estimar así los vectores normales.
 
-
 Para cada vértice:
   \begin{itemize}
     \item Calcular el centro geométrico del plano tangente en el punto como el promedio de los $K$ puntos más cercanos.
@@ -372,11 +372,9 @@ Para cada vértice:
 
 \paragraph{Paso 2: }Construir un grafo en donde cada punto está conectado a los $K$ vecinos más cercanos (grafo de Riemannian)
 
-
 Se crea un grafo en cuyos nodos se guardan todas las aristas incidentes a los $K$ vecinos más cercanos. A cada arista se le asigna un peso igual al valor absoluto del producto escalar de la normal en el punto con la normal en cada uno de los $K$ vecinos:
    $$fabs(nodoActual->normal . K\_Vecinos[n]->normal)$$
 \paragraph{Paso 3: }Calcular el árbol de expansión mínimo sobre el grafo de Riemannian y recorrerlo para orientar las normales.
-
 
 Dado un grafo conexo, no dirigido, con sus aristas con un peso asignado, se llama árbol de expansión mínimo al sub-grafo con forma de árbol que conecta todos los nodos con un peso total mínimo conteniendo todos los nodos del grafo inicial. El grafo de entrada es el construido en el paso anterior y se utiliza el algoritmo de Kruskal$^\dagger$, uno de los varios algoritmos que resuelven el problema de encontrar un árbol de expansión mínima de un grafo.
 Una vez construido el árbol de expansión, lo único que se hace es recorrerlo en orden e invertir el sentido de los vectores normales en caso de ser necesario. La condición para efectuar dicha corrección se basa en el ángulo del nodo siendo inspeccionado en comparación a todas las direcciones de las normales de los vecinos conectados a dicho nodo.
