@@ -1,0 +1,1 @@
+This project is about generate an automated tool to inspect the environment and generate a geomethry editable with open source and widely used tools for managing 3D models and then select how a video should be projected on the shape.
